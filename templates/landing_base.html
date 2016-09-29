@@ -39,7 +39,6 @@
 		<link rel="stylesheet" href="{% static "dist/css/templatemo-style.css" %}">
 
 		{% block extrastyles %}
-
 		{% endblock %}
 
 	</head>
@@ -51,7 +50,7 @@
 		<!-- end preloader -->
 		<!-- start navigation -->
 		<nav class="navbar navbar-default navbar-fixed-top templatemo-nav" role="navigation">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="navbar-header">
 					<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="icon icon-bar"></span>
@@ -64,7 +63,7 @@
 					<h3 class="navbar-text">EKATA</h3>
 				</div>
 				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav navbar-right text-uppercase">
+					<ul class="nav navbar-nav text-uppercase">
 						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}">Home</a></li>
 						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#feature">Features</a></li>
 						<!--<li><a href="#support">Support</a></li>-->
@@ -72,13 +71,35 @@
 						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#contact">Contact</a></li>
 						<li><a class="external" href="{% url 'landing:hashtag' %}">Hashtag</a></li>
 						<li><a class="external" href="{% url 'landing:newses' %}">News</a></li>
+						<li><a class="external" href="{% url 'dashboard:index' %}">Dashboard</a></li>
 					</ul>
-					<!--
-					<ul class="nav navbar-nav navbar-right text-uppercase">
-						<li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
-						<li><a href="#"><i class="fa fa-user-plus"></i> Sign Up</a></li>
-					</ul>
-					-->
+					{% if request.user.is_authenticated %}
+						<ul class="nav navbar-nav navbar-right text-uppercase">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+									{% if request.user.profile.avatar %}
+			                            <img src="{{ request.user.profile.avatar.thumbnail.40x40 }}" class="img-circle" alt="User Image">
+			                        {% else %}
+			                            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="40" height="40">
+			                        {% endif %} {{ request.user.username }} <b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="external" style="height: 50px;" href="{% url 'myaccount:index' %}"><i class="fa fa-bank"></i> {% trans "My Account" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									<li><a class="external" style="height: 50px;" href="{% url 'messaging:index' %}"><i class="fa fa-comment"></i> {% trans "Messages" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									<li><a class="external" style="height: 50px;" href="{% url 'profilesystem:index' %}"><i class="fa fa-cog"></i> {% trans "Profile" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									<li><a class="external" style="height: 50px;" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> {% trans "Sign-out" %}</a></li>
+								</ul>
+							</li>
+						</ul>
+					{% else %}
+						<ul class="nav navbar-nav navbar-right text-uppercase">
+							<li><a class="external" href="/accounts/login/"><i class="fa fa-sign-in"></i> Login</a></li>
+							<li><a class="external" href="/accounts/signup/"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+						</ul>
+					{% endif %}
 				</div>
 			</div>
 		</nav>
