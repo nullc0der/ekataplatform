@@ -1,0 +1,5 @@
+{% load bootstrap_tags i18n %}
+<form action="{% url 'myaccount:transferunit' user.id %}" method="post" id="transactionform">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+</form>

@@ -1,0 +1,101 @@
+{% extends "landing_base.html" %}
+{% load markdown_deux_tags i18n %}
+{% block title %}
+    News
+{% endblock %}
+{% block extrastyles %}
+    <style media="screen">
+        #mainnews {
+            min-height: 700px;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<section id="newshome">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 wow fadeIn" style="padding: 10%; border-right: 1px solid">
+                    <h3 class="text-uppercase" id="newshome-header">{% trans "News and Stories" %}</h3>
+                </div>
+                <div class="col-md-1"></div>
+                {% if trending %}
+                <div class="col-md-5 wow bounceInLeft">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1 class="text-uppercase">{% trans "Trending" %}</h1>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        {% for trend in trending %}
+                        <div class="col-md-12 trendingnews">
+                            <h3><a href="{{ trend.get_absolute_url }}" style="color:#fff;">{{ trend.title|truncatewords:4 }}</a></h3>
+                            <p class="text-justify">{{ trend.content|markdown|truncatewords_html:10 }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<section id="mainnews">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="newswrapper">
+                    {% for news in newses %}
+                    <div class="col-md-4 hidden-xs hidden-sm">
+                        <div class="newswriter">
+                            {% if news.author.profile.avatar %}
+                                <img src="{{ news.author.profile.avatar.thumbnail.128x128 }}" class="img-circle" width="70" height="70" alt="writer">
+                            {% endif %}
+                            {% if news.author.profile.about_me %}
+                                <h4>{% trans "About Me" %}</h4>
+                                <hr>
+                                <p>
+                                    {{ news.author.profile.about_me }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-xs-12 col-sm-12" style="padding-bottom:45px">
+                        <div class="newstitle">
+                            <h1>
+                                <a href="{{ news.get_absolute_url }}">{{ news.title|truncatewords:10 }}</a>
+                            </h1>
+                            <span>
+                                <i class="fa fa-calendar"></i> {{ news.created_on|date:"M j, Y" }}
+                                &nbsp;&nbsp;
+                                <i class="fa fa-tag"></i> {% for tag in news.tags.all %}
+                                            <a href="{% url 'landing:newses' %}?tag={{ tag.name }}">{{ tag.name }}</a>{% if forloop.last %}{% else %},{% endif %}
+                                        {% endfor %}
+                                &nbsp;&nbsp;
+                                <i class="fa fa-pencil"></i><a href="{% url 'landing:newses' %}?author={{ news.author.username }}">{{ news.author.username }}</a>
+                            </span>
+                        </div>
+                        <div class="newscontent">
+                            {{ news.content|markdown|truncatewords_html:50 }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-3 hidden-xs hidden-sm">
+                <div class="archive">
+                    <h4><i class="fa fa-tag"></i>Tags</h4>
+                    <hr>
+                    {% for tag in tags %}
+                        <a href="{% url 'landing:newses' %}?tag={{ tag.name }}">{{ tag.name }}({{ tag.news.count }})</a>{% if forloop.last %}{% else %},{% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

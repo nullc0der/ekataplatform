@@ -1,0 +1,6 @@
+{% load bootstrap_tags i18n %}
+<form role="form" method="POST" id="editextrapermform" action="{% url 'g:edituserperm' group.id user.id %}">
+    <legend>{% trans "User" %}</legend>
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+</form>

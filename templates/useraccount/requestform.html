@@ -1,0 +1,5 @@
+{% load bootstrap_tags i18n %}
+<form action="{% url 'myaccount:requestunit' user.id %}" method="post" id="requestform">
+    {% csrf_token %}
+    {{ rform|as_bootstrap }}
+</form>

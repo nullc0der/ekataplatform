@@ -1,0 +1,8 @@
+{% load bootstrap_tags i18n %}
+<form action="{% url 'g:editnews' group.id %}?news_id={{ news.id }}" method="POST" role="form" id="newsform">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="pull-right">
+        <button type="submit" id="submitnews" class="btn btn-primary">{% trans "Submit" %}</button>
+    </div>
+</form>

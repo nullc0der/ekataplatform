@@ -1,0 +1,15 @@
+{% load staticfiles %}
+{% for user in users %}
+    <div class="users">
+        {% if user.profile.avatar_public %}
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.thumbnail.30x30 }}" class="img-circle transfer-user" alt="User Image">
+            {% else %}
+                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="30" height="30">
+            {% endif %}
+        {% else %}
+            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="30" height="30">
+        {% endif %}
+        <span><a onclick="loadDetail({{ user.id }})">{{ user.username }}</a></span>
+    </div>
+{% endfor %}

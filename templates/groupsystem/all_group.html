@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load i18n bootstrap_pagination %}
+
+{% block title %}
+    {% trans "All Groups" %}
+{% endblock title %}
+
+{% block extrastyle %}
+    <style>
+        .fullscreen-modal .modal-dialog {
+            margin: 0;
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .fullscreen-modal .modal-dialog {
+                width: 750px;
+            }
+        }
+        @media (min-width: 992px) {
+            .fullscreen-modal .modal-dialog {
+                width: 970px;
+            }
+        }
+        @media (min-width: 1200px) {
+            .fullscreen-modal .modal-dialog {
+                width: 1170px;
+            }
+        }
+    </style>
+{% endblock extrastyle %}
+
+{% block content_header %}
+    <h1>
+        {% trans "All Groups" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#createGroupModal"><i class="fa fa-plus-circle"></i> {% trans "Create Group" %}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="box-tools pull-right">
+                        <div class="has-feedback">
+                            <input type="text" name="qgroup" class="form-control input-sm" placeholder="Search...">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div id="group-wrapper">
+                        {% include "groupsystem/all_group_results.html" %}
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="pull-right">
+                        {% bootstrap_pager all_groups %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div tabindex="-1" class="modal fullscreen-modal fade" id="createGroupModal" role="dialog" aria-hidden="true" aria-labelledby="createGroupModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="createGroupModalLabel">{% trans "Create Group" %}</h4>
+                </div>
+                <div class="modal-body" id="groupmodalbody">
+                    {% include "groupsystem/creategroupform.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" id="createbutton">{% trans "Create" %}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.Create Group Modal -->
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        function clear_form_field_errors(form) {
+            $(".error-msg", $(form)).remove();
+            $(".form-group", $(form)).removeClass("has-error");
+        }
+        $("#gears").hide();
+        $("input[name='qgroup'").keyup(function(){
+            var query = $(this).val();
+            $("#group-wrapper").load(
+                "{% url 'g:allgroups' %}?qgroup=" + encodeURIComponent(query)
+            );
+        });
+        $("#createbutton").click(function(){
+            var frm = $("#creategroupform");
+            $('#createbutton').attr('disabled', 'disabled');
+            $('#gears').show();
+            frm.hide();
+            $.ajax({
+                url: frm.attr('action'),
+                type: frm.attr('method'),
+                data: frm.serialize(),
+                success: function(data) {
+                    $("#groupmodalbody").html(data);
+                    $("#createbutton").hide();
+                },
+                error: function(data) {
+                    //frm.html(data.responseText);
+                    $("#groupmodalbody").html(data.responseText);
+                    $("#gears").hide();
+                    $('#createbutton').removeAttr('disabled');
+                    var val = $("#id_group_type").val();
+                    if (val !== '8') {
+                        $("#div_id_group_type_other").hide();
+                    }
+                }
+            });
+        });
+        $("#createGroupModal").on('hidden.bs.modal', function(){
+            $("#creategroupform")[0].reset();
+            clear_form_field_errors("#creategroupform");
+        });
+        $("#div_id_group_type_other").hide();
+        $(document).on('change', '#id_group_type', function(event) {
+            event.preventDefault();
+            var val = $(this).val();
+            if (val === '8') {
+                $("#id_group_type_other").val("");
+                $("#div_id_group_type_other").show();
+            }
+            else {
+                $("#id_group_type_other").val("");
+                $("#div_id_group_type_other").hide();
+            }
+        });
+    </script>
+{% endblock extrascripts %}

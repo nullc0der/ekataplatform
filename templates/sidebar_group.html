@@ -1,0 +1,29 @@
+{% load i18n guardian_tags %}
+{% get_obj_perms request.user for group as "group_perms" %}
+<li class="treeview groupnavcontent">
+    <a href="{% url 'g:groupdetails' group.id %}">
+        <i class="fa fa-home"></i> <span>{% trans "Homepage" %}</span>
+    </a>
+</li>
+{% if 'can_read_events' in group_perms %}
+<li class="treeview groupnavcontent">
+    <a href="{% url 'g:events' group.id %}">
+        <i class="fa fa-calendar"></i> <span>{% trans "Events" %}</span>
+    </a>
+</li>
+{% endif %}
+{% if 'can_read_post' in group_perms %}
+<li class="treeview groupnavcontent">
+    <a href="#">
+        <i class="fa fa-edit"></i>
+        <span>{% trans "Posts" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{% url 'g:adminposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Group's Posts" %}</a></li>
+        <li><a href="{% url 'g:memberposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Member's Posts" %}</a></li>
+    </ul>
+</li>
+{% endif %}

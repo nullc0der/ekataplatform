@@ -1,0 +1,56 @@
+{% extends "landing_base.html" %}
+{% load markdown_deux_tags i18n %}
+{% block title %}
+    {{ news.title|truncatewords:10 }}
+{% endblock %}
+{% block extrastyles %}
+    <style media="screen">
+        #newsdetail {
+            min-height: 700px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<section id="newsdetail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 hidden-xs hidden-sm">
+                    <div class="newswriter">
+                        {% if news.author.profile.avatar %}
+                            <img src="{{ news.author.profile.avatar.thumbnail.128x128 }}" class="img-circle" width="70" height="70" alt="writer">
+                        {% endif %}
+                        {% if news.author.profile.about_me %}
+                            <h4>{% trans "About Me" %}</h4>
+                            <hr>
+                            <p>
+                                {{ news.author.profile.about_me }}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+                    <div class="col-md-9 col-xs-12 col-sm-12" style="padding-bottom:45px">
+                        <div class="newstitle">
+                            <h1>
+                                {{ news.title }}
+                            </h1>
+                            <span>
+                                <i class="fa fa-calendar"></i> {{ news.created_on|date:"M j, Y" }}
+                                &nbsp;&nbsp;
+                                <i class="fa fa-tag"></i> {% for tag in news.tags.all %}
+                                            <a href="{% url 'landing:newses' %}?tag={{ tag.name }}">{{ tag.name }}</a>{% if forloop.last %}{% else %},{% endif %}
+                                        {% endfor %}
+                                &nbsp;&nbsp;
+                                <i class="fa fa-pencil"></i> <a href="{% url 'landing:newses' %}?author={{ news.author.username }}">{{ news.author.username }}</a>
+                            </span>
+                        </div>
+                        <div class="newscontent">
+                            {{ news.content|markdown }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

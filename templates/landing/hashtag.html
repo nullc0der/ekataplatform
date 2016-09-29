@@ -1,0 +1,173 @@
+{% extends "landing_base.html" %}
+{% load staticfiles i18n %}
+{% block title %}
+    Hashtag
+{% endblock %}
+{% block extrastyles %}
+    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="{% static "dist/css/bootstrap-image-gallery.min.css" %}" charset="utf-8">
+{% endblock %}
+{% block extrameta %}
+    <meta property="og:url" content="https://ekata.social/hashtag/" />
+    <meta property="og:title" content="Basic Income Hashtag Banner" />
+    <meta property="og:description" content="Show support for basic income by adding a hashtag banner" />
+    <meta property="og:image" content="https://ekata.social/static/dist/img/ekata-hashtag-banner-200-sq.png" />
+    <meta property="fb:app_id" content="675793779103244">
+{% endblock %}
+{% block content %}
+<section id="home">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 wow fadeIn" data-wow-delay="0.3s" style="margin-top:15%">
+                    <h1 class="text-upper">{% trans "Show Support" %}</h1>
+                    <p class="tm-white">{% trans "In adding the #basicincome hashtag banner to your facebook and twitter profile !!" %}</p>
+                </div>
+                <div class="col-md-6 wow bounceInLeft">
+                    <img src="{% static "dist/img/ekata-hashtag-banner.png" %}" class="img-responsive bannerimg" alt="hashtag banner image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="hashtagmap">
+    <div class="row">
+        <div class="col-md-12 wow bounceIn text-center">
+            <h2 style="color:#7b7b7b;">{% trans "World Supporters of Basic Income" %}</h2>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-6 col-md-offset-3">
+            <div id="links">
+                {% for hashtagimg in hashtagimges  %}
+                <a href="{{ hashtagimg.image.url }}" title="{{ hashtagimg.uploader }}" data-gallery>
+                    <img src="{{ hashtagimg.image.thumbnail.75x75 }}">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px">
+      <div class="col-md-6 col-md-offset-3">
+        <div id="map" style="width:100%;height:350px"></div>
+      </div>
+    </div>
+</section>
+<div id="imgModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="imguploader"></h4>
+      </div>
+      <div class="modal-body" id="imgmodalbody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="fa fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extrascripts %}
+    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="{% static "dist/js/bootstrap-image-gallery.min.js" %}"></script>
+    <script type="text/javascript">
+        function hashTagMap() {
+            var mapCanvas = document.getElementById("map");
+            var mapOptions = {
+                center: new google.maps.LatLng(51.508742,-0.120850),
+                zoom: 1,
+                disableDefaultUI: true,
+                styles: [
+                    {
+                        "featureType": "road",
+                        "stylers": [
+                            { "visibility": "off" }
+                        ]
+                    }
+                ]
+            };
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            var opt = { minZoom: 1, maxZoom: 5 };
+            map.setOptions(opt);
+            var hashtags = [
+                {% for hashtagimg in hashtagimges %}
+                    ['{{ hashtagimg.uploader }}', {{ hashtagimg.lat }}, {{ hashtagimg.lng }}, 1, '{{ hashtagimg.image.thumbnail.128x128 }}', '{{ hashtagimg.id }}'],
+                {% endfor %}
+            ];
+            var myLatLng = {lat: -25.363, lng: 131.044};
+            var image = {
+                url: '{% static "dist/img/reddot.png" %}', // url
+                scaledSize: new google.maps.Size(8, 8), // scaled size
+                origin: new google.maps.Point(0,0), // origin
+                anchor: new google.maps.Point(0, 0) // anchor
+            };
+            for (var i = 0; i < hashtags.length; i++) {
+                var hashtag = hashtags[i];
+                var marker = new google.maps.Marker({
+                    position: {lat: hashtag[1], lng: hashtag[2]},
+                    map: map,
+                    title: hashtag[0],
+                    zIndex: hashtag[3],
+                    icon: image,
+                });
+                attachImg(marker, hashtag[4], hashtag[0], hashtag[5]);
+            }
+        }
+        function attachImg(marker, img, uploader, id) {
+            var content = '<div id="content">' + '<h5>' + uploader + '</h5>' + '<img onclick=showImg(' + id + ') src=' + img + ' />' + '</div>'
+            var infowindow = new google.maps.InfoWindow({
+                content: content,
+            });
+
+            marker.addListener('mousedown', function() {
+                infowindow.open(marker.get('map'), marker);
+            });
+        }
+        function showImg(id) {
+            $.get('{% url 'landing:getimage' %}?id=' + id, function(data) {
+                $("#imguploader").text(data.uploader);
+                var img = '<img src=' + data.img + ' />';
+                $("#imgmodalbody").empty();
+                $("#imgmodalbody").html(img);
+                $("#imgModal").modal('show');
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=hashTagMap&key=AIzaSyDT9La3M6Mq1ncgY8INIhurRFNiFuw8AuQ"></script>
+{% endblock %}

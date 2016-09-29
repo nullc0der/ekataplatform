@@ -1,0 +1,28 @@
+{% for group in joined_groups %}
+<div class="col-md-4" style="margin-top:10px">
+    <div class="box box-widget widget-user">
+        <div class="widget-user-header bg-black" style="background: url('{{ group.header_image.url }}'); background-size: 345px 120px; background-repeat:no-repeat">
+            <h3 class="widget-user-username">{{ group.name }}</h3>
+            <h5 class="widget-user-desc">
+                {% ifequal group.group_type '7' %}
+                    {{ group.group_type_other }}
+                {% else %}
+                    {{ group.get_group_type_display }}
+                {% endifequal %}
+            </h5>
+        </div>
+        <div class="widget-user-image">
+            <img class="img-circle" src="{{ group.logo.thumbnail.128x128 }}" alt="Group Logo">
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-sm-12 border-right">
+                    <div class="description-block">
+                        <span class="description-text">{{ group.short_about }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

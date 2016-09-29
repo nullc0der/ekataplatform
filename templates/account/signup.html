@@ -1,0 +1,55 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+{% load socialaccount %}
+{% block head_title %}
+    Signup
+{% endblock %}
+{% block content %}
+<p class="login-box-msg">{% trans "Register a new membership" %}</p>
+{% include "account/rform.html" %}
+<a href="{{ login_url }}" class="text-center">{% trans "I already have a membership" %}</a>
+{% endblock %}
+{% block extra_body %}
+  <script type="text/javascript">
+    function apply_form_field_error(fieldname, error) {
+      var input = $("#id_" + fieldname),
+          container = $("#div_id_" + fieldname),
+          error_msg = $("<span />").addClass("help-inline ajax-error").text(error[0]);
+      container.addClass("has-error");
+      error_msg.insertAfter(input);
+    }
+    function clear_form_field_errors(form) {
+      $(".ajax-error", $(form)).remove();
+      $(".has-error", $(form)).removeClass("has-error");
+      $("#alert-div").empty();
+    }
+    function django_message(error) {
+      var alert_div = $("<div />").addClass("alert alert-danger").text(error);
+      $("#alert-div").append(alert_div);
+    }
+    $("#register").click(function(){
+      var registerfrm = $("#registerform");
+      $.ajax({
+        type: registerfrm.attr('method'),
+        url: registerfrm.attr('action'),
+        data: registerfrm.serialize(),
+        success: function(data, textStatus, jqXHR) {
+          location.href = '/';
+        },
+        error: function(data, textStatus, jqXHR) {
+          var response = $.parseJSON(data.responseText);
+          var form_errors = response.form_errors;
+          clear_form_field_errors(registerform);
+          $.each(form_errors, function(index, value) {
+            if (index === "__all__") {
+              django_message(value[0]);
+            } else {
+              apply_form_field_error(index, value);
+            }
+          });
+        }
+      });
+    });
+  </script>
+{% endblock extra_body %}

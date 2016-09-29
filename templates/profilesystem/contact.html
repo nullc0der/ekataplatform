@@ -1,0 +1,31 @@
+{% load i18n %}
+{% if request.user.phone %}
+    {% with request.user.phone as userphone %}
+        {% if userphone.phone_office %}
+            <strong><i class="fa fa-building margin-r-5"></i>{% trans "Phone Office" %}</strong>
+            <p class="text-muted">
+                {{ userphone.phone_office }}
+            </p> 
+        {% endif %}
+        {% if userphone.phone_home %}
+            <strong><i class="fa fa-home margin-r-5"></i>{% trans "Phone Home" %}</strong>
+            <p class="text-muted">
+                {{ userphone.phone_home }}
+            </p> 
+        {% endif %}
+        {% if userphone.phone_mobile %}
+            <strong><i class="fa fa-mobile margin-r-5"></i>{% trans "Phone Mobile" %}</strong>
+            <p class="text-muted">
+                {{ userphone.phone_mobile }}
+            </p> 
+        {% endif %}
+        {% if userphone.phone_emergency %}
+            <strong><i class="fa fa-asterisk margin-r-5"></i>{% trans "Phone Emergency" %}</strong>
+            <p class="text-muted">
+                {{ userphone.phone_emergency }}
+            </p>            
+        {% endif %}
+    {% endwith %}
+{% else %}
+    <p>{% trans "Click add button to add your phone number" %}</p>
+{% endif %}

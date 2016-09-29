@@ -1,0 +1,7 @@
+{% load i18n %}
+<div class="text-center">
+    <h1>{% trans "Your new group is created" %}</h1>
+    <p>{% trans "Group UUID: " %}{{ group.group_uuid }}</p>
+    <p>{% trans "Url: " %} <a href="{{ group.get_absolute_url }}">{{ group.get_absolute_url }}</a></p>
+    <p>{% trans "More Settings: " %} <a href="{{ group.get_settings_url }}">{{ group.get_settings_url }}</a></p>
+</div>

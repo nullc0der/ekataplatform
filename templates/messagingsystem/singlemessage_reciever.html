@@ -1,0 +1,21 @@
+{% load staticfiles %}
+{% if message %}
+     <div class="direct-chat-msg">
+        <div class="direct-chat-info clearfix">
+            <span class="direct-chat-name pull-left">{{ message.user.username }}</span>
+            <span class="direct-chat-timestamp pull-right">{{ message.timestamp|date:"H:i" }}</span>
+        </div>
+        <!-- /.direct-chat-info -->
+        {% if message.user.profile.avatar %}
+            <img src="{{ message.user.profile.avatar.thumbnail.128x128 }}" class="direct-chat-img">
+        {% else %}
+            <img src="{% static "dist/img/placeholder-user.png" %}" class="direct-chat-img" width="50" height="50">
+        {% endif %}
+        <!-- /.direct-chat-img -->
+        <div class="direct-chat-text">
+            <p>{{ message.content }}</p>
+        </div>
+        <!-- /.direct-chat-text -->
+    </div>
+    <!-- /.direct-chat-msg -->
+{% endif %}

@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "Messaging" %}
+{% endblock title %}
+{% block extrastyle %}
+    <style>
+        .chatuser {
+            padding: 6px;
+            margin: 5px 0;
+        }
+        .activechat {
+            background-color: #ddd;
+        }
+        .chatuser:hover {
+            background-color: rgba(23, 136, 229, 0.6);
+        }
+        .chatuser:hover a {
+            color: #fff;
+        }
+        .bigger-img {
+            height: 50px;
+            width: 50px;
+        }
+        .no-msg {
+            font-size: 18px;
+            margin-top: 20%;
+            color: #DDF;
+        }
+        .blink {
+            animation:blink 700ms infinite alternate;
+        }
+        @keyframes blink {
+            from { opacity:1; }
+            to { opacity:0; }
+        }
+        .popovercontent {
+            display: none;
+        }
+        .tableactions {
+            padding: 5px;
+        }
+        .tableactions:hover {
+            background-color: #3c8dbc;
+            border-radius: 3px;
+        }
+        .tableactions:hover a {
+            color: #fff;
+        }
+    </style>
+{% endblock extrastyle %}
+{% block content_header %}
+    <h1>
+        {% trans "Messaging" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if request.user and not request.user.is_anonymous %}
+                <a>Hello, {{ request.user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <input type="text" class="form-control" placeholder="search by username..." id="searchroom">
+                    <hr>
+                    {% if chats %}
+                        <div class="message-users" id="chatrooms">
+                            {% include "messagingsystem/rooms.html" %}
+                        </div>
+                    {% else %}
+                        <div class="message-users text-center">
+                            <p class="no-msg">{% trans "Sorry you have no chats yet!!!" %}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="box box-primary" id="chatmessages">
+                {% if chats %}
+                    {% include "messagingsystem/chats.html" %}
+                {% else %}
+                    <div class="box-body">
+                        <div class="direct-chat-messages text-center">
+                            <p class="no-msg">{% trans "Sorry you have no chats yet!!!" %}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="overlay" id="chatoverlay">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popovercontent" id="actionslist">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="tableactions" data-toggle="modal" data-target="#sendUnitModal">
+                        <a href="javascript:void(0)">{% trans "Send Units" %}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tableactions" data-toggle="modal" data-target="#requestUnitModal">
+                        <a href="javascript:void(0)">{% trans "Request Request" %}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        function clear_form_field_errors(form) {
+            $(".error-msg", $(form)).remove();
+            $(".form-group", $(form)).removeClass("has-error");
+        }
+        $("#chatoverlay").hide();
+        setMessageRead();
+        $(".activechat").prop('active', true);
+        $(".message-users").slimscroll({
+            height: '450px',
+            size: '3px',
+            alwaysVisible: false
+        });
+        $(".direct-chat-messages").slimscroll({
+            height: '450px',
+            size: '3px',
+            alwaysVisible: false,
+            start: 'bottom' 
+        });
+        $("#searchroom").keyup(function(){
+            var query = $(this).val();
+            $("#chatrooms").load(
+                "{% url 'messaging:index' %}?username=" + encodeURIComponent(query)
+            );
+        });
+        $("input[name='content']").emojioneArea({
+            pickerPosition: "top",
+            tonesStyle: "bullet",
+            hidePickerOnBlur: false,
+            events: {
+                keyup: function(editor, event){
+                    if (event.which === 13) {
+                        $('.emojionearea-editor').blur();
+                        var frm = $("#sendfrm");
+                        if ($("input[name='content']").val()) {
+                            $.ajax({
+                                url: frm.attr('action'),
+                                type: 'POST',
+                                data: frm.serialize(),
+                                success: function(data) {
+                                    $('.direct-chat-messages').append(data);
+                                    $("input[name='content']").val('');
+                                    $(".direct-chat-messages").slimscroll({
+                                        scrollTo: $('.direct-chat-messages')[0].scrollHeight,
+                                    });
+                                    $(".emojionearea-editor").text('');
+                                    convertEmojis(true);
+                                }
+                            }); 
+                        }
+                    }
+                },
+                emojibtn_click: function (button, event) {
+                    $('.emojionearea-editor').blur();
+                },
+            }
+        });
+        $(".emojionearea-button").click(function(e){
+            document.activeElement.blur();
+        });
+        var mouse_is_inside = false;
+        $(".emojionearea-picker, .emojionearea-button").hover(function(){ 
+            mouse_is_inside=true;
+        }, function(){ 
+            mouse_is_inside=false;
+        });
+        $(document).mouseup(function(){
+            if ($('.emojionearea-button').hasClass('active') && ! mouse_is_inside) {
+                $('.emojionearea-button').click();
+            }
+        });
+        $(".chatuser").click(function () {
+            var chat_id = $(this).data('id');
+            var chat = $("#room-" + chat_id);
+            $("#chatoverlay").show();
+            $("#chatmessages").load('/messaging/chat/' + chat_id + '/', function(){
+                $("#chatoverlay").hide();
+                $(".chatuser").removeClass('activechat');
+                $(".chatuser").prop('active', false);
+                $(chat).addClass('activechat');
+                $(chat).prop('active', true);
+                $(chat).removeClass('blink');
+                $(".direct-chat-messages").slimscroll({
+                    height: '450px',
+                    size: '3px',
+                    alwaysVisible: false,
+                    start: 'bottom' 
+                });
+                convertEmojis();
+                setMessageRead();
+            });
+        });
+        $("#sendmsg").click(function(e){
+            e.preventDefault();
+            var frm = $("#sendfrm");
+            if ($("input[name='content']").val()) {
+                $.ajax({
+                    url: frm.attr('action'),
+                    type: 'POST',
+                    data: frm.serialize(),
+                    success: function(data) {
+                        $('.direct-chat-messages').append(data);
+                        $("input[name='content']").val('');
+                        $(".direct-chat-messages").slimscroll({
+                            scrollTo: $('.direct-chat-messages')[0].scrollHeight,
+                        });
+                        $('.emojionearea-editor').text('');
+                        convertEmojis(true);
+                    }
+                }); 
+            }
+        });
+        $('.actions').popover({
+            html: true, 
+            content: function() {
+                return $("#actionslist").html();
+            },
+            title: "{% trans "Actions" %}",
+            placement: "left",
+            container: 'body',
+            trigger: 'focus'
+        });
+        $("#sendbutton").click(function(){
+            var frm = $("#transactionform");
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    $("#sendUnitModal").modal('hide');
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                }
+            });
+        });
+        $("#sendUnitModal").on('hidden.bs.modal', function(){
+            $("#transactionform")[0].reset();
+            clear_form_field_errors("#transactionform");
+        });
+        $("#requestbutton").click(function(){
+            var frm = $("#requestform");
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    $("#requestUnitModal").modal('hide');
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                }
+            });
+        });
+        $("#requestUnitModal").on('hidden.bs.modal', function(){
+            $("#requestform")[0].reset();
+            clear_form_field_errors("#requestform");
+        }); 
+    </script>
+    <script type="text/javascript">
+        var protocol = location.protocol;
+        var proto = protocol == 'https:' ? 'wss:' : 'ws:';
+        var ws4redis = WS4Redis({
+            uri: proto + '//' + location.host + '/ws/messagepage_realtime?subscribe-user',
+            connecting: on_connecting,
+            receive_message: receiveMessage,
+            heartbeat_msg: {{ WS4REDIS_HEARTBEAT }}
+        });
+        function on_connecting (){
+            console.log("connecting....");
+        }
+        function receiveMessage(msg) {
+            var data = JSON.parse(msg);
+            var chatroom = data.chatroom;
+            var chatdiv = $("div[data-name='" + chatroom + "']");
+            if (chatdiv.prop('active')){
+                $('.direct-chat-messages').append(data.message);
+                $(".direct-chat-messages").slimscroll({
+                    scrollTo: $('.direct-chat-messages')[0].scrollHeight,
+                });
+                convertEmojis(true);
+                setMessageRead(true, data.message_id);
+            }
+            else {
+                chatdiv.addClass("blink");
+                var messageaudio = document.getElementById('messagingaudio');
+                messageaudio.play();
+            }
+        }
+    </script>
+{% endblock extrascripts %}

@@ -1,0 +1,19 @@
+{% load socialaccount %}
+{% if facebook_added %}
+{% else %}
+<div class="col-md-4">
+    <a class="btn btn-block btn-social btn-facebook" href="{% provider_login_url "facebook" process="connect" next="/profile" %}"><i class="fa fa-facebook"></i> Facebook </a>
+</div>
+{% endif %}
+{% if google_added %}
+{% else %}
+<div class="col-md-4">
+    <a class="btn btn-block btn-social btn-google" href="{% provider_login_url "google" process="connect" next="/profile" %}"><i class="fa fa-google-plus"></i> google </a>
+</div>
+{% endif %}
+{% if twitter_added %}
+{% else %}
+<div class="col-md-4">
+    <a class="btn btn-block btn-social btn-twitter" href="{% provider_login_url "twitter" process="connect" next="/profile" %}"><i class="fa fa-twitter"></i> Twitter </a>
+</div>
+{% endif %}

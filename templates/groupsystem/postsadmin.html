@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+{% load i18n staticfiles guardian_tags %}
+{% block title %}
+    {{ group.name }} | Posts | Admin
+{% endblock title %}
+{% block extra_menus %}
+    {% include "sidebar_group.html" %}
+    {% include "sidebar_group_admin.html" %}
+{% endblock extra_menus %}
+{% block content_header %}
+    <h1>
+        {% trans "Posts" %} - {% trans "admin" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+    {% get_obj_perms request.user for group as "group_perms" %}
+    {% if adminpost %}
+        {% if 'can_create_post' in group_perms %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#createPostModal">{% trans "Create Post" %}</button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    {% if posts %}
+        {% for post in posts reversed %}
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="box box-widget">
+                    <div class="box-header with-border">
+                        <div class="user-block">
+                            {% if adminpost %}
+                                <img class="img-circle" src="{{ group.logo.thumbnail.128x128 }}" alt="Group Image">
+                                <span class="username"><a href="{% url 'g:groupdetails' group.id %}">{{ group.name }}</a></span>
+                            {% else %}
+                                {% if creator.profile.avatar_public %}
+                                    {% if creator.profile.avatar %}
+                                        <a href="#">
+                                            <img src="{{ creator.profile.avatar.thumbnail.128x128 }}" class="img-circle" alt="User Image">
+                                        </a>
+                                    {% else %}
+                                        <a href="#">
+                                            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="128" height="128">
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="#">
+                                        <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="128" height="128">
+                                    </a>
+                                {% endif %}
+                                <span class="username"><a href="{% url 'publicusers:user' post.creator.id %}">{{ post.creator.username }}</a></span>
+                            {% endif %}
+                            <span class="description" data-id={{ post.id }}>
+                                {{ post.created_on|date:"M j Y" }}
+                                {% if post.approved %}
+                                {% else %}
+                                    - {% trans "Not approved" %}  <button class="btn btn-primary btn-xs" onclick="approvePost({{ post.id }})">{% trans "Approve" %}</button>
+                                {% endif %}
+                            </span>
+                        </div>
+                        <!-- /.user-block -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <!-- post text -->
+                        <h1>{{ post.title }}</h1>
+                        <p>{{ post.post|truncatewords_html:10|safe }}<span><a href="{% url 'g:editpost' group.id post.id %}">{% trans "edit" %}</a></span></p>
+                        <!-- Social sharing buttons -->
+                        <span class="pull-right text-muted" id="socialstatus">{{ post.likes.count }} likes - {{ post.comments.count }} comments</span>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% else %}
+    <p>{% trans "No Posts Yet!!" %}</p>
+    {% endif %}
+    {% if adminpost %}
+        <div tabindex="-1" class="modal fade" id="createPostModal" role="dialog" aria-hidden="true" aria-labelledby="createPostModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                        <h4 class="modal-title" id="createPostModalLabel">{% trans "Create Post" %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% include "groupsystem/createadminpost.html" %}
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="submitpost" type="button">{% trans "Submit" %}</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.Create Post Modal -->
+    {% endif %}
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        $("#navleft").show();
+        $("#navright").show();
+        var navbar = 0;
+        var maxnavbar = 2;
+        var navbarcontent_classes = ['.mainnavcontent', '.groupnavcontent', '.groupadminnavcontent'];
+        var navbar_names = ["{% trans "MAIN NAVIGATION" %}", "{{ group.name|upper }} NAVIGATION", "{{ group.name|upper }} ADMIN"]
+        $.each(navbarcontent_classes ,function(index) {
+            if (index !== 0) {
+                $(navbarcontent_classes[index]).hide();
+            }
+        });
+        $("#navright").click(function(event) {
+            navRight();
+        });
+        $("#navleft").click(function(event) {
+            navLeft();
+        });
+        $(".header").on('swipeleft', function(event) {
+            navLeft();
+        });
+        $(".header").on('swiperight', function(event) {
+            navRight();
+        });
+        function navRight() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === maxnavbar) {
+                var right_divclass = navbarcontent_classes[0];
+            }
+            else {
+                var right_divclass = navbarcontent_classes[navbar + 1];
+            }
+            if (navbar === maxnavbar) {
+                $("#navheader").text(navbar_names[0]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar + 1]);
+            }
+            $(right_divclass).show('slow');
+            if (navbar === maxnavbar) {
+                navbar = 0;
+            }
+            else {
+                navbar = navbar + 1;
+            }
+        }
+        function navLeft() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === 0) {
+                var left_divclass = navbarcontent_classes[maxnavbar];
+            }
+            else {
+                var left_divclass = navbarcontent_classes[navbar - 1];
+            }
+            if (navbar === 0) {
+                $("#navheader").text(navbar_names[maxnavbar]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar - 1]);
+            }
+            $(left_divclass).show('slow');
+            if (navbar === 0) {
+                navbar = maxnavbar;
+            }
+            else {
+                navbar = navbar - 1;
+            }
+        }
+        function approvePost(post_id) {
+            $.ajax({
+                url: '{% url 'g:approvepost' group.id %}',
+                type: 'POST',
+                data: {'post_id': post_id},
+                success: function(data) {
+                    location.reload();
+                },
+                error: function(data) {
+                    $('.top-right').notify({
+                        message: { text: data.responseText},
+                        type: 'error',
+                    }).show();
+                }
+            });
+        }
+        {% if adminpost %}
+            $("#id_post").wysihtml5({
+                toolbar: {
+                    "fa": true,
+                    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                    "emphasis": true, //Italics, bold, etc. Default true
+                    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                    "html": false, //Button which allows you to edit the generated HTML. Default false
+                    "link": false, //Button to insert a link. Default true
+                    "image": false, //Button to insert an image. Default true,
+                    "color": true, //Button to change color of font
+                    "blockquote": true, //Blockquote
+                    "size": 'sm' //default: none, other options are xs, sm, lg
+                }
+            });
+            $("#submitpost").click(function(){
+                var frm = $("#createpostform");
+                $.ajax({
+                    url: frm.attr('action'),
+                    type: frm.attr('method'),
+                    data: frm.serialize(),
+                    success: function(data) {
+                        $("#createPostModal").modal("hide");
+                        $('.top-right').notify({
+                            message: { text: data},
+                            type: 'info',
+                        }).show();
+                    },
+                    error: function(data) {
+                        frm.html(data.responseText);
+                        $("#id_post").wysihtml5({
+                            toolbar: {
+                                "fa": true,
+                                "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                                "emphasis": true, //Italics, bold, etc. Default true
+                                "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                                "html": false, //Button which allows you to edit the generated HTML. Default false
+                                "link": false, //Button to insert a link. Default true
+                                "image": false, //Button to insert an image. Default true,
+                                "color": true, //Button to change color of font
+                                "blockquote": true, //Blockquote
+                                "size": 'sm' //default: none, other options are xs, sm, lg
+                            }
+                        });
+                    }
+                });
+            });
+        {% endif %}
+    </script>
+{% endblock extrascripts %}

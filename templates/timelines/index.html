@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+{% load i18n bootstrap_tags staticfiles %}
+{% block title %}
+    {% trans "Timeline" %}
+{% endblock title %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static "plugins/pace/pace.min.css" %}">
+    <style>
+        .filterbtn {
+            margin-left: 3px;
+        }
+    </style>
+{% endblock extrastyle %}
+{% block content_header %}
+    <h1>
+        {% trans "My Timeline" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+        <li class="active">Timeline</li>
+    </ol>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <span><b>{% trans "Search: " %}</b></span>
+            <input type="text" name="query" id="searchtimeline" placeholder="search by username...." class="form-control">
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <span><b>{% trans "Filters: " %}</b></span>
+            <div id="filterbuttons">
+                    {% if "1" in enabled_filters %} 
+                        <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.transfer }}" name="transfer">{% trans "Transfer" %}</button>
+                    {% else %}
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.transfer }}" name="transfer">{% trans "Transfer" %}</button>
+                    {% endif %}
+                    {% if "2" in enabled_filters %} 
+                        <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.request }}" name="request">{% trans "Request" %}</button>
+                    {% else %}
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.request }}" name="request">{% trans "Request" %}</button>
+                    {% endif %}
+                    {% if "3" in enabled_filters  %} 
+                        <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.release }}" name="release">{% trans "Release" %}</button>
+                    {% else %}
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.release }}" name="release">{% trans "Release" %}</button>
+                    {% endif %}
+                    {% if "4" in enabled_filters  %} 
+                        <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.verified }}" name="verified">{% trans "Verified" %}</button>
+                    {% else %}
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.verified }}" name="verified">{% trans "Verified" %}</button>                  
+                    {% endif %}
+                    {% if "5" in enabled_filters  %} 
+                        <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.unverified }}" name="unverified">{% trans "Unverified" %}</button>
+                    {% else %}
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.unverified }}" name="unverified">{% trans "Unverified" %}</button>         
+                    {% endif %}
+                    {% if "6" in enabled_filters  %} 
+                        <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.connection }}" name="connection">{% trans "Connection" %}</button>
+                    {% else %}
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.connection }}" name="connection">{% trans "Connection" %}</button>         
+                    {% endif %}
+            </div>
+        </div> 
+    </div>
+    <div class="row" id="timelinesection" style="margin-top:10px">
+        {% include "timelines/timeline.html" %}
+    </div>
+    <div tabindex="-1" class="modal fade" id="sendUnitModal" role="dialog" aria-hidden="true" aria-labelledby="sendUnitModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="sendUnitModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <form id="sendform" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="timeline" value="" id="timeline_id">
+                        {{ form|as_bootstrap }}
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" id="sendunit">{% trans "Send" %}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+<select id="filtertimeline" multiple>
+    {% if "1" in enabled_filters %} 
+        <option value="1" id="transfer" selected></option>
+    {% else %}
+        <option value="1" id="transfer"></option>
+    {% endif %}
+    {% if "2" in enabled_filters %} 
+        <option value="2" id="request" selected></option>
+    {% else %}
+        <option value="2" id="request"></option>
+    {% endif %}
+    {% if "3" in enabled_filters %} 
+        <option value="3" id="release" selected></option>
+    {% else %}
+        <option value="3" id="release"></option>
+    {% endif %}
+    {% if "4" in enabled_filters %} 
+        <option value="4" id="verified" selected></option>
+    {% else %}
+        <option value="4" id="verified"></option>
+    {% endif %}
+    {% if "5" in enabled_filters %} 
+        <option value="5" id="unverified" selected></option>
+    {% else %}
+        <option value="5" id="unverified"></option>
+    {% endif %}
+    {% if "6" in enabled_filters %} 
+        <option value="6" id="connection" selected></option>
+    {% else %}
+        <option value="6" id="connection"></option>
+    {% endif %}
+</select>
+{% endblock content %}
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static "plugins/pace/pace.min.js" %}"></script>
+    <script type="text/javascript">
+         // using jQuery
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $(document).ajaxStart(function() { Pace.restart(); });
+        jQuery.ajaxSettings.traditional = true;
+        $("#filtertimeline").hide();
+        var pathArray = window.location.pathname.split('/');
+        var lang = pathArray[1];
+        function cancelRejectConnection(tipe, conn_id) {
+            $.ajax({
+                url: '/' + lang + '/users/cancelreject/' + conn_id + '/',
+                type: 'POST',
+                data: {'type': tipe},
+                success: function(data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    location.reload();
+                }
+            });
+        }
+        function acceptConnection(conn_id){
+            $.ajax({
+                url: '/' + lang + '/users/acceptconn/' + conn_id + '/',
+                type: 'POST',
+                success: function(data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    location.reload();
+                }
+            });
+        }
+        function requestTimeline() {
+            var filter = $("#filtertimeline").val();
+            var username = $("#searchtimeline").val();
+            if (username.length !== 0) {
+                var params = {"filter": filter, 'username': username};
+            }
+            else {
+                var params = {'filter': filter};
+            }
+            $.get('{% url 'usertimeline:search' %}', params, function(data) {
+                $("#timelinesection").html(data);
+            });
+        };
+        function set_filters() {
+            var filters = $("#filtertimeline").val();
+            var params = {'filter': filters};
+            $.get('{% url 'usertimeline:state' %}', params);
+        };
+        function click_count(name) {
+            $.get('{% url 'usertimeline:state' %}?count=' + name)
+        };
+        function setupButtons(){
+            var wrapper = $('#filterbuttons');
+            var sorted = wrapper.find('.filterbtn').sort(function(a, b) {
+                return b.getAttribute('data-click') - a.getAttribute('data-click');
+            }).appendTo(wrapper);
+        };
+        setupButtons();
+        $(".filterbtn").click(function(){
+            var filter_name = $(this).attr('name');
+            if ($("#" + filter_name).prop("selected") === true){
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-default");
+                $("#" + filter_name).prop("selected", false);
+                click_count(filter_name);
+                set_filters();
+                requestTimeline();
+            }
+            else 
+            {
+                $(this).removeClass("btn-default");
+                $(this).addClass("btn-success");
+                $("#" + filter_name).prop("selected", true);
+                click_count(filter_name);
+                set_filters();
+                requestTimeline();
+            }
+        });
+        $('#sendUnitModal').on('show.bs.modal', function(e) {
+            var amount = $(e.relatedTarget).data('amount');
+            var touser = $(e.relatedTarget).data('touser');
+            var tousername = $(e.relatedTarget).data('tousername');
+            var timeline_id = $(e.relatedTarget).data('timelineid');
+            var units_input = $("#id_units");
+            var pathname = window.location.pathname.split('/');
+            var language = pathname[1];
+            $("#sendUnitModalLabel").text("Send unit to " + tousername);
+            units_input.attr('readonly', 'readonly');
+            units_input.val(amount);
+            $("#timeline_id").val(timeline_id);
+            $("#sendform").attr('action', '/' + language + '/myaccount/transferunit/' + touser +"/");
+        });
+        $("#sendunit").click(function(){
+            var frm = $("#sendform");
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    $("#sendUnitModal").modal('hide');
+                    $(".togglemodal").html('<button class="btn btn-success btn-xs">{% trans "sent" %}</button>');
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                }
+            });
+        });
+        $("#searchtimeline").on('keyup', function(){
+            requestTimeline();
+        });
+    </script>
+{% endblock extrascripts %}

@@ -1,0 +1,385 @@
+{% load staticfiles i18n %}
+<div class="col-md-4">
+    <!-- Profile Image -->
+    <div class="box box-primary">
+        <div class="box-body box-profile">
+            {% if user.profile.avatar_public %} 
+                {% if user.profile.avatar %}
+                    <a href="#">
+                        <img src="{{ user.profile.avatar.thumbnail.128x128 }}" class="profile-user-img img-responsive img-circle" alt="User Image"> 
+                    </a>
+                {% else %}
+                    <a href="#">
+                        <img src="{% static "dist/img/placeholder-user.png" %}" class="profile-user-img img-responsive img-circle" width="128" height="128">
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="#">
+                    <img src="{% static "dist/img/placeholder-user.png" %}" class="profile-user-img img-responsive img-circle" width="128" height="128">
+                </a>
+            {% endif %}
+            <h3 class="profile-username text-center">{{ user.username }}</h3>
+            <p class="text-muted text-center" id="userstatus" data-toggle="tooltip" title="{% trans "lastseen: " %}{{ user.profile.last_seen }}">
+            {% if user.profile.online %}
+                <i class="fa fa-circle text-success onlinestatus"></i> {% trans "Online" %}
+            {% else %}
+                <i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}
+            {% endif %}
+            </p>
+            <p class="text-muted text-center">{{ user.profile.title }}</p>
+            {% if conn_type %}
+                <p class="text-muted text-center">{{ conn_type }}</p>
+            {% endif %}
+            <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                    <b>Family</b> <a class="pull-right">{{ families }}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Contacts</b> <a class="pull-right">{{ contacts }}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>Friends</b> <a class="pull-right">{{ friends }}</a>
+                </li>
+                <li class="list-group-item">
+                    <b>References</b> <a class="pull-right thumbcount">{{ user.thumbs.count }}</a>
+                </li>
+            </ul>
+            {% ifequal user.username request.user.username %} 
+            {% else %}
+            <div id="connectopt">
+                {% if disconnect %}
+                    <button class="btn btn-primary btn-block" id="disconn" onclick="cancelRejectConnection('disconnect')"><i class="fa fa-minus-circle"></i> {% trans "Disconnect" %}</button>
+                {% elif cancel %}
+                    <button class="btn btn-primary btn-block" id="cancelconn" onclick="cancelRejectConnection('cancel')"><i class="fa fa-times"></i> {% trans "Cancel connection request" %}</button>
+                {% elif reject %}
+                    <button class="btn btn-primary btn-block" id="rejectconn" onclick="cancelRejectConnection('reject')"><i class="fa fa-times"></i> {% trans "Reject connection request" %}</button>
+                    <button class="btn btn-primary btn-block" id="acceptconn" onclick="acceptConnection()"><i class="fa fa-plus-circle"></i> {% trans "Accept connection request" %}</button>
+                {% else %}
+                    <button class="btn btn-primary btn-block" id="sendconn"><i class="fa fa-plus-circle"></i> {% trans "Connect" %}</button>
+                    <div id="conntype">
+                        <div class="connform">
+                            <label for="mainc">{% trans "Connection type" %}</label>
+                            <select name="mainconn" id="mainc">
+                                <option value="Friend" selected>{% trans "Friend" %}</option>
+                                <option value="Family">{% trans "Family" %}</option>
+                                <option value="Contact">{% trans "Contact" %}</option>
+                            </select>    
+                        </div>
+                        <div class="connform">
+                            <label for="subc" id="subcl" style="margin-right: 27px">{% trans "Friend Type" %}</label>
+                            <select name="subconn" id="subc">
+                                <option value="Best" selected>{% trans "Best" %}</option>
+                                <option value="Friend">{% trans "Friend" %}</option>
+                                <option value="Soulmate">{% trans "Soulmate" %}</option>
+                                <option value="Aquantence">{% trans "Aquantence" %}</option>
+                            </select>    
+                        </div>
+                        <div class="pull-right connform">
+                            <button class="btn btn-primary btn-sm" id="sendcr">{% trans "Send request" %}</button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% if thumb_uped %}
+                <form action="." method="POST" style="margin:5px 0">
+                    {% csrf_token %}
+                    <input type="hidden" name="unverify" value="{{ thumb_id }}">
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-thumbs-down theme-color"></i> {% trans "Unverify" %}</button>
+                </form>
+            {% else %}
+                <button id="thumb" class="btn btn-primary btn-block" style="margin:5px 0"><i class="fa fa-thumbs-up theme-color"></i> {% trans "I verify this user" %}</button>
+            {% endif %}
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#sendUnitModal"><i class="fa fa-caret-right theme-color"></i> {% trans "Send Unit" %}</button>
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#requestUnitModal"><i class="fa fa-caret-left theme-color"></i> {% trans "Request Unit" %}</button>
+            <button class="btn btn-primary btn-block" id="initmsg"><i class="fa fa-comment theme-color"></i> {% trans "Message" %}</button>
+            <div class="visibilty">
+                <div style="padding:8px">
+                    <input id="publictoggle" type="checkbox" {% if public %}checked{% endif %}> Make my choice public
+                </div>
+            </div>
+            {% endifequal %}
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+<div class="col-md-8">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- About Me Box -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{% trans "Personal Information" %}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <strong><i class="fa fa-user margin-r-5"></i>{% trans "Username" %}</strong>
+                    <p class="text-muted">
+                        {{ user.username }}
+                    </p>
+                    <hr> {% if user.profile.name_public %} {% if user.get_full_name %}
+                    <strong><i class="fa fa-circle-o margin-r-5"></i>{% trans "Name" %}</strong>
+                    <p class="text-muted">
+                        {{ user.get_full_name }}
+                    </p>
+                    <hr> {% endif %} {% endif %} {% if user.profile.gender_public %}
+                    <strong><i class="fa fa-mars margin-r-5"></i>{% trans "Gender" %}</strong>
+                    <p class="text-muted">
+                        {% if user.profile.gender %}
+                            {{ user.profile.get_gender_display }} 
+                        {% else %} 
+                            Not Specified 
+                        {% endif %}
+                    </p>
+                    {% endif %}
+                    {% if user.profile.website_public %}
+                        {% if user.profile.website %}
+                            <strong><i class="fa fa-globe margin-r-5"></i>{% trans "Website" %}</strong>
+                            <p class="text-muted">
+                                {{ user.profile.website }}
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                    {% comment %}
+                    <hr>
+                    <strong><i class="fa fa-circle-o margin-r-5"></i>{% trans "Account type" %}</strong>
+                    <p class="text-muted">{{ user.profile.account_type }}</p>
+                    {% endcomment %}
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Activities" %}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <strong><i class="fa fa-circle-o margin-r-5"></i>{% trans "Activation date" %}</strong>
+                    <p class="text-muted">
+                        {{ user.date_joined|date:"D d M Y" }}
+                    </p>
+                    <strong><i class="fa fa-circle-o margin-r-5"></i>{% trans "References" %}</strong>
+                    <p class="text-muted thumbcount">
+                        {{ user.thumbs.count }}
+                    </p>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% if user.profile.location_public %} {% if user.address %}
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Address" %}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    {% if user.address.house_number %}
+                        <strong><i class="fa fa-home margin-r-5"></i>{% trans "House Number" %}</strong>
+                        <p class="text-muted">
+                            {{ user.address.house_number }}
+                        </p>
+                    {% endif %}
+                    {% if user.address.street %}
+                        <strong><i class="fa fa-road margin-r-5"></i>{% trans "Street" %}</strong>
+                        <p class="text-muted">
+                            {{ user.address.street }}
+                        </p>
+                    {% endif %}
+                    {% if user.address.zip_code %}
+                        <strong><i class="fa fa-map-pin margin-r-5"></i>{% trans "Zip Code" %}</strong>
+                        <p class="text-muted">
+                            {{ user.address.zip_code }}
+                        </p>
+                    {% endif %}
+                    {% if user.address.city %}
+                        <strong><i class="fa fa-plane margin-r-5"></i>{% trans "City" %}</strong>
+                        <p class="text-muted">
+                            {{ user.address.city }}
+                        </p>
+                    {% endif %}
+                    {% if user.address.state %}
+                        <strong><i class="fa fa-map-marker margin-r-5"></i>{% trans "State" %}</strong>
+                        <p class="text-muted">
+                            {{ user.address.state }}
+                        </p>
+                    {% endif %}
+                    {% if user.address.country %}
+                        <strong><i class="fa fa-globe margin-r-5"></i>{% trans "Country" %}</strong>
+                        <p class="text-muted">
+                            {{ user.address.country }}
+                        </p>
+                    {% endif %}
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+        {% endif %} {% endif %} {% if user.profile.phone_public %} {% if user.phone %}
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Contact" %}</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    {% if user.phone.phone_mobile %}
+                        <strong><i class="fa fa-building margin-r-5"></i>{% trans "Phone Office" %}</strong>
+                        <p class="text-muted">
+                            {{ user.phone.phone_office }}
+                        </p>
+                    {% endif %}
+                    {% if user.phone.phone_home %}
+                        <strong><i class="fa fa-home margin-r-5"></i>{% trans "Phone Home" %}</strong>
+                        <p class="text-muted">
+                            {{ user.phone.phone_home }}
+                        </p>
+                    {% endif %}
+                    {% if user.phone.phone_mobile %}
+                        <strong><i class="fa fa-mobile margin-r-5"></i>{% trans "Phone Mobile" %}</strong>
+                        <p class="text-muted">
+                            {{ user.phone.phone_mobile }}
+                        </p>
+                    {% endif %}
+                    {% if user.phone.phone_emergency %}
+                        <strong><i class="fa fa-asterisk margin-r-5"></i>{% trans "Phone Emergency" %}</strong>
+                        <p class="text-muted">
+                            {{ user.phone.phone_emergency }}
+                        </p>
+                    {% endif %}
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- box -->
+        </div>
+        {% endif %} {% endif %}
+    </div>
+    <!-- row -->
+    <div class="row">
+        {% if user.profile.completion_public %}
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Profile Completed" %}</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="profileCompleteChart" height="150" width="150"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="pull-right">
+                                <ul class="chart-legend clearfix">
+                                    {% if completed %}
+                                        <li>
+                                            <i class="fa fa-circle-o text-green"></i>
+                                            {% trans "Completed" %}
+                                        </li>
+                                    {% endif %}
+                                    {% if not_completed %}
+                                        <li>
+                                            <i class="fa fa-circle-o text-red"></i> 
+                                            {% trans "Not completed" %}
+                                        </li>
+                                    {% endif %}
+                                    {% if not_verified %}
+                                        <li>
+                                            <i class="fa fa-circle-o text-orange"></i> 
+                                            {% trans "Not verified" %}
+                                        </li>
+                                    {% endif %}
+                                    {% if skipped %}
+                                        <li>
+                                            <i class="fa fa-circle-o text-yellow"></i> 
+                                            {% trans "Skipped" %}
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<script>
+        var profilePieData = [
+        {% if completed %}
+            {
+                value: {{ completed }},
+                color: "#00a65a",
+                highlight: "#00a65a",
+                label: "completed"
+            },
+        {% endif %}
+        {% if not_completed %}
+            {
+                value: {{ not_completed }},
+                color: "#f56954",
+                highlight: "#f56954",
+                label: "Not completed"
+            },
+        {% endif %}
+        {% if not_verified %}
+            {
+                value: {{ not_verified }},
+                color: "#F36512",
+                highlight: "#F36512",
+                label: "Not verified"
+            },
+        {% endif %}
+        {% if skipped %}
+            {
+                value: {{ skipped }},
+                color: "#f39c12",
+                highlight: "#f39c12",
+                label: "Skipped"
+            },
+        {% endif %}
+    ];
+    var pieOptions = {
+        //Boolean - Whether we should show a stroke on each segment
+        segmentShowStroke: true,
+        //String - The colour of each segment stroke
+        segmentStrokeColor: "#fff",
+        //Number - The width of each segment stroke
+        segmentStrokeWidth: 1,
+        //Number - The percentage of the chart that we cut out of the middle
+        percentageInnerCutout: 50, // This is 0 for Pie charts
+        //Number - Amount of animation steps
+        animationSteps: 100,
+        //String - Animation easing effect
+        animationEasing: "easeOutBounce",
+        //Boolean - Whether we animate the rotation of the Doughnut
+        animateRotate: true,
+        //Boolean - Whether we animate scaling the Doughnut from the centre
+        animateScale: false,
+        //Boolean - whether to make the chart responsive to window resizing
+        responsive: true,
+        // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+        maintainAspectRatio: false,
+        tooltipFontSize: 10,
+        {% verbatim %}
+        tooltipTemplate: "<%if (label){%><%=label %>: <%}%><%= value + ' %' %>",
+        {% endverbatim %}
+    };
+    {% if ajaxr %}
+        var profilePieChartCanvas = $("#profileCompleteChart").get(0).getContext("2d");
+        var profilePieChart = new Chart(profilePieChartCanvas);
+        profilePieChart.Doughnut(profilePieData, pieOptions);
+    {% else %}
+        document.addEventListener('DOMContentLoaded', function() {
+            var profilePieChartCanvas = $("#profileCompleteChart").get(0).getContext("2d");
+            var profilePieChart = new Chart(profilePieChartCanvas);
+            profilePieChart.Doughnut(profilePieData, pieOptions);
+        }, false);
+    {% endif %}
+</script>

@@ -1,0 +1,32 @@
+{% load i18n %}
+{% if request.user.emailaddress_set.all %}
+<div class="text-center">
+    <h4>{% trans "Email address associated with your account" %}</h4></div>
+<div class="table-responsive">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Verified</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emailaddress in request.user.emailaddress_set.all %}
+            <tr>
+                <td>{{ emailaddress.email }} {% if emailaddress.primary %}
+                    <span>{% trans "(Primary)" %}</span> {% endif %}</td>
+                {% if emailaddress.verified %}
+                <td style="color:green"><i class="fa fa-check"></i></td>
+                {% else %}
+                <td style="color:red"><i class="fa fa-times"></i></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="text-center">
+    <h4>{% trans "No email associated with your account" %}</h4>
+</div>
+{% endif %}

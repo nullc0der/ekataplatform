@@ -1,0 +1,37 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+{% load account socialaccount %}
+{% block head_title %}
+    {% trans "Login" %}
+{% endblock %}
+{% block content %}
+<p class="login-box-msg">{% trans "Sign in to start your session" %}</p>
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form|as_bootstrap }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <div class="row">
+    <div class="col-xs-12">
+      <button type="submit" class="btn btn-primary btn-block btn-flat">{% trans "Log In" %}</button>
+    </div>
+  </div>
+</form>
+
+<div class="social-auth-links text-center">
+  <p>- OR -</p>
+  <a href="{% provider_login_url "facebook" process="login" %}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+    Facebook</a>
+  <a href="{% provider_login_url "google" process="login" %}"  class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+    Google+</a>
+<a href="{% provider_login_url "twitter" process="login" %}" class="btn btn-block btn-social btn-twitter btn-flat"><i class="fa fa-twitter"></i> Sign in using
+    Twitter</a>
+</div>
+<!-- /.social-auth-links -->
+
+<a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+<br />
+<a href="{{ signup_url }}" class="text-center">{% trans "Register a new membership" %}</a>
+{% endblock %}

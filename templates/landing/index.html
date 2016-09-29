@@ -1,0 +1,404 @@
+{% extends "landing_base.html" %}
+{% load staticfiles i18n %}
+{% block title %}
+	Welcome
+{% endblock %}
+{% block extrameta %}
+    <meta property="og:url" content="https://ekata.social/" />
+    <meta property="og:title" content="Ekata Social" />
+    <meta property="og:description" content="Ekata Social is a web platform designed for communities with a premise of social responsibility" />
+    <meta property="og:image" content="https://ekata.social/static/dist/img/ekata-logo-bk-200.png" />
+    <meta property="fb:app_id" content="675793779103244">
+{% endblock %}
+{% block content %}
+<!-- start home -->
+<section id="home">
+	<div class="overlay">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 wow fadeIn" data-wow-delay="0.3s">
+					<h1 class="text-upper">The EKATA Platform</h1>
+					<p class="tm-white">{% trans "Ekata is a social platform for individuals, communities, associations, and municipalities. Ekata empowers you with the best of today’s online technologies -- digital tools to help you stay managed, connected, and informed. Whether you want to build a web presence for yourself or your organization, or you simply want a place to connect with others who share your interests and goals, Ekata is the place for you. Welcome!" %}</p>
+					<img src="{% static "dist/img/software-img.png" %}" class="img-responsive" alt="home img">
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end home -->
+<!-- start divider -->
+<section id="divider">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 wow fadeInUp templatemo-box" data-wow-delay="0.3s">
+				<i class="fa fa-users"></i>
+				<h3 class="text-uppercase">{% trans "Communities" %}</h3>
+				<p>{% trans "You're a social group that shares something in common. Small or large. Local, national, or global. Virtual or geographically based. Your common purpose and identity give you a sense of community. Ekata was built to align with how you wish to relate." %}</p>
+			</div>
+			<div class="col-md-4 wow fadeInUp templatemo-box" data-wow-delay="0.3s">
+				<i class="fa fa-home"></i>
+				<h3 class="text-uppercase">{% trans "Associations" %}</h3>
+				<p>{% trans "You're a homeowners or condo association, property or land trust, or nonprofit organization. An organized body of people who live or work together to improve your lives or society. Ekata gives you the tools to manage your association’s business, membership, activities and interests." %}</p>
+			</div>
+			<div class="col-md-4 wow fadeInUp templatemo-box" data-wow-delay="0.3s">
+				<i class="fa fa-institution"></i>
+				<h3 class="text-uppercase">{% trans "Municipalities" %}</h3>
+				<p>{% trans "You're a town, municipality or county. A government institution with incorporated status in a jurisdiction. The Ekata platform has the administrative tools you need to function efficiently and connect with elected officials, staff, and constituents in the 21st century." %}</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end divider -->
+
+<!-- start vision -->
+<section id="vision">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 wow bounceIn text-center">
+				<h2 class="text-uppercase">{% trans "Platform Vision" %}</h2>
+			</div>
+		</div>
+		<div class="row visions">
+			<div class="col-md-6 col-sm-4 wow fadeInRight visionimage-left">
+				<img src="{% static "dist/img/user1-128x128.jpg" %}" class="img-circle img-responsive" alt="user1">
+			</div>
+			<div class="col-md-6 col-sm-8 wow fadeInRight visiontext-left" data-wow-delay="0.6s">
+				<p class="visiontext">{% trans "Mark Witham, social entrepreneur and founder of the Ekata platform (Formally known as Basic Income Project), is passionate about empowering others with options to bring about their own social change." %}</p>
+			</div>
+		</div>
+		<div class="row visions vision-right">
+			<div class="col-md-6 col-sm-9 wow fadeInLeft visiontext-right">
+				<p class="visiontext">{% trans "We combine technology, knowledge, and imagination to build better social systems for this planet and future generations. Now we need you! Use the Ekata platform to help create a network for fulfilling lives, communities, and positive social change." %}</p>
+			</div>
+			<div class="col-md-6 col-sm-3 wow fadeInLeft visionimage-right" data-wow-delay="0.6s">
+				<img src="{% static "dist/img/user3-128x128.jpg" %}" class="img-circle img-responsive" alt="user3">
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end vision -->
+
+<!-- begin social responsibilty -->
+<section id="grantcoin">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="text-uppercase">{% trans "Social Responsiblity" %}</h2>
+			</div>
+			<div class="col-md-6 col-sm-6 wow fadeInDown">
+				<img src="{% static "dist/img/grantcoin.png" %}" class="img-responsive imgfix" alt="home img">
+			</div>
+			<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+				<p>{% trans "Ekata has partnered with " %}<a href="https://www.grantcoin.org/">Grantcoin</a>{% trans ", a socially responsible digital currency which is distributed as " %}<a href="https://www.grantcoin.org/get-grantcoin/basic-income/">Basic Income</a>{% trans " to people around the world. Powered by blockchain technology, Grantcoin is the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization with a mission for social good. Join Ekata and receive Grantcoin on a regular basis, for free. Spend it or give it away to other Ekata users -- artists, musicians, bloggers, nonprofits, or businesses." %}</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end social responsibilty -->
+
+<!-- start installer
+<section id="installer">
+	<div class="overlay">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 wow fadeIn" data-wow-delay="0.3s">
+					<div class="row">
+						<div class="col-md-6">
+							<h1>EKATA</h1>
+							<h2>Social Platform</h2>
+						</div>
+						<div class="col-md-6" style="border-left: 1px solid #fff">
+							<p>Ekata is a social platform built on the premise of utilizing the best of todays technologies for the use of communities, associations, and municipalities. Empowering them with the todays digital tools to stay managed, connected, and ahead.</p>
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px">
+						<div class="col-md-10 col-md-offset-1">
+							<form action="#" class="form-inline">
+								<div class="input-group">
+									<input class="form-control input-lg" type="text" placeholder="Enter your orgainaisation/community name">
+									<span class="input-group-addon">.ekata.social</span>
+								</div>
+								<div class="input-group">
+									<button class="btn btn-primary btn-lg">Start free trial</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+	</div>
+</section>
+end installer -->
+
+<!-- start feature -->
+<section id="feature">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-sm-7 wow fadeInLeft" data-wow-delay="0.6s">
+				<h2 class="text-uppercase">{% trans "Many Key Features" %}</h2>
+				<p>
+					<i class="fa fa-users"></i>
+					{% trans "Group sites for art, music, news, politics, activism, and business." %}
+				</p>
+				<p>
+					<span><i class="fa fa-comments-o"></i></span>
+					{% trans "Social communication through instant messaging, posts, and comments." %}
+				</p>
+				<p>
+					<span><i class="fa fa-institution"></i></span>
+					{% trans "Governance of members, staff roles, social forums, and member voting." %}
+				</p>
+				<p>
+					<i class="fa fa-heartbeat"></i>
+					{% trans "Web of trust and a socially responsible currency system." %}
+				</p>
+			</div>
+			<div class="col-md-5 col-sm-5 wow fadeInRight" data-wow-delay="0.6s">
+				<img src="{% static "dist/img/software-messenger.png" %}" class="img-responsive imgfix" alt="feature img">
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end feature -->
+
+<!-- start feature1 -->
+<section id="feature1">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-sm-5 wow fadeInUp" data-wow-delay="0.6s">
+				<img src="{% static "dist/img/software-code.png" %}" class="img-responsive" alt="feature img">
+			</div>
+			<div class="col-md-6 col-sm-7 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="text-uppercase">{% trans "More Features" %}</h2>
+
+				<p><i class="fa fa-cubes"></i>{% trans "API for building in app and feature integrations." %}</p>
+				<p><i class="fa fa-code"></i>{% trans "Open Source." %}</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end feature1 -->
+
+<!-- begin hashtag -->
+<section id="homehashtag">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="text-uppercase">{% trans "#BasicIncome Hashtag Banner Campaign" %}</h2>
+			</div>
+		</div>
+		<div class="row" style="margin-top:20px">
+			<div class="col-md-6 col-sm-5 text-justify wow fadeInUp" data-wow-delay="0.6s">
+				<p>
+					{% trans "Help Ekata in showing your support for basic income by adding a custom colored #basicincome hashtag banner to your Twitter and Facebook profile photo. Together let us raise awareness!" %}
+				</p>
+				<a href="{% url 'landing:hashtag' %}">{% trans "Click here to create and upload the banner" %}</a>
+			</div>
+			<div class="col-md-6 col-sm-7 wow fadeInDown" style="margin-top: 10px">
+				<a href="{% url 'landing:hashtag' %}">
+					<img src="{% static "dist/img/ekata-hashtag-banner.png" %}" class="img-responsive imgfix" alt="hashtag banner image">
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end hashtag -->
+
+<!-- begin news
+<section id="news">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 wow fadeInDown text-center" data-wow-delay="0.6s">
+				<h2 class="text-uppercase">News</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="text-center">
+						<h3>Featured News</h3>
+					</div>
+					<hr>
+					<div class="col-md-12 wow fadeIn news-div" data-wow-delay="0.6s">
+						<div class="col-md-6">
+							<img src="images/software-img.png" class="img-responsive" alt="home img">
+						</div>
+						<div class="col-md-6">
+							<a href="#">Ekata 1.0.0 released</a>
+							<p><i class="fa fa-calendar"></i> sep 11, 2016</p>
+							<hr>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit quam... </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="text-center">
+						<h3>Latest News</h3>
+					</div>
+					<hr>
+					<div class="col-md-12 wow fadeIn news-div" data-wow-delay="0.6s">
+						<div class="col-md-6">
+							<a href="#">Ekata 1.0.0 released</a>
+							<p><i class="fa fa-calendar"></i> sep 11, 2016</p>
+							<hr>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit quam... </p>
+						</div>
+						<div class="col-md-6">
+							<a href="#">Ekata 1.0.0 released</a>
+							<p><i class="fa fa-calendar"></i> sep 11, 2016</p>
+							<hr>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit quam... </p>
+						</div>
+					</div>
+					<div class="col-md-12 wow fadeIn news-div" data-wow-delay="0.6s">
+						<div class="col-md-6">
+							<a href="#">Ekata 1.0.0 released</a>
+							<p><i class="fa fa-calendar"></i> sep 11, 2016</p>
+							<hr>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit quam... </p>
+						</div>
+						<div class="col-md-6">
+							<a href="#">Ekata 1.0.0 released</a>
+							<p><i class="fa fa-calendar"></i> sep 11, 2016</p>
+							<hr>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit quam... </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+end news -->
+<!-- start support
+<section id="support">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 wow bounceIn">
+				<h2 class="text-uppercase">Support Costs</h2>
+			</div>
+			<div class="col-md-4 wow fadeIn" data-wow-delay="0.6s">
+				<div class="support text-uppercase">
+					<div class="support-title">
+						<h4>Community</h4>
+						<p>Free*</p>
+						<small class="text-lowercase">unlimited</small>
+					</div>
+					<ul>
+						<li>Open Source</li>
+						<li>Complete Features</li>
+						<li>Self Hosted</li>
+						<li>No Support</li>
+					</ul>
+					<button class="btn btn-primary text-uppercase">*Request More</button>
+				</div>
+			</div>
+			<div class="col-md-4 wow fadeIn" data-wow-delay="0.6s">
+				<div class="support active text-uppercase">
+					<div class="support-title">
+						<h4>Virtual Hosted</h4>
+						<p>$600*</p>
+						<small class="text-lowercase">monthly</small>
+					</div>
+					<ul>
+						<li>1 Community</li>
+						<li>100 Groups</li>
+						<li>Feature Requests</li>
+						<li>Support</li>
+					</ul>
+					<button class="btn btn-primary text-uppercase">*Request More</button>
+				</div>
+			</div>
+			<div class="col-md-4 wow fadeIn" data-wow-delay="0.6s">
+				<div class="support text-uppercase">
+					<div class="support-title">
+						<h4>Locally Hosted</h4>
+						<p>$1200*</p>
+						<small class="text-lowercase">monthly</small>
+					</div>
+					<ul>
+						<li>Unlimited Sub-communites</li>
+						<li>Unlimited Groups</li>
+						<li>Full Server Managed</li>
+						<li>Support</li>
+					</ul>
+					<button class="btn btn-primary text-uppercase">*Request More</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+end support -->
+
+<!-- start download
+<section id="download">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 wow fadeInLeft" data-wow-delay="0.6s">
+				<h2 class="text-uppercase">Ekata Platform</h2>
+				<p>The Ekata platform is open source and free to download. </p>
+				<button class="btn btn-primary text-uppercase"><i class="fa fa-download"></i> Download</button>
+			</div>
+			<div class="col-md-6 wow fadeInRight" data-wow-delay="0.6s">
+				<img src="images/software-img.png" class="img-responsive" alt="feature img">
+			</div>
+		</div>
+	</div>
+</section>
+end download -->
+
+<!-- start contact -->
+<section id="contact">
+	<div class="overlay">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+					<h2>Contact</h2>
+					<ul class="soc">
+						<li><a class="soc-twitter" href="https://twitter.com/ekatasocial"></a></li>
+						<li><a class="soc-facebook" href="https://www.facebook.com/ekatasocial"></a></li>
+						<li><a class="soc-google" href="https://business.google.com/b/110706127430395330685"></a></li>
+						<li><a class="soc-linkedin soc-icon-last" href="https://www.linkedin.com/groups/12011491"></a></li>
+					</ul>
+					<h3>Ekata Social LLC</h3>
+					<p>{% trans "Please feel free to inquire more about the EKATA platform." %}</p>
+					<img width="400" src="https://maps.googleapis.com/maps/api/staticmap?center=Orange,+VA&zoom=13&scale=false&size=400x200&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7COrange,+VA&key=AIzaSyCJJXODPR1lcqDIO-7fcpb8r7kjamnZOvY" alt="Google Map of Orange, VA">
+					<address>
+						<i class="fa fa-map-marker"></i>
+						138 West Washington Street Unit A,
+						<p class="address-text">Orange, VA 22960</p>
+						<p class="address-text">United States</p>
+					</address>
+				</div>
+				<div class="col-md-6 wow fadeInUp contactform" data-wow-delay="0.6s">
+					<div class="contact-form">
+						<form action="." method="post">
+							{% csrf_token %}
+							<div class="col-md-6">
+								<input type="text" name="name" class="form-control" placeholder="Name">
+							</div>
+							<div class="col-md-6">
+								<input type="email" name="email" class="form-control" placeholder="Email">
+							</div>
+							<div class="col-md-12">
+								<input type="text" name="subject" class="form-control" placeholder="Subject">
+							</div>
+							<div class="col-md-12">
+								<textarea class="form-control" placeholder="Message" name="message" rows="4"></textarea>
+							</div>
+							<div class="col-md-12">
+								<input type="submit" class="form-control text-uppercase" value="Contact us">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end contact -->
+{% endblock %}

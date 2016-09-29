@@ -1,0 +1,6 @@
+{% load bootstrap_tags %}
+<form id="pinfoform" role="form" method="POST" action="{% url 'profilesystem:pedit' %}">
+    {% csrf_token %}
+    {{ uform|as_bootstrap }}
+    {{ form|as_bootstrap }}
+</form>

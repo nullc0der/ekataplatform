@@ -1,0 +1,116 @@
+{% load i18n bootstrap_tags socialaccount %}
+<form action="{% url 'account_signup' %}" method="post" id="registerform">
+    <div id="alert-div"></div>
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+</form>
+<button data-toggle="modal" data-target="#registerconfirm" class="btn btn-primary btn-block btn-flat" >{% trans "Register" %}</button>
+<div class="social-auth-links text-center">
+  <p>- OR -</p>
+  <button data-toggle="modal" data-target="#facebookregisterconfirm" class="btn btn-block btn-social btn-facebook btn-flat socialregister"><i class="fa fa-facebook"></i> Sign up using
+    Facebook</button>
+  <button data-toggle="modal" data-target="#googleregisterconfirm" class="btn btn-block btn-social btn-google btn-flat socialregister"><i class="fa fa-google-plus"></i> Sign up using
+    Google+</button>
+  <button data-toggle="modal" data-target="#twitterregisterconfirm" class="btn btn-block btn-social btn-twitter btn-flat socialregister"><i class="fa fa-twitter"></i> Sign up using
+    Twitter</button>
+</div>
+<!-- /.social-auth-links -->
+<div tabindex="-1" class="modal fade" id="registerconfirm" role="dialog" aria-hidden="true" aria-labelledby="registerModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+        <h4 class="modal-title" id="registerModalLabel">Experimental</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+              {% trans "This project is a new social platform to simulate and promote  the basic income" %}
+          </p>
+          <p>{% trans "Please read the" %}<a href="{% url 'disclaimer' %}" target="_blank">{% trans " Disclaimer" %}</a></p>
+      </div>
+      <div class="modal-footer">
+          <div class="pull-left">
+              <button class="btn btn-default" type="button" data-dismiss="modal">{% trans "Cancel" %}</button>
+          </div>
+          <div class="pull-right">
+              <button class="btn btn-primary" id="register" data-dismiss="modal">{% trans "Agree" %}</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div tabindex="-1" class="modal fade" id="facebookregisterconfirm" role="dialog" aria-hidden="true" aria-labelledby="registerModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+        <h4 class="modal-title" id="registerModalLabel">Experimental</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+            {% trans "This project is a new social platform to simulate and promote  the basic income" %}
+          </p>
+          <p>{% trans "Please read the" %}<a href="{% url 'disclaimer' %}" target="_blank">{% trans " Disclaimer" %}</a></p>
+      </div>
+      <div class="modal-footer">
+          <div class="pull-left">
+              <button class="btn btn-default" type="button" data-dismiss="modal">{% trans "Cancel" %}</button>
+          </div>
+          <div class="pull-right">
+              <a href="{% provider_login_url "facebook" process="login" %}" class="btn btn-primary">{% trans "Agree" %}</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div tabindex="-1" class="modal fade" id="googleregisterconfirm" role="dialog" aria-hidden="true" aria-labelledby="registerModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+        <h4 class="modal-title" id="registerModalLabel">Experimental</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+              {% trans "This project is a new social platform to simulate and promote  the basic income" %}
+          </p>
+          <p>{% trans "Please read the" %}<a href="{% url 'disclaimer' %}" target="_blank">{% trans " Disclaimer" %}</a></p>
+      </div>
+      <div class="modal-footer">
+          <div class="pull-left">
+              <button class="btn btn-default" type="button" data-dismiss="modal">{% trans "Cancel" %}</button>
+          </div>
+          <div class="pull-right">
+              <a href="{% provider_login_url "google" process="login" %}" class="btn btn-primary">{% trans "Agree" %}</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div tabindex="-1" class="modal fade" id="twitterregisterconfirm" role="dialog" aria-hidden="true" aria-labelledby="registerModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+        <h4 class="modal-title" id="registerModalLabel">Experimental</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+              {% trans "This project is a new social platform to simulate and promote  the basic income" %}
+          </p>
+          <p>{% trans "Please read the" %}<a href="{% url 'disclaimer' %}" target="_blank">{% trans " Disclaimer" %}</a></p>
+      </div>
+      <div class="modal-footer">
+          <div class="pull-left">
+              <button class="btn btn-default" type="button" data-dismiss="modal">{% trans "Cancel" %}</button>
+          </div>
+          <div class="pull-right">
+              <a href="{% provider_login_url "twitter" process="login" %}" class="btn btn-primary">{% trans "Agree" %}</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

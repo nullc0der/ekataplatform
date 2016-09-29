@@ -1,0 +1,12 @@
+{% load i18n %}
+{% if permissions %}
+    {% for permission in permissions %}
+        <div class="permission_div text-center">
+            <h4>{{ permission }}</h4>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="permission_div text-center">
+        <h4>{% trans "No such default role" %}</h4>
+    </div>
+{% endif %}

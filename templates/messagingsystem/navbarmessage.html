@@ -1,0 +1,43 @@
+{% load staticfiles i18n %}
+{% if chats %}
+    <ul class="dropdown-menu">
+        <li>
+            <ul class="menu">
+                {% for chat in chats %}
+                    <li data-name={{ chat.name }}>
+                        <a href="javascript:void(0)" onclick="openChat({{ chat.id }}, '{{ chat.name }}')">
+                            {% for subscriber in chat.subscribers.all %}
+                                {% ifequal subscriber ruser %} 
+                                {% else %}
+                                    <div class="pull-left">
+                                        {% if subscriber.profile.avatar %}
+                                            <img src="{{ subscriber.profile.avatar.thumbnail.128x128 }}" class="img-circle"> 
+                                        {% else %}
+                                            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="128" height="128">   
+                                        {% endif %}
+                                    </div>
+                                    <h4>
+                                        {{ subscriber.username }}
+                                    </h4>
+                                {% endifequal %}
+                            {% endfor %}
+                            <p>{{ chat.messages.last.content|truncatechars:20 }}</p>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+{% else %}
+    <ul class="dropdown-menu">
+        <li>
+            <ul class="menu">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-smile-o text-red"></i> {% trans "All caught up" %}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+{% endif %}

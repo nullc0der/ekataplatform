@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {{ group.name }} | {% trans "Admin" %} | {% trans "Events" %}
+{% endblock title %}
+{% block extra_menus %}
+    {% include "sidebar_group.html" %}
+    {% include "sidebar_group_admin.html" %}
+{% endblock extra_menus %}
+{% block content_header %}
+    <h1>
+        {{ group.name }} {% trans "Events" %} - {% trans "Admin" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{% trans "Create Event" %}</h3>
+                </div>
+                <div class="box-body">
+                    {% include "groupsystem/eventform.html" %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{% trans "Events" %}</h3>
+                </div>
+                <div class="box-body">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        $("#navleft").show();
+        $("#navright").show();
+        var navbar = 0;
+        var maxnavbar = 2;
+        var navbarcontent_classes = ['.mainnavcontent', '.groupnavcontent', '.groupadminnavcontent'];
+        var navbar_names = ["{% trans "MAIN NAVIGATION" %}", "{{ group.name|upper }} NAVIGATION", "{{ group.name|upper }} ADMIN"]
+        $.each(navbarcontent_classes ,function(index) {
+            if (index !== 0) {
+                $(navbarcontent_classes[index]).hide();
+            }
+        });
+        $("#navright").click(function(event) {
+            navRight();
+        });
+        $("#navleft").click(function(event) {
+            navLeft();
+        });
+        $(".header").on('swipeleft', function(event) {
+            navLeft();
+        });
+        $(".header").on('swiperight', function(event) {
+            navRight();
+        });
+        function navRight() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === maxnavbar) {
+                var right_divclass = navbarcontent_classes[0];    
+            }
+            else {
+                var right_divclass = navbarcontent_classes[navbar + 1];
+            }
+            if (navbar === maxnavbar) {
+                $("#navheader").text(navbar_names[0]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar + 1]);
+            }
+            $(right_divclass).show('slow');
+            if (navbar === maxnavbar) {
+                navbar = 0;
+            }
+            else {
+                navbar = navbar + 1;
+            }
+        }
+        function navLeft() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === 0) {
+                var left_divclass = navbarcontent_classes[maxnavbar];    
+            }
+            else {
+                var left_divclass = navbarcontent_classes[navbar - 1];
+            }
+            if (navbar === 0) {
+                $("#navheader").text(navbar_names[maxnavbar]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar - 1]);
+            }
+            $(left_divclass).show('slow');
+            if (navbar === 0) {
+                navbar = maxnavbar;
+            }
+            else {
+                navbar = navbar - 1;
+            } 
+        }
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            buttonText: {
+                today: 'today',
+                month: 'month',
+                week: 'week',
+                day: 'day'
+            },
+            events: [
+                {% for event in events %}
+                    {
+                        id: '{{ event.id }}',
+                        title: '{{ event.title }}',
+                        start: '{{ event.start|date:"c" }}',
+                        end: '{{ event.end|date:"c" }}',
+                        backgroundColor: "{{ event.background_color }}", 
+                        borderColor: "{{ event.border_color }}" 
+                    },
+                {% endfor %}
+            ],
+            eventClick: function(calEvent, jsEvent, view) {
+                $("#id_event_id").val(calEvent.id);
+                $("#id_title").val(calEvent.title);
+                $("#id_start_date").val(calEvent.start.format('MM/DD/YYYY HH:mm'));
+                if (calEvent.end) {
+                    $("#id_end_date").val(calEvent.end.format('MM/DD/YYYY HH:mm'));
+                }
+                $("#id_color").val(calEvent.backgroundColor);
+            }
+        });
+        $(".datepicker").datetimepicker({
+            format: 'MM/DD/YYYY HH:mm',
+            showClear: true,
+        });
+        $("#id_color").colorpicker();
+        $(document).on('click', '#submitevent', function(event) {
+            event.preventDefault();
+            var frm = $("#eventform");
+            $.ajax({
+                url: frm.attr('action'),
+                method: frm.attr('method'),
+                data: frm.serialize(),
+                success: function(data) {
+                    $("#calendar").fullCalendar('removeEvents', data.id);
+                    $("#calendar").fullCalendar('renderEvent', data, true);
+                    $('.top-right').notify({
+                        message: { text: "{% trans "Success!!" %}"},
+                        type: 'info',
+                    }).show();
+                    frm[0].reset();
+                    $("#id_event_id").val("");
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                    $(".datepicker").datetimepicker({
+                        format: 'MM/DD/YYYY HH:mm',
+                        showClear: true,
+                    });
+                    $("#id_color").colorpicker();
+                }
+            });
+        });
+        $(document).on('click', '#clearevent', function(event) {
+            event.preventDefault();
+            var frm = $("#eventform");
+            frm[0].reset();
+            $("#id_event_id").val("");
+        });
+    </script>
+{% endblock extrascripts %}

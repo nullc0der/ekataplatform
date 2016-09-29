@@ -1,0 +1,9 @@
+{% load bootstrap_tags i18n %}
+<form id="eventform" role="form" method="POST" action="{% url 'g:eventsadmin' group.id %}">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="pull-right">
+        <button class="btn btn-success" type="submit" id="submitevent">{% trans "Submit" %}</button>
+        <button class="btn btn-danger" type="button" id="clearevent">{% trans "Clear" %}</button>
+    </div>
+</form>

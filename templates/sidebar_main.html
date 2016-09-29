@@ -1,0 +1,75 @@
+{% load i18n bip_extras %}
+<li class="header text-center">
+    <i class="fa fa-caret-left pull-left" id="navleft"></i>
+    <span id="navheader">{% trans "MAIN NAVIGATION" %}</span>
+    <i class="fa fa-caret-right pull-right" id="navright"></i>
+</li>
+<li class="{% active request 'dashboard:index' %} treeview mainnavcontent">
+    <a href="{% url 'dashboard:index' %}">
+        <i class="fa fa-dashboard"></i> <span>{% trans "Dashboard" %}</span>
+    </a>
+</li>
+<li class="treeview {% active request 'myaccount:index' %} {% active request 'myaccount:transfer' %} mainnavcontent">
+    <a href="#">
+        <i class="fa fa-bank"></i>
+        <span>{% trans "My Account" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'myaccount:index' %}"><a href="{% url 'myaccount:index' %}"><i class="fa fa-circle-o"></i>{% trans "Account" %}</a></li>
+        <li class="{% active request 'myaccount:transfer' %}"><a href="{% url 'myaccount:transfer' %}"><i class="fa fa-circle-o"></i>{% trans "Transfer" %}</a></li>
+    </ul>
+</li>
+{% comment %}
+    <li><a href="market_place.html"><i class="fa fa-gift"></i> <span>{% trans "Market Place" %}</span></a></li>
+    <li><a href="communities.html"><i class="fa fa-users"></i> <span>{% trans "Communities" %}</span></a></li>
+{% endcomment %}
+<li class="{% active request 'profilesystem:index' %} treeview mainnavcontent">
+    <a href="{% url 'profilesystem:index' %}">
+        <i class="fa fa-user"></i>
+        <span>{% trans "Profile" %}</span>
+    </a>
+</li>
+<li class="{% active request 'publicusers:index' %} mainnavcontent"><a href="{% url 'publicusers:index' %}"><i class="fa fa-users"></i> <span>{% trans "Users" %}</span></a></li>
+<li class="treeview mainnavcontent {% active request 'g:allgroups' %} {% active request 'g:joinedgroups' %} {% active request 'g:subscribedgroups' %}">
+    <a href="#">
+        <i class="fa fa-cubes"></i>
+        <span>{% trans "Groups" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'g:allgroups' %}"><a href="{% url 'g:allgroups' %}"><i class="fa fa-circle-o"></i>{% trans "All Groups" %}</a></li>
+        <li class="{% active request 'g:joinedgroups' %}"><a href="{% url 'g:joinedgroups' %}"><i class="fa fa-circle-o"></i>{% trans "Joined Groups" %}</a></li>
+        <li class="{% active request 'g:subscribedgroups' %}"><a href="{% url 'g:subscribedgroups' %}"><i class="fa fa-circle-o"></i>{% trans "Subscribed Groups" %}</a></li>
+    </ul>
+</li>
+<li class="{% active request 'usertimeline:index' %} treeview mainnavcontent">
+    <a href="{% url 'usertimeline:index' %}">
+        <i class="fa fa-clock-o"></i>
+        <span>{% trans "Timeline" %}</span>
+    </a>
+</li>
+<li class="{% active request 'messaging:index' %} mainnavcontent">
+    <a href="{% url 'messaging:index' %}">
+        <i class="fa fa-comment"></i>
+        <span>{% trans "Messaging" %}</span>
+    </a>
+</li>
+<li class="treeview mainnavcontent {% active request 'information:index' %} {% active request 'information:contact' %}">
+    <a href="#">
+        <i class="fa fa-info-circle"></i>
+        <span>{% trans "Information" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'information:index' %}"><a href="{% url 'information:index' %}"><i class="fa fa-circle-o"></i>{% trans "About Our System" %}</a></li>
+        <li class="{% active request 'information:contact' %}"><a href="{% url 'information:contact' %}"><i class="fa fa-circle-o"></i>{% trans "Contact Details" %}</a></li>
+    </ul>
+</li>
+<li class="mainnavcontent {% active request 'hashtag:index' %}"><a href="{% url 'hashtag:index' %}"><i class="fa fa-hashtag"></i><span>{% trans "Hashtag Campaign" %}</span></a></li>

@@ -1,0 +1,39 @@
+{% load i18n staticfiles %}
+{% if request.user.thumbs.all %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h4>{% trans "Following user verified me" %}</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="users-list clearfix">
+        {% for thumb in request.user.thumbs.all %}
+            <li>
+            {% if thumb.from_user.profile.avatar_public %}
+                {% if thumb.from_user.profile.avatar %}
+                <img src="{{ thumb.from_user.profile.avatar.thumbnail.128x128 }}" alt="User Image"> 
+                {% else %}
+                <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image"> 
+                {% endif %} 
+            {% else %}
+                <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image"> 
+            {% endif %}
+                <a class="users-list-name" href="{% url 'publicusers:user' thumb.from_user.id %}">{{ thumb.from_user.username }}</a>
+                <span class="users-list-date">{{ thumb.from_user.profile.street }}</span>
+            </li>        
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+                <h4>{% trans "Oops!! No Reference Yet" %}</h4>
+        </div>
+    </div>
+</div>
+{% endif %}

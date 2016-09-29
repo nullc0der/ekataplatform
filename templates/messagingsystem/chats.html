@@ -1,0 +1,226 @@
+{% load i18n staticfiles %}
+    <div class="box-body" id="chatbody">
+        <div class="direct-chat-messages">
+            {% for message in messages %}
+                <div class="direct-chat-msg {% ifequal message.user request.user %}right{% endifequal %}">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name {% ifequal message.user request.user %}pull-right{% else %}pull-left{% endifequal %}">{{ message.user.username }}</span>
+                        <span class="direct-chat-timestamp {% ifequal message.user request.user %}pull-left{% else %}pull-right{% endifequal %}">{{ message.timestamp|date:"H:i" }}</span>
+                    </div>
+                    <!-- /.direct-chat-info -->
+                    {% if message.user.profile.avatar %}
+                        {% ifequal message.user request.user  %}
+                            <img src="{{ message.user.profile.avatar.thumbnail.128x128 }}" class="direct-chat-img">
+                        {% else %}
+                            <a href="javascript:void(0)" class='actions'>
+                                <img src="{{ message.user.profile.avatar.thumbnail.128x128 }}" class="direct-chat-img">
+                            </a>
+                        {% endifequal %}
+                    {% else %}
+                        {% ifequal message.user request.user  %}
+                            <img src="{% static "dist/img/placeholder-user.png" %}" class="direct-chat-img" width="50" height="50">
+                        {% else %}
+                            <a href="javascript:void(0)" class='actions'>
+                                <img src="{% static "dist/img/placeholder-user.png" %}" class="direct-chat-img" width="50" height="50">
+                            </a>
+                        {% endifequal %}
+                    {% endif %}
+                    <!-- /.direct-chat-img -->
+                    {% if message.to_user == request.user %}
+                        <div class="direct-chat-text">
+                            <p class="messages" data-id={{ message.id }} {% if message.read %}
+                                data-read="yes"
+                            {% else %}
+                                data-read="no"
+                            {% endif %}>{{ message.content }}</p>
+                        </div>
+                    {% else %}
+                        <div class="direct-chat-text">
+                            <p>{{ message.content }}</p>
+                        </div>
+                    {% endif %}
+                    <!-- /.direct-chat-text -->
+                </div>
+                <!-- /.direct-chat-msg -->
+            {% endfor %}
+        </div>
+    </div>
+    {% if chat_id %}
+        <div class="box-footer" id="chatfooter">
+            <form action="{% url 'messaging:send' chat_id %}" method="post" id="sendfrm">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="content" placeholder="Type Message ..." class="form-control" autocomplete="off" id="messageinput">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary btn-flat" id="sendmsg"><i class="fa fa-send"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+{% if modals %}
+    {% if otheruser %}
+        {% with otheruser as user %}
+            <!-- Send Unit Modal -->
+            <div tabindex="-1" class="modal fade" id="sendUnitModal" role="dialog" aria-hidden="true" aria-labelledby="sendUnitModalLabel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                            <h4 class="modal-title" id="sendUnitModalLabel">{% trans "Send Unit to: " %} {{ user.username }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            {% include "useraccount/transferform.html" %}
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" id="sendbutton">{% trans "Send" %}</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.Send Unit Modal -->
+            <!-- Request Unit Modal -->
+            <div tabindex="-1" class="modal fade" id="requestUnitModal" role="dialog" aria-hidden="true" aria-labelledby="requestUnitModalLabel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                            <h4 class="modal-title" id="requestUnitModalLabel">{% trans "Request Unit from: " %} {{ user.username }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            {% include "useraccount/requestform.html" %}
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" id="requestbutton">{% trans "Request" %}</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.Request Unit Modal -->    
+        {% endwith %}
+    {% endif %}
+{% endif %}
+{% if floating %}
+<script>
+    $("input[name='content']").emojioneArea({
+        pickerPosition: "top",
+        tonesStyle: "bullet",
+        hidePickerOnBlur: false,
+        events: {
+            keyup: function(editor, event){
+                if (event.which === 13) {
+                    $('.emojionearea-editor').blur();
+                    var frm = $("#sendfrm");
+                    if ($("input[name='content']").val()) {
+                        $.ajax({
+                            url: frm.attr('action'),
+                            type: 'POST',
+                            data: frm.serialize(),
+                            success: function(data) {
+                                $('.direct-chat-messages').append(data);
+                                $("input[name='content']").val('');
+                                $(".direct-chat-messages").slimscroll({
+                                    scrollTo: $('.direct-chat-messages')[0].scrollHeight,
+                                });
+                                $(".emojionearea-editor").text('');
+                                convertEmojis(true);
+                            }
+                        }); 
+                    }
+                }
+            },
+            emojibtn_click: function (button, event) {
+                $('.emojionearea-editor').blur();
+            },
+        }
+    });
+    $(".emojionearea-button").click(function(e){
+        document.activeElement.blur();
+    });
+    var mouse_is_inside = false;
+    $(".emojionearea-picker, .emojionearea-button").hover(function(){ 
+        mouse_is_inside=true;
+    }, function(){ 
+        mouse_is_inside=false;
+    });
+    $(document).mouseup(function(){
+        if ($('.emojionearea-button').hasClass('active') && ! mouse_is_inside) {
+            $('.emojionearea-button').click();
+        }
+    });
+   $("#sendmsg").click(function(e){
+        e.preventDefault();
+        var frm = $("#sendfrm");
+        if ($("input[name='content']").val()) {
+            $.ajax({
+                url: frm.attr('action'),
+                type: 'POST',
+                data: frm.serialize(),
+                success: function(data) {
+                    $('.direct-chat-messages').append(data);
+                    $("input[name='content']").val('');
+                    $(".direct-chat-messages").slimscroll({
+                        scrollTo: $('.direct-chat-messages')[0].scrollHeight,
+                    });
+                    $('.emojionearea-editor').text('');
+                    convertEmojis(true);
+                }
+            }); 
+        }
+    });
+    {% if modals %}
+        $('.actions').popover({
+            html: true, 
+            content: function() {
+                return $("#actionslist").html();
+            },
+            title: "{% trans "Actions" %}",
+            placement: "left",
+            container: 'body',
+            trigger: 'focus'
+        });
+        $("#sendbutton").click(function(){
+            var frm = $("#transactionform");
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    $("#sendUnitModal").modal('hide');
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                }   
+            });
+        });
+        $("#sendUnitModal").on('hidden.bs.modal', function(){
+            $("#transactionform")[0].reset();
+            clear_form_field_errors("#transactionform");
+        });
+        $("#requestbutton").click(function(){
+            var frm = $("#requestform");
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    $("#requestUnitModal").modal('hide');
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                }
+            });
+        });
+        $("#requestUnitModal").on('hidden.bs.modal', function(){
+            $("#requestform")[0].reset();
+            clear_form_field_errors("#requestform");
+        });
+    {% endif %}
+</script>
+{% endif %}

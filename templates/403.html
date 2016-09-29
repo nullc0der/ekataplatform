@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "Permission denied" %}
+{% endblock title %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-red text-center"><h1 style="font-size: 200px;">403</h1></div>
+        <div class="col-md-12 text-center">
+            <h3><i class="fa fa-warning text-red"></i> {% trans "Oops!! You don't have permissions to view this page" %}</h3>
+            <p>
+                <a href="{% url 'dashboard:index' %}">{% trans "Return to dashboard" %}</a>
+            </p>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,5 @@
+{% load bootstrap_tags %}
+<form role="form" method="POST" id="createroleform" action="{% url 'g:groupcustomrole' group.id %}">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+</form>

@@ -1,0 +1,407 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {{ user.username }} | Basic Income Project
+{% endblock title %}
+
+
+{% block extrastyle %}
+    <style type="text/css">
+        .visibilty {
+            position: absolute;
+            bottom: 85px;
+            right: -170px;
+            z-index: 9999;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.23);
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+        }
+        .visibilty:after {
+	        content: '';
+	        display: block;  
+	        position: absolute;
+	        right: 100%;
+	        top: 50%;
+	        margin-top: -10px;
+	        width: 0;
+	        height: 0;
+	        border-top: 10px solid transparent;
+	        border-right: 10px solid rgba(255, 255, 255, 0.9);
+	        border-bottom: 10px solid transparent;
+	        border-left: 10px solid transparent;
+        }
+        .connform {
+            margin: 5px 0;
+        }
+        .bootstrap-select {
+            width: 100px !important;
+        }
+    </style>
+{% endblock extrastyle %}
+    
+    
+{% block content_header %}
+    <h1>
+    {{ user.username }}
+    </h1>
+<ol class="breadcrumb">
+    <li><a href="{% url 'publicusers:index' %}"><i class="fa fa-users"></i>{% trans "Users" %}</a></li>
+    <li><a href="#">{{ user.username }}</a></li>
+</ol>
+{% endblock content_header %}
+
+
+{% block content %}
+    <div class="row">
+        {% include "publicusers/user.html" %}
+    </div>
+    {% ifequal user.username request.user.username %} 
+    {% else %}
+    {% if user.thumbs.all %}
+    <div class="row">
+        <div class="col-md-12">
+             <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{% trans "Others who verify" %} {{ user.username }}</h3>
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="users-list clearfix">
+                    {% for thumb in user.thumbs.all %}
+                        {% if thumb.is_public %}
+                            <li>
+                                {% if thumb.from_user.profile.avatar_public %}
+                                    {% if thumb.from_user.profile.avatar %}
+                                        <img src="{{ thumb.from_user.profile.avatar.thumbnail.128x128 }}" alt="User Image"> 
+                                    {% else %}
+                                        <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image"> 
+                                    {% endif %} 
+                                {% else %}
+                                    <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image"> 
+                                {% endif %}
+                                <a class="users-list-name" href="{% url 'publicusers:user' thumb.from_user.id %}">{{ thumb.from_user.username }}</a>
+                                <span class="users-list-date">{{ thumb.from_user.profile.street }}</span>
+                            </li>        
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- Send Unit Modal -->
+    <div tabindex="-1" class="modal fade" id="sendUnitModal" role="dialog" aria-hidden="true" aria-labelledby="sendUnitModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="sendUnitModalLabel">{% trans "Send Unit" %}</h4>
+                </div>
+                <div class="modal-body">
+                    {% include "useraccount/transferform.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" id="sendbutton">{% trans "Send" %}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.Send Unit Modal -->
+    <!-- Request Unit Modal -->
+    <div tabindex="-1" class="modal fade" id="requestUnitModal" role="dialog" aria-hidden="true" aria-labelledby="requestUnitModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="requestUnitModalLabel">{% trans "Request Unit" %}</h4>
+                </div>
+                <div class="modal-body">
+                    {% include "useraccount/requestform.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" id="requestbutton">{% trans "Request" %}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.Request Unit Modal -->
+    {% endifequal %}
+
+{% endblock content %}
+
+{% block extrascripts %}
+    <script type="text/javascript">
+        // using jQuery
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        {% if conn_id %}
+            function cancelRejectConnection(tipe) {
+                $.ajax({
+                    url: '{% url 'publicusers:conncancelreject' conn_id %}',
+                    type: 'POST',
+                    data: {'type': tipe},
+                    success: function(data) {
+                        $('.top-right').notify({
+                            message: { text: data },
+                            type: 'info',
+                        }).show();
+                        location.reload();
+                    }
+                });
+            }
+            function acceptConnection(){
+                $.ajax({
+                    url: '{% url 'publicusers:acceptconnection' conn_id %}',
+                    type: 'POST',
+                    success: function(data) {
+                        $('.top-right').notify({
+                            message: { text: data },
+                            type: 'info',
+                        }).show();
+                        location.reload();
+                    }
+                });
+            }    
+        {% endif %}
+        function clear_form_field_errors(form) {
+            $(".error-msg", $(form)).remove();
+            $(".form-group", $(form)).removeClass("has-error");
+        }
+        $('.visibilty').hide();
+        $("#conntype").hide();
+        $('#thumb').click(function(){
+            $.ajax({
+                url: '{% url 'publicusers:user' user.id %}?thumbs',
+                type: 'GET',
+                success: function(data){
+                    if (data == 'Success') {
+                        var count = parseInt($('.thumbcount').text(), 10);
+                        count = count + 1;
+                        $('.top-right').notify({
+                            message: { text: data },
+                            type: 'info'
+                        }).show();
+                        $('.thumbcount').text(count);
+                        $('.visibilty').show();
+                    }
+                    else {
+                        $('.top-right').notify({
+                            message: { text: data },
+                            type: 'info'
+                        }).show();
+                        $('.visibilty').show();
+                    }
+                },
+                error: function(data){
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info'
+                    }).show(); 
+                },
+            })
+        })
+        $("#publictoggle").change(function() {
+            var checked = $(this).is(':checked');
+            if (checked) {
+                $.ajax({
+                    url: '{% url 'publicusers:user' user.id %}?public=true',
+                    type: 'GET',
+                    success: function(){
+                        $('.top-right').notify({
+                            message: { text: 'visibility changed successfully' },
+                            type: 'info'
+                        }).show();
+                    },
+                    error: function(){
+                        $('.top-right').notify({
+                            message: { text: 'Oops!! visibility not changed try later' },
+                            type: 'danger'
+                        }).show();
+                    }
+                })
+            }
+            else {
+                $.ajax({
+                    url: '{% url 'publicusers:user' user.id %}?public=false',
+                    type: 'GET',
+                    success: function(){
+                        $('.top-right').notify({
+                            message: { text: 'visibility changed successfully' },
+                            type: 'info'
+                        }).show();
+                    },
+                    error: function(){
+                        $('.top-right').notify({
+                            message: { text: 'Oops!! visibility not changed try later' },
+                            type: 'danger'
+                        }).show();
+                    }
+                })
+            }
+        });
+        $(document).click(function(){
+            $(".visibilty").hide();
+        });
+        $("#sendbutton").click(function(){
+            var frm = $("#transactionform");
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    $("#sendUnitModal").modal('hide');
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                }
+            });
+        });
+        $("#sendUnitModal").on('hidden.bs.modal', function(){
+            $("#transactionform")[0].reset();
+            clear_form_field_errors("#transactionform");
+        });
+        $("#requestbutton").click(function(){
+            var frm = $("#requestform");
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    $("#requestUnitModal").modal('hide');
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                }
+            });
+        });
+        $("#requestUnitModal").on('hidden.bs.modal', function(){
+            $("#requestform")[0].reset();
+            clear_form_field_errors("#requestform");
+        });
+        $('#sendconn').click(function(){
+              if ( $( "#conntype" ).is( ":hidden" ) ) {
+                $( "#conntype" ).slideDown( "slow" );
+            } else {
+                $( "#conntype" ).slideUp( "slow" );
+            }
+        });
+        $("#mainc").change(function(){
+            var mainconn = $("#mainc").val();
+            $.ajax({
+                url: '{% url 'publicusers:sendsub' %}',
+                data: {'mainconn': mainconn},
+                success: function(data){
+                    $("#subc option").remove();
+                    $("#subcl").text(data.main)
+                    for (i=0; i < data.sub.length; i++) {
+                        if (i==0) {
+                            var hstring = '<option value="' + data.sub[i] + '" selected' + '>' + data.sub[i] + '</option>';
+                            $("#subc").append(hstring);
+                        }
+                        else {
+                            var hstring = '<option value="' + data.sub[i] + '">' + data.sub[i] + '</option>';
+                            $("#subc").append(hstring);
+                        }
+                    }
+                    $("#subc").selectpicker('refresh');
+                }
+            });
+        });
+        $('select').selectpicker();
+        $('#sendcr').click(function(){
+            var connmain = $("#mainc").val();
+            var connsub = $("#subc").val();
+            $.ajax({
+                url: '{% url 'publicusers:reqconn' user.id %}',
+                type: 'POST',
+                data: {'connmain': connmain, 'connsub': connsub},
+                success: function(data) {
+                    $('.top-right').notify({
+                        message: { text: data },
+                        type: 'info',
+                    }).show();
+                    location.reload();
+                },
+                error: function(data) {
+                    $('.top-right').notify({
+                        message: { text: data.responseText },
+                        type: 'info',
+                    }).show();
+                    location.reload();
+                }
+            });
+        });
+        $("#initmsg").click(function(){
+            $.ajax({
+                url: '{% url 'messaging:create' user.id %}',
+                type: 'POST',
+                success: function(data) {
+                    $("#msgbox").remove();
+                    $(".content").append(data);
+                    $(".direct-chat-messages").slimscroll({
+                        height: '350px',
+                        size: '3px',
+                        alwaysVisible: false,
+                        start: 'bottom' 
+                    });
+                }
+            });
+        });
+        (function getOnline(){
+            $.ajax({
+                url: '{% url 'publicusers:getonline' user.id %}',
+                success: function(data) {
+                    var userstatus = $('#userstatus');
+                    if (data.is_online) {
+                        userstatus.empty();
+                        userstatus.append('<i class="fa fa-circle text-success onlinestatus"></i> {% trans "Online" %}');
+                    }
+                    else {
+                        userstatus.empty();
+                        userstatus.append('<i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}')
+                        if (data.last_seen) {
+                            var date = new Date(data.last_seen).toLocaleString();
+                            var lastseen = moment(date).format('MMMM Do YYYY, hh:mm a')
+                            $(userstatus).attr('data-toggle', 'tooltip');
+                            $(userstatus).attr('title', '{% trans "lastseen: " %}' + lastseen);
+                        }
+                    }
+                },
+                complete: function() {
+                    setTimeout(getOnline, 15000);   
+                }
+            });
+        })();
+    </script>
+{% endblock extrascripts %}

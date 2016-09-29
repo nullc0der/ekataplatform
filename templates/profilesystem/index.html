@@ -1,0 +1,1060 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}
+    {% trans "Profile" %}
+{% endblock title %}
+
+{% block extrastyle %}
+    <style>
+        #editdiv {
+            display: none;
+            margin-left: 10px;
+        }
+        #submitbtn, #imageup {
+            visibility: hidden;
+        }
+        .dropzone {
+            border: 2px dashed rgba(0, 0, 0, 0.3);
+        }
+        .task {
+            padding: 7px;
+            margin-bottom: 5px;
+        }
+        .groups {
+            background-color: #F7F7F7;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .groups span {
+            margin-left: 10%;
+            font-size: 15px;
+        }
+    </style>
+{% endblock extrastyle %}
+
+{% block content_header %}
+     <h1>
+        {% trans "Profile" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>
+                {% blocktrans with username_t=user.username trimmed %}
+                   Hello, {{ username_t }}!
+                {% endblocktrans %}
+                </a>
+                <br>
+            {% else %}
+                <a>{% trans "Hello, User!" %}</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{% url 'profilesystem:index' %}"><i class="fa fa-user"></i>{% trans "Profile" %}</a></li>
+    </ol>
+{% endblock content_header %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        {% ifequal ncompleted 'website' %} 
+            <div class="alert alert-info task fade in">
+                <a href="#" onclick='skipTask("website")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add your website to complete your profile." %}</a>
+            </div>
+        {% endifequal %}
+        {% ifequal ncompleted 'gender' %}
+            <div class="alert alert-info task fade in">
+                <a href="#" onclick='skipTask("gender")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add your gender to complete your profile." %}</a>
+            </div>
+        {% endifequal %}
+        {% ifequal ncompleted 'phone' %}
+            <div class="alert alert-info task fade in">
+                <a href="#" onclick='skipTask("phone")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="{% url 'profilesystem:index' %}#contactwidget">{% trans "Add your contact number to complete your profile." %}</a>
+            </div>
+        {% endifequal %}
+        {% ifequal ncompleted 'avatar' %}
+            <div class="alert alert-info task fade in">
+                <a href="#" onclick='skipTask("avatar")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="{% url 'profilesystem:index' %}#avatar">{% trans "Add a profile image to complete your profile." %}</a>
+            </div>
+        {% endifequal %}
+        {% ifequal ncompleted 'address' %} 
+            <div class="alert alert-info task fade in">
+                <a href="#" onclick='skipTask("address")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="{% url 'profilesystem:index' %}#locationwidget">{% trans "Add your location to complete your profile." %}</a>
+            </div>
+        {% endifequal %}
+        {% ifequal ncompleted 'socialaccount' %} 
+            <div class="alert alert-info task fade in">
+                <a href="#" onclick='skipTask("socialaccount")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="{% url 'profilesystem:index' %}#socialwidget">{% trans "Add a social account of yours to complete your profile." %}</a>
+            </div>
+        {% endifequal %}
+        {% ifequal ncompleted 'email' %} 
+            <div class="alert alert-info task fade in">
+                <a href="#" onclick='skipTask("email")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="{% url 'account_email' %}">{% trans "Add your email account to complete your profile." %}</a>
+            </div>
+        {% endifequal %}
+        {% ifequal ncompleted 'email_verified' %} 
+            <div class="alert alert-info task fade in">
+                <a href="#" onclick='skipTask("email_verified")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <a href="javascript:void(0)" 
+                {% if emailadd %}
+                    onclick='sendVerification("{{ emailadd }}")'
+                {% endif %}>{% trans "Please verify your email address(resend verification)" %}</a>
+            </div>
+        {% endifequal %}
+    </div>
+</div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-primary btn-sm" id="private">Back To Private</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="changesection">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6" id="personalwidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Personal Information" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- box-header -->
+                        <div class="box-body" id="pinfo">
+
+                        </div>
+                        <!-- box-body -->
+                        <div class="box-footer">
+                            <div class="pull-left">
+                                <button class="btn btn-primary" id="pshow">{% trans "Close" %}</button>
+                            </div>
+                            <div class="pull-right">
+                                <button class="btn btn-primary" id="pedit">{% trans "Edit" %}</button>
+                            </div>
+                            <div class="pull-right">
+                                <button class="btn btn-danger" id="psubmit">{% trans "Submit" %}</button>
+                            </div>
+                        </div>
+                        <!-- box-footer -->
+                        <div class="overlay" id="poverlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!-- /box -->
+                </div>
+                <div class="col-md-6" id="locationwidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Location" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- box-header -->
+                        <div class="box-body" id="address">
+
+                        </div>
+                        <!-- box-body -->
+                        <div class="box-footer">
+                            <div class="pull-left">
+                                <button class="btn btn-primary" id="ashow">{% trans "Close" %}</button>
+                            </div>
+                            {% if request.user.address %}
+                            <div class="pull-right">
+                                <button class="btn btn-primary" id="aedit">{% trans "Edit" %}</button>
+                            </div>
+                            {% else %}
+                            <div class="pull-right">
+                                <button class="btn btn-primary" id="aedit">{% trans "Add" %}</button>
+                            </div>
+                            {% endif %}
+                            <div class="pull-right">
+                                <button class="btn btn-danger" id="asubmit">{% trans "Submit" %}</button>
+                            </div>
+                        </div>
+                        <!-- box-footer -->
+                        <div class="overlay" id="aoverlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!-- /box -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" id="contactwidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Contact" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- box-header -->
+                        <div class="box-body" id="contact">
+
+                        </div>
+                        <!-- box-body -->
+                        <div class="box-footer">
+                            <div class="pull-left">
+                                <button class="btn btn-primary" id="cshow">{% trans "Close" %}</button>
+                            </div>
+                            {% if request.user.phone %}
+                            <div class="pull-right">
+                                <button class="btn btn-primary" id="cedit">{% trans "Edit" %}</button>
+                            </div>
+                            {% else %}
+                            <div class="pull-right">
+                                <button class="btn btn-primary" id="cedit">{% trans "Add" %}</button>
+                            </div>
+                            {% endif %}
+                            <div class="pull-right">
+                                <button class="btn btn-danger" id="csubmit">{% trans "Submit" %}</button>
+                            </div>
+                        </div>
+                        <!-- box-footer -->
+                        <div class="overlay" id="coverlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!-- /box -->
+                </div>
+                <div class="col-md-6" id="activitieswidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Activities" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- box-header -->
+                        <div class="box-body" id="activities">
+                                <strong><i class="fa fa-circle-o margin-r-5"></i>{% trans "Activation date" %}</strong>
+                                <p class="text-muted">
+                                    {{ request.user.date_joined|date:"D d M Y" }}
+                                </p>
+                                <strong><i class="fa fa-circle-o margin-r-5"></i>{% trans "References" %}</strong>
+                                <p class="text-muted">
+                                    {{ request.user.thumbs.count }}
+                                </p>
+                        </div>
+                        <!-- box-body -->
+                        <div class="box-footer">
+                            <div class="pull-right">
+                                <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#logdetails">{% trans "More" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /box -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12" id="documentwidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Documents" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- box-header -->
+                        <div class="box-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="pull-right">
+                                            <form action="." id="documentsearch">
+                                                <div class="input-group">
+                                                    <input type="text" id="query" class="form-control" placeholder="{% trans "Search..." %}">
+                                                    <span class="input-group-btn">
+                                                        <button type="submit" class="btn btn-flat btn-primary"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="documents">
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- box-body -->
+                        <div class="box-footer">
+                            <div class="pull-right">
+                                <a data-target="#fileModal" data-toggle="modal" class="btn btn-primary"><i class="fa fa-cloud-upload"></i>&nbsp;Upload Document</a>
+                            </div>
+                        </div>
+                        <!-- box-footer -->
+                        <div class="overlay" id="doverlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!-- /box -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="sdocumentwidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Shared Documents" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- box-header -->
+                        <div class="box-body" id="sharedoc">
+
+                        </div>
+                        <!-- box-body -->
+                        <div class="box-footer">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" id="dupload"><i class="fa fa-cloud-upload"></i> {% trans "Upload" %}</button>
+                            </div>
+                        </div>
+                        <!-- box-footer -->
+                    </div>
+                    <!-- /box -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="visibiltywidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Change Public Visibility" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- box-header -->
+                        <div class="box-body" id="setting">
+                            {% if request.user.profile %}
+                            <section class="table-responsive">
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td>
+                                            <h4><strong>{% trans "Personal Information" %}</strong></h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>{{ request.user.get_full_name }}</td>
+                                        <td>
+                                            <input type="checkbox" {% if request.user.profile.name_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="name">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Website </td>
+                                        <td> {{ request.user.profile.website }}</td>
+                                        <td>
+                                            <input type="checkbox" {% if request.user.profile.website_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="website">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td id="sgen">{% if request.user.profile.gender %}
+                                                {{ request.user.profile.get_gender_display }}
+                                            {% else %} 
+                                                Not Specified 
+                                            {% endif %}</td>
+                                        <td>
+                                            <input type="checkbox" {% if request.user.profile.gender_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="gender">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avatar</td>
+                                        <td></td>
+                                        <td>
+                                            <input type="checkbox" {% if request.user.profile.avatar_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="avatar">
+                                        </td>
+                                    </tr>
+                                    {% comment %}
+                                    <tr>
+                                        <td>Account type</td>
+                                        <td>{{ request.user.profile.account_type }}</td>
+                                        <td>
+                                            <input type="checkbox" {% if request.user.profile.business_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="business">
+                                        </td>
+                                    </tr>
+                                    {% endcomment %}
+                                    <tr>
+                                        <td>
+                                            <h4><strong>{% trans "Address" %}</strong></h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location</td>
+                                        <td></td>
+                                        <td>
+                                            <input type="checkbox" {% if request.user.profile.location_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="location">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4><strong>{% trans "Contact" %}</strong></h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone No</td>
+                                        <td>{{ request.user.profile.phone_mobile }}</td>
+                                        <td>
+                                            <input type="checkbox" {% if request.user.profile.phone_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="phone">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4><strong>{% trans "Others" %}</strong></h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{% trans "Profile completion" %}</td>
+                                        <td></td>
+                                        <td>
+                                            <input type="checkbox" {% if request.user.profile.completion_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="completion">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
+                            {% else %}
+                                <p>Please edit profile information to change visibility</p>
+                            {% endif %}
+                        </div>
+                        <!-- box-body -->
+                        <div class="box-footer">
+                            {% if request.user.has_usable_password %}
+                            <div class="pull-left">
+                                <a class="btn btn-danger" href="{% url 'changepassword' %}">Change password</a>
+                            </div>
+                            {% else %}
+                            <div class="pull-left">
+                                <a class="btn btn-danger" href="{% url 'setpassword' %}">Set password</a>
+                            </div>
+                            {% endif %}
+                            <div class="pull-right">
+                                <button class="btn btn-primary" id="public">View As Public</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /box -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="socialwidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Linked social account" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <!-- box-header -->
+                        <div class="box-body" id="laccount">
+
+                        </div>
+                        <!-- box-body -->
+                        <div class="box-footer">
+                            {% if show_unlink %}
+                                <div class="pull-right">
+                                    <button class="btn btn-success" id="addsocial">Add</button>
+                                </div>
+                                <div class="pull-left">
+                                    <button class="btn btn-danger" id="removesocial">Remove</button>
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-success" id="sclose">Cancel</button>
+                                </div>
+                            {% else %}
+                                <div class="pull-right">
+                                    <button class="btn btn-success" id="addsocial">Add</button>
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-success" id="sclose">Cancel</button>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <!-- /box-body -->
+                        <div class="overlay" id="soverlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                    <!-- /box -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="emailwidget">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{% trans "Email Address" %}</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body" id="emailaddress">
+                            
+                        </div>
+                        <div class="box-footer">
+                            <div class="pull-right">
+                                <a href="{% url 'account_email' %}" class="btn btn-success">{% trans "Manage" %}</a>
+                            </div>
+                        </div>
+                        <div class="overlay" id="eoverlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="profilextra">
+        <div class="col-md-12" id="referencewidget">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Reference" %}</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                    </div>
+                </div>
+                <!-- box-header -->
+                <div class="box-body" id="reference">
+
+                </div>
+                <!-- box-body -->
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <button class="btn btn-primary" id="refrefresh">{% trans "Refresh" %}</button>
+                    </div>
+                </div>
+                <!-- box-footer -->
+                <div class="overlay" id="refoverlay">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+            </div>
+            <!-- /box -->
+        </div>
+    </div>
+    <div class="row" id="groups">
+        <div class="col-md-4" id="mygroupswidget">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "My Groups" %}</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                    </div>
+                </div>
+                <!-- box-header -->
+                <div class="box-body groupbox" id="mygroup">
+                    {% for group in request.user.basicgroups.all %}
+                        <div class="groups">
+                            <img src="{{ group.logo.thumbnail.50x50 }}" alt="Group Logo">
+                            <span><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- box-body -->
+            </div>
+            <!-- /box -->
+        </div>
+        <div class="col-md-4" id="joinedgroupswidget">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Joined Groups" %}</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                    </div>
+                </div>
+                <!-- box-header -->
+                <div class="box-body groupbox" id="joinedgroup">
+                    {% for group in request.user.joined_group.all %}
+                        <div class="groups">
+                            <img src="{{ group.logo.thumbnail.50x50 }}" alt="Group Logo">
+                            <span><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- box-body -->
+            </div>
+            <!-- /box -->
+        </div>
+        <div class="col-md-4" id="subscribedgroupswidget">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Subscribed Groups" %}</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                    </div>
+                </div>
+                <!-- box-header -->
+                <div class="box-body groupbox" id="subscribedgroup">
+                    {% for group in request.user.subscribed_group.all %}
+                        <div class="groups">
+                            <img src="{{ group.logo.thumbnail.50x50 }}" alt="Group Logo">
+                            <span><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- box-body -->
+            </div>
+            <!-- /box -->
+        </div>
+    </div>
+    <div class="row" id="extra">
+        <div class="col-md-4" id="appswidget">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Apps" %}</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                    </div>
+                </div>
+                <!-- box-header -->
+                <div class="box-body" id="apps">
+
+                </div>
+                <!-- box-body -->
+            </div>
+            <!-- /box -->
+        </div>
+        <div class="col-md-4" id="siteswidget">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Sites" %}</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                    </div>
+                </div>
+                <!-- box-header -->
+                <div class="box-body" id="sites">
+
+                </div>
+                <!-- box-body -->
+            </div>
+            <!-- /box -->
+        </div>
+        <div class="col-md-4" id="adswidget">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Ads" %}</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+                    </div>
+                </div>
+                <!-- box-header -->
+                <div class="box-body" id="ads">
+
+                </div>
+                <!-- box-body -->
+            </div>
+            <!-- /box -->
+        </div>
+    </div>
+<!-- Document Upload Modal -->
+<div tabindex="-1" class="modal fade" id="fileModal" role="dialog" aria-hidden="true" aria-labelledby="fileModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+        <h4 class="modal-title" id="fileModalLabel">Upload Documents</h4>
+      </div>
+      <div class="modal-body">
+        <form class="dropzone" action="{% url 'profilesystem:uploadfile' %}" method="post" enctype="multipart/form-data" id="fileDropzone">
+            {% csrf_token %}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="button" id="submitbtn">Upload</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.Document Upload modal -->
+<!-- Log Details Modal -->
+<section class="modal fade" id="logdetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <section class="modal-dialog" role="document">
+    <section class="modal-content">
+      <section class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="">Log Details</h4>
+      </section>
+      <section class="modal-body">
+        <section class="table-responsive">
+          <h5><b>Logs Details</b></h5>
+          <table class="table table-condensed">
+            <tr>
+              <td>Last payment received</td>
+              <td>175 Unit's</td>
+            </tr>
+            <tr>
+              <td>Advertisement post</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>Last login </td>
+              <td>5 days ago</td>
+            </tr>
+            <tr>
+              <td>Last payment sent</td>
+              <td>700 Unit's</td>
+            </tr>
+          </table>
+        </section>
+        <section class="modal-footer"> </section>
+      </section>
+    </section>
+  </section>
+</section>
+<!-- Edit Avatar Modal -->
+<div tabindex="-1" class="modal fade" id="imgModal" role="dialog" aria-hidden="true" aria-labelledby="imgModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+        <h4 class="modal-title" id="imgModalLabel">Change Avatar</h4>
+      </div>
+      <div class="modal-body">
+        <form class="dropzone" action="{% url 'profilesystem:uploadavatar' %}" method="post" enctype="multipart/form-data" id="avatarDropzone">
+            {% csrf_token %}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="button" id="imageup">Upload</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.Edit Avatar modal -->
+{% endblock content %}
+
+{% block extrascripts %}
+    <script type="text/javascript">
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method)); 
+        }
+        function sendVerification(email) {
+            $.ajax({
+                url: "{% url 'account_email' %}",
+                type: 'POST',
+                data: {'email': email, 'action_send': ""},
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                    $('.top-right').notify({
+                        message: { text: 'Sending verification mail to: ' + email},
+                        type: 'info',
+                    }).show()
+                },
+                success: function() {
+                    $('.top-right').notify({
+                        message: { text: 'A verification email sent to: ' + email},
+                        type: 'info',
+                    }).show();
+                }
+            })
+        }
+        Dropzone.options.fileDropzone = {
+            // Prevents Dropzone from uploading dropped files immediately
+            autoProcessQueue : false,
+
+            init : function() {
+                var submitButton = document.querySelector("#submitbtn")
+                myDropzone1 = this;
+
+                submitButton.addEventListener("click", function() {
+                    myDropzone1.processQueue();
+                    // Tell Dropzone to process all queued files.
+                });
+
+                this.on("addedfile", function() {
+                    // Show submit button here and/or inform user to click it.
+                    $('#submitbtn').css('visibility', 'visible');
+                });
+                this.on('complete', function () {
+                    $("#doverlay").show();
+                    $("#documents").load('{% url 'profilesystem:documents' %}', function(){
+                        $("#doverlay").hide();
+                    });
+                    $('#submitbtn').css('visibility', 'hidden');
+                    this.removeAllFiles();
+                    $("#fileModal").modal('hide');
+                });
+            }
+        };
+        Dropzone.options.avatarDropzone = {
+            // Prevents Dropzone from uploading dropped files immediately
+            autoProcessQueue : false,
+
+            init : function() {
+                var submitButto = document.querySelector("#imageup")
+                myDropzone = this;
+
+                submitButto.addEventListener("click", function() {
+                    myDropzone.processQueue();
+                    // Tell Dropzone to process all queued files.
+                });
+
+                this.on("addedfile", function() {
+                    // allow to upload only one file
+                    if (this.files[1]!=null){
+                        this.removeFile(this.files[0]);
+                    }
+                    // Show submit button here and/or inform user to click it.
+                    $('#imageup').css('visibility', 'visible');
+                });
+                 this.on('complete', function () {
+                    $("#poverlay").show();
+                    $("#pinfo").load('{% url 'profilesystem:personalinfo' %}', function(){
+                        $("#poverlay").hide();
+                    });
+                    $.get('{% url 'profilesystem:queryavatar' %}', function(data) {
+                        var date = new Date();
+                        $(".useravatar").attr('src', data + "?" + date.toString());
+                    });
+                    this.removeAllFiles();
+                    $('#imageup').css('visibility', 'hidden');
+                    $("#imgModal").modal('hide');
+                });
+            }
+        };
+        function boxoperation(close_b, submit_b, edit_b, creplace_div, overlay_div, content_url, form_url, form_id){
+            $(close_b).hide();
+            $(submit_b).hide();
+            $(creplace_div).load(content_url, function(){
+                $(overlay_div).hide();
+            });
+            $(edit_b).click(function(){
+                $(overlay_div).show();
+                $(creplace_div).load(form_url, function(){
+                    $(overlay_div).hide();
+                    $(close_b).show();
+                    $(edit_b).hide();
+                    $(submit_b).show();
+                    $('select').selectpicker({
+                        'liveSearch': true,
+                    });
+                });
+            });
+            $(submit_b).click(function(){
+                frm=$(form_id);
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: frm.attr('action'),
+                    data: frm.serialize(),
+                    success: function (data) {
+                        $('.top-right').notify({
+                            message: { text: 'information changed successfully' },
+                            type: 'info',
+                        }).show();
+                        $(overlay_div).show();
+                        $(creplace_div).load(content_url, function(){
+                            $(overlay_div).hide();
+                            $(close_b).hide();
+                            $(submit_b).hide();
+                            $(edit_b).show();
+                            var pgen = $("#pgen").text();
+                            $("#sgen").text(pgen);
+                        });
+                    },
+                    error: function(data) {
+                        frm.html(data.responseText);
+                        $('.top-right').notify({
+                            message: { text: 'Oops!! error occured please check'},
+                            type: 'danger',
+                        }).show();
+                    }
+                });
+            });
+            $(close_b).click(function(){
+                $(overlay_div).show();
+                $(creplace_div).load(content_url, function(){
+                    $(overlay_div).hide();
+                    $(close_b).hide();
+                    $(submit_b).hide();
+                    $(edit_b).show();
+                });
+            });
+        };
+        boxoperation('#pshow', '#psubmit', '#pedit', '#pinfo', '#poverlay', '{% url 'profilesystem:personalinfo' %}', '{% url 'profilesystem:pedit' %}', '#pinfoform');
+        boxoperation('#cshow', '#csubmit', '#cedit', '#contact', '#coverlay', '{% url 'profilesystem:contact' %}', '{% url 'profilesystem:cedit' %}', '#contactform');
+        boxoperation('#ashow', '#asubmit', '#aedit', '#address', '#aoverlay', '{% url 'profilesystem:address' %}', '{% url 'profilesystem:aedit' %}', '#addressform');
+        $("#documents").load('{% url 'profilesystem:documents' %}', function(){
+            $("#doverlay").hide();
+        });
+        $("#sclose").hide();
+        $("#laccount").load('{% url 'profilesystem:linkedaccount' %}', function(){
+            $("#soverlay").hide();
+        });
+        $("#removesocial").click(function(){
+            $("#soverlay").show();
+            $("#laccount").load('{% url 'profilesystem:linkedaccount' %}?unlink', function(){
+                $("#soverlay").hide();
+                $('#addsocial').hide();
+                $("#sclose").show();
+                $('#removesocial').hide();
+            });
+        });
+        $("#addsocial").click(function(){
+            $("#soverlay").show();
+            $("#laccount").load('{% url 'profilesystem:linkedaccount' %}?link', function(){
+                $("#soverlay").hide();
+                $('#addsocial').hide();
+                $("#sclose").show();
+                $('#removesocial').hide();
+            });
+        });
+        $("#sclose").click(function(){
+            $("#soverlay").show();
+            $("#laccount").load('{% url 'profilesystem:linkedaccount' %}', function(){
+                $("#soverlay").hide();
+                $("#sclose").hide();
+                $("#addsocial").show();
+                $("#removesocial").show();
+            });
+        });
+        $("input[type='checkbox']").change(function() {
+            var id = $(this).attr('id');
+            var checked = $(this).is(':checked');
+            if (checked) {
+                $.ajax({
+                    url: '{% url 'profilesystem:setting' %}?' + id + '=true',
+                    type: 'GET',
+                    success: function(){
+                        $('.top-right').notify({
+                            message: { text: id + ' visibility changed successfully' },
+                            type: 'success'
+                        }).show();
+                    },
+                    error: function(){
+                        $('.top-right').notify({
+                            message: { text: 'Oops!! visibility not changed try later' },
+                            type: 'danger'
+                        }).show();
+                    }
+                })
+            }
+            else {
+                $.ajax({
+                    url: '{% url 'profilesystem:setting' %}?' + id + '=false',
+                    type: 'GET',
+                    success: function(){
+                        $('.top-right').notify({
+                            message: { text: id + ' visibility changed successfully' },
+                            type: 'success'
+                        }).show();
+                    },
+                    error: function(){
+                        $('.top-right').notify({
+                            message: { text: 'Oops!! visibility not changed try later' },
+                            type: 'danger'
+                        }).show();
+                    }
+                })
+            }
+        });
+        $("#private").hide();
+        $('#public').click(function(){
+            $('#changesection').load('{% url 'publicusers:user' request.user.id %}');
+            $('#private').show();
+            $('#profilextra').hide();
+            $('#extra').hide();
+        });
+        $('#private').click(function(){
+            location.reload();
+        });
+        $("#reference").load('{% url 'profilesystem:references' %}', function(){
+            $("#refoverlay").hide();
+        });
+        $("#refrefresh").click(function(){
+            $("#refoverlay").show();
+            $("#reference").load('{% url 'profilesystem:references' %}', function(){
+                $("#refoverlay").hide();
+            });
+        });
+        $("#documentsearch").submit(function(){
+            $("#doverlay").show();
+            var query = $("#query").val();
+           $("#documents").load(
+               "{% url 'profilesystem:documents' %}?q=" + encodeURIComponent(query), function(){
+                   $("#doverlay").hide();
+               }
+           );
+           return false;
+        });
+        $("#emailaddress").load('{% url 'profilesystem:emailaddress' %}', function(){
+            $("#eoverlay").hide();
+        });
+        window.onhashchange = function() {
+            var anchor = window.location.hash;
+            if (anchor === "#personalwidget") {
+                $("#pedit").click();
+            }
+            if (anchor === "#avatar") {
+                $("#imgModal").modal("show");
+            }
+            if (anchor === "#contactwidget") {
+                $("#cedit").click();
+            }
+            if (anchor === "#locationwidget") {
+                $("#aedit").click();
+            }
+            if (anchor === "#socialwidget") {
+                $("#addsocial").click();
+            }
+        };
+        var anchor = window.location.hash;
+        if (anchor === "#personalwidget") {
+            $("#pedit").click();
+        }
+        if (anchor === "#avatar") {
+            $("#imgModal").modal("show");
+        }
+        if (anchor === "#contactwidget") {
+            $("#cedit").click();
+        }
+        if (anchor === "#locationwidget") {
+            $("#aedit").click();
+        }
+        if (anchor === "#socialwidget") {
+            $("#addsocial").click();
+        }
+        function skipTask(task) {
+            $.ajax({
+                url: "{% url 'dashboard:skip' %}",
+                type: 'GET',
+                data: {'skipped': task},
+            });
+        }
+        $(".groupbox").slimscroll({
+            height: '250px',
+            size: '3px',
+            alwaysVisible: false
+        });
+    </script>
+{% endblock extrascripts %}

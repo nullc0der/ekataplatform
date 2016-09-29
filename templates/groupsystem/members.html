@@ -1,0 +1,354 @@
+{% extends "base.html" %}
+{% load i18n staticfiles bootstrap_tags guardian_tags %}
+{% block title %}
+    {{ group.name }} | {% trans "Members" %} | Admin
+{% endblock title %}
+{% block extrastyle %}
+    <style>
+        .capfirst:first-letter {
+            text-transform: uppercase;
+        }
+    </style>
+{% endblock %}
+{% block extra_menus %}
+    {% include "sidebar_group.html" %}
+    {% include "sidebar_group_admin.html" %}
+{% endblock extra_menus %}
+{% block content_header %}
+    <h1>
+        {% trans "Members" %} - {% trans "admin" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+    {% get_obj_perms request.user for group as "group_perms" %}
+    {% if 'can_add_member' in group_perms %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <input type="text" id="addmember">
+                <button class="btn btn-primary" id="addmemberbtn">{% trans "Add member" %}</button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <table class="table" id="memberstable" data-unique-id="id">
+                        <thead>
+                            <tr>
+                                <th data-visible="false" data-field="id">Id</th>
+                                <th>{% trans "User" %}</th>
+                                <th data-field='role'>{% trans "Role" %}</th>
+                                <th>{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for member in group.members.all %}
+                                {% ifequal member request.user %}
+                                {% else %}
+                                    <tr>
+                                        <td>{{ member.id }}</td>
+                                        <td>
+                                            <a href="{% url 'publicusers:user' member.id %}">{{ member.username }}</a>
+                                        </td>
+                                        <td class="capfirst">
+                                            {% for memberrole in memberroles %}
+                                                {% ifequal member memberrole.user %}
+                                                    {{ memberrole.role_name }}
+                                                {% endifequal %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% if 'can_remove_member' in group_perms %}
+                                                <button class="btn btn-xs btn-warning" onclick="removeMember('{{ member.username }}')">{% trans "Remove" %}</button>
+                                            {% endif %}
+                                            {% if 'can_ban_member' in group_perms %}
+                                                <button class="btn btn-xs btn-danger" onclick="banMember('{{ member.username }}')">{% trans "Ban Member" %}</button>
+                                            {% endif %}
+                                            {% if 'can_change_member_role' in group_perms %}
+                                            <select class="changerole" data-username="{{ member.username }}">
+                                                <option value="admin">{% trans "Admin" %}</option>
+                                                <option value="moderator">{% trans "Moderator" %}</option>
+                                                <option value="member">{% trans "Member" %}</option>
+                                                {% for crole in group.customrole.all %}
+                                                    <option value="{{ crole.custom_role_name }}">{{ crole.custom_role_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            {% endif %}
+                                            {% if 'can_edit_member_permission' in group_perms %}
+                                                <button class="btn btn-xs btn-info" onclick="editExtraPerm('{{ member.id }}')">{% trans "Extra permission" %}</button>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endifequal %}
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div tabindex="-1" class="modal fade" id="editUserPermModal" role="dialog" aria-hidden="true" aria-labelledby="editUserPermLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" id="editUserPermLabel">{% trans "Edit User Perm" %}</h4>
+                </div>
+                <div class="modal-body" id="edituserpermbody">
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" id="editbtn">{% trans "Edit" %}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.Edit User Perm Modal -->
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        $("#navleft").show();
+        $("#navright").show();
+        var navbar = 0;
+        var maxnavbar = 2;
+        var navbarcontent_classes = ['.mainnavcontent', '.groupnavcontent', '.groupadminnavcontent'];
+        var navbar_names = ["{% trans "MAIN NAVIGATION" %}", "{{ group.name|upper }} NAVIGATION", "{{ group.name|upper }} ADMIN"]
+        $.each(navbarcontent_classes ,function(index) {
+            if (index !== 0) {
+                $(navbarcontent_classes[index]).hide();
+            }
+        });
+        $("#navright").click(function(event) {
+            navRight();
+        });
+        $("#navleft").click(function(event) {
+            navLeft();
+        });
+        $(".header").on('swipeleft', function(event) {
+            navLeft();
+        });
+        $(".header").on('swiperight', function(event) {
+            navRight();
+        });
+        function navRight() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === maxnavbar) {
+                var right_divclass = navbarcontent_classes[0];
+            }
+            else {
+                var right_divclass = navbarcontent_classes[navbar + 1];
+            }
+            if (navbar === maxnavbar) {
+                $("#navheader").text(navbar_names[0]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar + 1]);
+            }
+            $(right_divclass).show('slow');
+            if (navbar === maxnavbar) {
+                navbar = 0;
+            }
+            else {
+                navbar = navbar + 1;
+            }
+        }
+        function navLeft() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === 0) {
+                var left_divclass = navbarcontent_classes[maxnavbar];
+            }
+            else {
+                var left_divclass = navbarcontent_classes[navbar - 1];
+            }
+            if (navbar === 0) {
+                $("#navheader").text(navbar_names[maxnavbar]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar - 1]);
+            }
+            $(left_divclass).show('slow');
+            if (navbar === 0) {
+                navbar = maxnavbar;
+            }
+            else {
+                navbar = navbar - 1;
+            }
+        }
+        function removeMember(username) {
+            $.ajax({
+                url: '{% url 'g:members' group.id %}',
+                type: 'POST',
+                data: {'req_type': 'removemember', 'username': username},
+                success: function (data){
+                    $("#memberstable").bootstrapTable('removeByUniqueId', data.id);
+                    $(".changerole").selectpicker({
+                        'title': '{% trans "Change role" %}',
+                        'container': 'body',
+                        'style': 'btn-xs btn-primary',
+                        'width': 'fit'
+                    });
+                },
+                error: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data.responseText},
+                        type: 'error',
+                    }).show();
+                    $(".changerole").selectpicker({
+                        'title': '{% trans "Change role" %}',
+                        'container': 'body',
+                        'style': 'btn-xs btn-primary',
+                        'width': 'fit'
+                    });
+                }
+            });
+        }
+        function banMember(username) {
+            $.ajax({
+                url: '{% url 'g:members' group.id %}',
+                type: 'POST',
+                data: {'req_type': 'banmember', 'username': username},
+                success: function (data){
+                    $("#memberstable").bootstrapTable('removeByUniqueId', data.id);
+                    $(".changerole").selectpicker({
+                        'title': '{% trans "Change role" %}',
+                        'container': 'body',
+                        'style': 'btn-xs btn-primary',
+                        'width': 'fit'
+                    });
+                },
+                error: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data.responseText},
+                        type: 'error',
+                    }).show();
+                    $(".changerole").selectpicker({
+                        'title': '{% trans "Change role" %}',
+                        'container': 'body',
+                        'style': 'btn-xs btn-primary',
+                        'width': 'fit'
+                    });
+                }
+            });
+        }
+        function changeRole(username, role_name) {
+            $.ajax({
+                url: '{% url 'g:members' group.id %}',
+                type: 'POST',
+                data: {'req_type': 'changerole', 'username': username, 'role_name': role_name},
+                success: function(data) {
+                    $("#memberstable").bootstrapTable('updateByUniqueId', {
+                        id: data.id,
+                        row: {
+                            role: data.role_name,
+                        }
+                    });
+                    $(".changerole").selectpicker({
+                        'title': '{% trans "Change role" %}',
+                        'container': 'body',
+                        'style': 'btn-xs btn-primary',
+                        'width': 'fit'
+                    });
+                },
+                error: function (data) {
+                    $('.top-right').notify({
+                        message: { text: data.responseText},
+                        type: 'error',
+                    }).show();
+                    $(".changerole").selectpicker({
+                        'title': '{% trans "Change role" %}',
+                        'container': 'body',
+                        'style': 'btn-xs btn-primary',
+                        'width': 'fit'
+                    });
+                }
+            });
+        }
+        function editExtraPerm(user_id) {
+            $.ajax({
+                url: '/g/edituserperm/' + '{{ group.id }}' + '/' + user_id + '/',
+                success: function (data) {
+                    $("#edituserpermbody").html(data);
+                    $("#editUserPermModal").modal('show');
+                },
+                error: function (data) {
+                    $('.top-right').notify({
+                        message: { text: '{% trans "You dont have permissions to edit extra permissions" %}'},
+                        type: 'error',
+                    }).show();
+                }
+            });
+        }
+        $("#addmember").tagit({
+            autocomplete: {
+                source: '{% url 'g:users_autocomplete' group.id %}',
+            }
+        });
+        $("#addmemberbtn").click(function(event) {
+            if ($("#addmember").val() !== '') {
+                $.ajax({
+                    url: '{% url 'g:members' group.id %}',
+                    type: 'POST',
+                    data: {'req_type': 'addmembers', 'usernames': $("#addmember").val()},
+                    success: function (data) {
+                        location.reload();
+                    },
+                    error: function (data) {
+                        $('.top-right').notify({
+                            message: { text: data.responseText},
+                            type: 'error',
+                        }).show();
+                    }
+                });
+            }
+        });
+        $("#memberstable").bootstrapTable({
+            'pagination': true,
+            'pageNumber': 1,
+            'pageSize': 10,
+            'pageList': [5, 10, 15, 20, 25],
+            'search': true,
+        });
+        $(".changerole").selectpicker({
+            'title': '{% trans "Change role" %}',
+            'container': 'body',
+            'style': 'btn-xs btn-primary',
+            'width': 'fit'
+        });
+        $(document).on('change', '.changerole', function(){
+            var username = $(this).attr('data-username');
+            var role_name = $(this).val();
+            if (username && role_name) {
+                changeRole(username, role_name);
+            }
+        })
+        $(document).on('click', '#editbtn', function(event) {
+            event.preventDefault();
+            var frm = $("#editextrapermform");
+            $.ajax({
+                url: frm.attr('action'),
+                type: frm.attr('method'),
+                data: frm.serialize(),
+                success: function(data) {
+                    $('.top-right').notify({
+                        message: { text: data},
+                        type: 'info',
+                    }).show();
+                    $("#editUserPermModal").modal('hide');
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                }
+            });
+        });
+    </script>
+{% endblock extrascripts %}

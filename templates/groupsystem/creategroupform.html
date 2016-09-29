@@ -1,0 +1,8 @@
+{% load bootstrap_tags staticfiles %}
+<form id="creategroupform" role="form" method="POST" action="{% url 'g:creategroup' %}">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+</form>
+<div class="text-center" id="gears">
+    <img src="{% static "dist/img/gears.gif" %}" alt="loading">
+</div>

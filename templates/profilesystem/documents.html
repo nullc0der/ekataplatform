@@ -1,0 +1,63 @@
+{% load staticfiles %}
+{% if show_profile %}
+<div class="row">
+    <h4>Profile Images</h4>
+    <hr>
+    <div class="col-md-3 text-center" style="margin-top:10px">
+        <div style="overflow:hidden">
+            <img src="{{ request.user.profile.avatar.url }}" alt="" width="50" height="50">
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="row">
+    {% if images %}
+        <h4>Images</h4>
+        <hr />
+        {% for image in images %}
+        <div class="col-md-3 text-center" style="margin-top:10px">
+            <div style="overflow:hidden">
+                <img src="{{ image.document.url }}" alt="" width="50" height="50">
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
+<div class="row">
+    {% if documents %}
+        <h4>Documents</h4>
+        <hr>
+        {% for document in documents %}
+        <div class="col-md-3 text-center" style="margin-top:10px">
+            <div>
+                <i class="fa fa-3x fa-file"></i>
+            </div>
+            <div style="overflow:hidden">
+                <a href="{{ document.document.url }}">{{ document.filename }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% if show_legal %}
+<div class="row">
+    <h4>Legal</h4>
+    <hr>
+    <div class="col-md-3" style="margin-top:10px">
+        <div>
+            <i class="fa fa-3x fa-file"></i>
+        </div>
+        <div>
+            <a href="#">User Agreement.pdf</a>
+        </div>
+    </div>
+    <div class="col-md-3" style="margin-top:10px">
+        <div>
+            <i class="fa fa-3x fa-file"></i>
+        </div>
+        <div>
+            <a href="{% static "dist/files/disclaimer.pdf" %}">Disclaimer.pdf</a>
+        </div>
+    </div>
+</div>
+{% endif %}

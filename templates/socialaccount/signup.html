@@ -1,0 +1,19 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+{% block head_title %}
+    Signup
+{% endblock %}
+{% block content %}
+<h1 class="login-box-msg">{% trans "Register a new membership" %}</h1>
+<p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
+{{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
+<form action="" method="post" id="registerform">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button type="submit" class="btn btn-primary btn-block btn-flat">{% trans "Register" %}</button>
+</form>
+{% endblock %}

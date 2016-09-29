@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {{ group.name }} | Admin | Comments
+{% endblock title %}
+{% block extrastyle %}
+    <style>
+        .news-div {
+            padding: 10px;
+        }
+    </style>
+{% endblock extrastyle %}
+{% block extra_menus %}
+    {% include "sidebar_group.html" %}
+    {% include "sidebar_group_admin.html" %}
+{% endblock extra_menus %}
+{% block content_header %}
+    <h1>
+        {% trans "Comments" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    {% if comments %}
+                        {% for comment in comments reversed %}
+                            <div class="news-div">
+                                <div class="pull-right">
+                                    <p>{{ comment.commented_on|date:"M j Y" }}</p>
+                                </div>
+                                <hr>
+                                <div class="news-title">
+                                    <p>{% trans "Post: " %}<a href="{% url 'g:postdetail' group.id comment.post.id %}">{{ comment.post.title }}</a></p>
+                                    <p>{% trans "Commented By: " %}{{ comment.commentor }}</p>
+                                    <p>
+                                        {% trans "Comment: " %}{{ comment.comment|truncatewords:10 }}&nbsp;&nbsp;
+                                        <span>
+                                            <a href="{% url 'g:editcomment' group.id comment.id %}">{% trans "edit" %}</a>
+                                            {% if not comment.approved %}
+                                                <a href="javascript:void(0);" onclick="approveComment({{ comment.id }})">{% trans "approve" %}</a>
+                                            {% endif %}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        {% endfor %}
+                    {% else %}
+                        <p>{% trans "No comments!!" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        $("#navleft").show();
+        $("#navright").show();
+        var navbar = 0;
+        var maxnavbar = 2;
+        var navbarcontent_classes = ['.mainnavcontent', '.groupnavcontent', '.groupadminnavcontent'];
+        var navbar_names = ["{% trans "MAIN NAVIGATION" %}", "{{ group.name|upper }} NAVIGATION", "{{ group.name|upper }} ADMIN"]
+        $.each(navbarcontent_classes ,function(index) {
+            if (index !== 0) {
+                $(navbarcontent_classes[index]).hide();
+            }
+        });
+        $("#navright").click(function(event) {
+            navRight();
+        });
+        $("#navleft").click(function(event) {
+            navLeft();
+        });
+        $(".header").on('swipeleft', function(event) {
+            navLeft();
+        });
+        $(".header").on('swiperight', function(event) {
+            navRight();
+        });
+        function navRight() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === maxnavbar) {
+                var right_divclass = navbarcontent_classes[0];
+            }
+            else {
+                var right_divclass = navbarcontent_classes[navbar + 1];
+            }
+            if (navbar === maxnavbar) {
+                $("#navheader").text(navbar_names[0]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar + 1]);
+            }
+            $(right_divclass).show('slow');
+            if (navbar === maxnavbar) {
+                navbar = 0;
+            }
+            else {
+                navbar = navbar + 1;
+            }
+        }
+        function navLeft() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === 0) {
+                var left_divclass = navbarcontent_classes[maxnavbar];
+            }
+            else {
+                var left_divclass = navbarcontent_classes[navbar - 1];
+            }
+            if (navbar === 0) {
+                $("#navheader").text(navbar_names[maxnavbar]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar - 1]);
+            }
+            $(left_divclass).show('slow');
+            if (navbar === 0) {
+                navbar = maxnavbar;
+            }
+            else {
+                navbar = navbar - 1;
+            }
+        }
+        function approveComment(comment_id) {
+            $.ajax({
+                url: '{% url 'g:approvecomment' group.id %}',
+                type: 'POST',
+                data: {'comment_id': comment_id},
+                success: function(data) {
+                    location.reload();
+                },
+                error: function(data) {
+                    $('.top-right').notify({
+                        message: { text: data.responseText},
+                        type: 'error',
+                    }).show();
+                }
+            });
+        }
+    </script>
+{% endblock extrascripts %}

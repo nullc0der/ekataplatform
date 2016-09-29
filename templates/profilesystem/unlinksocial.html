@@ -1,0 +1,83 @@
+{% load i18n %}
+<div class="table-responsive">
+    <table class="table table-condensed">
+        {% if facebook_added %}
+            <tr>
+                <td>
+                    <button class="btn btn-block btn-social btn-facebook"><i class="fa fa-facebook"></i> Facebook</button>
+                </td>
+                <td>
+                    {% if last_account %}
+                    <button class="btn btn-default" data-toggle="modal" data-target="#disconnect"><i class="fa fa-times"></i></button>
+                    {% else %}
+                    <form action="{% url 'disconnect' %}" method="POST">
+                        {% csrf_token %}
+                        <input id="id_account_{{ facebook_id }}" type="hidden" name="account" value="{{ facebook_id }}"/>
+                        <button class="btn btn-default" type="submit"><i class="fa fa-times"></i></button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endif %}
+        {% if google_added %}
+            <tr>
+                <td>
+                    <button class="btn btn-block btn-social btn-google"><i class="fa fa-google-plus"></i> Google </button>
+                </td>
+                <td>
+                    {% if last_account %}
+                    <button class="btn btn-default" data-toggle="modal" data-target="#disconnect"><i class="fa fa-times"></i></button>
+                    {% else %}
+                    <form action="{% url 'disconnect' %}" method="POST">
+                        {% csrf_token %}
+                        <input id="id_account_{{ google_id }}" type="hidden" name="account" value="{{ google_id }}"/>
+                        <button class="btn btn-default" type="submit"><i class="fa fa-times"></i></button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endif %}
+        {% if twitter_added %}
+            <tr>
+                <td>
+                    <button class="btn btn-block btn-social btn-twitter"><i class="fa fa-twitter"></i> Twitter </button>
+                </td>
+                <td>
+                    {% if last_account %}
+                    <button class="btn btn-default" data-toggle="modal" data-target="#disconnect"><i class="fa fa-times"></i></button>
+                    {% else %}
+                    <form action="{% url 'disconnect' %}" method="POST">
+                        {% csrf_token %}
+                        <input id="id_account_{{ twitter_id }}" type="hidden" name="account" value="{{ twitter_id }}"/>
+                        <button class="btn btn-default" type="submit"><i class="fa fa-times"></i></button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endif %}
+    </table>
+</div>
+<div tabindex="-1" class="modal fade" id="disconnect" role="dialog" aria-hidden="true" aria-labelledby="fileModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+        <h4 class="modal-title" id="fileModalLabel">Warning</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+              {% trans "This is your last method to connect to this site." %}
+              {% trans "You will be asked for a password if you proceed" %}
+          </p>
+      </div>
+      <div class="modal-footer">
+          <div class="pull-left">
+              <button class="btn btn-default" type="button" data-dismiss="modal">Discard</button>
+          </div>
+          <div class="pull-right">
+              <a class="btn btn-danger" href="{% url 'account_change_password' %}">Proceed</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

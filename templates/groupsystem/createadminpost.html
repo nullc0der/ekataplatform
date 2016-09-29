@@ -1,0 +1,5 @@
+{% load bootstrap_tags %}
+<form id="createpostform" role="form" method="POST" action="{% url 'g:createadminpost' group.id %}">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+</form>

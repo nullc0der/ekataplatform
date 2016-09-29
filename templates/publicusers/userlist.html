@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "Users" %}
+{% endblock title %}
+{% block extrastyle %}
+<style>
+    .search-box {
+        background: #f9f9f9;
+        padding: 15px;
+        position: relative;
+    }
+
+    .search-box > .form-group {
+        margin-bottom: 0px;
+    }
+
+    .search-box > .form-group > .form-control {
+        height: 47px;
+    }
+
+    .search-box > .form-group .fa {
+        position: absolute;
+        top: 27px;
+        left: 25px;
+        font-size: 25px;
+        color: #bbbbbb;
+    }
+
+    .search-box > .form-group > .btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        border-radius: 0px;
+    }
+
+    .center-col {
+	    float:none !important;
+	    margin:30px auto;
+    }
+</style>
+{% endblock extrastyle %} {% block content_header %}
+<h1>
+    {% trans "Users" %}<br>
+    <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>
+                {% blocktrans with username_t=user.username trimmed %}
+                   Hello, {{ username_t }}!
+                {% endblocktrans %}
+                </a>
+                <br>
+            {% else %}
+                <a>Hello, User!</a>
+                <br>
+            {% endif %}
+        </small>
+</h1>
+<ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-users"></i>{% trans "Users" %}</a></li>
+</ol>
+{% endblock content_header %} {% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Search Users</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <div class="col-lg-5 center-col search-box">
+                    <form class="form-group" action="." id="usersearch">
+                        <input type="text" class="form-control" placeholder="{% trans " Search Users " %}" id="users" name="username">
+                        {% comment %}
+                            <i class="fa fa-search"></i>
+                        <button type="submit" class="btn btn-primary btn-lg">{% trans "Search" %}</button>
+                        {% endcomment %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" id="searchresults">
+        {% include "publicusers/users.html" %}
+    </div>
+</div>
+{% endblock content %}
+{% block extrascripts %}
+    <script type="text/javascript">
+        /*$("#usersearch").submit(function() {
+             var query = $("#users").val();
+            $("#searchresults").load(
+                "{% url 'publicusers:index' %}?username=" + encodeURIComponent(query)
+            );
+            return false;
+        })*/
+        $("#users").keyup(function(){
+            var query = $(this).val();
+            $("#searchresults").load(
+                "{% url 'publicusers:index' %}?username=" + encodeURIComponent(query)
+            );
+        });
+        (function getOnlineUsers(){
+            $.ajax({
+                url: '{% url 'publicusers:getonlineusers' %}',
+                success: function(data){
+                    $('.userstatus').each(function(){
+                        var user_id = $(this).data('user-id');
+                        var userstatus = $(this);
+                        $.each(data, function(k, v){
+                            if (k == user_id) {
+                                if (data[k] === 'online') {
+                                    $(userstatus).empty();
+                                    $(userstatus).append('<i class="fa fa-circle text-success onlinestatus"></i> {% trans "Online" %}');
+                                }
+                                else {
+                                    if (data[k]) {
+                                        var date = new Date(data[k]).toLocaleString();
+                                        var lastseen = moment(date).format('MMMM Do YYYY, hh:mm a')
+                                        $(userstatus).empty();
+                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}');
+                                        $(userstatus).attr('data-toggle', 'tooltip');
+                                        $(userstatus).attr('title', '{% trans "lastseen: " %}' + lastseen);
+                                    }
+                                    else {
+                                        $(userstatus).empty();
+                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}')
+                                        $(userstatus).attr('data-toggle', 'tooltip');
+                                        $(userstatus).attr('title', '{% trans "lastseen: unknown" %}');
+                                    }
+                                }
+                            }
+                        })
+                    });
+                },
+                complete: function() {
+                    setTimeout(getOnlineUsers, 15000);   
+                }
+            });
+        })();
+    </script>
+{% endblock extrascripts %}

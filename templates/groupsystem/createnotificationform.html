@@ -1,0 +1,5 @@
+{% load bootstrap_tags %}
+<form id="createnotificationform" role="form" method="POST" action="{% url 'g:createnotification' group.id %}">
+    {% csrf_token %}
+    {{ notificationform|as_bootstrap }}
+</form>

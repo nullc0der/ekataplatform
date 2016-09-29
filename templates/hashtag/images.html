@@ -1,0 +1,16 @@
+{% load i18n %}
+{% if images %}
+    {% for image in images %}
+    <div class="col-md-3 text-center" style="margin-top:10px">
+        <div style="overflow:hidden">
+            <a href="javascript:void(0);" onclick="replaceCanvas('{{ image.document.url }}')">
+              <img src="{{ image.document.url }}" alt="" class="images">
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="text-center">
+        <h4>{% trans "You have no images uploaded" %}</h4>
+    </div>
+{% endif %}

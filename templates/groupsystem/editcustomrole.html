@@ -1,0 +1,7 @@
+{% load bootstrap_tags i18n %}
+<form role="form" method="POST" id="editroleform" action="{% url 'g:editperm' group.id customrole.id %}">
+    <legend>{% trans "User who assigned with this role" %}</legend>
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <button class="btn btn-primary" id="submitperm">{% trans "Submit" %}</button>
+</form>

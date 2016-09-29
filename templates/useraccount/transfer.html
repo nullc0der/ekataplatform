@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static "dist/css/dashboard.css" %}">
+{% endblock extrastyle %}
+{% block title %}
+    {% trans "Transfer" %}
+{% endblock title %}
+{% block content_header %}
+    <h1>
+        {% trans "Transfer" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+        <li class="active">Transfer</li>
+    </ol>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Quick Review" %}</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body text-center">
+                    <h3>Account Balance</h3>
+                    <h1 class="color-blue">{{ request.user.useraccount.balance }}</h1>
+                    <p>Units</p>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                    
+                </div>
+            </div><!-- /.box -->
+        </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Select User" %}</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                {% comment %}
+                                    <div class="input-group">
+                                    <input type="text" id="query" class="form-control" name="q" placeholder="Search user"> 
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-flat btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for sender in senders %}
+                                                <li><a onclick="loadDetail({{ sender.from_user.id }})"><img src="{{ sender.from_user.profile.avatar.thumbnail.20x20 }}" alt="user" width="20" height="20" class="img-circle"> {{ sender.from_user.username }}</a></li> 
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-flat btn-primary" type="button" id="usersearch"><span class="fa fa-search"></span></button>
+                                </span>    
+                                {% endcomment %}
+                                <input type="text" id="query" class="form-control" name="q" placeholder="Search user">            
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-12">
+                                <div id="usersearchresults">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+        <div class="col-md-3" id="transfer">
+        </div>
+    </div>
+{% endblock content %}
+{% block extrascripts %}
+    <script type="text/javascript">
+        /*$("#usersearch").click(function () {
+            var query = $("#query").val();
+            $("#usersearchresults").load(
+                "{% url 'myaccount:transfer' %}?userquery=" + encodeURIComponent(query)
+            );
+        });*/
+        function loadDetail(id){
+            $("#transfer").load("/myaccount/transferunit/" + id + "/");
+        };
+        $("#query").keyup(function(){
+            var query = $(this).val();
+            if (query.length > 0) {
+                $("#usersearchresults").load(
+                "{% url 'myaccount:transfer' %}?userquery=" + encodeURIComponent(query)
+                );
+            }
+            else {
+                $("#usersearchresults").empty();
+            }
+        });
+    </script>
+{% endblock extrascripts %}

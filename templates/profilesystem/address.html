@@ -1,0 +1,45 @@
+{% load i18n %}
+{% if request.user.address %}
+{% with request.user.address as useraddress %}
+    {% if useraddress.house_number %}
+        <strong><i class="fa fa-home margin-r-5"></i>{% trans "House Number" %}</strong>
+        <p class="text-muted">
+            {{ useraddress.house_number }}
+        </p>
+    {% endif %}
+    {% if useraddress.street %}
+        <strong><i class="fa fa-road margin-r-5"></i>{% trans "Street" %}</strong>
+        <p class="text-muted">
+            {{ useraddress.street }}
+        </p>
+    {% endif %}
+    {% if useraddress.zip_code %}
+        <strong><i class="fa fa-map-pin margin-r-5"></i>{% trans "Zip Code" %}</strong>
+        <p class="text-muted">
+            {{ useraddress.zip_code }}
+        </p>
+    {% endif %}
+    {% if useraddress.city %}
+        <strong><i class="fa fa-plane margin-r-5"></i>{% trans "City" %}</strong>
+        <p class="text-muted">
+            {{ useraddress.city }}
+        </p>
+    {% endif %}
+    {% if useraddress.state %}
+        <strong><i class="fa fa-map-marker margin-r-5"></i>{% trans "State" %}</strong>
+        <p class="text-muted">
+            {{ useraddress.state }}
+        </p>
+    {% endif %}
+    {% if useraddress.country %}
+        <strong><i class="fa fa-globe margin-r-5"></i>{% trans "Country" %}</strong>
+        <p class="text-muted">
+            {{ useraddress.country }}
+        </p>
+    {% endif %}
+{% endwith %}
+{% else %}
+<p>
+    {% trans "Click add button to add your address" %}
+</p>
+{% endif %}

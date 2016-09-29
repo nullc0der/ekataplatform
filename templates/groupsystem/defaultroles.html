@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {{ group.name }} | {% trans "Default roles" %} | {% trans "Admin" %}
+{% endblock title %}
+{% block extrastyle %}
+    <style>
+        .roles-div{
+            padding: 10px;
+        }
+    </style>
+{% endblock extrastyle %}
+{% block extra_menus %}
+    {% include "sidebar_group.html" %}
+    {% include "sidebar_group_admin.html" %}
+{% endblock extra_menus %}
+{% block content_header %}
+    <h1>
+        {% trans "Default roles" %} | {% trans "Admin" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{% trans "Default roles" %}</h3>
+                </div>
+                <div class="box-body">
+                    {% for defaultrole in defaultroles %}
+                        <div class="roles-div">
+                            <button class="btn btn-primary btn-block" onclick="loadDetail('{{ defaultrole }}')">
+                                {{ defaultrole }}
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{% trans "Permissions" %}</h3>
+                </div>
+                <div class="box-body" id="perms">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        $("#navleft").show();
+        $("#navright").show();
+        var navbar = 0;
+        var maxnavbar = 2;
+        var navbarcontent_classes = ['.mainnavcontent', '.groupnavcontent', '.groupadminnavcontent'];
+        var navbar_names = ["{% trans "MAIN NAVIGATION" %}", "{{ group.name|upper }} NAVIGATION", "{{ group.name|upper }} ADMIN"]
+        $.each(navbarcontent_classes ,function(index) {
+            if (index !== 0) {
+                $(navbarcontent_classes[index]).hide();
+            }
+        });
+        $("#navright").click(function(event) {
+            navRight();
+        });
+        $("#navleft").click(function(event) {
+            navLeft();
+        });
+        $(".header").on('swipeleft', function(event) {
+            navLeft();
+        });
+        $(".header").on('swiperight', function(event) {
+            navRight();
+        });
+        function navRight() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === maxnavbar) {
+                var right_divclass = navbarcontent_classes[0];    
+            }
+            else {
+                var right_divclass = navbarcontent_classes[navbar + 1];
+            }
+            if (navbar === maxnavbar) {
+                $("#navheader").text(navbar_names[0]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar + 1]);
+            }
+            $(right_divclass).show('slow');
+            if (navbar === maxnavbar) {
+                navbar = 0;
+            }
+            else {
+                navbar = navbar + 1;
+            }
+        }
+        function navLeft() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === 0) {
+                var left_divclass = navbarcontent_classes[maxnavbar];    
+            }
+            else {
+                var left_divclass = navbarcontent_classes[navbar - 1];
+            }
+            if (navbar === 0) {
+                $("#navheader").text(navbar_names[maxnavbar]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar - 1]);
+            }
+            $(left_divclass).show('slow');
+            if (navbar === 0) {
+                navbar = maxnavbar;
+            }
+            else {
+                navbar = navbar - 1;
+            } 
+        }
+        function loadDetail(role) {
+            $.ajax({
+                url: '{% url 'g:groupdefaultrole' group.id %}?role_details=' + role,
+                success: function (data) {
+                    $("#perms").html(data);
+                }
+            });
+        }
+    </script>
+{% endblock extrascripts %}

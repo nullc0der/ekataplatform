@@ -1,0 +1,5 @@
+{% load bootstrap_tags %}
+<form id="contactform" role="form" method="POST" action="{% url 'profilesystem:cedit' %}">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+</form>

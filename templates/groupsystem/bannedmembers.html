@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load i18n staticfiles bootstrap_tags %}
+{% block title %}
+    {{ group.name }} | {% trans "Bannedmembers" %} | Admin
+{% endblock title %}
+{% block extra_menus %}
+    {% include "sidebar_group.html" %}
+    {% include "sidebar_group_admin.html" %}
+{% endblock extra_menus %}
+{% block content_header %}
+    <h1>
+        {% trans "Bannedmembers" %} - {% trans "admin" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <table class="table" id="memberstable" data-unique-id="id">
+                        <thead>
+                            <tr>
+                                <th data-visible="false" data-field="id">Id</th>
+                                <th>{% trans "User" %}</th>
+                                <th>{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for member in group.banned_members.all %}
+                                {% ifequal member request.user %} 
+                                {% else %}
+                                    <tr>
+                                        <td>{{ member.id }}</td>
+                                        <td>
+                                            <a href="{% url 'publicusers:user' member.id %}">{{ member.username }}</a>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-xs btn-success" onclick="liftBan('{{ member.username }}')">{% trans "Lift Ban" %}</button>
+                                        </td>
+                                    </tr>
+                                {% endifequal %}
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        $("#navleft").show();
+        $("#navright").show();
+        var navbar = 0;
+        var maxnavbar = 2;
+        var navbarcontent_classes = ['.mainnavcontent', '.groupnavcontent', '.groupadminnavcontent'];
+        var navbar_names = ["{% trans "MAIN NAVIGATION" %}", "{{ group.name|upper }} NAVIGATION", "{{ group.name|upper }} ADMIN"]
+        $.each(navbarcontent_classes ,function(index) {
+            if (index !== 0) {
+                $(navbarcontent_classes[index]).hide();
+            }
+        });
+        $("#navright").click(function(event) {
+            navRight();
+        });
+        $("#navleft").click(function(event) {
+            navLeft();
+        });
+        $(".header").on('swipeleft', function(event) {
+            navLeft();
+        });
+        $(".header").on('swiperight', function(event) {
+            navRight();
+        });
+        function navRight() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === maxnavbar) {
+                var right_divclass = navbarcontent_classes[0];    
+            }
+            else {
+                var right_divclass = navbarcontent_classes[navbar + 1];
+            }
+            if (navbar === maxnavbar) {
+                $("#navheader").text(navbar_names[0]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar + 1]);
+            }
+            $(right_divclass).show('slow');
+            if (navbar === maxnavbar) {
+                navbar = 0;
+            }
+            else {
+                navbar = navbar + 1;
+            }
+        }
+        function navLeft() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === 0) {
+                var left_divclass = navbarcontent_classes[maxnavbar];    
+            }
+            else {
+                var left_divclass = navbarcontent_classes[navbar - 1];
+            }
+            if (navbar === 0) {
+                $("#navheader").text(navbar_names[maxnavbar]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar - 1]);
+            }
+            $(left_divclass).show('slow');
+            if (navbar === 0) {
+                navbar = maxnavbar;
+            }
+            else {
+                navbar = navbar - 1;
+            } 
+        }
+        function liftBan(username) {
+            $.ajax({
+                url: '{% url 'g:bannedmembers' group.id %}',
+                type: 'POST',
+                data: {'username': username},
+                success: function (data){
+                    $("#memberstable").bootstrapTable('removeByUniqueId', data.id);
+                }
+            });
+        }
+        $("#memberstable").bootstrapTable({
+            'pagination': true,
+            'pageNumber': 1,
+            'pageSize': 10,
+            'pageList': [5, 10, 15, 20, 25],
+            'search': true,
+        });
+    </script>
+{% endblock extrascripts %}

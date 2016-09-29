@@ -1,0 +1,2315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-27 12:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: bip_phase1/settings.py:195
+msgid "German"
+msgstr ""
+
+#: bip_phase1/settings.py:196
+msgid "English"
+msgstr ""
+
+#: bip_phase1/settings.py:197
+msgid "Assamese"
+msgstr ""
+
+#: groupsystem/forms.py:20
+msgid "Group Exist"
+msgstr ""
+
+#: groupsystem/forms.py:32 groupsystem/forms.py:89
+msgid "You must specify other group type"
+msgstr ""
+
+#: groupsystem/forms.py:38 groupsystem/forms.py:95
+msgid "You can't fill this field with default group types"
+msgstr ""
+
+#: groupsystem/forms.py:186
+msgid "You can't choose a default role name"
+msgstr ""
+
+#: groupsystem/forms.py:193
+msgid "Role exist"
+msgstr ""
+
+#: groupsystem/models.py:17
+msgid "Art"
+msgstr ""
+
+#: groupsystem/models.py:18
+#, fuzzy
+#| msgid "Activities"
+msgid "Activist"
+msgstr "কাজ্যকলাপ"
+
+#: groupsystem/models.py:19
+msgid "Political"
+msgstr ""
+
+#: groupsystem/models.py:20 templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:36
+#: templates/groupsystem/groupdetails.html:133
+#: templates/sidebar_group_admin.html:14
+msgid "News"
+msgstr ""
+
+#: groupsystem/models.py:21 publicusers/views.py:291
+msgid "Business"
+msgstr ""
+
+#: groupsystem/models.py:22
+msgid "Government"
+msgstr ""
+
+#: groupsystem/models.py:23
+msgid "Blog"
+msgstr ""
+
+#: groupsystem/models.py:24
+msgid "Other"
+msgstr ""
+
+#: groupsystem/models.py:32
+msgid "Please Specify"
+msgstr ""
+
+#: groupsystem/models.py:73 groupsystem/views.py:31 groupsystem/views.py:70
+#: groupsystem/views.py:103
+msgid "Can access admin"
+msgstr ""
+
+#: groupsystem/models.py:74 groupsystem/views.py:32 groupsystem/views.py:71
+#: groupsystem/views.py:104 groupsystem/views.py:121 groupsystem/views.py:132
+msgid "Can read news"
+msgstr ""
+
+#: groupsystem/models.py:75 groupsystem/views.py:33 groupsystem/views.py:72
+msgid "Can create news"
+msgstr ""
+
+#: groupsystem/models.py:76 groupsystem/views.py:34 groupsystem/views.py:73
+msgid "Can update news"
+msgstr ""
+
+#: groupsystem/models.py:77 groupsystem/views.py:35 groupsystem/views.py:74
+msgid "Can delete news"
+msgstr ""
+
+#: groupsystem/models.py:78 groupsystem/views.py:36 groupsystem/views.py:75
+#: groupsystem/views.py:105 groupsystem/views.py:122
+msgid "Can read post"
+msgstr ""
+
+#: groupsystem/models.py:79 groupsystem/views.py:37 groupsystem/views.py:76
+#: groupsystem/views.py:106 groupsystem/views.py:123
+msgid "Can create post"
+msgstr ""
+
+#: groupsystem/models.py:80 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/views.py:107
+msgid "Can update post"
+msgstr ""
+
+#: groupsystem/models.py:81 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/views.py:108
+msgid "Can approve post"
+msgstr ""
+
+#: groupsystem/models.py:82 groupsystem/views.py:40 groupsystem/views.py:79
+#: groupsystem/views.py:109
+msgid "Can delete post"
+msgstr ""
+
+#: groupsystem/models.py:83 groupsystem/views.py:41 groupsystem/views.py:80
+#: groupsystem/views.py:110 groupsystem/views.py:124
+msgid "Can read comment"
+msgstr ""
+
+#: groupsystem/models.py:84 groupsystem/views.py:42 groupsystem/views.py:81
+#: groupsystem/views.py:111 groupsystem/views.py:125
+msgid "Can create comment"
+msgstr ""
+
+#: groupsystem/models.py:85 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/views.py:112
+msgid "Can update comment"
+msgstr ""
+
+#: groupsystem/models.py:86 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/views.py:113
+msgid "Can approve comment"
+msgstr ""
+
+#: groupsystem/models.py:87 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/views.py:114
+msgid "Can delete comment"
+msgstr ""
+
+#: groupsystem/models.py:88 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/views.py:115 groupsystem/views.py:126
+msgid "Can like post"
+msgstr ""
+
+#: groupsystem/models.py:89 groupsystem/views.py:47
+msgid "Can create notification"
+msgstr ""
+
+#: groupsystem/models.py:90 groupsystem/views.py:48 groupsystem/views.py:86
+#: groupsystem/views.py:116 groupsystem/views.py:127
+msgid "Can create invite"
+msgstr ""
+
+#: groupsystem/models.py:91 groupsystem/views.py:49 groupsystem/views.py:87
+msgid "Can add member"
+msgstr ""
+
+#: groupsystem/models.py:92 groupsystem/views.py:50 groupsystem/views.py:88
+msgid "Can remove member"
+msgstr ""
+
+#: groupsystem/models.py:93 groupsystem/views.py:51 groupsystem/views.py:89
+msgid "Can ban member"
+msgstr ""
+
+#: groupsystem/models.py:94 groupsystem/views.py:52 groupsystem/views.py:90
+msgid "Can lift member ban"
+msgstr ""
+
+#: groupsystem/models.py:95 groupsystem/views.py:53 groupsystem/views.py:91
+msgid "Can change member role"
+msgstr ""
+
+#: groupsystem/models.py:96 groupsystem/views.py:54 groupsystem/views.py:92
+msgid "Can edit member permission"
+msgstr ""
+
+#: groupsystem/models.py:97 groupsystem/views.py:55 groupsystem/views.py:93
+#: groupsystem/views.py:117 groupsystem/views.py:128
+msgid "Can read events"
+msgstr ""
+
+#: groupsystem/models.py:98 groupsystem/views.py:56 groupsystem/views.py:94
+msgid "Can create events"
+msgstr ""
+
+#: groupsystem/models.py:99 groupsystem/views.py:57 groupsystem/views.py:95
+msgid "Can update events"
+msgstr ""
+
+#: groupsystem/models.py:100 groupsystem/views.py:58 groupsystem/views.py:96
+msgid "Can delete events"
+msgstr ""
+
+#: groupsystem/models.py:101 groupsystem/views.py:59 groupsystem/views.py:97
+msgid "Can read join requests"
+msgstr ""
+
+#: groupsystem/models.py:102 groupsystem/views.py:60 groupsystem/views.py:98
+msgid "Can approve join requests"
+msgstr ""
+
+#: groupsystem/models.py:103 groupsystem/views.py:61 groupsystem/views.py:99
+msgid "Can deny joinrequest"
+msgstr ""
+
+#: groupsystem/models.py:104 groupsystem/views.py:62
+msgid "Can edit group profile"
+msgstr ""
+
+#: groupsystem/models.py:105 groupsystem/views.py:63
+msgid "Can read role"
+msgstr ""
+
+#: groupsystem/models.py:106 groupsystem/views.py:64
+msgid "Can read custom role"
+msgstr ""
+
+#: groupsystem/models.py:107 groupsystem/views.py:65
+msgid "Can update custom role"
+msgstr ""
+
+#: groupsystem/models.py:108 groupsystem/views.py:66
+msgid "Can create custom role"
+msgstr ""
+
+#: groupsystem/views.py:329
+msgid "Already requested"
+msgstr ""
+
+#: groupsystem/views.py:331
+msgid "You're banned from this group"
+msgstr ""
+
+#: groupsystem/views.py:338
+msgid "Subscribed"
+msgstr ""
+
+#: groupsystem/views.py:345
+msgid "Unsubscribed"
+msgstr ""
+
+#: groupsystem/views.py:351
+msgid "Request Canceled"
+msgstr ""
+
+#: groupsystem/views.py:373
+msgid "Leaved Group"
+msgstr ""
+
+#: groupsystem/views.py:485
+msgid "Post will be shown once admin/moderator approves"
+msgstr ""
+
+#: groupsystem/views.py:530
+msgid ""
+"Thank you for commenting your comment will show once a admin/moderator "
+"approves"
+msgstr ""
+
+#: groupsystem/views.py:572
+msgid "You don't have permission to create news"
+msgstr ""
+
+#: groupsystem/views.py:663
+msgid "You dont have permissions to approve post"
+msgstr ""
+
+#: groupsystem/views.py:683
+msgid "Post created"
+msgstr ""
+
+#: groupsystem/views.py:781
+msgid "You dont have permissions to approve comment"
+msgstr ""
+
+#: groupsystem/views.py:823
+msgid "You don't have permission to add memeber"
+msgstr ""
+
+#: groupsystem/views.py:857
+msgid "You dont have permission to remove member"
+msgstr ""
+
+#: groupsystem/views.py:893
+msgid "You dont have permission to ban member"
+msgstr ""
+
+#: groupsystem/views.py:932
+msgid "You don't have permissions to change member role"
+msgstr ""
+
+#: groupsystem/views.py:1028
+msgid "You don't have permission to approve request"
+msgstr ""
+
+#: groupsystem/views.py:1041
+msgid "You don't have permission to deny request"
+msgstr ""
+
+#: groupsystem/views.py:1072
+msgid "User invited"
+msgstr ""
+
+#: groupsystem/views.py:1267
+msgid "Role created, reload page to edit permissions"
+msgstr ""
+
+#: groupsystem/views.py:1280
+msgid "You don't have permission to create custom role"
+msgstr ""
+
+#: groupsystem/views.py:1311
+msgid "Role permission changed"
+msgstr ""
+
+#: groupsystem/views.py:1354
+msgid "User permission changed"
+msgstr ""
+
+#: profilesystem/forms.py:22
+#, fuzzy
+#| msgid "Username can only contain alphanumeric character and underscores."
+msgid "Usernames can only contain letters, digits and @/./+/-/_."
+msgstr "Username ত কেৱল alphanumeric আৰু underscores হে ব্যৱহাৰ কৰিব পাৰিব"
+
+#: profilesystem/forms.py:31
+msgid "Username already taken"
+msgstr "Username ব্যবহ্ৰিত হৈচে"
+
+#: profilesystem/models.py:16
+msgid "Male"
+msgstr "পুৰুষ"
+
+#: profilesystem/models.py:17
+msgid "Female"
+msgstr "মহিলা"
+
+#: profilesystem/models.py:140 templates/profilesystem/address.html:5
+#: templates/publicusers/user.html:183
+msgid "House Number"
+msgstr "ঘৰৰ নং"
+
+#: profilesystem/models.py:141
+msgid "street"
+msgstr "পথ"
+
+#: profilesystem/models.py:142
+#, fuzzy
+#| msgid "zip_code"
+msgid "zip code"
+msgstr "পিন নং"
+
+#: profilesystem/models.py:143
+msgid "city"
+msgstr "নগৰ"
+
+#: profilesystem/models.py:144
+msgid "state"
+msgstr "ৰাজ্য"
+
+#: profilesystem/models.py:145
+msgid "country"
+msgstr "দেশ"
+
+#: publicusers/views.py:172 templates/groupsystem/adminnews.html:168
+#: templates/groupsystem/adminsettings.html:204
+msgid "Success"
+msgstr "সফল হৈচে"
+
+#: publicusers/views.py:174
+msgid "You already thumb uped this user"
+msgstr "আপুনি এই ব্যবহাৰকাৰীক ইতিমধ্য thumb up কৰিছে‌"
+
+#: publicusers/views.py:280
+msgid "Friend type"
+msgstr ""
+
+#: publicusers/views.py:281 templates/publicusers/user.html:71
+msgid "Best"
+msgstr ""
+
+#: publicusers/views.py:281 templates/publicusers/user.html:63
+#: templates/publicusers/user.html:72
+msgid "Friend"
+msgstr ""
+
+#: publicusers/views.py:281 templates/publicusers/user.html:73
+msgid "Soulmate"
+msgstr ""
+
+#: publicusers/views.py:281 templates/publicusers/user.html:74
+msgid "Aquantence"
+msgstr ""
+
+#: publicusers/views.py:285
+msgid "Family type"
+msgstr "পৰিয়ালৰ প্ৰোকাৰ"
+
+#: publicusers/views.py:286
+msgid "Mother"
+msgstr ""
+
+#: publicusers/views.py:286
+msgid "Father"
+msgstr ""
+
+#: publicusers/views.py:286
+#, fuzzy
+#| msgid "Register"
+msgid "Sister"
+msgstr "পঞ্জীয়ন কৰক"
+
+#: publicusers/views.py:286
+msgid "Brother"
+msgstr ""
+
+#: publicusers/views.py:290
+msgid "Contact type"
+msgstr ""
+
+#: publicusers/views.py:291
+msgid "Personal"
+msgstr ""
+
+#: publicusers/views.py:306
+msgid "connection already sent by "
+msgstr ""
+
+#: publicusers/views.py:344
+msgid "A request is sent to "
+msgstr ""
+
+#: publicusers/views.py:363
+msgid "Connection accepted"
+msgstr ""
+
+#: publicusers/views.py:405
+msgid "Canceled connection request"
+msgstr ""
+
+#: publicusers/views.py:407
+msgid "Rejected connection"
+msgstr ""
+
+#: publicusers/views.py:409
+msgid "Disconneted"
+msgstr ""
+
+#: publicusers/views.py:411 templates/groupsystem/eventsadmin.html:166
+#, fuzzy
+#| msgid "Success"
+msgid "Success!!"
+msgstr "সফল হৈচে"
+
+#: templates/403.html:4
+msgid "Permission denied"
+msgstr ""
+
+#: templates/403.html:10
+msgid "Oops!! You don't have permissions to view this page"
+msgstr ""
+
+#: templates/403.html:12
+msgid "Return to dashboard"
+msgstr ""
+
+#: templates/account/disclaimer.html:4
+msgid "Disclaimer"
+msgstr ""
+
+#: templates/account/disclaimer.html:28
+msgid "WEBSITE DISCLAIMER"
+msgstr ""
+
+#: templates/account/disclaimer.html:30
+msgid "No warranties"
+msgstr ""
+
+#: templates/account/disclaimer.html:32
+msgid ""
+"This website is provided “as is” without any representations or warranties, "
+"express or implied. "
+msgstr ""
+
+#: templates/account/disclaimer.html:33
+msgid ""
+"makes no representations or warranties in relation to this website or the "
+"information and materials provided on this website. "
+msgstr ""
+
+#: templates/account/disclaimer.html:34
+msgid "Without prejudice to the generality of the foregoing paragraph, "
+msgstr ""
+
+#: templates/account/disclaimer.html:34
+msgid "does not warrant that:"
+msgstr ""
+
+#: templates/account/disclaimer.html:36
+msgid "this website will be constantly available, or available at all; or"
+msgstr ""
+
+#: templates/account/disclaimer.html:37
+msgid ""
+"the information on this website is complete, true, accurate or non-"
+"misleading."
+msgstr ""
+
+#: templates/account/disclaimer.html:39
+msgid ""
+"Nothing on this website constitutes, or is meant to constitute, advice of "
+"any kind. "
+msgstr ""
+
+#: templates/account/disclaimer.html:40
+msgid "Limitations of liability"
+msgstr ""
+
+#: templates/account/disclaimer.html:42
+msgid ""
+"will not be liable to you (whether under the law of contact, the law of "
+"torts or otherwise) in relation to the contents of, or use of, or otherwise "
+"in connection with, this website:"
+msgstr ""
+
+#: templates/account/disclaimer.html:44
+msgid "for any indirect, special or consequential loss; or"
+msgstr ""
+
+#: templates/account/disclaimer.html:45
+msgid ""
+"for any business losses, loss of revenue, income, profits or anticipated "
+"savings, loss of contracts or business relationships, loss of reputation or "
+"goodwill, or loss or corruption of information or data."
+msgstr ""
+
+#: templates/account/disclaimer.html:47
+msgid "These limitations of liability apply even if "
+msgstr ""
+
+#: templates/account/disclaimer.html:47
+msgid " has been expressly advised of the potential loss."
+msgstr ""
+
+#: templates/account/disclaimer.html:48
+msgid "Exceptions"
+msgstr ""
+
+#: templates/account/disclaimer.html:50
+msgid ""
+"Nothing in this website disclaimer will exclude or limit any warranty "
+"implied by law that it would be unlawful to exclude or limit; and nothing in "
+"this website disclaimer will exclude or limit "
+msgstr ""
+
+#: templates/account/disclaimer.html:50
+msgid "'s liability in respect of any:"
+msgstr ""
+
+#: templates/account/disclaimer.html:52
+msgid "death or personal injury caused by "
+msgstr ""
+
+#: templates/account/disclaimer.html:52
+msgid "'s negligence;"
+msgstr ""
+
+#: templates/account/disclaimer.html:53
+msgid "fraud or fraudulent misrepresentation on the part of "
+msgstr ""
+
+#: templates/account/disclaimer.html:53
+msgid " or"
+msgstr ""
+
+#: templates/account/disclaimer.html:54
+msgid "matter which it would be illegal or unlawful for "
+msgstr ""
+
+#: templates/account/disclaimer.html:54
+msgid ""
+" to exclude or limit, or to attempt or purport to exclude or limit, its "
+"liability."
+msgstr ""
+
+#: templates/account/disclaimer.html:57
+msgid "Reasonableness"
+msgstr ""
+
+#: templates/account/disclaimer.html:59
+msgid ""
+"By using this website, you agree that the exclusions and limitations of "
+"liability set out in this website disclaimer are reasonable.If you do not "
+"think they are reasonable, you must not use this website."
+msgstr ""
+
+#: templates/account/disclaimer.html:60
+msgid "Other parties"
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid "You accept that, as a limited liability entity, "
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid ""
+" has an interest in limiting the personal liability of its officers and "
+"employees. You agree that you will not bring any claim personally against "
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid ""
+"'s officers or employees in respect of any losses you suffer in connection "
+"with the website."
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"[Without prejudice to the foregoing paragraph,] you agree that the "
+"limitations of warranties and liability set out in this website disclaimer "
+"will protect"
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"'s officers, employees, agents, subsidiaries, successors, assigns and sub-"
+"contractors as well as "
+msgstr ""
+
+#: templates/account/disclaimer.html:64
+msgid "Unenforceable provisions"
+msgstr ""
+
+#: templates/account/disclaimer.html:66
+msgid ""
+"If any provision of this website disclaimer is, or is found to be, "
+"unenforceable under applicable law, that will not affect the enforceability "
+"of the other provisions of this website disclaimer."
+msgstr ""
+
+#: templates/account/email.html:5 templates/account/email.html:8
+msgid "Manage Email"
+msgstr ""
+
+#: templates/account/email.html:10
+msgid "The following e-mail addresses are associated with your account:"
+msgstr ""
+
+#: templates/account/email.html:26
+msgid "(P)"
+msgstr ""
+
+#: templates/account/email.html:40
+msgid "Make Primary"
+msgstr ""
+
+#: templates/account/email.html:41
+msgid "Re-send Verification"
+msgstr ""
+
+#: templates/account/email.html:42 templates/groupsystem/members.html:71
+msgid "Remove"
+msgstr ""
+
+#: templates/account/email.html:54
+msgid "Add E-mail"
+msgstr ""
+
+#: templates/account/email.html:59
+msgid "Back to profile"
+msgstr ""
+
+#: templates/account/email.html:64
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr ""
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr ""
+
+#: templates/account/email_confirm.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: templates/account/email_confirm.html:21
+msgid "Confirm"
+msgstr ""
+
+#: templates/account/email_confirm.html:28
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: templates/account/login.html:6
+msgid "Login"
+msgstr "ভিতৰত সোমাবলৈ"
+
+#: templates/account/login.html:9
+msgid "Sign in to start your session"
+msgstr ""
+
+#: templates/account/login.html:18
+msgid "Log In"
+msgstr "ভিতৰত সোমাওক"
+
+#: templates/account/login.html:34
+msgid "Forgot Password?"
+msgstr ""
+
+#: templates/account/login.html:36 templates/account/signup.html:9
+#: templates/socialaccount/signup.html:8
+msgid "Register a new membership"
+msgstr ""
+
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:17
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+#: templates/account/password_reset_from_key.html:21
+msgid "Change Password"
+msgstr ""
+
+#: templates/account/password_change.html:11
+msgid "Change your password"
+msgstr ""
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+msgid "Password Reset"
+msgstr ""
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:22
+msgid "Reset My Password"
+msgstr ""
+
+#: templates/account/password_reset.html:26
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:25
+msgid "Your password is now changed."
+msgstr ""
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:14
+msgid "Set Password"
+msgstr ""
+
+#: templates/account/rform.html:10 templates/socialaccount/signup.html:17
+msgid "Register"
+msgstr "পঞ্জীয়ন কৰক"
+
+#: templates/account/rform.html:30 templates/account/rform.html:54
+#: templates/account/rform.html:78 templates/account/rform.html:102
+msgid ""
+"This project is a new social platform to simulate and promote  the basic "
+"income"
+msgstr ""
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid "Please read the"
+msgstr ""
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid " Disclaimer"
+msgstr ""
+
+#: templates/account/rform.html:36 templates/account/rform.html:60
+#: templates/account/rform.html:84 templates/account/rform.html:108
+#: templates/timelines/timeline.html:130
+msgid "Cancel"
+msgstr ""
+
+#: templates/account/rform.html:39 templates/account/rform.html:63
+#: templates/account/rform.html:87 templates/account/rform.html:111
+msgid "Agree"
+msgstr ""
+
+#: templates/account/signup.html:11
+msgid "I already have a membership"
+msgstr ""
+
+#: templates/base.html:113
+msgid "Toggle navigation"
+msgstr ""
+
+#: templates/base.html:225 templates/base.html:244 templates/base.html:294
+msgid "Hello User"
+msgstr ""
+
+#: templates/base.html:241
+msgid "Member Since "
+msgstr ""
+
+#: templates/base.html:260 templates/profilesystem/index.html:5
+#: templates/profilesystem/index.html:38 templates/profilesystem/index.html:54
+#: templates/sidebar_main.html:32
+msgid "Profile"
+msgstr ""
+
+#: templates/base.html:263
+msgid "Sign out"
+msgstr ""
+
+#: templates/base.html:357
+msgid "Todo"
+msgstr ""
+
+#: templates/base.html:398
+msgid "Language Settings"
+msgstr ""
+
+#. Translators: This is for language select submit button
+#.
+#: templates/base.html:418
+msgid "Set"
+msgstr ""
+
+#: templates/base.html:422
+msgid "Chat Settings"
+msgstr ""
+
+#: templates/base.html:426
+msgid "Show me as online"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:16
+#: templates/groupsystem/admindashboard.html:4
+#: templates/sidebar_group_admin.html:6 templates/sidebar_main.html:9
+msgid "Dashboard"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:36 templates/profilesystem/index.html:245
+#: templates/publicusers/user.html:164
+msgid "References"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:46 templates/dashboard/dashboard.html:173
+msgid "Connections"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:56
+msgid "Messages"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:66 templates/dashboard/dashboard.html:213
+#, fuzzy
+#| msgid "country"
+msgid "Account Balance"
+msgstr "দেশ"
+
+#: templates/dashboard/dashboard.html:76 templates/dashboard/dashboard.html:214
+#: templates/useraccount/index.html:44
+msgid "Next Release"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:122 templates/publicusers/user.html:267
+msgid "Profile Completed"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:139 templates/publicusers/user.html:280
+msgid "Completed"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:145 templates/publicusers/user.html:286
+msgid "Not completed"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:151 templates/publicusers/user.html:292
+msgid "Not verified"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:157 templates/publicusers/user.html:298
+msgid "Skipped"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:183
+msgid "You have no connection to display data"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:196
+msgid " Friends"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:197
+#, fuzzy
+#| msgid "Family type"
+msgid " Families"
+msgstr "পৰিয়ালৰ প্ৰোকাৰ"
+
+#: templates/dashboard/dashboard.html:198
+msgid " Contacts"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:212
+msgid "Add Widget"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:215 templates/timelines/index.html:66
+#: templates/timelines/index.html:68
+msgid "Connection"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:216
+msgid "Profile Completion Ring"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:226
+msgid "Website added"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:233
+msgid "Gender added"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:240
+msgid "Phone added"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:247
+msgid "Avatar added"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:254
+msgid "Address added"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:261
+msgid "Socialaccount added"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:268
+msgid "Email added"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:275
+msgid "Email verified"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:287
+#: templates/dashboard/dashboard.html:359
+msgid "Add website"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:288
+#: templates/dashboard/dashboard.html:294
+#: templates/dashboard/dashboard.html:300
+#: templates/dashboard/dashboard.html:306
+#: templates/dashboard/dashboard.html:312
+#: templates/dashboard/dashboard.html:318
+#: templates/dashboard/dashboard.html:324
+#: templates/dashboard/dashboard.html:333
+msgid " (skip)"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:293
+#: templates/dashboard/dashboard.html:364
+msgid "Add gender"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:299
+#: templates/dashboard/dashboard.html:369
+msgid "Add phone"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:305
+#: templates/dashboard/dashboard.html:374
+msgid "Add avatar"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:311
+#: templates/dashboard/dashboard.html:379
+msgid "Add address"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:317
+#: templates/dashboard/dashboard.html:384
+msgid "Add socialaccount"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:323
+#: templates/dashboard/dashboard.html:389
+msgid "Add email"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:332
+#: templates/dashboard/dashboard.html:347
+#: templates/dashboard/dashboard.html:397
+msgid "Verify email"
+msgstr ""
+
+#: templates/dashboard/dashboard.html:348
+msgid "(skip)"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:19
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:19
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:12
+#: templates/groupsystem/members.html:78
+msgid "Admin"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:12
+#: templates/groupsystem/adminnews.html:19
+#: templates/groupsystem/adminsettings.html:12
+#: templates/groupsystem/bannedmembers.html:12
+#: templates/groupsystem/editcommentpage.html:12
+#: templates/groupsystem/editpostpage.html:12
+#: templates/groupsystem/joinrequests.html:12
+#: templates/groupsystem/members.html:19
+#: templates/groupsystem/postsadmin.html:12
+msgid "admin"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:12
+msgid "dashboard"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:27
+#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:19
+#: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
+msgid "Members"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:33
+#: templates/groupsystem/admindashboard.html:47
+#: templates/groupsystem/admindashboard.html:61
+#: templates/groupsystem/admindashboard.html:75
+msgid "More info"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:41
+msgid "New Request"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:55
+msgid "Pending posts"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:69
+msgid "Pending comment"
+msgstr ""
+
+#: templates/groupsystem/admindashboard.html:88
+#: templates/groupsystem/adminnews.html:86
+#: templates/groupsystem/adminsettings.html:110
+#: templates/groupsystem/bannedmembers.html:63
+#: templates/groupsystem/commentadmin.html:71
+#: templates/groupsystem/customroles.html:97
+#: templates/groupsystem/defaultroles.html:65
+#: templates/groupsystem/editcommentpage.html:54
+#: templates/groupsystem/editpostpage.html:56
+#: templates/groupsystem/events.html:55
+#: templates/groupsystem/eventsadmin.html:52
+#: templates/groupsystem/groupdetails.html:179
+#: templates/groupsystem/joinrequests.html:66
+#: templates/groupsystem/members.html:123
+#: templates/groupsystem/postdetails.html:113
+#: templates/groupsystem/posts.html:110
+#: templates/groupsystem/postsadmin.html:114 templates/sidebar_main.html:4
+msgid "MAIN NAVIGATION"
+msgstr ""
+
+#: templates/groupsystem/adminnews.html:19
+msgid "news"
+msgstr ""
+
+#: templates/groupsystem/adminnews.html:55
+msgid "No news!!"
+msgstr ""
+
+#: templates/groupsystem/adminnews.html:63
+msgid "Create News"
+msgstr ""
+
+#: templates/groupsystem/adminnews.html:70
+#: templates/groupsystem/adminsettings.html:79
+#: templates/groupsystem/editcommentpage.html:38
+#: templates/groupsystem/editcustomrole.html:6
+#: templates/groupsystem/editnews.html:6
+#: templates/groupsystem/editpostpage.html:40
+#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:96
+#: templates/groupsystem/postsadmin.html:100
+#: templates/information/contact.html:35 templates/profilesystem/index.html:145
+#: templates/profilesystem/index.html:182
+#: templates/profilesystem/index.html:221
+msgid "Submit"
+msgstr ""
+
+#: templates/groupsystem/adminnews.html:154
+msgid "Edit news"
+msgstr ""
+
+#: templates/groupsystem/adminsettings.html:4
+#: templates/sidebar_group_admin.html:107
+msgid "Settings"
+msgstr ""
+
+#: templates/groupsystem/adminsettings.html:12
+msgid "settings"
+msgstr ""
+
+#: templates/groupsystem/adminsettings.html:27
+msgid "Send notification to members"
+msgstr ""
+
+#: templates/groupsystem/adminsettings.html:60
+#: templates/groupsystem/groupdetails.html:67
+msgid "About Us"
+msgstr ""
+
+#: templates/groupsystem/adminsettings.html:72
+msgid "Edit Group"
+msgstr ""
+
+#: templates/groupsystem/adminsettings.html:91
+msgid "Create Notification"
+msgstr ""
+
+#: templates/groupsystem/adminsettings.html:97
+#: templates/groupsystem/all_group.html:89
+#: templates/groupsystem/customroles.html:84
+msgid "Create"
+msgstr ""
+
+#: templates/groupsystem/all_group.html:5
+#: templates/groupsystem/all_group.html:36 templates/sidebar_main.html:45
+msgid "All Groups"
+msgstr ""
+
+#: templates/groupsystem/all_group.html:50
+#: templates/groupsystem/all_group.html:83
+msgid "Create Group"
+msgstr ""
+
+#: templates/groupsystem/bannedmembers.html:4
+#: templates/groupsystem/bannedmembers.html:12
+msgid "Bannedmembers"
+msgstr ""
+
+#: templates/groupsystem/bannedmembers.html:30
+#: templates/groupsystem/editextraperm.html:3
+#: templates/groupsystem/joinrequests.html:31
+#: templates/groupsystem/members.html:48
+msgid "User"
+msgstr ""
+
+#: templates/groupsystem/bannedmembers.html:31
+#: templates/groupsystem/joinrequests.html:32
+#: templates/groupsystem/members.html:50
+#: templates/messagingsystem/chats.html:175
+#: templates/messagingsystem/index.html:234
+msgid "Actions"
+msgstr ""
+
+#: templates/groupsystem/bannedmembers.html:44
+msgid "Lift Ban"
+msgstr ""
+
+#: templates/groupsystem/commentadmin.html:19
+#: templates/sidebar_group_admin.html:41
+msgid "Comments"
+msgstr ""
+
+#: templates/groupsystem/commentadmin.html:41
+#: templates/groupsystem/editcommentpage.html:27
+msgid "Post: "
+msgstr ""
+
+#: templates/groupsystem/commentadmin.html:42
+#: templates/groupsystem/editcommentpage.html:30
+msgid "Commented By: "
+msgstr ""
+
+#: templates/groupsystem/commentadmin.html:44
+msgid "Comment: "
+msgstr ""
+
+#: templates/groupsystem/commentadmin.html:46
+#: templates/groupsystem/postsadmin.html:76
+msgid "edit"
+msgstr ""
+
+#: templates/groupsystem/commentadmin.html:48
+msgid "approve"
+msgstr ""
+
+#: templates/groupsystem/commentadmin.html:57
+msgid "No comments!!"
+msgstr ""
+
+#: templates/groupsystem/creategroupsuccess.html:3
+msgid "Your new group is created"
+msgstr ""
+
+#: templates/groupsystem/creategroupsuccess.html:4
+msgid "Group UUID: "
+msgstr ""
+
+#: templates/groupsystem/creategroupsuccess.html:5
+msgid "Url: "
+msgstr ""
+
+#: templates/groupsystem/creategroupsuccess.html:6
+msgid "More Settings: "
+msgstr ""
+
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:19
+#: templates/groupsystem/customroles.html:43
+msgid "Custom roles"
+msgstr ""
+
+#: templates/groupsystem/customroles.html:34
+msgid "Create custom role"
+msgstr ""
+
+#: templates/groupsystem/customroles.html:55
+msgid "You don't have any custom roles defined"
+msgstr ""
+
+#: templates/groupsystem/customroles.html:63
+#: templates/groupsystem/defaultroles.html:49
+msgid "Permissions"
+msgstr ""
+
+#: templates/groupsystem/customroles.html:78
+msgid "Create Custom Role"
+msgstr ""
+
+#: templates/groupsystem/customroles.html:169
+msgid "You dont have permission to edit role"
+msgstr ""
+
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:19
+#: templates/groupsystem/defaultroles.html:33
+msgid "Default roles"
+msgstr ""
+
+#: templates/groupsystem/editcommentpage.html:12
+msgid "Editcomment"
+msgstr ""
+
+#: templates/groupsystem/editcommentpage.html:28
+#: templates/groupsystem/editpostpage.html:30
+msgid "Approved: "
+msgstr ""
+
+#: templates/groupsystem/editcommentpage.html:29
+#: templates/groupsystem/editpostpage.html:31
+msgid "Approved By: "
+msgstr ""
+
+#: templates/groupsystem/editcommentpage.html:31
+msgid "Commented on: "
+msgstr ""
+
+#: templates/groupsystem/editcustomrole.html:3
+msgid "User who assigned with this role"
+msgstr ""
+
+#: templates/groupsystem/editpostpage.html:12
+msgid "Editpost"
+msgstr ""
+
+#: templates/groupsystem/editpostpage.html:27
+msgid "Creator: "
+msgstr ""
+
+#: templates/groupsystem/editpostpage.html:33
+msgid "Post Created on: "
+msgstr ""
+
+#: templates/groupsystem/eventform.html:7
+msgid "Clear"
+msgstr ""
+
+#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:12
+#: templates/groupsystem/events.html:26
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:12
+#: templates/groupsystem/eventsadmin.html:36 templates/sidebar_group.html:11
+#: templates/sidebar_group_admin.html:77
+msgid "Events"
+msgstr ""
+
+#: templates/groupsystem/events.html:145
+msgid "Startdate: "
+msgstr ""
+
+#: templates/groupsystem/events.html:147
+msgid "Enddate: "
+msgstr ""
+
+#: templates/groupsystem/eventsadmin.html:26
+msgid "Create Event"
+msgstr ""
+
+#: templates/groupsystem/groupdetails.html:76
+msgid "Leave Group"
+msgstr ""
+
+#: templates/groupsystem/groupdetails.html:83
+#: templates/groupsystem/groupdetails.html:99
+msgid "Cancel Request"
+msgstr ""
+
+#: templates/groupsystem/groupdetails.html:88
+#: templates/groupsystem/groupdetails.html:94
+msgid "Join Group"
+msgstr ""
+
+#: templates/groupsystem/groupdetails.html:107
+msgid "Unsubscribe"
+msgstr ""
+
+#: templates/groupsystem/groupdetails.html:113
+msgid "Subscribe"
+msgstr ""
+
+#: templates/groupsystem/groupdetails.html:121
+msgid "Invite User"
+msgstr ""
+
+#: templates/groupsystem/groupdetails.html:165
+#: templates/profilesystem/index.html:139
+#: templates/profilesystem/index.html:170
+#: templates/profilesystem/index.html:209
+msgid "Close"
+msgstr ""
+
+#: templates/groupsystem/joined_group.html:5
+#: templates/groupsystem/joined_group.html:10
+#: templates/profilesystem/index.html:572 templates/sidebar_main.html:46
+msgid "Joined Groups"
+msgstr ""
+
+#: templates/groupsystem/joinrequests.html:12
+msgid "Join Requests"
+msgstr ""
+
+#: templates/groupsystem/joinrequests.html:44
+#: templates/groupsystem/postsadmin.html:66
+msgid "Approve"
+msgstr ""
+
+#: templates/groupsystem/joinrequests.html:47
+msgid "Deny"
+msgstr ""
+
+#: templates/groupsystem/members.html:35
+msgid "Add member"
+msgstr ""
+
+#: templates/groupsystem/members.html:49
+msgid "Role"
+msgstr ""
+
+#: templates/groupsystem/members.html:74
+msgid "Ban Member"
+msgstr ""
+
+#: templates/groupsystem/members.html:79
+msgid "Moderator"
+msgstr ""
+
+#: templates/groupsystem/members.html:80
+msgid "Member"
+msgstr ""
+
+#: templates/groupsystem/members.html:87
+msgid "Extra permission"
+msgstr ""
+
+#: templates/groupsystem/members.html:104
+msgid "Edit User Perm"
+msgstr ""
+
+#: templates/groupsystem/members.html:110
+#: templates/profilesystem/index.html:142
+#: templates/profilesystem/index.html:174
+#: templates/profilesystem/index.html:213
+msgid "Edit"
+msgstr ""
+
+#: templates/groupsystem/members.html:195
+#: templates/groupsystem/members.html:207
+#: templates/groupsystem/members.html:223
+#: templates/groupsystem/members.html:235
+#: templates/groupsystem/members.html:256
+#: templates/groupsystem/members.html:268
+#: templates/groupsystem/members.html:322
+msgid "Change role"
+msgstr ""
+
+#: templates/groupsystem/members.html:285
+msgid "You dont have permissions to edit extra permissions"
+msgstr ""
+
+#: templates/groupsystem/postdetails.html:60
+msgid "Like"
+msgstr ""
+
+#: templates/groupsystem/postdetails.html:179
+msgid " likes"
+msgstr ""
+
+#: templates/groupsystem/postdetails.html:179
+msgid " comments"
+msgstr ""
+
+#: templates/groupsystem/posts.html:12 templates/groupsystem/postsadmin.html:12
+#: templates/sidebar_group.html:19 templates/sidebar_group_admin.html:24
+msgid "Posts"
+msgstr ""
+
+#: templates/groupsystem/posts.html:28 templates/groupsystem/posts.html:90
+#: templates/groupsystem/postsadmin.html:28
+#: templates/groupsystem/postsadmin.html:94
+msgid "Create Post"
+msgstr ""
+
+#: templates/groupsystem/posts.html:71
+msgid "more"
+msgstr ""
+
+#: templates/groupsystem/posts.html:82 templates/groupsystem/postsadmin.html:86
+msgid "No Posts Yet!!"
+msgstr ""
+
+#: templates/groupsystem/postsadmin.html:66
+msgid "Not approved"
+msgstr ""
+
+#: templates/groupsystem/roledetails.html:10
+msgid "No such default role"
+msgstr ""
+
+#: templates/groupsystem/user_group.html:5
+#: templates/groupsystem/user_group.html:10
+#: templates/profilesystem/index.html:593 templates/sidebar_main.html:47
+msgid "Subscribed Groups"
+msgstr ""
+
+#: templates/hashtag/images.html:14
+msgid "You have no images uploaded"
+msgstr ""
+
+#: templates/hashtag/index.html:4 templates/hashtag/index.html:34
+msgid "Hashtag Banner"
+msgstr ""
+
+#: templates/hashtag/index.html:49
+msgid "Basic Income Hashtag Banner Campaign"
+msgstr ""
+
+#: templates/hashtag/index.html:50
+msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgstr ""
+
+#: templates/hashtag/index.html:54
+msgid "Add hashtag banner to your facebook account"
+msgstr ""
+
+#: templates/hashtag/index.html:59
+msgid "Add hashtag banner to your twitter account"
+msgstr ""
+
+#: templates/hashtag/index.html:65
+msgid "You've not added facebook yet! Click the button to add"
+msgstr ""
+
+#: templates/hashtag/index.html:67
+msgid "Add Facebook"
+msgstr ""
+
+#: templates/hashtag/index.html:75
+msgid "You've not added twitter yet! Click the button to add"
+msgstr ""
+
+#: templates/hashtag/index.html:77
+msgid "Add Twitter"
+msgstr ""
+
+#: templates/hashtag/index.html:84
+msgid "Select from uploaded"
+msgstr ""
+
+#: templates/hashtag/index.html:90
+msgid "Upload New Images"
+msgstr ""
+
+#: templates/hashtag/index.html:95
+msgid "Change Banner Color"
+msgstr ""
+
+#: templates/hashtag/index.html:99
+msgid "Make profile image"
+msgstr ""
+
+#: templates/hashtag/index.html:105
+msgid "Download image"
+msgstr ""
+
+#: templates/hashtag/index.html:118
+msgid "Upload Images"
+msgstr ""
+
+#: templates/hashtag/index.html:251 templates/hashtag/index.html:267
+msgid "Upload to facebook"
+msgstr ""
+
+#: templates/hashtag/index.html:301 templates/hashtag/index.html:317
+msgid "Upload to twitter"
+msgstr ""
+
+#: templates/hashtag/index.html:352
+msgid "Uploading....."
+msgstr ""
+
+#: templates/hashtag/index.html:361
+msgid "Support #basicincome project"
+msgstr ""
+
+#: templates/hashtag/index.html:403
+msgid "Uploaded"
+msgstr ""
+
+#: templates/hashtag/index.html:415
+msgid "Cant upload now!! try later"
+msgstr ""
+
+#: templates/information/contact.html:4 templates/information/success.html:4
+#: templates/profilesystem/index.html:197
+#: templates/profilesystem/index.html:406 templates/publicusers/user.html:65
+#: templates/publicusers/user.html:226
+msgid "Contact"
+msgstr ""
+
+#: templates/information/contact.html:8 templates/information/success.html:8
+msgid "Contact Us"
+msgstr ""
+
+#: templates/information/contact.html:27
+msgid "Get in touch with us"
+msgstr ""
+
+#: templates/information/contact.html:28
+msgid ""
+"if you have any comments or questions, please get in touch. We’d love to "
+"hear fom you."
+msgstr ""
+
+#: templates/information/index.html:4 templates/information/index.html:26
+#: templates/sidebar_main.html:65
+msgid "Information"
+msgstr ""
+
+#: templates/information/index.html:8 templates/sidebar_main.html:71
+msgid "About Our System"
+msgstr ""
+
+#: templates/information/success.html:27
+msgid "Thank you for your interest"
+msgstr ""
+
+#: templates/information/success.html:28
+msgid "We will contact you shortly"
+msgstr ""
+
+#: templates/messagingsystem/chats.html:70
+msgid "Send Unit to: "
+msgstr ""
+
+#: templates/messagingsystem/chats.html:76
+#: templates/publicusers/userdetails.html:104 templates/timelines/index.html:91
+#: templates/useraccount/transferunit.html:22
+msgid "Send"
+msgstr ""
+
+#: templates/messagingsystem/chats.html:87
+msgid "Request Unit from: "
+msgstr ""
+
+#: templates/messagingsystem/chats.html:93
+#: templates/publicusers/userdetails.html:121 templates/timelines/index.html:46
+#: templates/timelines/index.html:48
+msgid "Request"
+msgstr ""
+
+#: templates/messagingsystem/index.html:4
+#: templates/messagingsystem/index.html:54 templates/sidebar_main.html:59
+msgid "Messaging"
+msgstr ""
+
+#: templates/messagingsystem/index.html:76
+#: templates/messagingsystem/index.html:89
+msgid "Sorry you have no chats yet!!!"
+msgstr ""
+
+#: templates/messagingsystem/index.html:104
+msgid "Send Units"
+msgstr ""
+
+#: templates/messagingsystem/index.html:109
+msgid "Request Request"
+msgstr ""
+
+#: templates/messagingsystem/navbarmessage.html:37
+#: templates/notification/notification.html:94
+msgid "All caught up"
+msgstr ""
+
+#: templates/notification/notification.html:10
+#: templates/timelines/index.html:266 templates/timelines/timeline.html:54
+#: templates/timelines/timeline.html:72
+msgid "sent"
+msgstr ""
+
+#: templates/notification/notification.html:10
+#: templates/notification/notification.html:17
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "units"
+msgstr ""
+
+#: templates/notification/notification.html:17
+msgid "requested"
+msgstr ""
+
+#: templates/notification/notification.html:24
+msgid "units released"
+msgstr ""
+
+#: templates/notification/notification.html:31
+msgid "verfied as real user"
+msgstr ""
+
+#: templates/notification/notification.html:38
+msgid "unverfied you"
+msgstr ""
+
+#: templates/notification/notification.html:45
+msgid "sent a connection request"
+msgstr ""
+
+#: templates/notification/notification.html:52
+msgid "canceled connection request"
+msgstr ""
+
+#: templates/notification/notification.html:59
+msgid "accepted connection request"
+msgstr ""
+
+#: templates/notification/notification.html:66
+msgid "rejected connection request"
+msgstr ""
+
+#: templates/notification/notification.html:73
+msgid "disconnected you"
+msgstr ""
+
+#: templates/notification/notification.html:80
+msgid "invited you to group"
+msgstr ""
+
+#: templates/profilesystem/address.html:11 templates/publicusers/user.html:189
+#, fuzzy
+#| msgid "street"
+msgid "Street"
+msgstr "পথ"
+
+#: templates/profilesystem/address.html:17 templates/publicusers/user.html:195
+msgid "Zip Code"
+msgstr ""
+
+#: templates/profilesystem/address.html:23 templates/publicusers/user.html:201
+msgid "City"
+msgstr ""
+
+#: templates/profilesystem/address.html:29 templates/publicusers/user.html:207
+#, fuzzy
+#| msgid "state"
+msgid "State"
+msgstr "ৰাজ্য"
+
+#: templates/profilesystem/address.html:35 templates/publicusers/user.html:213
+#, fuzzy
+#| msgid "country"
+msgid "Country"
+msgstr "দেশ"
+
+#: templates/profilesystem/address.html:43
+msgid "Click add button to add your address"
+msgstr ""
+
+#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:231
+msgid "Phone Office"
+msgstr ""
+
+#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:237
+msgid "Phone Home"
+msgstr ""
+
+#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:243
+msgid "Phone Mobile"
+msgstr ""
+
+#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:249
+msgid "Phone Emergency"
+msgstr ""
+
+#: templates/profilesystem/contact.html:30
+msgid "Click add button to add your phone number"
+msgstr ""
+
+#: templates/profilesystem/emailaddress.html:4
+msgid "Email address associated with your account"
+msgstr ""
+
+#: templates/profilesystem/emailaddress.html:17
+msgid "(Primary)"
+msgstr ""
+
+#: templates/profilesystem/emailaddress.html:30
+msgid "No email associated with your account"
+msgstr ""
+
+#: templates/profilesystem/index.html:42
+#: templates/publicusers/connections.html:48
+#: templates/publicusers/userlist.html:48
+#, fuzzy, python-format
+#| msgid "Hello, %(full_name)s!"
+msgid "Hello, %(username_t)s!"
+msgstr "নম্সকাৰ, %(username_t)s!"
+
+#: templates/profilesystem/index.html:48
+msgid "Hello, User!"
+msgstr ""
+
+#: templates/profilesystem/index.html:64
+msgid "Add your website to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/index.html:70
+msgid "Add your gender to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/index.html:76
+msgid "Add your contact number to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/index.html:82
+msgid "Add a profile image to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/index.html:88
+msgid "Add your location to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/index.html:94
+msgid "Add a social account of yours to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/index.html:100
+msgid "Add your email account to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/index.html:109
+msgid "Please verify your email address(resend verification)"
+msgstr ""
+
+#: templates/profilesystem/index.html:127
+#: templates/profilesystem/index.html:347 templates/publicusers/user.html:112
+msgid "Personal Information"
+msgstr ""
+
+#: templates/profilesystem/index.html:158
+msgid "Location"
+msgstr ""
+
+#: templates/profilesystem/index.html:178
+#: templates/profilesystem/index.html:217
+msgid "Add"
+msgstr ""
+
+#: templates/profilesystem/index.html:234 templates/publicusers/user.html:156
+msgid "Activities"
+msgstr "কাজ্যকলাপ"
+
+#: templates/profilesystem/index.html:241 templates/publicusers/user.html:160
+#, fuzzy
+#| msgid "Activities"
+msgid "Activation date"
+msgstr "কাজ্যকলাপ"
+
+#: templates/profilesystem/index.html:253
+msgid "More"
+msgstr ""
+
+#: templates/profilesystem/index.html:266
+msgid "Documents"
+msgstr ""
+
+#: templates/profilesystem/index.html:279
+#: templates/publicusers/connections.html:72
+msgid "Search..."
+msgstr ""
+
+#: templates/profilesystem/index.html:311
+msgid "Shared Documents"
+msgstr ""
+
+#: templates/profilesystem/index.html:323
+msgid "Upload"
+msgstr ""
+
+#: templates/profilesystem/index.html:335
+msgid "Change Public Visibility"
+msgstr ""
+
+#: templates/profilesystem/index.html:394 templates/publicusers/user.html:178
+msgid "Address"
+msgstr ""
+
+#: templates/profilesystem/index.html:418
+msgid "Others"
+msgstr ""
+
+#: templates/profilesystem/index.html:422
+msgid "Profile completion"
+msgstr ""
+
+#: templates/profilesystem/index.html:457
+msgid "Linked social account"
+msgstr ""
+
+#: templates/profilesystem/index.html:499
+msgid "Email Address"
+msgstr ""
+
+#: templates/profilesystem/index.html:509
+msgid "Manage"
+msgstr ""
+
+#: templates/profilesystem/index.html:524
+msgid "Reference"
+msgstr ""
+
+#: templates/profilesystem/index.html:536
+msgid "Refresh"
+msgstr ""
+
+#: templates/profilesystem/index.html:551
+msgid "My Groups"
+msgstr ""
+
+#: templates/profilesystem/index.html:616
+msgid "Apps"
+msgstr ""
+
+#: templates/profilesystem/index.html:632
+msgid "Sites"
+msgstr ""
+
+#: templates/profilesystem/index.html:648
+msgid "Ads"
+msgstr ""
+
+#: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
+msgid "Username"
+msgstr ""
+
+#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
+msgid "Name"
+msgstr ""
+
+#: templates/profilesystem/pinfo.html:23 templates/publicusers/user.html:126
+msgid "Gender"
+msgstr ""
+
+#: templates/profilesystem/pinfo.html:38
+msgid "Community"
+msgstr ""
+
+#: templates/profilesystem/pinfo.html:42 templates/publicusers/user.html:137
+msgid "Website"
+msgstr ""
+
+#: templates/profilesystem/reference.html:6
+msgid "Following user verified me"
+msgstr ""
+
+#: templates/profilesystem/reference.html:35
+msgid "Oops!! No Reference Yet"
+msgstr ""
+
+#: templates/profilesystem/unlinksocial.html:69
+msgid "This is your last method to connect to this site."
+msgstr ""
+
+#: templates/profilesystem/unlinksocial.html:70
+msgid "You will be asked for a password if you proceed"
+msgstr ""
+
+#: templates/publicusers/connusers.html:31
+msgid "No connections"
+msgstr ""
+
+#: templates/publicusers/user.html:22
+#: templates/publicusers/userdetails.html:397
+#: templates/publicusers/userlist.html:123 templates/publicusers/users.html:23
+msgid "lastseen: "
+msgstr ""
+
+#: templates/publicusers/user.html:24
+#: templates/publicusers/userdetails.html:388
+#: templates/publicusers/userlist.html:114 templates/publicusers/users.html:25
+msgid "Online"
+msgstr ""
+
+#: templates/publicusers/user.html:26
+#: templates/publicusers/userdetails.html:392
+#: templates/publicusers/userlist.html:121
+#: templates/publicusers/userlist.html:127 templates/publicusers/users.html:27
+msgid "Offline"
+msgstr ""
+
+#: templates/publicusers/user.html:51 templates/timelines/timeline.html:128
+#: templates/timelines/timeline.html:135
+msgid "Disconnect"
+msgstr ""
+
+#: templates/publicusers/user.html:53
+msgid "Cancel connection request"
+msgstr ""
+
+#: templates/publicusers/user.html:55
+msgid "Reject connection request"
+msgstr ""
+
+#: templates/publicusers/user.html:56
+msgid "Accept connection request"
+msgstr ""
+
+#: templates/publicusers/user.html:58
+msgid "Connect"
+msgstr ""
+
+#: templates/publicusers/user.html:61
+msgid "Connection type"
+msgstr ""
+
+#: templates/publicusers/user.html:64
+msgid "Family"
+msgstr ""
+
+#: templates/publicusers/user.html:69
+msgid "Friend Type"
+msgstr ""
+
+#: templates/publicusers/user.html:78
+msgid "Send request"
+msgstr ""
+
+#: templates/publicusers/user.html:87
+msgid "Unverify"
+msgstr ""
+
+#: templates/publicusers/user.html:90
+msgid "I verify this user"
+msgstr ""
+
+#: templates/publicusers/user.html:92 templates/publicusers/userdetails.html:98
+msgid "Send Unit"
+msgstr ""
+
+#: templates/publicusers/user.html:93
+#: templates/publicusers/userdetails.html:115
+msgid "Request Unit"
+msgstr ""
+
+#: templates/publicusers/user.html:94
+msgid "Message"
+msgstr ""
+
+#: templates/publicusers/userdetails.html:48
+#: templates/publicusers/userlist.html:4 templates/publicusers/userlist.html:44
+#: templates/publicusers/userlist.html:60 templates/sidebar_main.html:35
+msgid "Users"
+msgstr ""
+
+#: templates/publicusers/userdetails.html:65
+msgid "Others who verify"
+msgstr ""
+
+#: templates/publicusers/userlist.html:72
+msgid " Search Users "
+msgstr ""
+
+#: templates/publicusers/userlist.html:129
+msgid "lastseen: unknown"
+msgstr ""
+
+#: templates/sidebar_group.html:5
+msgid "Homepage"
+msgstr ""
+
+#: templates/sidebar_group.html:25 templates/sidebar_group_admin.html:30
+msgid "Group's Posts"
+msgstr ""
+
+#: templates/sidebar_group.html:26 templates/sidebar_group_admin.html:31
+msgid "Member's Posts"
+msgstr ""
+
+#: templates/sidebar_group_admin.html:47
+msgid "Not Approved"
+msgstr ""
+
+#: templates/sidebar_group_admin.html:48
+msgid "Approved"
+msgstr ""
+
+#: templates/sidebar_group_admin.html:65
+msgid "Requests"
+msgstr ""
+
+#: templates/sidebar_group_admin.html:68
+msgid "Banned members"
+msgstr ""
+
+#: templates/sidebar_group_admin.html:87
+msgid "Roles"
+msgstr ""
+
+#: templates/sidebar_group_admin.html:94
+msgid "Defaults"
+msgstr ""
+
+#: templates/sidebar_group_admin.html:97
+msgid "Custom"
+msgstr ""
+
+#: templates/sidebar_main.html:15
+msgid "My Account"
+msgstr ""
+
+#: templates/sidebar_main.html:21 templates/useraccount/index.html:7
+#: templates/useraccount/index.html:11
+#, fuzzy
+#| msgid "country"
+msgid "Account"
+msgstr "দেশ"
+
+#: templates/sidebar_main.html:22 templates/timelines/index.html:41
+#: templates/timelines/index.html:43 templates/useraccount/transfer.html:7
+#: templates/useraccount/transfer.html:11
+msgid "Transfer"
+msgstr ""
+
+#: templates/sidebar_main.html:39
+msgid "Groups"
+msgstr ""
+
+#: templates/sidebar_main.html:53 templates/timelines/index.html:4
+msgid "Timeline"
+msgstr ""
+
+#: templates/sidebar_main.html:72
+msgid "Contact Details"
+msgstr ""
+
+#: templates/sidebar_main.html:75
+msgid "Hashtag Campaign"
+msgstr ""
+
+#: templates/socialaccount/signup.html:9
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: templates/timelines/index.html:16
+msgid "My Timeline"
+msgstr ""
+
+#: templates/timelines/index.html:32
+msgid "Search: "
+msgstr ""
+
+#: templates/timelines/index.html:38
+msgid "Filters: "
+msgstr ""
+
+#: templates/timelines/index.html:51 templates/timelines/index.html:53
+msgid "Release"
+msgstr ""
+
+#: templates/timelines/index.html:56 templates/timelines/index.html:58
+msgid "Verified"
+msgstr ""
+
+#: templates/timelines/index.html:61 templates/timelines/index.html:63
+msgid "Unverified"
+msgstr ""
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "you sent"
+msgstr ""
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "units to"
+msgstr ""
+
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+msgid "sent you"
+msgstr ""
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "you requested"
+msgstr ""
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "units from"
+msgstr ""
+
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "requested you"
+msgstr ""
+
+#: templates/timelines/timeline.html:52 templates/timelines/timeline.html:70
+msgid "send"
+msgstr ""
+
+#: templates/timelines/timeline.html:85
+msgid " units basic income released"
+msgstr ""
+
+#: templates/timelines/timeline.html:96
+msgid "you verified"
+msgstr ""
+
+#: templates/timelines/timeline.html:96 templates/timelines/timeline.html:111
+msgid "as real user"
+msgstr ""
+
+#: templates/timelines/timeline.html:98
+msgid "verified you as real user"
+msgstr ""
+
+#: templates/timelines/timeline.html:111
+msgid "you unverified"
+msgstr ""
+
+#: templates/timelines/timeline.html:113
+msgid "unverified you as real user"
+msgstr ""
+
+#: templates/timelines/timeline.html:126
+msgid "Requested connection to "
+msgstr ""
+
+#: templates/timelines/timeline.html:133
+msgid "sent connection request"
+msgstr ""
+
+#: templates/timelines/timeline.html:137
+msgid "Reject"
+msgstr ""
+
+#: templates/timelines/timeline.html:138
+msgid "Accept"
+msgstr ""
+
+#: templates/timelines/timeline.html:143
+msgid "Connection type: "
+msgstr ""
+
+#: templates/timelines/timeline.html:145
+#, fuzzy
+#| msgid "Family type"
+msgid "Family type: "
+msgstr "পৰিয়ালৰ প্ৰোকাৰ"
+
+#: templates/timelines/timeline.html:148
+msgid "Friend type: "
+msgstr ""
+
+#: templates/timelines/timeline.html:151
+msgid "Contact type: "
+msgstr ""
+
+#: templates/useraccount/index.html:29 templates/useraccount/transfer.html:29
+msgid "Quick Review"
+msgstr ""
+
+#: templates/useraccount/index.html:86
+msgid "Transactions"
+msgstr ""
+
+#: templates/useraccount/index.html:117
+msgid "Details"
+msgstr ""
+
+#: templates/useraccount/index.html:155
+msgid "Basic Income Release"
+msgstr ""
+
+#: templates/useraccount/transfer.html:44
+msgid "Select User"
+msgstr ""
+
+#: templates/useraccount/transferunit.html:4
+msgid "Send Amount To"
+msgstr ""
+
+#: useraccount/forms.py:7 useraccount/forms.py:26
+msgid "Instruction"
+msgstr ""
+
+#: useraccount/forms.py:8 useraccount/forms.py:27
+#, fuzzy
+#| msgid "country"
+msgid "Amount"
+msgstr "দেশ"
+
+#: useraccount/forms.py:17
+msgid "Amount can't exceed your balance"
+msgstr ""
+
+#: useraccount/views.py:108
+msgid "Transfer completed!!"
+msgstr ""
+
+#: useraccount/views.py:175
+msgid "Request Sent!!"
+msgstr ""
+
+#~ msgid "Passwords do not match"
+#~ msgstr "পাছৱড মিলা নাই"
+
+#~ msgid "This email address is already used login instead"
+#~ msgstr "Email ব্যবহ্ৰিত হৈচে"
+
+#~ msgid "log in successful"
+#~ msgstr "log in সম্পন্ন"
+
+#~ msgid "Your Account is not active"
+#~ msgstr "আপোনাৰ একাউন্টতো সক্ৰিয় নহয়"
+
+#~ msgid "username or password incorrect"
+#~ msgstr "username বা password ভুল হৈচে"
+
+#~ msgid "Register Here"
+#~ msgstr "ইয়াত পঞ্জীয়ন কৰক"

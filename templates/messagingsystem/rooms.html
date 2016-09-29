@@ -1,0 +1,19 @@
+{% load staticfiles %}
+{% for chat in chats %}
+<div class="chatuser {% ifequal forloop.counter 1 %} activechat {% endifequal %}" id="room-{{ chat.id }}" data-id="{{ chat.id }}" data-name="{{ chat.name }}">
+    <a href="javascript:void(0)">
+        {% for subscriber in chat.subscribers.all %}
+            {% ifequal request.user subscriber %} 
+            {% else %}
+                {% if subscriber.profile.avatar %}
+                    <img src="{{ subscriber.profile.avatar.thumbnail.128x128 }}" class="direct-chat-img bigger-img"> 
+                {% else %}
+                    <img src="{% static "dist/img/placeholder-user.png" %}" class="direct-chat-img bigger-img" width="128" height="128">   
+                {% endif %}
+            <p>&nbsp;{{ subscriber.username }}</p>
+            {% endifequal %}
+        {% endfor %}
+        <p>&nbsp;{{ chat.messages.last.content|truncatechars:20 }}</p>
+    </a>
+</div>
+{% endfor %}
