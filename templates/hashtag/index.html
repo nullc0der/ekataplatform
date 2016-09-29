@@ -64,7 +64,7 @@
                             <div class="text-center">
                                 <p>{% trans "You've not added facebook yet! Click the button to add" %}</p>
                                 <div class="col-md-6 col-md-offset-3">
-                                    <a class="btn btn-block btn-social btn-facebook" href="{% provider_login_url "facebook" process="connect" next="/hashtag" %}"><i class="fa fa-facebook"></i> {% trans "Add Facebook" %} </a>
+                                    <a class="btn btn-block btn-social btn-facebook" href="{% provider_login_url "facebook" process="connect" next="/hashtag/create/" %}"><i class="fa fa-facebook"></i> {% trans "Add Facebook" %} </a>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             <div class="text-center">
                                 <p>{% trans "You've not added twitter yet! Click the button to add" %}</p>
                                 <div class="col-md-6 col-md-offset-3">
-                                    <a class="btn btn-block btn-social btn-twitter" href="{% provider_login_url "twitter" process="connect" next="/hashtag" %}"><i class="fa fa-twitter"></i> {% trans "Add Twitter" %} </a>
+                                    <a class="btn btn-block btn-social btn-twitter" href="{% provider_login_url "twitter" process="connect" next="/hashtag/create/" %}"><i class="fa fa-twitter"></i> {% trans "Add Twitter" %} </a>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                             <button class="btn btn-primary btn-block btn-flat" onclick="fetchServerImages()">{% trans "Select from uploaded" %}</button>
                         </div>
                         <div class="col-md-12" id="serverimages">
-                            
+
                         </div>
                         <div class="col-md-4 col-md-offset-4">
                             <a data-target="#fileModal" data-toggle="modal" class="btn btn-primary btn-block btn-flat" style="margin-top:10px;"><i class="fa fa-cloud-upload"></i>&nbsp;{% trans "Upload New Images" %}</a>
@@ -222,7 +222,7 @@
             ctx.drawImage(img2, 0, ((cnvs.height / 100) * 85), cnvs.width, ((cnvs.height / 100) * 15));
         }
         function replaceCanvas(img1_url) {
-            updateInfo(col, img1_url);   
+            updateInfo(col, img1_url);
             if ($("#checkfacebook").prop("active")) {
                 checkFacebook(true);
             }
@@ -267,14 +267,14 @@
                             $("#uploadbtn").text('{% trans "Upload to facebook" %}');
                             $("#serverimages").hide();
                             $("#avatarimg").show('slow');
-                            $("#checkfacebook").prop("active", true);   
+                            $("#checkfacebook").prop("active", true);
                             $("#checktwitter").prop("active", false);
                         }
                     }
                     else {
                         $("#addtwitter").hide();
                         $("#avatarimg").hide();
-                        $("#addfacebook").show('slow');   
+                        $("#addfacebook").show('slow');
                     }
                     $(".se-pre-con").fadeOut("slow");
                 }
@@ -318,7 +318,7 @@
                             $("#serverimages").hide();
                             $("#avatarimg").show('slow');
                             $("#checkfacebook").prop("active", false);
-                            $("#checktwitter").prop("active", true);   
+                            $("#checktwitter").prop("active", true);
                         }
                     }
                     else {

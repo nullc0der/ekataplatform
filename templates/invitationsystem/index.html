@@ -1,0 +1,28 @@
+{% extends "landing_base.html" %}
+{% load staticfiles i18n %}
+{% block title %}
+    Get Invitation
+{% endblock %}
+{% block content %}
+    <section id="invitation">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div id="invitation-content">
+                            <h1>{% trans "Get access to ekata beta" %}</h1>
+                            <form action="#" class="form-inline">
+                                <div class="input-group">
+                                    <input class="form-control input-lg" type="email" placeholder="Enter your email">
+                                </div>
+                                <div class="input-group">
+                                    <button class="btn btn-primary btn-lg" style="border-radius:0;">{% trans "Get my invitation" %}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

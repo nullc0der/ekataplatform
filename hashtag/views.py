@@ -107,6 +107,14 @@ def upload_to_twitter(request):
             delete=False
         )
         f.writelines(source)
+        g = GeoIP2()
+        latlng = g.lat_lon(get_client_ip(request))
+        hashtagimg = HashtagImg()
+        hashtagimg.lat = latlng[0]
+        hashtagimg.lng = latlng[1]
+        hashtagimg.uploader = request.user.username
+        hashtagimg.image = File(f)
+        hashtagimg.save()
         f.close()
         api.update_profile_image(f.name)
         os.remove(f.name)
