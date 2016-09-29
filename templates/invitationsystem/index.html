@@ -4,25 +4,45 @@
     Get Invitation
 {% endblock %}
 {% block content %}
-    <section id="invitation">
+    <section id="newshome">
         <div class="overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div id="invitation-content">
-                            <h1>{% trans "Get access to ekata beta" %}</h1>
-                            <form action="#" class="form-inline">
+                            <h1 class="newshome-header">{% trans "Get access to ekata beta" %}</h1>
+                            <form class="form-inline" id="getinviteform">
                                 <div class="input-group">
-                                    <input class="form-control input-lg" type="email" placeholder="Enter your email">
+                                    <input class="form-control input-lg" name="email" type="email" placeholder="Enter your email">
                                 </div>
                                 <div class="input-group">
                                     <button class="btn btn-primary btn-lg" style="border-radius:0;">{% trans "Get my invitation" %}</button>
                                 </div>
                             </form>
+                            <p id="success">
+                                {% trans "Your request sent successfully!! You will get your id soon" %}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+{% block extrascripts %}
+    <script type="text/javascript">
+        $("#success").hide();
+        var frm = $("#getinviteform");
+        frm.submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                url: '{% url 'invitationsystem:index' %}',
+                type: 'POST',
+                data: frm.serialize(),
+                success: function(){
+                    $("#success").fadeIn();
+                }
+            })
+        });
+    </script>
 {% endblock %}

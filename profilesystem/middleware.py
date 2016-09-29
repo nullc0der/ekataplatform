@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 
 from profilesystem.models import UserCompletionRing
 
@@ -32,3 +33,10 @@ class RemoveSkippedMiddleware(object):
                             skipped_tasks.remove('email_verified')
             completionring.skipped_list = {"skipped": skipped_tasks}
             completionring.save()
+
+
+class CheckInvitationMiddleware(object):
+    def process_request(self, request):
+        if request.user.is_authenticated() and request.path != reverse('invitationsystem:addinvitation'):
+            if not request.user.profile.invitation_verified:
+                return redirect(reverse('invitationsystem:addinvitation'))

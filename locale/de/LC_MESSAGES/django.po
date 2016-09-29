@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-27 12:10+0000\n"
+"POT-Creation-Date: 2016-09-29 11:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bip_phase1/settings.py:195
+#: ekatadeveloper/settings/base.py:199
 msgid "German"
 msgstr ""
 
-#: bip_phase1/settings.py:196
+#: ekatadeveloper/settings/base.py:200
 msgid "English"
 msgstr ""
 
-#: bip_phase1/settings.py:197
+#: ekatadeveloper/settings/base.py:201
 msgid "Assamese"
 msgstr ""
 
@@ -358,28 +358,28 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
-#: profilesystem/models.py:140 templates/profilesystem/address.html:5
+#: profilesystem/models.py:141 templates/profilesystem/address.html:5
 #: templates/publicusers/user.html:183
 msgid "House Number"
 msgstr ""
 
-#: profilesystem/models.py:141
+#: profilesystem/models.py:142
 msgid "street"
 msgstr ""
 
-#: profilesystem/models.py:142
+#: profilesystem/models.py:143
 msgid "zip code"
 msgstr ""
 
-#: profilesystem/models.py:143
+#: profilesystem/models.py:144
 msgid "city"
 msgstr ""
 
-#: profilesystem/models.py:144
+#: profilesystem/models.py:145
 msgid "state"
 msgstr ""
 
-#: profilesystem/models.py:145
+#: profilesystem/models.py:146
 msgid "country"
 msgstr ""
 
@@ -834,9 +834,9 @@ msgstr ""
 msgid "Member Since "
 msgstr ""
 
-#: templates/base.html:260 templates/profilesystem/index.html:5
-#: templates/profilesystem/index.html:38 templates/profilesystem/index.html:54
-#: templates/sidebar_main.html:32
+#: templates/base.html:260 templates/landing_base.html:95
+#: templates/profilesystem/index.html:5 templates/profilesystem/index.html:38
+#: templates/profilesystem/index.html:54 templates/sidebar_main.html:32
 msgid "Profile"
 msgstr ""
 
@@ -881,7 +881,7 @@ msgstr ""
 msgid "Connections"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:56
+#: templates/dashboard/dashboard.html:56 templates/landing_base.html:93
 msgid "Messages"
 msgstr ""
 
@@ -1613,6 +1613,193 @@ msgstr ""
 msgid "We will contact you shortly"
 msgstr ""
 
+#: templates/invitationsystem/index.html:13
+msgid "Get access to ekata beta"
+msgstr ""
+
+#: templates/invitationsystem/index.html:19
+msgid "Get my invitation"
+msgstr ""
+
+#: templates/landing/hashtag.html:23
+msgid "Show Support"
+msgstr ""
+
+#: templates/landing/hashtag.html:24
+msgid ""
+"In adding the #basicincome hashtag banner to your facebook and twitter "
+"profile !!"
+msgstr ""
+
+#: templates/landing/hashtag.html:36
+msgid "World Supporters of Basic Income"
+msgstr ""
+
+#: templates/landing/hashtag.html:59
+msgid "Create my banner"
+msgstr ""
+
+#: templates/landing/hashtag.html:61
+msgid "Login/Signup to be here"
+msgstr ""
+
+#: templates/landing/index.html:22
+msgid ""
+"Ekata is a social platform for individuals, communities, associations, and "
+"municipalities. Ekata empowers you with the best of today’s online "
+"technologies -- digital tools to help you stay managed, connected, and "
+"informed. Whether you want to build a web presence for yourself or your "
+"organization, or you simply want a place to connect with others who share "
+"your interests and goals, Ekata is the place for you. Welcome!"
+msgstr ""
+
+#: templates/landing/index.html:37
+msgid "Communities"
+msgstr ""
+
+#: templates/landing/index.html:38
+msgid ""
+"You're a social group that shares something in common. Small or large. "
+"Local, national, or global. Virtual or geographically based. Your common "
+"purpose and identity give you a sense of community. Ekata was built to align "
+"with how you wish to relate."
+msgstr ""
+
+#: templates/landing/index.html:42
+msgid "Associations"
+msgstr ""
+
+#: templates/landing/index.html:43
+msgid ""
+"You're a homeowners or condo association, property or land trust, or "
+"nonprofit organization. An organized body of people who live or work "
+"together to improve your lives or society. Ekata gives you the tools to "
+"manage your association’s business, membership, activities and interests."
+msgstr ""
+
+#: templates/landing/index.html:47
+msgid "Municipalities"
+msgstr ""
+
+#: templates/landing/index.html:48
+msgid ""
+"You're a town, municipality or county. A government institution with "
+"incorporated status in a jurisdiction. The Ekata platform has the "
+"administrative tools you need to function efficiently and connect with "
+"elected officials, staff, and constituents in the 21st century."
+msgstr ""
+
+#: templates/landing/index.html:60
+msgid "Platform Vision"
+msgstr ""
+
+#: templates/landing/index.html:68
+msgid ""
+"Mark Witham, social entrepreneur and founder of the Ekata platform (Formally "
+"known as Basic Income Project), is passionate about empowering others with "
+"options to bring about their own social change."
+msgstr ""
+
+#: templates/landing/index.html:73
+msgid ""
+"We combine technology, knowledge, and imagination to build better social "
+"systems for this planet and future generations. Now we need you! Use the "
+"Ekata platform to help create a network for fulfilling lives, communities, "
+"and positive social change."
+msgstr ""
+
+#: templates/landing/index.html:88
+msgid "Social Responsiblity"
+msgstr ""
+
+#: templates/landing/index.html:94
+msgid "Ekata has partnered with "
+msgstr ""
+
+#: templates/landing/index.html:94
+msgid ", a socially responsible digital currency which is distributed as "
+msgstr ""
+
+#: templates/landing/index.html:94
+msgid ""
+" to people around the world. Powered by blockchain technology, Grantcoin is "
+"the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization "
+"with a mission for social good. Join Ekata and receive Grantcoin on a "
+"regular basis, for free. Spend it or give it away to other Ekata users -- "
+"artists, musicians, bloggers, nonprofits, or businesses."
+msgstr ""
+
+#: templates/landing/index.html:144
+msgid "Many Key Features"
+msgstr ""
+
+#: templates/landing/index.html:147
+msgid "Group sites for art, music, news, politics, activism, and business."
+msgstr ""
+
+#: templates/landing/index.html:151
+msgid "Social communication through instant messaging, posts, and comments."
+msgstr ""
+
+#: templates/landing/index.html:155
+msgid "Governance of members, staff roles, social forums, and member voting."
+msgstr ""
+
+#: templates/landing/index.html:159
+msgid "Web of trust and a socially responsible currency system."
+msgstr ""
+
+#: templates/landing/index.html:178
+msgid "More Features"
+msgstr ""
+
+#: templates/landing/index.html:180
+msgid "API for building in app and feature integrations."
+msgstr ""
+
+#: templates/landing/index.html:181
+msgid "Open Source."
+msgstr ""
+
+#: templates/landing/index.html:193
+msgid "#BasicIncome Hashtag Banner Campaign"
+msgstr ""
+
+#: templates/landing/index.html:199
+msgid ""
+"Help Ekata in showing your support for basic income by adding a custom "
+"colored #basicincome hashtag banner to your Twitter and Facebook profile "
+"photo. Together let us raise awareness!"
+msgstr ""
+
+#: templates/landing/index.html:201
+msgid "Click here to create and upload the banner"
+msgstr ""
+
+#: templates/landing/index.html:368
+msgid "Please feel free to inquire more about the EKATA platform."
+msgstr ""
+
+#: templates/landing/news.html:22
+msgid "News and Stories"
+msgstr ""
+
+#: templates/landing/news.html:29
+msgid "Trending"
+msgstr ""
+
+#: templates/landing/news.html:59 templates/landing/newsdetail.html:24
+msgid "About Me"
+msgstr ""
+
+#: templates/landing_base.html:91 templates/sidebar_main.html:15
+msgid "My Account"
+msgstr ""
+
+#: templates/landing_base.html:97
+msgid "Sign-out"
+msgstr ""
+
 #: templates/messagingsystem/chats.html:70
 msgid "Send Unit to: "
 msgstr ""
@@ -2076,10 +2263,6 @@ msgstr ""
 
 #: templates/sidebar_group_admin.html:97
 msgid "Custom"
-msgstr ""
-
-#: templates/sidebar_main.html:15
-msgid "My Account"
 msgstr ""
 
 #: templates/sidebar_main.html:21 templates/useraccount/index.html:7

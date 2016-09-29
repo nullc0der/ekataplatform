@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from invitationsystem.views import index_page
+from invitationsystem import views
 
 urlpatterns = [
-    url(r'^$', index_page, name='index'),
+    url(r'^$', views.index_page, name='index'),
+    url(r'^addinvitation/$', views.invitation_id_page, name='addinvitation')
 ]

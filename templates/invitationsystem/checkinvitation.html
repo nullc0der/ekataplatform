@@ -1,0 +1,25 @@
+{% extends "landing_base.html" %}
+{% load staticfiles i18n bootstrap_tags %}
+{% block title %}
+    Enter Invitation
+{% endblock %}
+{% block content %}
+    <section id="newshome">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div id="invitation-content">
+                            <h1 class="newshome-header">{% trans "Get access to ekata beta" %}</h1>
+                            <form action="{% url 'invitationsystem:addinvitation' %}" method="POST" class="form-horizontal">
+                                {% csrf_token %}
+                                {{ form|as_bootstrap }}
+                                <button type="submit" name="button" class="btn btn-primary">{% trans "Submit" %}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

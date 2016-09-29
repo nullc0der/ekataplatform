@@ -97,6 +97,7 @@ class UserProfile(models.Model):
     avatar_public = models.BooleanField(default=True)
     phone_public = models.BooleanField(default=True)
     completion_public = models.BooleanField(default=True)
+    invitation_verified = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.user.username
