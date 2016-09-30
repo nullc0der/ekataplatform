@@ -11,11 +11,18 @@
                     <div class="col-md-12 text-center">
                         <div id="invitation-content">
                             <h1 class="newshome-header">{% trans "Get access to ekata beta" %}</h1>
+                            {% if request.user.profile.invitation_verified %}
+                                <p>
+                                    You already verified your invitation
+                                </p>
+                                <a style="color:#fff;" href="{% url 'dashboard:index' %}">Click here to go to dashboard</a>
+                            {% else %}
                             <form action="{% url 'invitationsystem:addinvitation' %}" method="POST" class="form-horizontal">
                                 {% csrf_token %}
                                 {{ form|as_bootstrap }}
                                 <button type="submit" name="button" class="btn btn-primary">{% trans "Submit" %}</button>
                             </form>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
