@@ -1,4 +1,4 @@
-{% load staticfiles i18n bip_extras %}
+{% load staticfiles i18n bip_extras raven %}
 <!DOCTYPE html>
 <html>
 
@@ -444,6 +444,9 @@
     <audio src="{% static "dist/audio/messaging.mp3" %}" id="messagingaudio"></audio>
     <!-- jQuery 2.2.3 -->
     <script src="{% static "plugins/jQuery/jquery-2.2.3.min.js" %}"></script>
+    <!-- Raven -->
+    <script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
+    <script>Raven.config('{% sentry_public_dsn %}').install()</script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
