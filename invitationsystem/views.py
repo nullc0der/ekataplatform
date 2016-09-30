@@ -1,6 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.crypto import get_random_string
+from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 
 from invitationsystem.models import Invitation
 from invitationsystem.forms import CheckInvitationForm
@@ -28,9 +30,10 @@ def invitation_id_page(request):
         if form.is_valid():
             request.user.profile.invitation_verified = True
             request.user.profile.save()
-            invitation_id = form.cleaned_data['invitation_id']
+            invitation_id = form.cleaned_data.get('invitation_id')
             invitation = Invitation.objects.get(invitation_id=invitation_id)
             invitation.delete()
+            return redirect(reverse('dashboard:index'))
     return render(
         request,
         'invitationsystem/checkinvitation.html',

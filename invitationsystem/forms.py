@@ -11,6 +11,6 @@ class CheckInvitationForm(forms.Form):
         invitation_id = self.cleaned_data.get('invitation_id')
         try:
             invitation = Invitation.objects.get(invitation_id=invitation_id)
-            return invitation_id
         except ObjectDoesNotExist:
-            return forms.ValidationError("Invitation key doesn't exist")
+            raise forms.ValidationError("Invitation key doesn't exist")
+        return invitation_id
