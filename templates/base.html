@@ -709,6 +709,31 @@
         $("#navleft").hide();
         $("#navright").hide();
         {% endif %}
+        function getChats(){
+            $.ajax({
+                url: '{% url 'messaging:index' %}?navbar',
+                success: function(data){
+                    if (data.has_unread) {
+                        $("#chatindicator").text(data.has_unread);
+                        $("#chatindicator").show();
+                        $("#sidebarchat").text(data.has_unread);
+                        $("#sidebarchat").show();
+                    }
+                    else {
+                        $("#chatindicator").hide();
+                        $("#sidebarchat").hide();
+                    }
+                    $("#navmessages").append(data.html);
+                    $(".menu").slimscroll({
+                        height: '200px',
+                        size: '3px',
+                        alwaysVisible: false
+                    });
+                    convertEmojis();
+                }
+            });
+        };
+        getChats();
         {% url 'messaging:index' as mess %}
         {% ifequal request.path mess %}
         {% else %}
@@ -725,9 +750,9 @@
                         start: 'bottom'
                     });
                     $("li[data-name='" + chatroom + "']").removeClass("blink");
-                    $("#chatindicator").hide();
                     convertEmojis();
                     setMessageRead();
+                    setTimeout(function() { getChats(); }, 3000);
                 }
             });
         }
@@ -739,6 +764,7 @@
         });
         $("#notindicator").hide();
         $("#chatindicator").hide();
+        $("#sidebarchat").hide();
         $.ajax({
             url: '{% url 'profilesystem:getui' %}',
             success: function(data){
@@ -782,22 +808,6 @@
                     size: '3px',
                     alwaysVisible: false
                 });
-            }
-        });
-        $.ajax({
-            url: '{% url 'messaging:index' %}?navbar',
-            success: function(data){
-                if (data.has_unread) {
-                    $("#chatindicator").text(data.has_unread);
-                    $("#chatindicator").show();
-                }
-                $("#navmessages").append(data.html);
-                $(".menu").slimscroll({
-                    height: '200px',
-                    size: '3px',
-                    alwaysVisible: false
-                });
-                convertEmojis();
             }
         });
     </script>
@@ -872,6 +882,8 @@
                             if (data.has_unread) {
                                 $("#chatindicator").text(data.has_unread);
                                 $("#chatindicator").show();
+                                $("#sidebarchat").text(data.has_unread);
+                                $("#sidebarchat").show();
                             }
                         }
                     });
