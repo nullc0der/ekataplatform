@@ -943,3 +943,11 @@ footer
     max-height: 215px;
     overflow-y: scroll;
 }
+
+.badge-message {
+  background-color: #468847;
+}
+
+.badge-message:hover {
+  background-color: #356635;
+}

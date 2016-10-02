@@ -111,6 +111,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.core.context_processors.static',
                 'ws4redis.context_processors.default',
+                'messagingsystem.context_processors.unread_message'
             ],
         },
     },

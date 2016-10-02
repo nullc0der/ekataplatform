@@ -45,7 +45,7 @@ def messaging_index(request):
         context = {'chats': chats, 'ruser': request.user}
         m = template.render(context)
         data = {
-            'has_unread': True if has_unread else False,
+            'has_unread': has_unread,
             'html': m
         }
         json_data = json.dumps(data)

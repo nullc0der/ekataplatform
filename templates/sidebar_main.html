@@ -52,6 +52,11 @@
     <a href="{% url 'messaging:index' %}">
         <i class="fa fa-comment"></i>
         <span>{% trans "Messaging" %}</span>
+        {% if UNREAD_MESSAGE %}
+        <span class="pull-right-container">
+            <span class="label bg-green pull-right">{{ UNREAD_MESSAGE }}</span>
+        </span>
+        {% endif %}
     </a>
 </li>
 <li class="treeview mainnavcontent {% active request 'information:index' %} {% active request 'information:contact' %}">

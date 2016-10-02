@@ -90,7 +90,14 @@
 								<ul class="dropdown-menu">
 									<li><a class="external" style="height: 50px;" href="{% url 'myaccount:index' %}"><i class="fa fa-bank"></i> {% trans "My Account" %}</a></li>
 									<li class="divider" style="margin: 0;"></li>
-									<li><a class="external" style="height: 50px;" href="{% url 'messaging:index' %}"><i class="fa fa-comment"></i> {% trans "Messages" %}</a></li>
+									<li>
+										<a class="external" style="height: 50px;" href="{% url 'messaging:index' %}">
+											<i class="fa fa-comment"></i> {% trans "Messages" %}
+											{% if UNREAD_MESSAGE %}
+												<span class="badge badge-message" style="margin-left: 10%">{{ UNREAD_MESSAGE }}</span>
+											{% endif %}
+										</a>
+									</li>
 									<li class="divider" style="margin: 0;"></li>
 									<li><a class="external" style="height: 50px;" href="{% url 'profilesystem:index' %}"><i class="fa fa-cog"></i> {% trans "Profile" %}</a></li>
 									<li class="divider" style="margin: 0;"></li>
