@@ -506,18 +506,16 @@ img
 /* start contact */
 #contact
     {
-        background: url('../img/contact-bg.jpg') no-repeat;
+        background: #434955;
         background-size: cover;
         color: #fff;
     }
-#contact h2
-    {
-        padding-bottom: 10px;
-    }
-#contact address
-    {
-        padding-top: 20px;
-    }
+
+#contact .overlay {
+    padding-top: 50px;
+    padding-bottom: 0;
+}
+
 #contact address .fa
     {
         background: #28a7e9;
@@ -528,10 +526,6 @@ img
         text-align: center;
         margin-top: 6px;
         margin-right: 10px;
-    }
-#contact .contact-form
-    {
-        padding-top: 40px;
     }
 #contact .form-control
     {
@@ -555,9 +549,39 @@ img
     background: #107DB6;
 }
 
-.address-text {
-    margin-left: 12%;
+#contact .link-wrapper {
+    margin-left: 18%;
+}
+
+#contact .link-wrapper a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#contact .link-wrapper a:hover {
+    color: #828688;
+    text-decoration: underline;
+}
+
+#contact .address-text {
+    margin-left: 13%;
     margin-bottom: 0;
+}
+
+@media ( min-width:768px ) {
+    #contact .contact-form {
+        margin-top: 60px;
+    }
+}
+
+@media ( max-width:767px ) {
+    #contact .address-text {
+        margin-left: 18%;
+        margin-bottom: 0;
+    }
+    #contact .link-wrapper {
+        margin-left: 0;
+    }
 }
 
 /* end contact */
@@ -626,10 +650,6 @@ img
 
 #disclaimer {
     margin-top: 150px;
-}
-
-.footer-link a {
-        color: #828688;
 }
 
 .companyname {
@@ -739,15 +759,11 @@ img
 /* start footer */
 footer
     {
-        background: #fff;
+        background: #434955;
         font-weight: 400;
         text-align: center;
         padding: 20px;
     }
-
-.footer a {
-    color:
-}
 /* end footer */
 
 @media screen and ( max-width: 991px ) {
@@ -776,9 +792,6 @@ footer
         padding-top: 20px;
         padding-bottom: 40px;
     }
-    #contact .overlay {
-        padding-top: 40px;
-    }
 }
 /* start media 360 */
 @media screen and ( max-width: 360px ){
@@ -788,11 +801,6 @@ footer
         }
 }
 /* end media 360 */
-
-.footer-text {
-    color: #828688;
-    margin-top: 5px;
-}
 
 @font-face {
     font-family: 'si';
@@ -907,16 +915,6 @@ footer
         line-height: 30px;
         font-size: 20px;
     }
-
-    .footer-link {
-        float: none !important;
-    }
-}
-
-@media (min-width:768px) {
-    .contactform {
-        margin-top: 110px;
-    }
 }
 
 .btn-file {
@@ -950,4 +948,8 @@ footer
 
 .badge-message:hover {
   background-color: #9c3d31;
+}
+
+.bg-blue {
+    background-color: #0073b7;
 }

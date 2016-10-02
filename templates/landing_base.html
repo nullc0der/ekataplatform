@@ -143,31 +143,88 @@
 		{% block content %}
 
 		{% endblock %}
+		<!-- start contact -->
+		<section id="contact">
+			<div class="overlay">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+							<div class="link-wrapper">
+								<h2>{% trans "Links" %}</h2>
+								<ul class="list-inline">
+									<li><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
+									<li><a href="{% url 'myaccount:index' %}">{% trans "My Account" %}</a></li>
+									<li><a href="{% url 'profilesystem:index' %}">{% trans "Profile" %}</a></li>
+									<li><a href="{% url 'publicusers:index' %}">{% trans "Users" %}</a></li>
+									<li><a href="{% url 'g:allgroups' %}">{% trans "Groups" %}</a></li>
+									<li><a href="{% url 'usertimeline:index' %}">{% trans "Timeline" %}</a></li>
+									<li><a href="{% url 'messaging:index' %}">{% trans "Messages" %}</a></li>
+									<li><a href="{% url 'information:index' %}">{% trans "information" %}</a></li>
+									<li><a href="{% url 'hashtag:index' %}">{% trans "Create Hashtag" %}</a></li>
+									<li><a href="{% url 'disclaimer' %}">{% trans "Disclaimer" %}</a></li>
+									<li><a href="{% url 'landing:newses' %}">{% trans "News" %}</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+							<h2>{% trans "Contact" %}</h2>
+							<ul class="soc">
+								<li><a class="soc-twitter" href="https://twitter.com/ekatasocial"></a></li>
+								<li><a class="soc-facebook" href="https://www.facebook.com/ekatasocial"></a></li>
+								<li><a class="soc-google" href="https://business.google.com/b/110706127430395330685"></a></li>
+								<li><a class="soc-linkedin soc-icon-last" href="https://www.linkedin.com/groups/12011491"></a></li>
+							</ul>
+							<h3>Ekata Social LLC</h3>
+							<p>{% trans "Please feel free to inquire more about the EKATA platform." %}</p>
+							<img width="400" src="https://maps.googleapis.com/maps/api/staticmap?center=Orange,+VA&zoom=13&scale=false&size=400x200&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7COrange,+VA&key=AIzaSyCJJXODPR1lcqDIO-7fcpb8r7kjamnZOvY" alt="Google Map of Orange, VA">
+							<address>
+								<i class="fa fa-map-marker"></i>
+								138 West Washington Street Unit A,
+								<p class="address-text">Orange, VA 22960</p>
+								<p class="address-text">United States</p>
+							</address>
+						</div>
+						<div class="col-md-4 wow fadeInUp contactform" data-wow-delay="0.6s">
+							<div class="contact-form">
+								<form action="." method="post">
+									{% csrf_token %}
+									<div class="col-md-6">
+										<input type="text" name="name" class="form-control" placeholder="Name">
+									</div>
+									<div class="col-md-6">
+										<input type="email" name="email" class="form-control" placeholder="Email">
+									</div>
+									<div class="col-md-12">
+										<input type="text" name="subject" class="form-control" placeholder="Subject">
+									</div>
+									<div class="col-md-12">
+										<textarea class="form-control" placeholder="Message" name="message" rows="4"></textarea>
+									</div>
+									<div class="col-md-12">
+										<input type="submit" class="form-control text-uppercase" value="Contact us">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end contact -->
 		<!-- start footer -->
 		<footer>
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-						{% if request.path == '/' %}
-						{% else %}
-						<ul class="soc">
-    						<li><a class="soc-twitter" href="https://twitter.com/ekatasocial"></a></li>
-    						<li><a class="soc-facebook" href="https://www.facebook.com/ekatasocial"></a></li>
-    						<li><a class="soc-google" href="https://business.google.com/b/110706127430395330685"></a></li>
-    						<li><a class="soc-linkedin soc-icon-last" href="https://www.linkedin.com/groups/12011491"></a></li>
-						</ul>
-						{% endif %}
-					</div>
-				</div>
-				<div class="row">
 					<div class="col-md-6">
-						<div class="pull-left footer-link">
-							<p><a href="{% url 'disclaimer' %}">Disclaimer</a> | <a href="{% url 'landing:newses' %}">News</a></p>
+						<div class="pull-left">
+							<p style="color:#fff;">Copyright © 2014-2016 Ekata Social LLC. All rights reserved.</p>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="pull-right footer-link">
-							<p class="footer-text">Copyright © 2014-2016 Ekata Social LLC. All rights reserved.</p>
+						<div class="pull-right">
+							<small class="label bg-blue">
+								Powered by Ekata
+							</small>
 						</div>
 					</div>
 				</div>

@@ -54,7 +54,7 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="text-center" style="margin-top: 20px;">
+            <div class="text-center" style="margin-top: 20px; margin-bottom:20px;">
                 {% if request.user.is_authenticated %}
                     <a href="{% url 'hashtag:index' %}" class="btn btn-primary">{% trans "Create my banner" %}</a>
                 {% else %}
