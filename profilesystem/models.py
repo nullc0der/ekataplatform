@@ -77,6 +77,8 @@ class UserProfile(models.Model):
     avatar = VersatileImageField(
         verbose_name='user avatar',
         upload_to='avatar',
+        null=True,
+        blank=True
     )
     title = models.CharField(max_length=100, default='user')
     website = models.URLField(default='', blank=True)
@@ -86,7 +88,7 @@ class UserProfile(models.Model):
         default='',
         blank=True
     )
-    about_me = models.TextField(default='')
+    about_me = models.TextField(default='', blank=True)
     account_type = models.CharField(max_length=100, default='personal', blank=True)
 
     name_public = models.BooleanField(default=True)

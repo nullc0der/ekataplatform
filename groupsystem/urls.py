@@ -3,18 +3,66 @@ from groupsystem import views
 
 
 urlpatterns = [
-    url(r'^groups/$', views.all_group_page, name='allgroups'),
-    url(r'^joinedgroups/$', views.joined_group_page, name='joinedgroups'),
-    url(r'^subscribedgroups/$', views.user_group_page, name='subscribedgroups'),
-    url(r'^creategroup/$', views.create_group, name='creategroup'),
-    url(r'^group/(?P<id>\d+)/$', views.basic_group_details, name='groupdetails'),
-    url(r'^(?P<group_id>\d+)/n/(?P<id>\d+)/$', views.news_details, name='newsdetails'),
-    url(r'^group/(?P<id>\d+)/events/$', views.group_events_page, name='events'),
-    url(r'^group/(?P<id>\d+)/groupposts/$', views.group_admin_post_page, name='adminposts'),
-    url(r'^group/(?P<id>\d+)/groupposts/membercreated/$', views.group_member_post_page, name='memberposts'),
-    url(r'^group/(?P<group_id>\d+)/groupposts/(?P<post_id>\d+)/$', views.postdetails_page, name='postdetail'),
-    url(r'^(?P<group_id>\d+)/l/(?P<post_id>\d+)/$', views.like_post, name='like'),
-    url(r'^c/(?P<group_id>\d+)/(?P<post_id>\d+)/$', views.comment_post, name='comment'),
+    url(
+        r'^groups/$',
+        views.all_group_page,
+        name='allgroups'
+    ),
+    url(
+        r'^joinedgroups/$',
+        views.joined_group_page,
+        name='joinedgroups'
+    ),
+    url(
+        r'^subscribedgroups/$',
+        views.subscribed_group_page,
+        name='subscribedgroups'
+    ),
+    url(
+        r'^creategroup/$',
+        views.create_group,
+        name='creategroup'
+    ),
+    url(
+        r'^group/(?P<group_id>\d+)/$',
+        views.basic_group_details,
+        name='groupdetails'
+    ),
+    url(
+        r'^(?P<group_id>\d+)/n/(?P<news_id>\d+)/$',
+        views.news_details,
+        name='newsdetails'
+    ),
+    url(
+        r'^group/(?P<group_id>\d+)/events/$',
+        views.group_events_page,
+        name='events'
+    ),
+    url(
+        r'^group/(?P<group_id>\d+)/groupposts/$',
+        views.group_admin_post_page,
+        name='adminposts'
+    ),
+    url(
+        r'^group/(?P<group_id>\d+)/groupposts/membercreated/$',
+        views.group_member_post_page,
+        name='memberposts'
+    ),
+    url(
+        r'^group/(?P<group_id>\d+)/groupposts/(?P<post_id>\d+)/$',
+        views.postdetails_page,
+        name='postdetail'
+    ),
+    url(
+        r'^(?P<group_id>\d+)/l/(?P<post_id>\d+)/$',
+        views.like_post,
+        name='like'
+    ),
+    url(
+        r'^c/(?P<group_id>\d+)/(?P<post_id>\d+)/$',
+        views.comment_post,
+        name='comment'
+    ),
     url(
         r'^creatememberpost/(?P<group_id>\d+)/$',
         views.create_member_post,
@@ -36,12 +84,12 @@ urlpatterns = [
         name='editnews'
     ),
     url(
-        r'^group/(?P<id>\d+)/grouppostsadmin/$',
+        r'^group/(?P<group_id>\d+)/grouppostsadmin/$',
         views.groupadmin_admin_post_page,
         name='adminpostsadmin'
     ),
     url(
-        r'^group/(?P<id>\d+)/grouppostsadmin/membercreated/$',
+        r'^group/(?P<group_id>\d+)/grouppostsadmin/membercreated/$',
         views.groupadmin_member_post_page,
         name='memberpostsadmin'
     ),

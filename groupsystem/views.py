@@ -2,6 +2,7 @@ import json
 
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.utils.translation import ugettext_lazy as _
+from django.core.files import File
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -200,7 +201,7 @@ def joined_group_page(request):
 
 
 @login_required
-def user_group_page(request):
+def subscribed_group_page(request):
     query_set = request.user.subscribed_group.all()
     if 'qgroup' in request.GET:
         group_name = request.GET.get('qgroup')
@@ -217,14 +218,14 @@ def user_group_page(request):
     if 'qgroup' in request.GET:
         return render(
             request,
-            'groupsystem/user_group_results.html',
+            'groupsystem/subscribed_group_results.html',
             {
                 'user_groups': user_groups
             }
         )
     return render(
         request,
-        'groupsystem/user_group.html',
+        'groupsystem/subscribed_group.html',
         {
             'user_groups': user_groups,
             'form': CreateGroupForm()
@@ -238,8 +239,11 @@ def create_group(request):
         form = CreateGroupForm(request.POST)
         if form.is_valid():
             basicgroup = form.save(commit=False)
-            basicgroup.super_admin = request.user
+            logo = open('media/group_logo/default.png', 'r')
+            basicgroup.logo = File(logo)
             basicgroup.save()
+            logo.close()
+            basicgroup.super_admins.add(request.user)
             basicgroup.members.add(request.user)
             basicgroup.subscribers.add(request.user)
             super_admin_group = Group.objects.create(
@@ -296,8 +300,8 @@ def create_group(request):
 
 
 @login_required
-def basic_group_details(request, id):
-    basicgroup = BasicGroup.objects.get(id=id)
+def basic_group_details(request, group_id):
+    basicgroup = BasicGroup.objects.get(id=group_id)
     notifications = basicgroup.notifications.all().order_by('-created_on')
     if notifications:
         notifications = notifications[0]
@@ -308,6 +312,13 @@ def basic_group_details(request, id):
         )
     except ObjectDoesNotExist:
         joinrequest_sent = None
+    if request.user in basicgroup.super_admins.all():
+        if basicgroup.super_admins.count() == 1:
+            onlysuperadmin = True
+        else:
+            onlysuperadmin = False
+    else:
+        onlysuperadmin = False
     if request.method == 'POST':
         req_type = request.POST.get('type')
         if req_type == 'join':
@@ -350,13 +361,18 @@ def basic_group_details(request, id):
             joinrequest.delete()
             return HttpResponse(_("Request Canceled"))
         elif req_type == 'leave':
-            joinrequest = JoinRequest.objects.get(
-                id=request.POST.get('request_id')
-            )
-            joinrequest.delete()
+            if request.POST.get('request_id') != '':
+                joinrequest = JoinRequest.objects.get(
+                    id=request.POST.get('request_id')
+                    )
+                joinrequest.delete()
             basicgroup.members.remove(request.user)
-            member_group = Group.objects.get(name='%s_member' % basicgroup.id)
-            request.user.groups.remove(member_group)
+            basicgroup.super_admins.remove(request.user)
+            perm_groups = request.user.groups.filter(
+                name__istartswith=basicgroup.id
+            )
+            for perm_group in perm_groups:
+                request.user.groups.remove(perm_group)
             groupmemberrole = GroupMemberRole.objects.get(
                 basic_group=basicgroup,
                 user=request.user
@@ -379,16 +395,22 @@ def basic_group_details(request, id):
         {
             'group': basicgroup,
             'group_notification': notifications if notifications else None,
-            'joinrequest_sent': joinrequest_sent
+            'joinrequest_sent': joinrequest_sent,
+            'onlysuperadmin': onlysuperadmin,
+            'extended_sidebar': True,
+            'user_in_group': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
 
 @login_required
 @permission_required_or_403('can_read_news', (BasicGroup, 'id', 'group_id'))
-def news_details(request, id, group_id):
+def news_details(request, news_id, group_id):
     try:
-        news = GroupNews.objects.get(id=id)
+        news = GroupNews.objects.get(id=news_id)
         news_title = news.title
         news_content = news.news
         news_dict = {
@@ -403,39 +425,49 @@ def news_details(request, id, group_id):
 
 
 @login_required
-@permission_required_or_403('can_read_events', (BasicGroup, 'id', 'id'))
-def group_events_page(request, id):
-    basicgroup = BasicGroup.objects.get(id=id)
+@permission_required_or_403('can_read_events', (BasicGroup, 'id', 'group_id'))
+def group_events_page(request, group_id):
+    basicgroup = BasicGroup.objects.get(id=group_id)
     events = basicgroup.events.all()
     return render(
         request,
         'groupsystem/events.html',
         {
             'group': basicgroup,
-            'events': events
+            'events': events,
+            'extended_sidebar': True,
+            'user_in_group': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
 
 @login_required
-@permission_required_or_403('can_read_post', (BasicGroup, 'id', 'id'))
-def group_admin_post_page(request, id):
-    basicgroup = BasicGroup.objects.get(id=id)
+@permission_required_or_403('can_read_post', (BasicGroup, 'id', 'group_id'))
+def group_admin_post_page(request, group_id):
+    basicgroup = BasicGroup.objects.get(id=group_id)
     posts = basicgroup.posts.filter(admin_created=True)
     return render(
         request,
         'groupsystem/posts.html',
         {
             'group': basicgroup,
-            'posts': posts
+            'posts': posts,
+            'extended_sidebar': True,
+            'user_in_group': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
 
 @login_required
-@permission_required_or_403('can_read_post', (BasicGroup, 'id', 'id'))
-def group_member_post_page(request, id):
-    basicgroup = BasicGroup.objects.get(id=id)
+@permission_required_or_403('can_read_post', (BasicGroup, 'id', 'group_id'))
+def group_member_post_page(request, group_id):
+    basicgroup = BasicGroup.objects.get(id=group_id)
     posts = basicgroup.posts.filter(admin_created=False)
     return render(
         request,
@@ -444,7 +476,12 @@ def group_member_post_page(request, id):
             'group': basicgroup,
             'posts': posts,
             'memberpost': True,
-            'form': CreatePostForm()
+            'form': CreatePostForm(),
+            'extended_sidebar': True,
+            'user_in_group': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -464,7 +501,12 @@ def postdetails_page(request, group_id, post_id):
         {
             'group': basicgroup,
             'post': post,
-            'memberpost': memberpost
+            'memberpost': memberpost,
+            'extended_sidebar': True,
+            'user_in_group': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -549,7 +591,12 @@ def group_admin_settings_page(request, group_id):
         {
             'group': basicgroup,
             'form': form,
-            'notificationform': notificationform
+            'notificationform': notificationform,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -576,7 +623,12 @@ def group_admin_news_page(request, group_id):
         {
             'group': basicgroup,
             'news': news,
-            'form': form
+            'form': form,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -616,9 +668,9 @@ def edit_news(request, group_id):
 
 
 @login_required
-@permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'id'))
-def groupadmin_admin_post_page(request, id):
-    basicgroup = BasicGroup.objects.get(id=id)
+@permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
+def groupadmin_admin_post_page(request, group_id):
+    basicgroup = BasicGroup.objects.get(id=group_id)
     posts = basicgroup.posts.filter(admin_created=True)
     return render(
         request,
@@ -627,15 +679,20 @@ def groupadmin_admin_post_page(request, id):
             'group': basicgroup,
             'posts': posts,
             'adminpost': True,
-            'form': CreatePostForm()
+            'form': CreatePostForm(),
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
 
 @login_required
-@permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'id'))
-def groupadmin_member_post_page(request, id):
-    basicgroup = BasicGroup.objects.get(id=id)
+@permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
+def groupadmin_member_post_page(request, group_id):
+    basicgroup = BasicGroup.objects.get(id=group_id)
     posts = basicgroup.posts.filter(admin_created=False)
     return render(
         request,
@@ -643,6 +700,11 @@ def groupadmin_member_post_page(request, id):
         {
             'group': basicgroup,
             'posts': posts,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -709,7 +771,12 @@ def edit_post_admin_page(request, group_id, post_id):
         {
             'form': form,
             'group': basicgroup,
-            'post': post
+            'post': post,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -724,7 +791,12 @@ def notapproved_comment_admin_page(request, group_id):
         'groupsystem/commentadmin.html',
         {
             'group': basicgroup,
-            'comments': comments
+            'comments': comments,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -739,7 +811,12 @@ def approved_comment_admin_page(request, group_id):
         'groupsystem/commentadmin.html',
         {
             'group': basicgroup,
-            'comments': comments
+            'comments': comments,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -760,7 +837,12 @@ def edit_comment_admin_page(request, group_id, comment_id):
         {
             'form': form,
             'group': basicgroup,
-            'comment': comment
+            'comment': comment,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -827,15 +909,15 @@ def group_member_page(request, group_id):
                 username = request.POST.get('username')
                 user = User.objects.get(username=username)
                 basicgroup.members.remove(user)
+                basicgroup.super_admins.remove(user)
                 try:
                     joinrequest = basicgroup.joinrequest.get(user=user)
                     joinrequest.delete()
                 except ObjectDoesNotExist:
                     pass
-                member_group = Group.objects.get(
-                    name='%s_member' % basicgroup.id
-                )
-                user.groups.remove(member_group)
+                usergroups = user.groups.filter(name__istartswith=basicgroup.id)
+                for usergroup in usergroups:
+                    user.groups.remove(usergroup)
                 groupmemberrole = GroupMemberRole.objects.get(
                     basic_group=basicgroup,
                     user=user
@@ -862,16 +944,16 @@ def group_member_page(request, group_id):
                 user = User.objects.get(username=username)
                 if user in basicgroup.members.all():
                     basicgroup.members.remove(user)
+                basicgroup.super_admins.remove(user)
                 basicgroup.banned_members.add(user)
                 try:
                     joinrequest = basicgroup.joinrequest.get(user=user)
                     joinrequest.delete()
                 except ObjectDoesNotExist:
                     pass
-                member_group = Group.objects.get(
-                    name='%s_member' % basicgroup.id
-                )
-                user.groups.remove(member_group)
+                usergroups = user.groups.filter(name__istartswith=basicgroup.id)
+                for usergroup in usergroups:
+                    user.groups.remove(usergroup)
                 groupmemberrole = GroupMemberRole.objects.get(
                     basic_group=basicgroup,
                     user=user
@@ -919,6 +1001,10 @@ def group_member_page(request, group_id):
                         setattr(extraperm, perm[0], False)
                         remove_perm(perm[0], user, basicgroup)
                 extraperm.save()
+                if role_name == 'superadmin':
+                    basicgroup.super_admins.add(user)
+                else:
+                    basicgroup.super_admins.remove(user)
                 data = json.dumps(
                     {
                         'id': user.id,
@@ -938,7 +1024,12 @@ def group_member_page(request, group_id):
         'groupsystem/members.html',
         {
             'group': basicgroup,
-            'memberroles': memberroles
+            'memberroles': memberroles,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -958,7 +1049,12 @@ def group_banned_members_page(request, group_id):
         request,
         'groupsystem/bannedmembers.html',
         {
-            'group': basicgroup
+            'group': basicgroup,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -1048,6 +1144,11 @@ def joinrequest_admin_page(request, group_id):
         {
             'group': basicgroup,
             'joinrequests': joinrequests,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -1120,7 +1221,12 @@ def group_events_admin_page(request, group_id):
         {
             'group': basicgroup,
             'events': events,
-            'form': form
+            'form': form,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -1167,7 +1273,12 @@ def group_dashboard_admin_page(request, group_id):
         {
             'group': basicgroup,
             'pendingpost': pendingpost,
-            'pendingcomment': pendingcomment
+            'pendingcomment': pendingcomment,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -1244,7 +1355,12 @@ def group_default_role_admin_page(request, group_id):
         'groupsystem/defaultroles.html',
         {
             'group': basicgroup,
-            'defaultroles': default_roles
+            'defaultroles': default_roles,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 
@@ -1285,7 +1401,12 @@ def group_custom_role_admin_page(request, group_id):
         {
             'group': basicgroup,
             'form': form,
-            'customroles': customroles
+            'customroles': customroles,
+            'extended_sidebar': True,
+            'user_in_group_admin': True,
+            'user_has_admin_access': request.user.has_perm(
+                'can_access_admin', basicgroup
+            )
         }
     )
 

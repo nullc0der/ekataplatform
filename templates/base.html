@@ -310,10 +310,29 @@
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
-                    {% include "sidebar_main.html" %}
-                    {% block extra_menus %}
-
-                    {% endblock extra_menus %}
+                    <li class="header text-center">
+                        <i class="fa fa-caret-left pull-left" id="navleft"></i>
+                        <span id="navheader">{% trans "MAIN NAVIGATION" %}</span>
+                        <i class="fa fa-caret-right pull-right" id="navright"></i>
+                    </li>
+                    {% if extended_sidebar %}
+                        {% if user_in_group %}
+                            {% include "sidebar_group.html" %}
+                            {% if user_has_admin_access %}
+                                {% include "sidebar_group_admin.html" %}
+                            {% endif %}
+                            {% include "sidebar_main.html" %}
+                        {% endif %}
+                        {% if user_in_group_admin %}
+                            {% if user_has_admin_access %}
+                                {% include "sidebar_group_admin.html" %}
+                            {% endif %}
+                            {% include "sidebar_group.html" %}
+                            {% include "sidebar_main.html" %}
+                        {% endif %}
+                    {% else %}
+                        {% include "sidebar_main.html" %}
+                    {% endif %}
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -341,6 +360,7 @@
             </div>
             <strong>Copyright &copy; 2014-2016 <a href="/">Ekata</a>.</strong> All rights
             reserved.
+            <small class="label bg-blue">Powered by Ekata</small>
         </footer>
 
         <!-- Control Sidebar -->
@@ -595,8 +615,100 @@
                 });
             }
         }
+        {% if extended_sidebar %}
+        $("#navleft").show();
+        $("#navright").show();
+        var navbar = 0;
+        {% if user_in_group %}
+            {% if user_has_admin_access %}
+            var maxnavbar = 2;
+            var navbarcontent_classes = ['.groupnavcontent', '.groupadminnavcontent', '.mainnavcontent'];
+            var navbar_names = ["GROUP NAVIGATION", "GROUP ADMIN NAVIGATION", "{% trans "MAIN NAVIGATION" %}",]
+            {% else %}
+            var maxnavbar = 1;
+            var navbarcontent_classes = ['.groupnavcontent', '.mainnavcontent'];
+            var navbar_names = ["GROUP NAVIGATION", "{% trans "MAIN NAVIGATION" %}",]
+            {% endif %}
+        {% endif %}
+        {% if user_in_group_admin %}
+            {% if user_has_admin_access %}
+            var maxnavbar = 2;
+            var navbarcontent_classes = ['.groupadminnavcontent', '.groupnavcontent', '.mainnavcontent'];
+            var navbar_names = ["GROUP ADMIN NAVIGATION", "GROUP NAVIGATION", "{% trans "MAIN NAVIGATION" %}",]
+            {% else %}
+            var maxnavbar = 1;
+            var navbarcontent_classes = ['.groupnavcontent', '.mainnavcontent'];
+            var navbar_names = ["GROUP NAVIGATION", "{% trans "MAIN NAVIGATION" %}",]
+            {% endif %}
+        {% endif %}
+        $.each(navbarcontent_classes ,function(index) {
+            if (index !== 0) {
+                $(navbarcontent_classes[index]).hide();
+            }
+        });
+        $("#navheader").text(navbar_names[0]);
+        $("#navright").click(function(event) {
+            navRight();
+        });
+        $("#navleft").click(function(event) {
+            navLeft();
+        });
+        $(".header").on('swipeleft', function(event) {
+            navLeft();
+        });
+        $(".header").on('swiperight', function(event) {
+            navRight();
+        });
+        function navRight() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === maxnavbar) {
+                var right_divclass = navbarcontent_classes[0];
+            }
+            else {
+                var right_divclass = navbarcontent_classes[navbar + 1];
+            }
+            if (navbar === maxnavbar) {
+                $("#navheader").text(navbar_names[0]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar + 1]);
+            }
+            $(right_divclass).show('slow');
+            if (navbar === maxnavbar) {
+                navbar = 0;
+            }
+            else {
+                navbar = navbar + 1;
+            }
+        }
+        function navLeft() {
+            var divclass = navbarcontent_classes[navbar];
+            $(divclass).hide();
+            if (navbar === 0) {
+                var left_divclass = navbarcontent_classes[maxnavbar];
+            }
+            else {
+                var left_divclass = navbarcontent_classes[navbar - 1];
+            }
+            if (navbar === 0) {
+                $("#navheader").text(navbar_names[maxnavbar]);
+            }
+            else {
+                $("#navheader").text(navbar_names[navbar - 1]);
+            }
+            $(left_divclass).show('slow');
+            if (navbar === 0) {
+                navbar = maxnavbar;
+            }
+            else {
+                navbar = navbar - 1;
+            }
+        }
+        {% else %}
         $("#navleft").hide();
         $("#navright").hide();
+        {% endif %}
         {% url 'messaging:index' as mess %}
         {% ifequal request.path mess %}
         {% else %}

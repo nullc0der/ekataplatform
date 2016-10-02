@@ -23,7 +23,6 @@ class BasicGroup(models.Model):
         ('7', _('Blog')),
         ('8', _('Other')),
     )
-    super_admin = models.ForeignKey(User, related_name='basicgroups')
     name = models.CharField(max_length=40)
     short_about = models.CharField(max_length=300)
     long_about = models.TextField(null=True, blank=True)
@@ -51,11 +50,13 @@ class BasicGroup(models.Model):
         )
     )
     group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    super_admins = models.ManyToManyField(User, related_name='basicgroups')
     members = models.ManyToManyField(User, related_name='joined_group')
     subscribers = models.ManyToManyField(User, related_name='subscribed_group')
     banned_members = models.ManyToManyField(User, related_name='banned_group')
     default_roles = models.TextField(
-        default='superadmin;admin;moderator;member;subscriber'
+        default='superadmin;admin;moderator;member;subscriber',
+        editable=False
     )  # seperated by ';' from higher permission level to lower
     created_on = models.DateTimeField(auto_now_add=True)
 
