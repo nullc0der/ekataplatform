@@ -100,6 +100,12 @@ class UserProfile(models.Model):
     phone_public = models.BooleanField(default=True)
     completion_public = models.BooleanField(default=True)
     invitation_verified = models.BooleanField(default=False)
+    users_link_visible = models.BooleanField(default=False)
+    groups_link_visible = models.BooleanField(default=False)
+    timeline_link_visible = models.BooleanField(default=False)
+    messaging_link_visible = models.BooleanField(default=False)
+    information_link_visible = models.BooleanField(default=False)
+    hashtagcampaign_link_visible = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.user.username

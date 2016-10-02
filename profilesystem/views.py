@@ -202,142 +202,27 @@ def settings(request):
         profile = request.user.profile
     except ObjectDoesNotExist:
         pass
-    if 'name' in request.GET:
-        if request.GET.get('name') == 'true':
+    if request.method == 'POST':
+        settings_var = request.POST.get('settings_var')
+        value = request.POST.get('value')
+        if value == 'true':
             try:
                 profile = request.user.profile
-                profile.name_public = True
+                setattr(profile, settings_var, True)
                 profile.save()
                 return HttpResponse('OK')
             except ObjectDoesNotExist:
                 return HttpResponse('Error')
-        if request.GET.get('name') == 'false':
+        if value == 'false':
             try:
                 profile = request.user.profile
-                profile.name_public = False
+                setattr(profile, settings_var, False)
                 profile.save()
                 return HttpResponse('OK')
             except ObjectDoesNotExist:
                 return HttpResponse('Error')
-    if 'website' in request.GET:
-        if request.GET.get('website') == 'true':
-            try:
-                profile = request.user.profile
-                profile.website_public = True
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-        if request.GET.get('website') == 'false':
-            try:
-                profile = request.user.profile
-                profile.website_public = False
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-    if 'gender' in request.GET:
-        if request.GET.get('gender') == 'true':
-            try:
-                profile = request.user.profile
-                profile.gender_public = True
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-        if request.GET.get('gender') == 'false':
-            try:
-                profile = request.user.profile
-                profile.gender_public = False
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-    if 'business' in request.GET:
-        if request.GET.get('business') == 'true':
-            try:
-                profile = request.user.profile
-                profile.business_public = True
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-        if request.GET.get('business') == 'false':
-            try:
-                profile = request.user.profile
-                profile.business_public = False
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-    if 'location' in request.GET:
-        if request.GET.get('location') == 'true':
-            try:
-                profile = request.user.profile
-                profile.location_public = True
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-        if request.GET.get('location') == 'false':
-            try:
-                profile = request.user.profile
-                profile.location_public = False
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-    if 'avatar' in request.GET:
-        if request.GET.get('avatar') == 'true':
-            try:
-                profile = request.user.profile
-                profile.avatar_public = True
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-        if request.GET.get('avatar') == 'false':
-            try:
-                profile = request.user.profile
-                profile.avatar_public = False
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-    if 'phone' in request.GET:
-        if request.GET.get('phone') == 'true':
-            try:
-                profile = request.user.profile
-                profile.phone_public = True
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-        if request.GET.get('phone') == 'false':
-            try:
-                profile = request.user.profile
-                profile.phone_public = False
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-    if 'completion' in request.GET:
-        if request.GET.get('completion') == 'true':
-            try:
-                profile = request.user.profile
-                profile.completion_public = True
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
-        if request.GET.get('completion') == 'false':
-            try:
-                profile = request.user.profile
-                profile.completion_public = False
-                profile.save()
-                return HttpResponse('OK')
-            except ObjectDoesNotExist:
-                return HttpResponse('Error')
+    else:
+        return HttpResponseForbidden()
 
 
 @login_required

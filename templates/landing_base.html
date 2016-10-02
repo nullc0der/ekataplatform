@@ -72,7 +72,6 @@
 						<li><a class="external" href="{% url 'landing:hashtag' %}">Hashtag</a></li>
 						<li><a class="external" href="{% url 'landing:newses' %}">News</a></li>
 						{% if request.user.is_authenticated %}
-							<li><a class="external" href="{% url 'dashboard:index' %}">Dashboard</a></li>
 						{% else %}
 							<li><a class="external" href="{% url 'invitationsystem:index' %}">Get Invitation</a></li>
 						{% endif %}
@@ -88,8 +87,25 @@
 			                        {% endif %} {{ request.user.username }} <b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">
+									<li><a class="external" style="height: 50px;" href="{% url 'dashboard:index' %}"><i class="fa fa-dashboard"></i> {% trans "Dashboard" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
 									<li><a class="external" style="height: 50px;" href="{% url 'myaccount:index' %}"><i class="fa fa-bank"></i> {% trans "My Account" %}</a></li>
 									<li class="divider" style="margin: 0;"></li>
+									<li><a class="external" style="height: 50px;" href="{% url 'profilesystem:index' %}"><i class="fa fa-cog"></i> {% trans "Profile" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									{% if request.user.profile.users_link_visible %}
+									<li><a class="external" style="height: 50px;" href="{% url 'publicusers:index' %}"><i class="fa fa-users"></i> {% trans "Users" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									{% endif %}
+									{% if request.user.profile.groups_link_visible %}
+									<li><a class="external" style="height: 50px;" href="{% url 'g:allgroups' %}"><i class="fa fa-cubes"></i> {% trans "Groups" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									{% endif %}
+									{% if request.user.profile.timeline_link_visible %}
+									<li><a class="external" style="height: 50px;" href="{% url 'usertimeline:index' %}"><i class="fa fa-clock-o"></i> {% trans "Timeline" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									{% endif %}
+									{% if request.user.profile.messaging_link_visible %}
 									<li>
 										<a class="external" style="height: 50px;" href="{% url 'messaging:index' %}">
 											<i class="fa fa-comment"></i> {% trans "Messages" %}
@@ -99,7 +115,16 @@
 										</a>
 									</li>
 									<li class="divider" style="margin: 0;"></li>
-									<li><a class="external" style="height: 50px;" href="{% url 'profilesystem:index' %}"><i class="fa fa-cog"></i> {% trans "Profile" %}</a></li>
+									{% endif %}
+									{% if request.user.profile.information_link_visible %}
+									<li><a class="external" style="height: 50px;" href="{% url 'information:index' %}"><i class="fa fa-info-circle"></i> {% trans "information" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									{% endif %}
+									{% if request.user.profile.hashtagcampaign_link_visible %}
+									<li><a class="external" style="height: 50px;" href="{% url 'hashtag:index' %}"><i class="fa fa-slack"></i> {% trans "Hashtag" %}</a></li>
+									<li class="divider" style="margin: 0;"></li>
+									{% endif %}
+									<li><a class="external" style="height: 50px;" href="{% url 'profilesystem:index' %}#customizelink"><i class="fa fa-plus-square-o"></i> {% trans "Customize link" %}</a></li>
 									<li class="divider" style="margin: 0;"></li>
 									<li><a class="external" style="height: 50px;" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> {% trans "Sign-out" %}</a></li>
 								</ul>
@@ -108,7 +133,6 @@
 					{% else %}
 						<ul class="nav navbar-nav navbar-right text-uppercase">
 							<li><a class="external" href="/accounts/login/"><i class="fa fa-sign-in"></i> Login</a></li>
-							<li><a class="external" href="/accounts/signup/"><i class="fa fa-user-plus"></i> Sign Up</a></li>
 						</ul>
 					{% endif %}
 				</div>

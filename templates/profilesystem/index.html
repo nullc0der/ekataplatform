@@ -58,7 +58,7 @@
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        {% ifequal ncompleted 'website' %} 
+        {% ifequal ncompleted 'website' %}
             <div class="alert alert-info task fade in">
                 <a href="#" onclick='skipTask("website")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add your website to complete your profile." %}</a>
@@ -82,28 +82,28 @@
                 <a href="{% url 'profilesystem:index' %}#avatar">{% trans "Add a profile image to complete your profile." %}</a>
             </div>
         {% endifequal %}
-        {% ifequal ncompleted 'address' %} 
+        {% ifequal ncompleted 'address' %}
             <div class="alert alert-info task fade in">
                 <a href="#" onclick='skipTask("address")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <a href="{% url 'profilesystem:index' %}#locationwidget">{% trans "Add your location to complete your profile." %}</a>
             </div>
         {% endifequal %}
-        {% ifequal ncompleted 'socialaccount' %} 
+        {% ifequal ncompleted 'socialaccount' %}
             <div class="alert alert-info task fade in">
                 <a href="#" onclick='skipTask("socialaccount")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <a href="{% url 'profilesystem:index' %}#socialwidget">{% trans "Add a social account of yours to complete your profile." %}</a>
             </div>
         {% endifequal %}
-        {% ifequal ncompleted 'email' %} 
+        {% ifequal ncompleted 'email' %}
             <div class="alert alert-info task fade in">
                 <a href="#" onclick='skipTask("email")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <a href="{% url 'account_email' %}">{% trans "Add your email account to complete your profile." %}</a>
             </div>
         {% endifequal %}
-        {% ifequal ncompleted 'email_verified' %} 
+        {% ifequal ncompleted 'email_verified' %}
             <div class="alert alert-info task fade in">
                 <a href="#" onclick='skipTask("email_verified")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="javascript:void(0)" 
+                <a href="javascript:void(0)"
                 {% if emailadd %}
                     onclick='sendVerification("{{ emailadd }}")'
                 {% endif %}>{% trans "Please verify your email address(resend verification)" %}</a>
@@ -332,13 +332,16 @@
                 <div class="col-md-12" id="visibiltywidget">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{% trans "Change Public Visibility" %}</h3>
+                            <h3 class="box-title">{% trans "Settings" %}</h3>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
                             </div>
                         </div>
                         <!-- box-header -->
                         <div class="box-body" id="setting">
+                            <div class="text-center">
+                                <h5><strong>{% trans "Change Public Visibility" %}</strong></h5>
+                            </div>
                             {% if request.user.profile %}
                             <section class="table-responsive">
                                 <table class="table table-condensed">
@@ -350,33 +353,33 @@
                                     <tr>
                                         <td>Name</td>
                                         <td>{{ request.user.get_full_name }}</td>
-                                        <td>
-                                            <input type="checkbox" {% if request.user.profile.name_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="name">
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.name_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="name_public">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Website </td>
                                         <td> {{ request.user.profile.website }}</td>
-                                        <td>
-                                            <input type="checkbox" {% if request.user.profile.website_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="website">
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.website_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="website_public">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Gender</td>
                                         <td id="sgen">{% if request.user.profile.gender %}
                                                 {{ request.user.profile.get_gender_display }}
-                                            {% else %} 
-                                                Not Specified 
+                                            {% else %}
+                                                Not Specified
                                             {% endif %}</td>
-                                        <td>
-                                            <input type="checkbox" {% if request.user.profile.gender_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="gender">
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.gender_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="gender_public">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Avatar</td>
                                         <td></td>
-                                        <td>
-                                            <input type="checkbox" {% if request.user.profile.avatar_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="avatar">
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.avatar_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="avatar_public">
                                         </td>
                                     </tr>
                                     {% comment %}
@@ -396,8 +399,8 @@
                                     <tr>
                                         <td>Location</td>
                                         <td></td>
-                                        <td>
-                                            <input type="checkbox" {% if request.user.profile.location_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="location">
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.location_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="location_public">
                                         </td>
                                     </tr>
                                     <tr>
@@ -408,8 +411,8 @@
                                     <tr>
                                         <td>Phone No</td>
                                         <td>{{ request.user.profile.phone_mobile }}</td>
-                                        <td>
-                                            <input type="checkbox" {% if request.user.profile.phone_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="phone">
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.phone_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="phone_public">
                                         </td>
                                     </tr>
                                     <tr>
@@ -420,8 +423,8 @@
                                     <tr>
                                         <td>{% trans "Profile completion" %}</td>
                                         <td></td>
-                                        <td>
-                                            <input type="checkbox" {% if request.user.profile.completion_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="completion">
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.completion_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="completion_public">
                                         </td>
                                     </tr>
                                 </table>
@@ -429,6 +432,55 @@
                             {% else %}
                                 <p>Please edit profile information to change visibility</p>
                             {% endif %}
+                            <div class="text-center" id="customizelink">
+                                <h5><strong>{% trans "Customize links of landing dropdown" %}</strong></h5>
+                            </div>
+                            <section class="table-responsive">
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td>Users</td>
+                                        <td></td>
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.users_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="users_link_visible">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Groups</td>
+                                        <td></td>
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.groups_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="groups_link_visible">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Timeline</td>
+                                        <td></td>
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.timeline_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="timeline_link_visible">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Messaging</td>
+                                        <td></td>
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.messaging_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="messaging_link_visible">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Information</td>
+                                        <td></td>
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.information_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="information_link_visible">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hashtag</td>
+                                        <td></td>
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.hashtagcampaign_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="hashtagcampaign_link_visible">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
                         </div>
                         <!-- box-body -->
                         <div class="box-footer">
@@ -501,7 +553,7 @@
                             </div>
                         </div>
                         <div class="box-body" id="emailaddress">
-                            
+
                         </div>
                         <div class="box-footer">
                             <div class="pull-right">
@@ -755,7 +807,7 @@
         var csrftoken = getCookie('csrftoken');
         function csrfSafeMethod(method) {
             // these HTTP methods do not require CSRF protection
-            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method)); 
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
         function sendVerification(email) {
             $.ajax({
@@ -943,17 +995,18 @@
             var checked = $(this).is(':checked');
             if (checked) {
                 $.ajax({
-                    url: '{% url 'profilesystem:setting' %}?' + id + '=true',
-                    type: 'GET',
+                    url: '{% url 'profilesystem:setting' %}',
+                    type: 'POST',
+                    data: {'settings_var': id, value: true},
                     success: function(){
                         $('.top-right').notify({
-                            message: { text: id + ' visibility changed successfully' },
+                            message: { text: 'settings changed successfully' },
                             type: 'success'
                         }).show();
                     },
                     error: function(){
                         $('.top-right').notify({
-                            message: { text: 'Oops!! visibility not changed try later' },
+                            message: { text: 'Oops!! settings not changed try later' },
                             type: 'danger'
                         }).show();
                     }
@@ -961,17 +1014,18 @@
             }
             else {
                 $.ajax({
-                    url: '{% url 'profilesystem:setting' %}?' + id + '=false',
-                    type: 'GET',
+                    url: '{% url 'profilesystem:setting' %}',
+                    type: 'POST',
+                    data: {'settings_var': id, value: false},
                     success: function(){
                         $('.top-right').notify({
-                            message: { text: id + ' visibility changed successfully' },
+                            message: { text: 'settings changed successfully' },
                             type: 'success'
                         }).show();
                     },
                     error: function(){
                         $('.top-right').notify({
-                            message: { text: 'Oops!! visibility not changed try later' },
+                            message: { text: 'Oops!! settings not changed try later' },
                             type: 'danger'
                         }).show();
                     }
