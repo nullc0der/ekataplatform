@@ -328,6 +328,15 @@ def basic_group_details(request, group_id):
                     user=request.user
                 )
                 if created:
+                    admins = basicgroup.super_admins.all() | basicgroup.admins.all()
+                    for admin in admins:
+                        create_notification(
+                            user=admin,
+                            ntype=12,
+                            sender=request.user.username,
+                            sender_id=request.user.id,
+                            group_name=basicgroup.name
+                        )
                     data = json.dumps(
                         {
                             'id': joinrequest.id,
@@ -368,6 +377,8 @@ def basic_group_details(request, group_id):
                 joinrequest.delete()
             basicgroup.members.remove(request.user)
             basicgroup.super_admins.remove(request.user)
+            basicgroup.admins.remove(request.user)
+            basicgroup.moderators.remove(request.user)
             perm_groups = request.user.groups.filter(
                 name__istartswith=basicgroup.id
             )
@@ -910,6 +921,8 @@ def group_member_page(request, group_id):
                 user = User.objects.get(username=username)
                 basicgroup.members.remove(user)
                 basicgroup.super_admins.remove(user)
+                basicgroup.admins.remove(user)
+                basicgroup.moderators.remove(user)
                 try:
                     joinrequest = basicgroup.joinrequest.get(user=user)
                     joinrequest.delete()
@@ -945,6 +958,8 @@ def group_member_page(request, group_id):
                 if user in basicgroup.members.all():
                     basicgroup.members.remove(user)
                 basicgroup.super_admins.remove(user)
+                basicgroup.admins.remove(user)
+                basicgroup.moderators.remove(user)
                 basicgroup.banned_members.add(user)
                 try:
                     joinrequest = basicgroup.joinrequest.get(user=user)
@@ -1005,6 +1020,14 @@ def group_member_page(request, group_id):
                     basicgroup.super_admins.add(user)
                 else:
                     basicgroup.super_admins.remove(user)
+                if role_name == 'admin':
+                    basicgroup.admins.add(user)
+                else:
+                    basicgroup.admins.remove(user)
+                if role_name == 'moderator':
+                    basicgroup.moderators.add(user)
+                else:
+                    basicgroup.moderators.remove(user)
                 data = json.dumps(
                     {
                         'id': user.id,

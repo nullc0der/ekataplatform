@@ -14,14 +14,14 @@
         {% ifequal notification.notification_type 2 %}
             <li>
                 <a href="#">
-                    <i class="fa fa-exchange text-blue"></i> {{ notification.sender }} {% trans "requested" %} {{ notification.amount }} {% trans "units" %} 
+                    <i class="fa fa-exchange text-blue"></i> {{ notification.sender }} {% trans "requested" %} {{ notification.amount }} {% trans "units" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 3 %}
             <li>
                 <a href="#">
-                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount }} {% trans "units released" %} 
+                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount }} {% trans "units released" %}
                 </a>
             </li>
         {% endifequal %}
@@ -35,7 +35,7 @@
         {% ifequal notification.notification_type 5 %}
             <li>
                 <a href="#">
-                    <i class="fa fa-thumbs-o-down text-red"></i> {{ notification.sender }} {% trans "unverfied you" %} 
+                    <i class="fa fa-thumbs-o-down text-red"></i> {{ notification.sender }} {% trans "unverfied you" %}
                 </a>
             </li>
         {% endifequal %}
@@ -56,14 +56,14 @@
         {% ifequal notification.notification_type 8 %}
             <li>
                 <a href="#">
-                    <i class="fa fa-user-plus text-green"></i> {{ notification.sender }} {% trans "accepted connection request" %} 
+                    <i class="fa fa-user-plus text-green"></i> {{ notification.sender }} {% trans "accepted connection request" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 9 %}
             <li>
                 <a href="#">
-                    <i class="fa fa-user-plus text-red"></i> {{ notification.sender }} {% trans "rejected connection request" %} 
+                    <i class="fa fa-user-plus text-red"></i> {{ notification.sender }} {% trans "rejected connection request" %}
                 </a>
             </li>
         {% endifequal %}
@@ -81,6 +81,13 @@
                 </a>
             </li>
         {% endifequal %}
+        {% ifequal notification.notification_type 12 %}
+            <li>
+                <a href="#">
+                    <i class="fa fa-user-plus text-green"></i> {{ notification.sender }} {% trans "sent a join request to group" %} {{ notification.group_name }}
+                </a>
+            </li>
+        {% endifequal %}
     {% endfor %}
         </ul>
     </li>
@@ -93,7 +100,7 @@
                     <a href="#">
                         <i class="fa fa-smile-o text-red"></i> {% trans "All caught up" %}
                     </a>
-                </li>                               
+                </li>
             </ul>
         </li>
     </ul>

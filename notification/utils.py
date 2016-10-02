@@ -38,6 +38,8 @@ def create_notification(user, ntype, sender=None, sender_id=None, amount=None, g
         message = "%s disconnected from you" % sender
     if ntype == 11:
         message = "%s invited you to %s" % (sender, group_name)
+    if ntype == 12:
+        message = "%s sent a join request in group %s" % (sender, group_name)
     notification_message = RedisMessage(message)
     RedisPublisher(
         facility='realtime_notification',

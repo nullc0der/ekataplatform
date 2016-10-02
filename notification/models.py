@@ -19,6 +19,7 @@ class UserNotification(models.Model):
         (9, 'connectionreject'),
         (10, 'disconnect'),
         (11, 'groupinvite'),
+        (12, 'groupjoinrequest')
     )
     user = models.ForeignKey(User, related_name='notifications')
     notification_type = models.IntegerField(choices=NOTIFICATION_TYPES)
