@@ -525,7 +525,7 @@ img
         line-height: 40px;
         text-align: center;
         margin-top: 6px;
-        margin-right: 10px;
+        margin-right: 6px;
     }
 #contact .form-control
     {
@@ -575,12 +575,13 @@ img
 }
 
 @media ( max-width:767px ) {
-    #contact .address-text {
-        margin-left: 18%;
-        margin-bottom: 0;
-    }
     #contact .link-wrapper {
         margin-left: 0;
+    }
+    #contact address .fa {
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
     }
 }
 
@@ -764,6 +765,11 @@ footer
         text-align: center;
         padding: 20px;
     }
+@media ( max-width:767px ) {
+    .sm-no-pull .pull-right {
+        float: none !important;
+    }
+}
 /* end footer */
 
 @media screen and ( max-width: 991px ) {
