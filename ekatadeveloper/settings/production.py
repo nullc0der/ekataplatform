@@ -23,10 +23,10 @@ STATIC_URL = '/statics/'
 STATIC_ROOT = os.path.join(BASE_DIR, "statics")
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'localhost'
+EMAIL_HOST = get_env_variable('DJANGO_EMAIL_HOST')
 EMAIL_PORT = 25
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = get_env_variable('DJANGO_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = get_env_variable('DJANGO_EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = False
 
 SECURE_BROWSER_XSS_FILTER = True

@@ -52,6 +52,7 @@ geoip/
 media/
 statics/
 fabfile.py
+celerybeat-schedule
 
 # Sphinx documentation
 docs/_build/

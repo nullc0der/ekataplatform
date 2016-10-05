@@ -1,6 +1,8 @@
 import json
 import requests
 
+from django.conf import settings
+
 
 class OneSignal(object):
     def __init__(self, message, player_ids):
@@ -9,10 +11,10 @@ class OneSignal(object):
 
     def send_message(self):
         header = {"Content-Type": "application/json",
-            "Authorization": "Basic YTBlYjVhYjMtYjZmZC00Njg3LTg4NDItMTFlNDZiZGU3ZmMw"}
+            "Authorization": settings.DJANGO_ONESIGNAL_KEY}
 
         payload = {
-            "app_id": "69dc9060-3af3-4209-82c7-7de5219830b3",
+            "app_id": settings.DJANGO_ONESIGNAL_APP_ID,
             "include_player_ids": self.player_ids,
             "contents": {"en": self.message}
         }

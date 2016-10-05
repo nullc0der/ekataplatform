@@ -17,7 +17,7 @@ def send_contact_email(email, first, last, company, telephone, comment):
     msg = EmailMultiAlternatives(
         email_subject,
         email_body,
-        "backend@bipproject.com",
+        "backend@ekata.social",
         ["support@basicincomeproject.org"]
     )
     msg.attach_alternative(email_html, "text/html")

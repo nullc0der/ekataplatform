@@ -111,7 +111,8 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.core.context_processors.static',
                 'ws4redis.context_processors.default',
-                'messagingsystem.context_processors.unread_message'
+                'messagingsystem.context_processors.unread_message',
+                'dashboard.context_processors.version_info'
             ],
         },
     },
@@ -275,8 +276,9 @@ BLEACH_VALID_ATTRS = {
 }
 BLEACH_VALID_STYLES = ['color', 'cursor', 'float', 'margin']
 
+# Sentry Error logging
 RAVEN_CONFIG = {
-    'dsn': 'https://547e121cbafa4461957d0bae06509cad:48afe776b910408f8f732389ac26f696@sentry.io/101555',
+    'dsn': get_env_variable('DJANGO_SENTRY_DSN'),
     'release': raven.fetch_git_sha(BASE_DIR),
 }
 
@@ -323,3 +325,8 @@ LOGGING = {
         },
     },
 }
+
+
+# OneSignal
+DJANGO_ONESIGNAL_KEY = get_env_variable('DJANGO_ONESIGNAL_KEY')
+DJANGO_ONESIGNAL_APP_ID = get_env_variable('DJANGO_ONESIGNAL_APP_ID')
