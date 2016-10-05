@@ -1,0 +1,13 @@
+#!/bin/zsh
+# This hook is sourced after this virtualenv is activated.
+export DJANGO_SETTINGS_MODULE="ekatadeveloper.settings.development"
+export DJANGO_SECRET_KEY=
+export DJANGO_DATABASE_NAME=
+export DJANGO_DATABASE_USERNAME=
+export DJANGO_DATABASE_PASSWORD=
+export DJANGO_EMAIL_HOST=
+export DJANGO_EMAIL_HOST_USER=
+export DJANGO_EMAIL_HOST_PASSWORD=
+export DJANGO_ONESIGNAL_KEY=
+export DJANGO_ONESIGNAL_APP_ID=
+export DJANGO_SENTRY_DSN=
