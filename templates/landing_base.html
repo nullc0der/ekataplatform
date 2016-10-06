@@ -277,6 +277,17 @@
 			});
 			jQuery.ajaxSettings.traditional = true
 		</script>
+		<script type="text/javascript">
+			(function() {
+				var s = document.createElement("script");
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = '//api.usersnap.com/load/'+
+        			'41f43a68-14ce-4085-b6ef-58aa08f57ee0.js';
+				var x = document.getElementsByTagName('script')[0];
+				x.parentNode.insertBefore(s, x);
+			})();
+		</script>
 		{% block extrascripts %}
 
 		{% endblock %}
