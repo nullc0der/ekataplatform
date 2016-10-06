@@ -810,11 +810,11 @@ footer
 
 @font-face {
     font-family: 'si';
-    src: url('/static/dist/socicon/socicon.eot');
-    src: url('/static/dist/socicon/socicon.eot?#iefix') format('embedded-opentype'),
-         url('/static/dist/socicon/socicon.woff') format('woff'),
-         url('/static/dist/socicon/socicon.ttf') format('truetype'),
-         url('/static/dist/socicon/socicon.svg#icomoonregular') format('svg');
+    src: url('../socicon/socicon.eot');
+    src: url('../socicon/socicon.eot?#iefix') format('embedded-opentype'),
+         url('../socicon/socicon.woff') format('woff'),
+         url('../socicon/socicon.ttf') format('truetype'),
+         url('../socicon/socicon.svg#icomoonregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
