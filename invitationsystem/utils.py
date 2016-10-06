@@ -17,7 +17,7 @@ def send_invitation_notification_email(email):
         email_subject,
         email_body,
         "invitation@ekata.social",
-        ["mark.witham.1776@gmail.com"]
+        ["support@ekata.social"]
     )
     msg.attach_alternative(email_html, "text/html")
 
