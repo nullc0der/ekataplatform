@@ -3,9 +3,9 @@ from .base import *
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['beta.ekata.social']
 
 DATABASES = {
     'default': {
