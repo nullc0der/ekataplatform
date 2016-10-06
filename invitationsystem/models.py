@@ -9,7 +9,7 @@ from invitationsystem.tasks import send_invitation
 
 class Invitation(models.Model):
     email = models.CharField(max_length=100)
-    invitation_id = models.CharField(max_length=300, editable=False)
+    invitation_id = models.CharField(max_length=300)
     approved = models.BooleanField(default=False)
     sent = models.BooleanField(default=False, editable=False)
 
