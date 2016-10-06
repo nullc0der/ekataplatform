@@ -16,7 +16,7 @@ def send_contact_email(email, name, subject, message):
         email_subject,
         email_body,
         "landing@ekata.social",
-        ["support@basicincomeproject.org"]
+        ["support@ekata.social"]
     )
     msg.attach_alternative(email_html, "text/html")
 
