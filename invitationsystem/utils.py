@@ -25,7 +25,7 @@ def send_invitation_notification_email(email):
 
 
 def send_invitation_email(email, invitation_id):
-    registration_url = Site.objects.get_current().domain + '/accounts/register/'
+    registration_url = Site.objects.get_current().domain + '/accounts/signup/'
     c = {
         'email': email,
         'invitation_id': invitation_id,
