@@ -26,7 +26,7 @@ def release_income():
         if now >= useraccount.next_release:
             release = IncomeRelease(user=user)
             release.amount = 1024
-            useraccount.next_release += timedelta(minutes=4)
+            useraccount.next_release += timedelta(minutes=15)
             useraccount.balance += 1024
             usertimeline = UserTimeline(user=user)
             usertimeline.amount = 1024

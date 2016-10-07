@@ -18,7 +18,7 @@ class UserAccount(models.Model):
         user = kwargs["instance"]
         if kwargs["created"]:
             user_account = UserAccount(user=user)
-            user_account.next_release = user.date_joined + timedelta(minutes=4)
+            user_account.next_release = user.date_joined + timedelta(minutes=15)
             user_account.save()
     post_save.connect(create_account, sender=User)
 
