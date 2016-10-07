@@ -38,6 +38,10 @@ class RemoveSkippedMiddleware(object):
 class CheckInvitationMiddleware(object):
     def process_request(self, request):
         if request.user.is_authenticated():
-            if request.path not in [reverse('invitationsystem:addinvitation'), reverse('logout')]:
+            if request.path not in [
+                reverse('invitationsystem:addinvitation'),
+                reverse('logout'),
+                reverse('invitationsystem:index')
+                ]:
                 if not request.user.profile.invitation_verified:
                     return redirect(reverse('invitationsystem:addinvitation'))
