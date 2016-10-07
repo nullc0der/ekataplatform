@@ -99,7 +99,7 @@
             $(".form-group", $(form)).removeClass("has-error");
         }
         $("#gears").hide();
-        $("input[name='qgroup'").keyup(function(){
+        $("input[name='qgroup']").keyup(function(){
             var query = $(this).val();
             $("#group-wrapper").load(
                 "{% url 'g:allgroups' %}?qgroup=" + encodeURIComponent(query)

@@ -54,7 +54,7 @@
 {% endblock content %}
 {% block extrascripts %}
     <script>
-        $("input[name='qgroup'").keyup(function(){
+        $("input[name='qgroup']").keyup(function(){
             var query = $(this).val();
             $("#group-wrapper").load(
                 "{% url 'g:subscribedgroups' %}?qgroup=" + encodeURIComponent(query)
