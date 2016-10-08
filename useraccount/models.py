@@ -5,6 +5,7 @@ from datetime import timedelta
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
 
@@ -18,7 +19,7 @@ class UserAccount(models.Model):
         user = kwargs["instance"]
         if kwargs["created"]:
             user_account = UserAccount(user=user)
-            user_account.next_release = user.date_joined + timedelta(minutes=15)
+            user_account.next_release = user.date_joined + timedelta(minutes=settings.NEXT_RELEASE)
             user_account.save()
     post_save.connect(create_account, sender=User)
 

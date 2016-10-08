@@ -6,6 +6,7 @@ from celery.schedules import crontab
 from celery.decorators import periodic_task
 from celery.utils.log import get_task_logger
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils import timezone
 from useraccount.models import IncomeRelease, UserAccount
 from usertimeline.models import UserTimeline
@@ -26,7 +27,7 @@ def release_income():
         if now >= useraccount.next_release:
             release = IncomeRelease(user=user)
             release.amount = 1024
-            useraccount.next_release += timedelta(minutes=15)
+            useraccount.next_release += timedelta(minutes=settings.NEXT_RELEASE)
             useraccount.balance += 1024
             usertimeline = UserTimeline(user=user)
             usertimeline.amount = 1024

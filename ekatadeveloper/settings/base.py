@@ -330,3 +330,7 @@ LOGGING = {
 # OneSignal
 DJANGO_ONESIGNAL_KEY = get_env_variable('DJANGO_ONESIGNAL_KEY')
 DJANGO_ONESIGNAL_APP_ID = get_env_variable('DJANGO_ONESIGNAL_APP_ID')
+
+# Next Release(In Minutes)
+# Time difference between each release
+NEXT_RELEASE = 60 * 4
