@@ -335,7 +335,8 @@ def basic_group_details(request, group_id):
                             ntype=12,
                             sender=request.user.username,
                             sender_id=request.user.id,
-                            group_name=basicgroup.name
+                            group_name=basicgroup.name,
+                            group_id=basicgroup.id
                         )
                     data = json.dumps(
                         {
@@ -1189,7 +1190,8 @@ def invite_user(request, group_id):
                 ntype=11,
                 sender=request.user.username,
                 sender_id=request.user.id,
-                group_name=basicgroup.name
+                group_name=basicgroup.name,
+                group_id=basicgroup.id
             )
         except ObjectDoesNotExist:
             pass

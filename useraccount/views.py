@@ -95,7 +95,8 @@ def transferunit(request, id):
                 ntype=1,
                 sender=request.user.username,
                 sender_id=request.user.id,
-                amount=form.cleaned_data['units']
+                amount=form.cleaned_data['units'],
+                timeline_id=recievertimeline.id
             )
             if 'timeline' in request.POST:
                 timeline_id = request.POST.get('timeline')
@@ -170,7 +171,8 @@ def requestunit(request, id):
                 ntype=2,
                 sender=request.user.username,
                 sender_id=request.user.id,
-                amount=form.cleaned_data['units']
+                amount=form.cleaned_data['units'],
+                timeline_id=recievertimeline.id
             )
             return HttpResponse(_('Request Sent!!'))
         else:

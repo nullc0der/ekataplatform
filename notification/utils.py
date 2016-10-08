@@ -4,7 +4,16 @@ from notification.models import UserNotification
 from notification.onesignal import OneSignal
 
 
-def create_notification(user, ntype, sender=None, sender_id=None, amount=None, group_name=None):
+def create_notification(
+    user,
+    ntype,
+    sender=None,
+    sender_id=None,
+    amount=None,
+    group_name=None,
+    timeline_id=None,
+    group_id=None
+):
     notification = UserNotification(user=user)
     notification.notification_type = ntype
     if sender:
@@ -15,6 +24,10 @@ def create_notification(user, ntype, sender=None, sender_id=None, amount=None, g
         notification.amount = amount
     if group_name:
         notification.group_name = group_name
+    if group_id:
+        notification.group_id = group_id
+    if timeline_id:
+        notification.timeline_id = timeline_id
     notification.save()
     if ntype == 1:
         message = "%s sent %s units" % (sender, amount)

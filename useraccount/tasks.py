@@ -39,5 +39,6 @@ def release_income():
             create_notification(
                 user=user,
                 ntype=3,
-                amount=1024
+                amount=1024,
+                timeline_id=usertimeline.id
             )

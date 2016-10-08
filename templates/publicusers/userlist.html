@@ -110,6 +110,8 @@
                             if (k == user_id) {
                                 if (data[k] === 'online') {
                                     $(userstatus).empty();
+                                    $(userstatus).removeAttr('data-toggle');
+                                    $(userstatus).removeAttr('title');
                                     $(userstatus).append('<i class="fa fa-circle text-success onlinestatus"></i> {% trans "Online" %}');
                                 }
                                 else {
@@ -133,7 +135,7 @@
                     });
                 },
                 complete: function() {
-                    setTimeout(getOnlineUsers, 15000);   
+                    setTimeout(getOnlineUsers, 15000);
                 }
             });
         })();

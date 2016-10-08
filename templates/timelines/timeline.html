@@ -1,25 +1,25 @@
 {% load i18n %}
 <div class="col-md-12">
     <ul class="timeline">
-        {% regroup timelines by timestamp|date:"d b. Y" as timelines_by_day %} 
+        {% regroup timelines by timestamp|date:"d b. Y" as timelines_by_day %}
         {% for timeline in timelines_by_day %}
         <li class="time-label">
             <span class="bg-red">
                 {{ timeline.grouper }}
             </span>
         </li>
-        {% for item in timeline.list %} 
+        {% for item in timeline.list %}
         {% ifequal item.timeline_type 1 %}
-        <li>
+        <li id="{{ item.id }}">
             <i class="fa fa-exchange bg-blue"></i>
             <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span> 
+                <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span>
                 {% if item.instruction %}
                 <h3 class="timeline-header">
-                    {% ifequal request.user.username item.sender %} 
+                    {% ifequal request.user.username item.sender %}
                         {% trans "you sent" %} {{ item.amount }} {% trans "units to" %} <a href="{% url 'publicusers:user' item.reciever_id %}">{{ item.reciever }}</a>
                     {% else %}
-                        <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "sent you" %} {{ item.amount }} {% trans "units" %} 
+                        <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "sent you" %} {{ item.amount }} {% trans "units" %}
                     {% endifequal %}
                 </h3>
                 <div class="timeline-body">
@@ -27,23 +27,23 @@
                 </div>
                 {% else %}
                 <h3 class="timeline-header no-border">
-                    {% ifequal request.user.username item.sender %} 
+                    {% ifequal request.user.username item.sender %}
                         {% trans "you sent" %} {{ item.amount }} {% trans "units to" %} <a href="{% url 'publicusers:user' item.reciever_id %}">{{ item.reciever }}</a>
                     {% else %}
-                        <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "sent you" %} {{ item.amount }} {% trans "units" %} 
+                        <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "sent you" %} {{ item.amount }} {% trans "units" %}
                     {% endifequal %}
                 {% endif %}
             </div>
         </li>
         {% endifequal %}
-        {% ifequal item.timeline_type 2 %} 
-            <li>
+        {% ifequal item.timeline_type 2 %}
+            <li id="{{ item.id }}">
                 <i class="fa fa-exchange bg-blue"></i>
                 <div class="timeline-item">
                     <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span>
                     {% if item.instruction %}
                     <h3 class="timeline-header">
-                        {% ifequal request.user.username item.sender %} 
+                        {% ifequal request.user.username item.sender %}
                             {% trans "you requested" %} {{ item.amount }} {% trans "units from" %} <a href="{% url 'publicusers:user' item.reciever_id %}">{{ item.reciever }}</a>
                         {% else %}
                             <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "requested you" %} {{ item.amount }} {% trans "units" %}
@@ -53,7 +53,7 @@
                                 {% else %}
                                     <button class="btn btn-success btn-xs">{% trans "sent" %}</button>
                                 {% endif %}
-                            </div>  
+                            </div>
                         {% endifequal %}
                     </h3>
                     <div class="timeline-body">
@@ -61,13 +61,13 @@
                     </div>
                 {% else %}
                 <h3 class="timeline-header no-border">
-                    {% ifequal request.user.username item.sender %} 
+                    {% ifequal request.user.username item.sender %}
                         {% trans "you requested" %} {{ item.amount }} {% trans "units from" %} <a href="{% url 'publicusers:user' item.reciever_id %}">{{ item.reciever }}</a>
                     {% else %}
-                        <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "requested you" %} {{ item.amount }} {% trans "units" %} 
+                        <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "requested you" %} {{ item.amount }} {% trans "units" %}
                         <div class="togglemodal">
                             {% if item.not_completed %}
-                                <a data-toggle="modal" data-target="#sendUnitModal" data-amount="{{ item.amount }}" data-touser="{{ item.sender_id }}"  data-tousername="{{ item.sender }}" data-timelineid="{{ item.id }}" class="btn btn-primary btn-xs">{% trans "send" %}</a> 
+                                <a data-toggle="modal" data-target="#sendUnitModal" data-amount="{{ item.amount }}" data-touser="{{ item.sender_id }}"  data-tousername="{{ item.sender }}" data-timelineid="{{ item.id }}" class="btn btn-primary btn-xs">{% trans "send" %}</a>
                             {% else %}
                                 <button class="btn btn-success btn-xs">{% trans "sent" %}</button>
                             {% endif %}
@@ -77,52 +77,52 @@
                 </div>
             </li>
             {% endifequal %}
-            {% ifequal item.timeline_type 3 %} 
-            <li>
+            {% ifequal item.timeline_type 3 %}
+            <li id="{{ item.id }}">
                 <i class="fa fa-arrow-down bg-orange"></i>
                 <div class="timeline-item">
                     <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span>
                     <h3 class="timeline-header no-border">{{ item.amount }}{% trans " units basic income released" %}</h3>
                 </div>
             </li>
-            {% endifequal %} 
+            {% endifequal %}
             {% ifequal item.timeline_type 4 %}
-            <li>
+            <li id="{{ item.id }}">
                 <i class="fa fa-thumbs-o-up bg-green"></i>
                 <div class="timeline-item">
                     <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span>
                     <h3 class="timeline-header no-border">
-                        {% ifequal request.user.username item.sender %} 
+                        {% ifequal request.user.username item.sender %}
                             {% trans "you verified" %} <a href="{% url 'publicusers:user' item.reciever_id %}">{{ item.reciever }}</a> {% trans "as real user" %}
                         {% else %}
-                            <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "verified you as real user" %} 
+                            <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "verified you as real user" %}
                                         {% endifequal %}
                     </h3>
                 </div>
             </li>
-            {% endifequal %} 
+            {% endifequal %}
             {% ifequal item.timeline_type 5 %}
-            <li>
+            <li id="{{ item.id }}">
                 <i class="fa fa-thumbs-o-down bg-red"></i>
                 <div class="timeline-item">
                     <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span>
                     <h3 class="timeline-header no-border">
-                    {% ifequal request.user.username item.sender %} 
+                    {% ifequal request.user.username item.sender %}
                         {% trans "you unverified" %} <a href="{% url 'publicusers:user' item.reciever_id %}">{{ item.reciever }}</a> {% trans "as real user" %}
                     {% else %}
-                        <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "unverified you as real user" %} 
+                        <a href="{% url 'publicusers:user' item.sender_id %}">{{ item.sender }}</a> {% trans "unverified you as real user" %}
                     {% endifequal %}
                     </h3>
                 </div>
             </li>
             {% endifequal %}
-            {% ifequal item.timeline_type 6 %} 
-                 <li>
+            {% ifequal item.timeline_type 6 %}
+                 <li id="{{ item.id }}">
                      <i class="fa fa-user-plus bg-green"></i>
                      <div class="timeline-item">
                         <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span>
                         <h3 class="timeline-header">
-                            {% ifequal request.user.username item.sender %} 
+                            {% ifequal request.user.username item.sender %}
                                 {% trans "Requested connection to " %} <a href="{% url 'publicusers:user' item.reciever_id %}">{{ item.reciever }}</a>
                                 {% if item.accepted %}
                                     <button class="btn btn-warning btn-xs" onclick="cancelRejectConnection('disconnect', {{ item.conn_id }})">{% trans "Disconnect" %}</button>
@@ -136,7 +136,7 @@
                                 {% else %}
                                     <button class="btn btn-danger btn-xs" onclick="cancelRejectConnection('reject', {{ item.conn_id }})">{% trans "Reject" %}</button>
                                     <button class="btn btn-primary btn-xs" onclick="acceptConnection({{ item.conn_id }})">{% trans "Accept" %}</button>
-                                {% endif %} 
+                                {% endif %}
                             {% endifequal %}
                         </h3>
                         <div class="timeline-body">
@@ -153,8 +153,8 @@
                         </div>
                      </div>
                  </li>
-             {% endifequal %} 
-            {% endfor %} 
+             {% endifequal %}
+            {% endfor %}
         {% endfor %}
         <li>
             <i class="fa fa-clock-o bg-gray"></i>

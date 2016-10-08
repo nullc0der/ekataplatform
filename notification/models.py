@@ -27,6 +27,8 @@ class UserNotification(models.Model):
     sender = models.CharField(default='', max_length=200)
     sender_id = models.CharField(max_length=200, default='')
     group_name = models.CharField(max_length=200, default='')
+    group_id = models.CharField(max_length=200, default='')
+    timeline_id = models.CharField(max_length=200, default='')
     amount = models.IntegerField(null=True)
     read = models.BooleanField(default=False)
 

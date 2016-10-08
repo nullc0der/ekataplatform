@@ -6,19 +6,19 @@
     <div class="box-body no-padding">
         <ul class="users-list clearfix">
             {% for user in users %}
-                {% ifequal user.username request.user.username %} 
+                {% ifequal user.username request.user.username %}
                 {% else %}
                 <li>
                     {% if user.profile.avatar_public %}
                         {% if user.profile.avatar %}
-                            <a href="{% url 'publicusers:user' user.id %}"><img src="{{ user.profile.avatar.thumbnail.128x128 }}" alt="User Image"></a> 
+                            <a href="{% url 'publicusers:user' user.id %}"><img src="{{ user.profile.avatar.thumbnail.128x128 }}" alt="User Image"></a>
                         {% else %}
-                            <a href="{% url 'publicusers:user' user.id %}"><img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image"></a> 
-                        {% endif %} 
+                            <a href="{% url 'publicusers:user' user.id %}"><img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image"></a>
+                        {% endif %}
                     {% else %}
-                        <a href="{% url 'publicusers:user' user.id %}"><img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image"></a> 
+                        <a href="{% url 'publicusers:user' user.id %}"><img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image"></a>
                     {% endif %}
-                
+
                     <a class="users-list-name" href="{% url 'publicusers:user' user.id %}">{{ user.username }}</a>
                     <p class="users-list-date userstatus" data-user-id='{{ user.id }}'  data-toggle="tooltip" title="{% trans "lastseen: " %}{{ user.profile.last_seen }}">
                         {% if user.profile.online %}
@@ -35,7 +35,7 @@
     </div>
     <div class="box-footer">
         <div class="pull-right">
-            {% bootstrap_pager users %}
+            {% bootstrap_paginate users %}
         </div>
     </div>
 </div>

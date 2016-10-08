@@ -37,38 +37,38 @@
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <span><b>{% trans "Filters: " %}</b></span>
             <div id="filterbuttons">
-                    {% if "1" in enabled_filters %} 
+                    {% if "1" in enabled_filters %}
                         <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.transfer }}" name="transfer">{% trans "Transfer" %}</button>
                     {% else %}
                         <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.transfer }}" name="transfer">{% trans "Transfer" %}</button>
                     {% endif %}
-                    {% if "2" in enabled_filters %} 
+                    {% if "2" in enabled_filters %}
                         <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.request }}" name="request">{% trans "Request" %}</button>
                     {% else %}
                         <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.request }}" name="request">{% trans "Request" %}</button>
                     {% endif %}
-                    {% if "3" in enabled_filters  %} 
+                    {% if "3" in enabled_filters  %}
                         <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.release }}" name="release">{% trans "Release" %}</button>
                     {% else %}
                         <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.release }}" name="release">{% trans "Release" %}</button>
                     {% endif %}
-                    {% if "4" in enabled_filters  %} 
+                    {% if "4" in enabled_filters  %}
                         <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.verified }}" name="verified">{% trans "Verified" %}</button>
                     {% else %}
-                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.verified }}" name="verified">{% trans "Verified" %}</button>                  
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.verified }}" name="verified">{% trans "Verified" %}</button>
                     {% endif %}
-                    {% if "5" in enabled_filters  %} 
+                    {% if "5" in enabled_filters  %}
                         <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.unverified }}" name="unverified">{% trans "Unverified" %}</button>
                     {% else %}
-                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.unverified }}" name="unverified">{% trans "Unverified" %}</button>         
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.unverified }}" name="unverified">{% trans "Unverified" %}</button>
                     {% endif %}
-                    {% if "6" in enabled_filters  %} 
+                    {% if "6" in enabled_filters  %}
                         <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.connection }}" name="connection">{% trans "Connection" %}</button>
                     {% else %}
-                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.connection }}" name="connection">{% trans "Connection" %}</button>         
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.connection }}" name="connection">{% trans "Connection" %}</button>
                     {% endif %}
             </div>
-        </div> 
+        </div>
     </div>
     <div class="row" id="timelinesection" style="margin-top:10px">
         {% include "timelines/timeline.html" %}
@@ -94,32 +94,32 @@
         </div><!-- /.modal-dialog -->
     </div>
 <select id="filtertimeline" multiple>
-    {% if "1" in enabled_filters %} 
+    {% if "1" in enabled_filters %}
         <option value="1" id="transfer" selected></option>
     {% else %}
         <option value="1" id="transfer"></option>
     {% endif %}
-    {% if "2" in enabled_filters %} 
+    {% if "2" in enabled_filters %}
         <option value="2" id="request" selected></option>
     {% else %}
         <option value="2" id="request"></option>
     {% endif %}
-    {% if "3" in enabled_filters %} 
+    {% if "3" in enabled_filters %}
         <option value="3" id="release" selected></option>
     {% else %}
         <option value="3" id="release"></option>
     {% endif %}
-    {% if "4" in enabled_filters %} 
+    {% if "4" in enabled_filters %}
         <option value="4" id="verified" selected></option>
     {% else %}
         <option value="4" id="verified"></option>
     {% endif %}
-    {% if "5" in enabled_filters %} 
+    {% if "5" in enabled_filters %}
         <option value="5" id="unverified" selected></option>
     {% else %}
         <option value="5" id="unverified"></option>
     {% endif %}
-    {% if "6" in enabled_filters %} 
+    {% if "6" in enabled_filters %}
         <option value="6" id="connection" selected></option>
     {% else %}
         <option value="6" id="connection"></option>
@@ -227,7 +227,7 @@
                 set_filters();
                 requestTimeline();
             }
-            else 
+            else
             {
                 $(this).removeClass("btn-default");
                 $(this).addClass("btn-success");
@@ -273,5 +273,8 @@
         $("#searchtimeline").on('keyup', function(){
             requestTimeline();
         });
+        var anchor = window.location.hash;
+        $(anchor).find(".timeline-item").css("background-color", "#327aa3");
+        setTimeout(function(){ $(anchor).find(".timeline-item").css("background-color", ""); }, 2000);
     </script>
 {% endblock extrascripts %}

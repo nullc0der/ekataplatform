@@ -31,7 +31,9 @@ def users_page(request):
     for user in userlists:
         if user not in query_set:
             query_set.append(user)
-    paginator = Paginator(query_set, 10)  # group the users by 10
+    if request.user in query_set:
+        query_set.remove(request.user)
+    paginator = Paginator(query_set, 12)  # group the users by 12
     page = request.GET.get('page')  # get page no
     try:
         users = paginator.page(page)
@@ -55,7 +57,9 @@ def users_page(request):
             for user in userlists:
                 if user not in query_set:
                     query_set.append(user)
-        paginator = Paginator(query_set, 10)  # group the users by 10
+            if request.user in query_set:
+                query_set.remove(request.user)
+        paginator = Paginator(query_set, 12)  # group the users by 12
         page = request.GET.get('page')  # get page no
         try:
             users = paginator.page(page)
@@ -168,6 +172,7 @@ def user_details_page(request, id):
                 ntype=4,
                 sender=request.user.username,
                 sender_id=request.user.id,
+                timeline_id=recievertimeline.id
             )
             return HttpResponse(_("Success"))
         else:
@@ -218,6 +223,7 @@ def user_details_page(request, id):
                 ntype=5,
                 sender=request.user.username,
                 sender_id=request.user.id,
+                timeline_id=recievertimeline.id
             )
             return render(
                 request,
@@ -340,6 +346,7 @@ def request_connection(request, user):
             ntype=6,
             sender=request.user.username,
             sender_id=request.user.id,
+            timeline_id=recievertimeline.id
         )
     return HttpResponse(_("A request is sent to ") + reciever.username)
 
