@@ -3,10 +3,10 @@
     <!-- Profile Image -->
     <div class="box box-primary">
         <div class="box-body box-profile">
-            {% if user.profile.avatar_public %} 
+            {% if user.profile.avatar_public %}
                 {% if user.profile.avatar %}
                     <a href="#">
-                        <img src="{{ user.profile.avatar.thumbnail.128x128 }}" class="profile-user-img img-responsive img-circle" alt="User Image"> 
+                        <img src="{{ user.profile.avatar.thumbnail.128x128 }}" class="profile-user-img img-responsive img-circle" alt="User Image">
                     </a>
                 {% else %}
                     <a href="#">
@@ -44,7 +44,7 @@
                     <b>References</b> <a class="pull-right thumbcount">{{ user.thumbs.count }}</a>
                 </li>
             </ul>
-            {% ifequal user.username request.user.username %} 
+            {% ifequal user.username request.user.username %}
             {% else %}
             <div id="connectopt">
                 {% if disconnect %}
@@ -63,7 +63,7 @@
                                 <option value="Friend" selected>{% trans "Friend" %}</option>
                                 <option value="Family">{% trans "Family" %}</option>
                                 <option value="Contact">{% trans "Contact" %}</option>
-                            </select>    
+                            </select>
                         </div>
                         <div class="connform">
                             <label for="subc" id="subcl" style="margin-right: 27px">{% trans "Friend Type" %}</label>
@@ -71,8 +71,8 @@
                                 <option value="Best" selected>{% trans "Best" %}</option>
                                 <option value="Friend">{% trans "Friend" %}</option>
                                 <option value="Soulmate">{% trans "Soulmate" %}</option>
-                                <option value="Aquantence">{% trans "Aquantence" %}</option>
-                            </select>    
+                                <option value="Acquaintance">{% trans "Acquaintance" %}</option>
+                            </select>
                         </div>
                         <div class="pull-right connform">
                             <button class="btn btn-primary btn-sm" id="sendcr">{% trans "Send request" %}</button>
@@ -126,9 +126,9 @@
                     <strong><i class="fa fa-mars margin-r-5"></i>{% trans "Gender" %}</strong>
                     <p class="text-muted">
                         {% if user.profile.gender %}
-                            {{ user.profile.get_gender_display }} 
-                        {% else %} 
-                            Not Specified 
+                            {{ user.profile.get_gender_display }}
+                        {% else %}
+                            Not Specified
                         {% endif %}
                     </p>
                     {% endif %}
@@ -281,19 +281,19 @@
                                     {% endif %}
                                     {% if not_completed %}
                                         <li>
-                                            <i class="fa fa-circle-o text-red"></i> 
+                                            <i class="fa fa-circle-o text-red"></i>
                                             {% trans "Not completed" %}
                                         </li>
                                     {% endif %}
                                     {% if not_verified %}
                                         <li>
-                                            <i class="fa fa-circle-o text-orange"></i> 
+                                            <i class="fa fa-circle-o text-orange"></i>
                                             {% trans "Not verified" %}
                                         </li>
                                     {% endif %}
                                     {% if skipped %}
                                         <li>
-                                            <i class="fa fa-circle-o text-yellow"></i> 
+                                            <i class="fa fa-circle-o text-yellow"></i>
                                             {% trans "Skipped" %}
                                         </li>
                                     {% endif %}
@@ -303,7 +303,7 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    
+
                 </div>
             </div>
         </div>

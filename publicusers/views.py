@@ -278,7 +278,7 @@ def send_sub_connection(request):
         if mainconn == 'Friend':
             subconn = {
                 'main': unicode(_('Friend type')),
-                'sub': [unicode(_('Best')), unicode(_('Friend')), unicode(_('Soulmate')), unicode(_('Aquantence'))]
+                'sub': [unicode(_('Best')), unicode(_('Friend')), unicode(_('Soulmate')), unicode(_('Acquaintance'))]
             }
         if mainconn == 'Family':
             subconn = {
