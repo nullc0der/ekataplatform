@@ -127,7 +127,7 @@
                         <li class="dropdown notifications-menu"  id="notification">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label" id="notindicator"><i class="fa fa-circle text-danger"></i></span>
+                                <span class="label bg-red" id="notindicator"></span>
                             </a>
                         </li>
                          <!--Tasks: style can be found in dropdown.less
@@ -801,13 +801,36 @@
         $.ajax({
             url: '{% url 'notification:index' %}',
             success: function(data){
-                $("#notification").append(data);
+                $("#notification").append(data.html_s);
+                if (data.unread) {
+                    $("#notindicator").text(data.unread);
+                    $("#notindicator").show();
+                }
                 $(".menu").slimscroll({
                     height: '200px',
                     size: '3px',
                     alwaysVisible: false
                 });
             }
+        });
+        $(document).on('click', '.notification', function(){
+            var notification = $(this);
+            $.ajax({
+                url: '{% url 'notification:setnotificationread' %}',
+                type: 'POST',
+                data: {'notification_id': notification.attr('data-id')},
+                async: false,
+                success: function(){
+                    notification.remove();
+                    var count = $("#notindicator").text();
+                    if (count == 1) {
+                        $("#notindicator").hide();
+                    }
+                    else{
+                        $("#notindicator").text(count - 1);
+                    }
+                }
+            });
         });
     </script>
     <script type="text/javascript" src="{% static "dist/js/widgetstate.js" %}"></script>
@@ -834,12 +857,13 @@
             $.ajax({
                 url: '{% url 'notification:index' %}',
                 success: function(data){
-                    $("#notification").append(data);
+                    $("#notification").append(data.html_s);
                     $(".menu").slimscroll({
                         height: '200px',
                         size: '3px',
                         alwaysVisible: false
                     });
+                    $("#notindicator").text(data.unread);
                     $("#notindicator").show();
                 }
             });

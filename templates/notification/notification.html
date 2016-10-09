@@ -5,84 +5,84 @@
         <ul class="menu">
     {% for notification in notifications %}
         {% ifequal notification.notification_type 1 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
                     <i class="fa fa-exchange text-blue"></i> {{ notification.sender }} {% trans "sent" %} {{ notification.amount }} {% trans "units" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 2 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
                     <i class="fa fa-exchange text-blue"></i> {{ notification.sender }} {% trans "requested" %} {{ notification.amount }} {% trans "units" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 3 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
                     <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount }} {% trans "units released" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 4 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
                     <i class="fa fa-thumbs-o-up text-green"></i> {{ notification.sender }} {% trans "verfied as real user" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 5 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
                     <i class="fa fa-thumbs-o-down text-red"></i> {{ notification.sender }} {% trans "unverfied you" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 6 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
                     <i class="fa fa-user-plus text-green"></i> {{ notification.sender }} {% trans "sent a connection request" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 7 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="#">
                     <i class="fa fa-user-plus text-red"></i> {{ notification.sender }} {% trans "canceled connection request" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 8 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="#">
                     <i class="fa fa-user-plus text-green"></i> {{ notification.sender }} {% trans "accepted connection request" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 9 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="#">
                     <i class="fa fa-user-plus text-red"></i> {{ notification.sender }} {% trans "rejected connection request" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 10 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="#">
                     <i class="fa fa-user-plus text-red"></i> {{ notification.sender }} {% trans "disconnected you" %}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 11 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="/g/group/{{ notification.group_id }}/">
                     <i class="fa fa-user-plus text-red"></i> {{ notification.sender }} {% trans "invited you to group" %} {{ notification.group_name }}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 12 %}
-            <li>
+            <li class="notification" data-id="{{ notification.id }}">
                 <a href="/g/joinrequests/{{ notification.group_id }}">
                     <i class="fa fa-user-plus text-green"></i> {{ notification.sender }} {% trans "sent a join request to group" %} {{ notification.group_name }}
                 </a>
