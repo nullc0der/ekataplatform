@@ -358,7 +358,7 @@
                                 {% trans "System notice: " %}
                                 {% load tz %}
                                 {% localtime on %}
-                                    {{ update.timestamp|time:"h:i a" }}
+                                    {{ update.timestamp|date:"d/m/Y h:i a" }}
                                 {% endlocaltime %}
                                  - {{ update.message }}
                             </p>
