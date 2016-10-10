@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'guardian',
     'markdownx',
     'markdown_deux',
+    'easy_timezones',
     'raven.contrib.django.raven_compat',
     'landing',
     'profilesystem',
@@ -92,6 +93,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'easy_timezones.middleware.EasyTimezoneMiddleware',
     'profilesystem.middleware.CheckInvitationMiddleware',
     'profilesystem.middleware.RemoveSkippedMiddleware'
 ]
@@ -113,7 +115,8 @@ TEMPLATES = [
                 'django.core.context_processors.static',
                 'ws4redis.context_processors.default',
                 'messagingsystem.context_processors.unread_message',
-                'dashboard.context_processors.version_info'
+                'dashboard.context_processors.version_info',
+                'sysadmin.context_processors.get_sytemupdate'
             ],
         },
     },
@@ -244,6 +247,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
+GEOIP_DATABASE = 'geoip/GeoIP.dat'
+GEOIPV6_DATABASE = 'geoip/GeoIPv6.dat'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

@@ -26,8 +26,6 @@ def send_update_email_to_users():
                 for user in users:
                     if user.email:
                         emailaddress_list.append(user.email)
-                print(users)
-                print(emailaddress_list)
                 msg = EmailMultiAlternatives(
                     subject,
                     email_html,

@@ -4991,3 +4991,8 @@ table.text-center th {
 .onlinestatus {
   font-size: 10px;
 }
+.sysalert {
+    padding: 10px;
+    border-radius: 0;
+    margin-bottom: 0;
+}

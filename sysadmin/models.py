@@ -17,3 +17,18 @@ class EmailUpdate(models.Model):
 
     def __unicode__(self):
         return "Email: %s" % self.id
+
+
+class SystemUpdate(models.Model):
+    TYPES = (
+        ('1', 'warning'),
+        ('2', 'info'),
+        ('3', 'danger')
+    )
+    message_type = models.CharField(max_length=2, choices=TYPES)
+    message = models.CharField(max_length=200)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    show = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return "Notice: %s" % self.id
