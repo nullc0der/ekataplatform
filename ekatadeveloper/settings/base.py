@@ -247,8 +247,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'geoip')
-GEOIP_DATABASE = 'geoip/GeoIP.dat'
-GEOIPV6_DATABASE = 'geoip/GeoIPv6.dat'
+GEOIP_DATABASE = 'geoip/GeoLiteCity.dat'
+GEOIPV6_DATABASE = 'geoip/GeoLiteCityv6.dat'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
