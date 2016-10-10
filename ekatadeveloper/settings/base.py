@@ -78,7 +78,8 @@ INSTALLED_APPS = [
     'messagingsystem',
     'hashtag',
     'groupsystem',
-    'invitationsystem'
+    'invitationsystem',
+    'sysadmin'
 ]
 
 MIDDLEWARE_CLASSES = [

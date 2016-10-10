@@ -53,6 +53,7 @@ media/
 statics/
 fabfile.py
 celerybeat-schedule
+*.pid
 
 # Sphinx documentation
 docs/_build/
