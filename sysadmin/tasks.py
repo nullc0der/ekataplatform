@@ -26,13 +26,14 @@ def send_update_email_to_users():
                 for user in users:
                     if user.email:
                         emailaddress_list.append(user.email)
-                msg = EmailMultiAlternatives(
-                    subject,
-                    email_html,
-                    "support@ekata.social",
-                    emailaddress_list
-                )
-                msg.attach_alternative(email_html, "text/html")
-                msg.send()
+                for emailaddress in emailaddress_list:
+                    msg = EmailMultiAlternatives(
+                        subject,
+                        email_html,
+                        "support@ekata.social",
+                        [emailaddress]
+                    )
+                    msg.attach_alternative(email_html, "text/html")
+                    msg.send()
                 emailupdate.sent = True
                 emailupdate.save()
