@@ -340,7 +340,7 @@ DJANGO_ONESIGNAL_APP_ID = get_env_variable('DJANGO_ONESIGNAL_APP_ID')
 
 # Next Release(In Minutes)
 # Time difference between each release
-NEXT_RELEASE = 60 * 4
+NEXT_RELEASE = 60 * 24
 
 # Recaptcha Keys
 RECAPTCHA_PRIVATE_KEY = get_env_variable('DJANGO_RECAPTCHA_PRIVATE_KEY')
