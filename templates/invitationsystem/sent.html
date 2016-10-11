@@ -1,10 +1,7 @@
 {% extends "landing_base.html" %}
-{% load staticfiles i18n bootstrap_tags recaptcha2 %}
+{% load staticfiles i18n %}
 {% block title %}
     Get Invitation
-{% endblock %}
-{% block extrastyles %}
-    {% recaptcha_init %}
 {% endblock %}
 {% block content %}
     <section id="newshome">
@@ -14,11 +11,9 @@
                     <div class="col-md-12 text-center">
                         <div id="invitation-content">
                             <h1 class="newshome-header">{% trans "Get access to ekata beta" %}</h1>
-                            <form id="getinviteform" action="{% url 'invitationsystem:index' %}" method="POST">
-                                {% csrf_token %}
-                                {{ form|as_bootstrap }}
-                                <button type="submit" name="button" class="btn btn-primary">{% trans "Submit" %}</button>
-                            </form>
+                            <p>
+                                {% trans "Your request is sent!! You will get an invitation id soon" %}
+                            </p>
                         </div>
                     </div>
                 </div>

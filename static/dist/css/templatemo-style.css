@@ -196,7 +196,20 @@ img
 /* end navigation */
 
 #invitation-content {
-    padding: 15%;
+    padding: 10%;
+}
+
+.g-recaptcha {
+    margin-left: 30%;
+}
+
+@media (max-width: 330px ) {
+    #invitation-content {
+        padding: 0;
+    }
+    .g-recaptcha {
+        margin-left: 0;
+    }
 }
 
 /* start home */
