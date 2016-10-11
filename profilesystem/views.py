@@ -191,9 +191,10 @@ def address_edit_page(request):
 def upload_avatar(request):
     if request.POST and request.FILES:
         prof, created = UserProfile.objects.get_or_create(user=request.user)
-        prof.avatar = request.FILES['file']
+        prof.avatar = request.FILES['avatarimage']
         prof.save()
-    return HttpResponse('OK')
+        avatar_url = prof.avatar.thumbnail['200x200'].url
+    return HttpResponse(avatar_url)
 
 
 @login_required
@@ -232,16 +233,6 @@ def upload_file(request):
         userdoc.document = request.FILES['file']
         userdoc.save()
     return HttpResponse('OK')
-
-
-@login_required
-def query_avatar(request):
-    profile = request.user.profile
-    if profile.avatar:
-        avatar_url = profile.avatar.thumbnail['200x200'].url
-        return HttpResponse(avatar_url)
-    else:
-        return HttpResponse("")
 
 
 @login_required

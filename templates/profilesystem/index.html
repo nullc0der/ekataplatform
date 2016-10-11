@@ -774,13 +774,15 @@
         <h4 class="modal-title" id="imgModalLabel">Change Avatar</h4>
       </div>
       <div class="modal-body">
-        <form class="dropzone" action="{% url 'profilesystem:uploadavatar' %}" method="post" enctype="multipart/form-data" id="avatarDropzone">
+        <form action="{% url 'profilesystem:uploadavatar' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            <div class="text-center">
+                <input type="file" name="avatarimage" id="avatarimage">
+            </div>
+            <div class="text-center">
+                <button class="btn btn-success" type="submit">Upload</button>
+            </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-        <button class="btn btn-primary" type="button" id="imageup">Upload</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -859,7 +861,8 @@
                 });
             }
         };
-        Dropzone.options.avatarDropzone = {
+        {% comment %}
+        /*Dropzone.options.avatarDropzone = {
             // Prevents Dropzone from uploading dropped files immediately
             autoProcessQueue : false,
 
@@ -895,6 +898,16 @@
                 });
             }
         };
+        */
+        {% endcomment %}
+        $('#avatarimage').picEdit({
+            defaultImage: "{{ request.user.profile.avatar.url }}",
+            formSubmitted: function (data){
+                var date = new Date();
+                $(".useravatar").attr('src', data.responseText + "?" + date.toString());
+                $("#imgModal").modal('hide');
+            }
+        });
         function boxoperation(close_b, submit_b, edit_b, creplace_div, overlay_div, content_url, form_url, form_id){
             $(close_b).hide();
             $(submit_b).hide();

@@ -1,9 +1,9 @@
 {% load staticfiles i18n %}
 {% if request.user.profile.avatar %}
-    <img src="{{ request.user.profile.avatar.thumbnail.128x128 }}" class="profile-user-img img-responsive img-circle" alt="User Image">
+    <img src="{{ request.user.profile.avatar.thumbnail.128x128 }}" class="profile-user-img img-responsive img-circle useravatar" alt="User Image">
     <a data-target="#imgModal" data-toggle="modal" class="profile-edit"><i class="fa fa-pencil"></i></a>
 {% else %}
-    <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" class="profile-user-img img-responsive img-circle" alt="User Image">
+    <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" class="profile-user-img img-responsive img-circle useravatar" alt="User Image">
     <a data-target="#imgModal" data-toggle="modal" class="profile-edit" id="avatar"><i class="fa fa-pencil"></i></a>
 {% endif %}
 <strong><i class="fa fa-user margin-r-5"></i>{% trans "Username" %}</strong>
@@ -24,8 +24,8 @@
 
 <p class="text-muted" id="pgen">
     {% if request.user.profile.gender %}
-        {{ request.user.profile.get_gender_display }} 
-    {% else %} 
+        {{ request.user.profile.get_gender_display }}
+    {% else %}
         Not Specified
     {% endif %}
 </p>

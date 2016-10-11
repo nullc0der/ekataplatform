@@ -39,7 +39,6 @@ urlpatterns = [
     url(r'^uploadavatar/$', views.upload_avatar, name='uploadavatar'),
     url(r'^setting/$', views.settings, name='setting'),
     url(r'^uploadfile/$', views.upload_file, name='uploadfile'),
-    url(r'^queryavatar/$', views.query_avatar, name='queryavatar'),
     url(r'^setui/$', views.setuistate, name='setui'),
     url(r'^getui/$', views.getuistate, name='getui'),
     url(r'^setonline/$', views.set_onlinestate, name='setonline'),
