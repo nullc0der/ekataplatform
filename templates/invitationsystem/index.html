@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div id="invitation-content">
-                            <h1 class="newshome-header">{% trans "Get access to ekata beta" %}</h1>
+                            <h1 class="newshome-header">{% trans "Get your invite access key to the ekata beta" %}</h1>
                             <form id="getinviteform" action="{% url 'invitationsystem:index' %}" method="POST">
                                 {% csrf_token %}
                                 {{ form|as_bootstrap }}

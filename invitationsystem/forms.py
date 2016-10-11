@@ -13,7 +13,7 @@ class GetInvitationForm(forms.Form):
 
 
 class CheckInvitationForm(forms.Form):
-    invitation_id = forms.CharField(max_length=6)
+    invitation_id = forms.CharField(label="Key", max_length=6)
     captcha = ReCaptchaField(label='', widget=ReCaptchaWidget())
 
     def clean_invitation_id(self):
