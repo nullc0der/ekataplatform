@@ -20,6 +20,7 @@ def send_update_email_to_users():
             if timezone.now() > emailupdate.timestamp:
                 users = emailupdate.to_users.all()
                 subject = emailupdate.subject
+                from_email = emailupdate.from_email
                 message = emailupdate.message
                 email_html = markdown.markdown(message)
                 emailaddress_list = []
@@ -30,7 +31,7 @@ def send_update_email_to_users():
                     msg = EmailMultiAlternatives(
                         subject,
                         email_html,
-                        "support@ekata.social",
+                        from_email,
                         [emailaddress]
                     )
                     msg.attach_alternative(email_html, "text/html")

@@ -12,6 +12,7 @@ class EmailUpdate(models.Model):
     to_users = models.ManyToManyField(User)
     subject = models.CharField(max_length=100)
     message = MarkdownxField()
+    from_email = models.EmailField(default="support@ekata.social")
     timestamp = models.DateTimeField(auto_now_add=True)
     sent = models.BooleanField(default=False, editable=False)
 
