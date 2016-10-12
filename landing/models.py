@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import markdown
+
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
@@ -31,6 +33,11 @@ class News(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if self.content:
+            self.content = markdown.markdown(self.content)
+        super(News, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('landing:news_detail', args=[self.id, ])

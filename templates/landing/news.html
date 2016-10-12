@@ -34,7 +34,7 @@
                         {% for trend in trending %}
                         <div class="col-md-12 trendingnews">
                             <h3><a href="{{ trend.get_absolute_url }}" style="color:#fff;">{{ trend.title|truncatewords:4 }}</a></h3>
-                            <p class="text-justify">{{ trend.content|markdown|truncatewords_html:10 }}</p>
+                            <p class="text-justify">{{ trend.content|safe|truncatewords_html:10 }}</p>
                         </div>
                         {% endfor %}
                     </div>
@@ -80,7 +80,7 @@
                             </span>
                         </div>
                         <div class="newscontent">
-                            {{ news.content|markdown|safe|truncatewords_html:50 }}
+                            {{ news.content|safe|truncatewords_html:50 }}
                         </div>
                     </div>
                     {% endfor %}
