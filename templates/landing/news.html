@@ -80,7 +80,7 @@
                             </span>
                         </div>
                         <div class="newscontent">
-                            {{ news.content|markdown|truncatewords_html:50 }}
+                            {{ news.content|markdown|safe|truncatewords_html:50 }}
                         </div>
                     </div>
                     {% endfor %}
