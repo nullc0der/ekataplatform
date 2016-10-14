@@ -56,6 +56,16 @@ class News(models.Model):
         verbose_name_plural = 'News'
 
 
+class NewsOgTag(models.Model):
+    news = models.OneToOneField(News)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField()
+
+    def __unicode__(self):
+        return self.title
+
+
 class HashtagImg(models.Model):
     lat = models.CharField(max_length=40, default='')
     lng = models.CharField(max_length=40, default='')
@@ -68,3 +78,18 @@ class HashtagImg(models.Model):
 
     def __unicode__(self):
         return self.uploader
+
+
+class OgTag(models.Model):
+    PAGE_CHOICES = (
+        ('index', 'index'),
+        ('hashtag', 'hashtag'),
+        ('news', 'news')
+    )
+    page = models.CharField(max_length=10, choices=PAGE_CHOICES)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField()
+
+    def __unicode__(self):
+        return self.page
