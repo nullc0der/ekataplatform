@@ -1,10 +1,13 @@
 from __future__ import unicode_literals
 
 import markdown
+import bleach
 
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.conf import settings
+
 from markdownx.models import MarkdownxField
 from versatileimagefield.fields import VersatileImageField
 from versatileimagefield.placeholder import OnStoragePlaceholderImage
@@ -36,7 +39,14 @@ class News(models.Model):
 
     def save(self, *args, **kwargs):
         if self.content:
-            self.content = markdown.markdown(self.content)
+            html = markdown.markdown(self.content)
+            html_sanitized = bleach.clean(
+                html,
+                settings.BLEACH_VALID_TAGS,
+                settings.BLEACH_VALID_ATTRS,
+                settings.BLEACH_VALID_STYLES
+            )
+            self.content = html_sanitized
         super(News, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
