@@ -15,6 +15,43 @@ from versatileimagefield.placeholder import OnStoragePlaceholderImage
 # Create your models here.
 
 
+class GlobalOgTag(models.Model):
+    name = models.CharField(max_length=200, default='', blank=False)
+    title = models.CharField(max_length=100, default='', blank=False)
+    page_type = models.CharField(max_length=40, default='', blank=False)
+    description = models.CharField(max_length=255, default='', blank=False)
+    app_id = models.CharField(max_length=40, default='', blank=True)
+    image = models.ImageField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+
+class ExtraMetaTag(models.Model):
+    ogtag = models.ForeignKey(GlobalOgTag)
+    meta_tag = models.CharField(
+        max_length=30,
+        help_text='enter full og meta name'
+    )
+    description = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.meta_tag
+
+
+class OgTagLink(models.Model):
+    PAGE_CHOICES = (
+        ('index', 'index'),
+        ('hashtag', 'hashtag'),
+        ('news', 'news')
+    )
+    page = models.CharField(max_length=10, choices=PAGE_CHOICES)
+    globalogtag = models.ForeignKey(GlobalOgTag)
+
+    def __unicode__(self):
+        return self.page
+
+
 class Tags(models.Model):
     name = models.CharField(max_length=40)
 
@@ -33,6 +70,7 @@ class News(models.Model):
     draft = models.BooleanField(default=True)
     created_on = models.DateTimeField(auto_now_add=True)
     clickcount = models.IntegerField(editable=False, default=0)
+    ogtag = models.ForeignKey(GlobalOgTag, null=True, blank=True)
 
     def __unicode__(self):
         return self.title
@@ -56,16 +94,6 @@ class News(models.Model):
         verbose_name_plural = 'News'
 
 
-class NewsOgTag(models.Model):
-    news = models.OneToOneField(News)
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    image = models.ImageField()
-
-    def __unicode__(self):
-        return self.title
-
-
 class HashtagImg(models.Model):
     lat = models.CharField(max_length=40, default='')
     lng = models.CharField(max_length=40, default='')
@@ -78,39 +106,3 @@ class HashtagImg(models.Model):
 
     def __unicode__(self):
         return self.uploader
-
-
-class OgTag(models.Model):
-    PAGE_CHOICES = (
-        ('index', 'index'),
-        ('hashtag', 'hashtag'),
-        ('news', 'news')
-    )
-    name = models.CharField(max_length=200, default='', blank=False)
-    title = models.CharField(max_length=100, default='', blank=False)
-    page_type = models.CharField(max_length=40, default='', blank=False)
-    description = models.CharField(max_length=255, default='', blank=False)
-    app_id = models.CharField(max_length=40, default='', blank=True)
-    image = models.ImageField()
-    page = models.CharField(
-        max_length=10,
-        choices=PAGE_CHOICES,
-        null=True,
-        blank=True,
-        help_text="Choose one if you want to link to one of landing pages"
-    )
-
-    def __unicode__(self):
-        return self.name
-
-
-class ExtraMetaTag(models.Model):
-    ogtag = models.ForeignKey(OgTag)
-    meta_tag = models.CharField(
-        max_length=30,
-        help_text='enter full og meta name'
-    )
-    description = models.CharField(max_length=255)
-
-    def __unicode__(self):
-        return self.meta_tag

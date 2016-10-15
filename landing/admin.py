@@ -1,32 +1,20 @@
 from django.contrib import admin
 
-from markdownx.widgets import AdminMarkdownxWidget
-from markdownx.models import MarkdownxField
+from markdownx.admin import MarkdownxModelAdmin
 
 from landing.models import\
-    News, Tags, HashtagImg, OgTag, NewsOgTag, ExtraMetaTag
+    News, Tags, HashtagImg, GlobalOgTag, ExtraMetaTag, OgTagLink
 
 
 # Register your models here.
-class NewsOgTagInline(admin.StackedInline):
-    model = NewsOgTag
-
-
-class NewsAdmin(admin.ModelAdmin):
-    inlines = [NewsOgTagInline, ]
-    formfield_overrides = {
-        MarkdownxField: {'widget': AdminMarkdownxWidget}
-    }
-
-
 class ExtraMetaTagInline(admin.StackedInline):
     model = ExtraMetaTag
 
 
-class OgTagAdmin(admin.ModelAdmin):
+class GlobalOgTagAdmin(admin.ModelAdmin):
     inlines = [ExtraMetaTagInline, ]
 
-admin.site.register(News, NewsAdmin)
-admin.site.register(Tags)
+admin.site.register(News, MarkdownxModelAdmin)
 admin.site.register(HashtagImg)
-admin.site.register(OgTag, OgTagAdmin)
+admin.site.register(GlobalOgTag, GlobalOgTagAdmin)
+admin.site.register(OgTagLink)

@@ -8,7 +8,11 @@
 			<meta property="og:url" content="{{ request.build_absolute_uri }}" />
 			<meta property="og:title" content="{{ ogtag.title }}" />
 			<meta property="og:description" content="{{ ogtag.description }}" />
-			<meta property="og:image" content="http{% if request.is_secure %}s{% endif %}://{{ request.META.HTTP_HOST }}{{ ogtag.image.url }}" />
+			{% if ogtag.image %}
+				<meta property="og:image" content="http{% if request.is_secure %}s{% endif %}://{{ request.META.HTTP_HOST }}{{ ogtag.image.url }}" />
+			{% else %}
+				<meta property="og:image" content="https://ekata.social/static/dist/img/ekata-logo-bk-200.png" />
+			{% endif %}
 			<meta property="fb:app_id" content="{{ ogtag.app_id }}">
 		{% for extrameta in ogtag.extrametatag_set.all %}
 			<meta property="{{ extrameta.meta_tag }}" content="{{ extrameta.description }}">

@@ -9,17 +9,17 @@ from django.contrib.auth.models import User
 
 from utils import send_contact_email
 
-from landing.models import News, Tags, HashtagImg, OgTag
+from landing.models import News, Tags, HashtagImg, GlobalOgTag, OgTagLink
 
 
 # Create your views here.
 
 
 def index_page(request):
-    index_ogtag = OgTag.objects.filter(page='index').order_by('-id')
-    default_ogtag = OgTag.objects.filter(name='default').order_by('-id')
+    index_ogtag = OgTagLink.objects.filter(page='index').order_by('-id')
+    default_ogtag = GlobalOgTag.objects.filter(name='default').order_by('-id')
     if index_ogtag:
-        ogtag = index_ogtag[0]
+        ogtag = index_ogtag[0].globalogtag
     elif default_ogtag:
         ogtag = default_ogtag[0]
     else:
@@ -46,10 +46,10 @@ def index_page(request):
 
 def hashtag_page(request):
     hashtagimges = HashtagImg.objects.all()
-    hashtag_ogtag = OgTag.objects.filter(page='hashtag').order_by('-id')
-    default_ogtag = OgTag.objects.filter(name='default').order_by('-id')
+    hashtag_ogtag = OgTagLink.objects.filter(page='hashtag').order_by('-id')
+    default_ogtag = GlobalOgTag.objects.filter(name='default').order_by('-id')
     if hashtag_ogtag:
-        ogtag = hashtag_ogtag[0]
+        ogtag = hashtag_ogtag[0].globalogtag
     elif default_ogtag:
         ogtag = default_ogtag[0]
     else:
@@ -78,10 +78,10 @@ def getimage(request):
 def news_page(request):
     newses = News.objects.filter(draft=False).order_by('-id')
     trending = newses.order_by('-clickcount')
-    news_ogtag = OgTag.objects.filter(page='news').order_by('-id')
-    default_ogtag = OgTag.objects.filter(name='default').order_by('-id')
+    news_ogtag = OgTagLink.objects.filter(page='news').order_by('-id')
+    default_ogtag = GlobalOgTag.objects.filter(name='default').order_by('-id')
     if news_ogtag:
-        ogtag = news_ogtag[0]
+        ogtag = news_ogtag[0].globalogtag
     elif default_ogtag:
         ogtag = default_ogtag[0]
     else:
@@ -114,10 +114,10 @@ def news_detail_page(request, id):
     news = News.objects.get(id=id)
     news.clickcount += 1
     news.save()
-    if hasattr(news, 'newsogtag'):
-        ogtag = news.newsogtag
+    if news.ogtag:
+        ogtag = news.ogtag
     else:
-        default_ogtag = OgTag.objects.filter(name='default').order_by('-id')
+        default_ogtag = GlobalOgTag.objects.filter(name='default').order_by('-id')
         if default_ogtag:
             ogtag = default_ogtag[0]
         else:
