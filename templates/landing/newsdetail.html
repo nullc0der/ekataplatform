@@ -11,13 +11,16 @@
     </style>
 {% endblock %}
 {% block extrameta %}
-    {% if ogtag %}
-    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-		<meta property="og:title" content="{{ ogtag.title }}" />
-		<meta property="og:description" content="{{ ogtag.description }}" />
-		<meta property="og:image" content="http{% if request.is_secure %}s{% endif %}://{{ request.META.HTTP_HOST }}{{ ogtag.image.url }}" />
-		<meta property="fb:app_id" content="675793779103244">
-    {% endif %}
+{% if ogtag %}
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:title" content="{{ ogtag.title }}" />
+  <meta property="og:description" content="{{ ogtag.description }}" />
+  <meta property="og:image" content="http{% if request.is_secure %}s{% endif %}://{{ request.META.HTTP_HOST }}{{ ogtag.image.url }}" />
+  <meta property="fb:app_id" content="{{ ogtag.app_id }}">
+{% for extrameta in ogtag.extrametatag_set.all %}
+  <meta property="{{ extrameta.meta_tag }}" content="{{ extrameta.description }}">
+{% endfor %}
+{% endif %}
 {% endblock %}
 {% block content %}
 <section id="newsdetail">

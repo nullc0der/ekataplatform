@@ -3,7 +3,8 @@ from django.contrib import admin
 from markdownx.widgets import AdminMarkdownxWidget
 from markdownx.models import MarkdownxField
 
-from landing.models import News, Tags, HashtagImg, OgTag, NewsOgTag
+from landing.models import\
+    News, Tags, HashtagImg, OgTag, NewsOgTag, ExtraMetaTag
 
 
 # Register your models here.
@@ -17,7 +18,15 @@ class NewsAdmin(admin.ModelAdmin):
         MarkdownxField: {'widget': AdminMarkdownxWidget}
     }
 
+
+class ExtraMetaTagInline(admin.StackedInline):
+    model = ExtraMetaTag
+
+
+class OgTagAdmin(admin.ModelAdmin):
+    inlines = [ExtraMetaTagInline, ]
+
 admin.site.register(News, NewsAdmin)
 admin.site.register(Tags)
 admin.site.register(HashtagImg)
-admin.site.register(OgTag)
+admin.site.register(OgTag, OgTagAdmin)

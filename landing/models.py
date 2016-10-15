@@ -86,10 +86,31 @@ class OgTag(models.Model):
         ('hashtag', 'hashtag'),
         ('news', 'news')
     )
-    page = models.CharField(max_length=10, choices=PAGE_CHOICES)
-    title = models.CharField(max_length=200)
-    description = models.TextField()
+    name = models.CharField(max_length=200, default='', blank=False)
+    title = models.CharField(max_length=100, default='', blank=False)
+    page_type = models.CharField(max_length=40, default='', blank=False)
+    description = models.CharField(max_length=255, default='', blank=False)
+    app_id = models.CharField(max_length=40, default='', blank=True)
     image = models.ImageField()
+    page = models.CharField(
+        max_length=10,
+        choices=PAGE_CHOICES,
+        null=True,
+        blank=True,
+        help_text="Choose one if you want to link to one of landing pages"
+    )
 
     def __unicode__(self):
-        return self.page
+        return self.name
+
+
+class ExtraMetaTag(models.Model):
+    ogtag = models.ForeignKey(OgTag)
+    meta_tag = models.CharField(
+        max_length=30,
+        help_text='enter full og meta name'
+    )
+    description = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.meta_tag

@@ -16,9 +16,13 @@ from landing.models import News, Tags, HashtagImg, OgTag
 
 
 def index_page(request):
-    try:
-        ogtag = OgTag.objects.get(page='index')
-    except ObjectDoesNotExist:
+    index_ogtag = OgTag.objects.filter(page='index').order_by('-id')
+    default_ogtag = OgTag.objects.filter(name='default').order_by('-id')
+    if index_ogtag:
+        ogtag = index_ogtag[0]
+    elif default_ogtag:
+        ogtag = default_ogtag[0]
+    else:
         ogtag = None
     if request.method == 'POST':
         name = request.POST.get('name', '')
@@ -42,9 +46,13 @@ def index_page(request):
 
 def hashtag_page(request):
     hashtagimges = HashtagImg.objects.all()
-    try:
-        ogtag = OgTag.objects.get(page='hashtag')
-    except ObjectDoesNotExist:
+    hashtag_ogtag = OgTag.objects.filter(page='hashtag').order_by('-id')
+    default_ogtag = OgTag.objects.filter(name='default').order_by('-id')
+    if hashtag_ogtag:
+        ogtag = hashtag_ogtag[0]
+    elif default_ogtag:
+        ogtag = default_ogtag[0]
+    else:
         ogtag = None
     return render(
         request,
@@ -70,9 +78,13 @@ def getimage(request):
 def news_page(request):
     newses = News.objects.filter(draft=False).order_by('-id')
     trending = newses.order_by('-clickcount')
-    try:
-        ogtag = OgTag.objects.get(page='news')
-    except ObjectDoesNotExist:
+    news_ogtag = OgTag.objects.filter(page='news').order_by('-id')
+    default_ogtag = OgTag.objects.filter(name='default').order_by('-id')
+    if news_ogtag:
+        ogtag = news_ogtag[0]
+    elif default_ogtag:
+        ogtag = default_ogtag[0]
+    else:
         ogtag = None
     if trending:
         trending = trending[:3]
@@ -105,7 +117,11 @@ def news_detail_page(request, id):
     if hasattr(news, 'newsogtag'):
         ogtag = news.newsogtag
     else:
-        ogtag = None
+        default_ogtag = OgTag.objects.filter(name='default').order_by('-id')
+        if default_ogtag:
+            ogtag = default_ogtag[0]
+        else:
+            ogtag = None
     return render(
         request,
         'landing/newsdetail.html',
