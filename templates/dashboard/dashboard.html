@@ -107,9 +107,6 @@
                                 Minute
                             </h4>
                         </div>
-                        <p>
-                          {{ request.user.useraccount.next_release|date:"Y/m/d H:i e" }}
-                        </p>
                     </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
@@ -553,8 +550,8 @@
     ];
     profilePieChart.Doughnut(profilePieData, pieOptions);
     //var next_release = moment.tz("{{ request.user.useraccount.next_release|date:"Y/m/d H:i" }}", moment.tz.guess());
-    var next_release = moment.utc('{{ request.user.useraccount.next_release|date:"Y/m/d H:i" }}').toDate();
-    var countdown_time = moment(next_release).format("YYYY/MM/DD HH:mm");
+    //var next_release = moment.utc('{{ request.user.useraccount.next_release|date:"Y/m/d H:i" }}').toDate();
+    var countdown_time = moment('{{ request.user.useraccount.next_release|date:"Y/m/d H:i" }}').format("YYYY/MM/DD HH:mm");
     $("#releasecountdown").countdown(countdown_time, function(event) {
         $("#day").text(event.strftime('%D'));
         $("#hour").text(event.strftime('%H'));

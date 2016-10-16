@@ -34,7 +34,7 @@
                     <p>Units</p>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-                    
+
                 </div>
             </div><!-- /.box -->
         </div>
@@ -74,7 +74,7 @@
                     </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-                    
+
                 </div>
             </div><!-- /.box -->
         </div>
@@ -160,7 +160,7 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
-                                    <th>Amount</th>                                    
+                                    <th>Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -184,8 +184,8 @@
 <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
 <script type="text/javascript">
     //var next_release = moment.tz("{{ next_release|date:"Y-m-d H:i" }}", 'UTC');
-    var next_release = moment.utc('{{ next_release|date:"Y-m-d H:i" }}').toDate();
-    var countdown_time = moment(next_release).format("YYYY/MM/DD HH:mm");
+    //var next_release = moment.utc('{{ next_release|date:"Y-m-d H:i" }}').toDate();
+    var countdown_time = moment('{{ next_release|date:"Y/m/d H:i" }}').format("YYYY/MM/DD HH:mm");
     $("#releasecountdown").countdown(countdown_time, function(event) {
         $("#day").text(event.strftime('%D'));
         $("#hour").text(event.strftime('%H'));
