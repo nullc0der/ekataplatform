@@ -31,7 +31,7 @@
                 <div class="widget-user-header bg-black" style="background: url('{{ group.header_image.url }}'); background-size: 345px 120px; background-repeat:no-repeat">
                     <h3 class="widget-user-username">{{ group.name }}</h3>
                     <h5 class="widget-user-desc">
-                        {% ifequal group.group_type '8' %}
+                        {% ifequal group.group_type '9' %}
                             {{ group.group_type_other }}
                         {% else %}
                             {{ group.get_group_type_display }}
@@ -99,7 +99,7 @@
 {% block extrascripts %}
     <script>
         var val = $("#id_group_type").val();
-        if (val === '8') {
+        if (val === '9') {
             $("#div_id_group_type_other").show();
         }
         else {
@@ -108,7 +108,7 @@
         $(document).on('change', '#id_group_type', function(event) {
             event.preventDefault();
             var val = $(this).val();
-            if (val === '8') {
+            if (val === '9') {
                 $("#id_group_type_other").val("");
                 $("#div_id_group_type_other").show();
             }

@@ -81,9 +81,9 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
 									{% if request.user.profile.avatar %}
-			                            <img src="{{ request.user.profile.avatar.thumbnail.40x40 }}" class="img-circle" alt="User Image">
+			                            <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="user-image" alt="User Image">
 			                        {% else %}
-			                            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="40" height="40">
+			                            <img src="{% static "dist/img/placeholder-user.png" %}" class="user-image" width="160" height="160">
 			                        {% endif %} {{ request.user.username }} <b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">

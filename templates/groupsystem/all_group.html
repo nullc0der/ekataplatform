@@ -124,7 +124,7 @@
                     $("#gears").hide();
                     $('#createbutton').removeAttr('disabled');
                     var val = $("#id_group_type").val();
-                    if (val !== '8') {
+                    if (val !== '9') {
                         $("#div_id_group_type_other").hide();
                     }
                 }
@@ -138,7 +138,7 @@
         $(document).on('change', '#id_group_type', function(event) {
             event.preventDefault();
             var val = $(this).val();
-            if (val === '8') {
+            if (val === '9') {
                 $("#id_group_type_other").val("");
                 $("#div_id_group_type_other").show();
             }

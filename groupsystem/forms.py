@@ -24,7 +24,7 @@ class CreateGroupForm(forms.ModelForm):
         group_type = self.cleaned_data.get('group_type', None)
         group_type_other = self.cleaned_data.get('group_type_other', None)
 
-        if group_type == '8':
+        if group_type == '9':
             if group_type_other:
                 return group_type_other
             else:
@@ -32,7 +32,7 @@ class CreateGroupForm(forms.ModelForm):
                     _('You must specify other group type')
                 )
 
-        if group_type != '8':
+        if group_type != '9':
             if group_type_other:
                 raise forms.ValidationError(
                     _("You can't fill this field with default group types")
@@ -81,7 +81,7 @@ class EditGroupForm(forms.ModelForm):
         group_type = self.cleaned_data.get('group_type', None)
         group_type_other = self.cleaned_data.get('group_type_other', None)
 
-        if group_type == '8':
+        if group_type == '9':
             if group_type_other:
                 return group_type_other
             else:
@@ -89,7 +89,7 @@ class EditGroupForm(forms.ModelForm):
                     _('You must specify other group type')
                 )
 
-        if group_type != '8':
+        if group_type != '9':
             if group_type_other:
                 raise forms.ValidationError(
                     _("You can't fill this field with default group types")

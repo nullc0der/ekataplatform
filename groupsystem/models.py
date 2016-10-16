@@ -21,7 +21,8 @@ class BasicGroup(models.Model):
         ('5', _('Business')),
         ('6', _('Government')),
         ('7', _('Blog')),
-        ('8', _('Other')),
+        ('8', _('Nonprofit Organization')),
+        ('9', _('Other')),
     )
     name = models.CharField(max_length=40)
     short_about = models.CharField(max_length=300)

@@ -232,9 +232,9 @@
                                 <!-- User image -->
                                  <li class="user-header">
                                     {% if request.user.profile.avatar %}
-                                        <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="user-image useravatar" alt="User Image">
+                                        <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle" alt="User Image">
                                     {% else %}
-                                        <img src="{% static "dist/img/placeholder-user.png" %}" class="user-image useravatar" width="160" height="160">
+                                        <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="160" height="160">
                                     {% endif %}
                                     <p>
                                         {% if request.user.username %}
@@ -250,8 +250,14 @@
                                 <!-- Menu Body -->
                                 <li class="user-body">
                                     <div class="row">
-                                        <div class="col-xs-12 text-center">
+                                        <div class="col-xs-4 text-center">
                                             <a href="{% url 'profilesystem:index' %}#reference">References</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="{% url 'myaccount:index' %}">{% trans "Account" %}</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="{% url 'landing:index' %}">{% trans "Landing" %}</a>
                                         </div>
                                     </div>
                                     <!-- /.row -->
@@ -389,6 +395,7 @@
             <strong>Copyright &copy; 2014-2016 <a href="/">Ekata</a>.</strong> All rights
             reserved.
             <small class="label bg-blue">Powered by Ekata</small>
+            <small class="label bg-green">and Django 1.9.7</small>
         </footer>
 
         <!-- Control Sidebar -->
