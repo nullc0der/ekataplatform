@@ -116,8 +116,7 @@
                                 }
                                 else {
                                     if (data[k]) {
-                                        var date = new Date(data[k]).toLocaleString();
-                                        var lastseen = moment(date).format('MMMM Do YYYY, hh:mm a')
+                                        var lastseen = moment(data[k]).format('MMMM Do YYYY, hh:mm a')
                                         $(userstatus).empty();
                                         $(userstatus).append('<i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}');
                                         $(userstatus).attr('data-toggle', 'tooltip');

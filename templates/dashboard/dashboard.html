@@ -107,6 +107,9 @@
                                 Minute
                             </h4>
                         </div>
+                        <p>
+                          {{ request.user.useraccount.next_release|date:"Y/m/d H:i e" }}
+                        </p>
                     </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
@@ -141,19 +144,19 @@
                                     {% endif %}
                                     {% if not_completed %}
                                         <li>
-                                            <i class="fa fa-circle-o text-red"></i> 
+                                            <i class="fa fa-circle-o text-red"></i>
                                             <a href="javascript:void(0)" id="ncompletedl">{% trans "Not completed" %}</a>
                                         </li>
                                     {% endif %}
                                     {% if not_verified %}
                                         <li>
-                                            <i class="fa fa-circle-o text-orange"></i> 
+                                            <i class="fa fa-circle-o text-orange"></i>
                                             <a href="javascript:void(0)" id="nverifiedl">{% trans "Not verified" %}</a>
                                         </li>
                                     {% endif %}
                                     {% if skipped %}
                                         <li>
-                                            <i class="fa fa-circle-o text-yellow"></i> 
+                                            <i class="fa fa-circle-o text-yellow"></i>
                                             <a href="javascript:void(0)" id="skippedl">{% trans "Skipped" %}</a>
                                         </li>
                                     {% endif %}
@@ -163,7 +166,7 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    
+
                 </div>
             </div>
         </div>
@@ -215,12 +218,12 @@
             <li id="conn"><a href="javascript:void(0)" onclick="showBox('connectionwidget', '#conn')">{% trans "Connection" %}</a></li>
             <li id="profc"><a href="javascript:void(0)" onclick="showBox('profilewidget', '#profc')">{% trans "Profile Completion Ring" %}</a></li>
         </ul>
-        <a class="toggle" href="#"><i class="fa fa-wrench"></i></a> 
+        <a class="toggle" href="#"><i class="fa fa-wrench"></i></a>
     </nav>
 <div class="popovercontent" id="completedc">
     <table>
     {% for completed in completed_list %}
-        {% ifequal completed 'website' %} 
+        {% ifequal completed 'website' %}
             <tr>
                 <td><i class="fa fa-check text-green"></i>&nbsp;</td>
                 <td>{% trans "Website added" %}</td>
@@ -248,28 +251,28 @@
                 <td></td>
             </tr>
         {% endifequal %}
-        {% ifequal completed 'address' %} 
+        {% ifequal completed 'address' %}
             <tr>
                 <td><i class="fa fa-check text-green"></i>&nbsp;</td>
                 <td>{% trans "Address added" %}</td>
                 <td></td>
             </tr>
         {% endifequal %}
-        {% ifequal completed 'socialaccount' %} 
+        {% ifequal completed 'socialaccount' %}
             <tr>
                 <td><i class="fa fa-check text-green"></i>&nbsp;</td>
                 <td>{% trans "Socialaccount added" %}</td>
                 <td></td>
             </tr>
         {% endifequal %}
-        {% ifequal completed 'email' %} 
+        {% ifequal completed 'email' %}
             <tr>
                 <td><i class="fa fa-check text-green"></i>&nbsp;</td>
                 <td>{% trans "Email added" %}</td>
                 <td></td>
             </tr>
         {% endifequal %}
-        {% ifequal completed 'email_verified' %} 
+        {% ifequal completed 'email_verified' %}
             <tr>
                 <td><i class="fa fa-check text-green"></i>&nbsp;</td>
                 <td>{% trans "Email verified" %}</td>
@@ -282,7 +285,7 @@
 <div class="popovercontent" id="ncompletedc">
     <table>
     {% for ncompleted in ncompleted_list %}
-        {% ifequal ncompleted 'website' %} 
+        {% ifequal ncompleted 'website' %}
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add website" %}</a></td>
                 <td><a href="javascript:void(0)" onclick='skipTask("website")'>{% trans " (skip)" %}</a></td>
@@ -292,7 +295,7 @@
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add gender" %}</a></td>
                 <td><a href="javascript:void(0)" onclick='skipTask("gender")'>{% trans " (skip)" %}</a></td>
-            </tr> 
+            </tr>
         {% endifequal %}
         {% ifequal ncompleted 'phone' %}
             <tr>
@@ -304,29 +307,29 @@
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#avatar">{% trans "Add avatar" %}</a></td>
                 <td><a href="javascript:void(0)" onclick='skipTask("avatar")'>{% trans " (skip)" %}</a></td>
-            </tr> 
+            </tr>
         {% endifequal %}
-        {% ifequal ncompleted 'address' %} 
+        {% ifequal ncompleted 'address' %}
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#locationwidget">{% trans "Add address" %}</a></td>
                 <td><a href="javascript:void(0)" onclick='skipTask("address")'>{% trans " (skip)" %}</a></td>
             </tr>
         {% endifequal %}
-        {% ifequal ncompleted 'socialaccount' %} 
+        {% ifequal ncompleted 'socialaccount' %}
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#socialwidget">{% trans "Add socialaccount" %}</a>&nbsp;</td>
                 <td><a href="javascript:void(0)" onclick='skipTask("socialaccount")'>{% trans " (skip)" %}</a></td>
             </tr>
         {% endifequal %}
-        {% ifequal ncompleted 'email' %} 
+        {% ifequal ncompleted 'email' %}
             <tr>
                 <td><a href="{% url 'account_email' %}">{% trans "Add email" %}</a></td>
                 <td><a href="javascript:void(0)" onclick='skipTask("email")'>{% trans " (skip)" %}</a></td>
             </tr>
         {% endifequal %}
-        {% ifequal ncompleted 'email_verified' %} 
+        {% ifequal ncompleted 'email_verified' %}
             <tr>
-                <td><a href="javascript:void(0)" 
+                <td><a href="javascript:void(0)"
                 {% if emailadd %}
                     onclick='sendVerification("{{ emailadd }}")'
                 {% endif %}>{% trans "Verify email" %}</a></td>
@@ -339,9 +342,9 @@
 <div class="popovercontent" id="nverifiedc">
     {% for notverified in nverified_list %}
         <table>
-            {% ifequal notverified 'email_verified' %} 
+            {% ifequal notverified 'email_verified' %}
                 <tr>
-                    <td><a href="javascript:void(0)" 
+                    <td><a href="javascript:void(0)"
                         {% if emailadd %}
                             onclick='sendVerification("{{ emailadd }}")'
                         {% endif %}>{% trans "Verify email" %}</a>&nbsp;</td>
@@ -354,7 +357,7 @@
 <div class="popovercontent" id="skippedc">
     <table>
     {% for skipped in skipped_list %}
-        {% ifequal skipped 'website' %} 
+        {% ifequal skipped 'website' %}
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add website" %}</a></td>
             </tr>
@@ -362,7 +365,7 @@
         {% ifequal skipped 'gender' %}
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add gender" %}</a></td>
-            </tr> 
+            </tr>
         {% endifequal %}
         {% ifequal skipped 'phone' %}
             <tr>
@@ -372,26 +375,26 @@
         {% ifequal skipped 'avatar' %}
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#avatar">{% trans "Add avatar" %}</a></td>
-            </tr> 
+            </tr>
         {% endifequal %}
-        {% ifequal skipped 'address' %} 
+        {% ifequal skipped 'address' %}
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#locationwidget">{% trans "Add address" %}</a></td>
             </tr>
         {% endifequal %}
-        {% ifequal skipped 'socialaccount' %} 
+        {% ifequal skipped 'socialaccount' %}
             <tr>
                 <td><a href="{% url 'profilesystem:index' %}#socialwidget">{% trans "Add socialaccount" %}</a></td>
             </tr>
         {% endifequal %}
-        {% ifequal skipped 'email' %} 
+        {% ifequal skipped 'email' %}
             <tr>
                 <td><a href="{% url 'account_email' %}">{% trans "Add email" %}</a></td>
             </tr>
         {% endifequal %}
-        {% ifequal skipped 'email_verified' %} 
+        {% ifequal skipped 'email_verified' %}
             <tr>
-                <td><a href="javascript:void(0)" 
+                <td><a href="javascript:void(0)"
                     {% if emailadd %}
                         onclick='sendVerification("{{ emailadd }}")'
                     {% endif %}>{% trans "Verify email" %}</a></td>
@@ -422,7 +425,7 @@
     var csrftoken = getCookie('csrftoken');
     function csrfSafeMethod(method) {
         // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method)); 
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
     function skipTask(task) {
         $.ajax({
@@ -568,7 +571,7 @@
         if (!floatNav.hasClass('closed')) floatNav.addClass('closed');
     });
     $("#completedl").popover({
-        html : true, 
+        html : true,
         content: function() {
           return $("#completedc").html();
         },
@@ -578,7 +581,7 @@
         trigger: 'focus'
     });
     $("#ncompletedl").popover({
-        html : true, 
+        html : true,
         content: function() {
           return $("#ncompletedc").html();
         },
@@ -588,7 +591,7 @@
         trigger: 'focus'
     });
     $("#nverifiedl").popover({
-        html : true, 
+        html : true,
         content: function() {
           return $("#nverifiedc").html();
         },
@@ -598,7 +601,7 @@
         trigger: 'focus'
     });
     $("#skippedl").popover({
-        html : true, 
+        html : true,
         content: function() {
           return $("#skippedc").html();
         },
