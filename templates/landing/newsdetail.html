@@ -35,7 +35,11 @@
                 <div class="col-md-3 hidden-xs hidden-sm">
                     <div class="newswriter">
                         {% if news.author.profile.avatar %}
-                            <img src="{{ news.author.profile.avatar.thumbnail.128x128 }}" class="img-circle" width="70" height="70" alt="writer">
+                        {% if request.user.is_authenticated %}
+                          <a href="{% url 'publicusers:user' news.author.id %}"><img src="{{ news.author.profile.avatar.thumbnail.128x128 }}" class="user-image-100" width="70" height="70" alt="writer"></a>
+                        {% else %}
+                          <a href="{% url 'landing:authordetail' news.author.username %}"><img src="{{ news.author.profile.avatar.thumbnail.128x128 }}" class="user-image-100" width="70" height="70" alt="writer"></a>
+                        {% endif %}
                         {% endif %}
                         {% if news.author.profile.about_me %}
                             <h4>{% trans "About Me" %}</h4>
@@ -58,7 +62,12 @@
                                             <a href="{% url 'landing:newses' %}?tag={{ tag.name }}">{{ tag.name }}</a>{% if forloop.last %}{% else %},{% endif %}
                                         {% endfor %}
                                 &nbsp;&nbsp;
-                                <i class="fa fa-pencil"></i> <a href="{% url 'landing:newses' %}?author={{ news.author.username }}">{{ news.author.username }}</a>
+                                <i class="fa fa-pencil"></i>
+                                {% if request.user.is_authenticated %}
+                                  <a href="{% url 'publicusers:user' news.author.id %}">{{ news.author.username }}</a>
+                                {% else %}
+                                  <a href="{% url 'landing:authordetail' news.author.username %}">{{ news.author.username }}</a>
+                                {% endif %}
                             </span>
                         </div>
                         <div class="newscontent">

@@ -697,6 +697,18 @@ img
     color: #7b7b7b;
 }
 
+#authordetail {
+    margin-top: 100px;
+    color: #7b7b7b;
+    min-height: 700px;
+    margin-bottom: 30px;
+}
+
+.authorinfo {
+    background-color: #f4f4f4;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.23);
+}
+
 .fc-color-picker {
   list-style: none;
   margin: 0;
@@ -977,4 +989,18 @@ footer
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.user-image-100 {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.useravatar {
+    margin-left: 30px;
+}
+
+.useravatar>img {
+    border: 5px solid #bbb8b8;
 }

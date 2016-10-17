@@ -8,4 +8,9 @@ urlpatterns = [
     url(r'^news/$', views.news_page, name='newses'),
     url(r'^news/(?P<id>\d+)/$', views.news_detail_page, name='news_detail'),
     url(r'^getimage/$', views.getimage, name='getimage'),
+    url(
+        r'^author/(?P<username>\w+)/$',
+        views.author_detail_page,
+        name='authordetail'
+    )
 ]

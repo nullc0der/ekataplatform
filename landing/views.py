@@ -2,7 +2,7 @@ import json
 import os
 
 from django.http import HttpResponse, HttpResponseForbidden
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -128,5 +128,19 @@ def news_detail_page(request, id):
         {
             'news': news,
             'ogtag': ogtag
+        }
+    )
+
+
+def author_detail_page(request, username):
+    user = get_object_or_404(User, username=username)
+    newses = News.objects.filter(draft=False).order_by('-id')
+    newses = newses.filter(author=user)
+    return render(
+        request,
+        'landing/authordetails.html',
+        {
+            'user': user,
+            'newses': newses 
         }
     )

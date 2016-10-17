@@ -1,0 +1,138 @@
+{% extends "landing_base.html" %}
+{% load markdown_deux_tags i18n %}
+{% block title %}
+    {{ user.username }}
+{% endblock %}
+{% block extrastyles %}
+    <style media="screen">
+        a, a:hover {
+            color: #777;
+        }
+    </style>
+{% endblock %}
+{% block extrameta %}
+{% if ogtag %}
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:title" content="{{ ogtag.title }}" />
+  <meta property="og:description" content="{{ ogtag.description }}" />
+  <meta property="og:type" content="{{ ogtag.page_type }}">
+  {% if ogtag.image %}
+    <meta property="og:image" content="http{% if request.is_secure %}s{% endif %}://{{ request.META.HTTP_HOST }}{{ ogtag.image.url }}" />
+  {% else %}
+    <meta property="og:image" content="https://ekata.social/static/dist/img/ekata-logo-bk-200.png" />
+  {% endif %}
+  <meta property="fb:app_id" content="{{ ogtag.app_id }}">
+{% for extrameta in ogtag.extrametatag_set.all %}
+  <meta property="{{ extrameta.meta_tag }}" content="{{ extrameta.description }}">
+{% endfor %}
+{% endif %}
+{% endblock %}
+{% block content %}
+<section id="authordetail">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="authorinfo">
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-success">
+                <div class="panel-heading" style="background-color: #3c763d;">
+                  <h4 class="panel-title" style="color: #fff;">
+                    Profile
+                    <i class="pull-right fa fa-caret-down collapsetrigger" data-toggle="collapse" data-parent="#accordion" href="#collapse1"></i>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="useravatar">
+                                  {% if user.profile.avatar %}
+                                        <img src="{{ user.profile.avatar.thumbnail.120x120 }}" alt="" />
+                                  {% endif %}
+                                  <h3>
+                                      {{ user.username }}
+                                  </h3>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="userinfo pull-right">
+                                  {% if user.get_full_name %}
+                                    <p>
+                                        Name: {{ user.get_full_name }}
+                                    </p>
+                                  {% endif %}
+                                  {% if user.email %}
+                                    <p>
+                                        Email: {{ user.email }}
+                                    </p>
+                                  {% endif %}
+                                  {% if user.profile.website %}
+                                    <p>
+                                        Website: <a href="{{ user.profile.website }}">{{ user.profile.website }}</a>
+                                    </p>
+                                  {% endif %}
+                                  {% if user.address %}
+                                    {% if user.profile.location_public %}
+                                    <p>
+                                        Address:
+                                        {% with user.address as ua %}
+                                            {{ ua.house_number }}, {{ ua.street }}, {{ ua.zip_code }};
+                                            {{ ua.city }}, {{ ua.state }}, {{ ua.country }};
+                                        {% endwith %}
+                                    </p>
+                                    {% endif %}
+                                  {% endif %}
+                              </div>
+                          </div>
+                      </div>
+                      {% if user.profile.about_me %}
+                      <div class="row">
+                          <div class="col-md-12">
+                              <hr>
+                              <h3>About Me</h3>
+                              {{ user.profile.about_me }}
+                          </div>
+                      </div>
+                      {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-primary" style="border-radius: 0;">
+                <div class="panel-heading" style="border-radius: 0;">
+                  <h4 class="panel-title">
+                    News and Stories
+                    <i class="pull-right fa fa-caret-down collapsetrigger" data-toggle="collapse" data-parent="#accordion" href="#collapse2"></i>
+                  </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                      {% for news in newses %}
+                          <h5>
+                              <a href="{{ news.get_absolute_url }}">{{ news.title|truncatewords:10 }}</a>
+                          </h5>
+                          <hr>
+                      {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extrascripts %}
+    <script type="text/javascript">
+        $(".collapsetrigger").on("click", function(){
+            if ($(this).hasClass('fa-caret-down')) {
+                $(this).removeClass('fa-caret-down');
+                $(this).addClass('fa-caret-up');
+            }
+            else {
+                $(this).removeClass('fa-caret-up');
+                $(this).addClass('fa-caret-down');
+            }
+        });
+    </script>
+{% endblock %}
