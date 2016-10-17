@@ -1004,3 +1004,7 @@ footer
 .useravatar>img {
     border: 5px solid #bbb8b8;
 }
+
+.dropdown-backdrop {
+    position: static;
+}
