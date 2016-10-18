@@ -88,6 +88,23 @@
                 </a>
             </li>
         {% endifequal %}
+        {% ifequal notification.notification_type 13 %}
+            <li class="notification" data-id="{{ notification.id }}">
+                <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
+                    {% ifequal notification.sysupdate_type '1' %}
+                        <i class="fa fa-warning text-yellow"></i>
+                    {% endifequal %}
+                    {% ifequal notification.sysupdate_type '2' %}
+                        <i class="fa fa-info-circle text-blue"></i>
+                    {% endifequal %}
+                    {% ifequal notification.sysupdate_type '3' %}
+                        <i class="fa fa-ban text-red"></i>
+                    {% endifequal %}
+                    {{ notification.sysupdate_timestamp|date:"d/m/Y h:i a" }}
+                    - {{ notification.sysupdate_message }}
+                </a>
+            </li>
+        {% endifequal %}
     {% endfor %}
         </ul>
     </li>

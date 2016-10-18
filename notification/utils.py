@@ -12,7 +12,10 @@ def create_notification(
     amount=None,
     group_name=None,
     timeline_id=None,
-    group_id=None
+    group_id=None,
+    sysupdate_type=None,
+    sysupdate_message=None,
+    sysupdate_timestamp=None
 ):
     notification = UserNotification(user=user)
     notification.notification_type = ntype
@@ -28,6 +31,12 @@ def create_notification(
         notification.group_id = group_id
     if timeline_id:
         notification.timeline_id = timeline_id
+    if sysupdate_type:
+        notification.sysupdate_type = sysupdate_type
+    if sysupdate_message:
+        notification.sysupdate_message = sysupdate_message
+    if sysupdate_timestamp:
+        notification.sysupdate_timestamp = sysupdate_timestamp
     notification.save()
     if ntype == 1:
         message = "%s sent %s units" % (sender, amount)
@@ -53,6 +62,8 @@ def create_notification(
         message = "%s invited you to %s" % (sender, group_name)
     if ntype == 12:
         message = "%s sent a join request to group %s" % (sender, group_name)
+    if ntype == 13:
+        message = "New system notification published"
     notification_message = RedisMessage(message)
     RedisPublisher(
         facility='realtime_notification',

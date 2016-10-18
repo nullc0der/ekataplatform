@@ -78,6 +78,24 @@
             </li>
             {% endifequal %}
             {% ifequal item.timeline_type 3 %}
+            {% if item.sysupdate %}
+            <li id="{{ item.id }}">
+                {% ifequal item.sysupdate_type '1' %}
+                    <i class="fa fa-warning bg-yellow"></i>
+                {% endifequal %}
+                {% ifequal item.sysupdate_type '2' %}
+                    <i class="fa fa-info-circle bg-blue"></i>
+                {% endifequal %}
+                {% ifequal item.sysupdate_type '3' %}
+                    <i class="fa fa-ban bg-red"></i>
+                {% endifequal %}
+                <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span>
+                    <h3 class="timeline-header no-border">{{ item.sysupdate_timestamp|date:"d/m/Y h:i a" }}
+                 - {{ item.sysupdate_message }}</h3>
+                </div>
+            </li>
+            {% else %}
             <li id="{{ item.id }}">
                 <i class="fa fa-arrow-down bg-orange"></i>
                 <div class="timeline-item">
@@ -85,6 +103,7 @@
                     <h3 class="timeline-header no-border">{{ item.amount }}{% trans " units basic income released" %}</h3>
                 </div>
             </li>
+            {% endif %}
             {% endifequal %}
             {% ifequal item.timeline_type 4 %}
             <li id="{{ item.id }}">
@@ -153,6 +172,9 @@
                         </div>
                      </div>
                  </li>
+             {% endifequal %}
+             {% ifequal item.timeline_type 7 %}
+
              {% endifequal %}
             {% endfor %}
         {% endfor %}
