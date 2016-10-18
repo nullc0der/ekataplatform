@@ -1,7 +1,15 @@
 {% extends "landing_base.html" %}
-{% load staticfiles i18n %}
+{% load staticfiles i18n bootstrap_tags recaptcha2 %}
 {% block title %}
 	Welcome
+{% endblock %}
+{% block extrastyles %}
+	<style media="screen">
+		#div_id_captcha {
+			margin-left: -30px;
+		}
+	</style>
+    {% recaptcha_init %}
 {% endblock %}
 {% block extrameta %}
 		{% if ogtag %}
@@ -220,6 +228,27 @@ end installer -->
 </section>
 <!-- end hashtag -->
 
+<!-- begin beta invite -->
+{% if not request.user.is_authenticated %}
+<section id="betainvite">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="text-uppercase">{% trans "Get your invite access key to the ekata beta" %}</h2>
+			</div>
+		</div>
+		<div class="row" style="margin-top:20px">
+			<div class="col-md-8 col-md-offset-2 text-center wow fadeInUp" data-wow-delay="0.6s">
+				<form id="getinviteform" action="{% url 'landing:getinvite' %}" method="POST">
+				    {% include "landing/getinvitationform.html" %}
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}
+<!-- end beta invite -->
+
 <!-- begin news
 <section id="news">
 	<div class="container">
@@ -360,4 +389,34 @@ end support -->
 	</div>
 </section>
 end download -->
+{% endblock %}
+{% block extrascripts %}
+	<script type="text/javascript">
+		$(document).on('submit', '#getinviteform', function(event){
+			event.preventDefault();
+			var self = $(this);
+			$.ajax({
+				url: self.attr('action'),
+				type: self.attr('method'),
+				data: self.serialize(),
+				success: function(data){
+					$('.top-right').notify({
+						message: { text:'{% trans "Your request is sent!! You will get an invitation email soon with a link and invite key." %}' },
+						type: 'success'
+					}).show();
+				},
+				error: function (data) {
+					self.html(data.responseText);
+					var gcaptcha_id = grecaptcha.render(document.getElementById('id_captcha'), {
+						'sitekey' : '6Lc36QgUAAAAACRg2VNApy30qvgRi8PhA4S-1Av4'
+					});
+					grecaptcha.reset(gcaptcha_id);
+					$('.top-right').notify({
+						message: { text: '{% trans "Please correct the errors" %}' },
+						type: 'danger'
+					}).show();
+				}
+			});
+		});
+	</script>
 {% endblock %}

@@ -363,6 +363,24 @@ img
     }
 }
 
+#betainvite {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background: #f3f3f3;
+}
+
+#betainvite .btn {
+    border-radius: 0px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px 40px 10px 40px;
+}
+
+#betainvite .form-control{
+    border: none;
+    border-radius: 0px;
+    margin-bottom: 20px;
+}
 
 #news {
     background: #f8f8f8;

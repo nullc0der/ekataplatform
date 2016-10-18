@@ -36,7 +36,7 @@
     	<link rel="stylesheet" href="{% static "dist/css/bootstrap-notify.css" %}">
 
 		<!-- custom css -->
-		<link rel="stylesheet" href="{% static "dist/css/templatemo-style.css" %}">
+		<link rel="stylesheet" href="{% static "dist/css/templatemo-style.css" %}?v=1">
 
 		{% block extrastyles %}
 		{% endblock %}
@@ -73,7 +73,7 @@
 						<li><a class="external" href="{% url 'landing:newses' %}">News</a></li>
 						{% if request.user.is_authenticated %}
 						{% else %}
-							<li><a class="external" href="{% url 'invitationsystem:index' %}">Get Invitation</a></li>
+							<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#betainvite">Beta</a></li>
 						{% endif %}
 					</ul>
 					{% if request.user.is_authenticated %}
@@ -193,7 +193,7 @@
 						</div>
 						<div class="col-md-4 col-sm-10 col-sm-offset-1 col-md-offset-0 wow fadeInUp contactform" data-wow-delay="0.6s">
 							<div class="contact-form">
-								<form action="." method="post">
+								<form action="{% url 'landing:sendcontactrequest' %}" method="post" id="contactrequestform">
 									{% csrf_token %}
 									<div class="col-md-6">
 										<input type="text" name="name" class="form-control" placeholder="Name">
@@ -276,6 +276,21 @@
 				}
 			});
 			jQuery.ajaxSettings.traditional = true
+			$('#contactrequestform').on('submit', function(event){
+				event.preventDefault();
+				var self = $(this);
+				$.ajax({
+					url: self.attr('action'),
+					type: self.attr('method'),
+					data: self.serialize(),
+					success: function(data) {
+						$('.top-right').notify({
+                            message: { text: 'Thank you for submitting info we will reach you soon' },
+                            type: 'success'
+                        }).show();
+					}
+				});
+			});
 		</script>
 		<script type="text/javascript">
 			(function() {

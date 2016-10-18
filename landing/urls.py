@@ -12,5 +12,15 @@ urlpatterns = [
         r'^author/(?P<username>\w+)/$',
         views.author_detail_page,
         name='authordetail'
+    ),
+    url(
+        r'^contact/$',
+        views.send_contact_request,
+        name='sendcontactrequest'
+    ),
+    url(
+        r'^getinvite/$',
+        views.get_invitation_key,
+        name='getinvite'
     )
 ]

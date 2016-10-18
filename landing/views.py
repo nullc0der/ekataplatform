@@ -5,11 +5,15 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
+from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
 
 from utils import send_contact_email
 
 from landing.models import News, Tags, HashtagImg, GlobalOgTag, OgTagLink
+from invitationsystem.models import Invitation
+from invitationsystem.forms import GetInvitationForm
+from invitationsystem.tasks import send_notification_to_reviewer
 
 
 # Create your views here.
@@ -24,22 +28,12 @@ def index_page(request):
         ogtag = default_ogtag[0]
     else:
         ogtag = None
-    if request.method == 'POST':
-        name = request.POST.get('name', '')
-        email = request.POST.get('email', '')
-        subject = request.POST.get('subject', '')
-        message = request.POST.get('message', '')
-        send_contact_email(
-            email=email,
-            name=name,
-            subject=subject,
-            message=message
-        )
     return render(
         request,
         'landing/index.html',
         {
-            'ogtag': ogtag
+            'ogtag': ogtag,
+            'form': GetInvitationForm()
         }
     )
 
@@ -141,6 +135,48 @@ def author_detail_page(request, username):
         'landing/authordetails.html',
         {
             'user': user,
-            'newses': newses 
+            'newses': newses
         }
     )
+
+
+def send_contact_request(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        subject = request.POST.get('subject', '')
+        message = request.POST.get('message', '')
+        send_contact_email(
+            email=email,
+            name=name,
+            subject=subject,
+            message=message
+        )
+        return HttpResponse("Ok")
+    else:
+        return HttpResponseForbidden()
+
+
+def get_invitation_key(request):
+    if request.method == 'POST':
+        form = GetInvitationForm(request.POST)
+        if form.is_valid():
+            print("form valid")
+            email = form.cleaned_data.get('email')
+            invitation = Invitation()
+            invitation.email = email
+            invitation.invitation_id = get_random_string(length=6)
+            invitation.save()
+            send_notification_to_reviewer.delay(email)
+            return HttpResponse("Ok")
+        else:
+            return render(
+                request,
+                'landing/getinvitationform.html',
+                {
+                    'form': form
+                },
+                status=500
+            )
+    else:
+        return HttpResponseForbidden()

@@ -8,7 +8,15 @@ from invitationsystem.models import Invitation
 
 
 class GetInvitationForm(forms.Form):
-    email = forms.EmailField()
+    email = forms.EmailField(
+        label='',
+        widget=forms.EmailInput(
+            attrs={
+                'placeholder': 'Type your email here to get key...',
+                'class': 'input-lg'
+            }
+        )
+    )
     captcha = ReCaptchaField(label='', widget=ReCaptchaWidget())
 
 
