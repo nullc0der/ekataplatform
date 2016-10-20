@@ -78,13 +78,7 @@ class News(models.Model):
     def save(self, *args, **kwargs):
         if self.content:
             html = markdown.markdown(self.content)
-            html_sanitized = bleach.clean(
-                html,
-                settings.BLEACH_VALID_TAGS,
-                settings.BLEACH_VALID_ATTRS,
-                settings.BLEACH_VALID_STYLES
-            )
-            self.content = html_sanitized
+            self.content = html
         super(News, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
