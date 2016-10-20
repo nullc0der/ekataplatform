@@ -99,6 +99,7 @@ class UserProfile(models.Model):
     avatar_public = models.BooleanField(default=True)
     phone_public = models.BooleanField(default=True)
     completion_public = models.BooleanField(default=True)
+    bio_public = models.BooleanField(default=True)
     invitation_verified = models.BooleanField(default=False)
     users_link_visible = models.BooleanField(default=False)
     groups_link_visible = models.BooleanField(default=False)

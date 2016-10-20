@@ -42,3 +42,8 @@
 <strong><i class="fa fa-globe margin-r-5"></i>{% trans "Website" %}</strong>
 
 <p class="text-muted">{{ request.user.profile.website }}</p>
+<hr>
+<strong><i class="fa fa-user"></i> {% trans "About me" %}</strong>
+<p class="text-muted">
+    {{ request.user.profile.about_me }}
+</p>

@@ -132,11 +132,21 @@
                         {% endif %}
                     </p>
                     {% endif %}
+                    <hr>
                     {% if user.profile.website_public %}
                         {% if user.profile.website %}
                             <strong><i class="fa fa-globe margin-r-5"></i>{% trans "Website" %}</strong>
                             <p class="text-muted">
                                 {{ user.profile.website }}
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                    <hr>
+                    {% if user.profile.bio_public %}
+                        {% if user.profile.about_me %}
+                            <strong><i class="fa fa-user margin-r-5"></i>{% trans "About me" %}</strong>
+                            <p class="text-muted">
+                                {{ user.profile.about_me }}
                             </p>
                         {% endif %}
                     {% endif %}

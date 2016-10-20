@@ -382,6 +382,13 @@
                                             <input type="checkbox" {% if request.user.profile.avatar_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="avatar_public">
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>About Me</td>
+                                        <td></td>
+                                        <td align="right">
+                                            <input type="checkbox" {% if request.user.profile.bio_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="bio_public">
+                                        </td>
+                                    </tr>
                                     {% comment %}
                                     <tr>
                                         <td>Account type</td>
