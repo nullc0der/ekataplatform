@@ -5029,3 +5029,7 @@ table.text-center th {
     top: 22%;
     left: 20%;
 }
+
+.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 0;
+}
