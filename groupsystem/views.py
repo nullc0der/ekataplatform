@@ -1294,6 +1294,9 @@ def group_dashboard_admin_page(request, group_id):
     pendingcomment = PostComment.objects.filter(
         basic_group=basicgroup
     ).filter(approved=False).count()
+    joinrequests = JoinRequest.objects.filter(
+        basic_group=basicgroup
+    ).filter(approved=False).count()
     return render(
         request,
         'groupsystem/admindashboard.html',
@@ -1301,6 +1304,7 @@ def group_dashboard_admin_page(request, group_id):
             'group': basicgroup,
             'pendingpost': pendingpost,
             'pendingcomment': pendingcomment,
+            'joinrequests': joinrequests,
             'extended_sidebar': True,
             'user_in_group_admin': True,
             'user_has_admin_access': request.user.has_perm(
