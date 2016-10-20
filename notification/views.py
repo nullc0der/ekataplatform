@@ -38,3 +38,27 @@ def set_notificationread(request):
         return HttpResponse("OK")
     else:
         return HttpResponseForbidden()
+
+
+@login_required
+def set_allnotificationsread(request):
+    if request.method == 'POST':
+        notifications = request.user.notifications.all()
+        for notification in notifications:
+            notification.read = True
+            notification.save()
+        notifications = request.user.notifications.filter(
+            read=False
+        ).order_by('-timestamp')
+        template = loader.get_template('notification/notification.html')
+        contexts = {'notifications': notifications}
+        notification_html = template.render(contexts)
+        response_data = {
+            'unread': len(notifications),
+            'html_s': notification_html
+        }
+        response = json.dumps(response_data)
+        content_type = 'application/json'
+        return HttpResponse(response, content_type)
+    else:
+        return HttpResponseForbidden()

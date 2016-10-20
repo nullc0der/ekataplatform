@@ -4996,3 +4996,36 @@ table.text-center th {
     border-radius: 0;
     margin-bottom: 0;
 }
+.navbar-nav > .notifications-menu > .dropdown-menu > .notification-control > a {
+    display: block;
+    white-space: nowrap;
+    border-bottom: 1px solid #f4f4f4;
+    color: #444444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
+}
+
+.navbar-nav > .notifications-menu > .dropdown-menu > .notification-control > a:hover {
+    background: #f4f4f4;
+    text-decoration: none;
+}
+
+.nonotification {
+    height: 200px;
+}
+
+.nonotification-icon {
+    font-size: 300%;
+    position: relative;
+    top: 22%;
+    left: 42%;
+}
+
+.nonotification-text {
+    font-size: 200%;
+    color: #777;
+    position: relative;
+    top: 22%;
+    left: 20%;
+}
