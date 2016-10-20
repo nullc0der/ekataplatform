@@ -567,12 +567,14 @@
     <script src="{% static "dist/js/demo.js" %}"></script>
     <script type="text/javascript">
         var convertEmojis = function (single) {
+            emojione.imageType = 'svg';
+            emojione.sprites = true;
+            emojione.imagePathSVGSprites = '{% static "plugins/emojione/emojione.sprites.svg" %}';
             var single = typeof single !== 'undefined' ?  single : false;
             if (single) {
                 var chattext = $(".direct-chat-text>p").last();
                 var input = $(chattext).text();
                 var output = emojione.toImage(input);
-                $(chattext).empty();
                 $(chattext).html(output);
             }
             else {
@@ -580,7 +582,6 @@
                 chattext.each(function(){
                     var input = $(this).text();
                     var output = emojione.toImage(input);
-                    $(this).empty();
                     $(this).html(output);
                 });
             }
@@ -871,8 +872,7 @@
                 url: '{% url 'notification:setallread' %}',
                 type: 'POST',
                 success: function (data) {
-                    $("#notification").empty();
-                    $("#notification").append(data.html_s);
+                    $("#notification").html(data.html_s);
                     if (data.unread) {
                         $("#notindicator").text(data.unread);
                         $("#notindicator").show();
