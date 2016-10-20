@@ -116,7 +116,7 @@
                     {% if 'can_create_invite' in group_perms %}
                     <div class="row" style="margin-top:10px">
                         <div class="col-sm-12 border-right">
-                            <input type="text" class="form-control" id="receiver" placeholder="Enter username to invite....">
+                            <input type="text" id="receivers">
                             <button class="btn btn-primary btn-block" id="inviteuser">{% trans "Invite User" %}</button>
                         </div>
                     </div>
@@ -235,18 +235,26 @@
                 }
             });
         });
+        $("#receivers").tagit({
+            autocomplete: {
+                source: '{% url 'g:users_autocomplete' group.id %}',
+            }
+        });
         $("#inviteuser").click(function(){
-            $.ajax({
-                url: '{% url 'g:inviteuser' group.id %}',
-                type: 'POST',
-                data: {'receiver': $("#receiver").val()},
-                success: function(data) {
-                    $('.top-right').notify({
-                        message: { text: data},
-                        type: 'info',
-                    }).show();
-                }
-            });
+            if ($("#receivers").val() !== '') {
+                $.ajax({
+                    url: '{% url 'g:inviteuser' group.id %}',
+                    type: 'POST',
+                    data: {'receivers': $("#receivers").val()},
+                    success: function(data) {
+                        $('.top-right').notify({
+                            message: { text: data},
+                            type: 'info',
+                        }).show();
+                        $("#receivers").tagit('removeAll');
+                    }
+                });
+            }
         });
         $("#leavegroup").click(function(){
             $.ajax({

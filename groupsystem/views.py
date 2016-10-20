@@ -1182,20 +1182,22 @@ def joinrequest_admin_page(request, group_id):
 def invite_user(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
     if request.method == 'POST':
-        receiver = request.POST.get("receiver")
-        try:
-            user = User.objects.get(username=receiver)
-            create_notification(
-                user=user,
-                ntype=11,
-                sender=request.user.username,
-                sender_id=request.user.id,
-                group_name=basicgroup.name,
-                group_id=basicgroup.id
-            )
-        except ObjectDoesNotExist:
-            pass
-    return HttpResponse(_("User invited"))
+        receiver = request.POST.get("receivers")
+        usernames = receiver.split(',')
+        for username in usernames:
+            try:
+                user = User.objects.get(username=username)
+                create_notification(
+                    user=user,
+                    ntype=11,
+                    sender=request.user.username,
+                    sender_id=request.user.id,
+                    group_name=basicgroup.name,
+                    group_id=basicgroup.id
+                )
+            except ObjectDoesNotExist:
+                pass
+    return HttpResponse(_("Users invited"))
 
 
 @login_required

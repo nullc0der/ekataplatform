@@ -54,7 +54,7 @@ def set_allnotificationsread(request):
         contexts = {'notifications': notifications}
         notification_html = template.render(contexts)
         response_data = {
-            'unread': len(notifications),
+            'unread': notifications.count(),
             'html_s': notification_html
         }
         response = json.dumps(response_data)
