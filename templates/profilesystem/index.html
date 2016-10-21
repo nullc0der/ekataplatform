@@ -1144,6 +1144,9 @@
                         type: 'success'
                     }).show();
                     self.parent().parent().remove();
+                    if (self.attr('data-img-id') === 'p') {
+                        $(".useravatar").attr('src', "{% static "dist/img/placeholder-user.png" %}");
+                    }
                 }
             });
         });
