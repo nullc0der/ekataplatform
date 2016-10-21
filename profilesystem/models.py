@@ -2,9 +2,10 @@ from __future__ import unicode_literals
 import os
 
 from django.db import models
+from django.dispatch import receiver
 from django.core.cache import cache
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.utils.translation import ugettext_lazy as _
 from versatileimagefield.fields import VersatileImageField
 from jsonfield import JSONField
@@ -144,6 +145,13 @@ class UserDocuments(models.Model):
 
     def __unicode__(self):
         return self.filename()
+
+
+@receiver(post_delete, sender=UserDocuments)
+def delete_file(sender, instance, **kwargs):
+    if instance.document:
+        if os.path.isfile(instance.document.path):
+            os.remove(instance.document.path)
 
 
 class UserAddress(models.Model):

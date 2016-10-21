@@ -5033,3 +5033,33 @@ table.text-center th {
 .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
     z-index: 0;
 }
+
+.document-images {
+    width: 100px;
+    height: 100px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.34);
+}
+
+.document-images > img {
+    width: inherit;
+    height: inherit;
+}
+
+.document-images .document-image-overlay {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(200, 0, 0, 0.7);
+    opacity: 0;
+}
+
+.document-image-overlay > i {
+    position: relative;
+    top: 30px;
+    color: #fff;
+}
+
+.document-images .document-image-overlay:hover {
+    opacity: 1;
+}

@@ -94,6 +94,24 @@ def document_page(request):
 
 
 @login_required
+def delete_document(request):
+    if request.method == 'POST':
+        doc_id = request.POST.get('id')
+        if doc_id == 'p':
+            request.user.profile.avatar = ""
+            request.user.profile.save()
+        else:
+            try:
+                document = UserDocuments.objects.get(id=doc_id)
+                document.delete()
+            except ObjectDoesNotExist:
+                pass
+        return HttpResponse("OK")
+    else:
+        return HttpResponseForbidden()
+
+
+@login_required
 def pinfo_edit_page(request):
     profile = request.user.profile
     uform = UserForm(request, instance=request.user, prefix='userform')

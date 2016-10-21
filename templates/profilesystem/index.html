@@ -1132,5 +1132,20 @@
             size: '3px',
             alwaysVisible: false
         });
+        $(document).on('click', '.document-image-overlay', function(){
+            var self = $(this);
+            $.ajax({
+                url: '{% url 'profilesystem:deletedoc' %}',
+                type: 'POST',
+                data: {'id': self.attr('data-img-id')},
+                success: function(data) {
+                    $('.top-right').notify({
+                        message: { text: 'image deleted' },
+                        type: 'success'
+                    }).show();
+                    self.parent().parent().remove();
+                }
+            });
+        });
     </script>
 {% endblock extrascripts %}

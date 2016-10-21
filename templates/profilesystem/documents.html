@@ -4,8 +4,11 @@
     <h4>Profile Images</h4>
     <hr>
     <div class="col-md-3 text-center" style="margin-top:10px">
-        <div style="overflow:hidden">
-            <img src="{{ request.user.profile.avatar.url }}" alt="" width="50" height="50">
+        <div class="document-images">
+            <img src="{{ request.user.profile.avatar.url }}" alt="">
+            <div class="document-image-overlay" data-img-id="p">
+                <i class="fa fa-trash-o fa-2x"></i>
+            </div>
         </div>
     </div>
 </div>
@@ -16,8 +19,11 @@
         <hr />
         {% for image in images %}
         <div class="col-md-3 text-center" style="margin-top:10px">
-            <div style="overflow:hidden">
-                <img src="{{ image.document.url }}" alt="" width="50" height="50">
+            <div class="document-images">
+                <img src="{{ image.document.url }}" alt="">
+                <div class="document-image-overlay" data-img-id={{ image.id }}>
+                    <i class="fa fa-trash-o fa-2x"></i>
+                </div>
             </div>
         </div>
         {% endfor %}

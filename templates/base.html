@@ -913,7 +913,7 @@
             $.ajax({
                 url: '{% url 'notification:index' %}',
                 success: function(data){
-                    $("#notification").append(data.html_s);
+                    $("#notification").html(data.html_s);
                     $(".menu").slimscroll({
                         height: '200px',
                         size: '3px',
