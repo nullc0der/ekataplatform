@@ -1,0 +1,52 @@
+{% load i18n %}
+{% ifequal ncompleted 'website' %}
+    <div class="alert alert-info task fade in">
+        <a href="#" onclick='skipTask("website")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add your website to complete your profile." %}</a>
+    </div>
+{% endifequal %}
+{% ifequal ncompleted 'gender' %}
+    <div class="alert alert-info task fade in">
+        <a href="#" onclick='skipTask("gender")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add your gender to complete your profile." %}</a>
+    </div>
+{% endifequal %}
+{% ifequal ncompleted 'phone' %}
+    <div class="alert alert-info task fade in">
+        <a href="#" onclick='skipTask("phone")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="{% url 'profilesystem:index' %}#contactwidget">{% trans "Add your contact number to complete your profile." %}</a>
+    </div>
+{% endifequal %}
+{% ifequal ncompleted 'avatar' %}
+    <div class="alert alert-info task fade in">
+        <a href="#" onclick='skipTask("avatar")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="{% url 'profilesystem:index' %}#avatar">{% trans "Add a profile image to complete your profile." %}</a>
+    </div>
+{% endifequal %}
+{% ifequal ncompleted 'address' %}
+    <div class="alert alert-info task fade in">
+        <a href="#" onclick='skipTask("address")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="{% url 'profilesystem:index' %}#locationwidget">{% trans "Add your location to complete your profile." %}</a>
+    </div>
+{% endifequal %}
+{% ifequal ncompleted 'socialaccount' %}
+    <div class="alert alert-info task fade in">
+        <a href="#" onclick='skipTask("socialaccount")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="{% url 'profilesystem:index' %}#socialwidget">{% trans "Add a social account of yours to complete your profile." %}</a>
+    </div>
+{% endifequal %}
+{% ifequal ncompleted 'email' %}
+    <div class="alert alert-info task fade in">
+        <a href="#" onclick='skipTask("email")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="{% url 'account_email' %}">{% trans "Add your email account to complete your profile." %}</a>
+    </div>
+{% endifequal %}
+{% ifequal ncompleted 'email_verified' %}
+    <div class="alert alert-info task fade in">
+        <a href="#" onclick='skipTask("email_verified")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="javascript:void(0)"
+        {% if emailadd %}
+            onclick='sendVerification("{{ emailadd }}")'
+        {% endif %}>{% trans "Please verify your email address(resend verification)" %}</a>
+    </div>
+{% endifequal %}

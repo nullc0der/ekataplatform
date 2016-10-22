@@ -298,3 +298,23 @@ def saveonesignal_id(request):
         return HttpResponse("OK")
     else:
         return HttpResponseForbidden()
+
+
+@login_required
+def send_new_task(request):
+    variables = {}
+    usercomplete, created = \
+        UserCompletionRing.objects.get_or_create(user=request.user)
+    completed, completed_list, not_completed, not_completed_list, emailadd = \
+        usercomplete.calculate_completed()
+    not_verified, not_verified_tasks = usercomplete.calculate_verified()
+    task_list = not_completed_list + not_verified_tasks
+    if task_list:
+        rand = randint(0, len(task_list) - 1)
+        ncompleted = task_list[rand]
+        variables['ncompleted'] = ncompleted
+    return render(
+        request,
+        'profilesystem/profilecompletiontasks.html',
+        context=variables
+    )

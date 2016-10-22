@@ -57,58 +57,8 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-12">
-        {% ifequal ncompleted 'website' %}
-            <div class="alert alert-info task fade in">
-                <a href="#" onclick='skipTask("website")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add your website to complete your profile." %}</a>
-            </div>
-        {% endifequal %}
-        {% ifequal ncompleted 'gender' %}
-            <div class="alert alert-info task fade in">
-                <a href="#" onclick='skipTask("gender")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="{% url 'profilesystem:index' %}#personalwidget">{% trans "Add your gender to complete your profile." %}</a>
-            </div>
-        {% endifequal %}
-        {% ifequal ncompleted 'phone' %}
-            <div class="alert alert-info task fade in">
-                <a href="#" onclick='skipTask("phone")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="{% url 'profilesystem:index' %}#contactwidget">{% trans "Add your contact number to complete your profile." %}</a>
-            </div>
-        {% endifequal %}
-        {% ifequal ncompleted 'avatar' %}
-            <div class="alert alert-info task fade in">
-                <a href="#" onclick='skipTask("avatar")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="{% url 'profilesystem:index' %}#avatar">{% trans "Add a profile image to complete your profile." %}</a>
-            </div>
-        {% endifequal %}
-        {% ifequal ncompleted 'address' %}
-            <div class="alert alert-info task fade in">
-                <a href="#" onclick='skipTask("address")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="{% url 'profilesystem:index' %}#locationwidget">{% trans "Add your location to complete your profile." %}</a>
-            </div>
-        {% endifequal %}
-        {% ifequal ncompleted 'socialaccount' %}
-            <div class="alert alert-info task fade in">
-                <a href="#" onclick='skipTask("socialaccount")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="{% url 'profilesystem:index' %}#socialwidget">{% trans "Add a social account of yours to complete your profile." %}</a>
-            </div>
-        {% endifequal %}
-        {% ifequal ncompleted 'email' %}
-            <div class="alert alert-info task fade in">
-                <a href="#" onclick='skipTask("email")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="{% url 'account_email' %}">{% trans "Add your email account to complete your profile." %}</a>
-            </div>
-        {% endifequal %}
-        {% ifequal ncompleted 'email_verified' %}
-            <div class="alert alert-info task fade in">
-                <a href="#" onclick='skipTask("email_verified")' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <a href="javascript:void(0)"
-                {% if emailadd %}
-                    onclick='sendVerification("{{ emailadd }}")'
-                {% endif %}>{% trans "Please verify your email address(resend verification)" %}</a>
-            </div>
-        {% endifequal %}
+    <div class="col-md-12" id="profilecompletiontask">
+        {% include "profilesystem/profilecompletiontasks.html" %}
     </div>
 </div>
     <div class="row" style="margin-bottom:10px">
@@ -840,6 +790,15 @@
                 }
             })
         }
+        function fetchTask() {
+            $.ajax({
+                url: '{% url 'profilesystem:fetchtask' %}',
+                type: 'POST',
+                success: function(data) {
+                    $('#profilecompletiontask').html(data);
+                }
+            });
+        }
         Dropzone.options.fileDropzone = {
             // Prevents Dropzone from uploading dropped files immediately
             autoProcessQueue : false,
@@ -915,6 +874,7 @@
                 var date = new Date();
                 $(".useravatar").attr('src', data.responseText + "?" + date.toString());
                 $("#imgModal").modal('hide');
+                fetchTask();
             }
         });
         function boxoperation(close_b, submit_b, edit_b, creplace_div, overlay_div, content_url, form_url, form_id){
@@ -955,6 +915,7 @@
                             var pgen = $("#pgen").text();
                             $("#sgen").text(pgen);
                         });
+                        fetchTask();
                     },
                     error: function(data) {
                         frm.html(data.responseText);
