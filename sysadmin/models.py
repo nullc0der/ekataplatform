@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from markdownx.models import MarkdownxField
 from notification.utils import create_notification
@@ -34,30 +34,33 @@ class SystemUpdate(models.Model):
     show = models.BooleanField(default=True)
     visible_in_user_timeline = models.BooleanField(default=False, editable=False)
 
-    def save(self, *args, **kwargs):
-        super(SystemUpdate, self).save(*args, **kwargs)
-        if not self.show:
-            if not self.visible_in_user_timeline:
-                users = User.objects.all()
-                for user in users:
-                    usertimeline = UserTimeline(
-                        user=user,
-                        timeline_type=3,
-                        sysupdate=True,
-                        sysupdate_type=self.message_type,
-                        sysupdate_message=self.message,
-                        sysupdate_timestamp=self.timestamp
-                    )
-                    usertimeline.save()
-                    create_notification(
-                        user=user,
-                        ntype=13,
-                        sysupdate_type=self.message_type,
-                        sysupdate_message=self.message,
-                        sysupdate_timestamp=self.timestamp,
-                        timeline_id=usertimeline.id
-                    )
-                self.visible_in_user_timeline = True
-
     def __unicode__(self):
         return "Notice: %s" % self.id
+
+
+def send_systemnotification_to_usertimeline(sender, instance, **kwargs):
+    if not instance.show:
+        if not instance.visible_in_user_timeline:
+            users = User.objects.all()
+            for user in users:
+                usertimeline = UserTimeline(
+                    user=user,
+                    timeline_type=3,
+                    sysupdate=True,
+                    sysupdate_type=instance.message_type,
+                    sysupdate_message=instance.message,
+                    sysupdate_timestamp=instance.timestamp
+                )
+                usertimeline.save()
+                create_notification(
+                    user=user,
+                    ntype=13,
+                    sysupdate_type=instance.message_type,
+                    sysupdate_message=instance.message,
+                    sysupdate_timestamp=instance.timestamp,
+                    timeline_id=usertimeline.id
+                )
+            instance.visible_in_user_timeline = True
+            instance.save()
+
+post_save.connect(send_systemnotification_to_usertimeline, sender=SystemUpdate)

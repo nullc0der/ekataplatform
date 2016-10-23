@@ -8,6 +8,11 @@
     color: #fff;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.34);
     margin-left: 5px;
+    padding: 10px;
+}
+
+.countdownbox > h1 {
+    margin-top: 10px;
 }
 
 .countdowntext {

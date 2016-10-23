@@ -385,6 +385,8 @@
                     var userstatus = $('#userstatus');
                     if (data.is_online) {
                         userstatus.empty();
+                        userstatus.removeAttr('data-toggle');
+                        userstatus.removeAttr('title');
                         userstatus.append('<i class="fa fa-circle text-success onlinestatus"></i> {% trans "Online" %}');
                     }
                     else {
@@ -392,8 +394,8 @@
                         userstatus.append('<i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}')
                         if (data.last_seen) {
                             var lastseen = moment(data.last_seen).format('MMMM Do YYYY, hh:mm a')
-                            $(userstatus).attr('data-toggle', 'tooltip');
-                            $(userstatus).attr('title', '{% trans "lastseen: " %}' + lastseen);
+                            userstatus.attr('data-toggle', 'tooltip');
+                            userstatus.attr('title', '{% trans "lastseen: " %}' + lastseen);
                         }
                     }
                 },
