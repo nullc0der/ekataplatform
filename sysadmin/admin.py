@@ -7,7 +7,6 @@ from django.core.mail import EmailMultiAlternatives
 from markdownx.widgets import AdminMarkdownxWidget
 
 from sysadmin.models import EmailUpdate, SystemUpdate, EmailGroup
-from sysadmin.forms import EmailUpdateForm
 
 # Register your models here.
 
