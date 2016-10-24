@@ -10,11 +10,27 @@ from usertimeline.models import UserTimeline
 # Create your models here.
 
 
+class EmailGroup(models.Model):
+    name = models.CharField(max_length=200)
+    users = models.ManyToManyField(User)
+
+    def __unicode__(self):
+        return self.name
+
+
 class EmailUpdate(models.Model):
-    to_users = models.ManyToManyField(User)
+    FROM_EMAIL_CHOICES = (
+        ('support@ekata.social', 'support@ekata.social'),
+        ('news@ekata.social', 'news@ekata.social'),
+        ('newsletter@ekata.social', 'newsletter@ekata.social'),
+    )
+    to_groups = models.ManyToManyField(EmailGroup)
     subject = models.CharField(max_length=100)
     message = MarkdownxField()
-    from_email = models.EmailField(default="support@ekata.social")
+    from_email = models.EmailField(
+        default='support@ekata.social',
+        choices=FROM_EMAIL_CHOICES
+    )
     timestamp = models.DateTimeField(auto_now_add=True)
     sent = models.BooleanField(default=False, editable=False)
 
