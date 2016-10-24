@@ -44,5 +44,6 @@ urlpatterns = [
     url(r'^setonline/$', views.set_onlinestate, name='setonline'),
     url(r'^saveonesignal/$', views.saveonesignal_id, name='onesignal'),
     url(r'^deletedoc/$', views.delete_document, name='deletedoc'),
-    url(r'^fetchtask/$', views.send_new_task, name='fetchtask')
+    url(r'^fetchtask/$', views.send_new_task, name='fetchtask'),
+    url(r'^acknowledgesysupdate/$', views.acknowledge_sys_update, name='acknowledgesysupdate')
 ]

@@ -9,7 +9,9 @@ from django.core.cache import cache
 from django.conf import settings as s
 from .forms import UserForm, PInfoForm, PhoneForm, AddressForm
 from .models import \
-    UserProfile, UserDocuments, UserCompletionRing, UserUIState, UserOneSignal
+    UserProfile, UserDocuments, UserCompletionRing, UserUIState, \
+    UserOneSignal, ReadSysUpdate
+
 # Create your views here
 
 IMAGE_EXTENSION = ['jpg', 'png', 'gif']
@@ -318,3 +320,17 @@ def send_new_task(request):
         'profilesystem/profilecompletiontasks.html',
         context=variables
     )
+
+
+@login_required
+def acknowledge_sys_update(request):
+    if request.method == 'POST':
+        update_id = int(request.POST.get('id'))
+        readsysupdate, created = ReadSysUpdate.objects.get_or_create(
+            user=request.user,
+            sysupdate=update_id
+        )
+        readsysupdate.save()
+        return HttpResponse("OK")
+    else:
+        return HttpResponseForbidden()

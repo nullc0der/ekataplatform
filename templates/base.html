@@ -349,7 +349,7 @@
                 {% if UPDATES %}
                     {% for update in UPDATES %}
                         <div class="alert alert-{{ update.get_message_type_display }} sysalert">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <a href="#" class="close ackupdate" data-id='{{ update.id }}' data-dismiss="alert" data-toggle="tooltip" data-placement="left" title="Don't show again" aria-label="close">&times;</a>
                             <p>
                                 {% ifequal update.message_type '1' %}
                                     <i class="fa fa-warning"></i>
@@ -970,6 +970,20 @@
                 }
             }
         {% endifequal %}
+        $(".ackupdate").click(function(){
+            var sysupdate_id = $(this).attr('data-id');
+            $.ajax({
+                url: '{% url 'profilesystem:acknowledgesysupdate' %}',
+                type: 'POST',
+                data: {'id': sysupdate_id},
+                success: function(data) {
+                    $('.top-right').notify({
+                        message: { text: 'This message will not show again' },
+                        type: 'success'
+                    }).show();
+                }
+            });
+        });
         (function setOnline(){
             $.ajax({
                 url: '{% url 'profilesystem:setonline' %}',

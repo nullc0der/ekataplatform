@@ -281,3 +281,8 @@ class UserOneSignal(models.Model):
 
     def __unicode__(self):
         return self.user.username + "'s onesignal id"
+
+
+class ReadSysUpdate(models.Model):
+    user = models.ForeignKey(User, related_name='readsysupdate')
+    sysupdate = models.IntegerField()
