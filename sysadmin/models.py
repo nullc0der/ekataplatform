@@ -32,7 +32,6 @@ class EmailUpdate(models.Model):
         choices=FROM_EMAIL_CHOICES
     )
     timestamp = models.DateTimeField(auto_now_add=True)
-    sent = models.BooleanField(default=False, editable=False)
 
     def __unicode__(self):
         return "Email: %s" % self.id
