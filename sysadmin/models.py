@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import csv
 
 from django.db import models
 from django.db.models.signals import post_save
@@ -12,10 +13,29 @@ from usertimeline.models import UserTimeline
 
 class EmailGroup(models.Model):
     name = models.CharField(max_length=200)
-    users = models.ManyToManyField(User)
+    users = models.ManyToManyField(
+        User,
+        verbose_name='Site user',
+        help_text="Site user's email id will be extracted by system automatically",
+        blank=True
+    )
+    csv_file = models.FileField(upload_to='csvs', null=True, blank=True)
 
     def __unicode__(self):
         return self.name
+
+
+class EmailId(models.Model):
+    emailgroup = models.ForeignKey(EmailGroup, related_name='emailids')
+    first_name = models.CharField(max_length=100, default='')
+    last_name = models.CharField(max_length=100, default='')
+    email_id = models.EmailField(null=True)
+
+    def __unicode__(self):
+        return self.first_name + ' ' + self.last_name
+
+    class Meta:
+        verbose_name = 'Non site user email'
 
 
 class EmailUpdate(models.Model):
@@ -78,4 +98,20 @@ def send_systemnotification_to_usertimeline(sender, instance, **kwargs):
             instance.visible_in_user_timeline = True
             instance.save()
 
+
+def save_emailids_from_csv(sender, instance, **kwargs):
+    if instance.csv_file:
+        csv_f = open(instance.csv_file.path, 'r')
+        email_infos = csv.reader(csv_f)
+        for email_info in email_infos:
+            emailid, created = EmailId.objects.get_or_create(emailgroup=instance)
+            if not created:
+                emailid.first_name = email_info[0]
+                emailid.last_name = email_info[1]
+                emailid.email_id = email_info[2]
+                emailid.save()
+        csv_f.close()
+
+
+post_save.connect(save_emailids_from_csv, sender=EmailGroup)
 post_save.connect(send_systemnotification_to_usertimeline, sender=SystemUpdate)

@@ -6,9 +6,17 @@ from django.core.mail import EmailMultiAlternatives
 
 from markdownx.widgets import AdminMarkdownxWidget
 
-from sysadmin.models import EmailUpdate, SystemUpdate, EmailGroup
+from sysadmin.models import EmailUpdate, SystemUpdate, EmailGroup, EmailId
 
 # Register your models here.
+
+
+class EmailIdsInline(admin.TabularInline):
+    model = EmailId
+
+
+class EmailGroupAdmin(admin.ModelAdmin):
+    inlines = [EmailIdsInline]
 
 
 class EmailUpdateAdmin(admin.ModelAdmin):
@@ -27,6 +35,10 @@ class EmailUpdateAdmin(admin.ModelAdmin):
                 for user in group.users.all():
                     if user.email:
                         emailaddress_set.add(user.email)
+                other_emails = group.emailids.all()
+                for other_email in other_emails:
+                    if other_email.email_id:
+                        emailaddress_set.add(other_email.email_id)
             for emailaddress in emailaddress_set:
                 msg = EmailMultiAlternatives(
                     subject,
@@ -46,4 +58,4 @@ class EmailUpdateAdmin(admin.ModelAdmin):
 
 admin.site.register(EmailUpdate, EmailUpdateAdmin)
 admin.site.register(SystemUpdate)
-admin.site.register(EmailGroup)
+admin.site.register(EmailGroup, EmailGroupAdmin)
