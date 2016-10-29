@@ -64,8 +64,8 @@ INSTALLED_APPS = [
     'versatileimagefield',
     'phonenumber_field',
     'guardian',
-    'markdownx',
-    'markdown_deux',
+    'ckeditor',
+    'ckeditor_uploader',
     'easy_timezones',
     'snowpenguin.django.recaptcha2',
     'raven.contrib.django.raven_compat',
@@ -345,3 +345,51 @@ NEXT_RELEASE = 60 * 24
 # Recaptcha Keys
 RECAPTCHA_PRIVATE_KEY = get_env_variable('DJANGO_RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_PUBLIC_KEY = get_env_variable('DJANGO_RECAPTCHA_PUBLIC_KEY')
+
+# CKEditor
+CKEDITOR_UPLOAD_PATH = "ckeditor/"
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', '-', 'Print']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
+                       ]},
+            {'name': 'insert',
+             'items': ['Image','Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak']},
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'yourcustomtools', 'items': [
+                'Preview',
+                'Maximize',
+            ]},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join(
+            [
+                'div',
+                'autolink',
+                'autoembed',
+                'embedsemantic',
+                'autogrow',
+                'widget',
+                'lineutils',
+                'clipboard',
+                'dialog',
+                'dialogui',
+                'elementspath'
+            ]),
+    }
+}

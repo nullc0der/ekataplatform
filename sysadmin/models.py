@@ -4,7 +4,7 @@ import csv
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from markdownx.models import MarkdownxField
+from ckeditor_uploader.fields import RichTextUploadingField
 from notification.utils import create_notification
 from usertimeline.models import UserTimeline
 
@@ -46,7 +46,7 @@ class EmailUpdate(models.Model):
     )
     to_groups = models.ManyToManyField(EmailGroup)
     subject = models.CharField(max_length=100)
-    message = MarkdownxField()
+    message = RichTextUploadingField()
     from_email = models.EmailField(
         default='support@ekata.social',
         choices=FROM_EMAIL_CHOICES

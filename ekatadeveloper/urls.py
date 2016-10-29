@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'OneSignalSDKUpdaterWorker\.js', updateworker),
     url(r'OneSignalSDKWorker\.js', sdkworker),
     url(r'^markdownx/', include('markdownx.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 urlpatterns += i18n_patterns(

@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.conf import settings
 
-from markdownx.models import MarkdownxField
+from ckeditor_uploader.fields import RichTextUploadingField
 from versatileimagefield.fields import VersatileImageField
 from versatileimagefield.placeholder import OnStoragePlaceholderImage
 
@@ -66,7 +66,7 @@ class News(models.Model):
     author = models.ForeignKey(User, related_name='news')
     tags = models.ManyToManyField(Tags, related_name='news')
     title = models.CharField(max_length=100)
-    content = MarkdownxField()
+    content = RichTextUploadingField()
     draft = models.BooleanField(default=True)
     created_on = models.DateTimeField(auto_now_add=True)
     clickcount = models.IntegerField(editable=False, default=0)
@@ -74,12 +74,6 @@ class News(models.Model):
 
     def __unicode__(self):
         return self.title
-
-    def save(self, *args, **kwargs):
-        if self.content:
-            html = markdown.markdown(self.content)
-            self.content = html
-        super(News, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('landing:news_detail', args=[self.id, ])

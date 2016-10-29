@@ -4,8 +4,6 @@ from django.db import models
 from django.contrib import admin
 from django.core.mail import EmailMultiAlternatives
 
-from markdownx.widgets import AdminMarkdownxWidget
-
 from sysadmin.models import EmailUpdate, SystemUpdate, EmailGroup, EmailId
 
 # Register your models here.
@@ -28,8 +26,7 @@ class EmailUpdateAdmin(admin.ModelAdmin):
             groups = emailupdate.to_groups.all()
             subject = emailupdate.subject
             from_email = emailupdate.from_email
-            message = emailupdate.message
-            email_html = markdown.markdown(message)
+            email_html = emailupdate.message
             emailaddress_set = set()
             for group in groups:
                 for user in group.users.all():
@@ -52,9 +49,6 @@ class EmailUpdateAdmin(admin.ModelAdmin):
         self.message_user(request, "%s emailupdates sent successfully" % count)
     send_email_update.short_description = "Send eBlast"
 
-    formfield_overrides = {
-        models.TextField: {'widget': AdminMarkdownxWidget},
-    }
 
 admin.site.register(EmailUpdate, EmailUpdateAdmin)
 admin.site.register(SystemUpdate)
