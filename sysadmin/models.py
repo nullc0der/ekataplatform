@@ -104,10 +104,12 @@ def save_emailids_from_csv(sender, instance, **kwargs):
         csv_f = open(instance.csv_file.path, 'r')
         email_infos = csv.reader(csv_f)
         for email_info in email_infos:
-            emailid = EmailId(email_id=email_info[2])
-            emailid.first_name = email_info[0]
-            emailid.last_name = email_info[1]
-            emailid.emailgroup = instance
+            emailid, created = EmailId.objects.get_or_create(
+                emailgroup=instance,
+                first_name=email_info[0],
+                last_name=email_info[1],
+                email_id=email_info[2]
+            )
             emailid.save()
         csv_f.close()
 

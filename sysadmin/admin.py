@@ -50,7 +50,7 @@ class EmailUpdateAdmin(admin.ModelAdmin):
                 msg.send()
             count += 1
         self.message_user(request, "%s emailupdates sent successfully" % count)
-    send_email_update.short_description = "Send email update"
+    send_email_update.short_description = "Send eBlast"
 
     formfield_overrides = {
         models.TextField: {'widget': AdminMarkdownxWidget},
