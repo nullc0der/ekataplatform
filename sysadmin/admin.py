@@ -34,11 +34,11 @@ class EmailUpdateAdmin(admin.ModelAdmin):
             for group in groups:
                 for user in group.users.all():
                     if user.email:
-                        emailaddress_set.add(user.email)
+                        emailaddress_set.add(user.email.strip())
                 other_emails = group.emailids.all()
                 for other_email in other_emails:
                     if other_email.email_id:
-                        emailaddress_set.add(other_email.email_id)
+                        emailaddress_set.add(other_email.email_id.strip())
             for emailaddress in emailaddress_set:
                 msg = EmailMultiAlternatives(
                     subject,
