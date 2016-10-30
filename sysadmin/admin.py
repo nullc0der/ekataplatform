@@ -29,13 +29,10 @@ class EmailUpdateAdmin(admin.ModelAdmin):
             email_html = emailupdate.message
             emailaddress_set = set()
             for group in groups:
-                for user in group.users.all():
-                    if user.email:
-                        emailaddress_set.add(user.email.strip())
-                other_emails = group.emailids.all()
-                for other_email in other_emails:
-                    if other_email.email_id:
-                        emailaddress_set.add(other_email.email_id.strip())
+                emailids = group.emailids.all()
+                for emailid in emailids:
+                    if emailid.email_id:
+                        emailaddress_set.add(emailid.email_id.strip())
             for emailaddress in emailaddress_set:
                 msg = EmailMultiAlternatives(
                     subject,
@@ -46,6 +43,7 @@ class EmailUpdateAdmin(admin.ModelAdmin):
                 msg.attach_alternative(email_html, "text/html")
                 msg.send()
             count += 1
+            self.message_user(request, 'emailupdate %s sent' % emailupdate.id)
         self.message_user(request, "%s emailupdates sent successfully" % count)
     send_email_update.short_description = "Send eBlast"
 
