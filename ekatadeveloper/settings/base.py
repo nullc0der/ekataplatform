@@ -391,5 +391,6 @@ CKEDITOR_CONFIGS = {
                 'dialogui',
                 'elementspath'
             ]),
+        "allowedContent": True,
     }
 }
