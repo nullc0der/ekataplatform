@@ -57,3 +57,6 @@ celerybeat-schedule
 
 # Sphinx documentation
 docs/_build/
+
+# Editor Configs
+project.cson

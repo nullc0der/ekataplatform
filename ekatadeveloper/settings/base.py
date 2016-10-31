@@ -349,7 +349,7 @@ RECAPTCHA_PUBLIC_KEY = get_env_variable('DJANGO_RECAPTCHA_PUBLIC_KEY')
 # CKEditor
 CKEDITOR_UPLOAD_PATH = "ckeditor/"
 CKEDITOR_IMAGE_BACKEND = 'pillow'
-CKEDITOR_ALLOW_NONIMAGE_FILES = False
+# CKEDITOR_ALLOW_NONIMAGE_FILES = False
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
@@ -368,6 +368,7 @@ CKEDITOR_CONFIGS = {
                        ]},
             {'name': 'insert',
              'items': ['Image','Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'yourcustomtools', 'items': [
