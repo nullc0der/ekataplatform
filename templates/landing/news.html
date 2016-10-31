@@ -117,7 +117,7 @@
                     <h4><i class="fa fa-tag"></i>Tags</h4>
                     <hr>
                     {% for tag in tags %}
-                        <a href="{% url 'landing:newses' %}?tag={{ tag.name }}">{{ tag.name }}({{ tag.news.count }})</a>{% if forloop.last %}{% else %},{% endif %}
+                        <a href="{% url 'landing:newses' %}?tag={{ tag.name }}">{{ tag.name }}</a>{% if forloop.last %}{% else %},{% endif %}
                     {% endfor %}
                 </div>
             </div>

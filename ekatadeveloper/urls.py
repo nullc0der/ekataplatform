@@ -23,6 +23,10 @@ from django.views.generic import TemplateView
 from allauth.socialaccount.views import ConnectionsView
 from allauth.account.views import PasswordSetView, PasswordChangeView
 
+admin.site.site_title = 'Ekata administration'
+admin.site.site_header = 'Ekata administration'
+admin.site.index_title = 'Ekata administration'
+
 disclaimer = TemplateView.as_view(template_name='account/disclaimer.html')
 manifest = TemplateView.as_view(template_name='manifest.json')
 updateworker = TemplateView.as_view(

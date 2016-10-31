@@ -7,6 +7,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 from utils import send_contact_email
 
@@ -161,7 +163,6 @@ def get_invitation_key(request):
     if request.method == 'POST':
         form = GetInvitationForm(request.POST)
         if form.is_valid():
-            print("form valid")
             email = form.cleaned_data.get('email')
             invitation = Invitation()
             invitation.email = email
@@ -178,5 +179,23 @@ def get_invitation_key(request):
                 },
                 status=500
             )
+    else:
+        return HttpResponseForbidden()
+
+
+@csrf_exempt
+def get_invitation_key_from_production(request):
+    if request.method == 'POST':
+        api_key = request.POST.get('api_key')
+        if api_key == settings.EKATA_INVITATION_APIKEY:
+            email = request.POST.get('email')
+            invitation = Invitation()
+            invitation.email = email
+            invitation.invitation_id = get_random_string(length=6)
+            invitation.save()
+            send_notification_to_reviewer.delay(email)
+            return HttpResponse('OK')
+        else:
+            return HttpResponseForbidden()
     else:
         return HttpResponseForbidden()

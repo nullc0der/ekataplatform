@@ -395,3 +395,5 @@ CKEDITOR_CONFIGS = {
         "allowedContent": True,
     }
 }
+
+EKATA_INVITATION_APIKEY = get_env_variable('EKATA_INVITATION_APIKEY')

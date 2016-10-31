@@ -63,7 +63,7 @@ class Tags(models.Model):
 
 
 class News(models.Model):
-    author = models.ForeignKey(User, related_name='news')
+    author = models.ForeignKey(User, related_name='news', editable=False)
     tags = models.ManyToManyField(Tags, related_name='news')
     title = models.CharField(max_length=100)
     content = RichTextUploadingField()

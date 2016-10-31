@@ -22,5 +22,9 @@ urlpatterns = [
         r'^getinvite/$',
         views.get_invitation_key,
         name='getinvite'
+    ),
+    url(
+        r'getinviteapi/$',
+        views.get_invitation_key_from_production
     )
 ]
