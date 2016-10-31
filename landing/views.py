@@ -196,6 +196,6 @@ def get_invitation_key_from_production(request):
             send_notification_to_reviewer.delay(email)
             return HttpResponse('OK')
         else:
-            return HttpResponseForbidden()
+            return HttpResponseForbidden('mismatch')
     else:
         return HttpResponseForbidden()
