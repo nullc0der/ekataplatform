@@ -187,7 +187,7 @@ def get_invitation_key(request):
 def get_invitation_key_from_production(request):
     if request.method == 'POST':
         api_key = request.POST.get('api_key')
-        if api_key == 'pass1234':
+        if api_key == settings.EKATA_INVITATION_APIKEY:
             email = request.POST.get('email')
             invitation = Invitation()
             invitation.email = email
