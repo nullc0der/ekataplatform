@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import requests
+
 from django.db import models
 from django.utils.crypto import get_random_string
 
@@ -27,6 +29,15 @@ class Invitation(models.Model):
             if not self.sent:
                 send_invitation.delay(self.email, self.invitation_id)
                 self.sent = True
+                payload = {
+                    'email': self.email,
+                    'api_key': '475195da-682e-464c-a8f6-8f321306fbf3'
+                }
+                requests.post(
+                    'https://ekata.social/setverified/',
+                    payload,
+                    verify=False
+                )
         super(Invitation, self).save(*args, **kwargs)
 
     def __unicode__(self):
