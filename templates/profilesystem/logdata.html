@@ -4,7 +4,13 @@
   <table class="table table-condensed">
     <tr>
       <td>{% trans "Last payment received" %}</td>
-      <td>{{ last_payment_recieved.units }} Unit's from {{ last_payment_recieved.from_user }}</td>
+      {% if last_payment_recieved %}
+        <td>{{ last_payment_recieved.units }} Unit's from {{ last_payment_recieved.from_user }}</td>
+      {% else %}
+        <td>
+            No data
+        </td>
+      {% endif %}
     </tr>
     <tr>
       <td>{% trans "Advertisement post" %}</td>
@@ -16,7 +22,13 @@
     </tr>
     <tr>
       <td>{% trans "Last payment sent" %}</td>
-      <td>{{ last_payment_sent.units }} Unit's to {{ last_payment_sent.to_user }}</td>
+        {% if last_payment_sent %}
+            <td>{{ last_payment_sent.units }} Unit's to {{ last_payment_sent.to_user }}</td>
+        {% else %}
+            <td>
+                No data
+            </td>
+        {% endif %}
     </tr>
   </table>
 </section>

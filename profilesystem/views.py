@@ -344,11 +344,11 @@ def get_log_datas(request):
     if sent_payments:
         last_payment_sent = sent_payments[0]
     else:
-        last_payment_sent = 0
+        last_payment_sent = None
     if received_payments:
         last_payment_recieved = received_payments[0]
     else:
-        last_payment_recieved = 0
+        last_payment_recieved = None
     return render(
         request,
         'profilesystem/logdata.html',
