@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-29 11:25+0000\n"
+"POT-Creation-Date: 2016-11-02 21:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ekatadeveloper/settings/base.py:199
+#: ekatadeveloper/settings/base.py:209
 msgid "German"
 msgstr ""
 
-#: ekatadeveloper/settings/base.py:200
+#: ekatadeveloper/settings/base.py:210
 msgid "English"
 msgstr ""
 
-#: ekatadeveloper/settings/base.py:201
+#: ekatadeveloper/settings/base.py:211
 msgid "Assamese"
 msgstr ""
 
@@ -64,13 +64,13 @@ msgid "Political"
 msgstr ""
 
 #: groupsystem/models.py:20 templates/groupsystem/adminnews.html:4
-#: templates/groupsystem/adminnews.html:36
-#: templates/groupsystem/groupdetails.html:133
+#: templates/groupsystem/adminnews.html:32
+#: templates/groupsystem/groupdetails.html:132 templates/landing_base.html:166
 #: templates/sidebar_group_admin.html:14
 msgid "News"
 msgstr ""
 
-#: groupsystem/models.py:21 publicusers/views.py:291
+#: groupsystem/models.py:21 publicusers/views.py:297
 msgid "Business"
 msgstr ""
 
@@ -83,6 +83,10 @@ msgid "Blog"
 msgstr ""
 
 #: groupsystem/models.py:24
+msgid "Nonprofit Organization"
+msgstr ""
+
+#: groupsystem/models.py:25
 msgid "Other"
 msgstr ""
 
@@ -90,256 +94,256 @@ msgstr ""
 msgid "Please Specify"
 msgstr ""
 
-#: groupsystem/models.py:73 groupsystem/views.py:31 groupsystem/views.py:70
-#: groupsystem/views.py:103
+#: groupsystem/models.py:77 groupsystem/views.py:32 groupsystem/views.py:71
+#: groupsystem/views.py:104
 msgid "Can access admin"
 msgstr ""
 
-#: groupsystem/models.py:74 groupsystem/views.py:32 groupsystem/views.py:71
-#: groupsystem/views.py:104 groupsystem/views.py:121 groupsystem/views.py:132
+#: groupsystem/models.py:78 groupsystem/views.py:33 groupsystem/views.py:72
+#: groupsystem/views.py:105 groupsystem/views.py:122 groupsystem/views.py:133
 msgid "Can read news"
 msgstr ""
 
-#: groupsystem/models.py:75 groupsystem/views.py:33 groupsystem/views.py:72
+#: groupsystem/models.py:79 groupsystem/views.py:34 groupsystem/views.py:73
 msgid "Can create news"
 msgstr ""
 
-#: groupsystem/models.py:76 groupsystem/views.py:34 groupsystem/views.py:73
+#: groupsystem/models.py:80 groupsystem/views.py:35 groupsystem/views.py:74
 msgid "Can update news"
 msgstr ""
 
-#: groupsystem/models.py:77 groupsystem/views.py:35 groupsystem/views.py:74
+#: groupsystem/models.py:81 groupsystem/views.py:36 groupsystem/views.py:75
 msgid "Can delete news"
 msgstr ""
 
-#: groupsystem/models.py:78 groupsystem/views.py:36 groupsystem/views.py:75
-#: groupsystem/views.py:105 groupsystem/views.py:122
+#: groupsystem/models.py:82 groupsystem/views.py:37 groupsystem/views.py:76
+#: groupsystem/views.py:106 groupsystem/views.py:123
 msgid "Can read post"
 msgstr ""
 
-#: groupsystem/models.py:79 groupsystem/views.py:37 groupsystem/views.py:76
-#: groupsystem/views.py:106 groupsystem/views.py:123
+#: groupsystem/models.py:83 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/views.py:107 groupsystem/views.py:124
 msgid "Can create post"
 msgstr ""
 
-#: groupsystem/models.py:80 groupsystem/views.py:38 groupsystem/views.py:77
-#: groupsystem/views.py:107
+#: groupsystem/models.py:84 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/views.py:108
 msgid "Can update post"
 msgstr ""
 
-#: groupsystem/models.py:81 groupsystem/views.py:39 groupsystem/views.py:78
-#: groupsystem/views.py:108
+#: groupsystem/models.py:85 groupsystem/views.py:40 groupsystem/views.py:79
+#: groupsystem/views.py:109
 msgid "Can approve post"
 msgstr ""
 
-#: groupsystem/models.py:82 groupsystem/views.py:40 groupsystem/views.py:79
-#: groupsystem/views.py:109
+#: groupsystem/models.py:86 groupsystem/views.py:41 groupsystem/views.py:80
+#: groupsystem/views.py:110
 msgid "Can delete post"
 msgstr ""
 
-#: groupsystem/models.py:83 groupsystem/views.py:41 groupsystem/views.py:80
-#: groupsystem/views.py:110 groupsystem/views.py:124
+#: groupsystem/models.py:87 groupsystem/views.py:42 groupsystem/views.py:81
+#: groupsystem/views.py:111 groupsystem/views.py:125
 msgid "Can read comment"
 msgstr ""
 
-#: groupsystem/models.py:84 groupsystem/views.py:42 groupsystem/views.py:81
-#: groupsystem/views.py:111 groupsystem/views.py:125
+#: groupsystem/models.py:88 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/views.py:112 groupsystem/views.py:126
 msgid "Can create comment"
 msgstr ""
 
-#: groupsystem/models.py:85 groupsystem/views.py:43 groupsystem/views.py:82
-#: groupsystem/views.py:112
+#: groupsystem/models.py:89 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/views.py:113
 msgid "Can update comment"
 msgstr ""
 
-#: groupsystem/models.py:86 groupsystem/views.py:44 groupsystem/views.py:83
-#: groupsystem/views.py:113
+#: groupsystem/models.py:90 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/views.py:114
 msgid "Can approve comment"
 msgstr ""
 
-#: groupsystem/models.py:87 groupsystem/views.py:45 groupsystem/views.py:84
-#: groupsystem/views.py:114
+#: groupsystem/models.py:91 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/views.py:115
 msgid "Can delete comment"
 msgstr ""
 
-#: groupsystem/models.py:88 groupsystem/views.py:46 groupsystem/views.py:85
-#: groupsystem/views.py:115 groupsystem/views.py:126
+#: groupsystem/models.py:92 groupsystem/views.py:47 groupsystem/views.py:86
+#: groupsystem/views.py:116 groupsystem/views.py:127
 msgid "Can like post"
 msgstr ""
 
-#: groupsystem/models.py:89 groupsystem/views.py:47
+#: groupsystem/models.py:93 groupsystem/views.py:48
 msgid "Can create notification"
 msgstr ""
 
-#: groupsystem/models.py:90 groupsystem/views.py:48 groupsystem/views.py:86
-#: groupsystem/views.py:116 groupsystem/views.py:127
+#: groupsystem/models.py:94 groupsystem/views.py:49 groupsystem/views.py:87
+#: groupsystem/views.py:117 groupsystem/views.py:128
 msgid "Can create invite"
 msgstr ""
 
-#: groupsystem/models.py:91 groupsystem/views.py:49 groupsystem/views.py:87
+#: groupsystem/models.py:95 groupsystem/views.py:50 groupsystem/views.py:88
 msgid "Can add member"
 msgstr ""
 
-#: groupsystem/models.py:92 groupsystem/views.py:50 groupsystem/views.py:88
+#: groupsystem/models.py:96 groupsystem/views.py:51 groupsystem/views.py:89
 msgid "Can remove member"
 msgstr ""
 
-#: groupsystem/models.py:93 groupsystem/views.py:51 groupsystem/views.py:89
+#: groupsystem/models.py:97 groupsystem/views.py:52 groupsystem/views.py:90
 msgid "Can ban member"
 msgstr ""
 
-#: groupsystem/models.py:94 groupsystem/views.py:52 groupsystem/views.py:90
+#: groupsystem/models.py:98 groupsystem/views.py:53 groupsystem/views.py:91
 msgid "Can lift member ban"
 msgstr ""
 
-#: groupsystem/models.py:95 groupsystem/views.py:53 groupsystem/views.py:91
+#: groupsystem/models.py:99 groupsystem/views.py:54 groupsystem/views.py:92
 msgid "Can change member role"
 msgstr ""
 
-#: groupsystem/models.py:96 groupsystem/views.py:54 groupsystem/views.py:92
+#: groupsystem/models.py:100 groupsystem/views.py:55 groupsystem/views.py:93
 msgid "Can edit member permission"
 msgstr ""
 
-#: groupsystem/models.py:97 groupsystem/views.py:55 groupsystem/views.py:93
-#: groupsystem/views.py:117 groupsystem/views.py:128
+#: groupsystem/models.py:101 groupsystem/views.py:56 groupsystem/views.py:94
+#: groupsystem/views.py:118 groupsystem/views.py:129
 msgid "Can read events"
 msgstr ""
 
-#: groupsystem/models.py:98 groupsystem/views.py:56 groupsystem/views.py:94
+#: groupsystem/models.py:102 groupsystem/views.py:57 groupsystem/views.py:95
 msgid "Can create events"
 msgstr ""
 
-#: groupsystem/models.py:99 groupsystem/views.py:57 groupsystem/views.py:95
+#: groupsystem/models.py:103 groupsystem/views.py:58 groupsystem/views.py:96
 msgid "Can update events"
 msgstr ""
 
-#: groupsystem/models.py:100 groupsystem/views.py:58 groupsystem/views.py:96
+#: groupsystem/models.py:104 groupsystem/views.py:59 groupsystem/views.py:97
 msgid "Can delete events"
 msgstr ""
 
-#: groupsystem/models.py:101 groupsystem/views.py:59 groupsystem/views.py:97
+#: groupsystem/models.py:105 groupsystem/views.py:60 groupsystem/views.py:98
 msgid "Can read join requests"
 msgstr ""
 
-#: groupsystem/models.py:102 groupsystem/views.py:60 groupsystem/views.py:98
+#: groupsystem/models.py:106 groupsystem/views.py:61 groupsystem/views.py:99
 msgid "Can approve join requests"
 msgstr ""
 
-#: groupsystem/models.py:103 groupsystem/views.py:61 groupsystem/views.py:99
+#: groupsystem/models.py:107 groupsystem/views.py:62 groupsystem/views.py:100
 msgid "Can deny joinrequest"
 msgstr ""
 
-#: groupsystem/models.py:104 groupsystem/views.py:62
+#: groupsystem/models.py:108 groupsystem/views.py:63
 msgid "Can edit group profile"
 msgstr ""
 
-#: groupsystem/models.py:105 groupsystem/views.py:63
+#: groupsystem/models.py:109 groupsystem/views.py:64
 msgid "Can read role"
 msgstr ""
 
-#: groupsystem/models.py:106 groupsystem/views.py:64
+#: groupsystem/models.py:110 groupsystem/views.py:65
 msgid "Can read custom role"
 msgstr ""
 
-#: groupsystem/models.py:107 groupsystem/views.py:65
+#: groupsystem/models.py:111 groupsystem/views.py:66
 msgid "Can update custom role"
 msgstr ""
 
-#: groupsystem/models.py:108 groupsystem/views.py:66
+#: groupsystem/models.py:112 groupsystem/views.py:67
 msgid "Can create custom role"
 msgstr ""
 
-#: groupsystem/views.py:329
+#: groupsystem/views.py:350
 msgid "Already requested"
 msgstr ""
 
-#: groupsystem/views.py:331
+#: groupsystem/views.py:352
 msgid "You're banned from this group"
 msgstr ""
 
-#: groupsystem/views.py:338
+#: groupsystem/views.py:359
 msgid "Subscribed"
 msgstr ""
 
-#: groupsystem/views.py:345
+#: groupsystem/views.py:366
 msgid "Unsubscribed"
 msgstr ""
 
-#: groupsystem/views.py:351
+#: groupsystem/views.py:372
 msgid "Request Canceled"
 msgstr ""
 
-#: groupsystem/views.py:373
+#: groupsystem/views.py:401
 msgid "Leaved Group"
 msgstr ""
 
-#: groupsystem/views.py:485
+#: groupsystem/views.py:539
 msgid "Post will be shown once admin/moderator approves"
 msgstr ""
 
-#: groupsystem/views.py:530
+#: groupsystem/views.py:584
 msgid ""
 "Thank you for commenting your comment will show once a admin/moderator "
 "approves"
 msgstr ""
 
-#: groupsystem/views.py:572
+#: groupsystem/views.py:631
 msgid "You don't have permission to create news"
 msgstr ""
 
-#: groupsystem/views.py:663
+#: groupsystem/views.py:737
 msgid "You dont have permissions to approve post"
 msgstr ""
 
-#: groupsystem/views.py:683
+#: groupsystem/views.py:757
 msgid "Post created"
 msgstr ""
 
-#: groupsystem/views.py:781
+#: groupsystem/views.py:875
 msgid "You dont have permissions to approve comment"
 msgstr ""
 
-#: groupsystem/views.py:823
+#: groupsystem/views.py:917
 msgid "You don't have permission to add memeber"
 msgstr ""
 
-#: groupsystem/views.py:857
+#: groupsystem/views.py:953
 msgid "You dont have permission to remove member"
 msgstr ""
 
-#: groupsystem/views.py:893
+#: groupsystem/views.py:991
 msgid "You dont have permission to ban member"
 msgstr ""
 
-#: groupsystem/views.py:932
+#: groupsystem/views.py:1042
 msgid "You don't have permissions to change member role"
 msgstr ""
 
-#: groupsystem/views.py:1028
+#: groupsystem/views.py:1148
 msgid "You don't have permission to approve request"
 msgstr ""
 
-#: groupsystem/views.py:1041
+#: groupsystem/views.py:1161
 msgid "You don't have permission to deny request"
 msgstr ""
 
-#: groupsystem/views.py:1072
-msgid "User invited"
+#: groupsystem/views.py:1200
+msgid "Users invited"
 msgstr ""
 
-#: groupsystem/views.py:1267
+#: groupsystem/views.py:1414
 msgid "Role created, reload page to edit permissions"
 msgstr ""
 
-#: groupsystem/views.py:1280
+#: groupsystem/views.py:1427
 msgid "You don't have permission to create custom role"
 msgstr ""
 
-#: groupsystem/views.py:1311
+#: groupsystem/views.py:1463
 msgid "Role permission changed"
 msgstr ""
 
-#: groupsystem/views.py:1354
+#: groupsystem/views.py:1506
 msgid "User permission changed"
 msgstr ""
 
@@ -353,126 +357,128 @@ msgstr "Username ত কেৱল alphanumeric আৰু underscores হে ব�
 msgid "Username already taken"
 msgstr "Username ব্যবহ্ৰিত হৈচে"
 
-#: profilesystem/models.py:16
+#: profilesystem/models.py:17
 msgid "Male"
 msgstr "পুৰুষ"
 
-#: profilesystem/models.py:17
+#: profilesystem/models.py:18
 msgid "Female"
 msgstr "মহিলা"
 
-#: profilesystem/models.py:141 templates/profilesystem/address.html:5
-#: templates/publicusers/user.html:183
+#: profilesystem/models.py:159 templates/profilesystem/address.html:5
+#: templates/publicusers/user.html:193
 msgid "House Number"
 msgstr "ঘৰৰ নং"
 
-#: profilesystem/models.py:142
+#: profilesystem/models.py:160
 msgid "street"
 msgstr "পথ"
 
-#: profilesystem/models.py:143
+#: profilesystem/models.py:161
 #, fuzzy
 #| msgid "zip_code"
 msgid "zip code"
 msgstr "পিন নং"
 
-#: profilesystem/models.py:144
+#: profilesystem/models.py:162
 msgid "city"
 msgstr "নগৰ"
 
-#: profilesystem/models.py:145
+#: profilesystem/models.py:163
 msgid "state"
 msgstr "ৰাজ্য"
 
-#: profilesystem/models.py:146
+#: profilesystem/models.py:164
 msgid "country"
 msgstr "দেশ"
 
-#: publicusers/views.py:172 templates/groupsystem/adminnews.html:168
-#: templates/groupsystem/adminsettings.html:204
+#: publicusers/views.py:177 templates/groupsystem/adminnews.html:95
+#: templates/groupsystem/adminsettings.html:131
 msgid "Success"
 msgstr "সফল হৈচে"
 
-#: publicusers/views.py:174
+#: publicusers/views.py:179
 msgid "You already thumb uped this user"
 msgstr "আপুনি এই ব্যবহাৰকাৰীক ইতিমধ্য thumb up কৰিছে‌"
 
-#: publicusers/views.py:280
+#: publicusers/views.py:286
 msgid "Friend type"
 msgstr ""
 
-#: publicusers/views.py:281 templates/publicusers/user.html:71
+#: publicusers/views.py:287 templates/publicusers/user.html:71
 msgid "Best"
 msgstr ""
 
-#: publicusers/views.py:281 templates/publicusers/user.html:63
+#: publicusers/views.py:287 templates/publicusers/user.html:63
 #: templates/publicusers/user.html:72
 msgid "Friend"
 msgstr ""
 
-#: publicusers/views.py:281 templates/publicusers/user.html:73
+#: publicusers/views.py:287 templates/publicusers/user.html:73
 msgid "Soulmate"
 msgstr ""
 
-#: publicusers/views.py:281 templates/publicusers/user.html:74
-msgid "Aquantence"
-msgstr ""
+#: publicusers/views.py:287 templates/publicusers/user.html:74
+#, fuzzy
+#| msgid "country"
+msgid "Acquaintance"
+msgstr "দেশ"
 
-#: publicusers/views.py:285
+#: publicusers/views.py:291
 msgid "Family type"
 msgstr "পৰিয়ালৰ প্ৰোকাৰ"
 
-#: publicusers/views.py:286
+#: publicusers/views.py:292
 msgid "Mother"
 msgstr ""
 
-#: publicusers/views.py:286
+#: publicusers/views.py:292
 msgid "Father"
 msgstr ""
 
-#: publicusers/views.py:286
+#: publicusers/views.py:292
 #, fuzzy
 #| msgid "Register"
 msgid "Sister"
 msgstr "পঞ্জীয়ন কৰক"
 
-#: publicusers/views.py:286
+#: publicusers/views.py:292
 msgid "Brother"
 msgstr ""
 
-#: publicusers/views.py:290
+#: publicusers/views.py:296
 msgid "Contact type"
 msgstr ""
 
-#: publicusers/views.py:291
+#: publicusers/views.py:297
 msgid "Personal"
 msgstr ""
 
-#: publicusers/views.py:306
+#: publicusers/views.py:312
 msgid "connection already sent by "
 msgstr ""
 
-#: publicusers/views.py:344
+#: publicusers/views.py:351
 msgid "A request is sent to "
 msgstr ""
 
-#: publicusers/views.py:363
+#: publicusers/views.py:370
 msgid "Connection accepted"
 msgstr ""
 
-#: publicusers/views.py:405
+#: publicusers/views.py:412
 msgid "Canceled connection request"
 msgstr ""
 
-#: publicusers/views.py:407
+#: publicusers/views.py:414
 msgid "Rejected connection"
 msgstr ""
 
-#: publicusers/views.py:409
+#: publicusers/views.py:416
 msgid "Disconneted"
 msgstr ""
 
-#: publicusers/views.py:411 templates/groupsystem/eventsadmin.html:166
+#: publicusers/views.py:418 templates/groupsystem/eventsadmin.html:93
 #, fuzzy
 #| msgid "Success"
 msgid "Success!!"
@@ -490,7 +496,7 @@ msgstr ""
 msgid "Return to dashboard"
 msgstr ""
 
-#: templates/account/disclaimer.html:4
+#: templates/account/disclaimer.html:4 templates/landing_base.html:165
 msgid "Disclaimer"
 msgstr ""
 
@@ -684,7 +690,7 @@ msgstr ""
 msgid "Re-send Verification"
 msgstr ""
 
-#: templates/account/email.html:42 templates/groupsystem/members.html:71
+#: templates/account/email.html:42 templates/groupsystem/members.html:67
 msgid "Remove"
 msgstr ""
 
@@ -818,7 +824,7 @@ msgstr ""
 
 #: templates/account/rform.html:36 templates/account/rform.html:60
 #: templates/account/rform.html:84 templates/account/rform.html:108
-#: templates/timelines/timeline.html:130
+#: templates/timelines/timeline.html:149
 msgid "Cancel"
 msgstr ""
 
@@ -831,58 +837,80 @@ msgstr ""
 msgid "I already have a membership"
 msgstr ""
 
-#: templates/base.html:113
+#: templates/base.html:115
 msgid "Toggle navigation"
 msgstr ""
 
-#: templates/base.html:225 templates/base.html:244 templates/base.html:294
+#: templates/base.html:224 templates/base.html:243 templates/base.html:299
 msgid "Hello User"
 msgstr ""
 
-#: templates/base.html:241
+#: templates/base.html:240
 msgid "Member Since "
 msgstr ""
 
-#: templates/base.html:260 templates/landing_base.html:95
-#: templates/profilesystem/index.html:5 templates/profilesystem/index.html:38
-#: templates/profilesystem/index.html:54 templates/sidebar_main.html:32
+#: templates/base.html:254 templates/sidebar_main.html:16
+#: templates/useraccount/index.html:7 templates/useraccount/index.html:11
+#, fuzzy
+#| msgid "country"
+msgid "Account"
+msgstr "দেশ"
+
+#: templates/base.html:257
+msgid "Landing"
+msgstr ""
+
+#: templates/base.html:265 templates/landing_base.html:94
+#: templates/landing_base.html:158 templates/profilesystem/index.html:5
+#: templates/profilesystem/index.html:38 templates/profilesystem/index.html:54
+#: templates/sidebar_main.html:27
 msgid "Profile"
 msgstr ""
 
-#: templates/base.html:263
+#: templates/base.html:268
 msgid "Sign out"
 msgstr ""
 
-#: templates/base.html:357
+#: templates/base.html:320 templates/base.html:662 templates/base.html:666
+#: templates/base.html:673 templates/base.html:677
+msgid "MAIN NAVIGATION"
+msgstr ""
+
+#: templates/base.html:363
+msgid "System notice: "
+msgstr ""
+
+#: templates/base.html:410
 msgid "Todo"
 msgstr ""
 
-#: templates/base.html:398
+#: templates/base.html:451
 msgid "Language Settings"
 msgstr ""
 
 #. Translators: This is for language select submit button
 #.
-#: templates/base.html:418
+#: templates/base.html:471
 msgid "Set"
 msgstr ""
 
-#: templates/base.html:422
+#: templates/base.html:475
 msgid "Chat Settings"
 msgstr ""
 
-#: templates/base.html:426
+#: templates/base.html:479
 msgid "Show me as online"
 msgstr ""
 
 #: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:16
-#: templates/groupsystem/admindashboard.html:4
-#: templates/sidebar_group_admin.html:6 templates/sidebar_main.html:9
+#: templates/groupsystem/admindashboard.html:4 templates/landing_base.html:90
+#: templates/landing_base.html:156 templates/sidebar_group_admin.html:6
+#: templates/sidebar_main.html:4
 msgid "Dashboard"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:36 templates/profilesystem/index.html:245
-#: templates/publicusers/user.html:164
+#: templates/dashboard/dashboard.html:36 templates/profilesystem/index.html:195
+#: templates/publicusers/user.html:174
 msgid "References"
 msgstr ""
 
@@ -890,7 +918,8 @@ msgstr ""
 msgid "Connections"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:56 templates/landing_base.html:93
+#: templates/dashboard/dashboard.html:56 templates/landing_base.html:111
+#: templates/landing_base.html:162
 msgid "Messages"
 msgstr ""
 
@@ -905,23 +934,23 @@ msgstr "দেশ"
 msgid "Next Release"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:122 templates/publicusers/user.html:267
+#: templates/dashboard/dashboard.html:122 templates/publicusers/user.html:277
 msgid "Profile Completed"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:139 templates/publicusers/user.html:280
+#: templates/dashboard/dashboard.html:139 templates/publicusers/user.html:290
 msgid "Completed"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:145 templates/publicusers/user.html:286
+#: templates/dashboard/dashboard.html:145 templates/publicusers/user.html:296
 msgid "Not completed"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:151 templates/publicusers/user.html:292
+#: templates/dashboard/dashboard.html:151 templates/publicusers/user.html:302
 msgid "Not verified"
 msgstr ""
 
-#: templates/dashboard/dashboard.html:157 templates/publicusers/user.html:298
+#: templates/dashboard/dashboard.html:157 templates/publicusers/user.html:308
 msgid "Skipped"
 msgstr ""
 
@@ -1048,140 +1077,124 @@ msgstr ""
 #: templates/groupsystem/adminnews.html:4
 #: templates/groupsystem/adminsettings.html:4
 #: templates/groupsystem/customroles.html:4
-#: templates/groupsystem/customroles.html:19
+#: templates/groupsystem/customroles.html:15
 #: templates/groupsystem/defaultroles.html:4
-#: templates/groupsystem/defaultroles.html:19
+#: templates/groupsystem/defaultroles.html:15
 #: templates/groupsystem/eventsadmin.html:4
-#: templates/groupsystem/eventsadmin.html:12
-#: templates/groupsystem/members.html:78
+#: templates/groupsystem/eventsadmin.html:8
+#: templates/groupsystem/members.html:75
 msgid "Admin"
 msgstr ""
 
-#: templates/groupsystem/admindashboard.html:12
-#: templates/groupsystem/adminnews.html:19
-#: templates/groupsystem/adminsettings.html:12
-#: templates/groupsystem/bannedmembers.html:12
-#: templates/groupsystem/editcommentpage.html:12
-#: templates/groupsystem/editpostpage.html:12
-#: templates/groupsystem/joinrequests.html:12
-#: templates/groupsystem/members.html:19
-#: templates/groupsystem/postsadmin.html:12
+#: templates/groupsystem/admindashboard.html:8
+#: templates/groupsystem/adminnews.html:15
+#: templates/groupsystem/adminsettings.html:8
+#: templates/groupsystem/bannedmembers.html:8
+#: templates/groupsystem/editcommentpage.html:8
+#: templates/groupsystem/editpostpage.html:8
+#: templates/groupsystem/joinrequests.html:8
+#: templates/groupsystem/members.html:15
+#: templates/groupsystem/postsadmin.html:8
 msgid "admin"
 msgstr ""
 
-#: templates/groupsystem/admindashboard.html:12
+#: templates/groupsystem/admindashboard.html:8
 msgid "dashboard"
 msgstr ""
 
-#: templates/groupsystem/admindashboard.html:27
-#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:19
+#: templates/groupsystem/admindashboard.html:23
+#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:15
 #: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
 msgid "Members"
 msgstr ""
 
-#: templates/groupsystem/admindashboard.html:33
-#: templates/groupsystem/admindashboard.html:47
-#: templates/groupsystem/admindashboard.html:61
-#: templates/groupsystem/admindashboard.html:75
+#: templates/groupsystem/admindashboard.html:29
+#: templates/groupsystem/admindashboard.html:43
+#: templates/groupsystem/admindashboard.html:57
+#: templates/groupsystem/admindashboard.html:71
 msgid "More info"
 msgstr ""
 
-#: templates/groupsystem/admindashboard.html:41
+#: templates/groupsystem/admindashboard.html:37
 msgid "New Request"
 msgstr ""
 
-#: templates/groupsystem/admindashboard.html:55
+#: templates/groupsystem/admindashboard.html:51
 msgid "Pending posts"
 msgstr ""
 
-#: templates/groupsystem/admindashboard.html:69
+#: templates/groupsystem/admindashboard.html:65
 msgid "Pending comment"
 msgstr ""
 
-#: templates/groupsystem/admindashboard.html:88
-#: templates/groupsystem/adminnews.html:86
-#: templates/groupsystem/adminsettings.html:110
-#: templates/groupsystem/bannedmembers.html:63
-#: templates/groupsystem/commentadmin.html:71
-#: templates/groupsystem/customroles.html:97
-#: templates/groupsystem/defaultroles.html:65
-#: templates/groupsystem/editcommentpage.html:54
-#: templates/groupsystem/editpostpage.html:56
-#: templates/groupsystem/events.html:55
-#: templates/groupsystem/eventsadmin.html:52
-#: templates/groupsystem/groupdetails.html:179
-#: templates/groupsystem/joinrequests.html:66
-#: templates/groupsystem/members.html:123
-#: templates/groupsystem/postdetails.html:113
-#: templates/groupsystem/posts.html:110
-#: templates/groupsystem/postsadmin.html:114 templates/sidebar_main.html:4
-msgid "MAIN NAVIGATION"
-msgstr ""
-
-#: templates/groupsystem/adminnews.html:19
+#: templates/groupsystem/adminnews.html:15
 msgid "news"
 msgstr ""
 
-#: templates/groupsystem/adminnews.html:55
+#: templates/groupsystem/adminnews.html:51
 msgid "No news!!"
 msgstr ""
 
-#: templates/groupsystem/adminnews.html:63
+#: templates/groupsystem/adminnews.html:59
 msgid "Create News"
 msgstr ""
 
-#: templates/groupsystem/adminnews.html:70
-#: templates/groupsystem/adminsettings.html:79
-#: templates/groupsystem/editcommentpage.html:38
+#: templates/groupsystem/adminnews.html:66
+#: templates/groupsystem/adminsettings.html:75
+#: templates/groupsystem/editcommentpage.html:34
 #: templates/groupsystem/editcustomrole.html:6
 #: templates/groupsystem/editnews.html:6
-#: templates/groupsystem/editpostpage.html:40
-#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:96
-#: templates/groupsystem/postsadmin.html:100
-#: templates/information/contact.html:35 templates/profilesystem/index.html:145
-#: templates/profilesystem/index.html:182
-#: templates/profilesystem/index.html:221
+#: templates/groupsystem/editpostpage.html:36
+#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:92
+#: templates/groupsystem/postsadmin.html:96
+#: templates/information/contact.html:35
+#: templates/invitationsystem/checkinvitation.html:26
+#: templates/invitationsystem/index.html:20
+#: templates/landing/getinvitationform.html:4
+#: templates/profilesystem/index.html:95 templates/profilesystem/index.html:132
+#: templates/profilesystem/index.html:171
 msgid "Submit"
 msgstr ""
 
-#: templates/groupsystem/adminnews.html:154
+#: templates/groupsystem/adminnews.html:81
 msgid "Edit news"
 msgstr ""
 
 #: templates/groupsystem/adminsettings.html:4
+#: templates/profilesystem/index.html:285
 #: templates/sidebar_group_admin.html:107
 msgid "Settings"
 msgstr ""
 
-#: templates/groupsystem/adminsettings.html:12
+#: templates/groupsystem/adminsettings.html:8
 msgid "settings"
 msgstr ""
 
-#: templates/groupsystem/adminsettings.html:27
+#: templates/groupsystem/adminsettings.html:23
 msgid "Send notification to members"
 msgstr ""
 
-#: templates/groupsystem/adminsettings.html:60
-#: templates/groupsystem/groupdetails.html:67
+#: templates/groupsystem/adminsettings.html:56
+#: templates/groupsystem/groupdetails.html:63
 msgid "About Us"
 msgstr ""
 
-#: templates/groupsystem/adminsettings.html:72
+#: templates/groupsystem/adminsettings.html:68
 msgid "Edit Group"
 msgstr ""
 
-#: templates/groupsystem/adminsettings.html:91
+#: templates/groupsystem/adminsettings.html:87
 msgid "Create Notification"
 msgstr ""
 
-#: templates/groupsystem/adminsettings.html:97
+#: templates/groupsystem/adminsettings.html:93
 #: templates/groupsystem/all_group.html:89
-#: templates/groupsystem/customroles.html:84
+#: templates/groupsystem/customroles.html:80
 msgid "Create"
 msgstr ""
 
 #: templates/groupsystem/all_group.html:5
-#: templates/groupsystem/all_group.html:36 templates/sidebar_main.html:45
+#: templates/groupsystem/all_group.html:36 templates/sidebar_main.html:40
 msgid "All Groups"
 msgstr ""
 
@@ -1191,58 +1204,58 @@ msgid "Create Group"
 msgstr ""
 
 #: templates/groupsystem/bannedmembers.html:4
-#: templates/groupsystem/bannedmembers.html:12
+#: templates/groupsystem/bannedmembers.html:8
 msgid "Bannedmembers"
 msgstr ""
 
-#: templates/groupsystem/bannedmembers.html:30
+#: templates/groupsystem/bannedmembers.html:26
 #: templates/groupsystem/editextraperm.html:3
-#: templates/groupsystem/joinrequests.html:31
-#: templates/groupsystem/members.html:48
+#: templates/groupsystem/joinrequests.html:27
+#: templates/groupsystem/members.html:44
 msgid "User"
 msgstr ""
 
-#: templates/groupsystem/bannedmembers.html:31
-#: templates/groupsystem/joinrequests.html:32
-#: templates/groupsystem/members.html:50
+#: templates/groupsystem/bannedmembers.html:27
+#: templates/groupsystem/joinrequests.html:28
+#: templates/groupsystem/members.html:46
 #: templates/messagingsystem/chats.html:175
 #: templates/messagingsystem/index.html:234
 msgid "Actions"
 msgstr ""
 
-#: templates/groupsystem/bannedmembers.html:44
+#: templates/groupsystem/bannedmembers.html:40
 msgid "Lift Ban"
 msgstr ""
 
-#: templates/groupsystem/commentadmin.html:19
+#: templates/groupsystem/commentadmin.html:15
 #: templates/sidebar_group_admin.html:41
 msgid "Comments"
 msgstr ""
 
-#: templates/groupsystem/commentadmin.html:41
-#: templates/groupsystem/editcommentpage.html:27
+#: templates/groupsystem/commentadmin.html:37
+#: templates/groupsystem/editcommentpage.html:23
 msgid "Post: "
 msgstr ""
 
-#: templates/groupsystem/commentadmin.html:42
-#: templates/groupsystem/editcommentpage.html:30
+#: templates/groupsystem/commentadmin.html:38
+#: templates/groupsystem/editcommentpage.html:26
 msgid "Commented By: "
 msgstr ""
 
-#: templates/groupsystem/commentadmin.html:44
+#: templates/groupsystem/commentadmin.html:40
 msgid "Comment: "
 msgstr ""
 
-#: templates/groupsystem/commentadmin.html:46
-#: templates/groupsystem/postsadmin.html:76
+#: templates/groupsystem/commentadmin.html:42
+#: templates/groupsystem/postsadmin.html:72
 msgid "edit"
 msgstr ""
 
-#: templates/groupsystem/commentadmin.html:48
+#: templates/groupsystem/commentadmin.html:44
 msgid "approve"
 msgstr ""
 
-#: templates/groupsystem/commentadmin.html:57
+#: templates/groupsystem/commentadmin.html:53
 msgid "No comments!!"
 msgstr ""
 
@@ -1263,53 +1276,53 @@ msgid "More Settings: "
 msgstr ""
 
 #: templates/groupsystem/customroles.html:4
-#: templates/groupsystem/customroles.html:19
-#: templates/groupsystem/customroles.html:43
+#: templates/groupsystem/customroles.html:15
+#: templates/groupsystem/customroles.html:39
 msgid "Custom roles"
 msgstr ""
 
-#: templates/groupsystem/customroles.html:34
+#: templates/groupsystem/customroles.html:30
 msgid "Create custom role"
 msgstr ""
 
-#: templates/groupsystem/customroles.html:55
+#: templates/groupsystem/customroles.html:51
 msgid "You don't have any custom roles defined"
 msgstr ""
 
-#: templates/groupsystem/customroles.html:63
-#: templates/groupsystem/defaultroles.html:49
+#: templates/groupsystem/customroles.html:59
+#: templates/groupsystem/defaultroles.html:45
 msgid "Permissions"
 msgstr ""
 
-#: templates/groupsystem/customroles.html:78
+#: templates/groupsystem/customroles.html:74
 msgid "Create Custom Role"
 msgstr ""
 
-#: templates/groupsystem/customroles.html:169
+#: templates/groupsystem/customroles.html:96
 msgid "You dont have permission to edit role"
 msgstr ""
 
 #: templates/groupsystem/defaultroles.html:4
-#: templates/groupsystem/defaultroles.html:19
-#: templates/groupsystem/defaultroles.html:33
+#: templates/groupsystem/defaultroles.html:15
+#: templates/groupsystem/defaultroles.html:29
 msgid "Default roles"
 msgstr ""
 
-#: templates/groupsystem/editcommentpage.html:12
+#: templates/groupsystem/editcommentpage.html:8
 msgid "Editcomment"
 msgstr ""
 
-#: templates/groupsystem/editcommentpage.html:28
-#: templates/groupsystem/editpostpage.html:30
+#: templates/groupsystem/editcommentpage.html:24
+#: templates/groupsystem/editpostpage.html:26
 msgid "Approved: "
 msgstr ""
 
-#: templates/groupsystem/editcommentpage.html:29
-#: templates/groupsystem/editpostpage.html:31
+#: templates/groupsystem/editcommentpage.html:25
+#: templates/groupsystem/editpostpage.html:27
 msgid "Approved By: "
 msgstr ""
 
-#: templates/groupsystem/editcommentpage.html:31
+#: templates/groupsystem/editcommentpage.html:27
 msgid "Commented on: "
 msgstr ""
 
@@ -1317,15 +1330,15 @@ msgstr ""
 msgid "User who assigned with this role"
 msgstr ""
 
-#: templates/groupsystem/editpostpage.html:12
+#: templates/groupsystem/editpostpage.html:8
 msgid "Editpost"
 msgstr ""
 
-#: templates/groupsystem/editpostpage.html:27
+#: templates/groupsystem/editpostpage.html:23
 msgid "Creator: "
 msgstr ""
 
-#: templates/groupsystem/editpostpage.html:33
+#: templates/groupsystem/editpostpage.html:29
 msgid "Post Created on: "
 msgstr ""
 
@@ -1333,160 +1346,162 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:12
-#: templates/groupsystem/events.html:26
+#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:8
+#: templates/groupsystem/events.html:22
 #: templates/groupsystem/eventsadmin.html:4
-#: templates/groupsystem/eventsadmin.html:12
-#: templates/groupsystem/eventsadmin.html:36 templates/sidebar_group.html:11
+#: templates/groupsystem/eventsadmin.html:8
+#: templates/groupsystem/eventsadmin.html:32 templates/sidebar_group.html:11
 #: templates/sidebar_group_admin.html:77
 msgid "Events"
 msgstr ""
 
-#: templates/groupsystem/events.html:145
+#: templates/groupsystem/events.html:72
 msgid "Startdate: "
 msgstr ""
 
-#: templates/groupsystem/events.html:147
+#: templates/groupsystem/events.html:74
 msgid "Enddate: "
 msgstr ""
 
-#: templates/groupsystem/eventsadmin.html:26
+#: templates/groupsystem/eventsadmin.html:22
 msgid "Create Event"
 msgstr ""
 
-#: templates/groupsystem/groupdetails.html:76
+#: templates/groupsystem/groupdetails.html:74
 msgid "Leave Group"
 msgstr ""
 
-#: templates/groupsystem/groupdetails.html:83
-#: templates/groupsystem/groupdetails.html:99
+#: templates/groupsystem/groupdetails.html:82
+#: templates/groupsystem/groupdetails.html:98
 msgid "Cancel Request"
 msgstr ""
 
-#: templates/groupsystem/groupdetails.html:88
-#: templates/groupsystem/groupdetails.html:94
+#: templates/groupsystem/groupdetails.html:87
+#: templates/groupsystem/groupdetails.html:93
 msgid "Join Group"
 msgstr ""
 
-#: templates/groupsystem/groupdetails.html:107
+#: templates/groupsystem/groupdetails.html:106
 msgid "Unsubscribe"
 msgstr ""
 
-#: templates/groupsystem/groupdetails.html:113
+#: templates/groupsystem/groupdetails.html:112
 msgid "Subscribe"
 msgstr ""
 
-#: templates/groupsystem/groupdetails.html:121
+#: templates/groupsystem/groupdetails.html:120
 msgid "Invite User"
 msgstr ""
 
-#: templates/groupsystem/groupdetails.html:165
-#: templates/profilesystem/index.html:139
-#: templates/profilesystem/index.html:170
-#: templates/profilesystem/index.html:209
+#: templates/groupsystem/groupdetails.html:164
+#: templates/profilesystem/index.html:89 templates/profilesystem/index.html:120
+#: templates/profilesystem/index.html:159
 msgid "Close"
 msgstr ""
 
 #: templates/groupsystem/joined_group.html:5
 #: templates/groupsystem/joined_group.html:10
-#: templates/profilesystem/index.html:572 templates/sidebar_main.html:46
+#: templates/profilesystem/index.html:581 templates/sidebar_main.html:41
 msgid "Joined Groups"
 msgstr ""
 
-#: templates/groupsystem/joinrequests.html:12
+#: templates/groupsystem/joinrequests.html:8
 msgid "Join Requests"
 msgstr ""
 
-#: templates/groupsystem/joinrequests.html:44
-#: templates/groupsystem/postsadmin.html:66
+#: templates/groupsystem/joinrequests.html:40
+#: templates/groupsystem/postsadmin.html:62
 msgid "Approve"
 msgstr ""
 
-#: templates/groupsystem/joinrequests.html:47
+#: templates/groupsystem/joinrequests.html:43
 msgid "Deny"
 msgstr ""
 
-#: templates/groupsystem/members.html:35
+#: templates/groupsystem/members.html:31
 msgid "Add member"
 msgstr ""
 
-#: templates/groupsystem/members.html:49
+#: templates/groupsystem/members.html:45
 msgid "Role"
 msgstr ""
 
-#: templates/groupsystem/members.html:74
+#: templates/groupsystem/members.html:70
 msgid "Ban Member"
 msgstr ""
 
-#: templates/groupsystem/members.html:79
+#: templates/groupsystem/members.html:74
+msgid "SuperAdmin"
+msgstr ""
+
+#: templates/groupsystem/members.html:76
 msgid "Moderator"
 msgstr ""
 
-#: templates/groupsystem/members.html:80
+#: templates/groupsystem/members.html:77
 msgid "Member"
 msgstr ""
 
-#: templates/groupsystem/members.html:87
+#: templates/groupsystem/members.html:84
 msgid "Extra permission"
 msgstr ""
 
-#: templates/groupsystem/members.html:104
+#: templates/groupsystem/members.html:101
 msgid "Edit User Perm"
 msgstr ""
 
-#: templates/groupsystem/members.html:110
-#: templates/profilesystem/index.html:142
-#: templates/profilesystem/index.html:174
-#: templates/profilesystem/index.html:213
+#: templates/groupsystem/members.html:107 templates/profilesystem/index.html:92
+#: templates/profilesystem/index.html:124
+#: templates/profilesystem/index.html:163
 msgid "Edit"
 msgstr ""
 
-#: templates/groupsystem/members.html:195
-#: templates/groupsystem/members.html:207
-#: templates/groupsystem/members.html:223
-#: templates/groupsystem/members.html:235
-#: templates/groupsystem/members.html:256
-#: templates/groupsystem/members.html:268
-#: templates/groupsystem/members.html:322
+#: templates/groupsystem/members.html:123
+#: templates/groupsystem/members.html:135
+#: templates/groupsystem/members.html:151
+#: templates/groupsystem/members.html:163
+#: templates/groupsystem/members.html:184
+#: templates/groupsystem/members.html:196
+#: templates/groupsystem/members.html:250
 msgid "Change role"
 msgstr ""
 
-#: templates/groupsystem/members.html:285
+#: templates/groupsystem/members.html:213
 msgid "You dont have permissions to edit extra permissions"
 msgstr ""
 
-#: templates/groupsystem/postdetails.html:60
+#: templates/groupsystem/postdetails.html:56
 msgid "Like"
 msgstr ""
 
-#: templates/groupsystem/postdetails.html:179
+#: templates/groupsystem/postdetails.html:106
 msgid " likes"
 msgstr ""
 
-#: templates/groupsystem/postdetails.html:179
+#: templates/groupsystem/postdetails.html:106
 msgid " comments"
 msgstr ""
 
-#: templates/groupsystem/posts.html:12 templates/groupsystem/postsadmin.html:12
+#: templates/groupsystem/posts.html:8 templates/groupsystem/postsadmin.html:8
 #: templates/sidebar_group.html:19 templates/sidebar_group_admin.html:24
 msgid "Posts"
 msgstr ""
 
-#: templates/groupsystem/posts.html:28 templates/groupsystem/posts.html:90
-#: templates/groupsystem/postsadmin.html:28
-#: templates/groupsystem/postsadmin.html:94
+#: templates/groupsystem/posts.html:24 templates/groupsystem/posts.html:86
+#: templates/groupsystem/postsadmin.html:24
+#: templates/groupsystem/postsadmin.html:90
 msgid "Create Post"
 msgstr ""
 
-#: templates/groupsystem/posts.html:71
+#: templates/groupsystem/posts.html:67
 msgid "more"
 msgstr ""
 
-#: templates/groupsystem/posts.html:82 templates/groupsystem/postsadmin.html:86
+#: templates/groupsystem/posts.html:78 templates/groupsystem/postsadmin.html:82
 msgid "No Posts Yet!!"
 msgstr ""
 
-#: templates/groupsystem/postsadmin.html:66
+#: templates/groupsystem/postsadmin.html:62
 msgid "Not approved"
 msgstr ""
 
@@ -1494,9 +1509,9 @@ msgstr ""
 msgid "No such default role"
 msgstr ""
 
-#: templates/groupsystem/user_group.html:5
-#: templates/groupsystem/user_group.html:10
-#: templates/profilesystem/index.html:593 templates/sidebar_main.html:47
+#: templates/groupsystem/subscribed_group.html:5
+#: templates/groupsystem/subscribed_group.html:10
+#: templates/profilesystem/index.html:602 templates/sidebar_main.html:42
 msgid "Subscribed Groups"
 msgstr ""
 
@@ -1589,9 +1604,9 @@ msgid "Cant upload now!! try later"
 msgstr ""
 
 #: templates/information/contact.html:4 templates/information/success.html:4
-#: templates/profilesystem/index.html:197
-#: templates/profilesystem/index.html:406 templates/publicusers/user.html:65
-#: templates/publicusers/user.html:226
+#: templates/landing_base.html:182 templates/profilesystem/index.html:147
+#: templates/profilesystem/index.html:366 templates/publicusers/user.html:65
+#: templates/publicusers/user.html:236
 msgid "Contact"
 msgstr ""
 
@@ -1610,11 +1625,11 @@ msgid ""
 msgstr ""
 
 #: templates/information/index.html:4 templates/information/index.html:26
-#: templates/sidebar_main.html:65
+#: templates/sidebar_main.html:63
 msgid "Information"
 msgstr ""
 
-#: templates/information/index.html:8 templates/sidebar_main.html:71
+#: templates/information/index.html:8 templates/sidebar_main.html:69
 msgid "About Our System"
 msgstr ""
 
@@ -1626,37 +1641,44 @@ msgstr ""
 msgid "We will contact you shortly"
 msgstr ""
 
-#: templates/invitationsystem/index.html:13
+#: templates/invitationsystem/checkinvitation.html:16
 msgid "Get access to ekata beta"
 msgstr ""
 
-#: templates/invitationsystem/index.html:19
-msgid "Get my invitation"
+#: templates/invitationsystem/index.html:16
+#: templates/invitationsystem/sent.html:13 templates/landing/index.html:237
+msgid "Get your invite access key to the ekata beta"
 msgstr ""
 
-#: templates/landing/hashtag.html:23
+#: templates/invitationsystem/sent.html:15 templates/landing/index.html:404
+msgid ""
+"Your request is sent!! You will get an invitation email soon with a link and "
+"invite key."
+msgstr ""
+
+#: templates/landing/hashtag.html:33
 msgid "Show Support"
 msgstr ""
 
-#: templates/landing/hashtag.html:24
+#: templates/landing/hashtag.html:34
 msgid ""
 "In adding the #basicincome hashtag banner to your facebook and twitter "
 "profile !!"
 msgstr ""
 
-#: templates/landing/hashtag.html:36
+#: templates/landing/hashtag.html:46
 msgid "World Supporters of Basic Income"
 msgstr ""
 
-#: templates/landing/hashtag.html:59
+#: templates/landing/hashtag.html:69
 msgid "Create my banner"
 msgstr ""
 
-#: templates/landing/hashtag.html:61
+#: templates/landing/hashtag.html:71
 msgid "Login/Signup to be here"
 msgstr ""
 
-#: templates/landing/index.html:22
+#: templates/landing/index.html:40
 msgid ""
 "Ekata is a social platform for individuals, communities, associations, and "
 "municipalities. Ekata empowers you with the best of today’s online "
@@ -1666,11 +1688,11 @@ msgid ""
 "your interests and goals, Ekata is the place for you. Welcome!"
 msgstr ""
 
-#: templates/landing/index.html:37
+#: templates/landing/index.html:55
 msgid "Communities"
 msgstr ""
 
-#: templates/landing/index.html:38
+#: templates/landing/index.html:56
 msgid ""
 "You're a social group that shares something in common. Small or large. "
 "Local, national, or global. Virtual or geographically based. Your common "
@@ -1678,11 +1700,11 @@ msgid ""
 "with how you wish to relate."
 msgstr ""
 
-#: templates/landing/index.html:42
+#: templates/landing/index.html:60
 msgid "Associations"
 msgstr ""
 
-#: templates/landing/index.html:43
+#: templates/landing/index.html:61
 msgid ""
 "You're a homeowners or condo association, property or land trust, or "
 "nonprofit organization. An organized body of people who live or work "
@@ -1690,11 +1712,11 @@ msgid ""
 "manage your association’s business, membership, activities and interests."
 msgstr ""
 
-#: templates/landing/index.html:47
+#: templates/landing/index.html:65
 msgid "Municipalities"
 msgstr ""
 
-#: templates/landing/index.html:48
+#: templates/landing/index.html:66
 msgid ""
 "You're a town, municipality or county. A government institution with "
 "incorporated status in a jurisdiction. The Ekata platform has the "
@@ -1702,18 +1724,18 @@ msgid ""
 "elected officials, staff, and constituents in the 21st century."
 msgstr ""
 
-#: templates/landing/index.html:60
+#: templates/landing/index.html:78
 msgid "Platform Vision"
 msgstr ""
 
-#: templates/landing/index.html:68
+#: templates/landing/index.html:86
 msgid ""
 "Mark Witham, social entrepreneur and founder of the Ekata platform (Formally "
 "known as Basic Income Project), is passionate about empowering others with "
 "options to bring about their own social change."
 msgstr ""
 
-#: templates/landing/index.html:73
+#: templates/landing/index.html:91
 msgid ""
 "We combine technology, knowledge, and imagination to build better social "
 "systems for this planet and future generations. Now we need you! Use the "
@@ -1721,19 +1743,19 @@ msgid ""
 "and positive social change."
 msgstr ""
 
-#: templates/landing/index.html:88
+#: templates/landing/index.html:106
 msgid "Social Responsiblity"
 msgstr ""
 
-#: templates/landing/index.html:94
+#: templates/landing/index.html:112
 msgid "Ekata has partnered with "
 msgstr ""
 
-#: templates/landing/index.html:94
+#: templates/landing/index.html:112
 msgid ", a socially responsible digital currency which is distributed as "
 msgstr ""
 
-#: templates/landing/index.html:94
+#: templates/landing/index.html:112
 msgid ""
 " to people around the world. Powered by blockchain technology, Grantcoin is "
 "the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization "
@@ -1742,75 +1764,121 @@ msgid ""
 "artists, musicians, bloggers, nonprofits, or businesses."
 msgstr ""
 
-#: templates/landing/index.html:144
+#: templates/landing/index.html:162
 msgid "Many Key Features"
 msgstr ""
 
-#: templates/landing/index.html:147
+#: templates/landing/index.html:165
 msgid "Group sites for art, music, news, politics, activism, and business."
 msgstr ""
 
-#: templates/landing/index.html:151
+#: templates/landing/index.html:169
 msgid "Social communication through instant messaging, posts, and comments."
 msgstr ""
 
-#: templates/landing/index.html:155
+#: templates/landing/index.html:173
 msgid "Governance of members, staff roles, social forums, and member voting."
 msgstr ""
 
-#: templates/landing/index.html:159
+#: templates/landing/index.html:177
 msgid "Web of trust and a socially responsible currency system."
 msgstr ""
 
-#: templates/landing/index.html:178
+#: templates/landing/index.html:196
 msgid "More Features"
 msgstr ""
 
-#: templates/landing/index.html:180
+#: templates/landing/index.html:198
 msgid "API for building in app and feature integrations."
 msgstr ""
 
-#: templates/landing/index.html:181
+#: templates/landing/index.html:199
 msgid "Open Source."
 msgstr ""
 
-#: templates/landing/index.html:193
+#: templates/landing/index.html:211
 msgid "#BasicIncome Hashtag Banner Campaign"
 msgstr ""
 
-#: templates/landing/index.html:199
+#: templates/landing/index.html:217
 msgid ""
 "Help Ekata in showing your support for basic income by adding a custom "
 "colored #basicincome hashtag banner to your Twitter and Facebook profile "
 "photo. Together let us raise awareness!"
 msgstr ""
 
-#: templates/landing/index.html:201
+#: templates/landing/index.html:219
 msgid "Click here to create and upload the banner"
 msgstr ""
 
-#: templates/landing/index.html:368
-msgid "Please feel free to inquire more about the EKATA platform."
+#: templates/landing/index.html:415
+msgid "Please correct the errors"
 msgstr ""
 
-#: templates/landing/news.html:22
+#: templates/landing/news.html:39
 msgid "News and Stories"
 msgstr ""
 
-#: templates/landing/news.html:29
+#: templates/landing/news.html:46
 msgid "Trending"
 msgstr ""
 
-#: templates/landing/news.html:59 templates/landing/newsdetail.html:24
+#: templates/landing/news.html:80 templates/landing/newsdetail.html:45
 msgid "About Me"
 msgstr ""
 
-#: templates/landing_base.html:91 templates/sidebar_main.html:15
+#: templates/landing_base.html:92 templates/landing_base.html:157
+#: templates/sidebar_main.html:10
 msgid "My Account"
 msgstr ""
 
-#: templates/landing_base.html:97
+#: templates/landing_base.html:97 templates/landing_base.html:159
+#: templates/publicusers/userdetails.html:48
+#: templates/publicusers/userlist.html:4 templates/publicusers/userlist.html:44
+#: templates/publicusers/userlist.html:60 templates/sidebar_main.html:30
+msgid "Users"
+msgstr ""
+
+#: templates/landing_base.html:101 templates/landing_base.html:160
+#: templates/sidebar_main.html:34
+msgid "Groups"
+msgstr ""
+
+#: templates/landing_base.html:105 templates/landing_base.html:161
+#: templates/sidebar_main.html:48 templates/timelines/index.html:4
+msgid "Timeline"
+msgstr ""
+
+#: templates/landing_base.html:120 templates/landing_base.html:163
+msgid "information"
+msgstr ""
+
+#: templates/landing_base.html:124
+msgid "Hashtag"
+msgstr ""
+
+#: templates/landing_base.html:127
+msgid "Customize link"
+msgstr ""
+
+#: templates/landing_base.html:129
 msgid "Sign-out"
+msgstr ""
+
+#: templates/landing_base.html:154
+msgid "Links"
+msgstr ""
+
+#: templates/landing_base.html:164
+msgid "Create Hashtag"
+msgstr ""
+
+#: templates/landing_base.html:170
+msgid "Social"
+msgstr ""
+
+#: templates/landing_base.html:184
+msgid "Please feel free to inquire more about the EKATA platform."
 msgstr ""
 
 #: templates/messagingsystem/chats.html:70
@@ -1834,7 +1902,7 @@ msgid "Request"
 msgstr ""
 
 #: templates/messagingsystem/index.html:4
-#: templates/messagingsystem/index.html:54 templates/sidebar_main.html:59
+#: templates/messagingsystem/index.html:54 templates/sidebar_main.html:54
 msgid "Messaging"
 msgstr ""
 
@@ -1852,84 +1920,91 @@ msgid "Request Request"
 msgstr ""
 
 #: templates/messagingsystem/navbarmessage.html:37
-#: templates/notification/notification.html:94
 msgid "All caught up"
 msgstr ""
 
-#: templates/notification/notification.html:10
+#: templates/notification/notification.html:19
 #: templates/timelines/index.html:266 templates/timelines/timeline.html:54
 #: templates/timelines/timeline.html:72
 msgid "sent"
 msgstr ""
 
-#: templates/notification/notification.html:10
-#: templates/notification/notification.html:17
+#: templates/notification/notification.html:19
+#: templates/notification/notification.html:26
 #: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
 #: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
 msgid "units"
 msgstr ""
 
-#: templates/notification/notification.html:17
+#: templates/notification/notification.html:26
 msgid "requested"
 msgstr ""
 
-#: templates/notification/notification.html:24
+#: templates/notification/notification.html:33
 msgid "units released"
 msgstr ""
 
-#: templates/notification/notification.html:31
+#: templates/notification/notification.html:40
 msgid "verfied as real user"
 msgstr ""
 
-#: templates/notification/notification.html:38
+#: templates/notification/notification.html:47
 msgid "unverfied you"
 msgstr ""
 
-#: templates/notification/notification.html:45
+#: templates/notification/notification.html:54
 msgid "sent a connection request"
 msgstr ""
 
-#: templates/notification/notification.html:52
+#: templates/notification/notification.html:61
 msgid "canceled connection request"
 msgstr ""
 
-#: templates/notification/notification.html:59
+#: templates/notification/notification.html:68
 msgid "accepted connection request"
 msgstr ""
 
-#: templates/notification/notification.html:66
+#: templates/notification/notification.html:75
 msgid "rejected connection request"
 msgstr ""
 
-#: templates/notification/notification.html:73
+#: templates/notification/notification.html:82
 msgid "disconnected you"
 msgstr ""
 
-#: templates/notification/notification.html:80
+#: templates/notification/notification.html:89
 msgid "invited you to group"
 msgstr ""
 
-#: templates/profilesystem/address.html:11 templates/publicusers/user.html:189
+#: templates/notification/notification.html:96
+msgid "sent a join request to group"
+msgstr ""
+
+#: templates/notification/notification.html:128
+msgid "All caught up!!"
+msgstr ""
+
+#: templates/profilesystem/address.html:11 templates/publicusers/user.html:199
 #, fuzzy
 #| msgid "street"
 msgid "Street"
 msgstr "পথ"
 
-#: templates/profilesystem/address.html:17 templates/publicusers/user.html:195
+#: templates/profilesystem/address.html:17 templates/publicusers/user.html:205
 msgid "Zip Code"
 msgstr ""
 
-#: templates/profilesystem/address.html:23 templates/publicusers/user.html:201
+#: templates/profilesystem/address.html:23 templates/publicusers/user.html:211
 msgid "City"
 msgstr ""
 
-#: templates/profilesystem/address.html:29 templates/publicusers/user.html:207
+#: templates/profilesystem/address.html:29 templates/publicusers/user.html:217
 #, fuzzy
 #| msgid "state"
 msgid "State"
 msgstr "ৰাজ্য"
 
-#: templates/profilesystem/address.html:35 templates/publicusers/user.html:213
+#: templates/profilesystem/address.html:35 templates/publicusers/user.html:223
 #, fuzzy
 #| msgid "country"
 msgid "Country"
@@ -1939,19 +2014,19 @@ msgstr "দেশ"
 msgid "Click add button to add your address"
 msgstr ""
 
-#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:231
+#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:241
 msgid "Phone Office"
 msgstr ""
 
-#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:237
+#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:247
 msgid "Phone Home"
 msgstr ""
 
-#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:243
+#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:253
 msgid "Phone Mobile"
 msgstr ""
 
-#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:249
+#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:259
 msgid "Phone Emergency"
 msgstr ""
 
@@ -1983,133 +2058,127 @@ msgstr "নম্সকাৰ, %(username_t)s!"
 msgid "Hello, User!"
 msgstr ""
 
-#: templates/profilesystem/index.html:64
-msgid "Add your website to complete your profile."
-msgstr ""
-
-#: templates/profilesystem/index.html:70
-msgid "Add your gender to complete your profile."
-msgstr ""
-
-#: templates/profilesystem/index.html:76
-msgid "Add your contact number to complete your profile."
-msgstr ""
-
-#: templates/profilesystem/index.html:82
-msgid "Add a profile image to complete your profile."
-msgstr ""
-
-#: templates/profilesystem/index.html:88
-msgid "Add your location to complete your profile."
-msgstr ""
-
-#: templates/profilesystem/index.html:94
-msgid "Add a social account of yours to complete your profile."
-msgstr ""
-
-#: templates/profilesystem/index.html:100
-msgid "Add your email account to complete your profile."
-msgstr ""
-
-#: templates/profilesystem/index.html:109
-msgid "Please verify your email address(resend verification)"
-msgstr ""
-
-#: templates/profilesystem/index.html:127
-#: templates/profilesystem/index.html:347 templates/publicusers/user.html:112
+#: templates/profilesystem/index.html:77 templates/profilesystem/index.html:300
+#: templates/publicusers/user.html:112
 msgid "Personal Information"
 msgstr ""
 
-#: templates/profilesystem/index.html:158
+#: templates/profilesystem/index.html:108
 msgid "Location"
 msgstr ""
 
-#: templates/profilesystem/index.html:178
-#: templates/profilesystem/index.html:217
+#: templates/profilesystem/index.html:128
+#: templates/profilesystem/index.html:167
 msgid "Add"
 msgstr ""
 
-#: templates/profilesystem/index.html:234 templates/publicusers/user.html:156
+#: templates/profilesystem/index.html:184 templates/publicusers/user.html:166
 msgid "Activities"
 msgstr "কাজ্যকলাপ"
 
-#: templates/profilesystem/index.html:241 templates/publicusers/user.html:160
+#: templates/profilesystem/index.html:191 templates/publicusers/user.html:170
 #, fuzzy
 #| msgid "Activities"
 msgid "Activation date"
 msgstr "কাজ্যকলাপ"
 
-#: templates/profilesystem/index.html:253
+#: templates/profilesystem/index.html:203
 msgid "More"
 msgstr ""
 
-#: templates/profilesystem/index.html:266
+#: templates/profilesystem/index.html:216
 msgid "Documents"
 msgstr ""
 
-#: templates/profilesystem/index.html:279
+#: templates/profilesystem/index.html:229
 #: templates/publicusers/connections.html:72
 msgid "Search..."
 msgstr ""
 
-#: templates/profilesystem/index.html:311
+#: templates/profilesystem/index.html:261
 msgid "Shared Documents"
 msgstr ""
 
-#: templates/profilesystem/index.html:323
+#: templates/profilesystem/index.html:273
 msgid "Upload"
 msgstr ""
 
-#: templates/profilesystem/index.html:335
+#: templates/profilesystem/index.html:293
 msgid "Change Public Visibility"
 msgstr ""
 
-#: templates/profilesystem/index.html:394 templates/publicusers/user.html:178
+#: templates/profilesystem/index.html:354 templates/publicusers/user.html:188
 msgid "Address"
 msgstr ""
 
-#: templates/profilesystem/index.html:418
+#: templates/profilesystem/index.html:378
 msgid "Others"
 msgstr ""
 
-#: templates/profilesystem/index.html:422
+#: templates/profilesystem/index.html:382
 msgid "Profile completion"
 msgstr ""
 
-#: templates/profilesystem/index.html:457
+#: templates/profilesystem/index.html:394
+msgid "Customize links of landing dropdown"
+msgstr ""
+
+#: templates/profilesystem/index.html:466
 msgid "Linked social account"
 msgstr ""
 
-#: templates/profilesystem/index.html:499
+#: templates/profilesystem/index.html:508
 msgid "Email Address"
 msgstr ""
 
-#: templates/profilesystem/index.html:509
+#: templates/profilesystem/index.html:518
 msgid "Manage"
 msgstr ""
 
-#: templates/profilesystem/index.html:524
+#: templates/profilesystem/index.html:533
 msgid "Reference"
 msgstr ""
 
-#: templates/profilesystem/index.html:536
+#: templates/profilesystem/index.html:545
 msgid "Refresh"
 msgstr ""
 
-#: templates/profilesystem/index.html:551
+#: templates/profilesystem/index.html:560
 msgid "My Groups"
 msgstr ""
 
-#: templates/profilesystem/index.html:616
+#: templates/profilesystem/index.html:625
 msgid "Apps"
 msgstr ""
 
-#: templates/profilesystem/index.html:632
+#: templates/profilesystem/index.html:641
 msgid "Sites"
 msgstr ""
 
-#: templates/profilesystem/index.html:648
+#: templates/profilesystem/index.html:657
 msgid "Ads"
+msgstr ""
+
+#: templates/profilesystem/logdata.html:3
+msgid "Logs Details"
+msgstr ""
+
+#: templates/profilesystem/logdata.html:6
+msgid "Last payment received"
+msgstr ""
+
+#: templates/profilesystem/logdata.html:10
+msgid "Advertisement post"
+msgstr ""
+
+#: templates/profilesystem/logdata.html:14
+#, fuzzy
+#| msgid "Login"
+msgid "Last login "
+msgstr "ভিতৰত সোমাবলৈ"
+
+#: templates/profilesystem/logdata.html:18
+msgid "Last payment sent"
 msgstr ""
 
 #: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
@@ -2128,8 +2197,44 @@ msgstr ""
 msgid "Community"
 msgstr ""
 
-#: templates/profilesystem/pinfo.html:42 templates/publicusers/user.html:137
+#: templates/profilesystem/pinfo.html:42 templates/publicusers/user.html:138
 msgid "Website"
+msgstr ""
+
+#: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
+msgid "About me"
+msgstr ""
+
+#: templates/profilesystem/profilecompletiontasks.html:5
+msgid "Add your website to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/profilecompletiontasks.html:11
+msgid "Add your gender to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/profilecompletiontasks.html:17
+msgid "Add your contact number to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/profilecompletiontasks.html:23
+msgid "Add a profile image to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/profilecompletiontasks.html:29
+msgid "Add your location to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/profilecompletiontasks.html:35
+msgid "Add a social account of yours to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/profilecompletiontasks.html:41
+msgid "Add your email account to complete your profile."
+msgstr ""
+
+#: templates/profilesystem/profilecompletiontasks.html:50
+msgid "Please verify your email address(resend verification)"
 msgstr ""
 
 #: templates/profilesystem/reference.html:6
@@ -2153,26 +2258,26 @@ msgid "No connections"
 msgstr ""
 
 #: templates/publicusers/user.html:22
-#: templates/publicusers/userdetails.html:397
-#: templates/publicusers/userlist.html:123 templates/publicusers/users.html:23
+#: templates/publicusers/userdetails.html:398
+#: templates/publicusers/userlist.html:124 templates/publicusers/users.html:23
 msgid "lastseen: "
 msgstr ""
 
 #: templates/publicusers/user.html:24
-#: templates/publicusers/userdetails.html:388
-#: templates/publicusers/userlist.html:114 templates/publicusers/users.html:25
+#: templates/publicusers/userdetails.html:390
+#: templates/publicusers/userlist.html:116 templates/publicusers/users.html:25
 msgid "Online"
 msgstr ""
 
 #: templates/publicusers/user.html:26
-#: templates/publicusers/userdetails.html:392
-#: templates/publicusers/userlist.html:121
-#: templates/publicusers/userlist.html:127 templates/publicusers/users.html:27
+#: templates/publicusers/userdetails.html:394
+#: templates/publicusers/userlist.html:122
+#: templates/publicusers/userlist.html:128 templates/publicusers/users.html:27
 msgid "Offline"
 msgstr ""
 
-#: templates/publicusers/user.html:51 templates/timelines/timeline.html:128
-#: templates/timelines/timeline.html:135
+#: templates/publicusers/user.html:51 templates/timelines/timeline.html:147
+#: templates/timelines/timeline.html:154
 msgid "Disconnect"
 msgstr ""
 
@@ -2229,12 +2334,6 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: templates/publicusers/userdetails.html:48
-#: templates/publicusers/userlist.html:4 templates/publicusers/userlist.html:44
-#: templates/publicusers/userlist.html:60 templates/sidebar_main.html:35
-msgid "Users"
-msgstr ""
-
 #: templates/publicusers/userdetails.html:65
 msgid "Others who verify"
 msgstr ""
@@ -2243,7 +2342,7 @@ msgstr ""
 msgid " Search Users "
 msgstr ""
 
-#: templates/publicusers/userlist.html:129
+#: templates/publicusers/userlist.html:130
 msgid "lastseen: unknown"
 msgstr ""
 
@@ -2287,32 +2386,17 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
-#: templates/sidebar_main.html:21 templates/useraccount/index.html:7
-#: templates/useraccount/index.html:11
-#, fuzzy
-#| msgid "country"
-msgid "Account"
-msgstr "দেশ"
-
-#: templates/sidebar_main.html:22 templates/timelines/index.html:41
+#: templates/sidebar_main.html:17 templates/timelines/index.html:41
 #: templates/timelines/index.html:43 templates/useraccount/transfer.html:7
 #: templates/useraccount/transfer.html:11
 msgid "Transfer"
 msgstr ""
 
-#: templates/sidebar_main.html:39
-msgid "Groups"
-msgstr ""
-
-#: templates/sidebar_main.html:53 templates/timelines/index.html:4
-msgid "Timeline"
-msgstr ""
-
-#: templates/sidebar_main.html:72
+#: templates/sidebar_main.html:70
 msgid "Contact Details"
 msgstr ""
 
-#: templates/sidebar_main.html:75
+#: templates/sidebar_main.html:73
 msgid "Hashtag Campaign"
 msgstr ""
 
@@ -2375,61 +2459,61 @@ msgstr ""
 msgid "send"
 msgstr ""
 
-#: templates/timelines/timeline.html:85
+#: templates/timelines/timeline.html:103
 msgid " units basic income released"
 msgstr ""
 
-#: templates/timelines/timeline.html:96
+#: templates/timelines/timeline.html:115
 msgid "you verified"
 msgstr ""
 
-#: templates/timelines/timeline.html:96 templates/timelines/timeline.html:111
+#: templates/timelines/timeline.html:115 templates/timelines/timeline.html:130
 msgid "as real user"
 msgstr ""
 
-#: templates/timelines/timeline.html:98
+#: templates/timelines/timeline.html:117
 msgid "verified you as real user"
 msgstr ""
 
-#: templates/timelines/timeline.html:111
+#: templates/timelines/timeline.html:130
 msgid "you unverified"
 msgstr ""
 
-#: templates/timelines/timeline.html:113
+#: templates/timelines/timeline.html:132
 msgid "unverified you as real user"
 msgstr ""
 
-#: templates/timelines/timeline.html:126
+#: templates/timelines/timeline.html:145
 msgid "Requested connection to "
 msgstr ""
 
-#: templates/timelines/timeline.html:133
+#: templates/timelines/timeline.html:152
 msgid "sent connection request"
 msgstr ""
 
-#: templates/timelines/timeline.html:137
+#: templates/timelines/timeline.html:156
 msgid "Reject"
 msgstr ""
 
-#: templates/timelines/timeline.html:138
+#: templates/timelines/timeline.html:157
 msgid "Accept"
 msgstr ""
 
-#: templates/timelines/timeline.html:143
+#: templates/timelines/timeline.html:162
 msgid "Connection type: "
 msgstr ""
 
-#: templates/timelines/timeline.html:145
+#: templates/timelines/timeline.html:164
 #, fuzzy
 #| msgid "Family type"
 msgid "Family type: "
 msgstr "পৰিয়ালৰ প্ৰোকাৰ"
 
-#: templates/timelines/timeline.html:148
+#: templates/timelines/timeline.html:167
 msgid "Friend type: "
 msgstr ""
 
-#: templates/timelines/timeline.html:151
+#: templates/timelines/timeline.html:170
 msgid "Contact type: "
 msgstr ""
 
@@ -2471,11 +2555,11 @@ msgstr "দেশ"
 msgid "Amount can't exceed your balance"
 msgstr ""
 
-#: useraccount/views.py:108
+#: useraccount/views.py:109
 msgid "Transfer completed!!"
 msgstr ""
 
-#: useraccount/views.py:175
+#: useraccount/views.py:177
 msgid "Request Sent!!"
 msgstr ""
 

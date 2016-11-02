@@ -1,0 +1,22 @@
+{% load i18n %}
+<section class="table-responsive">
+  <h5><b>{% trans "Logs Details" %}</b></h5>
+  <table class="table table-condensed">
+    <tr>
+      <td>{% trans "Last payment received" %}</td>
+      <td>{{ last_payment_recieved.units }} Unit's from {{ last_payment_recieved.from_user }}</td>
+    </tr>
+    <tr>
+      <td>{% trans "Advertisement post" %}</td>
+      <td>No data</td>
+    </tr>
+    <tr>
+      <td>{% trans "Last login " %}</td>
+      <td>{{ last_login }}</td>
+    </tr>
+    <tr>
+      <td>{% trans "Last payment sent" %}</td>
+      <td>{{ last_payment_sent.units }} Unit's to {{ last_payment_sent.to_user }}</td>
+    </tr>
+  </table>
+</section>

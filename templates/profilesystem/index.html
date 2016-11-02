@@ -696,28 +696,7 @@
         <h4 class="modal-title" id="">Log Details</h4>
       </section>
       <section class="modal-body">
-        <section class="table-responsive">
-          <h5><b>Logs Details</b></h5>
-          <table class="table table-condensed">
-            <tr>
-              <td>Last payment received</td>
-              <td>175 Unit's</td>
-            </tr>
-            <tr>
-              <td>Advertisement post</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <td>Last login </td>
-              <td>5 days ago</td>
-            </tr>
-            <tr>
-              <td>Last payment sent</td>
-              <td>700 Unit's</td>
-            </tr>
-          </table>
-        </section>
-        <section class="modal-footer"> </section>
+
       </section>
     </section>
   </section>
@@ -1108,6 +1087,15 @@
                     if (self.attr('data-img-id') === 'p') {
                         $(".useravatar").attr('src', "{% static "dist/img/placeholder-user.png" %}");
                     }
+                }
+            });
+        });
+        $("#logdetails").on('show.bs.modal', function(e){
+            var self = $(this);
+            $.ajax({
+                url: '{% url 'profilesystem:getlogdatas' %}',
+                success: function(data){
+                    $(self).find(".modal-body").html(data);
                 }
             });
         });

@@ -334,3 +334,27 @@ def acknowledge_sys_update(request):
         return HttpResponse("OK")
     else:
         return HttpResponseForbidden()
+
+
+@login_required
+def get_log_datas(request):
+    sent_payments = request.user.transaction_from.all().order_by('-date')
+    received_payments = request.user.transaction_to.all().order_by('-date')
+    last_login = request.user.last_login
+    if sent_payments:
+        last_payment_sent = sent_payments[0]
+    else:
+        last_payment_sent = 0
+    if received_payments:
+        last_payment_recieved = received_payments[0]
+    else:
+        last_payment_recieved = 0
+    return render(
+        request,
+        'profilesystem/logdata.html',
+        {
+            'last_payment_recieved': last_payment_recieved,
+            'last_login': last_login,
+            'last_payment_sent': last_payment_sent
+        }
+    )
