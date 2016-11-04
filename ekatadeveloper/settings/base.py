@@ -82,7 +82,8 @@ INSTALLED_APPS = [
     'hashtag',
     'groupsystem',
     'invitationsystem',
-    'sysadmin'
+    'sysadmin',
+    'autosignup'
 ]
 
 MIDDLEWARE_CLASSES = [

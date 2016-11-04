@@ -5063,3 +5063,61 @@ table.text-center th {
 .document-images .document-image-overlay:hover {
     opacity: 1;
 }
+
+.community-wrapper {
+    margin-top: 20px;
+}
+
+.community {
+    border: 1px solid #b5b4b4;
+    height: 300px;
+    width: 300px;
+    position: relative;
+}
+
+@media (max-width: 320px) {
+    .community{
+        height: 275px;
+        width: 245px;
+    }
+}
+
+.community .community-name {
+    background: #0a69bb;
+    color: #fff;
+    width: 110px;
+    border-radius: 3px;
+    margin-left: 5px;
+    padding: 1px;
+    position: relative;
+    top: -10px;
+    text-align: center;
+}
+
+.community-actions {
+    position: absolute;
+    bottom: 0;
+    width: 250px;
+    margin-left: 20px;
+}
+
+@media (max-width: 320px) {
+    .community-actions {
+        width: 200px;
+        margin-left: 20px;
+    }
+}
+
+.community-add-fa {
+    font-size: 20em;
+    margin-left: 35px;
+    margin-top: 15px;
+    color: #d2d2d2;
+}
+
+@media (max-width: 320px) {
+    .community-add-fa {
+        font-size: 15em;
+        margin-top: 40px;
+    }
+}
