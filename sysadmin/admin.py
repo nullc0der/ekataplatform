@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib import admin
 from django.core.mail import EmailMultiAlternatives
 
+from django_object_actions import DjangoObjectActions, takes_instance_or_queryset
+
 from sysadmin.models import EmailUpdate, SystemUpdate, EmailGroup, EmailId
 
 # Register your models here.
@@ -17,9 +19,11 @@ class EmailGroupAdmin(admin.ModelAdmin):
     inlines = [EmailIdsInline]
 
 
-class EmailUpdateAdmin(admin.ModelAdmin):
+class EmailUpdateAdmin(DjangoObjectActions, admin.ModelAdmin):
     actions = ['send_email_update']
+    change_actions = ['send_email_update']
 
+    @takes_instance_or_queryset
     def send_email_update(self, request, queryset):
         count = 0
         for emailupdate in queryset:
@@ -46,6 +50,7 @@ class EmailUpdateAdmin(admin.ModelAdmin):
             self.message_user(request, 'emailupdate %s sent' % emailupdate.id)
         self.message_user(request, "%s emailupdates sent successfully" % count)
     send_email_update.short_description = "Send eBlast"
+    send_email_update.label = "Send eBlast"
 
 
 admin.site.register(EmailUpdate, EmailUpdateAdmin)

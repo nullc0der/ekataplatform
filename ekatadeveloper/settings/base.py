@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'easy_timezones',
     'snowpenguin.django.recaptcha2',
     'raven.contrib.django.raven_compat',
+    'django_object_actions',
     'landing',
     'profilesystem',
     'publicusers',

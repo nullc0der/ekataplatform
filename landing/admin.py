@@ -1,15 +1,33 @@
 from django.contrib import admin
 
+from django_object_actions import DjangoObjectActions, takes_instance_or_queryset
+
 from landing.models import\
     News, Tags, HashtagImg, GlobalOgTag, ExtraMetaTag, OgTagLink
 
 
 # Register your models here.
-class NewsAdmin(admin.ModelAdmin):
+class NewsAdmin(DjangoObjectActions, admin.ModelAdmin):
     list_display = ('title', 'created_on')
     search_fields = ('title',)
     ordering = ('-created_on',)
     list_filter = ('tags', )
+    change_actions = ['publish']
+    actions = ['publish']
+
+    @takes_instance_or_queryset
+    def publish(self, request, queryset):
+        count = 0
+        for news in queryset:
+            news.draft = False
+            news.save()
+            count += 1
+        self.message_user(
+            request,
+            '%s news published' % count
+        )
+    publish.short_description = 'Publish'
+    publish.label = 'Publish'
 
     def get_queryset(self, request):
         qs = super(NewsAdmin, self).get_queryset(request)

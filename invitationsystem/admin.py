@@ -1,16 +1,19 @@
 import requests
 
 from django.contrib import admin
+from django_object_actions import DjangoObjectActions, takes_instance_or_queryset
 from invitationsystem.models import Invitation
 from invitationsystem.tasks import send_invitation
 
 # Register your models here.
 
 
-class InvitationAdmin(admin.ModelAdmin):
+class InvitationAdmin(DjangoObjectActions, admin.ModelAdmin):
     list_filter = ('approved', 'sent', )
     actions = ['resend_invitations']
+    change_actions = ['resend_invitations']
 
+    @takes_instance_or_queryset
     def resend_invitations(self, request, queryset):
         count = 0
         for invitation in queryset:
@@ -40,5 +43,6 @@ class InvitationAdmin(admin.ModelAdmin):
             'Total resend: %s' % count
         )
     resend_invitations.short_description = 'Resend Invitation'
+    resend_invitations.label = 'Resend'
 
 admin.site.register(Invitation, InvitationAdmin)

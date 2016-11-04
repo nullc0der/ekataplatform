@@ -67,7 +67,7 @@ class News(models.Model):
     tags = models.ManyToManyField(Tags, related_name='news')
     title = models.CharField(max_length=100)
     content = RichTextUploadingField()
-    draft = models.BooleanField(default=True)
+    draft = models.BooleanField(default=True, editable=False)
     created_on = models.DateTimeField(auto_now_add=True)
     clickcount = models.IntegerField(editable=False, default=0)
     ogtag = models.ForeignKey(GlobalOgTag, null=True, blank=True)
