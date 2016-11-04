@@ -12,8 +12,9 @@ class NewsAdmin(DjangoObjectActions, admin.ModelAdmin):
     search_fields = ('title',)
     ordering = ('-created_on',)
     list_filter = ('tags', )
-    change_actions = ['publish']
-    actions = ['publish']
+    readonly_fields = ('draft', )
+    change_actions = ['publish', 'unpublish']
+    actions = ['publish', 'unpublish']
 
     @takes_instance_or_queryset
     def publish(self, request, queryset):
@@ -28,6 +29,20 @@ class NewsAdmin(DjangoObjectActions, admin.ModelAdmin):
         )
     publish.short_description = 'Publish'
     publish.label = 'Publish'
+
+    @takes_instance_or_queryset
+    def unpublish(self, request, queryset):
+        count = 0
+        for news in queryset:
+            news.draft = True
+            news.save()
+            count += 1
+        self.message_user(
+            request,
+            '%s news unpublished' % count
+        )
+    unpublish.short_description = 'Unpublish'
+    unpublish.label = 'Unpublish'
 
     def get_queryset(self, request):
         qs = super(NewsAdmin, self).get_queryset(request)
