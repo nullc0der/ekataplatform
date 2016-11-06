@@ -3,13 +3,16 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from autosignup.models import CommunitySignup, EmailVerfication
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm, EmailVerficationForm
 from autosignup.utils import send_email_verification_code
+from profilesystem.models import UserAddress
 # Create your views here.
 
 
+@login_required
 def index_page(request):
     if 'community_name' in request.GET:
         community_name = request.GET.get('community_name')
@@ -38,19 +41,19 @@ def index_page(request):
     )
 
 
+@login_required
 def step_1_signup(request, id):
+    try:
+        address = request.user.address
+    except ObjectDoesNotExist:
+        address = UserAddress(user=request.user)
+        address.save()
     community_signup = CommunitySignup.objects.get(id=id)
     uform = UserInfoForm(instance=request.user, prefix='userinfo')
-    if request.user.address:
-        form = AddressForm(instance=request.user.address)
-    else:
-        form = AddressForm()
+    form = AddressForm(instance=address)
     if request.method == 'POST':
         uform = UserInfoForm(request.POST, instance=request.user, prefix='userinfo')
-        if request.user.address:
-            form = AddressForm(request.POST, instance=request.user.address)
-        else:
-            form = AddressForm(request.POST)
+        form = AddressForm(request.POST, instance=address)
         if uform.is_valid() and form.is_valid():
             uform.save()
             form.save()
@@ -71,6 +74,7 @@ def step_1_signup(request, id):
     )
 
 
+@login_required
 def step_2_signup(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     if community_signup.step_1_done:
@@ -109,6 +113,7 @@ def step_2_signup(request, id):
         )
 
 
+@login_required
 def verify_email_code(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     if community_signup.step_1_done:
@@ -150,6 +155,7 @@ def verify_email_code(request, id):
         )
 
 
+@login_required
 def step_3_signup(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     return render(
