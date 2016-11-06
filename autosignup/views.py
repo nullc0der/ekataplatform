@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 from autosignup.models import CommunitySignup, EmailVerfication
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm, EmailVerficationForm
