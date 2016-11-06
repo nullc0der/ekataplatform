@@ -1,0 +1,26 @@
+{% load i18n bootstrap_tags staticfiles %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-xs-4">
+            <div class="signupformtab">
+                <h4><a href="{% url 'autosignup:step_1_signup' community_signup.id %}" class="signuplink">{% trans "Name and Address" %}</a></h4>
+            </div>
+            <div class="signupformtab signupinactive">
+                <h4><a href="{% url 'autosignup:step_2_signup' community_signup.id %}" class="signuplink">{% trans "Email" %}</a></h4>
+            </div>
+            <div class="signupformtab signupinactive">
+                <h4><a href="#">{% trans "Phone No" %}</a></h4>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <form role="form" method="POST" id="signupform" action="{% url 'autosignup:step_1_signup' community_signup.id %}">
+                {% csrf_token %}
+                {{ uform|as_bootstrap }}
+                {{ form|as_bootstrap }}
+            </form>
+            <div class="text-center" id="gears">
+                <img src="{% static "dist/img/gears.gif" %}" alt="loading">
+            </div>
+        </div>
+    </div>
+</div>

@@ -5121,3 +5121,28 @@ table.text-center th {
         margin-top: 40px;
     }
 }
+
+.signupformtab {
+    background-color: #3c8dbc;
+    padding: 5px;
+    margin-left: -20%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.signupformtab:hover {
+    background-color: #3c8dbc;
+}
+
+.signupinactive:hover>h4>a, .signupformtab>h4>a {
+    color: #fff;
+}
+
+.signupinactive {
+    background-color: #e7e7e7;
+}
+
+.signupinactive>h4>a {
+    color: #868484;
+}
