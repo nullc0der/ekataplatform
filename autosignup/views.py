@@ -41,7 +41,10 @@ def index_page(request):
 def step_1_signup(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     uform = UserInfoForm(instance=request.user, prefix='userinfo')
-    form = AddressForm(instance=request.user.address)
+    if request.user.address:
+        form = AddressForm(instance=request.user.address)
+    else:
+        form = AddressForm()
     if request.method == 'POST':
         uform = UserInfoForm(request.POST, instance=request.user, prefix='userinfo')
         form = AddressForm(request.POST, instance=request.user.address)
