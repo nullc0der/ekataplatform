@@ -47,7 +47,10 @@ def step_1_signup(request, id):
         form = AddressForm()
     if request.method == 'POST':
         uform = UserInfoForm(request.POST, instance=request.user, prefix='userinfo')
-        form = AddressForm(request.POST, instance=request.user.address)
+        if request.user.address:
+            form = AddressForm(request.POST, instance=request.user.address)
+        else:
+            form = AddressForm(request.POST)
         if uform.is_valid() and form.is_valid():
             uform.save()
             form.save()
