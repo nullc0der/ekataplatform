@@ -6,10 +6,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
-from autosignup.models import CommunitySignup, EmailVerfication
-from autosignup.forms import UserInfoForm, AddressForm, EmailForm, EmailVerficationForm
-from autosignup.utils import send_email_verification_code
-from profilesystem.models import UserAddress
+from autosignup.models import CommunitySignup, EmailVerfication,\
+    PhoneVerification
+from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
+    EmailVerficationForm, PhoneForm, PhoneVerificationForm
+from autosignup.utils import send_email_verification_code,\
+    send_phone_verfication_code
+from profilesystem.models import UserAddress, UserPhone
 # Create your views here.
 
 
@@ -159,8 +162,77 @@ def verify_email_code(request, id):
 @login_required
 def step_3_signup(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
-    return render(
-        request,
-        'autosignup/complete_previous_step.html',
-        {'community_signup': community_signup}
-    )
+    if community_signup.step_1_done and community_signup.step_2_done:
+        form = PhoneForm()
+        if request.method == 'POST':
+            form = PhoneForm(request.POST)
+            if form.is_valid():
+                code = get_random_string(length=6)
+                phone = form.cleaned_data.get('country') + form.cleaned_data.get('phone_no')
+                send_phone_verfication_code(phone, code)
+                community_signup.userphone = phone
+                community_signup.save()
+                phoneverfication = PhoneVerification(
+                    code=code,
+                    user=request.user,
+                    community_signup=community_signup
+                )
+                phoneverfication.save()
+                return HttpResponse(reverse('autosignup:step_3_verification', args=[community_signup.id, ]))
+            else:
+                return render(
+                    request,
+                    'autosignup/step_3_form.html',
+                    {'form': form, 'community_signup': community_signup},
+                    status=500
+                )
+        return render(
+            request,
+            'autosignup/step_3_form.html',
+            {'form': form, 'community_signup': community_signup}
+        )
+    else:
+        return render(
+            request,
+            'autosignup/complete_previous_step.html',
+            {'community_signup': community_signup}
+            )
+
+
+@login_required
+def verify_phone_code(request, id):
+    community_signup = CommunitySignup.objects.get(id=id)
+    if community_signup.step_1_done and community_signup.step_2_done:
+        form = PhoneVerificationForm(community_signup, request)
+        if request.method == 'POST':
+            form = PhoneVerificationForm(community_signup, request, request.POST)
+            if form.is_valid():
+                community_signup.step_3_done = True
+                community_signup.save()
+                phoneverfication = PhoneVerification.objects.get(
+                    user=request.user,
+                    community_signup=community_signup,
+                    code=form.cleaned_data.get('verification_code')
+                )
+                phoneverfication.delete()
+            else:
+                return render(
+                    request,
+                    'autosignup/step_3_verification.html',
+                    {'form': form, 'community_signup': community_signup},
+                    status=500
+                )
+        return render(
+            request,
+            'autosignup/step_3_verification.html',
+            {
+                'form': form,
+                'community_signup': community_signup
+            }
+        )
+    else:
+        return render(
+            request,
+            'autosignup/complete_previous_step.html',
+            {'community_signup': community_signup}
+        )

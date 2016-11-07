@@ -5,8 +5,9 @@ from django.contrib.auth.models import User
 from profilesystem.models import UserAddress
 from django.utils.timezone import now
 from django.core.exceptions import ObjectDoesNotExist
+from phonenumber_field.widgets import PhonePrefixSelect
 
-from autosignup.models import EmailVerfication
+from autosignup.models import EmailVerfication, PhoneVerification
 
 
 class UserInfoForm(forms.ModelForm):
@@ -42,7 +43,11 @@ class AddressForm(forms.ModelForm):
 
 
 class EmailForm(forms.Form):
-    email = forms.EmailField(required=True, label='', widget=forms.EmailInput(attrs={'placeholder': 'email id'}))
+    email = forms.EmailField(
+        required=True,
+        label='',
+        widget=forms.EmailInput(attrs={'placeholder': 'email id'})
+    )
 
 
 class EmailVerficationForm(forms.Form):
@@ -65,6 +70,42 @@ class EmailVerficationForm(forms.Form):
                 user=self.request.user
             )
             if now() > emailverfication.timestamp + timedelta(minutes=10):
+                raise forms.ValidationError('The code is old ask new')
+        except ObjectDoesNotExist:
+            raise forms.ValidationError('Code is invalid')
+        return self.cleaned_data.get('verification_code')
+
+
+class PhoneForm(forms.Form):
+    country = forms.CharField(
+        widget=PhonePrefixSelect(),
+        required=True
+    )
+    phone_no = forms.CharField(
+        required=True
+    )
+
+
+class PhoneVerificationForm(forms.Form):
+    verification_code = forms.CharField(
+        required=True,
+        help_text='Check your phone for verification code',
+        max_length=6
+    )
+
+    def __init__(self, community_signup, request, *args, **kwargs):
+        self.community_signup = community_signup
+        self.request = request
+        super(PhoneVerificationForm, self).__init__(*args, **kwargs)
+
+    def clean_verification_code(self):
+        try:
+            phoneverfication = PhoneVerification.objects.get(
+                code=self.cleaned_data.get('verification_code'),
+                community_signup=self.community_signup,
+                user=self.request.user
+            )
+            if now() > phoneverfication.timestamp + timedelta(minutes=10):
                 raise forms.ValidationError('The code is old reinitiate one')
         except ObjectDoesNotExist:
             raise forms.ValidationError('Code is invalid')

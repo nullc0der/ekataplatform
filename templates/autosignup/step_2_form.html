@@ -9,7 +9,7 @@
                 <h4><a href="{% url 'autosignup:step_2_signup' community_signup.id %}" class="signuplink">{% trans "Email" %}</a></h4>
             </div>
             <div class="signupformtab signupinactive">
-                <h4><a href="#">{% trans "Phone No" %}</a></h4>
+                <h4><a href="{% url 'autosignup:step_3_signup' community_signup.id %}">{% trans "Phone No" %}</a></h4>
             </div>
         </div>
         <div class="col-xs-8">

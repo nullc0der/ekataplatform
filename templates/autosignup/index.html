@@ -119,9 +119,8 @@
                     });
                 },
                 error: function(data) {
-                    $("#signupbody").html(data.responseText, function(){
-                        $("#gears").hide();
-                    });
+                    $("#signupbody").html(data.responseText);
+                    $("#gears").hide();
                 }
             });
         });
@@ -130,9 +129,29 @@
             var frm = $("#signupform");
             frm.hide();
             $("#gears").show();
-            $("#signupbody").load(link, function () {
-                $("#gears").hide();
-            });
+            if (frm.attr('data-submit')) {
+                if (frm.length) {
+                    $.ajax({
+                        url: frm.attr('action'),
+                        type: frm.attr('method'),
+                        data: frm.serialize(),
+                        success: function(data){
+                            $("#signupbody").load(data, function(){
+                                $("#gears").hide();
+                            });
+                        },
+                        error: function(data) {
+                            $("#signupbody").html(data.responseText);
+                            $("#gears").hide();
+                        }
+                    });
+                }
+            }
+            else {
+                $("#signupbody").load(link, function () {
+                    $("#gears").hide();
+                });
+            }
             return false;
         })
     </script>

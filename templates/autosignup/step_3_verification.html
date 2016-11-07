@@ -5,20 +5,20 @@
             <div class="signupformtab signupinactive">
                 <h4><a href="{% url 'autosignup:step_1_signup' community_signup.id %}" class="signuplink">{% trans "Name and Address" %}</a></h4>
             </div>
-            <div class="signupformtab">
+            <div class="signupformtab signupinactive">
                 <h4><a href="{% url 'autosignup:step_2_signup' community_signup.id %}" class="signuplink">{% trans "Email" %}</a></h4>
             </div>
-            <div class="signupformtab signupinactive">
+            <div class="signupformtab">
                 <h4><a href="{% url 'autosignup:step_3_signup' community_signup.id %}">{% trans "Phone No" %}</a></h4>
             </div>
         </div>
         <div class="col-xs-8">
-            <form role="form" method="POST" id="signupform" action="{% url 'autosignup:step_2_verification' community_signup.id %}">
-                <h4>{% trans "Enter code sent to your email below" %}</h4>
+            <form role="form" method="POST" id="signupform" action="{% url 'autosignup:step_3_verification' community_signup.id %}">
+                <h4>{% trans "Enter code sent to your phone below" %}</h4>
                 {% csrf_token %}
                 {{ form|as_bootstrap }}
                 <p>
-                    {% trans "Didn't get code yet?" %}<a href="{% url 'autosignup:step_2_signup' community_signup.id %}" class="signuplink">{% trans "ask again" %}</a>
+                    {% trans "Didn't get code yet?" %}<a href="{% url 'autosignup:step_3_signup' community_signup.id %}" class="signuplink">{% trans "ask again" %}</a>
                 </p>
             </form>
             <div class="text-center" id="gears">

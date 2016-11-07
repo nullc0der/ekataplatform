@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-xs-8">
-            <form role="form" method="POST" id="signupform" action="{% url 'autosignup:step_1_signup' community_signup.id %}">
+            <form role="form" method="POST" id="signupform" action="{% url 'autosignup:step_1_signup' community_signup.id %}" data-submit='true'>
                 {% csrf_token %}
                 {{ uform|as_bootstrap }}
                 {{ form|as_bootstrap }}

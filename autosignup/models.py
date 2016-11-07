@@ -20,12 +20,20 @@ class CommunitySignup(models.Model):
     failed_auto_signup = models.BooleanField(default=False)
     sent_to_community_staff = models.BooleanField(default=False)
     useremail = models.EmailField(null=True)
+    userphone = models.CharField(max_length=20, default='')
 
     def __unicode__(self):
         return self.user.username + 'on' + self.community
 
 
 class EmailVerfication(models.Model):
+    user = models.ForeignKey(User)
+    community_signup = models.ForeignKey(CommunitySignup)
+    code = models.CharField(max_length=6)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+class PhoneVerification(models.Model):
     user = models.ForeignKey(User)
     community_signup = models.ForeignKey(CommunitySignup)
     code = models.CharField(max_length=6)
