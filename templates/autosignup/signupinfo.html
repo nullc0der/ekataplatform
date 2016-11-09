@@ -14,13 +14,13 @@
 <h4>Uploaded image:</h4>
 <img src="{{ signup.userimage.url }}" width="400" height="400" />
 <hr>
-<h4>Address from DB</h4>
+<h4>Info from User Data Base</h4>
 <blockquote>
     {{ signup.useraddress_in_db }}
 </blockquote>
 <hr>
 {% if signup.useraddress_from_twilio %}
-<h4>Address from Twilio</h4>
+<h4>Info from Twilio Data Base</h4>
 <blockquote>
     {{ signup.useraddress_from_twilio }}
 </blockquote>
