@@ -19,7 +19,7 @@
         </div>
         <div class="col-xs-8">
             <form role="form" method="POST" id="signupform" action="{% url 'autosignup:step_3_signup' community_signup.id %}">
-                <h4>{% trans "Verify Your Phone no" %}</h4>
+                <h4>{% trans "Verify Your Mobile Number" %}</h4>
                 {% csrf_token %}
                 {{ form|as_bootstrap }}
             </form>

@@ -87,7 +87,8 @@ class PhoneForm(forms.Form):
         required=True
     )
     phone_no = forms.CharField(
-        required=True
+        required=True,
+        label='Mobile No'
     )
 
     def clean(self):
@@ -102,7 +103,7 @@ class PhoneForm(forms.Form):
         if res.status_code == 200:
             data = json.loads(res.content)
             if not data['carrier']['type'].lower() == 'mobile':
-                raise forms.ValidationError(_('Provide a mobile no'))
+                raise forms.ValidationError(_('Provide a valid mobile number'))
         else:
             raise forms.ValidationError(_('Something went wrong! Try later'))
 

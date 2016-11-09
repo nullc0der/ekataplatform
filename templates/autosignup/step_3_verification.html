@@ -23,7 +23,7 @@
                 {% csrf_token %}
                 {{ form|as_bootstrap }}
                 <p>
-                    {% trans "Didn't get code yet?" %}<a href="{% url 'autosignup:step_3_signup' community_signup.id %}" class="signuplink">{% trans "ask again" %}</a>
+                    {% trans "Didn't get code yet?" %}<a href="{% url 'autosignup:step_3_signup' community_signup.id %}" class="signuplink"> {% trans "try again" %}</a>
                 </p>
             </form>
             <div class="text-center" id="gears">
