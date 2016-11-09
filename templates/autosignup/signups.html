@@ -61,7 +61,7 @@
                     type: 'GET',
                     data: {'signup_id': signup_id},
                     success: function(data){
-                        $('.verify').text('Verified');
+                        $('.signup-data').html(data);
                     }
                 });
             });
