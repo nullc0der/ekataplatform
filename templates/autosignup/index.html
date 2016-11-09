@@ -83,7 +83,7 @@
           <div class="modal-body" id="signupbody">
 
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer" id="signupfooter">
             <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
             <button type="button" class="btn btn-primary" id="signupsubmit">{% trans "Submit" %}</button>
           </div>
@@ -94,13 +94,14 @@
 {% block extrascripts %}
     <script type="text/javascript">
         $("#signupmodal").on('show.bs.modal', function(e){
-            var link = '{% url 'autosignup:index' %}?community_name=' + $(e.relatedTarget).attr('data-community-name');
+            var link = '{% url 'autosignup:getform' %}?community_name=' + $(e.relatedTarget).attr('data-community-name');
             var self = $(this);
             $.ajax({
                 url: link,
                 success: function(data){
                     $("#signupbody").load(data, function(){
                         $("#gears").hide();
+                        $("#id_userimage").fileinput({'showUpload':false,});
                     });
                 }
             })
@@ -109,18 +110,33 @@
             var frm = $("#signupform");
             frm.hide();
             $("#gears").show();
+            $("#signupfooter").hide();
+            var data = new FormData(frm[0]);
             $.ajax({
                 url: frm.attr('action'),
                 type: frm.attr('method'),
-                data: frm.serialize(),
+                data: data,
+                contentType: false,
+                processData: false,
                 success: function(data){
-                    $("#signupbody").load(data, function(){
-                        $("#gears").hide();
-                    });
+                    if (data.action === 'next') {
+                        $("#signupbody").load(data.url, function(){
+                            $("#gears").hide();
+                            $("#signupfooter").show();
+                            $("#id_userimage").fileinput({'showUpload':false,});
+                        });
+                    }
+                    else if (data.action === 'thankyou') {
+                        $("#signupbody").load(data.url, function(){
+                            $("#gears").hide();
+                        });
+                    }
                 },
                 error: function(data) {
                     $("#signupbody").html(data.responseText);
                     $("#gears").hide();
+                    $("#signupfooter").show();
+                    $("#id_userimage").fileinput({'showUpload':false,});
                 }
             });
         });
@@ -129,20 +145,35 @@
             var frm = $("#signupform");
             frm.hide();
             $("#gears").show();
+            $("#signupfooter").hide();
+            var data = new FormData(frm[0]);
             if (frm.attr('data-submit')) {
                 if (frm.length) {
                     $.ajax({
                         url: frm.attr('action'),
                         type: frm.attr('method'),
-                        data: frm.serialize(),
+                        data: data,
+                        contentType: false,
+                        processData: false,
                         success: function(data){
-                            $("#signupbody").load(data, function(){
-                                $("#gears").hide();
-                            });
+                            if (data.action === 'next') {
+                                $("#signupbody").load(data.url, function(){
+                                    $("#gears").hide();
+                                    $("#signupfooter").show();
+                                    $("#id_userimage").fileinput({'showUpload':false,});
+                                });
+                            }
+                            else if (data.action === 'thankyou') {
+                                $("#signupbody").load(data.url, function(){
+                                    $("#gears").hide();
+                                });
+                            }
                         },
                         error: function(data) {
                             $("#signupbody").html(data.responseText);
                             $("#gears").hide();
+                            $("#signupfooter").show();
+                            $("#id_userimage").fileinput({'showUpload':false,});
                         }
                     });
                 }
@@ -150,6 +181,8 @@
             else {
                 $("#signupbody").load(link, function () {
                     $("#gears").hide();
+                    $("#signupfooter").show();
+                    $("#id_userimage").fileinput({'showUpload':false,});
                 });
             }
             return false;

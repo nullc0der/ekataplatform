@@ -11,16 +11,23 @@ class CommunitySignup(models.Model):
         ('grantcoin', 'grantcoin'),
     )
     user = models.ForeignKey(User, related_name='communitysignups')
-    community = models.CharField(max_length=100, choices=COMMUNITY_CHOICES)
-    step_1_done = models.BooleanField(default=False)
-    step_2_done = models.BooleanField(default=False)
-    step_3_done = models.BooleanField(default=False)
-    additional_step_done = models.BooleanField(default=False)
-    signedup = models.BooleanField(default=False)
-    failed_auto_signup = models.BooleanField(default=False)
-    sent_to_community_staff = models.BooleanField(default=False)
-    useremail = models.EmailField(null=True)
+    community = models.CharField(max_length=100, choices=COMMUNITY_CHOICES, editable=False)
+    useraddress_in_db = models.TextField(null=True, blank=True)  # ; seperated
+    useremail = models.EmailField(null=True, blank=True)
     userphone = models.CharField(max_length=20, default='')
+    useraddress_from_twilio = models.TextField(null=True, blank=True)  # ; seperated
+    userimage = models.ImageField(
+        upload_to='community_signup_user_images',
+        null=True,
+        blank=True
+    )
+    step_1_done = models.BooleanField(default=False, editable=False)
+    step_2_done = models.BooleanField(default=False, editable=False)
+    step_3_done = models.BooleanField(default=False, editable=False)
+    additional_step_done = models.BooleanField(default=False, editable=False)
+    verified = models.BooleanField(default=False, editable=False)
+    failed_auto_signup = models.BooleanField(default=False, editable=False)
+    sent_to_community_staff = models.BooleanField(default=False, editable=False)
 
     def __unicode__(self):
         return self.user.username + 'on' + self.community

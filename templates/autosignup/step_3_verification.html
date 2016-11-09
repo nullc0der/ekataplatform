@@ -9,8 +9,13 @@
                 <h4><a href="{% url 'autosignup:step_2_signup' community_signup.id %}" class="signuplink">{% trans "Email" %}</a></h4>
             </div>
             <div class="signupformtab">
-                <h4><a href="{% url 'autosignup:step_3_signup' community_signup.id %}">{% trans "Phone No" %}</a></h4>
+                <h4><a href="{% url 'autosignup:step_3_signup' community_signup.id %}" class="signuplink">{% trans "Phone No" %}</a></h4>
             </div>
+            {% if community_signup.failed_auto_signup %}
+            <div class="signupformtab">
+                <h4><a href="{% url 'autosignup:additional_step' community_signup.id %}"  class="signuplink" >{% trans "Docs" %}</a></h4>
+            </div>
+            {% endif %}
         </div>
         <div class="col-xs-8">
             <form role="form" method="POST" id="signupform" action="{% url 'autosignup:step_3_verification' community_signup.id %}">
@@ -22,6 +27,9 @@
                 </p>
             </form>
             <div class="text-center" id="gears">
+                <p>
+                    {% trans "This needs some time don't close/refresh browser" %}
+                </p>
                 <img src="{% static "dist/img/gears.gif" %}" alt="loading">
             </div>
         </div>
