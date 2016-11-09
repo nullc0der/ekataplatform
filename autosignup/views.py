@@ -300,6 +300,7 @@ def verify_phone_code(request, id):
         )
 
 
+@login_required
 def additional_step(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     if request.method == 'POST':
@@ -335,6 +336,7 @@ def additional_step(request, id):
     )
 
 
+@login_required
 def signups_page(request):
     signups = CommunitySignup.objects.all()
     if 'signup_id' in request.GET:
@@ -355,6 +357,7 @@ def signups_page(request):
     )
 
 
+@login_required
 def set_verified(request):
     if request.method == 'POST':
         signup_id = CommunitySignup.objects.get(id=request.POST.get('signup_id'))
