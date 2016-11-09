@@ -1,5 +1,5 @@
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.utils.crypto import get_random_string
@@ -333,3 +333,33 @@ def additional_step(request, id):
             'form': AdditionalStepForm()
         }
     )
+
+
+def signups_page(request):
+    signups = CommunitySignup.objects.all()
+    if 'signup_id' in request.GET:
+        signup_id = CommunitySignup.objects.get(id=request.GET.get('signup_id'))
+        return render(
+            request,
+            'autosignup/signupinfo.html',
+            {
+                'signup': signup_id
+            }
+        )
+    return render(
+        request,
+        'autosignup/signups.html',
+        {
+            'signups': signups
+        }
+    )
+
+
+def set_verified(request):
+    if request.method == 'POST':
+        signup_id = CommunitySignup.objects.get(id=request.POST.get('signup_id'))
+        signup_id.verified = True
+        signup_id.save()
+        return HttpResponse('OK')
+    else:
+        return HttpResponseForbidden()

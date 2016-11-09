@@ -42,8 +42,18 @@ urlpatterns = [
         name='additional_step'
     ),
     url(
-        r'thankyou/$',
+        r'^thankyou/$',
         thankyou,
         name='thankyou'
+    ),
+    url(
+        r'^signups/$',
+        views.signups_page,
+        name='signups'
+    ),
+    url(
+        r'^setverified/$',
+        views.set_verified,
+        name='setverified'
     )
 ]

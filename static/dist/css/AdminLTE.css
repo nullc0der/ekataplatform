@@ -5146,3 +5146,21 @@ table.text-center th {
 .signupinactive>h4>a {
     color: #868484;
 }
+
+.signups {
+    list-style-type: none;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.signups>li {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.signups>li:hover {
+    background-color: #3c8dbc;
+    color: #fff;
+}

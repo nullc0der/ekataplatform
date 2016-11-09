@@ -1,0 +1,35 @@
+{% load i18n %}
+<div class="text-center">
+    <h4>{{ signup.user.username }}</h4>
+</div>
+<hr>
+<h4>Fullname: {{ signup.user.first_name }} {{ signup.user.last_name }}</h4>
+<hr>
+<h4>Email: {{ signup.useremail }}</h4>
+<hr>
+<h4>Phone No: {{ signup.userphone }}</h4>
+<hr>
+<h4>Profile link: <a href="{% url 'publicusers:user' signup.user.id %}">{{ signup.user.username }}</a></h4>
+<hr>
+<h4>Uploaded image:</h4>
+<img src="{{ signup.userimage.url }}" width="400" height="400" />
+<hr>
+<h4>Address from DB</h4>
+<blockquote>
+    {{ signup.useraddress_in_db }}
+</blockquote>
+<hr>
+{% if signup.useraddress_from_twilio %}
+<h4>Address from Twilio</h4>
+<blockquote>
+    {{ signup.useraddress_from_twilio }}
+</blockquote>
+<hr>
+{% endif %}
+<div class="pull-right">
+    {% if signup.verified %}
+        <button class='btn btn-flat btn-primary'>Verified</button>
+    {% else %}
+        <button class="btn btn-flat btn-danger" id='verify' data-signup-id='{{ signup.id }}'>Verify</button>
+    {% endif %}
+</div>
