@@ -4,5 +4,5 @@ from autosignup.models import CommunitySignup, EmailVerfication, PhoneVerificati
 # Register your models here.
 
 admin.site.register(CommunitySignup)
-admin.site.register(EmailVerfication)
-admin.site.register(PhoneVerification)
+# admin.site.register(EmailVerfication)
+# admin.site.register(PhoneVerification)
