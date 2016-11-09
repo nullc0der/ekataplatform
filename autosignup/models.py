@@ -30,7 +30,7 @@ class CommunitySignup(models.Model):
     sent_to_community_staff = models.BooleanField(default=False, editable=False)
 
     def __unicode__(self):
-        return self.user.username + 'on' + self.community
+        return self.user.username
 
 
 class EmailVerfication(models.Model):
