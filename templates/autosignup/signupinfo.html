@@ -11,9 +11,11 @@
 <hr>
 <h4>Profile link: <a href="{% url 'publicusers:user' signup.user.id %}">{{ signup.user.username }}</a></h4>
 <hr>
+{% if signup.userimage %}
 <h4>Uploaded image:</h4>
 <img src="{{ signup.userimage.url }}" width="400" height="400" />
 <hr>
+{% endif %}
 <h4>Info from User Data Base</h4>
 <blockquote>
     {{ signup.useraddress_in_db }}
