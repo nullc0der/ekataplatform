@@ -395,6 +395,8 @@ CKEDITOR_CONFIGS = {
                 'elementspath'
             ]),
         "allowedContent": True,
+        "width": "auto",
+        "height": "auto"
     }
 }
 
