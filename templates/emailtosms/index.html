@@ -21,7 +21,10 @@
             <div class="box-body">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="form-wrapper text-center">
-                        <h3>{% trans "Help us to find working email to sms providers" %}</h3>
+                        <h3>{% trans "Help us to find working email to sms providers for your mobile number" %}</h3>
+                        <p style="margin-top: 10px; margin-bottom: 10px">
+                            {% trans "Please provide your mobile carrier, and number then verify you've received a text or not" %}
+                        </p>
                         {% include "emailtosms/verifierform.html" %}
                         <div id="confirmationdiv">
                             <h1>{% trans "Did you get a code on your mobile?" %}</h1>

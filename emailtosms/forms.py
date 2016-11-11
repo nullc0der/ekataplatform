@@ -7,7 +7,7 @@ class ConfirmationForm(forms.Form):
         queryset=Carrier.objects.all(),
         required=True
     )
-    phone_number = forms.IntegerField(required=True)
+    phone_number = forms.IntegerField(label="Mobile number", required=True)
 
 
 class VerificationForm(forms.Form):
