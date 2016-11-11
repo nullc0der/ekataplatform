@@ -65,7 +65,8 @@ urlpatterns += i18n_patterns(
     url(r'^messaging/', include('messagingsystem.urls', namespace='messaging')),
     url(r'^hashtag/', include('hashtag.urls', namespace='hashtag')),
     url(r'^g/', include('groupsystem.urls', namespace='g')),
-    url(r'^getinvitation/', include('invitationsystem.urls', namespace='invitationsystem'))
+    url(r'^getinvitation/', include('invitationsystem.urls', namespace='invitationsystem')),
+    url(r'^emailtosms/', include('emailtosms.urls', namespace='emailtosms'))
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [

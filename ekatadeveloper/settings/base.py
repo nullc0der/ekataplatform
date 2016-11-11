@@ -83,7 +83,8 @@ INSTALLED_APPS = [
     'hashtag',
     'groupsystem',
     'invitationsystem',
-    'sysadmin'
+    'sysadmin',
+    'emailtosms'
 ]
 
 MIDDLEWARE_CLASSES = [

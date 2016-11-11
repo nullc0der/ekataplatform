@@ -1,0 +1,8 @@
+{% load bootstrap_tags %}
+<form method="post" id="verifierform">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="text-center">
+        <input type="submit" class="btn btn-flat btn-primary" id="verifierformsubmit">
+    </div>
+</form>

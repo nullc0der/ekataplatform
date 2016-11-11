@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "Email to sms" %}
+{% endblock title %}
+{% block content_header %}
+    <h1>
+        {% trans "Email to sms" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if request.user and not request.user.is_anonymous %}
+                <a>Hello, {{ request.user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-solid">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-wrapper text-center">
+                        <h3>{% trans "Help us to find working email to sms providers" %}</h3>
+                        {% include "emailtosms/verifierform.html" %}
+                        <div id="confirmationdiv">
+                            <h1>{% trans "Did you get a code on your mobile?" %}</h1>
+                            <h5>{% trans "This may take some time..." %}</h5>
+                            <button class="btn btn-flat btn-success" id="confirm">{% trans "Yes" %}</button>
+                            <button class="btn btn-flat btn-danger" id="deny">{% trans "No" %}</button>
+                        </div>
+                        {% include "emailtosms/verificationform.html" %}
+                        <div id="thankyou">
+                            <h1>{% trans "Thank you for helping us verify" %}</h1>
+                            <a href="{% url 'emailtosms:index' %}">{% trans "verify another" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        $("#confirmationdiv").hide();
+        $("#verificationform").hide();
+        $("#thankyou").hide();
+        $('select').selectpicker({
+            'liveSearch': true,
+        });
+        $(document).on('submit', '#verifierform', function(e){
+            e.preventDefault();
+            var frm = $("#verifierform");
+            $("#verifierformsubmit").attr('value', 'Submitting..');
+            $.ajax({
+                url: '{% url 'emailtosms:add_verifier' %}',
+                type: 'POST',
+                data: frm.serialize(),
+                success: function (data) {
+                    $("#verifierform").hide();
+                    $("#confirmationdiv").show();
+                },
+                error: function(data){
+                    $("#verifierform").html(data.responseText);
+                    $('select').selectpicker({
+                        'liveSearch': true,
+                    });
+                    $("#verifierformsubmit").attr('value', 'Submit');
+                }
+            });
+        });
+        $("#confirm").click(function(){
+            $("#confirmationdiv").hide();
+            $("#verificationform").show();
+        });
+        $("#deny").click(function(){
+            $("#confirmationdiv").hide();
+            $("#thankyou").show();
+        });
+        $(document).on('submit', '#verificationform', function(e){
+            e.preventDefault();
+            var frm = $("#verificationform");
+            $.ajax({
+                url: '{% url 'emailtosms:verify_code' %}',
+                type: 'POST',
+                data: frm.serialize(),
+                success: function (data) {
+                    $("#verificationform").hide();
+                    $("#thankyou").show();
+                },
+                error: function(data){
+                    $("#verificationform").html(data.responseText);
+                }
+            });
+        });
+    </script>
+{% endblock extrascripts %}
