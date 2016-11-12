@@ -49,3 +49,16 @@ def save_carrier_from_csv(sender, instance, **kwargs):
         csv_f.close()
 
 post_save.connect(save_carrier_from_csv, sender=CarrierCSV)
+
+
+class UserCarrier(models.Model):
+    name = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    emailaddress = models.EmailField(null=True, blank=True)
+    added_to_carrier = models.BooleanField(default=False, editable=False)
+
+    class Meta:
+        verbose_name = 'User requested carrier'
+
+    def __unicode__(self):
+        return self.name + ' ' + self.country

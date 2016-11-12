@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from emailtosms.models import Carrier, Verifier
-from emailtosms.forms import ConfirmationForm, VerificationForm
+from emailtosms.forms import ConfirmationForm, VerificationForm, UserCarrierForm
 from emailtosms.utils import send_carrier_code_email
 
 # Create your views here.
@@ -82,3 +82,29 @@ def verify_code(request):
             )
     else:
         return HttpResponseForbidden()
+
+
+@login_required
+def request_carrier(request):
+    form = UserCarrierForm()
+    if request.method == 'POST':
+        form = UserCarrierForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Ok")
+        else:
+            return render(
+                request,
+                'emailtosms/requestcarrierform.html',
+                {
+                    'form': form
+                },
+                status=500
+            )
+    return render(
+        request,
+        'emailtosms/requestcarrier.html',
+        {
+            'form': form
+        }
+    )

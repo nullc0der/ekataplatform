@@ -1,5 +1,5 @@
 from django import forms
-from emailtosms.models import Carrier, Verifier
+from emailtosms.models import Carrier, Verifier, UserCarrier
 
 
 class ConfirmationForm(forms.Form):
@@ -28,3 +28,19 @@ class VerificationForm(forms.Form):
             return self.cleaned_data.get('code')
         else:
             raise forms.ValidationError('Invalid code')
+
+
+class UserCarrierForm(forms.ModelForm):
+    emailaddress = forms.EmailField(
+        label='Gateway Email Address',
+        help_text="Fill this field if you know your carrier's email to sms gateway address",
+        required=False
+    )
+
+    class Meta:
+        model = UserCarrier
+        fields = [
+            'name',
+            'country',
+            'emailaddress'
+        ]

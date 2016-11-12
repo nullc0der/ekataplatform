@@ -51,6 +51,8 @@
         $("#thankyou").hide();
         $('select').selectpicker({
             'liveSearch': true,
+            'liveSearchPlaceholder': 'Type country or carrier',
+            'size': 5
         });
         $(document).on('submit', '#verifierform', function(e){
             e.preventDefault();

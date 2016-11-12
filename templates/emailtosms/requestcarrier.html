@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "Email to sms" %}
+{% endblock title %}
+{% block content_header %}
+    <h1>
+        {% trans "Request Carrier" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if request.user and not request.user.is_anonymous %}
+                <a>Hello, {{ request.user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+{% endblock content_header %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-solid">
+            <div class="box-body">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-wrapper">
+                        {% include "emailtosms/requestcarrierform.html" %}
+                        <div id="thankyou">
+                            <h1>{% trans "Thank you, This carrier will be added soon" %}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block extrascripts %}
+    <script>
+        $("#thankyou").hide();
+        $(document).on('submit', '#requestcarrierform', function(e){
+            e.preventDefault();
+            $("#requestcarrierformsumbit").attr('value', 'Submitting....');
+            var frm = $("#requestcarrierform");
+            $.ajax({
+                url: '{% url 'emailtosms:request_carrier' %}',
+                type: 'POST',
+                data: frm.serialize(),
+                success: function(data){
+                    frm.hide();
+                    $("#thankyou").show();
+                },
+                error: function(data) {
+                    frm.html(data.responseText);
+                    $("#requestcarrierformsumbit").attr('value', 'Submit');
+                }
+            });
+        })
+    </script>
+{% endblock extrascripts %}
