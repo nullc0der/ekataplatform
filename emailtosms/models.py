@@ -26,7 +26,11 @@ class Carrier(models.Model):
     verified_times = models.IntegerField(default=0, editable=False)
 
     def __unicode__(self):
-        return self.country + ' ' + self.name
+        if self.emailaddress:
+            domain = self.emailaddress.split('@')
+            return self.country + ' ' + self.name + ' ' + '@' + domain[1]
+        else:
+            return self.country + ' ' + self.name
 
 
 class Verifier(models.Model):
