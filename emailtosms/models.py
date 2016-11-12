@@ -28,9 +28,9 @@ class Carrier(models.Model):
     def __unicode__(self):
         if self.emailaddress:
             domain = self.emailaddress.split('@')
-            return self.country + ' ' + self.name + ' ' + '@' + domain[1]
+            return self.country + ', ' + self.name + ', ' + '@' + domain[1]
         else:
-            return self.country + ' ' + self.name
+            return self.country + ', ' + self.name
 
 
 class Verifier(models.Model):
