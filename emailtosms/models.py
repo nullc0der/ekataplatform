@@ -5,9 +5,16 @@ import csv
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
 
-from invitationsystem.models import random_string
 # Create your models here.
+
+
+def random_string():
+    return get_random_string(
+        length=6,
+        allowed_chars='abcdefghijklmnopqrstuvwxyz1234567890'
+    )
 
 
 class CarrierCSV(models.Model):

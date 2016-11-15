@@ -60,8 +60,20 @@
                                <tr>
                                     <td>{{ carrier.id }}</td>
                                     <td>{{ carrier }}</td>
-                                    <td>{% if carrier.tested %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times-circle"></i>{% endif %}</td>
-                                    <td>{% if carrier.verified %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times-circle"></i>{% endif %}</td>
+                                    {% for t in tried_verifying %}
+                                        {% if t.carrier.id == carrier.id %}
+                                        <td>
+                                            <i class="fa fa-check"></i>
+                                        </td>
+                                        <td>
+                                            {% if t.failed %}
+                                                <i class="fa fa-times-circle"></i>
+                                            {% else %}
+                                                <i class="fa fa-check"></i>
+                                            {% endif %}
+                                        </td>
+                                        {% endif %}
+                                    {% endfor %}
                                </tr>
                            {% endfor %}
                         </tbody>
