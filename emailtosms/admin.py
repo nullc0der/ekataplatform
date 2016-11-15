@@ -36,6 +36,12 @@ class UserCarrierAdmin(DjangoObjectActions, admin.ModelAdmin):
     add_to_carrier.label = 'Add to carrier list'
 
 
+class VerifierAdmin(admin.ModelAdmin):
+    list_filter = ['failed']
+    search_fields = ['user']
+    readonly_fields = ['failed']
+
 admin.site.register(CarrierCSV)
 admin.site.register(Carrier, CarrierAdmin)
 admin.site.register(UserCarrier, UserCarrierAdmin)
+admin.site.register(Verifier, VerifierAdmin)

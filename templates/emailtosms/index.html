@@ -14,6 +14,13 @@
         </small>
     </h1>
 {% endblock content_header %}
+{% block extrastyle %}
+    <style type="text/css">
+        .bootstrap-table {
+            margin-top: 30px;
+        }
+    </style>
+{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-md-12">
@@ -38,6 +45,28 @@
                             <a href="{% url 'emailtosms:index' %}">{% trans "verify another" %}</a>
                         </div>
                     </div>
+                    {% if tried_verifying %}
+                    <table class="table" id="carriertable">
+                        <thead>
+                            <tr>
+                                <th data-visible="false">Id</th>
+                                <th>Carrier</th>
+                                <th>Tested</th>
+                                <th>Passed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for carrier in carriers %}
+                               <tr>
+                                    <td>{{ carrier.id }}</td>
+                                    <td>{{ carrier }}</td>
+                                    <td>{% if carrier.tested %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times-circle"></i>{% endif %}</td>
+                                    <td>{% if carrier.verified %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times-circle"></i>{% endif %}</td>
+                               </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -98,6 +127,13 @@
                     $("#verificationform").html(data.responseText);
                 }
             });
+        });
+        $("#carriertable").bootstrapTable({
+            'pagination': true,
+            'pageNumber': 1,
+            'pageSize': 10,
+            'pageList': [5, 10, 15, 20, 25],
+            'search': true,
         });
     </script>
 {% endblock extrascripts %}

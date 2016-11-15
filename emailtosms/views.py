@@ -13,12 +13,19 @@ from emailtosms.utils import send_carrier_code_email
 def emailtosms_page(request):
     form = ConfirmationForm()
     vform = VerificationForm(request)
+    tried_verifying = request.user.carriers_verified.all()
+    if tried_verifying:
+        carriers = Carrier.objects.all()
+    else:
+        carriers = None
     return render(
         request,
         'emailtosms/index.html',
         {
             'form': form,
-            'vform': vform
+            'vform': vform,
+            'tried_verifying': tried_verifying,
+            'carriers': carriers
         }
     )
 
@@ -35,6 +42,8 @@ def add_verifier(request):
                 user=request.user
             )
             verifier.save()
+            carrier.tested = True
+            carrier.save()
             send_carrier_code_email(
                 carrier.emailaddress,
                 phone_number,
@@ -69,7 +78,8 @@ def verify_code(request):
                 carrier.verified_times += 1
                 carrier.save()
             for v in verifier:
-                v.delete()
+                v.failed = False
+                v.save()
             return HttpResponse('OK')
         else:
             return render(

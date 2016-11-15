@@ -22,6 +22,7 @@ class Carrier(models.Model):
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     emailaddress = models.EmailField(null=True)
+    tested = models.BooleanField(default=False, editable=False)
     verified = models.BooleanField(default=False, editable=False)
     verified_times = models.IntegerField(default=0, editable=False)
 
@@ -37,6 +38,10 @@ class Verifier(models.Model):
     user = models.ForeignKey(User, related_name='carriers_verified')
     carrier = models.ForeignKey(Carrier)
     code = models.CharField(max_length=10, default=random_string)
+    failed = models.BooleanField(default=True, editable=False)
+
+    def __unicode__(self):
+        return self.user.username + '@' + self.carrier.name
 
 
 def save_carrier_from_csv(sender, instance, **kwargs):

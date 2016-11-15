@@ -7,7 +7,11 @@ class ConfirmationForm(forms.Form):
         queryset=Carrier.objects.all(),
         required=True
     )
-    phone_number = forms.IntegerField(label="Mobile number", required=True)
+    phone_number = forms.IntegerField(
+        label="Mobile Number",
+        required=True,
+        help_text='Country code is automatically added and you do not need to include'
+    )
 
 
 class VerificationForm(forms.Form):
