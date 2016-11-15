@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
 from autosignup.models import CommunitySignup, EmailVerfication,\
-    PhoneVerification
+    PhoneVerification, AccountProvider
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm, AdditionalStepForm
 from autosignup.tasks import task_send_email_verfication_code,\
@@ -30,33 +30,40 @@ def index_page(request):
 def check_step(request):
     if 'community_name' in request.GET:
         community_name = request.GET.get('community_name')
-        community_signup, created = CommunitySignup.objects.get_or_create(
-            user=request.user,
-            community=community_name
-        )
-        if not community_signup.step_1_done:
+        accountprovider = AccountProvider.objects.get(name=community_name)
+        if accountprovider.signup_is_open:
+            community_signup, created = CommunitySignup.objects.get_or_create(
+                user=request.user,
+                community=community_name
+                )
+            if not community_signup.step_1_done:
+                return HttpResponse(reverse(
+                        'autosignup:step_1_signup',
+                        args=[community_signup.id, ]
+                    ))
+            if not community_signup.step_2_done:
+                return HttpResponse(reverse(
+                        'autosignup:step_2_signup',
+                        args=[community_signup.id, ]
+                    ))
+            if not community_signup.step_3_done:
+                return HttpResponse(reverse(
+                        'autosignup:step_3_signup',
+                        args=[community_signup.id, ]
+                    ))
+            if community_signup.failed_auto_signup and not community_signup.additional_step_done:
+                return HttpResponse(reverse(
+                        'autosignup:additional_step',
+                        args=[community_signup.id, ]
+                    ))
+            if community_signup.additional_step_done:
+                return HttpResponse(reverse(
+                        'autosignup:thankyou'
+                    ))
+        else:
             return HttpResponse(reverse(
-                    'autosignup:step_1_signup',
-                    args=[community_signup.id, ]
-                ))
-        if not community_signup.step_2_done:
-            return HttpResponse(reverse(
-                    'autosignup:step_2_signup',
-                    args=[community_signup.id, ]
-                ))
-        if not community_signup.step_3_done:
-            return HttpResponse(reverse(
-                    'autosignup:step_3_signup',
-                    args=[community_signup.id, ]
-                ))
-        if community_signup.failed_auto_signup and not community_signup.additional_step_done:
-            return HttpResponse(reverse(
-                    'autosignup:additional_step',
-                    args=[community_signup.id, ]
-                ))
-    return HttpResponse(reverse(
-            'autosignup:thankyou'
-        ))
+                'autosignup:signupclosed'
+            ))
 
 
 @login_required
@@ -339,20 +346,23 @@ def additional_step(request, id):
 @login_required
 def signups_page(request):
     signups = CommunitySignup.objects.all()
+    accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
     if 'signup_id' in request.GET:
         signup_id = CommunitySignup.objects.get(id=request.GET.get('signup_id'))
         return render(
             request,
             'autosignup/signupinfo.html',
             {
-                'signup': signup_id
+                'signup': signup_id,
+                'accountprovider': accountprovider
             }
         )
     return render(
         request,
         'autosignup/signups.html',
         {
-            'signups': signups
+            'signups': signups,
+            'accountprovider': accountprovider
         }
     )
 
@@ -364,5 +374,23 @@ def set_verified(request):
         signup_id.verified = True
         signup_id.save()
         return HttpResponse('OK')
+    else:
+        return HttpResponseForbidden()
+
+
+@login_required
+def set_signup_status(request):
+    if request.method == 'POST':
+        accountprovider, created = AccountProvider.objects.get_or_create(
+            name='grantcoin',
+        )
+        status = request.POST.get('status')
+        if status == 'on':
+            accountprovider.signup_is_open = True
+            accountprovider.save()
+        if status == 'off':
+            accountprovider.signup_is_open = False
+            accountprovider.save()
+        return HttpResponse("OK")
     else:
         return HttpResponseForbidden()

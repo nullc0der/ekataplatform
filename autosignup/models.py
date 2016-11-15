@@ -6,6 +6,14 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+class AccountProvider(models.Model):
+    name = models.CharField(max_length=100)
+    signup_is_open = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 class CommunitySignup(models.Model):
     COMMUNITY_CHOICES = (
         ('grantcoin', 'grantcoin'),
@@ -16,6 +24,7 @@ class CommunitySignup(models.Model):
     useremail = models.EmailField(null=True, blank=True)
     userphone = models.CharField(max_length=20, default='')
     useraddress_from_twilio = models.TextField(null=True, blank=True)  # ; seperated
+    useraddress_from_geoip = models.TextField(null=True, blank=True)  # ; seperated
     userimage = models.ImageField(
         upload_to='community_signup_user_images',
         null=True,

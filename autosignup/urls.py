@@ -3,6 +3,8 @@ from django.views.generic import TemplateView
 from autosignup import views
 
 thankyou = TemplateView.as_view(template_name='autosignup/thankyou.html')
+signupclosed = TemplateView.as_view(template_name='autosignup/signupclosed.html')
+
 
 urlpatterns = [
     url(r'^$', views.index_page, name='index'),
@@ -47,6 +49,11 @@ urlpatterns = [
         name='thankyou'
     ),
     url(
+        r'^signupclosed/$',
+        signupclosed,
+        name='signupclosed'
+    ),
+    url(
         r'^signups/$',
         views.signups_page,
         name='signups'
@@ -55,5 +62,10 @@ urlpatterns = [
         r'^setverified/$',
         views.set_verified,
         name='setverified'
+    ),
+    url(
+        r'^set_signup_status/$',
+        views.set_signup_status,
+        name='set_signup_status'
     )
 ]
