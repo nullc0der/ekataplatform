@@ -68,6 +68,12 @@ post_save.connect(save_carrier_from_csv, sender=CarrierCSV)
 
 
 class UserCarrier(models.Model):
+    user = models.ForeignKey(
+        User,
+        related_name='requested_carrier',
+        null=True,
+        blank=True
+    )
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     emailaddress = models.EmailField(null=True, blank=True)

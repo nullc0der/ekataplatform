@@ -100,7 +100,9 @@ def request_carrier(request):
     if request.method == 'POST':
         form = UserCarrierForm(request.POST)
         if form.is_valid():
-            form.save()
+            usercarrier = form.save(commit=False)
+            usercarrier.user = request.user
+            usercarrier.save()
             return HttpResponse("Ok")
         else:
             return render(
