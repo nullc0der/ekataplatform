@@ -74,9 +74,13 @@ def verify_code(request):
             )
             if verifier:
                 carrier = verifier[0].carrier
-                carrier.verified = True
-                carrier.verified_times += 1
-                carrier.save()
+                if carrier.verified:
+                    carrier.verified_times += 1
+                    carrier.save()
+                else:
+                    carrier.verified = True
+                    carrier.verified_times += 1
+                    carrier.save()
             for v in verifier:
                 v.failed = False
                 v.save()

@@ -13,7 +13,7 @@ from django.utils.crypto import get_random_string
 def random_string():
     return get_random_string(
         length=6,
-        allowed_chars='abcdefghijklmnopqrstuvwxyz1234567890'
+        allowed_chars='abcdefghijklmnopqrstuvwxyz'
     )
 
 
