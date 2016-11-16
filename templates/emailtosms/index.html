@@ -56,25 +56,44 @@
                             </tr>
                         </thead>
                         <tbody>
-                           {% for carrier in carriers %}
-                               <tr>
-                                    <td>{{ carrier.id }}</td>
-                                    <td>{{ carrier }}</td>
-                                    {% for t in tried_verifying %}
-                                        {% if t.carrier.id == carrier.id %}
-                                        <td>
-                                            <i class="fa fa-check"></i>
-                                        </td>
-                                        <td>
-                                            {% if t.failed %}
-                                                <i class="fa fa-times-circle"></i>
-                                            {% else %}
+                           {% for t in tried_verifying %}
+                               {% for carrier in carriers %}
+                                    {% if t.carrier.id == carrier.id %}
+                                        <tr>
+                                            <td>
+                                                {{ carrier.id }}
+                                            </td>
+                                            <td>
+                                                {{ carrier }}
+                                            </td>
+                                            <td>
                                                 <i class="fa fa-check"></i>
-                                            {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if t.failed %}
+                                                    <i class="fa fa-times-circle"></i>
+                                                {% else %}
+                                                    <i class="fa fa-check"></i>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                    <tr>
+                                        <td>
+                                            {{ carrier.id }}
                                         </td>
-                                        {% endif %}
-                                    {% endfor %}
-                               </tr>
+                                        <td>
+                                            {{ carrier }}
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                               {% endfor %}
                            {% endfor %}
                         </tbody>
                     </table>
