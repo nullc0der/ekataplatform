@@ -6,6 +6,7 @@ from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.gis.geoip2 import GeoIP2
 
 from autosignup.models import CommunitySignup, EmailVerfication,\
     PhoneVerification, AccountProvider
@@ -15,6 +16,7 @@ from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code
 from autosignup.utils import collect_twilio_data
 from profilesystem.models import UserAddress, UserPhone
+from hashtag.views import get_client_ip
 # Create your views here.
 
 
@@ -88,6 +90,15 @@ def step_1_signup(request, id):
             for k, v in form.cleaned_data.iteritems():
                 useraddress_in_db = useraddress_in_db + '%s: %s ; \n' % (k, v)
             community_signup.useraddress_in_db = useraddress_in_db
+            g = GeoIP2()
+            try:
+                city = g.city(get_client_ip(request))
+            except:
+                city = None
+            if city:
+                useraddress_from_geoip = ''
+                for k, v in city.iteritems():
+                    useraddress_from_geoip = useraddress_from_geoip + '%s: %s ; \n' % (k, v)
             community_signup.step_1_done = True
             community_signup.save()
             data = {

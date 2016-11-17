@@ -28,6 +28,14 @@
 </blockquote>
 <hr>
 {% endif %}
+{% if signup.useraddress_from_geoip %}
+<h4>Info from Geoip</h4>
+<blockquote>
+    {{ signup.useraddress_from_geoip }}
+</blockquote>
+<hr>
+{% endif %}
+{% comment %}
 <div class="pull-right">
     {% if signup.verified %}
         <button class='btn btn-flat btn-primary'>Verified</button>
@@ -35,3 +43,4 @@
         <button class="btn btn-flat btn-danger" id='verify' data-signup-id='{{ signup.id }}'>Verify</button>
     {% endif %}
 </div>
+{% endcomment %}

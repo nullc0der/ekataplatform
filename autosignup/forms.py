@@ -28,13 +28,6 @@ class UserInfoForm(forms.ModelForm):
 
 
 class AddressForm(forms.ModelForm):
-    house_number = forms.CharField(required=True)
-    street = forms.CharField(required=True)
-    zip_code = forms.CharField(required=True)
-    city = forms.CharField(required=True)
-    state = forms.CharField(required=True)
-    country = forms.CharField(required=True)
-
     class Meta:
         model = UserAddress
         fields = [
