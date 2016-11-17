@@ -99,6 +99,7 @@ def step_1_signup(request, id):
                 useraddress_from_geoip = ''
                 for k, v in city.iteritems():
                     useraddress_from_geoip = useraddress_from_geoip + '%s: %s ; \n' % (k, v)
+            community_signup.useraddress_from_geoip = useraddress_from_geoip
             community_signup.step_1_done = True
             community_signup.save()
             data = {

@@ -4,13 +4,13 @@ import requests
 
 from django import forms
 from django.contrib.auth.models import User
-from profilesystem.models import UserAddress
 from django.utils.timezone import now
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.widgets import PhonePrefixSelect
 
+from profilesystem.models import UserAddress
 from autosignup.models import EmailVerfication, PhoneVerification,\
     CommunitySignup
 
