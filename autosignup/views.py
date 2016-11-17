@@ -91,10 +91,7 @@ def step_1_signup(request, id):
                 useraddress_in_db = useraddress_in_db + '%s: %s ; \n' % (k, v)
             community_signup.useraddress_in_db = useraddress_in_db
             g = GeoIP2()
-            try:
-                c = g.city(get_client_ip(request))
-            except:
-                c = {}
+            c = g.city(get_client_ip(request))
             useraddress_from_geoip = ''
             if c:
                 for k, v in c.iteritems():
