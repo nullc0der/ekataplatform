@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "Signups" %}
+{% endblock %}
+{% block content_header %}
+    <h1>
+        {% trans "Signups" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+        <li class="active">Here</li>
+    </ol>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <h4>Signup is <input type="checkbox" {% if accountprovider.signup_is_open %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Open" data-off="Closed" id="signup_status"></h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3>{% trans "Signups" %}</h3>
+                </div>
+                <div class="box-body" style="min-height: 700px">
+                    {% if signups %}
+                    <div class="col-md-3">
+                        {% for signup in signups  %}
+                            <ul class="signups">
+                                <li class='signup' data-signup-id='{{ signup.id }}'>{{ signup.user.username }}</li>
+                            </ul>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-9 signup-data">
+                        {% for signup in signups  %}
+                            {% if forloop.counter == 1 %}
+                                {% include "autosignup/signupinfo.html" %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="col-md-12 text-center">
+                        <h4>{% trans "No signups yet!! " %}</h4>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', '.signup', function(){
+                var signup_id = $(this).attr('data-signup-id');
+                $.ajax({
+                    url: '{% url 'autosignup:signups' %}',
+                    type: 'GET',
+                    data: {'signup_id': signup_id},
+                    success: function(data){
+                        $('.signup-data').html(data);
+                    }
+                });
+            });
+            $(document).on('click', '#verify', function(){
+                var signup_id = $(this).attr('data-signup-id');
+                $.ajax({
+                    url: '{% url 'autosignup:setverified' %}',
+                    type: 'POST',
+                    data: {'signup_id': signup_id},
+                    success: function(data){
+                        $('#verify').text('Verified');
+                        $('#verify').removeClass('btn-danger');
+                        $('#verify').addClass('btn-success');
+                    }
+                });
+            });
+        });
+        $('#signup_status').change(function(){
+            var checked = $(this).is(':checked');
+            $.ajax({
+                url: '{% url 'autosignup:set_signup_status' %}',
+                type: 'POST',
+                data: {'status': checked?'on':'off'},
+                success: function (data) {
+                    console.log('success');
+                }
+            });
+        });
+    </script>
+{% endblock %}

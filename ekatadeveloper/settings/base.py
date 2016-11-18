@@ -84,7 +84,8 @@ INSTALLED_APPS = [
     'groupsystem',
     'invitationsystem',
     'sysadmin',
-    'emailtosms'
+    'emailtosms',
+    'autosignup'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -402,3 +403,9 @@ CKEDITOR_CONFIGS = {
 }
 
 # EKATA_INVITATION_APIKEY = get_env_variable('EKATA_INVITATION_APIKEY')
+EKATA_TWILIO_ACCOUNT_SID = get_env_variable('EKATA_TWILIO_ACCOUNT_SID')
+EKATA_TWILIO_AUTH_TOKEN = get_env_variable('EKATA_TWILIO_AUTH_TOKEN')
+EKATA_TWILIO_PHONE_NO = get_env_variable('EKATA_TWILIO_PHONE_NO')
+
+# TODO: Write own serializer
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

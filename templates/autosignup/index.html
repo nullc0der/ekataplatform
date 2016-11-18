@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "MyAccounts" %}
+{% endblock %}
+{% block content_header %}
+    <h1>
+        {% trans "Myaccounts" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+        <li class="active">Here</li>
+    </ol>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Accounts" %}</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="col-md-4">
+                        <div class="community-wrapper">
+                            <div class="community" style="background: url('{% static "dist/img/ekata-200-logo.png" %}'); background-size: 200px 200px; background-repeat:no-repeat; background-position:center;">
+                                <div class="community-name">
+                                    <h4>{% trans "DummyDB" %}</h4>
+                                </div>
+                                <div class="community-actions">
+                                    <a href="{% url 'myaccount:index' %}" class="btn btn-block btn-default">{% trans "Subscribed" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="community-wrapper">
+                            <div class="community" style="background: url('{% static "dist/img/grantcoin.png" %}'); background-size: 200px 200px; background-repeat:no-repeat; background-position:center;">
+                                <div class="community-name">
+                                    <h4>{% trans "Grantcoin" %}</h4>
+                                </div>
+                                <div class="community-actions">
+                                    <a href="#" data-community-name='grantcoin' data-toggle="modal" data-target='#signupmodal' class="btn btn-block btn-success">{% trans "Signup" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="community-wrapper">
+                            <div class="community" style="background: url('{% static "dist/img/pulse.png" %}'); background-size: 200px 200px; background-repeat:no-repeat; background-position:center;">
+                                <div class="community-name">
+                                    <h4>{% trans "The pulse" %}</h4>
+                                </div>
+                                <div class="community-actions">
+                                    <a href="#" class="btn btn-block btn-warning">{% trans "Coming soon" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="community-wrapper">
+                            <div class="community">
+                                <i class="fa fa-plus fa-5x community-add-fa" style=""></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">{% trans "Signup to Grantcoin" %}</h4>
+          </div>
+          <div class="modal-body" id="signupbody">
+
+          </div>
+          <div class="modal-footer" id="signupfooter">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+            <button type="button" class="btn btn-primary" id="signupsubmit">{% trans "Submit" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+    <script type="text/javascript">
+        $("#signupmodal").on('show.bs.modal', function(e){
+            var link = '{% url 'autosignup:getform' %}?community_name=' + $(e.relatedTarget).attr('data-community-name');
+            var self = $(this);
+            $.ajax({
+                url: link,
+                success: function(data){
+                    $("#signupbody").load(data, function(){
+                        $("#gears").hide();
+                        $("#id_userimage").fileinput({'showUpload':false,});
+                    });
+                }
+            })
+        });
+        $("#signupsubmit").click(function(){
+            var frm = $("#signupform");
+            frm.hide();
+            $("#gears").show();
+            $("#signupfooter").hide();
+            var data = new FormData(frm[0]);
+            $.ajax({
+                url: frm.attr('action'),
+                type: frm.attr('method'),
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(data){
+                    if (data.action === 'next') {
+                        $("#signupbody").load(data.url, function(){
+                            $("#gears").hide();
+                            $("#signupfooter").show();
+                            $("#id_userimage").fileinput({'showUpload':false,});
+                        });
+                    }
+                    else if (data.action === 'thankyou') {
+                        $("#signupbody").load(data.url, function(){
+                            $("#gears").hide();
+                        });
+                    }
+                },
+                error: function(data) {
+                    $("#signupbody").html(data.responseText);
+                    $("#gears").hide();
+                    $("#signupfooter").show();
+                    $("#id_userimage").fileinput({'showUpload':false,});
+                }
+            });
+        });
+        $(document).on('click', '.signuplink', function(){
+            var link = $(this).attr('href');
+            var frm = $("#signupform");
+            frm.hide();
+            $("#gears").show();
+            $("#signupfooter").hide();
+            var data = new FormData(frm[0]);
+            if (frm.attr('data-submit')) {
+                if (frm.length) {
+                    $.ajax({
+                        url: frm.attr('action'),
+                        type: frm.attr('method'),
+                        data: data,
+                        contentType: false,
+                        processData: false,
+                        success: function(data){
+                            if (data.action === 'next') {
+                                $("#signupbody").load(data.url, function(){
+                                    $("#gears").hide();
+                                    $("#signupfooter").show();
+                                    $("#id_userimage").fileinput({'showUpload':false,});
+                                });
+                            }
+                            else if (data.action === 'thankyou') {
+                                $("#signupbody").load(data.url, function(){
+                                    $("#gears").hide();
+                                });
+                            }
+                        },
+                        error: function(data) {
+                            $("#signupbody").html(data.responseText);
+                            $("#gears").hide();
+                            $("#signupfooter").show();
+                            $("#id_userimage").fileinput({'showUpload':false,});
+                        }
+                    });
+                }
+            }
+            else {
+                $("#signupbody").load(link, function () {
+                    $("#gears").hide();
+                    $("#signupfooter").show();
+                    $("#id_userimage").fileinput({'showUpload':false,});
+                });
+            }
+            return false;
+        })
+    </script>
+{% endblock %}

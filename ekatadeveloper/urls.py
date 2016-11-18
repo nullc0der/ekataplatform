@@ -46,6 +46,8 @@ urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
+# TODO: Categorize URLS
+
 urlpatterns += i18n_patterns(
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
@@ -66,7 +68,8 @@ urlpatterns += i18n_patterns(
     url(r'^hashtag/', include('hashtag.urls', namespace='hashtag')),
     url(r'^g/', include('groupsystem.urls', namespace='g')),
     url(r'^getinvitation/', include('invitationsystem.urls', namespace='invitationsystem')),
-    url(r'^emailtosms/', include('emailtosms.urls', namespace='emailtosms'))
+    url(r'^emailtosms/', include('emailtosms.urls', namespace='emailtosms')),
+    url(r'^autosignup/', include('autosignup.urls', namespace='autosignup'))
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
