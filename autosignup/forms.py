@@ -92,7 +92,7 @@ class PhoneForm(forms.Form):
         cleaned_data = super(PhoneForm, self).clean()
         phone_no = cleaned_data.get('country') + cleaned_data.get('phone_no')
         if 'phone' in self.request.session:
-            if self.request.session['phone'] == phone_no and self.request.session['retry'] > 10:
+            if self.request.session['phone'] == phone_no and self.request.session['retry'] > 3:
                 if now() < self.request.session['first_attempt_time'] + timedelta(minutes=60):
                     raise forms.ValidationError(_('Max attempt reached! try later'))
                 else:
