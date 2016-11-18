@@ -37,6 +37,9 @@ class CommunitySignup(models.Model):
     verified = models.BooleanField(default=False, editable=False)
     failed_auto_signup = models.BooleanField(default=False, editable=False)
     sent_to_community_staff = models.BooleanField(default=False, editable=False)
+    auto_signup_fail_reason = models.CharField(max_length=200, default='', editable=False)
+    email_in_globaldb = models.BooleanField(default=False, editable=False)
+    phone_in_globaldb = models.BooleanField(default=False, editable=False)
 
     def __unicode__(self):
         return self.user.username
@@ -54,3 +57,11 @@ class PhoneVerification(models.Model):
     community_signup = models.ForeignKey(CommunitySignup)
     code = models.CharField(max_length=6)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+
+class GlobalEmail(models.Model):
+    email = models.EmailField(null=True)
+
+
+class GlobalPhone(models.Model):
+    phone = models.CharField(max_length=100, default='')

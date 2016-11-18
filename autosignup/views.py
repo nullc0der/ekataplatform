@@ -7,9 +7,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.gis.geoip2 import GeoIP2
+from django.utils.timezone import now
 
 from autosignup.models import CommunitySignup, EmailVerfication,\
-    PhoneVerification, AccountProvider
+    PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm, AdditionalStepForm
 from autosignup.tasks import task_send_email_verfication_code,\
@@ -91,7 +92,10 @@ def step_1_signup(request, id):
                 useraddress_in_db = useraddress_in_db + '%s: %s ; \n' % (k, v)
             community_signup.useraddress_in_db = useraddress_in_db
             g = GeoIP2()
-            c = g.city(get_client_ip(request))
+            try:
+                c = g.city(get_client_ip(request))
+            except:
+                c = None
             useraddress_from_geoip = ''
             if c:
                 for k, v in c.iteritems():
@@ -177,7 +181,6 @@ def verify_email_code(request, id):
             form = EmailVerficationForm(community_signup, request, request.POST)
             if form.is_valid():
                 community_signup.step_2_done = True
-                community_signup.save()
                 request.user.email = community_signup.useremail
                 request.user.save()
                 emailverfication = EmailVerfication.objects.get(
@@ -185,7 +188,17 @@ def verify_email_code(request, id):
                     community_signup=community_signup,
                     code=form.cleaned_data.get('verification_code')
                 )
+                try:
+                    globalemail = GlobalEmail.objects.get(
+                        email=emailverfication.community_signup.useremail
+                    )
+                    community_signup.email_in_globaldb = True
+                except ObjectDoesNotExist:
+                    GlobalEmail.objects.get_or_create(
+                        email=emailverfication.community_signup.useremail
+                    )
                 emailverfication.delete()
+                community_signup.save()
                 data = {
                     'action': 'next',
                     'url': reverse('autosignup:step_3_signup', args=[community_signup.id, ])
@@ -220,12 +233,24 @@ def verify_email_code(request, id):
 def step_3_signup(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     if community_signup.step_1_done and community_signup.step_2_done:
-        form = PhoneForm()
+        form = PhoneForm(request)
         if request.method == 'POST':
-            form = PhoneForm(request.POST)
+            form = PhoneForm(request, request.POST)
             if form.is_valid():
                 code = get_random_string(length=6)
                 phone = form.cleaned_data.get('country') + form.cleaned_data.get('phone_no')
+                if 'phone' in request.session:
+                    if phone == request.session['phone']:
+                        request.session['phone'] = phone
+                        request.session['retry'] += 1
+                    else:
+                        request.session['phone'] = phone
+                        request.session['retry'] = 0
+                        request.session['first_attempt_time'] = now()
+                else:
+                    request.session['phone'] = phone
+                    request.session['retry'] = 0
+                    request.session['first_attempt_time'] = now()
                 task_send_phone_verfication_code.delay(phone, code)
                 community_signup.userphone = phone
                 community_signup.save()
@@ -275,16 +300,28 @@ def verify_phone_code(request, id):
                     community_signup=community_signup,
                     code=form.cleaned_data.get('verification_code')
                 )
+                try:
+                    globalphone = GlobalPhone.objects.get(
+                        phone=phoneverfication.community_signup.userphone
+                    )
+                    community_signup.phone_in_globaldb = True
+                    community_signup.save()
+                except ObjectDoesNotExist:
+                    GlobalPhone.objects.get_or_create(
+                        phone=phoneverfication.community_signup.userphone
+                    )
                 phoneverfication.delete()
                 twilio_data = collect_twilio_data(community_signup.userphone)
                 if twilio_data:
                     community_signup.useraddress_from_twilio = twilio_data
                     community_signup.step_3_done = True
                     community_signup.failed_auto_signup = True
+                    community_signup.auto_signup_fail_reason = 'Address mismatch'
                     community_signup.save()
                 else:
                     community_signup.step_3_done = True
                     community_signup.failed_auto_signup = True
+                    community_signup.auto_signup_fail_reason = 'No data from twilio'
                     community_signup.save()
                 data = {
                     'action': 'next',
@@ -366,14 +403,17 @@ def signups_page(request):
                 'accountprovider': accountprovider
             }
         )
-    return render(
-        request,
-        'autosignup/signups.html',
-        {
-            'signups': signups,
-            'accountprovider': accountprovider
-        }
-    )
+    if request.user.profile.grantcoin_staff or request.user.is_superuser:
+        return render(
+            request,
+            'autosignup/signups.html',
+            {
+                'signups': signups,
+                'accountprovider': accountprovider
+                }
+            )
+    else:
+        return HttpResponseForbidden()
 
 
 @login_required

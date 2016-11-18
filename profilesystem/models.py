@@ -109,6 +109,8 @@ class UserProfile(models.Model):
     information_link_visible = models.BooleanField(default=False)
     hashtagcampaign_link_visible = models.BooleanField(default=False)
 
+    grantcoin_staff = models.BooleanField(default=False)
+
     def __unicode__(self):
         return self.user.username
 
