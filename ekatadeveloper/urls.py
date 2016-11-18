@@ -46,7 +46,6 @@ urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
-# TODO: Categorize URLS
 
 urlpatterns += i18n_patterns(
     url(r'^admin/', admin.site.urls),

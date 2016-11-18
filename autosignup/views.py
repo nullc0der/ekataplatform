@@ -251,7 +251,7 @@ def step_3_signup(request, id):
                     request.session['phone'] = phone
                     request.session['retry'] = 0
                     request.session['first_attempt_time'] = now()
-                task_send_phone_verfication_code.delay(phone, code)
+                # task_send_phone_verfication_code.delay(phone, code)
                 community_signup.userphone = phone
                 community_signup.save()
                 phoneverfication = PhoneVerification(
