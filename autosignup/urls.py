@@ -7,7 +7,7 @@ signupclosed = TemplateView.as_view(template_name='autosignup/signupclosed.html'
 
 
 urlpatterns = [
-    url(r'^$', views.index_page, name='index'),
+    # url(r'^$', views.index_page, name='index'),
     url(
         r'^getform/$',
         views.check_step,
@@ -54,7 +54,7 @@ urlpatterns = [
         name='signupclosed'
     ),
     url(
-        r'^signups/$',
+        r'^$',
         views.signups_page,
         name='signups'
     ),

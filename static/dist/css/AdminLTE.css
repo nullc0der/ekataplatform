@@ -5065,62 +5065,42 @@ table.text-center th {
 }
 
 .community-wrapper {
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-left: 15px;
 }
 
 .community {
     border: 1px solid #b5b4b4;
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     position: relative;
-}
-
-@media (max-width: 320px) {
-    .community{
-        height: 275px;
-        width: 245px;
-    }
 }
 
 .community .community-name {
-    background: #0a69bb;
-    color: #fff;
-    width: 110px;
-    border-radius: 3px;
-    margin-left: 5px;
-    padding: 1px;
+    color: #676262;
     position: relative;
-    top: -10px;
-    text-align: center;
+    top: -35px;
 }
 
 .community-actions {
     position: absolute;
-    bottom: 0;
-    width: 250px;
-    margin-left: 20px;
+    bottom: 5px;
+    width: 180px;
+    margin-left: 10px;
 }
 
-@media (max-width: 320px) {
-    .community-actions {
-        width: 200px;
-        margin-left: 20px;
-    }
+.community-add {
+    border-radius: 10px;
+    background-color: #b5b4b4;
 }
 
 .community-add-fa {
-    font-size: 20em;
+    font-size: 12em;
     margin-left: 35px;
-    margin-top: 15px;
+    margin-top: 20px;
     color: #d2d2d2;
 }
 
-@media (max-width: 320px) {
-    .community-add-fa {
-        font-size: 15em;
-        margin-top: 40px;
-    }
-}
 
 .signupformtab {
     background-color: #3c8dbc;
