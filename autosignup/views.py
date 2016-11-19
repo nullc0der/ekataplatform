@@ -137,7 +137,10 @@ def step_2_signup(request, id):
                 email = emailaddress.email
             else:
                 email = None
-        form = EmailForm(initial={'email': email})
+        if email:
+            form = EmailForm(initial={'email': email})
+        else:
+            form = EmailForm()
         if request.method == 'POST':
             form = EmailForm(request.POST)
             if form.is_valid():
