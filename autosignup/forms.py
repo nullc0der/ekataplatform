@@ -161,7 +161,7 @@ class PhoneVerificationForm(forms.Form):
 class AdditionalStepForm(forms.Form):
     userimage = forms.ImageField(
         label='Image',
-        help_text='upload a recent image of yours',
+        help_text='Upload a recent photo of yourself or image proof of identification.',
         required=True
     )
 
