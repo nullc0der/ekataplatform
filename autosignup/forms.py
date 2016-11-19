@@ -16,6 +16,25 @@ from autosignup.models import EmailVerfication, PhoneVerification,\
     CommunitySignup
 
 
+def carrier_lookup(phone_no):
+    if cache.get('%s_lookup' % phone_no):
+        lookup = cache.get('%s_lookup' % phone_no)
+        return lookup
+    else:
+        lookup_url = 'https://lookups.twilio.com/v1/' +\
+            'PhoneNumbers/%s?Type=carrier' % phone_no
+        res = requests.get(lookup_url, auth=(
+            settings.EKATA_TWILIO_ACCOUNT_SID,
+            settings.EKATA_TWILIO_AUTH_TOKEN
+        ))
+        if res.status_code == 200:
+            lookup = json.loads(res.content)
+            cache.set('%s_lookup' % phone_no, lookup, 2 * 60 * 60)
+            return lookup
+        else:
+            return None
+
+
 class UserInfoForm(forms.ModelForm):
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
@@ -98,28 +117,16 @@ class PhoneForm(forms.Form):
                 if now() < phoneretry['first_attempt_time'] + timedelta(minutes=60):
                     raise forms.ValidationError(_('Max attempt reached! try later'))
                 else:
-                    lookup_url = 'https://lookups.twilio.com/v1/' +\
-                        'PhoneNumbers/%s?Type=carrier' % phone_no
-                    res = requests.get(lookup_url, auth=(
-                        settings.EKATA_TWILIO_ACCOUNT_SID,
-                        settings.EKATA_TWILIO_AUTH_TOKEN
-                    ))
-                    if res.status_code == 200:
-                        data = json.loads(res.content)
-                        if not data['carrier']['type'].lower() == 'mobile':
+                    lookup = carrier_lookup(phone_no)
+                    if lookup:
+                        if lookup['carrier']['type'].lower() != 'mobile':
                             raise forms.ValidationError(_('Provide a valid mobile number'))
                     else:
                         raise forms.ValidationError(_('Something went wrong! Try later'))
         else:
-            lookup_url = 'https://lookups.twilio.com/v1/' +\
-                'PhoneNumbers/%s?Type=carrier' % phone_no
-            res = requests.get(lookup_url, auth=(
-                settings.EKATA_TWILIO_ACCOUNT_SID,
-                settings.EKATA_TWILIO_AUTH_TOKEN
-            ))
-            if res.status_code == 200:
-                data = json.loads(res.content)
-                if not data['carrier']['type'].lower() == 'mobile':
+            lookup = carrier_lookup(phone_no)
+            if lookup:
+                if lookup['carrier']['type'].lower() != 'mobile':
                     raise forms.ValidationError(_('Provide a valid mobile number'))
             else:
                 raise forms.ValidationError(_('Something went wrong! Try later'))

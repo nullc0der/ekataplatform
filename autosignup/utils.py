@@ -5,9 +5,12 @@ from iso3166 import countries
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.core.cache import cache
 
 from twilio.rest import TwilioRestClient
 from twilio.rest.exceptions import TwilioRestException
+
+from emailtosms.models import Carrier
 
 
 def send_email_verification_code(email, code):
@@ -29,16 +32,31 @@ def send_email_verification_code(email, code):
 
 
 def send_phone_verfication_code(phone_no, code):
-    account_sid = settings.EKATA_TWILIO_ACCOUNT_SID
-    auth_token = settings.EKATA_TWILIO_AUTH_TOKEN
-    client = TwilioRestClient(account_sid, auth_token)
-    message = client.messages.create(
-        body='Verification code: ' + code + '\nvalid for 30 min',
-        to=phone_no,
-        from_=settings.EKATA_TWILIO_PHONE_NO
-    )
-
-    return message.status
+    lookup = cache.get('%s_lookup' % phone_no)
+    carrier_name = lookup['carrier']['name']
+    for carrier in Carrier.objects.all():
+        if carrier.name.lower() == carrier_name.lower() and carrier.verified:
+            email_subject = "Verification code"
+            email_body = "Code: " + code + '\nvalid for 30 min'
+            email_splited = email.split('@')
+            new_email = str(phone_number) + '@' + email_splited[1]
+            msg = EmailMultiAlternatives(
+                email_subject,
+                email_body,
+                "support@ekata.social",
+                [new_email]
+            )
+            return msg.send()
+        else:
+            account_sid = settings.EKATA_TWILIO_ACCOUNT_SID
+            auth_token = settings.EKATA_TWILIO_AUTH_TOKEN
+            client = TwilioRestClient(account_sid, auth_token)
+            message = client.messages.create(
+                body='Verification code: ' + code + '\nvalid for 30 min',
+                to=phone_no,
+                from_=settings.EKATA_TWILIO_PHONE_NO
+            )
+            return message.status
 
 
 def collect_twilio_data(phone_no):
