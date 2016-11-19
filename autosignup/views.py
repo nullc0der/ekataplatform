@@ -10,6 +10,8 @@ from django.contrib.gis.geoip2 import GeoIP2
 from django.utils.timezone import now
 from django.core.cache import cache
 
+from allauth.account.models import EmailAddress
+
 from autosignup.models import CommunitySignup, EmailVerfication,\
     PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
@@ -129,7 +131,12 @@ def step_1_signup(request, id):
 def step_2_signup(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     if community_signup.step_1_done:
-        form = EmailForm(initial={'email': request.user.email})
+        for emailaddress in request.user.emailaddress_set.all():
+            if emailaddress.primary and not emailaddress.verified:
+                email = emailaddress.email
+            else:
+                email = None
+        form = EmailForm(initial={'email': email})
         if request.method == 'POST':
             form = EmailForm(request.POST)
             if form.is_valid():
@@ -182,8 +189,12 @@ def verify_email_code(request, id):
             form = EmailVerficationForm(community_signup, request, request.POST)
             if form.is_valid():
                 community_signup.step_2_done = True
-                request.user.email = community_signup.useremail
-                request.user.save()
+                emailaddress, created = EmailAddress.objects.get_or_create(
+                    user=request.user,
+                    email=community_signup.useremail,
+                )
+                emailaddress.verified = True
+                emailaddress.save()
                 emailverfication = EmailVerfication.objects.get(
                     user=request.user,
                     community_signup=community_signup,
