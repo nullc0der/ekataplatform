@@ -406,6 +406,3 @@ CKEDITOR_CONFIGS = {
 EKATA_TWILIO_ACCOUNT_SID = get_env_variable('EKATA_TWILIO_ACCOUNT_SID')
 EKATA_TWILIO_AUTH_TOKEN = get_env_variable('EKATA_TWILIO_AUTH_TOKEN')
 EKATA_TWILIO_PHONE_NO = get_env_variable('EKATA_TWILIO_PHONE_NO')
-
-# TODO: Write own serializer
-SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

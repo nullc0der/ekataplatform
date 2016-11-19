@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.gis.geoip2 import GeoIP2
 from django.utils.timezone import now
+from django.core.cache import cache
 
 from autosignup.models import CommunitySignup, EmailVerfication,\
     PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail
@@ -239,18 +240,37 @@ def step_3_signup(request, id):
             if form.is_valid():
                 code = get_random_string(length=6)
                 phone = form.cleaned_data.get('country') + form.cleaned_data.get('phone_no')
-                if 'phone' in request.session:
-                    if phone == request.session['phone']:
-                        request.session['phone'] = phone
-                        request.session['retry'] += 1
+                if cache.get('%s_phoneretry' % request.user.username):
+                    phoneretry = cache.get('%s_phoneretry' % request.user.username)
+                    if phone == phoneretry['phone']:
+                        phoneretry['retry'] += 1
+                        cache.set(
+                            '%s_phoneretry' % request.user.username,
+                            phoneretry,
+                            None
+                        )
                     else:
-                        request.session['phone'] = phone
-                        request.session['retry'] = 0
-                        request.session['first_attempt_time'] = now()
+                        phoneretry = {
+                            'phone': phone,
+                            'retry': 0,
+                            'first_attempt_time': now()
+                        }
+                        cache.set(
+                            '%s_phoneretry' % request.user.username,
+                            phoneretry,
+                            None
+                        )
                 else:
-                    request.session['phone'] = phone
-                    request.session['retry'] = 0
-                    request.session['first_attempt_time'] = now()
+                    phoneretry = {
+                        'phone': phone,
+                        'retry': 0,
+                        'first_attempt_time': now()
+                    }
+                    cache.set(
+                        '%s_phoneretry' % request.user.username,
+                        phoneretry,
+                        None
+                    )
                 # task_send_phone_verfication_code.delay(phone, code)
                 community_signup.userphone = phone
                 community_signup.save()

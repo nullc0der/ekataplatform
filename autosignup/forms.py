@@ -8,6 +8,7 @@ from django.utils.timezone import now
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from django.core.cache import cache
 from phonenumber_field.widgets import PhonePrefixSelect
 
 from profilesystem.models import UserAddress
@@ -91,9 +92,10 @@ class PhoneForm(forms.Form):
     def clean(self):
         cleaned_data = super(PhoneForm, self).clean()
         phone_no = cleaned_data.get('country') + cleaned_data.get('phone_no')
-        if 'phone' in self.request.session:
-            if self.request.session['phone'] == phone_no and self.request.session['retry'] > 3:
-                if now() < self.request.session['first_attempt_time'] + timedelta(minutes=60):
+        if cache.get('%s_phoneretry' % self.request.user.username):
+            phoneretry = cache.get('%s_phoneretry' % self.request.user.username)
+            if phoneretry['phone'] == phone_no and phoneretry['retry'] > 2:
+                if now() < phoneretry['first_attempt_time'] + timedelta(minutes=60):
                     raise forms.ValidationError(_('Max attempt reached! try later'))
                 else:
                     lookup_url = 'https://lookups.twilio.com/v1/' +\
