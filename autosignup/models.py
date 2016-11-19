@@ -66,3 +66,18 @@ class GlobalEmail(models.Model):
 
 class GlobalPhone(models.Model):
     phone = models.CharField(max_length=100, default='')
+
+
+class AccountAddContact(models.Model):
+    organization = models.CharField(
+        verbose_name='Name of organization',
+        max_length=100
+    )
+    emailaddress = models.EmailField(null=True)
+    proposal = models.TextField()
+
+    def __unicode__(self):
+        return self.organization
+
+    class Meta:
+        verbose_name = 'Account proposal'

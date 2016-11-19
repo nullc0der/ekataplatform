@@ -15,7 +15,8 @@ from allauth.account.models import EmailAddress
 from autosignup.models import CommunitySignup, EmailVerfication,\
     PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
-    EmailVerficationForm, PhoneForm, PhoneVerificationForm, AdditionalStepForm
+    EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
+    AdditionalStepForm, AccountAddContactForm
 from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code
 from autosignup.utils import collect_twilio_data
@@ -473,5 +474,25 @@ def set_signup_status(request):
             accountprovider.signup_is_open = False
             accountprovider.save()
         return HttpResponse("OK")
+    else:
+        return HttpResponseForbidden()
+
+
+@login_required
+def add_account(request):
+    if request.method == 'POST':
+        form = AccountAddContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse()
+        else:
+            return render(
+                request,
+                'autosignup/accountaddform.html',
+                {
+                    'form': form
+                },
+                status=500
+            )
     else:
         return HttpResponseForbidden()

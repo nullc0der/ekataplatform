@@ -13,7 +13,7 @@ from phonenumber_field.widgets import PhonePrefixSelect
 
 from profilesystem.models import UserAddress
 from autosignup.models import EmailVerfication, PhoneVerification,\
-    CommunitySignup
+    CommunitySignup, AccountAddContact
 
 
 def carrier_lookup(phone_no):
@@ -164,3 +164,9 @@ class AdditionalStepForm(forms.Form):
         help_text='upload a recent image of yours',
         required=True
     )
+
+
+class AccountAddContactForm(forms.ModelForm):
+    class Meta:
+        model = AccountAddContact
+        fields = '__all__'

@@ -67,5 +67,10 @@ urlpatterns = [
         r'^set_signup_status/$',
         views.set_signup_status,
         name='set_signup_status'
+    ),
+    url(
+        r'^add_account/$',
+        views.add_account,
+        name='add_account'
     )
 ]

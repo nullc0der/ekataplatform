@@ -9,6 +9,7 @@ from useraccount.models import Transaction, IncomeRelease, UserAccount
 from autosignup.models import CommunitySignup
 from usertimeline.models import UserTimeline
 from useraccount.forms import TransactionForm, RequestForm
+from autosignup.forms import AccountAddContactForm
 from notification.utils import create_notification
 
 # Create your views here.
@@ -32,14 +33,16 @@ def account_page(request):
             'transactions': transactions,
             'first': transactions[0],
             'releases': relaeses,
-            'communitysignup': communitysignup
+            'communitysignup': communitysignup,
+            'form': AccountAddContactForm()
         }
     else:
         variables = {
             'next_release': next_release,
             'transactions': transactions,
             'releases': relaeses,
-            'communitysignup': communitysignup
+            'communitysignup': communitysignup,
+            'form': AccountAddContactForm()
         }
     return render(request, 'useraccount/index.html', context=variables)
 
