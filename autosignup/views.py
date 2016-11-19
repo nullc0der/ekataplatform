@@ -132,12 +132,12 @@ def step_1_signup(request, id):
 def step_2_signup(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     if community_signup.step_1_done:
-        for emailaddress in request.user.emailaddress_set.all():
-            if emailaddress.primary and not emailaddress.verified:
-                email = emailaddress.email
-            else:
-                email = None
-        if email:
+        if request.user.emailaddress_set.all():
+            for emailaddress in request.user.emailaddress_set.all():
+                if emailaddress.primary and not emailaddress.verified:
+                    email = emailaddress.email
+                else:
+                    email = None
             form = EmailForm(initial={'email': email})
         else:
             form = EmailForm()
