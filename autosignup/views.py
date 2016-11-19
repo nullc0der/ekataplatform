@@ -247,7 +247,7 @@ def step_3_signup(request, id):
                         cache.set(
                             '%s_phoneretry' % request.user.username,
                             phoneretry,
-                            None
+                            2 * 60 * 60
                         )
                     else:
                         phoneretry = {
@@ -258,7 +258,7 @@ def step_3_signup(request, id):
                         cache.set(
                             '%s_phoneretry' % request.user.username,
                             phoneretry,
-                            None
+                            2 * 60 * 60
                         )
                 else:
                     phoneretry = {
@@ -269,7 +269,7 @@ def step_3_signup(request, id):
                     cache.set(
                         '%s_phoneretry' % request.user.username,
                         phoneretry,
-                        None
+                        2 * 60 * 60
                     )
                 # task_send_phone_verfication_code.delay(phone, code)
                 community_signup.userphone = phone

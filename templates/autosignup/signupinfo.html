@@ -6,8 +6,22 @@
 <h4>Fullname: {{ signup.user.first_name }} {{ signup.user.last_name }}</h4>
 <hr>
 <h4>Email: {{ signup.useremail }}</h4>
+{% if signup.email_in_globaldb %}
+    <div class="alert alert-danger alert-inset">
+        <p>
+            {% trans "This email id was used for a previous signup" %}
+        </p>
+    </div>
+{% endif %}
 <hr>
 <h4>Phone No: {{ signup.userphone }}</h4>
+{% if signup.phone_in_globaldb %}
+    <div class="alert alert-danger alert-inset">
+        <p>
+            {% trans "This mobile number was used for a previous signup" %}
+        </p>
+    </div>
+{% endif %}
 <hr>
 <h4>Profile link: <a href="{% url 'publicusers:user' signup.user.id %}">{{ signup.user.username }}</a></h4>
 <hr>
