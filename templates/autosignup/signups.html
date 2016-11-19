@@ -79,9 +79,9 @@
                     type: 'POST',
                     data: {'signup_id': signup_id},
                     success: function(data){
-                        $('#verify').text('Verified');
+                        $('#verify').text('Approved');
                         $('#verify').removeClass('btn-danger');
-                        $('#verify').addClass('btn-success');
+                        $('#verify').addClass('btn-info');
                     }
                 });
             });

@@ -34,12 +34,13 @@ class CommunitySignup(models.Model):
     step_2_done = models.BooleanField(default=False, editable=False)
     step_3_done = models.BooleanField(default=False, editable=False)
     additional_step_done = models.BooleanField(default=False, editable=False)
-    verified = models.BooleanField(default=False, editable=False)
+    approved = models.BooleanField(default=False, editable=False)
     failed_auto_signup = models.BooleanField(default=False, editable=False)
     sent_to_community_staff = models.BooleanField(default=False, editable=False)
     auto_signup_fail_reason = models.CharField(max_length=200, default='', editable=False)
     email_in_globaldb = models.BooleanField(default=False, editable=False)
     phone_in_globaldb = models.BooleanField(default=False, editable=False)
+    data_collect_done = models.BooleanField(default=False, editable=False)
 
     def __unicode__(self):
         return self.user.username

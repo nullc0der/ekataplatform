@@ -113,7 +113,7 @@ class PhoneForm(forms.Form):
         phone_no = cleaned_data.get('country') + cleaned_data.get('phone_no')
         if cache.get('%s_phoneretry' % self.request.user.username):
             phoneretry = cache.get('%s_phoneretry' % self.request.user.username)
-            if phoneretry['phone'] == phone_no and phoneretry['retry'] > 2:
+            if phoneretry['phone'] == phone_no and phoneretry['retry'] > 9:
                 if now() < phoneretry['first_attempt_time'] + timedelta(minutes=60):
                     raise forms.ValidationError(_('Max attempt reached! try later'))
                 else:

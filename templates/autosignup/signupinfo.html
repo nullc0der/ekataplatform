@@ -49,12 +49,10 @@
 </blockquote>
 <hr>
 {% endif %}
-{% comment %}
 <div class="pull-right">
-    {% if signup.verified %}
-        <button class='btn btn-flat btn-primary'>Verified</button>
+    {% if signup.approved %}
+        <button class='btn btn-flat btn-primary'>{% trans "Approved" %}</button>
     {% else %}
-        <button class="btn btn-flat btn-danger" id='verify' data-signup-id='{{ signup.id }}'>Verify</button>
+        <button class="btn btn-flat btn-danger" id='verify' data-signup-id='{{ signup.id }}'>{% trans "Approve" %}</button>
     {% endif %}
 </div>
-{% endcomment %}

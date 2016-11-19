@@ -271,7 +271,7 @@ def step_3_signup(request, id):
                         phoneretry,
                         2 * 60 * 60
                     )
-                # task_send_phone_verfication_code.delay(phone, code)
+                task_send_phone_verfication_code.delay(phone, code)
                 community_signup.userphone = phone
                 community_signup.save()
                 phoneverfication = PhoneVerification(
@@ -381,6 +381,7 @@ def additional_step(request, id):
         if form.is_valid():
             community_signup.userimage = form.cleaned_data.get('userimage')
             community_signup.additional_step_done = True
+            community_signup.data_collect_done = True
             community_signup.save()
             data = {
                 'action': 'thankyou',
@@ -440,7 +441,7 @@ def signups_page(request):
 def set_verified(request):
     if request.method == 'POST':
         signup_id = CommunitySignup.objects.get(id=request.POST.get('signup_id'))
-        signup_id.verified = True
+        signup_id.approved = True
         signup_id.save()
         return HttpResponse('OK')
     else:

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from useraccount.models import Transaction, IncomeRelease, UserAccount
+from autosignup.models import CommunitySignup
 from usertimeline.models import UserTimeline
 from useraccount.forms import TransactionForm, RequestForm
 from notification.utils import create_notification
@@ -21,18 +22,24 @@ def account_page(request):
     relaeses = IncomeRelease.objects.filter(user=request.user)
     useraccount, created = UserAccount.objects.get_or_create(user=request.user)
     next_release = useraccount.next_release
+    try:
+        communitysignup = CommunitySignup.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        communitysignup = None
     if transactions:
         variables = {
             'next_release': next_release,
             'transactions': transactions,
             'first': transactions[0],
-            'releases': relaeses
+            'releases': relaeses,
+            'communitysignup': communitysignup
         }
     else:
         variables = {
             'next_release': next_release,
             'transactions': transactions,
-            'releases': relaeses
+            'releases': relaeses,
+            'communitysignup': communitysignup
         }
     return render(request, 'useraccount/index.html', context=variables)
 
