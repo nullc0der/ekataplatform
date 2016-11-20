@@ -82,5 +82,15 @@ urlpatterns = [
         r'^filter_signup/$',
         views.filter_signup,
         name='filter_signup'
+    ),
+    url(
+        r'^get_histories/(?P<id>\d+)/$',
+        views.get_histories,
+        name='get_histories'
+    ),
+    url(
+        r'^get_history/(?P<id>\d+)/$',
+        views.get_history,
+        name='get_history'
     )
 ]

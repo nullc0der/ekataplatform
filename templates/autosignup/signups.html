@@ -104,6 +104,16 @@
                     }
                 });
             });
+            $(document).on('click', '#history', function(){
+                var signup_id = $(this).attr('data-signup-id');
+                $.ajax({
+                    url: 'get_histories/' + signup_id + '/',
+                    type: 'GET',
+                    success: function(data){
+                        $('.signup-data').html(data);
+                    }
+                });
+            });
             $(document).on('click', '#save', function(){
                 var frm = $('#signupeditform');
                 $.ajax({

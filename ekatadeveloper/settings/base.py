@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'snowpenguin.django.recaptcha2',
     'raven.contrib.django.raven_compat',
     'django_object_actions',
+    'simple_history',
     'landing',
     'profilesystem',
     'publicusers',
@@ -99,6 +100,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'easy_timezones.middleware.EasyTimezoneMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
     'profilesystem.middleware.CheckInvitationMiddleware',
     'profilesystem.middleware.RemoveSkippedMiddleware'
 ]

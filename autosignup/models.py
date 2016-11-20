@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
+from simple_history.models import HistoricalRecords
+
 # Create your models here.
 
 
@@ -46,6 +48,7 @@ class CommunitySignup(models.Model):
     email_in_globaldb = models.BooleanField(default=False, editable=False)
     phone_in_globaldb = models.BooleanField(default=False, editable=False)
     data_collect_done = models.BooleanField(default=False, editable=False)
+    history = HistoricalRecords()
 
     def __unicode__(self):
         return self.user.username

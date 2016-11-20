@@ -536,3 +536,29 @@ def filter_signup(request):
         'autosignup/sfilter.html',
         {'signups': signups}
     )
+
+
+@login_required
+def get_histories(request, id):
+    signup = CommunitySignup.objects.get(id=id)
+    histories = signup.history.all()
+    return render(
+        request,
+        'autosignup/signuphistories.html',
+        {
+            'histories': histories
+        }
+    )
+
+
+@login_required
+def get_history(request, id):
+    signup = CommunitySignup.objects.get(id=id)
+    history = signup.history.get(id=request.GET.get('history_id'))
+    return render(
+        request,
+        'autosignup/signuphistory.html',
+        {
+            'history': history
+        }
+    )
