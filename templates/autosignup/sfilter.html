@@ -1,0 +1,21 @@
+{% load i18n %}
+{% if signups %}
+<div class="col-md-3">
+    {% for signup in signups  %}
+        <ul class="signups">
+            <li class='signup' data-signup-id='{{ signup.id }}'>{{ signup.user.username }}</li>
+        </ul>
+    {% endfor %}
+</div>
+<div class="col-md-9 signup-data">
+    {% for signup in signups  %}
+        {% if forloop.counter == 1 %}
+            {% include "autosignup/signupinfo.html" %}
+        {% endif %}
+    {% endfor %}
+</div>
+{% else %}
+<div class="col-md-12 text-center">
+    <h4>{% trans "No signups yet!! " %}</h4>
+</div>
+{% endif %}

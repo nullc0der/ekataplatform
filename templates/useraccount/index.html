@@ -49,13 +49,13 @@
                                 </div>
                                 <div class="community-actions">
                                     {% if communitysignup.data_collect_done %}
-                                        {% if communitysignup.approved %}
+                                        {% if communitysignup.status == 'approved' %}
                                             <a href="#" class="btn btn-block btn-flat btn-default">{% trans "Subscribed" %}</a>
                                         {% else %}
                                             <a href="#" data-toggle="modal" data-target='#pendingmodal' class="btn btn-block btn-flat btn-success">{% trans "Pending" %}</a>
                                         {% endif %}
                                     {% else %}
-                                        <a href="#" data-community-name='grantcoin' data-toggle="modal" data-target='#signupmodal' class="btn btn-block btn-flat btn-success">{% trans "Signup" %}</a>
+                                        <a href="#" data-community-name='grantcoin' data-toggle="modal" data-target='#signupmodal' class="btn btn-block btn-flat btn-primary">{% trans "Signup" %}</a>
                                     {% endif %}
                                 </div>
                             </div>

@@ -16,7 +16,7 @@ from autosignup.models import CommunitySignup, EmailVerfication,\
     PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
-    AdditionalStepForm, AccountAddContactForm
+    AdditionalStepForm, AccountAddContactForm, CommunitySignupForm
 from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code
 from autosignup.utils import collect_twilio_data
@@ -253,7 +253,7 @@ def step_3_signup(request, id):
         if request.method == 'POST':
             form = PhoneForm(request, request.POST)
             if form.is_valid():
-                code = get_random_string(length=6)
+                code = get_random_string(length=6, allowed_chars='0123456789')
                 phone = form.cleaned_data.get('country') + form.cleaned_data.get('phone_no')
                 if cache.get('%s_phoneretry' % request.user.username):
                     phoneretry = cache.get('%s_phoneretry' % request.user.username)
@@ -352,11 +352,13 @@ def verify_phone_code(request, id):
                     community_signup.step_3_done = True
                     community_signup.failed_auto_signup = True
                     community_signup.auto_signup_fail_reason = 'Address mismatch'
+                    community_signup.sent_to_community_staff = True
                     community_signup.save()
                 else:
                     community_signup.step_3_done = True
                     community_signup.failed_auto_signup = True
                     community_signup.auto_signup_fail_reason = 'No data from twilio'
+                    community_signup.sent_to_community_staff = True
                     community_signup.save()
                 data = {
                     'action': 'next',
@@ -397,6 +399,7 @@ def additional_step(request, id):
             community_signup.userimage = form.cleaned_data.get('userimage')
             community_signup.additional_step_done = True
             community_signup.data_collect_done = True
+            community_signup.sent_to_community_staff = True
             community_signup.save()
             data = {
                 'action': 'thankyou',
@@ -427,7 +430,7 @@ def additional_step(request, id):
 
 @login_required
 def signups_page(request):
-    signups = CommunitySignup.objects.all()
+    signups = CommunitySignup.objects.filter(sent_to_community_staff=True).filter(status='pending')
     accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
     if 'signup_id' in request.GET:
         signup_id = CommunitySignup.objects.get(id=request.GET.get('signup_id'))
@@ -453,11 +456,10 @@ def signups_page(request):
 
 
 @login_required
-def set_verified(request):
+def delete_signup(request):
     if request.method == 'POST':
         signup_id = CommunitySignup.objects.get(id=request.POST.get('signup_id'))
-        signup_id.approved = True
-        signup_id.save()
+        signup_id.delete()
         return HttpResponse('OK')
     else:
         return HttpResponseForbidden()
@@ -499,3 +501,38 @@ def add_account(request):
             )
     else:
         return HttpResponseForbidden()
+
+
+@login_required
+def edit_signup(request, id):
+    community_signup = CommunitySignup.objects.get(id=id)
+    form = CommunitySignupForm(instance=community_signup)
+    if request.method == 'POST':
+        form = CommunitySignupForm(request.POST, instance=community_signup)
+        if form.is_valid:
+            form.save()
+            return HttpResponse(community_signup.id)
+        else:
+            return render(
+                request,
+                'autosignup/community_signupedit.html',
+                {'form': form, 'community_signup': community_signup},
+                status=500
+            )
+    return render(
+        request,
+        'autosignup/community_signupedit.html',
+        {'form': form, 'community_signup': community_signup}
+    )
+
+
+@login_required
+def filter_signup(request):
+    sfilter = request.GET.get('sfilter', 'pending')
+    signups = CommunitySignup.objects.filter(sent_to_community_staff=True)
+    signups = signups.filter(status=sfilter)
+    return render(
+        request,
+        'autosignup/sfilter.html',
+        {'signups': signups}
+    )

@@ -1,0 +1,9 @@
+{% load i18n bootstrap_tags %}
+<form id='signupeditform' action="{% url 'autosignup:edit_signup' community_signup.id %}" method="post">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="pull-right">
+        <button class="btn btn-flat btn-danger" id='delete' data-signup-id='{{ signup.id }}'>{% trans "Delete" %}</button>
+        <button class="btn btn-flat btn-primary" id='save'>{% trans "Save" %}</button>
+    </div>
+</form>

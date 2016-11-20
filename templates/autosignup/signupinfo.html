@@ -49,10 +49,12 @@
 </blockquote>
 <hr>
 {% endif %}
+<h4>Status: {{ signup.status }}</h4>
+<hr>
+{% if signup.auto_signup_fail_reason %}
+    <h4>Reason for failed autosignup: {{ signup.auto_signup_fail_reason }}</h4>
+{% endif %}
 <div class="pull-right">
-    {% if signup.approved %}
-        <button class='btn btn-flat btn-primary'>{% trans "Approved" %}</button>
-    {% else %}
-        <button class="btn btn-flat btn-danger" id='verify' data-signup-id='{{ signup.id }}'>{% trans "Approve" %}</button>
-    {% endif %}
+    <button class="btn btn-flat btn-danger" id='delete' data-signup-id='{{ signup.id }}'>{% trans "Delete" %}</button>
+    <button class="btn btn-flat btn-primary" id='edit' data-signup-id='{{ signup.id }}'>{% trans "Edit" %}</button>
 </div>

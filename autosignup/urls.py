@@ -59,9 +59,9 @@ urlpatterns = [
         name='signups'
     ),
     url(
-        r'^setverified/$',
-        views.set_verified,
-        name='setverified'
+        r'^delete_signup/$',
+        views.delete_signup,
+        name='delete_signup'
     ),
     url(
         r'^set_signup_status/$',
@@ -72,5 +72,15 @@ urlpatterns = [
         r'^add_account/$',
         views.add_account,
         name='add_account'
+    ),
+    url(
+        r'^edit_signup/(?P<id>\d+)/$',
+        views.edit_signup,
+        name='edit_signup'
+    ),
+    url(
+        r'^filter_signup/$',
+        views.filter_signup,
+        name='filter_signup'
     )
 ]

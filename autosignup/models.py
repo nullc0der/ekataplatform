@@ -18,11 +18,16 @@ class CommunitySignup(models.Model):
     COMMUNITY_CHOICES = (
         ('grantcoin', 'grantcoin'),
     )
+    STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('declined', 'Declined')
+    )
     user = models.ForeignKey(User, related_name='communitysignups')
     community = models.CharField(max_length=100, choices=COMMUNITY_CHOICES, editable=False)
-    useraddress_in_db = models.TextField(null=True, blank=True)  # ; seperated
-    useremail = models.EmailField(null=True, blank=True)
-    userphone = models.CharField(max_length=20, default='')
+    useraddress_in_db = models.TextField(verbose_name='Address', null=True, blank=True)  # ; seperated
+    useremail = models.EmailField(verbose_name='Email', null=True, blank=True)
+    userphone = models.CharField(verbose_name='Phone', max_length=20, default='', blank=True)
     useraddress_from_twilio = models.TextField(null=True, blank=True)  # ; seperated
     useraddress_from_geoip = models.TextField(null=True, blank=True)  # ; seperated
     userimage = models.ImageField(
@@ -34,7 +39,7 @@ class CommunitySignup(models.Model):
     step_2_done = models.BooleanField(default=False, editable=False)
     step_3_done = models.BooleanField(default=False, editable=False)
     additional_step_done = models.BooleanField(default=False, editable=False)
-    approved = models.BooleanField(default=False, editable=False)
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
     failed_auto_signup = models.BooleanField(default=False, editable=False)
     sent_to_community_staff = models.BooleanField(default=False, editable=False)
     auto_signup_fail_reason = models.CharField(max_length=200, default='', editable=False)
