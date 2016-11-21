@@ -552,6 +552,23 @@ def get_histories(request, id):
 
 
 @login_required
+def revert_to_history(request):
+    if request.method == 'POST':
+        history_id = request.POST.get('history_id')
+        history_object_id = request.POST.get('history_object_id')
+        signup = CommunitySignup.objects.get(id=history_object_id)
+        history = signup.history.get(history_id=history_id)
+        signup.useremail = history.useremail
+        signup.userphone = history.userphone
+        signup.useraddress_in_db = history.useraddress_in_db
+        signup.status = history.status
+        signup.save()
+        return HttpResponse()
+    else:
+        return HttpResponseForbidden()
+
+
+@login_required
 def get_history(request, id):
     signup = CommunitySignup.objects.get(id=id)
     history = signup.history.get(id=request.GET.get('history_id'))

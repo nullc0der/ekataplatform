@@ -15,6 +15,9 @@
     <ul class="treeview-menu">
         <li class="{% active request 'myaccount:index' %}"><a href="{% url 'myaccount:index' %}"><i class="fa fa-circle-o"></i>{% trans "Account" %}</a></li>
         <li class="{% active request 'myaccount:transfer' %}"><a href="{% url 'myaccount:transfer' %}"><i class="fa fa-circle-o"></i>{% trans "Transfer" %}</a></li>
+        {% if request.user.is_superuser or request.user.profile.grantcoin_staff %}
+            <li class="{% active request 'autosignup:signups' %}"><a href="{% url 'autosignup:signups' %}"><i class="fa fa-circle-o"></i>{% trans "Grantcoin Signups" %}</a></li>
+        {% endif %}
     </ul>
 </li>
 {% comment %}

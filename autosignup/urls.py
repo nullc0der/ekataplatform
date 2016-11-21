@@ -92,5 +92,10 @@ urlpatterns = [
         r'^get_history/(?P<id>\d+)/$',
         views.get_history,
         name='get_history'
+    ),
+    url(
+        r'^revert_to_history/$',
+        views.revert_to_history,
+        name='revert_to_history'
     )
 ]

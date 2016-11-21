@@ -1,50 +1,35 @@
 {% load i18n %}
 {% if histories %}
 {% for history in histories %}
-<div class="text-center">
-    <h4>{{ history.user.username }}-{{ history.history_date }}</h4>
-    <p>
-        Changed by: {{ history.history_user }}
-    </p>
+<div class="row">
+    <div class="col-md-4 col-md-offset-8">
+        <p>
+            Change Date: {{ history.history_date }}
+        </p>
+        <p>
+            Changed by: {{ history.history_user }}
+        </p>
+        <button class="btn btn-xs btn-danger" onclick="revertToHistory('{{ history.history_id }}', '{{ history.history_object.id }}', '{{ history.history_date }}')">Revert to this</button>
+        <hr>
+    </div>
+    <div class="col-md-12">
+        <div>
+            <h4>Fullname: {{ history.user.first_name }} {{ history.user.last_name }}</h4>
+            <hr>
+            <h4>Email: {{ history.useremail }}</h4>
+            <hr>
+            <h4>Phone No: {{ history.userphone }}</h4>
+            <hr>
+            <h4>Info from User Data Base</h4>
+            <blockquote>
+                {{ history.useraddress_in_db }}
+            </blockquote>
+            <hr>
+            <h4>Status: {{ history.status }}</h4>
+            <hr>
+        </div>
+    </div>
 </div>
-<hr>
-<h4>Fullname: {{ history.user.first_name }} {{ history.user.last_name }}</h4>
-<hr>
-<h4>Email: {{ history.useremail }}</h4>
-<hr>
-<h4>Phone No: {{ history.userphone }}</h4>
-<hr>
-<h4>Profile link: <a href="{% url 'publicusers:user' history.user.id %}">{{ history.user.username }}</a></h4>
-<hr>
-{% if history.userimage %}
-<h4>Uploaded image:</h4>
-<img src="{{ history.userimage.url }}" width="400" height="400" />
-<hr>
-{% endif %}
-<h4>Info from User Data Base</h4>
-<blockquote>
-    {{ history.useraddress_in_db }}
-</blockquote>
-<hr>
-{% if history.useraddress_from_twilio %}
-<h4>Info from Twilio Data Base</h4>
-<blockquote>
-    {{ history.useraddress_from_twilio }}
-</blockquote>
-<hr>
-{% endif %}
-{% if history.useraddress_from_geoip %}
-<h4>Info from Geoip</h4>
-<blockquote>
-    {{ history.useraddress_from_geoip }}
-</blockquote>
-<hr>
-{% endif %}
-<h4>Status: {{ history.status }}</h4>
-<hr>
-{% if history.auto_history_fail_reason %}
-    <h4>Reason for failed autosignup: {{ history.auto_history_fail_reason }}</h4>
-{% endif %}
 {% endfor %}
 {% else %}
     <p>
