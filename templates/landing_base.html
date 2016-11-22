@@ -175,6 +175,15 @@
 										<li><a class="soc-linkedin soc-icon-last" href="https://www.linkedin.com/groups/12011491"></a></li>
 									</ul>
 								</div>
+								<div class="link-wrapper">
+									<h4>{% trans "Signup into Ekata newsletter" %}</h4>
+									<div class="col-sm-8">
+										<input type="email" name='email_id' placeholder="Enter your email" class="emailsignup form-control">
+									</div>
+									<div class="col-sm-2">
+										<button class='emailsignup' style="width: 45px" id="emailsignupbtn"><i class="fa fa-share"></i></button>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
@@ -286,6 +295,20 @@
 					success: function(data) {
 						$('.top-right').notify({
                             message: { text: 'Thank you for submitting info we will reach you soon' },
+                            type: 'success'
+                        }).show();
+					}
+				});
+			});
+			$("#emailsignupbtn").click(function(){
+				var email_id = $("input[name='email_id']").val();
+				$.ajax({
+					url: '{% url 'landing:newsletter_signup' %}',
+					type: 'POST',
+					data: {'email_id': email_id},
+					success: function(data) {
+						$('.top-right').notify({
+                            message: { text: 'Thank you for signing into newsletter' },
                             type: 'success'
                         }).show();
 					}

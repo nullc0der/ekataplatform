@@ -9,6 +9,7 @@ from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 from utils import send_contact_email
 
@@ -16,6 +17,7 @@ from landing.models import News, Tags, HashtagImg, GlobalOgTag, OgTagLink
 from invitationsystem.models import Invitation
 from invitationsystem.forms import GetInvitationForm
 from invitationsystem.tasks import send_notification_to_reviewer
+from sysadmin.models import EmailGroup, EmailId
 
 
 # Create your views here.
@@ -199,3 +201,16 @@ def get_invitation_key_from_production(request):
             return HttpResponseForbidden('mismatch')
     else:
         return HttpResponseForbidden()
+
+
+@require_POST
+def newsletter_signup(request):
+    email_id = request.POST.get('email_id')
+    emailgroup, created = EmailGroup.objects.get_or_create(
+        name='newsletter_signup'
+    )
+    emailid, created = EmailId.objects.get_or_create(
+        email_id=email_id,
+        emailgroup=emailgroup
+    )
+    return HttpResponse(status=200)

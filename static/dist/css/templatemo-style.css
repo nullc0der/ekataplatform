@@ -1026,3 +1026,14 @@ footer
 .dropdown-backdrop {
     position: static;
 }
+
+.emailsignup {
+    width: 200px;
+    margin-left: -15px;
+    color: #fff;
+    border-radius: 3px !important;
+    box-shadow: none;
+    background-color: #374850;
+    border: 1px solid transparent;
+    height: 35px !important;
+}

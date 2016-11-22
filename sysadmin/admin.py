@@ -1,4 +1,5 @@
 import markdown
+import csv
 
 from django.db import models
 from django.contrib import admin
@@ -15,8 +16,32 @@ class EmailIdsInline(admin.TabularInline):
     model = EmailId
 
 
-class EmailGroupAdmin(admin.ModelAdmin):
+class EmailGroupAdmin(DjangoObjectActions, admin.ModelAdmin):
     inlines = [EmailIdsInline]
+
+    actions = ['save_emailids_from_csv']
+    change_actions = ['save_emailids_from_csv']
+
+    @takes_instance_or_queryset
+    def save_emailids_from_csv(self, request, queryset):
+        count = 0
+        for emailgroup in queryset:
+            if emailgroup.csv_file:
+                csv_f = open(emailgroup.csv_file.path, 'r')
+                email_infos = csv.reader(csv_f)
+                for email_info in email_infos:
+                    emailid, created = EmailId.objects.get_or_create(
+                        emailgroup=emailgroup,
+                        first_name=email_info[0],
+                        last_name=email_info[1],
+                        email_id=email_info[2]
+                    )
+                    emailid.save()
+                csv_f.close()
+                count += 1
+        self.message_user(request, '%s csvs data copied to emailgroup' % count)
+    save_emailids_from_csv.short_description = 'Copy CSV data'
+    save_emailids_from_csv.label = 'Copy CSV data'
 
 
 class EmailUpdateAdmin(DjangoObjectActions, admin.ModelAdmin):

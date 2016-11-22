@@ -129,7 +129,7 @@ def save_emailids_from_siteusers(sender, instance, **kwargs):
                 )
                 emailid.save()
 
-post_save.connect(save_emailids_from_csv, sender=EmailGroup)
+# post_save.connect(save_emailids_from_csv, sender=EmailGroup)
 m2m_changed.connect(
     save_emailids_from_siteusers,
     sender=EmailGroup.users.through
