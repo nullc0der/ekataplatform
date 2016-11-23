@@ -62,7 +62,7 @@ class EmailUpdateAdmin(DjangoObjectActions, admin.ModelAdmin):
             soup = BeautifulSoup(email_html)
             if soup.webversion:
                 url = reverse('eblast', args=[emailupdate.id, ])
-                url = "http://" + Site.objects.get_current().domain + url
+                url = "https://" + Site.objects.get_current().domain + url
                 soup.webversion.clear()
                 linktag = soup.new_tag('a', href=url)
                 linktag.string = 'View email in browser'
