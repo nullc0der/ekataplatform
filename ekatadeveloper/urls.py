@@ -22,6 +22,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView
 from allauth.socialaccount.views import ConnectionsView
 from allauth.account.views import PasswordSetView, PasswordChangeView
+from sysadmin.views import view_email_in_browser
 
 admin.site.site_title = 'Ekata administration'
 admin.site.site_header = 'Ekata administration'
@@ -68,7 +69,8 @@ urlpatterns += i18n_patterns(
     url(r'^g/', include('groupsystem.urls', namespace='g')),
     url(r'^getinvitation/', include('invitationsystem.urls', namespace='invitationsystem')),
     url(r'^emailtosms/', include('emailtosms.urls', namespace='emailtosms')),
-    url(r'^autosignup/', include('autosignup.urls', namespace='autosignup'))
+    url(r'^autosignup/', include('autosignup.urls', namespace='autosignup')),
+    url(r'^c/eBlast/(?P<id>\d+)/$', view_email_in_browser, name='eblast')
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [

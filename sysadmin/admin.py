@@ -1,9 +1,12 @@
 import markdown
 import csv
+from bs4 import BeautifulSoup
 
 from django.db import models
 from django.contrib import admin
 from django.core.mail import EmailMultiAlternatives
+from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
 from django_object_actions import DjangoObjectActions, takes_instance_or_queryset
 
@@ -56,6 +59,15 @@ class EmailUpdateAdmin(DjangoObjectActions, admin.ModelAdmin):
             subject = emailupdate.subject
             from_email = emailupdate.from_email
             email_html = emailupdate.message
+            soup = BeautifulSoup(email_html)
+            if soup.webversion:
+                url = reverse('eblast', args=[emailupdate.id, ])
+                url = "http://" + Site.objects.get_current().domain + url
+                soup.webversion.clear()
+                linktag = soup.new_tag('a', href=url)
+                linktag.string = 'View email in browser'
+                soup.webversion.append(linktag)
+                email_html = soup.prettify()
             emailaddress_set = set()
             for group in groups:
                 emailids = group.emailids.all()
