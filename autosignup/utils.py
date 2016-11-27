@@ -52,7 +52,7 @@ def send_phone_verfication_code(phone_no, code):
             auth_token = settings.EKATA_TWILIO_AUTH_TOKEN
             client = TwilioRestClient(account_sid, auth_token)
             message = client.messages.create(
-                body='Verification code: ' + code + '\nvalid for 30 min',
+                body='Use verification code: ' + code + '\nvalid for 30 min',
                 to=phone_no,
                 from_=settings.EKATA_TWILIO_PHONE_NO
             )
