@@ -9,6 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.gis.geoip2 import GeoIP2
 from django.utils.timezone import now
 from django.core.cache import cache
+from django.views.decorators.http import require_POST
 
 from allauth.account.models import EmailAddress
 
@@ -18,7 +19,7 @@ from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
     AdditionalStepForm, AccountAddContactForm, CommunitySignupForm
 from autosignup.tasks import task_send_email_verfication_code,\
-    task_send_phone_verfication_code
+    task_send_phone_verfication_code, task_send_approval_mail
 from autosignup.utils import collect_twilio_data
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
@@ -510,7 +511,9 @@ def edit_signup(request, id):
     if request.method == 'POST':
         form = CommunitySignupForm(request.POST, instance=community_signup)
         if form.is_valid:
-            form.save()
+            community_signup = form.save()
+            if community_signup.status == 'approved' and not community_signup.approval_mail_sent:
+                    task_send_approval_mail.delay(community_signup)
             return HttpResponse(community_signup.id)
         else:
             return render(
@@ -524,6 +527,18 @@ def edit_signup(request, id):
         'autosignup/community_signupedit.html',
         {'form': form, 'community_signup': community_signup}
     )
+
+
+@require_POST
+@login_required
+def resend_approval(request):
+    signup_id = request.POST.get('signup_id')
+    community_signup = CommunitySignup.objects.get(id=signup_id)
+    community_signup.status = 'approved'
+    community_signup.approval_mail_sent = True
+    community_signup.save()
+    task_send_approval_mail.delay(community_signup)
+    return HttpResponse(status=200)
 
 
 @login_required

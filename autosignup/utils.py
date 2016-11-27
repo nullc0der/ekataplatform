@@ -81,6 +81,27 @@ def collect_twilio_data(phone_no):
         return False
 
 
+def send_approval_mail(signup):
+    c = {
+        'username': signup.user.username,
+    }
+    email_subject = "You are approved for Grantcoin Account "
+    email_body = "Hello " + signup.user.username + "Greetings from Ekata!!\n" + \
+        "Grantcoin approved your signup for their account"
+    email_html = render_to_string('autosignup/email_approved.html', c)
+    msg = EmailMultiAlternatives(
+        email_subject,
+        email_body,
+        "grantcoin.signup@ekata.social",
+        [signup.useremail]
+    )
+    msg.attach_alternative(email_html, "text/html")
+    signup.approval_mail_sent = True
+    signup.save()
+
+    return msg.send(fail_silently=False)
+
+
 class AddressCompareUtil(object):
     def __init__(self, db_address, lookup_address):
         self.db_address = db_address

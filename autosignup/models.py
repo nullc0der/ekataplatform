@@ -48,6 +48,7 @@ class CommunitySignup(models.Model):
     email_in_globaldb = models.BooleanField(default=False, editable=False)
     phone_in_globaldb = models.BooleanField(default=False, editable=False)
     data_collect_done = models.BooleanField(default=False, editable=False)
+    approval_mail_sent = models.BooleanField(default=False, editable=False)
     history = HistoricalRecords()
 
     def __unicode__(self):

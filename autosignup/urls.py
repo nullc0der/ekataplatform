@@ -64,6 +64,11 @@ urlpatterns = [
         name='delete_signup'
     ),
     url(
+        r'^resend_approval/$',
+        views.resend_approval,
+        name='resend_approval'
+    ),
+    url(
         r'^set_signup_status/$',
         views.set_signup_status,
         name='set_signup_status'

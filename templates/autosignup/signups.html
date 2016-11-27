@@ -116,6 +116,20 @@
                     }
                 });
             });
+            $(document).on('click', '#rapproval', function(){
+                var signup_id = $(this).attr('data-signup-id');
+                $.ajax({
+                    url: '{% url 'autosignup:resend_approval' %}',
+                    type: 'POST',
+                    data: {'signup_id': signup_id},
+                    success: function(data){
+                        $('.top-right').notify({
+                            message: { text: 'Approval email resend successful' },
+                            type: 'success'
+                        }).show();
+                    }
+                });
+            });
             $(document).on('click', '#edit', function(){
                 var signup_id = $(this).attr('data-signup-id');
                 $.ajax({
