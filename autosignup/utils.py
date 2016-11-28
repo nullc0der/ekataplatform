@@ -130,9 +130,9 @@ class AddressCompareUtil(object):
         for d in city:
             v = d.strip()
             if v.startswith('city:'):
-                t = v.split(':')
+                t = v.split(':')[1]
             if v.startswith('state:'):
-                s = v.split(':')
+                s = v.split(':')[1]
         return t + ',' + s
 
     def calculate_distance(self):
