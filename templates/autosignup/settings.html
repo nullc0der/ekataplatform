@@ -46,6 +46,26 @@
                             </div>
                         </form>
                     </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-12">
+                            <h5>{% trans "Approved Email Template" %}</h5>
+                            <form id="selectEmailTemplate">
+                                <h6>{% trans "Select from one" %}</h6>
+                                <input type="radio" name="emailTemplate" value="default" {% if default_template %}checked{% endif %}> {% trans "Default" %}<br>
+                                {% for emailtemplate in accountprovider.mailtemplate.all %}
+                                    <input type="radio" name="emailTemplate" value="{{ emailtemplate.id }}" {% if emailtemplate.selected %}checked{% endif %}> {{ emailtemplate.filename }}<br>
+                                {% endfor %}
+                            </form>
+                        </div>
+                        <div class="col-md-12">
+                            <h5>{% trans "Or" %}</h5>
+                            <form action="{% url 'autosignup:upload_template' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ accountprovider.id }}">
+                                <input type="file" name="template" value="" id="templateupload" placeholder="Upload a new" class="file">
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,6 +82,15 @@
             success: function (data) {
                 console.log('success');
             }
+        });
+    });
+    $('#selectEmailTemplate input').on('change', function() {
+        var template_id = $('input[name=emailTemplate]:checked', '#selectEmailTemplate').val();
+        var id = '{{ accountprovider.id }}';
+        $.ajax({
+            url: '{% url 'autosignup:change_template' %}',
+            type: 'POST',
+            data: {'template_id': template_id, 'id': id}
         });
     });
     </script>

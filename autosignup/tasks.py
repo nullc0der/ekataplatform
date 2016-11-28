@@ -14,5 +14,5 @@ def task_send_phone_verfication_code(phone, code):
 
 
 @shared_task
-def task_send_approval_mail(signup):
-    return send_approval_mail(signup)
+def task_send_approval_mail(signup, template_path=None):
+    return send_approval_mail(signup, template_path)

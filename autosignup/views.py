@@ -14,7 +14,8 @@ from django.views.decorators.http import require_POST
 from allauth.account.models import EmailAddress
 
 from autosignup.models import CommunitySignup, EmailVerfication,\
-    PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail
+    PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail,\
+    ApprovedMailTemplate
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
     AdditionalStepForm, AccountAddContactForm, CommunitySignupForm
@@ -24,6 +25,14 @@ from autosignup.utils import collect_twilio_data, AddressCompareUtil
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
 # Create your views here.
+
+
+def get_selected_template_path():
+    accountprovider = AccountProvider.objects.get(name='grantcoin')
+    mailtemplates = accountprovider.mailtemplate.filter(selected=True)
+    if mailtemplates:
+        return mailtemplates[0].template.path
+    return
 
 
 @login_required
@@ -361,7 +370,8 @@ def verify_phone_code(request, id):
                         if accountprovider.allowed_distance < distance[1] * 0.000621371:
                             community_signup.signup_status = 'approved'
                             community_signup.save()
-                            task_send_approval_mail.delay(community_signup)
+                            template_path = get_selected_template_path()
+                            task_send_approval_mail.delay(community_signup, template_path)
                         else:
                             community_signup.failed_auto_signup = True
                             community_signup.auto_signup_fail_reason = 'Distance not within allowed range'
@@ -473,6 +483,11 @@ def signups_page(request):
 @login_required
 def signups_settings(request):
     accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
+    emailtemplate = ApprovedMailTemplate.objects.filter(selected=True)
+    if not emailtemplate:
+        default_template = True
+    else:
+        default_template = False
     if request.method == 'POST':
         maxdist = request.POST.get('maxdist')
         accountprovider.allowed_distance = maxdist
@@ -481,7 +496,8 @@ def signups_settings(request):
         request,
         'autosignup/settings.html',
         {
-            'accountprovider': accountprovider
+            'accountprovider': accountprovider,
+            'default_template': default_template
         }
     )
 
@@ -543,7 +559,8 @@ def edit_signup(request, id):
         if form.is_valid:
             community_signup = form.save()
             if community_signup.status == 'approved' and not community_signup.approval_mail_sent:
-                    task_send_approval_mail.delay(community_signup)
+                    template_path = get_selected_template_path()
+                    task_send_approval_mail.delay(community_signup, template_path)
             return HttpResponse(community_signup.id)
         else:
             return render(
@@ -567,7 +584,8 @@ def resend_approval(request):
     community_signup.status = 'approved'
     community_signup.approval_mail_sent = True
     community_signup.save()
-    task_send_approval_mail.delay(community_signup)
+    template_path = get_selected_template_path()
+    task_send_approval_mail.delay(community_signup, template_path)
     return HttpResponse(status=200)
 
 
@@ -624,3 +642,42 @@ def get_history(request, id):
             'history': history
         }
     )
+
+
+@require_POST
+@login_required
+def upload_template(request):
+    accountprovider = AccountProvider.objects.get(id=request.POST.get('id'))
+    template = request.FILES.get('template')
+    approvedmailtemplate = ApprovedMailTemplate(
+        accountprovider=accountprovider,
+        template=template
+    )
+    approvedmailtemplate.save()
+    return render(
+        request,
+        'autosignup/settings.html',
+        {
+            'accountprovider': accountprovider
+        }
+    )
+
+
+@require_POST
+@login_required
+def change_template(request):
+    accountprovider = AccountProvider.objects.get(id=request.POST.get('id'))
+    template_id = request.POST.get('template_id')
+    templates = accountprovider.mailtemplate.all()
+    if template_id == 'default':
+        for template in templates:
+            template.selected = False
+            template.save()
+    else:
+        for template in templates:
+            template.selected = False
+            template.save()
+        template = ApprovedMailTemplate.objects.get(id=template_id)
+        template.selected = True
+        template.save()
+    return HttpResponse(status=200)

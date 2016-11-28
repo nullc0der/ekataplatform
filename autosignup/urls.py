@@ -107,5 +107,15 @@ urlpatterns = [
         r'^signups_settings/$',
         views.signups_settings,
         name='signups_settings'
+    ),
+    url(
+        r'^upload_template/$',
+        views.upload_template,
+        name='upload_template'
+    ),
+    url(
+        r'^change_template/$',
+        views.change_template,
+        name='change_template'
     )
 ]

@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import os
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -18,6 +19,18 @@ class AccountProvider(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class ApprovedMailTemplate(models.Model):
+    accountprovider = models.ForeignKey(
+        AccountProvider,
+        related_name='mailtemplate'
+    )
+    template = models.FileField(upload_to='mailtemplate')
+    selected = models.BooleanField(default=False)
+
+    def filename(self):
+        return os.path.basename(self.template.name)
 
 
 class CommunitySignup(models.Model):

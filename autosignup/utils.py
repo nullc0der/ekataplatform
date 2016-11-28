@@ -81,14 +81,19 @@ def collect_twilio_data(phone_no):
         return False
 
 
-def send_approval_mail(signup):
+def send_approval_mail(signup, template_path=None):
     c = {
         'username': signup.user.username,
     }
     email_subject = "You are approved for Grantcoin Account "
     email_body = "Hello " + signup.user.username + "Greetings from Ekata!!\n" + \
         "Grantcoin approved your signup for their account"
-    email_html = render_to_string('autosignup/email_approved.html', c)
+    if template_path:
+        template = file(template_path, 'r')
+        email_html = template.read()
+        template.close()
+    else:
+        email_html = render_to_string('autosignup/email_approved.html', c)
     msg = EmailMultiAlternatives(
         email_subject,
         email_body,
