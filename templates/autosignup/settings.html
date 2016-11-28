@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "Signups settings" %}
+{% endblock %}
+{% block content_header %}
+    <h1>
+        {% trans "Signups settings" %}<br>
+        <small><i class="fa fa-user"></i>
+            {% if user and not user.is_anonymous %}
+                <a>Hello, {{ user.username }}!</a>
+                <br>
+            {% endif %}
+        </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+        <li class="active">Here</li>
+    </ol>
+{% endblock content_header %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border"> 
+                    <h4 class="box-title">{% trans "Autosignup settings" %}</h4>
+                </div>
+                <div class="box-body" style="min-height: 500px" id="signupboxbody">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h5>Signup is: </h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="checkbox" {% if accountprovider.signup_is_open %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Open" data-off="Closed" data-size="mini" id="signup_status">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form action="{% url 'autosignup:signups_settings' %}" method="post">
+                            {% csrf_token %}
+                            <div class="col-md-6">
+                                <h5>Max allowed distance: </h5>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" name="maxdist" value="{{ accountprovider.allowed_distance }}" class="form-control">
+                                <button type="submit" class="btn btn-primary btn-xs btn-block btn-flat">{% trans "Submit" %}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+    <script type="text/javascript">
+    $('#signup_status').change(function(){
+        var checked = $(this).is(':checked');
+        $.ajax({
+            url: '{% url 'autosignup:set_signup_status' %}',
+            type: 'POST',
+            data: {'status': checked?'on':'off'},
+            success: function (data) {
+                console.log('success');
+            }
+        });
+    });
+    </script>
+{% endblock %}

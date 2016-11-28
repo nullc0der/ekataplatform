@@ -20,7 +20,7 @@ from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     AdditionalStepForm, AccountAddContactForm, CommunitySignupForm
 from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail
-from autosignup.utils import collect_twilio_data
+from autosignup.utils import collect_twilio_data, AddressCompareUtil
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
 # Create your views here.
@@ -351,10 +351,27 @@ def verify_phone_code(request, id):
                 if twilio_data:
                     community_signup.useraddress_from_twilio = twilio_data
                     community_signup.step_3_done = True
-                    community_signup.failed_auto_signup = True
-                    community_signup.auto_signup_fail_reason = 'Address mismatch'
-                    community_signup.sent_to_community_staff = True
-                    community_signup.save()
+                    db_address = community_signup.useraddress_in_db.split(';')
+                    twilio_data = community_signup.useraddress_from_twilio.split(';')
+                    addresscompareutil = AddressCompareUtil(db_address, twilio_data)
+                    distance = addresscompareutil.calculate_distance()
+                    if distance:
+                        community_signup.distance_db_vs_twilio = distance[0]
+                        accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
+                        if accountprovider.allowed_distance < distance[1] * 0.000621371:
+                            community_signup.signup_status = 'approved'
+                            community_signup.save()
+                            task_send_approval_mail.delay(community_signup)
+                        else:
+                            community_signup.failed_auto_signup = True
+                            community_signup.auto_signup_fail_reason = 'Distance not within allowed range'
+                            community_signup.sent_to_community_staff = True
+                            community_signup.save()
+                    else:
+                        community_signup.failed_auto_signup = True
+                        community_signup.auto_signup_fail_reason = 'No distance data'
+                        community_signup.sent_to_community_staff = True
+                        community_signup.save()
                 else:
                     community_signup.step_3_done = True
                     community_signup.failed_auto_signup = True
@@ -432,28 +449,41 @@ def additional_step(request, id):
 @login_required
 def signups_page(request):
     signups = CommunitySignup.objects.filter(sent_to_community_staff=True).filter(status='pending')
-    accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
-    if 'signup_id' in request.GET:
-        signup_id = CommunitySignup.objects.get(id=request.GET.get('signup_id'))
-        return render(
-            request,
-            'autosignup/signupinfo.html',
-            {
-                'signup': signup_id,
-                'accountprovider': accountprovider
-            }
-        )
     if request.user.profile.grantcoin_staff or request.user.is_superuser:
+        if 'signup_id' in request.GET:
+            signup_id = CommunitySignup.objects.get(id=request.GET.get('signup_id'))
+            return render(
+                request,
+                'autosignup/signupinfo.html',
+                {
+                    'signup': signup_id,
+                }
+            )
         return render(
             request,
             'autosignup/signups.html',
             {
                 'signups': signups,
-                'accountprovider': accountprovider
                 }
             )
     else:
         return HttpResponseForbidden()
+
+
+@login_required
+def signups_settings(request):
+    accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
+    if request.method == 'POST':
+        maxdist = request.POST.get('maxdist')
+        accountprovider.allowed_distance = maxdist
+        accountprovider.save()
+    return render(
+        request,
+        'autosignup/settings.html',
+        {
+            'accountprovider': accountprovider
+        }
+    )
 
 
 @login_required

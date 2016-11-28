@@ -102,5 +102,10 @@ urlpatterns = [
         r'^revert_to_history/$',
         views.revert_to_history,
         name='revert_to_history'
+    ),
+    url(
+        r'^signups_settings/$',
+        views.signups_settings,
+        name='signups_settings'
     )
 ]

@@ -1,13 +1,20 @@
 {% load i18n %}
 {% if signups %}
 <div class="col-md-3">
-    {% for signup in signups  %}
+    <div class="signups-member-wrapper customscroll">
+        <h4>{% trans "Members" %}</h4>
+        <hr>
+        {% for signup in signups  %}
         <ul class="signups">
             <li class='signup' data-signup-id='{{ signup.id }}'>{{ signup.user.username }}</li>
         </ul>
-    {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="signup-actions">
+        <a href="{% url 'autosignup:signups_settings' %}" class="btn btn-block btn-flat btn-danger">{% trans "Settings" %}</a>
+    </div>
 </div>
-<div class="col-md-9 signup-data">
+<div class="col-md-9">
     {% for signup in signups  %}
         {% if forloop.counter == 1 %}
             {% include "autosignup/signupinfo.html" %}

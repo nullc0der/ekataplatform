@@ -103,6 +103,31 @@ def send_approval_mail(signup):
 
 
 class AddressCompareUtil(object):
-    def __init__(self, db_address, lookup_address):
-        self.db_address = db_address
-        self.lookup_address = lookup_address
+    def __init__(self, from_city, to_city):
+        self.from_city = from_city
+        self.to_city = to_city
+
+    def _extract_city(city):
+        address = city.split(';')
+        for d in address:
+            v = d.strip()
+            if v.startswith('city:'):
+                t = v.split(':')
+            if v.startswith('state:'):
+                s = v.split(':')
+        return t + ',' + s
+
+    def calculate_distance(self):
+        from_add = self._extract_city(from_city)
+        to_add = self._extract_city(to_city)
+        url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (self.from_add, self.to_add)
+        res = requests.get(url)
+        if res.status_code == 200:
+            data = json.loads(res.content)
+            if data["rows"][0]["elements"][0]["status"] == "OK":
+                distance = []
+                distance.append(data["rows"][0]["elements"][0]["distance"]["text"])
+                distance_in_m.append(data["rows"][0]["elements"][0]["distance"]["value"])
+            else:
+                distance = []
+        return distance

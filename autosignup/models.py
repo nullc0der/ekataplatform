@@ -5,12 +5,16 @@ from django.contrib.auth.models import User
 
 from simple_history.models import HistoricalRecords
 
+from groupsystem.models import BasicGroup
+
 # Create your models here.
 
 
 class AccountProvider(models.Model):
     name = models.CharField(max_length=100)
     signup_is_open = models.BooleanField(default=True)
+    basicgroup = models.OneToOneField(BasicGroup, null=True)
+    allowed_distance = models.IntegerField(default=20, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -42,6 +46,8 @@ class CommunitySignup(models.Model):
     step_3_done = models.BooleanField(default=False, editable=False)
     additional_step_done = models.BooleanField(default=False, editable=False)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
+    distance_db_vs_twilio = models.CharField(max_length=100, default='', editable=False)
+    distance_db_vs_geoip = models.CharField(max_length=100, default='', editable=False)
     failed_auto_signup = models.BooleanField(default=False, editable=False)
     sent_to_community_staff = models.BooleanField(default=False, editable=False)
     auto_signup_fail_reason = models.CharField(max_length=200, default='', editable=False)
