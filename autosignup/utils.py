@@ -126,7 +126,7 @@ class AddressCompareUtil(object):
         self.from_city = from_city
         self.to_city = to_city
 
-    def _extract_city(city):
+    def _extract_city(self, city):
         address = city.split(';')
         for d in address:
             v = d.strip()
