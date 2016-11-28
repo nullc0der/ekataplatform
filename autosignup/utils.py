@@ -139,7 +139,7 @@ class AddressCompareUtil(object):
     def calculate_distance(self):
         from_add = self._extract_city(self.from_city)
         to_add = self._extract_city(self.to_city)
-        url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (self.from_add, self.to_add)
+        url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (from_add, to_add)
         res = requests.get(url)
         if res.status_code == 200:
             data = json.loads(res.content)
