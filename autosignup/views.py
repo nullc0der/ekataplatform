@@ -154,7 +154,7 @@ def step_2_signup(request, id):
         if request.method == 'POST':
             form = EmailForm(request.POST)
             if form.is_valid():
-                code = get_random_string(length=6)
+                code = get_random_string(length=6, allowed_chars='abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ0123456789')
                 task_send_email_verfication_code.delay(
                     form.cleaned_data.get('email'),
                     code

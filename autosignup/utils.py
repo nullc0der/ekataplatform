@@ -33,12 +33,16 @@ def send_email_verification_code(email, code):
 
 def send_phone_verfication_code(phone_no, code):
     lookup = cache.get('%s_lookup' % phone_no)
-    carrier_name = lookup['carrier']['name']
-    for carrier in Carrier.objects.all():
-        if carrier.name.lower() == carrier_name.lower() and carrier.verified:
+    if lookup:
+        carrier_name = lookup['carrier']['name']
+        carrier = Carrier.objects.filter(
+            name__iexact=carrier_name.lower(),
+            verified=True
+        )
+        if carrier:
             email_subject = "Verification code"
             email_body = "Code: " + code + '\nvalid for 30 min'
-            email_splited = email.split('@')
+            email_splited = carrier[0].email.split('@')
             new_email = str(phone_number) + '@' + email_splited[1]
             msg = EmailMultiAlternatives(
                 email_subject,
@@ -57,6 +61,16 @@ def send_phone_verfication_code(phone_no, code):
                 from_=settings.EKATA_TWILIO_PHONE_NO
             )
             return message.status
+    else:
+        account_sid = settings.EKATA_TWILIO_ACCOUNT_SID
+        auth_token = settings.EKATA_TWILIO_AUTH_TOKEN
+        client = TwilioRestClient(account_sid, auth_token)
+        message = client.messages.create(
+            body='Use verification code: ' + code + '\nvalid for 30 min',
+            to=phone_no,
+            from_=settings.EKATA_TWILIO_PHONE_NO
+        )
+        return message.status
 
 
 def collect_twilio_data(phone_no):
