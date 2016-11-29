@@ -126,26 +126,36 @@ class AddressCompareUtil(object):
         self.from_city = from_city
         self.to_city = to_city
 
-    def _extract_city(self, city):
+    def _extract_city(self, city, twilio=False):
+        t = ""
+        s = ""
         for d in city:
             v = d.strip()
             if v.startswith('city:'):
                 t = v.split(':')[1]
-            if v.startswith('state:'):
-                s = v.split(':')[1]
+            if not twilio:
+                if v.startswith('state:'):
+                    s = v.split(':')[1]
+            else:
+                if v.startswith('country:'):
+                    s = v.split(':')[1]
         return t + ',' + s
 
     def calculate_distance(self):
         from_add = self._extract_city(self.from_city)
-        to_add = self._extract_city(self.to_city)
+        to_add = self._extract_city(self.to_city, twilio=True)
         url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (from_add, to_add)
         res = requests.get(url)
         if res.status_code == 200:
             data = json.loads(res.content)
             if data["rows"][0]["elements"][0]["status"] == "OK":
                 distance = []
-                distance.append(data["rows"][0]["elements"][0]["distance"]["text"])
-                distance_in_m.append(data["rows"][0]["elements"][0]["distance"]["value"])
+                distance.append(
+                    data["rows"][0]["elements"][0]["distance"]["text"]
+                )
+                distance.append(
+                    data["rows"][0]["elements"][0]["distance"]["value"]
+                )
             else:
                 distance = []
         return distance

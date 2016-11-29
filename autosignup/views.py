@@ -360,15 +360,17 @@ def verify_phone_code(request, id):
                 if twilio_data:
                     community_signup.useraddress_from_twilio = twilio_data
                     community_signup.step_3_done = True
-                    db_address = community_signup.useraddress_in_db.split(';')
-                    twilio_data = community_signup.useraddress_from_twilio.split(';')
-                    addresscompareutil = AddressCompareUtil(db_address, twilio_data)
+                    addresscompareutil = AddressCompareUtil(
+                        community_signup.useraddress_in_db.split(';'),
+                        twilio_data
+                    )
                     distance = addresscompareutil.calculate_distance()
                     if distance:
                         community_signup.distance_db_vs_twilio = distance[0]
                         accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
                         if accountprovider.allowed_distance < distance[1] * 0.000621371:
                             community_signup.signup_status = 'approved'
+                            community_signup.sent_to_community_staff = True
                             community_signup.save()
                             template_path = get_selected_template_path()
                             task_send_approval_mail.delay(community_signup, template_path)
@@ -458,10 +460,14 @@ def additional_step(request, id):
 
 @login_required
 def signups_page(request):
-    signups = CommunitySignup.objects.filter(sent_to_community_staff=True).filter(status='pending')
+    signups = CommunitySignup.objects.filter(
+        sent_to_community_staff=True
+    ).filter(status='pending')
     if request.user.profile.grantcoin_staff or request.user.is_superuser:
         if 'signup_id' in request.GET:
-            signup_id = CommunitySignup.objects.get(id=request.GET.get('signup_id'))
+            signup_id = CommunitySignup.objects.get(
+                id=request.GET.get('signup_id')
+            )
             return render(
                 request,
                 'autosignup/signupinfo.html',
