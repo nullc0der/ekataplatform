@@ -17,7 +17,7 @@ def send_email_verification_code(email, code):
     c = {
         'code': code
     }
-    email_subject = "Email verfication code "
+    email_subject = "Email Verification Code "
     email_body = "Code: " + code
     email_html = render_to_string('autosignup/email.html', c)
     msg = EmailMultiAlternatives(
