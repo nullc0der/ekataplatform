@@ -101,7 +101,7 @@ class AccountAddContact(models.Model):
         verbose_name='Name of organization',
         max_length=100
     )
-    emailaddress = models.EmailField(null=True)
+    emailaddress = models.EmailField(verbose_name="Email Address", null=True)
     proposal = models.TextField()
 
     def __unicode__(self):
