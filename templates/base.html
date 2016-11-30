@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/2.2.6/assets/css/emojione.min.css"/>
     <link rel="stylesheet" href="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?n=6">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?n=7">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/_all-skins.min.css" %}">
@@ -62,6 +62,8 @@
     <link rel="stylesheet" href="{% static "plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" %}">
     <!-- PicEdit -->
     <link rel="stylesheet" href="{% static "plugins/picedit/css/picedit.min.css" %}">
+    <!--Sweet Alert-->
+    <link rel="stylesheet" href="{% static "plugins/swal/sweetalert.css" %}">
     <link rel="manifest" href="/manifest.json">
 
     <style>
@@ -571,6 +573,8 @@
     <script src="{% static "dist/js/app.js" %}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{% static "dist/js/demo.js" %}"></script>
+    <!--Sweet alert-->
+    <script src="{% static "plugins/swal/sweetalert.min.js" %}"></script>
     <script type="text/javascript">
         var convertEmojis = function (single) {
             emojione.imageType = 'svg';
