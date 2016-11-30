@@ -1,3 +1,4 @@
+import os
 import json
 from django.http import HttpResponse, HttpResponseForbidden
 from django.core.urlresolvers import reverse
@@ -659,6 +660,11 @@ def upload_template(request):
         accountprovider=accountprovider,
         template=template
     )
+    templates = accountprovider.mailtemplate.all()
+    for template in templates:
+        template.selected = False
+        template.save()
+    approvedmailtemplate.selected = True
     approvedmailtemplate.save()
     return render(
         request,
@@ -686,4 +692,31 @@ def change_template(request):
         template = ApprovedMailTemplate.objects.get(id=template_id)
         template.selected = True
         template.save()
+    return HttpResponse(status=200)
+
+
+@login_required
+def download_template(request):
+    template_id = request.GET.get('template_id')
+    template = ApprovedMailTemplate.objects.get(id=template_id)
+    html_file_path = template.template.path
+    html_file = file(html_file_path, 'r')
+    html_file_downloadable = html_file.read()
+    response = HttpResponse(
+        html_file_downloadable,
+        content_type='text/plain'
+    )
+    response['Content-Disposition'] = 'attachment; filename="%s"' % template.filename()
+    html_file.close()
+    return response
+
+
+@require_POST
+@login_required
+def delete_template(request):
+    template_id = request.POST.get('template_id')
+    template = ApprovedMailTemplate.objects.get(id=template_id)
+    template_path = template.template.path
+    os.remove(template_path)
+    template.delete()
     return HttpResponse(status=200)

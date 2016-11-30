@@ -53,7 +53,12 @@
                                 <h6>{% trans "Select from one" %}</h6>
                                 <input type="radio" name="emailTemplate" value="default" {% if default_template %}checked{% endif %}> {% trans "Default" %}<br>
                                 {% for emailtemplate in accountprovider.mailtemplate.all %}
-                                    <input type="radio" name="emailTemplate" value="{{ emailtemplate.id }}" {% if emailtemplate.selected %}checked{% endif %}> {{ emailtemplate.filename }}<br>
+                                    <div id="uploaded-template-{{ emailtemplate.id }}">
+                                        <input type="radio" name="emailTemplate" value="{{ emailtemplate.id }}" {% if emailtemplate.selected %}checked{% endif %}> {{ emailtemplate.filename }}
+                                        <div class="pull-right">
+                                            <a href="{% url 'autosignup:download_template' %}?template_id={{ emailtemplate.id }}"><i class="btn btn-success btn-xs fa fa-download"></i></a>  <i class="delete_template btn btn-danger btn-xs fa fa-trash-o" data-template-id="{{ emailtemplate.id }}"></i>
+                                        </div>
+                                    </div>
                                 {% endfor %}
                             </form>
                         </div>
@@ -63,6 +68,9 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{ accountprovider.id }}">
                                 <input type="file" name="template" value="" id="templateupload" placeholder="Upload a new" class="file">
+                                <p class="form-text text-muted">
+                                    {% trans "File must be html document" %}
+                                </p>
                             </form>
                         </div>
                     </div>
@@ -91,6 +99,17 @@
             url: '{% url 'autosignup:change_template' %}',
             type: 'POST',
             data: {'template_id': template_id, 'id': id}
+        });
+    });
+    $(".delete_template").click(function(){
+        var self = $(this)
+        $.ajax({
+            url: '{% url 'autosignup:delete_template' %}',
+            type: 'POST',
+            data: {'template_id': self.attr('data-template-id')},
+            success: function(data) {
+                $("#uploaded-template-" + self.attr('data-template-id')).remove();
+            }
         });
     });
     </script>

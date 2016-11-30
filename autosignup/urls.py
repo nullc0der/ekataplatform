@@ -117,5 +117,15 @@ urlpatterns = [
         r'^change_template/$',
         views.change_template,
         name='change_template'
+    ),
+    url(
+        r'^download_template/$',
+        views.download_template,
+        name='download_template'
+    ),
+    url(
+        r'^delete_template/$',
+        views.delete_template,
+        name='delete_template'
     )
 ]
