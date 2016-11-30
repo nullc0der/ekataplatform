@@ -25,13 +25,16 @@
                 <div class="box-header with-border"> 
                     <h3 class="box-title">{% trans "Signups" %}</h3>
                     <div class="box-tools pull-right">
-                        Filter By:
-                        <select class="selectpicker" id="sfilter">
-                            <option value="pending">{% trans "Pending" %}</option>
-                            <option value="approved">{% trans "Approved" %}</option>
-                            <option value="declined">{% trans "Declined" %}</option>
-                        </select>
-                        <a href="{% url 'autosignup:signups_settings' %}" class="btn btn-box-tool"><i class="fa fa-wrench"></i></a>
+                        <form class="form-inline">
+                            Search: <input type="text" placeholder="Type username to search" class="form-control" id="qsignup">
+                            Filter By:
+                            <select class="selectpicker" id="sfilter">
+                                <option value="pending">{% trans "Pending" %}</option>
+                                <option value="approved">{% trans "Approved" %}</option>
+                                <option value="declined">{% trans "Declined" %}</option>
+                            </select>
+                            <a href="{% url 'autosignup:signups_settings' %}" class="btn btn-box-tool"><i class="fa fa-wrench"></i></a>
+                        </form>
                     </div><!-- /.box-tools -->
                 </div>
                 <div class="box-body" style="min-height: 500px" id="signupboxbody">
@@ -91,17 +94,20 @@
                 });
             }
         }
+        function getSignup(signup_id) {
+            $.ajax({
+                url: '{% url 'autosignup:signups' %}',
+                type: 'GET',
+                data: {'signup_id': signup_id},
+                success: function(data){
+                    $('#signup-wrapper').html(data);
+                }
+            });
+        }
         $(document).ready(function(){
             $(document).on('click', '.signup', function(){
                 var signup_id = $(this).attr('data-signup-id');
-                $.ajax({
-                    url: '{% url 'autosignup:signups' %}',
-                    type: 'GET',
-                    data: {'signup_id': signup_id},
-                    success: function(data){
-                        $('#signup-wrapper').html(data);
-                    }
-                });
+                getSignup(signup_id);
             });
             $(document).on('click', '#delete', function(){
                 var signup_id = $(this).attr('data-signup-id');
@@ -114,8 +120,10 @@
                             message: { text: 'Signup deleted' },
                             type: 'success'
                         }).show();
+                        location.reload();
                     }
                 });
+                return false;
             });
             $(document).on('click', '#rapproval', function(){
                 var signup_id = $(this).attr('data-signup-id');
@@ -158,14 +166,7 @@
                     type: 'POST',
                     data: frm.serialize(),
                     success: function (signup_id) {
-                        $.ajax({
-                            url: '{% url 'autosignup:signups' %}',
-                            type: 'GET',
-                            data: {'signup_id': signup_id},
-                            success: function(data){
-                                $('#signup-wrapper').html(data);
-                            }
-                        });
+                        getSignup(signup_id);
                     },
                     error: function(data) {
                         frm.html(data.responseText);
@@ -173,6 +174,11 @@
                 });
                 return false;
             });
+            $(document).on('click', '#canceledit', function(){
+                var signup_id = $(this).attr('data-signup-id');
+                getSignup(signup_id);
+                return false;
+            })
         });
         $('#signup_status').change(function(){
             var checked = $(this).is(':checked');
@@ -180,14 +186,18 @@
                 url: '{% url 'autosignup:set_signup_status' %}',
                 type: 'POST',
                 data: {'status': checked?'on':'off'},
-                success: function (data) {
-                    console.log('success');
-                }
             });
         });
         $("#sfilter").on('change', function() {
             var value = $(this).val();
             $("#signupboxbody").load('{% url 'autosignup:filter_signup' %}?sfilter=' + value);
         })
+        $("#qsignup").on('keyup', function(){
+            var username = $(this).val();
+            var sfilter = $('#sfilter').val();
+            if (username.length > 1) {
+                $("#signupboxbody").load('{% url 'autosignup:search_signup' %}?sfilter=' + sfilter + '&username=' + username);
+            }
+        });
     </script>
 {% endblock %}

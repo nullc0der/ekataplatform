@@ -14,7 +14,7 @@
         <a href="{% url 'autosignup:signups_settings' %}" class="btn btn-block btn-flat btn-danger">{% trans "Settings" %}</a>
     </div>
 </div>
-<div class="col-md-9">
+<div class="col-md-9" id="signup-wrapper">
     {% for signup in signups  %}
         {% if forloop.counter == 1 %}
             {% include "autosignup/signupinfo.html" %}

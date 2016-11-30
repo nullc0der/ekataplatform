@@ -127,5 +127,10 @@ urlpatterns = [
         r'^delete_template/$',
         views.delete_template,
         name='delete_template'
+    ),
+    url(
+        r'^search_signup/$',
+        views.search_signup,
+        name='search_signup'
     )
 ]

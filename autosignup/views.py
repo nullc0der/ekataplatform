@@ -155,7 +155,7 @@ def step_2_signup(request, id):
         if request.method == 'POST':
             form = EmailForm(request.POST)
             if form.is_valid():
-                code = get_random_string(length=6, allowed_chars='abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ0123456789')
+                code = get_random_string(length=6, allowed_chars='abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ123456789')
                 task_send_email_verfication_code.delay(
                     form.cleaned_data.get('email'),
                     code
@@ -601,6 +601,22 @@ def filter_signup(request):
     sfilter = request.GET.get('sfilter', 'pending')
     signups = CommunitySignup.objects.filter(sent_to_community_staff=True)
     signups = signups.filter(status=sfilter)
+    return render(
+        request,
+        'autosignup/sfilter.html',
+        {'signups': signups}
+    )
+
+
+@login_required
+def search_signup(request):
+    sfilter = request.GET.get('sfilter')
+    username = request.GET.get('username')
+    signups = CommunitySignup.objects.filter(
+        sent_to_community_staff=True,
+        status=sfilter,
+        user__username__icontains=username
+    )
     return render(
         request,
         'autosignup/sfilter.html',
