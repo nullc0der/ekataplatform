@@ -64,8 +64,6 @@ class CommunitySignup(models.Model):
     failed_auto_signup = models.BooleanField(default=False, editable=False)
     sent_to_community_staff = models.BooleanField(default=False, editable=False)
     auto_signup_fail_reason = models.CharField(max_length=200, default='', editable=False)
-    email_in_globaldb = models.BooleanField(default=False, editable=False)
-    phone_in_globaldb = models.BooleanField(default=False, editable=False)
     data_collect_done = models.BooleanField(default=False, editable=False)
     approval_mail_sent = models.BooleanField(default=False, editable=False)
     history = HistoricalRecords()
@@ -90,10 +88,12 @@ class PhoneVerification(models.Model):
 
 class GlobalEmail(models.Model):
     email = models.EmailField(null=True)
+    signup = models.ManyToManyField(CommunitySignup, related_name='globalemail')
 
 
 class GlobalPhone(models.Model):
     phone = models.CharField(max_length=100, default='')
+    signup = models.ManyToManyField(CommunitySignup, related_name='globalphone')
 
 
 class AccountAddContact(models.Model):

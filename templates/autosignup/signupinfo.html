@@ -7,19 +7,41 @@
     <h4>Fullname: {{ signup.user.first_name }} {{ signup.user.last_name }}</h4>
     <hr>
     <h4>Email: {{ signup.useremail }} <span class="label label-success">{% trans "Validated" %}</span></h4>
-    {% if signup.email_in_globaldb %}
-            <p>
-                <span class="fa fa-exclamation-triangle text-red"></span>
-                {% trans "This email id was used for a previous signup" %}
-            </p>
+    {% if globalemails %}
+    <p>
+        <span class="fa fa-exclamation-triangle text-red"></span>
+        {% trans "This email id was used for these previous signup " %}
+        <ul>
+            {% for sign in globalemails %}
+                <li class="signup" data-signup-id={{ sign.id }}>
+                    {% if sign.user.get_full_name %}
+                        {{ sign.user.get_full_name }}
+                    {% else %}
+                        {{ sign.user.username }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </p>
     {% endif %}
     <hr>
     <h4>Phone No: {{ signup.userphone }} <span class="label label-info">{% trans "Mobile" %}</span> <span class="label label-success">{% trans "Validated" %}</span></h4>
-    {% if signup.phone_in_globaldb %}
-            <p>
-                <span class="fa fa-exclamation-triangle text-red"></span>
-                {% trans "This mobile number was used for a previous signup" %}
-            </p>
+    {% if globalphones %}
+    <p>
+        <span class="fa fa-exclamation-triangle text-red"></span>
+        {% trans "This phone number was used for these previous signup " %}
+        <ul>
+            {% for sign in globalphones %}
+                <li class="signup" data-signup-id={{ sign.id }}>
+                    {% if sign.user.get_full_name %}
+                        {{ sign.user.get_full_name }}
+                    {% else %}
+                        {{ sign.user.username }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </p>
     {% endif %}
     <hr>
     <h4>Profile link: <a href="{% url 'publicusers:user' signup.user.id %}">{{ signup.user.username }}</a></h4>

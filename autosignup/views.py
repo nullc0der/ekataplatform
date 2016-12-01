@@ -204,12 +204,15 @@ def verify_email_code(request, id):
             form = EmailVerficationForm(community_signup, request, request.POST)
             if form.is_valid():
                 community_signup.step_2_done = True
-                emailaddress, created = EmailAddress.objects.get_or_create(
-                    user=request.user,
-                    email=community_signup.useremail,
-                )
-                emailaddress.verified = True
-                emailaddress.save()
+                try:
+                    emailaddress, created = EmailAddress.objects.get_or_create(
+                        user=request.user,
+                        email=community_signup.useremail,
+                    )
+                    emailaddress.verified = True
+                    emailaddress.save()
+                except:
+                    pass
                 emailverfication = EmailVerfication.objects.get(
                     user=request.user,
                     community_signup=community_signup,
@@ -219,11 +222,12 @@ def verify_email_code(request, id):
                     globalemail = GlobalEmail.objects.get(
                         email=emailverfication.community_signup.useremail
                     )
-                    community_signup.email_in_globaldb = True
+                    globalemail.signup.add(community_signup)
                 except ObjectDoesNotExist:
-                    GlobalEmail.objects.get_or_create(
+                    globalemail, created = GlobalEmail.objects.get_or_create(
                         email=emailverfication.community_signup.useremail
                     )
+                    globalemail.signup.add(community_signup)
                 emailverfication.delete()
                 community_signup.save()
                 data = {
@@ -350,12 +354,12 @@ def verify_phone_code(request, id):
                     globalphone = GlobalPhone.objects.get(
                         phone=phoneverfication.community_signup.userphone
                     )
-                    community_signup.phone_in_globaldb = True
-                    community_signup.save()
+                    globalphone.signup.add(community_signup)
                 except ObjectDoesNotExist:
-                    GlobalPhone.objects.get_or_create(
+                    globalphone, created = GlobalPhone.objects.get_or_create(
                         phone=phoneverfication.community_signup.userphone
                     )
+                    globalphone.signup.add(community_signup)
                 phoneverfication.delete()
                 twilio_data = collect_twilio_data(community_signup.userphone)
                 if twilio_data:
@@ -464,25 +468,58 @@ def signups_page(request):
     signups = CommunitySignup.objects.filter(
         sent_to_community_staff=True
     ).filter(status='pending')
+    signup = signups[0]
     if request.user.profile.grantcoin_staff or request.user.is_superuser:
         if 'signup_id' in request.GET:
-            signup_id = CommunitySignup.objects.get(
+            signup = CommunitySignup.objects.get(
                 id=request.GET.get('signup_id')
             )
+            if signup.globalphone.all():
+                globalphones = GlobalPhone.objects.filter(phone=signup.userphone)
+                phone_used_for_signups = []
+                for globalphone in globalphones:
+                    if len(globalphone.signup.all()) >= 2:
+                        for sign in globalphone.signup.all():
+                            phone_used_for_signups.append(sign)
+            if signup.globalemail.all():
+                globalemails = GlobalEmail.objects.filter(email=signup.useremail)
+                email_used_for_signups = []
+                for globalemail in globalemails:
+                    if len(globalemail.signup.all()) >= 2:
+                        for sign in globalemail.signup.all():
+                            email_used_for_signups.append(sign)
             return render(
                 request,
                 'autosignup/signupinfo.html',
                 {
-                    'signup': signup_id,
+                    'signup': signup,
+                    'globalemails': email_used_for_signups,
+                    'globalphones': phone_used_for_signups
                 }
             )
+        if signup.globalphone.all():
+            globalphones = GlobalPhone.objects.filter(phone=signup.userphone)
+            phone_used_for_signups = []
+            for globalphone in globalphones:
+                if len(globalphone.signup.all()) >= 2:
+                    for sign in globalphone.signup.all():
+                        phone_used_for_signups.append(sign)
+        if signup.globalemail.all():
+            globalemails = GlobalEmail.objects.filter(email=signup.useremail)
+            email_used_for_signups = []
+            for globalemail in globalemails:
+                if len(globalemail.signup.all()) >= 2:
+                    for sign in globalemail.signup.all():
+                        email_used_for_signups.append(sign)
         return render(
             request,
             'autosignup/signups.html',
             {
                 'signups': signups,
-                }
-            )
+                'globalemails': email_used_for_signups,
+                'globalphones': phone_used_for_signups
+            }
+        )
     else:
         return HttpResponseForbidden()
 
