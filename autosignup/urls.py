@@ -132,5 +132,10 @@ urlpatterns = [
         r'^search_signup/$',
         views.search_signup,
         name='search_signup'
+    ),
+    url(
+        r'^no_verification_code/(?P<id>\d+)/$',
+        views.step_3_no_code,
+        name='step_3_no_code'
     )
 ]

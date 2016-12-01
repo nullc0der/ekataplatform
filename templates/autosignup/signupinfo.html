@@ -25,7 +25,7 @@
     </p>
     {% endif %}
     <hr>
-    <h4>Phone No: {{ signup.userphone }} <span class="label label-info">{% trans "Mobile" %}</span> <span class="label label-success">{% trans "Validated" %}</span></h4>
+    <h4>Phone No: {{ signup.userphone }} <span class="label label-info">{% trans "Mobile" %}</span> {% if signup.not_verifiable_number %}<span class="label label-warning">{% trans "Not a Verifiable No" %}</span>{% else %}<span class="label label-success">{% trans "Validated" %}</span>{% endif %}</h4>
     {% if globalphones %}
     <p>
         <span class="fa fa-exclamation-triangle text-red"></span>

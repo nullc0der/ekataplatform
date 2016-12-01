@@ -26,6 +26,9 @@
                     {% trans "Didn't get code yet?" %}<a href="{% url 'autosignup:step_3_signup' community_signup.id %}" class="signuplink"> {% trans "try again" %}</a>
                 </p>
             </form>
+            <p>
+                {% trans "I am not getting a verification code for my number" %} <a href="javascript:void(0)" onclick='skipPhoneVerification("{% url 'autosignup:step_3_no_code' community_signup.id %}")'>{% trans "skip" %}</a>
+            </p>
             <div class="text-center" id="gears">
                 <p>
                     {% trans "This needs some time don't close/refresh browser" %}
@@ -35,3 +38,22 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+function skipPhoneVerification(link) {
+    $("#gears").show();
+    $("#signupfooter").hide();
+    $.ajax({
+        url: link,
+        type: 'GET',
+        success: function(data) {
+            if (data.action === 'next') {
+                $("#signupbody").load(data.url, function(){
+                    $("#gears").hide();
+                    $("#signupfooter").show();
+                    $("#id_userimage").fileinput({'showUpload':false,});
+                });
+            }
+        }
+    });
+}
+</script>

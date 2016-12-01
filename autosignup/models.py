@@ -66,6 +66,7 @@ class CommunitySignup(models.Model):
     auto_signup_fail_reason = models.CharField(max_length=200, default='', editable=False)
     data_collect_done = models.BooleanField(default=False, editable=False)
     approval_mail_sent = models.BooleanField(default=False, editable=False)
+    not_verifiable_number = models.BooleanField(default=False, editable=False)
     history = HistoricalRecords()
 
     def __unicode__(self):

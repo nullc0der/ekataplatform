@@ -426,6 +426,38 @@ def verify_phone_code(request, id):
 
 
 @login_required
+def step_3_no_code(request, id):
+    community_signup = CommunitySignup.objects.get(id=id)
+    try:
+        globalphone = GlobalPhone.objects.get(
+            phone=community_signup.userphone
+        )
+        globalphone.signup.add(community_signup)
+    except ObjectDoesNotExist:
+        globalphone, created = GlobalPhone.objects.get_or_create(
+            phone=community_signup.userphone
+        )
+        globalphone.signup.add(community_signup)
+    community_signup.not_verifiable_number = True
+    community_signup.step_3_done = True
+    community_signup.failed_auto_signup = True
+    community_signup.auto_signup_fail_reason =\
+        "User did'nt get verification code"
+    community_signup.sent_to_community_staff = True
+    community_signup.save()
+    data = {
+        'action': 'next',
+        'url': reverse(
+            'autosignup:additional_step',
+            args=[community_signup.id, ]
+        )
+    }
+    json_data = json.dumps(data)
+    content_type = 'application/json'
+    return HttpResponse(json_data, content_type)
+
+
+@login_required
 def additional_step(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
     if request.method == 'POST':
