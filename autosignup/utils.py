@@ -128,7 +128,7 @@ class AddressCompareUtil(object):
 
     def _extract_city(self, city, twilio=False):
         t = ""
-        s = ""
+        """
         for d in city:
             v = d.strip()
             if v.startswith('city:'):
@@ -139,7 +139,12 @@ class AddressCompareUtil(object):
             else:
                 if v.startswith('country:'):
                     s = v.split(':')[1]
-        return t + ',' + s
+        """
+        for d in city:
+            v = d.strip()
+            if v.startswith('zip_code:'):
+                t = v.split(':')[1]
+        return t
 
     def calculate_distance(self):
         from_add = self._extract_city(self.from_city)
