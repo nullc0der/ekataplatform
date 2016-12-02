@@ -147,5 +147,10 @@ urlpatterns = [
         r'^send_member_invitation/$',
         views.send_member_invitation,
         name='send_member_invitation'
+    ),
+    url(
+        r'^download_member_csv/$',
+        views.download_member_csv,
+        name='download_member_csv'
     )
 ]

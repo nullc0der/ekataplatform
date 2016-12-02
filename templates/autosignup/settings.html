@@ -129,6 +129,15 @@
                             </table>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <h3>{% trans "Download Member Data" %}</h3>
+                                <hr>
+                            </div>
+                            <button class="btn btn-success btn-block" id="downcsv">{% trans "Download CSV" %}</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -172,6 +181,20 @@
         'pageNumber': 1,
         'pageSize': 10,
         'pageList': [5, 10, 15, 20, 25],
+    });
+    $('#downcsv').click(function(){
+        $.ajax({
+            url: '{% url 'autosignup:download_member_csv' %}',
+            type: 'GET',
+            data: {'id': {{ accountprovider.id }} },
+            success: function(data){
+                var blob=new Blob([data]);
+                var link=document.createElement('a');
+                link.href=window.URL.createObjectURL(blob);
+                link.download="membercsv.csv";
+                link.click();
+            }
+        });
     });
     </script>
 {% endblock %}

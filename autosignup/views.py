@@ -838,3 +838,66 @@ def send_member_invitation(request):
     invitation.sent = True
     invitation.save()
     return HttpResponse(status=200)
+
+
+def get_date(date_obj):
+    return str(date_obj.year) + '-' + str(date_obj.month) + '-' + str(date_obj.day)
+
+
+@login_required
+def download_member_csv(request):
+    accountprovider = AccountProvider.objects.get(id=request.GET.get('id'))
+    community_signups = CommunitySignup.objects.filter(community=accountprovider.name)
+    temp_csvs = []
+    for community_signup in community_signups:
+        temp_csv = []
+        if community_signup.signup_date:
+            temp_csv.append(get_date(community_signup.signup_date))
+        else:
+            temp_csv.append('')
+        if community_signup.verified_date:
+            temp_csv.append(get_date(community_signup.verified_date))
+        else:
+            temp_csv.append('')
+        if community_signup.user.get_full_name:
+            temp_csv.append(community_signup.user.get_full_name())
+        else:
+            temp_csv.append('')
+        if community_signup.useraddress_in_db:
+            temp_csv.append(community_signup.useraddress_in_db)
+        else:
+            temp_csv.append('')
+        if community_signup.useraddress_from_twilio:
+            temp_csv.append(community_signup.useraddress_from_twilio)
+        else:
+            temp_csv.append('')
+        if community_signup.useraddress_from_twilio:
+            temp_csv.append(community_signup.useraddress_from_geoip)
+        else:
+            temp_csv.append('')
+        if community_signup.referred_by:
+            temp_csv.append(community_signup.referred_by)
+        else:
+            temp_csv.append('')
+        if community_signup.referral_code:
+            temp_csv.append(community_signup.referral_code)
+        else:
+            temp_csv.append('')
+        if community_signup.wallet_address:
+            temp_csv.append(community_signup.wallet_address)
+        else:
+            temp_csv.append('')
+        if community_signup.status:
+            temp_csv.append(community_signup.status)
+        else:
+            temp_csv.append('')
+        csv_row = ','.join(temp_csv)
+        temp_csvs.append(csv_row)
+    csv_f = '\n'.join(temp_csvs)
+    print(csv_f)
+    response = HttpResponse(
+        csv_f,
+        content_type='text/plain'
+    )
+    response['Content-Disposition'] = 'attachment; filename="membercsv.csv"'
+    return response
