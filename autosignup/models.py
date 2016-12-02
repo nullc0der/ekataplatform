@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from simple_history.models import HistoricalRecords
 
 from groupsystem.models import BasicGroup
+from invitationsystem.models import Invitation
 
 # Create your models here.
 
@@ -32,6 +33,15 @@ class ApprovedMailTemplate(models.Model):
     def filename(self):
         return os.path.basename(self.template.name)
 
+
+class AccountProviderCSV(models.Model):
+    accountprovider = models.ForeignKey(AccountProvider, related_name='membercsvs')
+    csv = models.FileField(upload_to='membercsv', null=True)
+    status = models.CharField(max_length=100, default='processing')
+    processed_to = models.CharField(max_length=100, default='')
+
+    def filename(self):
+        return os.path.basename(self.csv.name)
 
 class CommunitySignup(models.Model):
     COMMUNITY_CHOICES = (
@@ -67,6 +77,13 @@ class CommunitySignup(models.Model):
     data_collect_done = models.BooleanField(default=False, editable=False)
     approval_mail_sent = models.BooleanField(default=False, editable=False)
     not_verifiable_number = models.BooleanField(default=False, editable=False)
+    signup_date = models.DateTimeField(auto_now_add=True, null=True, editable=False)
+    verified_date = models.DateTimeField(null=True, editable=False)
+    referred_by = models.CharField(max_length=100, default='')
+    referral_code = models.CharField(max_length=100, default='')
+    wallet_address = models.CharField(max_length=100, default='')
+    is_on_distribution = models.BooleanField(default=False)
+    invitation = models.OneToOneField(Invitation, null=True, editable=False)
     history = HistoricalRecords()
 
     def __unicode__(self):

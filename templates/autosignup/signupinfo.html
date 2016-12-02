@@ -80,7 +80,31 @@
     <hr>
     {% if signup.auto_signup_fail_reason %}
         <h4>Reason for failed autosignup: {{ signup.auto_signup_fail_reason }}</h4>
+        <hr>
     {% endif %}
+    <h4>
+        Signup Date: {{ signup.signup_date|date:"Y-m-d" }}
+    </h4>
+    <hr>
+    <h4>
+        Verified Date: {{ signup.verified_date|date:"Y-m-d" }}
+    </h4>
+    <hr>
+    <h4>
+        Referred By: {{ signup.referred_by }}
+    </h4>
+    <hr>
+    <h4>
+        Referral Code: {{ signup.referral_code }}
+    </h4>
+    <hr>
+    <h4>
+        Wallet Address: {{ signup.wallet_address }}
+    </h4>
+    <hr>
+    <h4>
+        On Distribution: {{ signup.is_on_distribution }}
+    </h4>
 </div>
 <div class="signup-actions">
     <div class="pull-right">

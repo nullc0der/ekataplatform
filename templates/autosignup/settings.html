@@ -77,6 +77,61 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h4 class="box-title">{% trans "Upload and Download CSV" %}</h4>
+                </div>
+                <div class="box-body" style="min-height: 500px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="{% url 'autosignup:upload_member_csv' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ accountprovider.id }}">
+                                <input type="file" name="csv" value="" placeholder="Upload a new csv" class="file">
+                                <input type="checkbox" name="fetch_twilio" value=""> {% trans "Fetch Twilio Data" %}
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <h3>{% trans "Uploaded CSVs" %}</h3>
+                                <hr>
+                            </div>
+                            <table class="table" id="csvtable">
+                                <thead>
+                                    <tr>
+                                        <th data-visible="false">Id</th>
+                                        <th data-sortable="true">File</th>
+                                        <th data-sortable="true">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   {% for membercsv in accountprovider.membercsvs.all %}
+                                       <tr>
+                                            <td>{{ membercsv.id }}</td>
+                                            <td>{{ membercsv.filename }}</td>
+                                            <td>
+                                                {% if membercsv.status == 'all' %}
+                                                    Processed
+                                                {% else %}
+                                                    {% if membercsv.status == 'partially processed' %}
+                                                        {{ membercsv.status }} to row {{ membercsv.processed_to }}
+                                                    {% else %}
+                                                        {{ membercsv.status }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                       </tr>
+                                   {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block extrascripts %}
@@ -111,6 +166,12 @@
                 $("#uploaded-template-" + self.attr('data-template-id')).remove();
             }
         });
+    });
+    $("#csvtable").bootstrapTable({
+        'pagination': true,
+        'pageNumber': 1,
+        'pageSize': 10,
+        'pageList': [5, 10, 15, 20, 25],
     });
     </script>
 {% endblock %}

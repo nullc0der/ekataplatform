@@ -1,16 +1,24 @@
 import json
 import requests
 from iso3166 import countries
+import csv
 
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.core.cache import cache
+from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
+from django.utils.dateparse import parse_date
+from django.core.exceptions import ObjectDoesNotExist
 
 from twilio.rest import TwilioRestClient
 from twilio.rest.exceptions import TwilioRestException
 
 from emailtosms.models import Carrier
+from invitationsystem.models import Invitation
+from profilesystem.models import UserAddress
+from autosignup.models import CommunitySignup, GlobalEmail, GlobalPhone
 
 
 def send_email_verification_code(email, code):
@@ -164,3 +172,114 @@ class AddressCompareUtil(object):
             else:
                 distance = []
         return distance
+
+
+def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
+    allowed_status = ['pending', 'approved', 'declined']
+    if accountprovidercsv.csv:
+        csv_file = open(accountprovidercsv.csv.path, 'r')
+        membercsvs = csv.reader(csv_file)
+        for membercsv in membercsvs:
+            c = 0
+            twilio_data = ''
+            user = User.objects.create_user(
+                username=get_random_string(
+                    allowed_chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+                ),
+                password=get_random_string(
+                    length=5,
+                    allowed_chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+                ),
+                email=membercsv[10] if membercsv[10] else None,
+                first_name=membercsv[2] if membercsv[2] else None,
+                last_name=membercsv[3] if membercsv[3] else None,
+            )
+            if user:
+                useraddress, created = UserAddress.objects.get_or_create(
+                    user=user,
+                    house_number=membercsv[4],
+                    street=membercsv[5],
+                    zip_code=membercsv[6],
+                    city=membercsv[7],
+                    state=membercsv[8],
+                    country=membercsv[9]
+                )
+            if membercsv[10]:
+                if membercsv[17].lower() == 'true':
+                    invitation, created = Invitation.objects.get_or_create(
+                        email=membercsv[10]
+                    )
+                else:
+                    invitation, created = Invitation.objects.get_or_create(
+                        email=membercsv[10],
+                        approved=True
+                    )
+            if fetch_twilio:
+                if membercsv[11]:
+                    twilio_data = collect_twilio_data(membercsv[11])
+            if membercsv[17].lower() == 'true':
+                signup, created = CommunitySignup.objects.get_or_create(
+                    user=user,
+                    community='grantcoin'
+                )
+                if user.address:
+                    useraddress_in_db = 'house_number: ' + user.address.house_number + '; \n street: ' + user.address.street +\
+                        '; \n city: ' + user.address.city + '; \n state: ' + user.address.state + '; \n country: ' + user.address.country
+                    signup.useraddress_in_db = useraddress_in_db
+                if membercsv[10]:
+                    signup.useremail = membercsv[10]
+                if membercsv[11]:
+                    signup.userphone = membercsv[11]
+                if twilio_data:
+                    signup.useraddress_from_twilio = twilio_data
+                signup.step_1_done = True
+                signup.step_2_done = True
+                signup.step_3_done = True
+                signup.additional_step_done = True
+                if membercsv[16]:
+                    if membercsv[16].lower() in allowed_status:
+                        signup.status = membercsv[16].lower()
+                signup.sent_to_community_staff = True
+                if membercsv[0]:
+                    signup.signup_date = parse_date(membercsv[0])
+                if membercsv[1]:
+                    signup.verified_date = parse_date(membercsv[1])
+                if membercsv[13]:
+                    signup.referred_by = membercsv[13]
+                if membercsv[14]:
+                    signup.referral_code = membercsv[14]
+                if membercsv[15]:
+                    signup.wallet_address = membercsv[15]
+                if membercsv[16]:
+                    signup.is_on_distribution = membercsv[16]
+                if invitation:
+                    signup.invitation = invitation
+                signup.save()
+                try:
+                    globalphone = GlobalPhone.objects.get(
+                        phone=signup.userphone
+                    )
+                    globalphone.signup.add(signup)
+                except ObjectDoesNotExist:
+                    globalphone, created = GlobalPhone.objects.get_or_create(
+                        phone=signup.userphone
+                    )
+                    globalphone.signup.add(signup)
+                try:
+                    globalemail = GlobalEmail.objects.get(
+                        email=signup.useremail
+                    )
+                    globalemail.signup.add(signup)
+                except ObjectDoesNotExist:
+                    globalemail, created = GlobalEmail.objects.get_or_create(
+                        email=emailverfication.community_signup.useremail
+                    )
+                    globalemail.signup.add(community_signup)
+            c += 1
+            accountprovidercsv.status = 'partially processed'
+            accountprovidercsv.processed_to = c
+            accountprovidercsv.save()
+        accountprovidercsv.status = 'processed'
+        accountprovidercsv.processed_to = 'all'
+        csv_file.close()
+        accountprovidercsv.save()

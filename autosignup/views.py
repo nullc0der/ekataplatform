@@ -1,6 +1,6 @@
 import os
 import json
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.utils.crypto import get_random_string
@@ -11,17 +11,19 @@ from django.contrib.gis.geoip2 import GeoIP2
 from django.utils.timezone import now
 from django.core.cache import cache
 from django.views.decorators.http import require_POST
+from django.utils.timezone import now
 
 from allauth.account.models import EmailAddress
 
 from autosignup.models import CommunitySignup, EmailVerfication,\
     PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail,\
-    ApprovedMailTemplate
+    ApprovedMailTemplate, AccountProviderCSV
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
     AdditionalStepForm, AccountAddContactForm, CommunitySignupForm
 from autosignup.tasks import task_send_email_verfication_code,\
-    task_send_phone_verfication_code, task_send_approval_mail
+    task_send_phone_verfication_code, task_send_approval_mail,\
+    task_add_member_from_csv
 from autosignup.utils import collect_twilio_data, AddressCompareUtil
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
@@ -376,6 +378,7 @@ def verify_phone_code(request, id):
                         if accountprovider.allowed_distance < distance[1] * 0.000621371:
                             community_signup.signup_status = 'approved'
                             community_signup.sent_to_community_staff = True
+                            community_signup.verified_date = now()
                             community_signup.save()
                             template_path = get_selected_template_path()
                             task_send_approval_mail.delay(community_signup, template_path)
@@ -633,10 +636,12 @@ def edit_signup(request, id):
     if request.method == 'POST':
         form = CommunitySignupForm(request.POST, instance=community_signup)
         if form.is_valid:
-            community_signup = form.save()
+            community_signup = form.save(commit=False)
             if community_signup.status == 'approved' and not community_signup.approval_mail_sent:
+                    community_signup.verified_date = now()
                     template_path = get_selected_template_path()
                     task_send_approval_mail.delay(community_signup, template_path)
+            community_signup.save()
             return HttpResponse(community_signup.id)
         else:
             return render(
@@ -751,13 +756,7 @@ def upload_template(request):
         template.save()
     approvedmailtemplate.selected = True
     approvedmailtemplate.save()
-    return render(
-        request,
-        'autosignup/settings.html',
-        {
-            'accountprovider': accountprovider
-        }
-    )
+    return HttpResponseRedirect(reverse('autosignup:signups_settings'))
 
 
 @require_POST
@@ -805,3 +804,21 @@ def delete_template(request):
     os.remove(template_path)
     template.delete()
     return HttpResponse(status=200)
+
+
+@require_POST
+@login_required
+def upload_member_csv(request):
+    accountprovider = AccountProvider.objects.get(id=request.POST.get('id'))
+    csv = request.FILES.get('csv')
+    fetch_twilio = request.POST.get('fetch_twilio')
+    accountprovidercsv = AccountProviderCSV(
+        accountprovider=accountprovider,
+        csv=csv
+    )
+    accountprovidercsv.save()
+    if fetch_twilio:
+        task_add_member_from_csv.delay(accountprovidercsv, fetch_twilio=True)
+    else:
+        task_add_member_from_csv.delay(accountprovidercsv)
+    return HttpResponseRedirect(reverse('autosignup:signups_settings'))

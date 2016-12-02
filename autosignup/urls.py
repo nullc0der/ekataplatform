@@ -137,5 +137,10 @@ urlpatterns = [
         r'^no_verification_code/(?P<id>\d+)/$',
         views.step_3_no_code,
         name='step_3_no_code'
+    ),
+    url(
+        r'^upload_member_csv/$',
+        views.upload_member_csv,
+        name='upload_member_csv'
     )
 ]
