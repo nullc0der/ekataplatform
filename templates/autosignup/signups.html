@@ -153,6 +153,20 @@
                     }
                 });
             });
+            $(document).on('click', '#sinvitation', function(){
+                var invitation_id = $(this).attr('data-invitation-id');
+                $.ajax({
+                    url: '{% url 'autosignup:send_member_invitation' %}',
+                    type: 'POST',
+                    data: {'invitation_id': invitation_id},
+                    success: function(data){
+                        $('.top-right').notify({
+                            message: { text: 'Invitation Resend Done' },
+                            type: 'success'
+                        }).show();
+                    }
+                });
+            });
             $(document).on('click', '#edit', function(){
                 var signup_id = $(this).attr('data-signup-id');
                 $.ajax({

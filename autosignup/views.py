@@ -27,6 +27,8 @@ from autosignup.tasks import task_send_email_verfication_code,\
 from autosignup.utils import collect_twilio_data, AddressCompareUtil
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
+from invitationsystem.models import Invitation
+from invitationsystem.tasks import send_invitation
 # Create your views here.
 
 
@@ -822,3 +824,17 @@ def upload_member_csv(request):
     else:
         task_add_member_from_csv.delay(accountprovidercsv)
     return HttpResponseRedirect(reverse('autosignup:signups_settings'))
+
+
+@require_POST
+@login_required
+def send_member_invitation(request):
+    invitation = Invitation.objects.get(id=request.POST.get('invitation_id'))
+    send_invitation.delay(
+        invitation.email,
+        invitation.invitation_id
+    )
+    invitation.approved = True
+    invitation.sent = True
+    invitation.save()
+    return HttpResponse(status=200)

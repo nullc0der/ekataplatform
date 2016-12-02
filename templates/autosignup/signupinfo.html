@@ -114,5 +114,8 @@
         {% ifequal signup.status 'approved'  %}
             <button class="btn btn-flat btn-info" id='rapproval' data-signup-id='{{ signup.id }}'>{% trans "Resend Approval Email" %}</button>
         {% endifequal %}
+        {% if signup.invitation %}
+            <button class="btn btn-flat btn-info" id='sinvitation' data-invitation-id={{ signup.invitation.id }}>{% trans "Send Invitation Email" %}</button>
+        {% endif %}
     </div>
 </div>

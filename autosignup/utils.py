@@ -283,3 +283,4 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
         accountprovidercsv.processed_to = 'all'
         csv_file.close()
         accountprovidercsv.save()
+    return c
