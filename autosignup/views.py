@@ -449,7 +449,7 @@ def step_3_no_code(request, id):
     community_signup.step_3_done = True
     community_signup.failed_auto_signup = True
     community_signup.auto_signup_fail_reason =\
-        "User did'nt get verification code"
+        "Mobile number could not be verified."
     community_signup.sent_to_community_staff = True
     community_signup.save()
     data = {
