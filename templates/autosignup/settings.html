@@ -135,6 +135,8 @@
                                 <h3>{% trans "Download Member Data" %}</h3>
                                 <hr>
                             </div>
+                            <label style="margin-right: 30px;">{% trans "Select range" %}</label>
+                            <input type="text" id='memberslider'>
                             <button class="btn btn-success btn-block" id="downcsv">{% trans "Download CSV" %}</button>
                         </div>
                     </div>
@@ -145,6 +147,12 @@
 {% endblock %}
 {% block extrascripts %}
     <script type="text/javascript">
+    var memberSlider = $("#memberslider").bootstrapSlider({
+        max: 200,
+        min: 0,
+        value: 0,
+        range: true
+    });
     $('#signup_status').change(function(){
         var checked = $(this).is(':checked');
         $.ajax({
@@ -186,7 +194,7 @@
         $.ajax({
             url: '{% url 'autosignup:download_member_csv' %}',
             type: 'GET',
-            data: {'id': {{ accountprovider.id }} },
+            data: {'id': {{ accountprovider.id }}, 'range': $("#memberslider").val() },
             success: function(data){
                 var blob=new Blob([data]);
                 var link=document.createElement('a');

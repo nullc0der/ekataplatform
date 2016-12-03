@@ -860,7 +860,15 @@ def parse_address(address):
 @login_required
 def download_member_csv(request):
     accountprovider = AccountProvider.objects.get(id=request.GET.get('id'))
+    ranges = request.GET.get('range').split(',')
     community_signups = CommunitySignup.objects.filter(community=accountprovider.name)
+    signs = []
+    for i in range(int(ranges[0]), int(ranges[1])):
+        try:
+            sign = community_signups.get(id=i)
+            signs.append(sign)
+        except ObjectDoesNotExist:
+            pass
     filename = '/tmp/%s.csv' % get_random_string()
     f = open(filename, 'w+')
     fieldnames = [
@@ -877,7 +885,7 @@ def download_member_csv(request):
     ]
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
-    for community_signup in community_signups:
+    for community_signup in signs:
         row = {}
         if community_signup.signup_date:
             row['signup_date'] = get_date(community_signup.signup_date)
