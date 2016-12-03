@@ -506,7 +506,6 @@ def signups_page(request):
     signups = CommunitySignup.objects.filter(
         sent_to_community_staff=True
     ).filter(status='pending')
-    signup = signups[0]
     email_used_for_signups = []
     phone_used_for_signups = []
     if request.user.profile.grantcoin_staff or request.user.is_superuser:
