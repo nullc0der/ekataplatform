@@ -1,5 +1,6 @@
 import os
 import json
+import csv
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
@@ -848,59 +849,84 @@ def get_date(date_obj):
     return str(date_obj.year) + '-' + str(date_obj.month) + '-' + str(date_obj.day)
 
 
+def parse_address(address):
+    f = address.split(';')
+    t = []
+    for i in f:
+        t.append(i.strip())
+    return ' '.join(t)
+
+
 @login_required
 def download_member_csv(request):
     accountprovider = AccountProvider.objects.get(id=request.GET.get('id'))
     community_signups = CommunitySignup.objects.filter(community=accountprovider.name)
-    temp_csvs = []
+    filename = '/tmp/%s.csv' % get_random_string()
+    f = open(filename, 'w+')
+    fieldnames = [
+        'signup_date',
+        'date_verified',
+        'full_name',
+        'useraddress_in_db',
+        'useraddress_from_twilio',
+        'useraddress_from_geoip',
+        'referred_by',
+        'referral_code',
+        'wallet_address',
+        'status'
+    ]
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
     for community_signup in community_signups:
-        temp_csv = []
+        row = {}
         if community_signup.signup_date:
-            temp_csv.append(get_date(community_signup.signup_date))
+            row['signup_date'] = get_date(community_signup.signup_date)
         else:
-            temp_csv.append('')
+            row['signup_date'] = ''
         if community_signup.verified_date:
-            temp_csv.append(get_date(community_signup.verified_date))
+            row['date_verified'] = get_date(community_signup.verified_date)
         else:
-            temp_csv.append('')
+            row['date_verified'] = ''
         if community_signup.user.get_full_name:
-            temp_csv.append(community_signup.user.get_full_name())
+            row['full_name'] = community_signup.user.get_full_name()
         else:
-            temp_csv.append('')
+            row['full_name'] = ''
         if community_signup.useraddress_in_db:
-            temp_csv.append(community_signup.useraddress_in_db)
+            row['useraddress_in_db'] = parse_address(community_signup.useraddress_in_db)
         else:
-            temp_csv.append('')
+            row['useraddress_in_db'] = ''
         if community_signup.useraddress_from_twilio:
-            temp_csv.append(community_signup.useraddress_from_twilio)
+            row['useraddress_from_twilio'] = parse_address(community_signup.useraddress_from_twilio)
         else:
-            temp_csv.append('')
+            row['useraddress_from_twilio'] = ''
         if community_signup.useraddress_from_twilio:
-            temp_csv.append(community_signup.useraddress_from_geoip)
+            row['useraddress_from_geoip'] = parse_address(community_signup.useraddress_from_geoip)
         else:
-            temp_csv.append('')
+            row['useraddress_from_geoip'] = ''
         if community_signup.referred_by:
-            temp_csv.append(community_signup.referred_by)
+            row['referred_by'] = community_signup.referred_by
         else:
-            temp_csv.append('')
+            row['referred_by'] = ''
         if community_signup.referral_code:
-            temp_csv.append(community_signup.referral_code)
+            row['referral_code'] = community_signup.referral_code
         else:
-            temp_csv.append('')
+            row['referral_code'] = ''
         if community_signup.wallet_address:
-            temp_csv.append(community_signup.wallet_address)
+            row['wallet_address'] = community_signup.wallet_address
         else:
-            temp_csv.append('')
+            row['wallet_address'] = ''
         if community_signup.status:
-            temp_csv.append(community_signup.status)
+            row['status'] = community_signup.status
         else:
-            temp_csv.append('')
-        csv_row = ','.join(temp_csv)
-        temp_csvs.append(csv_row)
-    csv_f = '\n'.join(temp_csvs)
-    print(csv_f)
+            row['status'] = ''
+        writer.writerow(row)
+    f.close()
+    f = open(filename)
+    csv_data = f.read()
+    f.close()
+    os.remove(f.name)
     response = HttpResponse(
-        csv_f,
+        csv_data,
         content_type='text/plain'
     )
     response['Content-Disposition'] = 'attachment; filename="membercsv.csv"'
