@@ -538,18 +538,19 @@ def signups_page(request):
                     'globalphones': phone_used_for_signups if email_used_for_signups else None
                 }
             )
-        if signup.globalphone.all():
-            globalphones = GlobalPhone.objects.filter(phone=signup.userphone)
-            for globalphone in globalphones:
-                if len(globalphone.signup.all()) >= 2:
-                    for sign in globalphone.signup.all():
-                        phone_used_for_signups.append(sign)
-        if signup.globalemail.all():
-            globalemails = GlobalEmail.objects.filter(email=signup.useremail)
-            for globalemail in globalemails:
-                if len(globalemail.signup.all()) >= 2:
-                    for sign in globalemail.signup.all():
-                        email_used_for_signups.append(sign)
+        if signup:
+            if signup.globalphone.all():
+                globalphones = GlobalPhone.objects.filter(phone=signup.userphone)
+                for globalphone in globalphones:
+                    if len(globalphone.signup.all()) >= 2:
+                        for sign in globalphone.signup.all():
+                            phone_used_for_signups.append(sign)
+            if signup.globalemail.all():
+                globalemails = GlobalEmail.objects.filter(email=signup.useremail)
+                for globalemail in globalemails:
+                    if len(globalemail.signup.all()) >= 2:
+                        for sign in globalemail.signup.all():
+                            email_used_for_signups.append(sign)
         return render(
             request,
             'autosignup/signups.html',
