@@ -14,9 +14,13 @@ from invitationsystem.models import Invitation
 
 class AccountProvider(models.Model):
     name = models.CharField(max_length=100)
-    signup_is_open = models.BooleanField(default=True)
-    basicgroup = models.OneToOneField(BasicGroup, null=True)
-    allowed_distance = models.IntegerField(default=20, blank=True)
+    signup_is_open = models.BooleanField(default=True, editable=False)
+    basicgroup = models.OneToOneField(
+        BasicGroup,
+        null=True,
+        related_name='account_signups'
+    )
+    allowed_distance = models.IntegerField(default=20, blank=True, editable=False)
 
     def __unicode__(self):
         return self.name

@@ -506,6 +506,8 @@ def signups_page(request):
         sent_to_community_staff=True
     ).filter(status='pending')
     signup = signups[0]
+    email_used_for_signups = []
+    phone_used_for_signups = []
     if request.user.profile.grantcoin_staff or request.user.is_superuser:
         if 'signup_id' in request.GET:
             signup = CommunitySignup.objects.get(
@@ -513,14 +515,12 @@ def signups_page(request):
             )
             if signup.globalphone.all():
                 globalphones = GlobalPhone.objects.filter(phone=signup.userphone)
-                phone_used_for_signups = []
                 for globalphone in globalphones:
                     if len(globalphone.signup.all()) >= 2:
                         for sign in globalphone.signup.all():
                             phone_used_for_signups.append(sign)
             if signup.globalemail.all():
                 globalemails = GlobalEmail.objects.filter(email=signup.useremail)
-                email_used_for_signups = []
                 for globalemail in globalemails:
                     if len(globalemail.signup.all()) >= 2:
                         for sign in globalemail.signup.all():
@@ -530,20 +530,18 @@ def signups_page(request):
                 'autosignup/signupinfo.html',
                 {
                     'signup': signup,
-                    'globalemails': email_used_for_signups,
-                    'globalphones': phone_used_for_signups
+                    'globalemails': email_used_for_signups if email_used_for_signups else None,
+                    'globalphones': phone_used_for_signups if email_used_for_signups else None
                 }
             )
         if signup.globalphone.all():
             globalphones = GlobalPhone.objects.filter(phone=signup.userphone)
-            phone_used_for_signups = []
             for globalphone in globalphones:
                 if len(globalphone.signup.all()) >= 2:
                     for sign in globalphone.signup.all():
                         phone_used_for_signups.append(sign)
         if signup.globalemail.all():
             globalemails = GlobalEmail.objects.filter(email=signup.useremail)
-            email_used_for_signups = []
             for globalemail in globalemails:
                 if len(globalemail.signup.all()) >= 2:
                     for sign in globalemail.signup.all():
@@ -553,8 +551,8 @@ def signups_page(request):
             'autosignup/signups.html',
             {
                 'signups': signups,
-                'globalemails': email_used_for_signups,
-                'globalphones': phone_used_for_signups
+                'globalemails': email_used_for_signups if email_used_for_signups else None,
+                'globalphones': phone_used_for_signups if email_used_for_signups else None
             }
         )
     else:

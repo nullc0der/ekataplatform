@@ -101,6 +101,13 @@
 {% endif %}
 {% endif %}
 {% if 'can_access_admin' in group_perms %}
+{% if group.account_signups %}
+{% if request.user.is_superuser or request.user.profile.grantcoin_staff %}
+    <li class="treeview groupadminnavcontent"><a href="{% url 'autosignup:signups' %}"><i class="fa fa-user-plus"></i>{% trans "Account Signups" %}</a></li>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
 {% if 'can_edit_group_profile' in group_perms %}
 <li class="treeview groupadminnavcontent">
     <a href="{% url 'g:adminsettings' group.id %}">
