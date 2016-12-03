@@ -15,6 +15,10 @@ def random_string():
 
 
 class Invitation(models.Model):
+    TYPE_CHOICES = (
+        ('default', 'default'),
+        ('grantcoin', 'grantcoin')
+    )
     email = models.CharField(max_length=100)
     invitation_id = models.CharField(
         max_length=300,
@@ -23,6 +27,9 @@ class Invitation(models.Model):
     )
     approved = models.BooleanField(default=False)
     sent = models.BooleanField(default=False, editable=False)
+    username = models.CharField(max_length=100, editable=False, default='')
+    password = models.CharField(max_length=100, editable=False, default='')
+    invitation_type = models.CharField(max_length=40, choices=TYPE_CHOICES, default='default')
 
     def save(self, *args, **kwargs):
         if self.approved:

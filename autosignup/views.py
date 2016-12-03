@@ -24,7 +24,8 @@ from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
 from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail,\
     task_add_member_from_csv
-from autosignup.utils import collect_twilio_data, AddressCompareUtil
+from autosignup.utils import collect_twilio_data, AddressCompareUtil,\
+    send_csv_member_invitation_email
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
 from invitationsystem.models import Invitation
@@ -828,11 +829,12 @@ def upload_member_csv(request):
 @login_required
 def send_member_invitation(request):
     invitation = Invitation.objects.get(id=request.POST.get('invitation_id'))
-    send_invitation.delay(
-        invitation.email,
-        invitation.invitation_id
+    send_csv_member_invitation_email(
+        email=invitation.email,
+        invitation_id=invitation.invitation_id,
+        username=invitation.username,
+        password=invitation.password
     )
-    invitation.approved = True
     invitation.sent = True
     invitation.save()
     return HttpResponse(status=200)

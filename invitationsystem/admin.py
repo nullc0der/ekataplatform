@@ -9,7 +9,7 @@ from invitationsystem.tasks import send_invitation
 
 
 class InvitationAdmin(DjangoObjectActions, admin.ModelAdmin):
-    list_filter = ('approved', 'sent', )
+    list_filter = ('approved', 'sent', 'invitation_type')
     actions = ['resend_invitations']
     change_actions = ['resend_invitations']
 
