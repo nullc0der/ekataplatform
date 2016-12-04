@@ -1,0 +1,6 @@
+signup_date,date_verified,first_name,last_name,full_name,house_number,street,zip_code,city,state,country,email_id,phone_number,referred_by,referral_code,wallet_address,is_on_distribution,status,is_signed_up
+DELETE FROM THIS LINES BEFORE UPLOAD
+##############################################################################################################################################
+signup_date,date_verified----------------must be in format yyyy-mm-dd
+is_on_distribution, is_signed_up------------true/false
+status------------------------------------pending/approved/declined
