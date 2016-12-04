@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from django.utils.crypto import get_random_string
 from django.utils.dateparse import parse_date
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files import File
 
 from twilio.rest import TwilioRestClient
 from twilio.rest.exceptions import TwilioRestException
@@ -26,11 +27,18 @@ from autosignup.models import CommunitySignup, GlobalEmail, GlobalPhone
 def username_generator(full_name=None, first_name=None, last_name=None):
     needs_approval = False
     if full_name:
-        string = full_name.lower()
+        s = full_name.split(' ')
+        for i in range(len(s)):
+            n = s[i].replace('-', '')
+            s[i] = n
+        string = ''.join(s).lower()
     elif first_name:
         if last_name:
+            first_name = first_name.replace('-', '')
+            last_name = last_name.replace('-', '')
             string = first_name.lower() + last_name.lower()
         else:
+            last_name = last_name.replace('-', '')
             string = first_name.lower()
     else:
         string = get_random_string()
@@ -243,74 +251,87 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
     if accountprovidercsv.csv:
         csv_file = open(accountprovidercsv.csv.path, 'r')
         membercsvs = csv.DictReader(csv_file)
+        filename = '/tmp/%s.csv' % get_random_string()
+        failed_csv_file = open(filename, 'w+')
+        fieldnames = [
+            'signup_date',
+            'date_verified',
+            'first_name',
+            'last_name',
+            'full_name',
+            'house_number',
+            'street',
+            'zip_code',
+            'city',
+            'state',
+            'country',
+            'email_id',
+            'phone_number',
+            'referred_by',
+            'referral_code',
+            'wallet_address',
+            'is_on_distribution',
+            'status',
+            'is_signed_up'
+        ]
+        failed_csv_writer = csv.DictWriter(failed_csv_file, fieldnames)
+        failed_csv_writer.writeheader()
+        integrate_status = ''
+        processed_to = 0
+        row_written = False
+        c = 0
         for membercsv in membercsvs:
-            c = 0
-            twilio_data = ''
-            invitation = None
-            generated_username = username_generator(
-                membercsv['full_name'],
-                membercsv['first_name'],
-                membercsv['last_name']
-            )
-            while type(generated_username) is User:
-                no = get_random_string(length=4, allowed_chars='0123456789')
-                last_name = membercsv['last_name']
-                if membercsv['last_name']:
-                    last_name = membercsv['last_name'] + str(no)
-                else:
-                    last_name = str(no)
+            try:
+                twilio_data = ''
+                invitation = None
                 generated_username = username_generator(
-                    first_name=membercsv['first_name'],
-                    last_name=last_name
+                    membercsv['full_name'],
+                    membercsv['first_name'],
+                    membercsv['last_name']
                 )
-            username = generated_username[0]
-            password = get_random_string(
-                length=5,
-                allowed_chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-            )
-            user = User.objects.create_user(
-                username=username,
-                password=password,
-                email=membercsv['email_id'] if membercsv['email_id'] else None,
-                first_name=membercsv['first_name'] if membercsv['first_name'] else ' ',
-                last_name=membercsv['last_name'] if membercsv['last_name'] else ' ',
-            )
-            if user:
-                useraddress, created = UserAddress.objects.get_or_create(
-                    user=user,
-                    house_number=membercsv['house_number'],
-                    street=membercsv['street'],
-                    zip_code=membercsv['zip_code'],
-                    city=membercsv['city'],
-                    state=membercsv['state'],
-                    country=membercsv['country']
+                while type(generated_username) is User:
+                    no = get_random_string(length=4, allowed_chars='0123456789')
+                    last_name = membercsv['last_name']
+                    if membercsv['last_name']:
+                        last_name = membercsv['last_name'] + str(no)
+                    else:
+                        last_name = str(no)
+                    generated_username = username_generator(
+                        first_name=membercsv['first_name'],
+                        last_name=last_name
+                    )
+                username = generated_username[0]
+                password = get_random_string(
+                    length=5,
+                    allowed_chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
                 )
-            if membercsv['email_id']:
-                if membercsv['is_signed_up'].lower() == 'true':
+                user = User.objects.create_user(
+                    username=username,
+                    password=password,
+                    email=membercsv['email_id'] if membercsv['email_id'] else None,
+                    first_name=membercsv['first_name'] if membercsv['first_name'] else ' ',
+                    last_name=membercsv['last_name'] if membercsv['last_name'] else ' ',
+                )
+                if user:
+                    useraddress, created = UserAddress.objects.get_or_create(
+                        user=user,
+                        house_number=membercsv['house_number'],
+                        street=membercsv['street'],
+                        zip_code=membercsv['zip_code'],
+                        city=membercsv['city'],
+                        state=membercsv['state'],
+                        country=membercsv['country']
+                    )
+                if membercsv['email_id']:
                     invitation, created = Invitation.objects.get_or_create(
                         email=membercsv['email_id'],
                         username=username,
                         password=password,
                         invitation_type='grantcoin'
                     )
-                else:
-                    invitation, created = Invitation.objects.get_or_create(
-                        email=membercsv['email_id'],
-                        username=username,
-                        password=password,
-                        sent=True,
-                        invitation_type='grantcoin'
-                    )
-                    send_csv_member_invitation_email(
-                        email=invitation.email,
-                        invitation_id=invitation.invitation_id,
-                        username=invitation.username,
-                        password=invitation.password
-                    )
-            if fetch_twilio:
-                if membercsv['phone_number']:
-                    twilio_data = collect_twilio_data(membercsv['phone_number'])
-            if membercsv['is_signed_up'].lower() == 'true':
+                if fetch_twilio:
+                    if membercsv['phone_number']:
+                        twilio_data = collect_twilio_data(membercsv['phone_number'])
                 signup, created = CommunitySignup.objects.get_or_create(
                     user=user,
                     community='grantcoin'
@@ -329,13 +350,22 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                 signup.step_2_done = True
                 signup.step_3_done = True
                 signup.additional_step_done = True
-                if membercsv['status']:
-                    if generated_username[1]:
-                        signup.status = 'pending'
-                    elif membercsv['status'].lower() in allowed_status:
-                        signup.status = membercsv['status'].lower()
+                if membercsv['is_signed_up'].lower() == 'true':
+                    if membercsv['status']:
+                        if generated_username[1]:
+                            signup.status = 'pending'
+                            signup.auto_signup_fail_reason = 'Not enough data'
+                        elif membercsv['status'].lower() in allowed_status:
+                            signup.status = membercsv['status'].lower()
+                        else:
+                            signup.status = 'pending'
+                            signup.auto_signup_fail_reason = 'Not a valid status'
                     else:
                         signup.status = 'pending'
+                        signup.auto_signup_fail_reason = 'Status field empty'
+                else:
+                    signup.status = 'pending'
+                    signup.auto_signup_fail_reason = 'is_signed_up field is empty or false'
                 signup.sent_to_community_staff = True
                 if membercsv['signup_date']:
                     signup.signup_date = parse_date(membercsv['signup_date'])
@@ -372,12 +402,25 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                         email=signup.useremail
                     )
                     globalemail.signup.add(signup)
-            c += 1
+                c += 1
+                integrate_status = 'partially processed'
+                processed_to = c
+            except:
+                failed_csv_writer.writerow(membercsv)
+                row_written = True
+        if row_written:
             accountprovidercsv.status = 'partially processed'
-            accountprovidercsv.processed_to = c
-            accountprovidercsv.save()
-        accountprovidercsv.status = 'processed'
-        accountprovidercsv.processed_to = 'all'
+            accountprovidercsv.processed_to = processed_to
+            failed_csv_file.close()
+            with open(filename, 'rb') as doc_file:
+                accountprovidercsv.csv.save(filename, File(filename), save=True)
+                accountprovidercsv.save()
+        elif integrate_status == 'partially processed':
+            accountprovidercsv.status = 'partially processed'
+            accountprovidercsv.processed_to = processed_to
+        else:
+            accountprovidercsv.status = 'processed'
+            accountprovidercsv.processed_to = 'all'
         csv_file.close()
         accountprovidercsv.save()
     return c

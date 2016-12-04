@@ -106,6 +106,7 @@
                                         <th data-visible="false">Id</th>
                                         <th data-sortable="true">File</th>
                                         <th data-sortable="true">Status</th>
+                                        <th>Failed rows</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -122,6 +123,11 @@
                                                     {% else %}
                                                         {{ membercsv.status }}
                                                     {% endif %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if membercsv.failed_csv %}
+                                                    <a href="{{ MEDIA_URL }}{{ membercsv.failed_csv.path }}">failed.csv</a>
                                                 {% endif %}
                                             </td>
                                        </tr>

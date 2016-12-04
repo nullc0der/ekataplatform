@@ -43,6 +43,7 @@ class AccountProviderCSV(models.Model):
     csv = models.FileField(upload_to='membercsv', null=True)
     status = models.CharField(max_length=100, default='processing')
     processed_to = models.CharField(max_length=100, default='')
+    failed_csv = models.FileField(upload_to='membercsv', null=True)
 
     def filename(self):
         return os.path.basename(self.csv.name)
