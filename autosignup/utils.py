@@ -3,6 +3,8 @@ import requests
 from iso3166 import countries
 import csv
 
+import piexif
+
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -360,3 +362,24 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
         csv_file.close()
         accountprovidercsv.save()
     return c
+
+
+def image_gps_metadata(image):
+    try:
+        exif_dict = piexif.load(image)
+        gps = exif_dict['GPS']
+        latref = gps[1]
+        lat = gps[2]
+        lonref = gps[3]
+        lon = gps[4]
+        latitude = float(lat[0][0]/lat[0][1]) + float(lat[1][0]/lat[1][1])/60\
+            + float(lat[2][0]/lat[2][1])/3600
+        longitude = float(lon[0][0]/lon[0][1]) + float(lon[1][0]/lon[1][1])/60\
+            + float(lon[2][0]/lat[2][1])/3600
+        if latref == 'S':
+            latitude = -latitude
+        if lonref == 'W':
+            longitude = -longitude
+        return "Latitude: %s Longitude: %s" % (latitude, longitude)
+    except:
+        return "No EXIF data found"

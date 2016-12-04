@@ -63,6 +63,7 @@ class CommunitySignup(models.Model):
     userphone = models.CharField(verbose_name='Phone', max_length=20, default='', blank=True)
     useraddress_from_twilio = models.TextField(null=True, blank=True)  # ; seperated
     useraddress_from_geoip = models.TextField(null=True, blank=True)  # ; seperated
+    image_gps_metadata = models.TextField(null=True, blank=True)
     userimage = models.ImageField(
         upload_to='community_signup_user_images',
         null=True,
@@ -83,12 +84,21 @@ class CommunitySignup(models.Model):
     not_verifiable_number = models.BooleanField(default=False, editable=False)
     signup_date = models.DateTimeField(auto_now_add=True, null=True, editable=False)
     verified_date = models.DateTimeField(null=True, editable=False)
-    referred_by = models.CharField(max_length=100, default='')
-    referral_code = models.CharField(max_length=100, default='')
-    wallet_address = models.CharField(max_length=100, default='')
+    referred_by = models.CharField(max_length=100, default='', blank=True)
+    referral_code = models.CharField(max_length=100, default='', blank=True)
+    wallet_address = models.CharField(max_length=100, default='', blank=True)
     is_on_distribution = models.BooleanField(default=False)
     invitation = models.OneToOneField(Invitation, null=True, editable=False)
     history = HistoricalRecords()
+
+    def save(self, *args, **kwargs):
+        from autosignup.utils import image_gps_metadata
+        if self.userimage:
+            gps_metadata = image_gps_metadata(
+                self.userimage.path
+            )
+            self.image_gps_metadata = gps_metadata
+        super(CommunitySignup, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.user.username
