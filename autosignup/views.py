@@ -151,7 +151,7 @@ def step_2_signup(request, id):
     if community_signup.step_1_done:
         if request.user.emailaddress_set.all():
             for emailaddress in request.user.emailaddress_set.all():
-                if emailaddress.primary and not emailaddress.verified:
+                if emailaddress.primary and emailaddress.verified:
                     email = emailaddress.email
                 else:
                     email = None
