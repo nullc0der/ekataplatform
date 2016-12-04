@@ -26,12 +26,12 @@ from autosignup.models import CommunitySignup, GlobalEmail, GlobalPhone
 def username_generator(full_name=None, first_name=None, last_name=None):
     needs_approval = False
     if full_name:
-        string = full_name
+        string = full_name.lower()
     elif first_name:
         if last_name:
-            string = first_name + last_name
+            string = first_name.lower() + last_name.lower()
         else:
-            string = first_name
+            string = first_name.lower()
     else:
         string = get_random_string()
         needs_approval = True
@@ -155,25 +155,27 @@ class AddressCompareUtil(object):
         self.from_city = from_city
         self.to_city = to_city
 
-    def _extract_city(self, city, twilio=False):
+    def _extract_city(self, city, twilio=False, zip_code=False):
         t = ""
-        """
-        for d in city:
-            v = d.strip()
-            if v.startswith('city:'):
-                t = v.split(':')[1]
-            if not twilio:
-                if v.startswith('state:'):
-                    s = v.split(':')[1]
-            else:
-                if v.startswith('country:'):
-                    s = v.split(':')[1]
-        """
-        for d in city:
-            v = d.strip()
-            if v.startswith('zip_code:'):
-                t = v.split(':')[1]
-        return t
+        s = ""
+        if not zip_code:
+            for d in city:
+                v = d.strip()
+                if v.startswith('city:'):
+                    t = v.split(':')[1]
+                if not twilio:
+                    if v.startswith('state:'):
+                        s = v.split(':')[1]
+                else:
+                    if v.startswith('country:'):
+                        s = v.split(':')[1]
+            return t + ',' + s
+        else:
+            for d in city:
+                v = d.strip()
+                if v.startswith('zip_code:'):
+                    t = v.split(':')[1]
+            return t
 
     def calculate_distance(self):
         from_add = self._extract_city(self.from_city)
@@ -182,16 +184,33 @@ class AddressCompareUtil(object):
         res = requests.get(url)
         if res.status_code == 200:
             data = json.loads(res.content)
-            if data["rows"][0]["elements"][0]["status"] == "OK":
-                distance = []
-                distance.append(
-                    data["rows"][0]["elements"][0]["distance"]["text"]
-                )
-                distance.append(
-                    data["rows"][0]["elements"][0]["distance"]["value"]
-                )
+            try:
+                if data["rows"][0]["elements"][0]["status"] == "OK":
+                    distance = []
+                    distance.append(
+                        data["rows"][0]["elements"][0]["distance"]["text"]
+                    )
+                    distance.append(
+                        data["rows"][0]["elements"][0]["distance"]["value"]
+                    )
+            except:
+                from_add = self._extract_city(self.from_city, zip_code=True)
+                to_add = self._extract_city(self.to_city, twilio=True, zip_code=True)
+                url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (from_add, to_add)
+                res = requests.get(url)
+                data = json.loads(res.content)
+                if data["rows"][0]["elements"][0]["status"] == "OK":
+                    distance = []
+                    distance.append(
+                        data["rows"][0]["elements"][0]["distance"]["text"]
+                    )
+                    distance.append(
+                        data["rows"][0]["elements"][0]["distance"]["value"]
+                    )
             else:
                 distance = []
+        else:
+            distance = []
         return distance
 
 
@@ -253,8 +272,8 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                 username=username,
                 password=password,
                 email=membercsv['email_id'] if membercsv['email_id'] else None,
-                first_name=membercsv['first_name'] if membercsv['first_name'] else None,
-                last_name=membercsv['last_name'] if membercsv['last_name'] else None,
+                first_name=membercsv['first_name'] if membercsv['first_name'] else ' ',
+                last_name=membercsv['last_name'] if membercsv['last_name'] else ' ',
             )
             if user:
                 useraddress, created = UserAddress.objects.get_or_create(
