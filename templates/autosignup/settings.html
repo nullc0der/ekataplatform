@@ -38,10 +38,15 @@
                         <form action="{% url 'autosignup:signups_settings' %}" method="post">
                             {% csrf_token %}
                             <div class="col-md-6">
-                                <h5>Max allowed distance: </h5>
+                                <h5>Max allowed distance in kilometers: </h5>
                             </div>
                             <div class="col-md-6">
-                                <input type="number" name="maxdist" value="{{ accountprovider.allowed_distance }}" class="form-control">
+                                <div class="input-group">
+                                    <input type="number" name="maxdist" value="{{ accountprovider.allowed_distance }}" class="form-control">
+                                    <div class="input-group-addon">
+                                        {% trans "KM" %}
+                                    </div>
+                                </div>
                                 <button type="submit" class="btn btn-primary btn-xs btn-block btn-flat">{% trans "Submit" %}</button>
                             </div>
                         </form>

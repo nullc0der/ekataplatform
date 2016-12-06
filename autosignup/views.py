@@ -210,15 +210,6 @@ def verify_email_code(request, id):
             form = EmailVerficationForm(community_signup, request, request.POST)
             if form.is_valid():
                 community_signup.step_2_done = True
-                try:
-                    emailaddress, created = EmailAddress.objects.get_or_create(
-                        user=request.user,
-                        email=community_signup.useremail,
-                    )
-                    emailaddress.verified = True
-                    emailaddress.save()
-                except:
-                    pass
                 emailverfication = EmailVerfication.objects.get(
                     user=request.user,
                     community_signup=community_signup,
@@ -275,7 +266,7 @@ def step_3_signup(request, id):
             form = PhoneForm(request, request.POST)
             if form.is_valid():
                 code = get_random_string(length=6, allowed_chars='0123456789')
-                phone = form.cleaned_data.get('country') + form.cleaned_data.get('phone_no')
+                phone = form.cleaned_data.get('country') + str(form.cleaned_data.get('phone_no'))
                 if cache.get('%s_phoneretry' % request.user.username):
                     phoneretry = cache.get('%s_phoneretry' % request.user.username)
                     if phone == phoneretry['phone']:
@@ -379,7 +370,7 @@ def verify_phone_code(request, id):
                     if distance:
                         community_signup.distance_db_vs_twilio = distance[0]
                         accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
-                        if accountprovider.allowed_distance < distance[1] * 0.000621371:
+                        if accountprovider.allowed_distance > distance[1] * 0.001:
                             community_signup.signup_status = 'approved'
                             community_signup.sent_to_community_staff = True
                             community_signup.verified_date = now()

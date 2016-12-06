@@ -99,7 +99,7 @@ class PhoneForm(forms.Form):
         widget=PhonePrefixSelect(),
         required=True
     )
-    phone_no = forms.CharField(
+    phone_no = forms.IntegerField(
         required=True,
         label='Mobile No'
     )
@@ -110,7 +110,7 @@ class PhoneForm(forms.Form):
 
     def clean(self):
         cleaned_data = super(PhoneForm, self).clean()
-        phone_no = cleaned_data.get('country') + cleaned_data.get('phone_no')
+        phone_no = cleaned_data.get('country') + str(cleaned_data.get('phone_no'))
         if cache.get('%s_phoneretry' % self.request.user.username):
             phoneretry = cache.get('%s_phoneretry' % self.request.user.username)
             if phoneretry['phone'] == phone_no and phoneretry['retry'] > 9:

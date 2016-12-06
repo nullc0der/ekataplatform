@@ -79,7 +79,7 @@ def send_phone_verfication_code(phone_no, code):
         if carrier:
             email_subject = "Verification code"
             email_body = "Code: " + code + '\nvalid for 30 min'
-            email_splited = carrier[0].email.split('@')
+            email_splited = carrier[0].emailaddress.split('@')
             new_email = str(phone_number) + '@' + email_splited[1]
             msg = EmailMultiAlternatives(
                 email_subject,
