@@ -7,6 +7,7 @@ import piexif
 
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.template import Template, Context
 from django.conf import settings
 from django.core.cache import cache
 from django.contrib.auth.models import User
@@ -136,13 +137,19 @@ def send_approval_mail(signup, template_path=None):
     c = {
         'username': signup.user.username,
     }
-    email_subject = "You are approved for Grantcoin Account "
-    email_body = "Hello " + signup.user.username + "Greetings from Ekata!!\n" + \
-        "Grantcoin approved your signup for their account"
+    email_subject = "You have been approved a Grantcoin account."
+    email_body = "Hello " + signup.user.username + ", Greetings from Ekata!!\n" + \
+        "Grantcoin Foundation has approved your signup for a Grantcoin Account."
     if template_path:
-        template = file(template_path, 'r')
-        email_html = template.read()
-        template.close()
+        template_f = file(template_path, 'r')
+        email_html = template_f.read()
+        template = Template(email_html)
+        context = Context({
+            'username': signup.user.username,
+            'referral_code': signup.referral_code
+        })
+        email_html = template.render(context)
+        template_f.close()
     else:
         email_html = render_to_string('autosignup/email_approved.html', c)
     msg = EmailMultiAlternatives(

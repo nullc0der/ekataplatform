@@ -48,6 +48,26 @@ class AccountProviderCSV(models.Model):
     def filename(self):
         return os.path.basename(self.csv.name)
 
+"""
+class AutoSignupAddress(models.Model):
+    TYPE_CHOICES = (
+        ('db', 'db'),
+        ('twilio', 'twilio'),
+        ('geoip', 'geoip')
+    )
+    address_type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    user = models.ForeignKey(User)
+    house_number = models.CharField(max_length=10, default='', blank=True)
+    street = models.CharField(max_length=200, default='', blank=True)
+    zip_code = models.CharField(max_length=10, default='', blank=True)
+    city = models.CharField(max_length=100, default='', blank=True)
+    state = models.CharField(max_length=100, default='', blank=True)
+    country = models.CharField(max_length=100, default='', blank=True)
+    latitude = models.CharField(max_length=100, default='', blank=True)
+    longitude = models.CharField(max_length=100, default='', blank=True)
+"""
+
+
 class CommunitySignup(models.Model):
     COMMUNITY_CHOICES = (
         ('grantcoin', 'grantcoin'),
@@ -59,7 +79,7 @@ class CommunitySignup(models.Model):
     )
     user = models.ForeignKey(User, related_name='communitysignups')
     community = models.CharField(max_length=100, choices=COMMUNITY_CHOICES, editable=False)
-    useraddress_in_db = models.TextField(verbose_name='Address', null=True, blank=True)  # ; seperated
+    useraddress_in_db = models.TextField(null=True, blank=True)  # ; seperated
     useremail = models.EmailField(verbose_name='Email', null=True, blank=True)
     userphone = models.CharField(verbose_name='Phone', max_length=20, default='', blank=True)
     useraddress_from_twilio = models.TextField(null=True, blank=True)  # ; seperated
