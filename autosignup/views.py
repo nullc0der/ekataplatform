@@ -267,6 +267,8 @@ def step_3_signup(request, id):
             if form.is_valid():
                 code = get_random_string(length=6, allowed_chars='0123456789')
                 phone = form.cleaned_data.get('country') + str(form.cleaned_data.get('phone_no'))
+                phone = phone.split('-')
+                phone = "".join(phone)
                 if cache.get('%s_phoneretry' % request.user.username):
                     phoneretry = cache.get('%s_phoneretry' % request.user.username)
                     if phone == phoneretry['phone']:
