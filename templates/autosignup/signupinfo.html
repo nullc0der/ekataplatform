@@ -55,31 +55,81 @@
     <h4>Image Data: {{ signup.image_gps_metadata }}</h4>
     <hr>
     {% endif %}
-    <h4>Info from User Data Base</h4>
-    <blockquote>
-        {{ signup.useraddress_in_db }}
-    </blockquote>
-    <hr>
-    {% if signup.useraddress_from_twilio %}
-    <h4>Info from Twilio Data Base</h4>
-    <blockquote>
-        {{ signup.useraddress_from_twilio }}
-    </blockquote>
-    {% if signup.distance_db_vs_twilio %}
-    <p>
-        <span class="fa fa-info-circle text-red"></span>
-        {% trans "Distance from database address: " %} {{ signup.distance_db_vs_twilio }}
-    </p>
-    {% endif %}
-    <hr>
-    {% endif %}
-    {% if signup.useraddress_from_geoip %}
-    <h4>Info from Geoip</h4>
-    <blockquote>
-        {{ signup.useraddress_from_geoip }}
-    </blockquote>
-    <hr>
-    {% endif %}
+    {% for address in signup.useraddresses.all %}
+        {% if address.address_type == 'db' %}
+        <h4>Info from User Data Base</h4>
+        <blockquote>
+            <p>
+                House Number: {{ address.house_number }}
+            </p>
+            <p>
+                Street: {{ address.street }}
+            </p>
+            <p>
+                City: {{ address.city }}
+            </p>
+            <p>
+                State: {{ address.state }}
+            </p>
+            <p>
+                Country: {{ address.country }}
+            </p>
+        </blockquote>
+        <hr>
+        {% endif %}
+    {% endfor %}
+    {% for address in signup.useraddresses.all %}
+        {% if address.address_type == 'twilio' %}
+        <h4>Info from Twilio Data Base</h4>
+        <blockquote>
+            <p>
+                House Number: {{ address.house_number }}
+            </p>
+            <p>
+                Street: {{ address.street }}
+            </p>
+            <p>
+                City: {{ address.city }}
+            </p>
+            <p>
+                State: {{ address.state }}
+            </p>
+            <p>
+                Country: {{ address.country }}
+            </p>
+        </blockquote>
+        <hr>
+        {% if signup.distance_db_vs_twilio %}
+        <p>
+            <span class="fa fa-info-circle text-red"></span>
+            {% trans "Distance from database address: " %} {{ signup.distance_db_vs_twilio }} {% trans " KM" %}
+        </p>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% for address in signup.useraddresses.all %}
+        {% if address.address_type == 'geoip' %}
+        <h4>Info from GeoIP Data Base</h4>
+        <blockquote>
+            <p>
+                House Number: {{ address.house_number }}
+            </p>
+            <p>
+                Street: {{ address.street }}
+            </p>
+            <p>
+                City: {{ address.city }}
+            </p>
+            <p>
+                State: {{ address.state }}
+            </p>
+            <p>
+                Country: {{ address.country }}
+            </p>
+        </blockquote>
+        <hr>
+        {% endif %}
+    {% endfor %}
     <h4>Status: {{ signup.status }}</h4>
     <hr>
     {% if signup.auto_signup_fail_reason %}

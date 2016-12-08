@@ -18,13 +18,13 @@ from allauth.account.models import EmailAddress
 
 from autosignup.models import CommunitySignup, EmailVerfication,\
     PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail,\
-    ApprovedMailTemplate, AccountProviderCSV, ReferralCode
+    ApprovedMailTemplate, AccountProviderCSV, ReferralCode, AutoSignupAddress
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
     AdditionalStepForm, AccountAddContactForm, CommunitySignupForm
 from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail,\
-    task_add_member_from_csv
+    task_add_member_from_csv, task_find_location_and_save
 from autosignup.utils import collect_twilio_data, AddressCompareUtil,\
     send_csv_member_invitation_email, unique_referral_code_generator
 from profilesystem.models import UserAddress, UserPhone
@@ -105,23 +105,35 @@ def step_1_signup(request, id):
         form = AddressForm(request.POST, instance=address)
         if uform.is_valid() and form.is_valid():
             uform.save()
-            form.save()
-            useraddress_in_db = ''
-            for k, v in uform.cleaned_data.iteritems():
-                useraddress_in_db = useraddress_in_db + '%s: %s ; \n' % (k, v)
-            for k, v in form.cleaned_data.iteritems():
-                useraddress_in_db = useraddress_in_db + '%s: %s ; \n' % (k, v)
-            community_signup.useraddress_in_db = useraddress_in_db
+            address = form.save()
+            asignupaddress, created = AutoSignupAddress.objects.get_or_create(
+                address_type='db',
+                user=request.user,
+                signup=community_signup,
+                house_number=address.house_number,
+                street=address.street,
+                zip_code=address.zip_code,
+                city=address.city,
+                state=address.state,
+                country=address.country
+            )
+            task_find_location_and_save.delay(asignupaddress)
             g = GeoIP2()
             try:
                 c = g.city(get_client_ip(request))
             except:
                 c = None
-            useraddress_from_geoip = ''
             if c:
-                for k, v in c.iteritems():
-                    useraddress_from_geoip = useraddress_from_geoip + '%s: %s ; \n' % (k, v)
-            community_signup.useraddress_from_geoip = useraddress_from_geoip
+                asignupaddress, created = AutoSignupAddress.objects.get_or_create(
+                    address_type='geoip',
+                    user=request.user,
+                    signup=community_signup,
+                    zip_code=c['postal_code'],
+                    city=c['city'],
+                    country=c['country_name'],
+                    latitude=c['latitude'],
+                    longitude=c['longitude']
+                )
             community_signup.step_1_done = True
             community_signup.save()
             data = {
@@ -360,17 +372,19 @@ def verify_phone_code(request, id):
                     )
                     globalphone.signup.add(community_signup)
                 phoneverfication.delete()
-                twilio_data = collect_twilio_data(community_signup.userphone)
+                twilio_data = collect_twilio_data(community_signup)
                 if twilio_data:
-                    community_signup.useraddress_from_twilio = twilio_data
+                    task_find_location_and_save.delay(twilio_data)
                     community_signup.step_3_done = True
-                    addresscompareutil = AddressCompareUtil(
-                        community_signup.useraddress_in_db.split(';'),
-                        twilio_data
-                    )
+                    for address in community_signup.useraddresses.all():
+                        if address.address_type == 'db':
+                            dbaddress = address
+                        if address.address_type == 'twilio':
+                            twaddress = address
+                    addresscompareutil = AddressCompareUtil(dbaddress, twaddress)
                     distance = addresscompareutil.calculate_distance()
                     if distance:
-                        community_signup.distance_db_vs_twilio = distance[0]
+                        community_signup.distance_db_vs_twilio = distance[1] * 0.001
                         accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
                         if accountprovider.allowed_distance > distance[1] * 0.001:
                             community_signup.signup_status = 'approved'

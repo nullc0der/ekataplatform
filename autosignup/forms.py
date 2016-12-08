@@ -178,7 +178,6 @@ class CommunitySignupForm(forms.ModelForm):
     class Meta:
         model = CommunitySignup
         fields = [
-            'useraddress_in_db',
             'useremail',
             'userphone',
             'wallet_address',

@@ -23,7 +23,7 @@ from emailtosms.models import Carrier
 from invitationsystem.models import Invitation
 from profilesystem.models import UserAddress
 from autosignup.models import CommunitySignup, GlobalEmail,\
-    GlobalPhone, ReferralCode
+    GlobalPhone, ReferralCode, AutoSignupAddress
 
 
 def unique_referral_code_generator():
@@ -124,9 +124,9 @@ def send_phone_verfication_code(phone_no, code):
         return message.status
 
 
-def collect_twilio_data(phone_no):
+def collect_twilio_data(community_signup):
     lookup_url = 'https://lookups.twilio.com/v1/PhoneNumbers/' + \
-        '%s?AddOns=whitepages_pro_caller_id' % phone_no
+        '%s?AddOns=whitepages_pro_caller_id' % community_signup.userphone
     res = requests.get(lookup_url, auth=(
         settings.EKATA_TWILIO_ACCOUNT_SID,
         settings.EKATA_TWILIO_AUTH_TOKEN
@@ -137,8 +137,14 @@ def collect_twilio_data(phone_no):
             name = data['add_ons']['results']['whitepages_pro_caller_id']['result']['results'][0]['belongs_to'][0]['names'][0]
             address = data['add_ons']['results']['whitepages_pro_caller_id']['result']['results'][0]['associated_locations'][0]
             country = countries.get(address['country_code'])
-            twilio_address = 'first_name: %s ; \nlast_name: %s ; \ncity: %s ; \ncountry: %s ; \nzip_code: %s ; \n' %\
-                (name['first_name'], name['last_name'], address['city'], country.name, address['postal_code'])
+            twilio_address, created = AutoSignupAddress.objects.get_or_create(
+                address_type='twilio',
+                user=community_signup.user,
+                signup=community_signup,
+                zip_code=address['postal_code'],
+                city=address['city'],
+                country=country.name
+            )
             return twilio_address
         else:
             return False
@@ -184,6 +190,7 @@ class AddressCompareUtil(object):
         self.from_city = from_city
         self.to_city = to_city
 
+    """
     def _extract_city(self, city, twilio=False, zip_code=False):
         t = ""
         s = ""
@@ -205,14 +212,23 @@ class AddressCompareUtil(object):
                 if v.startswith('zip_code:'):
                     t = v.split(':')[1]
             return t
+    """
 
     def calculate_distance(self):
-        from_add = self._extract_city(self.from_city)
-        to_add = self._extract_city(self.to_city, twilio=True)
+        from_add = from_city.latitude + ',' + from_city.longitude
+        to_add = to_city.latitude + ',' + to_city.longitude
         url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (from_add, to_add)
         res = requests.get(url)
-        if res.status_code == 200:
-            data = json.loads(res.content)
+        distance = []
+        data = json.loads(res.content)
+        if data["rows"][0]["elements"][0]["status"] == "OK":
+            distance.append(
+                data["rows"][0]["elements"][0]["distance"]["text"]
+            )
+            distance.append(
+                data["rows"][0]["elements"][0]["distance"]["value"]
+            )
+            """
             try:
                 if data["rows"][0]["elements"][0]["status"] == "OK":
                     distance = []
@@ -238,8 +254,7 @@ class AddressCompareUtil(object):
                     )
             else:
                 distance = []
-        else:
-            distance = []
+            """
         return distance
 
 
@@ -350,23 +365,30 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                         password=password,
                         invitation_type='grantcoin'
                     )
-                if fetch_twilio:
-                    if membercsv['phone_number']:
-                        twilio_data = collect_twilio_data(membercsv['phone_number'])
                 signup, created = CommunitySignup.objects.get_or_create(
                     user=user,
                     community='grantcoin'
                 )
                 if user.address:
-                    useraddress_in_db = 'house_number: ' + user.address.house_number + '; \n street: ' + user.address.street +\
-                        '; \n city: ' + user.address.city + '; \n state: ' + user.address.state + '; \n country: ' + user.address.country
-                    signup.useraddress_in_db = useraddress_in_db
+                    asignupaddress, created = AutoSignupAddress.objects.get_or_create(
+                        address_type='db',
+                        user=user,
+                        signup=signup,
+                        house_number=user.address.house_number,
+                        street=user.address.street,
+                        zip_code=user.address.zip_code,
+                        city=user.address.city,
+                        state=user.address.state,
+                        country=user.address.country
+                    )
                 if membercsv['email_id']:
                     signup.useremail = membercsv['email_id']
                 if membercsv['phone_number']:
                     signup.userphone = membercsv['phone_number']
-                if twilio_data:
-                    signup.useraddress_from_twilio = twilio_data
+                if fetch_twilio:
+                    if membercsv['phone_number']:
+                        signup.save()
+                        twilio_data = collect_twilio_data(signup)
                 signup.step_1_done = True
                 signup.step_2_done = True
                 signup.step_3_done = True
@@ -468,3 +490,21 @@ def image_gps_metadata(image):
         return "Latitude: %s Longitude: %s" % (latitude, longitude)
     except:
         return "No EXIF data found"
+
+
+def location_finder_util(address):
+    if address.zip_code:
+        url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s" % address.zip_code
+    else:
+        if address.city and address.country:
+            url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s" % (address.city + ',' + address.country)
+        else:
+            url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s" % address.city
+    if url:
+        res = requests.get(url)
+        data = json.loads(res.content)
+        if data['status'] == 'OK':
+            location = data['results'][0]['geometry']['location']
+            address.latitude = location['lat']
+            address.longitude = location['lng']
+            address.save()
