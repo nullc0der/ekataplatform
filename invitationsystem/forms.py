@@ -6,6 +6,8 @@ from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 
 from invitationsystem.models import Invitation
 
+from autosignup.models import ReferralCode
+
 
 class GetInvitationForm(forms.Form):
     email = forms.EmailField(
@@ -21,7 +23,10 @@ class GetInvitationForm(forms.Form):
 
 
 class CheckInvitationForm(forms.Form):
-    invitation_id = forms.CharField(label="Key", max_length=6)
+    invitation_id = forms.CharField(
+        label="Please enter in your invitation key or referral code",
+        max_length=6
+    )
     captcha = ReCaptchaField(label='', widget=ReCaptchaWidget())
 
     def clean_invitation_id(self):
@@ -29,5 +34,9 @@ class CheckInvitationForm(forms.Form):
         try:
             invitation = Invitation.objects.get(invitation_id=invitation_id)
         except ObjectDoesNotExist:
-            raise forms.ValidationError("Invitation key doesn't exist")
+            pass  # Fallback to referral code
+        try:
+            referral_code = ReferralCode.objects.get(code=invitation_id)
+        except ObjectDoesNotExist:
+            raise forms.ValidationError("Invitation key or Referral code doesn't exist")
         return invitation_id

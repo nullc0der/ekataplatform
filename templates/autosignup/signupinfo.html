@@ -94,12 +94,14 @@
         Verified Date: {{ signup.verified_date|date:"Y-m-d" }}
     </h4>
     <hr>
+    {% if signup.user.profile.referred_by %}
     <h4>
-        Referred By: {{ signup.referred_by }}
+        Referred By: <a href="{% url 'publicusers:user' signup.user.profile.referred_by.id %}">{{ signup.user.profile.referred_by.username }}</a></h4>
     </h4>
     <hr>
+    {% endif %}
     <h4>
-        Referral Code: {{ signup.referral_code }}
+        Referral Code: {{ signup.user.referral_code }}
     </h4>
     <hr>
     <h4>

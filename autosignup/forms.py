@@ -181,8 +181,6 @@ class CommunitySignupForm(forms.ModelForm):
             'useraddress_in_db',
             'useremail',
             'userphone',
-            'referred_by',
-            'referral_code',
             'wallet_address',
             'status',
             'is_on_distribution'

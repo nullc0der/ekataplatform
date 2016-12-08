@@ -41,7 +41,8 @@ class CheckInvitationMiddleware(object):
             if request.path not in [
                 reverse('invitationsystem:addinvitation'),
                 reverse('logout'),
-                reverse('invitationsystem:index')
+                reverse('invitationsystem:index'),
+                reverse('invitationsystem:ReferralCode')
                 ]:
                 if not request.user.profile.invitation_verified:
                     return redirect(reverse('invitationsystem:addinvitation'))

@@ -3,10 +3,13 @@ from django.shortcuts import render
 from django.utils.crypto import get_random_string
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+from django.core.exceptions import ObjectDoesNotExist
 
 from invitationsystem.models import Invitation
 from invitationsystem.forms import CheckInvitationForm, GetInvitationForm
 from invitationsystem.tasks import send_notification_to_reviewer
+
+from autosignup.models import ReferralCode
 
 # Create your views here.
 
@@ -34,8 +37,13 @@ def invitation_id_page(request):
             request.user.profile.invitation_verified = True
             request.user.profile.save()
             invitation_id = form.cleaned_data.get('invitation_id')
-            invitation = Invitation.objects.get(invitation_id=invitation_id)
-            invitation.delete()
+            try:
+                invitation = Invitation.objects.get(invitation_id=invitation_id)
+                invitation.delete()
+            except ObjectDoesNotExist:
+                referral_code = ReferralCode.objects.get(code=invitation_id)
+                request.user.profile.referred_by = referral_code.user
+                request.user.profile.save()
             return redirect(reverse('dashboard:index'))
     return render(
         request,
@@ -44,3 +52,18 @@ def invitation_id_page(request):
             'form': form
         }
     )
+
+
+def referral_code_url(request):
+    if 'referral_code' in request.GET:
+        referral_code = request.GET.get('referral_code')
+        try:
+            rcode_obj = ReferralCode.objects.get(code=referral_code)
+            request.user.profile.invitation_verified = True
+            request.user.profile.referred_by = rcode_obj.user
+            request.user.profile.save()
+            return redirect(reverse('dashboard:index'))
+        except ObjectDoesNotExist:
+            return redirect(reverse('invitationsystem:addinvitation'))
+    else:
+        return redirect(reverse('invitationsystem:addinvitation'))

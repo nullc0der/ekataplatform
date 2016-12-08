@@ -68,6 +68,14 @@ class AutoSignupAddress(models.Model):
 """
 
 
+class ReferralCode(models.Model):
+    user = models.OneToOneField(User, related_name='referral_code')
+    code = models.CharField(max_length=10, default='', blank=True)
+
+    def __unicode__(self):
+        return self.code
+
+
 class CommunitySignup(models.Model):
     COMMUNITY_CHOICES = (
         ('grantcoin', 'grantcoin'),
@@ -105,8 +113,6 @@ class CommunitySignup(models.Model):
     not_verifiable_number = models.BooleanField(default=False, editable=False)
     signup_date = models.DateTimeField(auto_now_add=True, null=True, editable=False)
     verified_date = models.DateTimeField(null=True, editable=False)
-    referred_by = models.CharField(max_length=100, default='', blank=True)
-    referral_code = models.CharField(max_length=100, default='', blank=True)
     wallet_address = models.CharField(max_length=100, default='', blank=True)
     is_on_distribution = models.BooleanField(default=False)
     invitation = models.OneToOneField(Invitation, null=True, editable=False)

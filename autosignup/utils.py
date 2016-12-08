@@ -22,7 +22,20 @@ from twilio.rest.exceptions import TwilioRestException
 from emailtosms.models import Carrier
 from invitationsystem.models import Invitation
 from profilesystem.models import UserAddress
-from autosignup.models import CommunitySignup, GlobalEmail, GlobalPhone
+from autosignup.models import CommunitySignup, GlobalEmail,\
+    GlobalPhone, ReferralCode
+
+
+def unique_referral_code_generator():
+    not_unique = True
+    referral_code = ''
+    while not_unique:
+        code = get_random_string(length=6)
+        referral_codes = ReferralCode.objects.filter(code=code)
+        if not len(referral_codes):
+            not_unique = False
+            referral_code = code
+    return referral_code
 
 
 def username_generator(full_name=None, first_name=None, last_name=None):
@@ -136,6 +149,7 @@ def collect_twilio_data(phone_no):
 def send_approval_mail(signup, template_path=None):
     c = {
         'username': signup.user.username,
+        'referral_code': signup.user.referral_code.code
     }
     email_subject = "You have been approved a Grantcoin account."
     email_body = "Hello " + signup.user.username + ", Greetings from Ekata!!\n" + \
@@ -146,7 +160,7 @@ def send_approval_mail(signup, template_path=None):
         template = Template(email_html)
         context = Context({
             'username': signup.user.username,
-            'referral_code': signup.referral_code
+            'referral_code': signup.user.referral_code.code
         })
         email_html = template.render(context)
         template_f.close()
@@ -364,6 +378,12 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                             signup.auto_signup_fail_reason = 'Not enough data'
                         elif membercsv['status'].lower() in allowed_status:
                             signup.status = membercsv['status'].lower()
+                            if membercsv['status'].lower() == 'approved':
+                                referral_code = unique_referral_code_generator()
+                                ReferralCode.objects.get_or_create(
+                                    user=user,
+                                    code=referral_code
+                                )
                         else:
                             signup.status = 'pending'
                             signup.auto_signup_fail_reason = 'Not a valid status'
@@ -378,10 +398,6 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                     signup.signup_date = parse_date(membercsv['signup_date'])
                 if membercsv['date_verified']:
                     signup.verified_date = parse_date(membercsv['date_verified'])
-                if membercsv['referred_by']:
-                    signup.referred_by = membercsv['referred_by']
-                if membercsv['referral_code']:
-                    signup.referral_code = membercsv['referral_code']
                 if membercsv['wallet_address']:
                     signup.wallet_address = membercsv['wallet_address']
                 if membercsv['is_on_distribution']:

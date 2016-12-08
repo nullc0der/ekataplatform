@@ -18,7 +18,7 @@ from allauth.account.models import EmailAddress
 
 from autosignup.models import CommunitySignup, EmailVerfication,\
     PhoneVerification, AccountProvider, GlobalPhone, GlobalEmail,\
-    ApprovedMailTemplate, AccountProviderCSV
+    ApprovedMailTemplate, AccountProviderCSV, ReferralCode
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
     AdditionalStepForm, AccountAddContactForm, CommunitySignupForm
@@ -26,7 +26,7 @@ from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail,\
     task_add_member_from_csv
 from autosignup.utils import collect_twilio_data, AddressCompareUtil,\
-    send_csv_member_invitation_email
+    send_csv_member_invitation_email, unique_referral_code_generator
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
 from invitationsystem.models import Invitation
@@ -377,6 +377,11 @@ def verify_phone_code(request, id):
                             community_signup.sent_to_community_staff = True
                             community_signup.verified_date = now()
                             community_signup.save()
+                            referral_code = unique_referral_code_generator()
+                            ReferralCode.objects.get_or_create(
+                                user=community_signup.user,
+                                code=referral_code
+                            )
                             template_path = get_selected_template_path()
                             task_send_approval_mail.delay(community_signup, template_path)
                         else:
@@ -638,6 +643,11 @@ def edit_signup(request, id):
             community_signup = form.save(commit=False)
             if community_signup.status == 'approved' and not community_signup.approval_mail_sent:
                     community_signup.verified_date = now()
+                    referral_code = unique_referral_code_generator()
+                    ReferralCode.objects.get_or_create(
+                        user=community_signup.user,
+                        code=referral_code
+                    )
                     template_path = get_selected_template_path()
                     task_send_approval_mail.delay(community_signup, template_path)
             community_signup.save()
