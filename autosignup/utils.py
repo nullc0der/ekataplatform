@@ -25,6 +25,8 @@ from profilesystem.models import UserAddress
 from autosignup.models import CommunitySignup, GlobalEmail,\
     GlobalPhone, ReferralCode, AutoSignupAddress
 
+from django.core.cache import cache
+
 
 def unique_referral_code_generator():
     not_unique = True
@@ -225,6 +227,7 @@ class AddressCompareUtil(object):
         res = requests.get(url)
         distance = []
         data = json.loads(res.content)
+        print(data)
         if data["rows"][0]["elements"][0]["status"] == "OK":
             distance.append(
                 data["rows"][0]["elements"][0]["distance"]["text"]
@@ -259,6 +262,9 @@ class AddressCompareUtil(object):
             else:
                 distance = []
             """
+        print(distance)
+        cache.set('debug_data_google_from_util: %s' % data, 2 * 60 * 60)
+        cache.set('debug_distance_google_from_util: %s' % distance, 2 * 60 * 60)
         return distance
 
 

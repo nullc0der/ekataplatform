@@ -31,6 +31,8 @@ from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
 from invitationsystem.models import Invitation
 from invitationsystem.tasks import send_invitation
+
+from django.core.cache import cache
 # Create your views here.
 
 
@@ -383,6 +385,7 @@ def verify_phone_code(request, id):
                             twaddress = address
                     addresscompareutil = AddressCompareUtil(dbaddress, twaddress)
                     distance = addresscompareutil.calculate_distance()
+                    cache.set('debug_distance_google_from_util: %s' % distance, 2 * 60 * 60)
                     if distance:
                         community_signup.distance_db_vs_twilio = distance[1] * 0.001
                         accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
