@@ -77,6 +77,12 @@
             <p>
                 Zip Code: {{ address.zip_code }}
             </p>
+            <p>
+                Latitude: {{ address.latitude }}
+            </p>
+            <p>
+                Latitude: {{ address.longitude }}
+            </p>
         </blockquote>
         <hr>
         {% endif %}
@@ -103,14 +109,20 @@
             <p>
                 Zip Code: {{ address.zip_code }}
             </p>
+            <p>
+                Latitude: {{ address.latitude }}
+            </p>
+            <p>
+                Latitude: {{ address.longitude }}
+            </p>
         </blockquote>
-        <hr>
         {% if signup.distance_db_vs_twilio %}
         <p>
             <span class="fa fa-info-circle text-red"></span>
             {% trans "Distance from database address: " %} {{ signup.distance_db_vs_twilio }} {% trans " KM" %}
         </p>
         {% endif %}
+        <hr>
         {% endif %}
     {% endfor %}
     {% for address in signup.useraddresses.all %}
@@ -134,6 +146,12 @@
             </p>
             <p>
                 Zip Code: {{ address.zip_code }}
+            </p>
+            <p>
+                Latitude: {{ address.latitude }}
+            </p>
+            <p>
+                Latitude: {{ address.longitude }}
             </p>
         </blockquote>
         <hr>

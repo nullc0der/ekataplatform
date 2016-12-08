@@ -222,8 +222,11 @@ class AddressCompareUtil(object):
 
     def calculate_distance(self):
         from_add = self.from_city.latitude + ',' + self.from_city.longitude
+        print(from_add)
         to_add = self.to_city.latitude + ',' + self.to_city.longitude
+        print(to_add)
         url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (from_add, to_add)
+        print(url)
         res = requests.get(url)
         distance = []
         data = json.loads(res.content)

@@ -26,7 +26,8 @@ from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail,\
     task_add_member_from_csv, task_find_location_and_save
 from autosignup.utils import collect_twilio_data, AddressCompareUtil,\
-    send_csv_member_invitation_email, unique_referral_code_generator
+    send_csv_member_invitation_email, unique_referral_code_generator,\
+    location_finder_util
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
 from invitationsystem.models import Invitation
@@ -376,7 +377,7 @@ def verify_phone_code(request, id):
                 phoneverfication.delete()
                 twilio_data = collect_twilio_data(community_signup)
                 if twilio_data:
-                    task_find_location_and_save.delay(twilio_data)
+                    location_finder_util(twilio_data)
                     community_signup.step_3_done = True
                     for address in community_signup.useraddresses.all():
                         if address.address_type == 'db':
