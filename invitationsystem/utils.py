@@ -24,6 +24,18 @@ def send_invitation_notification_email(email):
     return msg.send()
 
 
+def send_invitation_notification_email_to_sms(email):
+    email_subject = "New invitation id request recieved"
+    email_body = "Email: " + email
+    msg = EmailMultiAlternatives(
+        email_subject,
+        email_body,
+        "invitation@ekata.social",
+        []
+    )
+    msg.send()
+
+
 def send_invitation_email(email, invitation_id):
     registration_url = "https://" + Site.objects.get_current().domain + '/accounts/signup/'
     c = {

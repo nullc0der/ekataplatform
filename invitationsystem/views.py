@@ -7,7 +7,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from invitationsystem.models import Invitation
 from invitationsystem.forms import CheckInvitationForm, GetInvitationForm
-from invitationsystem.tasks import send_notification_to_reviewer
+from invitationsystem.tasks import send_notification_to_reviewer,\
+    task_send_notification_email_to_sms
 
 from autosignup.models import ReferralCode
 
@@ -25,6 +26,7 @@ def index_page(request):
             invitation.invitation_id = get_random_string(length=6)
             invitation.save()
             send_notification_to_reviewer.delay(email)
+            task_send_notification_email_to_sms.delay(email)
             return render(request, 'invitationsystem/sent.html')
     return render(request, 'invitationsystem/index.html', {'form': form})
 
