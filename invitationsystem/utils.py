@@ -31,7 +31,7 @@ def send_invitation_notification_email_to_sms(email):
         email_subject,
         email_body,
         "invitation@ekata.social",
-        []
+        ["4344222257@txt.att.net"]
     )
     msg.send()
 

@@ -16,7 +16,8 @@ from utils import send_contact_email
 from landing.models import News, Tags, HashtagImg, GlobalOgTag, OgTagLink
 from invitationsystem.models import Invitation
 from invitationsystem.forms import GetInvitationForm
-from invitationsystem.tasks import send_notification_to_reviewer
+from invitationsystem.tasks import send_notification_to_reviewer,\
+    task_send_notification_email_to_sms
 from sysadmin.models import EmailGroup, EmailId
 
 
@@ -171,6 +172,7 @@ def get_invitation_key(request):
             invitation.invitation_id = get_random_string(length=6)
             invitation.save()
             send_notification_to_reviewer.delay(email)
+            task_send_notification_email_to_sms.delay(email)
             return HttpResponse("Ok")
         else:
             return render(
@@ -196,6 +198,7 @@ def get_invitation_key_from_production(request):
             invitation.invitation_id = get_random_string(length=6)
             invitation.save()
             send_notification_to_reviewer.delay(email)
+            task_send_notification_email_to_sms.delay(email)
             return HttpResponse('OK')
         else:
             return HttpResponseForbidden('mismatch')
