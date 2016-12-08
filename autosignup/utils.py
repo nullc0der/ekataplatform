@@ -153,9 +153,13 @@ def collect_twilio_data(community_signup):
 
 
 def send_approval_mail(signup, template_path=None):
+    try:
+        referral_code = signup.user.referral_code.code
+    except:
+        referral_code = ""
     c = {
         'username': signup.user.username,
-        'referral_code': signup.user.referral_code.code
+        'referral_code': referral_code
     }
     email_subject = "You have been approved a Grantcoin account."
     email_body = "Hello " + signup.user.username + ", Greetings from Ekata!!\n" + \
@@ -166,7 +170,7 @@ def send_approval_mail(signup, template_path=None):
         template = Template(email_html)
         context = Context({
             'username': signup.user.username,
-            'referral_code': signup.user.referral_code.code
+            'referral_code': referral_code
         })
         email_html = template.render(context)
         template_f.close()
@@ -215,8 +219,8 @@ class AddressCompareUtil(object):
     """
 
     def calculate_distance(self):
-        from_add = from_city.latitude + ',' + from_city.longitude
-        to_add = to_city.latitude + ',' + to_city.longitude
+        from_add = self.from_city.latitude + ',' + self.from_city.longitude
+        to_add = self.to_city.latitude + ',' + self.to_city.longitude
         url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (from_add, to_add)
         res = requests.get(url)
         distance = []
