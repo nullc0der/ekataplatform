@@ -390,8 +390,10 @@ def verify_phone_code(request, id):
                     if distance:
                         community_signup.distance_db_vs_twilio = distance[1] * 0.001
                         accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
-                        if accountprovider.allowed_distance > distance[1] * 0.001:
-                            community_signup.signup_status = 'approved'
+                        print(accountprovider.allowed_distance)
+                        print(distance[1] * 0.001)
+                        if int(accountprovider.allowed_distance) > distance[1] * 0.001:
+                            community_signup.status = 'approved'
                             community_signup.sent_to_community_staff = True
                             community_signup.verified_date = now()
                             community_signup.save()
