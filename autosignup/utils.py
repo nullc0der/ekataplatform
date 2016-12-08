@@ -25,8 +25,6 @@ from profilesystem.models import UserAddress
 from autosignup.models import CommunitySignup, GlobalEmail,\
     GlobalPhone, ReferralCode, AutoSignupAddress
 
-from django.core.cache import cache
-
 
 def unique_referral_code_generator():
     not_unique = True
@@ -196,41 +194,13 @@ class AddressCompareUtil(object):
         self.from_city = from_city
         self.to_city = to_city
 
-    """
-    def _extract_city(self, city, twilio=False, zip_code=False):
-        t = ""
-        s = ""
-        if not zip_code:
-            for d in city:
-                v = d.strip()
-                if v.startswith('city:'):
-                    t = v.split(':')[1]
-                if not twilio:
-                    if v.startswith('state:'):
-                        s = v.split(':')[1]
-                else:
-                    if v.startswith('country:'):
-                        s = v.split(':')[1]
-            return t + ',' + s
-        else:
-            for d in city:
-                v = d.strip()
-                if v.startswith('zip_code:'):
-                    t = v.split(':')[1]
-            return t
-    """
-
     def calculate_distance(self):
         from_add = self.from_city.latitude + ',' + self.from_city.longitude
-        print(from_add)
         to_add = self.to_city.latitude + ',' + self.to_city.longitude
-        print(to_add)
         url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (from_add, to_add)
-        print(url)
         res = requests.get(url)
         distance = []
         data = json.loads(res.content)
-        print(data)
         if data["rows"][0]["elements"][0]["status"] == "OK":
             distance.append(
                 data["rows"][0]["elements"][0]["distance"]["text"]
@@ -238,36 +208,6 @@ class AddressCompareUtil(object):
             distance.append(
                 data["rows"][0]["elements"][0]["distance"]["value"]
             )
-            """
-            try:
-                if data["rows"][0]["elements"][0]["status"] == "OK":
-                    distance = []
-                    distance.append(
-                        data["rows"][0]["elements"][0]["distance"]["text"]
-                    )
-                    distance.append(
-                        data["rows"][0]["elements"][0]["distance"]["value"]
-                    )
-            except:
-                from_add = self._extract_city(self.from_city, zip_code=True)
-                to_add = self._extract_city(self.to_city, twilio=True, zip_code=True)
-                url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=%s&destinations=%s" % (from_add, to_add)
-                res = requests.get(url)
-                data = json.loads(res.content)
-                if data["rows"][0]["elements"][0]["status"] == "OK":
-                    distance = []
-                    distance.append(
-                        data["rows"][0]["elements"][0]["distance"]["text"]
-                    )
-                    distance.append(
-                        data["rows"][0]["elements"][0]["distance"]["value"]
-                    )
-            else:
-                distance = []
-            """
-        print(distance)
-        cache.set('debug_data_google_from_util: %s' % data, 2 * 60 * 60)
-        cache.set('debug_distance_google_from_util: %s' % distance, 2 * 60 * 60)
         return distance
 
 
@@ -471,11 +411,8 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
             accountprovidercsv.processed_to = processed_to
             failed_csv_file.close()
             with open(filename, 'rb') as doc_file:
-                accountprovidercsv.csv.save(filename, File(filename), save=True)
+                accountprovidercsv.csv.save(filename, File(doc_file), save=True)
                 accountprovidercsv.save()
-        elif integrate_status == 'partially processed':
-            accountprovidercsv.status = 'partially processed'
-            accountprovidercsv.processed_to = processed_to
         else:
             accountprovidercsv.status = 'processed'
             accountprovidercsv.processed_to = 'all'
