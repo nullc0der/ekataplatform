@@ -25,7 +25,7 @@ class GetInvitationForm(forms.Form):
 class CheckInvitationForm(forms.Form):
     invitation_id = forms.CharField(
         label="Please enter in your invitation key or referral code",
-        max_length=6
+        max_length=15
     )
     captcha = ReCaptchaField(label='', widget=ReCaptchaWidget())
 
