@@ -394,12 +394,15 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                         )
                         rcode_obj.code = referral_code
                         rcode_obj.save()
-                        line = now + ": Referral code for user " + \
+                        """
+                        audit_file_path = settings.BASE_DIR + '/static/dist/files/audit.log'
+                        line = now() + ": Referral code for user " + \
                             signup.user.username + "changed from " + \
                             membercsv['referral_code'] + "to " + referral_code
-                        f = open('static/dist/files/audit.log', 'a+')
+                        f = open(audit_file_path, 'a+')
                         f.write(line)
                         f.close()
+                        """
                     else:
                         rcode_obj, created = ReferralCode.objects.get_or_create(
                             user=signup.user
@@ -453,7 +456,7 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
             accountprovidercsv.processed_to = processed_to
             failed_csv_file.close()
             with open(filename, 'rb') as doc_file:
-                accountprovidercsv.csv.save(filename, File(doc_file), save=True)
+                accountprovidercsv.failed_csv.save(filename, File(doc_file), save=True)
                 accountprovidercsv.save()
         else:
             accountprovidercsv.status = 'processed'
