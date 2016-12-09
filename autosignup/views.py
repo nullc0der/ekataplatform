@@ -129,11 +129,11 @@ def step_1_signup(request, id):
                     address_type='geoip',
                     user=request.user,
                     signup=community_signup,
-                    zip_code=c['postal_code'],
-                    city=c['city'],
-                    country=c['country_name'],
-                    latitude=c['latitude'],
-                    longitude=c['longitude']
+                    zip_code=c['postal_code'] if c['postal_code'] else '',
+                    city=c['city'] if c['city'] else '',
+                    country=c['country_name'] if c['country_name'] else '',
+                    latitude=c['latitude'] if c['latitude'] else '',
+                    longitude=c['longitude'] if c['longitude'] else ''
                 )
             community_signup.step_1_done = True
             community_signup.save()

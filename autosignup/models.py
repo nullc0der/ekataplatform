@@ -132,7 +132,6 @@ class AutoSignupAddress(models.Model):
     longitude = models.CharField(max_length=100, default='', blank=True)
 
 
-
 class EmailVerfication(models.Model):
     user = models.ForeignKey(User)
     community_signup = models.ForeignKey(CommunitySignup)
