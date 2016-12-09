@@ -394,15 +394,14 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                         )
                         rcode_obj.code = referral_code
                         rcode_obj.save()
-                        """
                         audit_file_path = settings.BASE_DIR + '/static/dist/files/audit.log'
-                        line = now() + ": Referral code for user " + \
-                            signup.user.username + "changed from " + \
-                            membercsv['referral_code'] + "to " + referral_code
+                        datetime = now().strftime("%Y-%m-%d %H:%I")
+                        line = "\n" + datetime + ": Referral code for user " + \
+                            signup.user.username + " changed from " + \
+                            membercsv['referral_code'] + " to " + referral_code
                         f = open(audit_file_path, 'a+')
                         f.write(line)
                         f.close()
-                        """
                     else:
                         rcode_obj, created = ReferralCode.objects.get_or_create(
                             user=signup.user
