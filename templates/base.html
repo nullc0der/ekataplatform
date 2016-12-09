@@ -350,11 +350,6 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <section>
-                <div class="alert alert-success sysalert text-center">
-                    <h4>
-                        <a href="{% url 'emailtosms:index' %}">{% trans "Help us to find working email to sms providers for your mobile number" %}</a>
-                    </h4>
-                </div>
                 {% if UPDATES %}
                     {% for update in UPDATES %}
                         <div class="alert alert-{{ update.get_message_type_display }} sysalert">
