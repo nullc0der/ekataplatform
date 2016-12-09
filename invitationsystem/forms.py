@@ -33,6 +33,7 @@ class CheckInvitationForm(forms.Form):
         invitation_id = self.cleaned_data.get('invitation_id')
         try:
             invitation = Invitation.objects.get(invitation_id=invitation_id)
+            return invitation_id
         except ObjectDoesNotExist:
             pass  # Fallback to referral code
         try:

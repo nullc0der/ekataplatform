@@ -15,6 +15,7 @@ from django.utils.crypto import get_random_string
 from django.utils.dateparse import parse_date
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files import File
+from django.utils.timezone import now
 
 from twilio.rest import TwilioRestClient
 from twilio.rest.exceptions import TwilioRestException
@@ -30,7 +31,10 @@ def unique_referral_code_generator():
     not_unique = True
     referral_code = ''
     while not_unique:
-        code = get_random_string(length=6)
+        code = get_random_string(
+            length=10,
+            allowed_chars='abcdefghijklmnopqrstuvwxyz0123456789'
+        )
         referral_codes = ReferralCode.objects.filter(code=code)
         if not len(referral_codes):
             not_unique = False
@@ -157,8 +161,9 @@ def send_approval_mail(signup, template_path=None):
         referral_code = signup.user.referral_code.code
     except:
         referral_code = ""
+    gc_name = signup.user.first_name if signup.user.first_name else signup.user.username
     c = {
-        'username': signup.user.username,
+        'gc_name': gc_name,
         'referral_code': referral_code
     }
     email_subject = "You have been approved a Grantcoin account."
@@ -169,7 +174,7 @@ def send_approval_mail(signup, template_path=None):
         email_html = template_f.read()
         template = Template(email_html)
         context = Context({
-            'username': signup.user.username,
+            'gc_name': gc_name,
             'referral_code': referral_code
         })
         email_html = template.render(context)
@@ -380,6 +385,43 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                 if invitation:
                     signup.invitation = invitation
                 signup.save()
+                if membercsv['referral_code']:
+                    rcodes = ReferralCode.objects.filter(code=membercsv['referral_code'])
+                    if rcodes:
+                        referral_code = unique_referral_code_generator()
+                        rcode_obj, created = ReferralCode.objects.get_or_create(
+                            user=signup.user
+                        )
+                        rcode_obj.code = referral_code
+                        rcode_obj.save()
+                        line = now + ": Referral code for user " + \
+                            signup.user.username + "changed from " + \
+                            membercsv['referral_code'] + "to " + referral_code
+                        f = open('static/dist/files/audit.log', 'a+')
+                        f.write(line)
+                        f.close()
+                    else:
+                        rcode_obj, created = ReferralCode.objects.get_or_create(
+                            user=signup.user
+                        )
+                        rcode_obj.code = membercsv['referral_code']
+                        rcode_obj.save()
+                    if membercsv['referred_by']:
+                        try:
+                            rcode_obj = ReferralCode.objects.get(
+                                code=membercsv['referred_by']
+                            )
+                            signup.user.profile.referred_by = rcode_obj.user
+                            signup.user.profile.save()
+                        except ObjectDoesNotExist:
+                            pass
+                else:
+                    referral_code = unique_referral_code_generator()
+                    rcode_obj, created = ReferralCode.objects.get_or_create(
+                        user=signup.user
+                    )
+                    rcode_obj.code = referral_code
+                    rcode_obj.save()
                 try:
                     globalphone = GlobalPhone.objects.get(
                         phone=signup.userphone

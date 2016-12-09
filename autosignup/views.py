@@ -352,6 +352,7 @@ def step_3_signup(request, id):
 @login_required
 def verify_phone_code(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
+    phone_used_before = False
     if community_signup.step_1_done and community_signup.step_2_done:
         form = PhoneVerificationForm(community_signup, request)
         if request.method == 'POST':
@@ -382,35 +383,44 @@ def verify_phone_code(request, id):
                             dbaddress = address
                         if address.address_type == 'twilio':
                             twaddress = address
-                    addresscompareutil = AddressCompareUtil(dbaddress, twaddress)
-                    distance = addresscompareutil.calculate_distance()
-                    if distance:
-                        community_signup.distance_db_vs_twilio = distance[1] * 0.001
-                        accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
-                        print(accountprovider.allowed_distance)
-                        print(distance[1] * 0.001)
-                        if int(accountprovider.allowed_distance) > distance[1] * 0.001:
-                            community_signup.status = 'approved'
-                            community_signup.sent_to_community_staff = True
-                            community_signup.verified_date = now()
-                            community_signup.save()
-                            referral_code = unique_referral_code_generator()
-                            ReferralCode.objects.get_or_create(
-                                user=community_signup.user,
-                                code=referral_code
-                            )
-                            template_path = get_selected_template_path()
-                            task_send_approval_mail.delay(community_signup, template_path)
-                        else:
-                            community_signup.failed_auto_signup = True
-                            community_signup.auto_signup_fail_reason = 'Distance not within allowed range'
-                            community_signup.sent_to_community_staff = True
-                            community_signup.save()
-                    else:
+                    globalphones = GlobalPhone.objects.filter(phone=community_signup.userphone)
+                    for globalphone in globalphones:
+                        if len(globalphone.signup.all()) >= 2:
+                            phone_used_before = True
+                    if phone_used_before:
                         community_signup.failed_auto_signup = True
-                        community_signup.auto_signup_fail_reason = 'No distance data'
+                        community_signup.auto_signup_fail_reason = 'Phone number submitted was used for another account'
                         community_signup.sent_to_community_staff = True
                         community_signup.save()
+                    else:
+                        addresscompareutil = AddressCompareUtil(dbaddress, twaddress)
+                        distance = addresscompareutil.calculate_distance()
+                        if distance:
+                            community_signup.distance_db_vs_twilio = distance[1] * 0.001
+                            accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
+                            if int(accountprovider.allowed_distance) > distance[1] * 0.001:
+                                community_signup.status = 'approved'
+                                community_signup.sent_to_community_staff = True
+                                community_signup.verified_date = now()
+                                community_signup.save()
+                                referral_code = unique_referral_code_generator()
+                                rcode_obj, created = ReferralCode.objects.get_or_create(
+                                    user=community_signup.user
+                                )
+                                rcode_obj.code = referral_code
+                                rcode_obj.save()
+                                template_path = get_selected_template_path()
+                                task_send_approval_mail.delay(community_signup, template_path)
+                            else:
+                                community_signup.failed_auto_signup = True
+                                community_signup.auto_signup_fail_reason = 'Distance not within allowed range'
+                                community_signup.sent_to_community_staff = True
+                                community_signup.save()
+                        else:
+                            community_signup.failed_auto_signup = True
+                            community_signup.auto_signup_fail_reason = 'No distance data'
+                            community_signup.sent_to_community_staff = True
+                            community_signup.save()
                 else:
                     community_signup.step_3_done = True
                     community_signup.failed_auto_signup = True
@@ -661,10 +671,11 @@ def edit_signup(request, id):
             if community_signup.status == 'approved' and not community_signup.approval_mail_sent:
                     community_signup.verified_date = now()
                     referral_code = unique_referral_code_generator()
-                    ReferralCode.objects.get_or_create(
-                        user=community_signup.user,
-                        code=referral_code
+                    rcode_obj, created = ReferralCode.objects.get_or_create(
+                        user=community_signup.user
                     )
+                    rcode_obj.code = referral_code
+                    rcode_obj.save()
                     template_path = get_selected_template_path()
                     task_send_approval_mail.delay(community_signup, template_path)
             community_signup.save()

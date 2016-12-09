@@ -172,9 +172,7 @@
     </h4>
     <hr>
     {% if signup.user.profile.referred_by %}
-    <h4>
-        Referred By: <a href="{% url 'publicusers:user' signup.user.profile.referred_by.id %}">{{ signup.user.profile.referred_by.username }}</a></h4>
-    </h4>
+    <h4>Referred By: <a href="{% url 'publicusers:user' signup.user.profile.referred_by.id %}">{{ signup.user.profile.referred_by.username }}</a></h4>
     <hr>
     {% endif %}
     <h4>

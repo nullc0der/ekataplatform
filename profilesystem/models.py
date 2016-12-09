@@ -91,7 +91,7 @@ class UserProfile(models.Model):
     )
     about_me = models.TextField(default='', blank=True)
     account_type = models.CharField(max_length=100, default='personal', blank=True)
-    referred_by = models.OneToOneField(User, null=True, blank=True)
+    referred_by = models.ForeignKey(User, null=True, blank=True)
 
     name_public = models.BooleanField(default=True)
     website_public = models.BooleanField(default=True)

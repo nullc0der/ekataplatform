@@ -143,13 +143,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="text-center">
-                                <h3>{% trans "Download Member Data" %}</h3>
-                                <hr>
-                            </div>
                             <label style="margin-right: 30px;">{% trans "Select range" %}</label>
                             <input type="text" id='memberslider'>
-                            <button class="btn btn-success btn-block" id="downcsv">{% trans "Download CSV" %}</button>
+                            <button class="btn btn-success btn-block" id="downcsv">{% trans "Download Member Data CSV" %}</button>
+                            <hr>
+                            <a href="{% static "dist/files/audit.log" %}" class="btn btn-info btn-block">Download Audit Log</a>
                         </div>
                     </div>
                 </div>
