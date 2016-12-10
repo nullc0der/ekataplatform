@@ -848,7 +848,7 @@ def delete_template(request):
 def upload_member_csv(request):
     accountprovider = AccountProvider.objects.get(id=request.POST.get('id'))
     csv = request.FILES.get('csv')
-    fetch_twilio = request.POST.get('fetch_twilio')
+    fetch_twilio = 'fetch_twilio' in request.POST
     accountprovidercsv = AccountProviderCSV(
         accountprovider=accountprovider,
         csv=csv
@@ -970,3 +970,22 @@ def download_member_csv(request):
     )
     response['Content-Disposition'] = 'attachment; filename="membercsv.csv"'
     return response
+
+
+@require_POST
+@login_required
+def invite_code_settings(request):
+    accountprovider = AccountProvider.objects.get(id=request.POST.get('id'))
+    if 'toggle_invite' in request.POST:
+        toggle_invite = request.POST.get('toggle_invite')
+        if toggle_invite == "on":
+            accountprovider.invite_code_is_open = True
+        if toggle_invite == "off":
+            accountprovider.invite_code_is_open = False
+        accountprovider.save()
+        return HttpResponse(status=200)
+    if 'invite_code' in request.POST:
+        invite_code = request.POST.get('invite_code')
+        accountprovider.invite_code = invite_code
+        accountprovider.save()
+        return HttpResponse(status=200)

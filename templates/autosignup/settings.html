@@ -79,6 +79,29 @@
                             </form>
                         </div>
                     </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-12">
+                            <h5>{% trans "Invite Code" %}</h5>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-6">
+                            <h5>{% trans "Status:" %}</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" {% if accountprovider.invite_code_is_open %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Open" data-off="Closed" data-size="mini" id="invite_code_toggle">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-6">
+                            <h5>{% trans "Code:" %}</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" value="{{ accountprovider.invite_code }}" maxlength=14 class="form-control" id="invite_code_value">
+                            <button class="btn btn-primary btn-xs btn-block btn-flat" id="invite_code_submit">{% trans "Submit" %}</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -211,6 +234,31 @@
                 link.href=window.URL.createObjectURL(blob);
                 link.download="membercsv.csv";
                 link.click();
+            }
+        });
+    });
+    $('#invite_code_toggle').change(function(){
+        var checked = $(this).is(':checked');
+        $.ajax({
+            url: '{% url 'autosignup:invite_code_settings' %}',
+            type: 'POST',
+            data: {'id': {{ accountprovider.id }}, 'toggle_invite': checked?'on':'off'},
+            success: function (data) {
+                console.log('success');
+            }
+        });
+    });
+    $("#invite_code_submit").click(function(){
+        var code = $("#invite_code_value").val();
+        $.ajax({
+            url: '{% url 'autosignup:invite_code_settings' %}',
+            type: 'POST',
+            data: {'id': {{ accountprovider.id }}, 'invite_code': code},
+            success: function (data) {
+                $('.top-right').notify({
+                    message: { text: 'Code changed successfully' },
+                    type: 'success'
+                }).show();
             }
         });
     });

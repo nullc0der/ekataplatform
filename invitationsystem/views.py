@@ -10,7 +10,7 @@ from invitationsystem.forms import CheckInvitationForm, GetInvitationForm
 from invitationsystem.tasks import send_notification_to_reviewer,\
     task_send_notification_email_to_sms
 
-from autosignup.models import ReferralCode
+from autosignup.models import ReferralCode, AccountProvider
 
 # Create your views here.
 
@@ -33,6 +33,7 @@ def index_page(request):
 
 def invitation_id_page(request):
     form = CheckInvitationForm()
+    accountprovider = AccountProvider.objects.get(name='grantcoin')
     if request.method == 'POST':
         form = CheckInvitationForm(request.POST)
         if form.is_valid():
@@ -43,15 +44,20 @@ def invitation_id_page(request):
                 invitation = Invitation.objects.get(invitation_id=invitation_id)
                 invitation.delete()
             except ObjectDoesNotExist:
+                pass
+            try:
                 referral_code = ReferralCode.objects.get(code=invitation_id)
                 request.user.profile.referred_by = referral_code.user
                 request.user.profile.save()
+            except ObjectDoesNotExist:
+                pass
             return redirect(reverse('dashboard:index'))
     return render(
         request,
         'invitationsystem/checkinvitation.html',
         {
-            'form': form
+            'form': form,
+            'accountprovider': accountprovider
         }
     )
 

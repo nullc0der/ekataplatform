@@ -21,6 +21,8 @@ class AccountProvider(models.Model):
         related_name='account_signups'
     )
     allowed_distance = models.IntegerField(default=20, blank=True, editable=False)
+    invite_code = models.CharField(default='', max_length=100, blank=True)
+    invite_code_is_open = models.BooleanField(default=True, editable=False)
 
     def __unicode__(self):
         return self.name

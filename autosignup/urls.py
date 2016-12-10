@@ -152,5 +152,10 @@ urlpatterns = [
         r'^download_member_csv/$',
         views.download_member_csv,
         name='download_member_csv'
+    ),
+    url(
+        r'^invite_code_settings/$',
+        views.invite_code_settings,
+        name='invite_code_settings'
     )
 ]

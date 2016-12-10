@@ -6,7 +6,7 @@ from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 
 from invitationsystem.models import Invitation
 
-from autosignup.models import ReferralCode
+from autosignup.models import ReferralCode, AccountProvider
 
 
 class GetInvitationForm(forms.Form):
@@ -38,6 +38,12 @@ class CheckInvitationForm(forms.Form):
             pass  # Fallback to referral code
         try:
             referral_code = ReferralCode.objects.get(code=invitation_id)
+            return invitation_id
         except ObjectDoesNotExist:
+            pass
+        accountprovider = AccountProvider.objects.get(name='grantcoin')
+        if accountprovider.invite_code_is_open and invitation_id == accountprovider.invite_code:
+            return invitation_id
+        else:
             raise forms.ValidationError("Invitation key or Referral code doesn't exist")
         return invitation_id

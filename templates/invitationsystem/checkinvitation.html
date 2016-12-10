@@ -20,6 +20,11 @@
                                 </p>
                                 <a style="color:#fff;" href="{% url 'dashboard:index' %}">Click here to go to dashboard</a>
                             {% else %}
+                                {% if accountprovider.invite_code_is_open %}
+                                    <p>
+                                        This is a Grantcoin enrollment period, if you do not have an invite or referral code then enter: {{ accountprovider.invite_code }}
+                                    </p>
+                                {% endif %}
                                 <form action="{% url 'invitationsystem:addinvitation' %}" method="POST">
                                     {% csrf_token %}
                                     {{ form|as_bootstrap }}
