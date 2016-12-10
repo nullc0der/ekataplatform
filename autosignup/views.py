@@ -26,12 +26,12 @@ from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail,\
     task_add_member_from_csv, task_find_location_and_save
 from autosignup.utils import collect_twilio_data, AddressCompareUtil,\
-    send_csv_member_invitation_email, unique_referral_code_generator,\
-    location_finder_util
+    unique_referral_code_generator, location_finder_util
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
 from invitationsystem.models import Invitation
-from invitationsystem.tasks import send_invitation
+from invitationsystem.tasks import send_invitation,\
+    task_send_csv_member_invitation_email
 # Create your views here.
 
 
@@ -865,7 +865,7 @@ def upload_member_csv(request):
 @login_required
 def send_member_invitation(request):
     invitation = Invitation.objects.get(id=request.POST.get('invitation_id'))
-    send_csv_member_invitation_email(
+    task_send_csv_member_invitation_email.delay(
         email=invitation.email,
         invitation_id=invitation.invitation_id,
         username=invitation.username,

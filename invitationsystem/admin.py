@@ -3,13 +3,15 @@ import requests
 from django.contrib import admin
 from django_object_actions import DjangoObjectActions, takes_instance_or_queryset
 from invitationsystem.models import Invitation
-from invitationsystem.tasks import send_invitation
+from invitationsystem.tasks import send_invitation,\
+    task_send_csv_member_invitation_email
 
 # Register your models here.
 
 
 class InvitationAdmin(DjangoObjectActions, admin.ModelAdmin):
     list_filter = ('approved', 'sent', 'invitation_type')
+    readonly_fields = ['invitation_type']
     actions = ['resend_invitations']
     change_actions = ['resend_invitations']
 
@@ -18,10 +20,18 @@ class InvitationAdmin(DjangoObjectActions, admin.ModelAdmin):
         count = 0
         for invitation in queryset:
             if invitation.approved:
-                send_invitation.delay(
-                    invitation.email,
-                    invitation.invitation_id
-                )
+                if invitation.invitation_type == 'default':
+                    send_invitation.delay(
+                        invitation.email,
+                        invitation.invitation_id
+                    )
+                if invitation.invitation_type == 'grantcoin':
+                    task_send_csv_member_invitation_email.delay(
+                        invitation.email,
+                        invitation.username,
+                        invitation.password,
+                        invitation.invitation_id
+                    )
                 payload = {
                     'email': invitation.email,
                     'api_key': '475195da-682e-464c-a8f6-8f321306fbf3'

@@ -5,7 +5,8 @@ import requests
 from django.db import models
 from django.utils.crypto import get_random_string
 
-from invitationsystem.tasks import send_invitation
+from invitationsystem.tasks import send_invitation,\
+    task_send_csv_member_invitation_email
 
 # Create your models here.
 
@@ -25,16 +26,29 @@ class Invitation(models.Model):
         default=random_string,
         editable=False
     )
+    invitation_type = models.CharField(
+        max_length=40,
+        choices=TYPE_CHOICES,
+        default='default',
+        editable=False
+    )
     approved = models.BooleanField(default=False)
     sent = models.BooleanField(default=False, editable=False)
     username = models.CharField(max_length=100, editable=False, default='')
     password = models.CharField(max_length=100, editable=False, default='')
-    invitation_type = models.CharField(max_length=40, choices=TYPE_CHOICES, default='default')
 
     def save(self, *args, **kwargs):
         if self.approved:
             if not self.sent:
-                send_invitation.delay(self.email, self.invitation_id)
+                if self.invitation_type == 'default':
+                    send_invitation.delay(self.email, self.invitation_id)
+                if self.invitation_type == 'grantcoin':
+                    task_send_csv_member_invitation_email.delay(
+                        self.email,
+                        self.username,
+                        self.password,
+                        self.invitation_id
+                    )
                 self.sent = True
                 payload = {
                     'email': self.email,

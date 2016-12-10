@@ -58,3 +58,27 @@ def send_invitation_email(email, invitation_id):
     msg.attach_alternative(email_html, "text/html")
 
     return msg.send()
+
+
+def send_csv_member_invitation_email(email, username, password, invitation_id):
+    c = {
+        'email': email,
+        'invitation_id': invitation_id,
+        'username': username,
+        'password': password
+    }
+    email_subject = "You are invited to Ekata"
+    email_body = "Invitation id: " + invitation_id + "\nUsername: " + username + '\nPassword: ' + password
+    email_html = render_to_string(
+        'invitationsystem/csvinvitationemail.html',
+        c
+    )
+    msg = EmailMultiAlternatives(
+        email_subject,
+        email_body,
+        "invitation@ekata.social",
+        [email]
+    )
+    msg.attach_alternative(email_html, "text/html")
+
+    return msg.send(fail_silently=True)
