@@ -4,6 +4,7 @@ from django.utils.crypto import get_random_string
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 from invitationsystem.models import Invitation
 from invitationsystem.forms import CheckInvitationForm, GetInvitationForm
@@ -62,6 +63,7 @@ def invitation_id_page(request):
     )
 
 
+@login_required
 def referral_code_url(request):
     if 'referral_code' in request.GET:
         referral_code = request.GET.get('referral_code')

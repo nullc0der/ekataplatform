@@ -87,7 +87,16 @@ def send_email_verification_code(email, code):
 
 
 def send_phone_verfication_code(phone_no, code):
-    lookup = cache.get('%s_lookup' % phone_no)
+    account_sid = settings.EKATA_TWILIO_ACCOUNT_SID
+    auth_token = settings.EKATA_TWILIO_AUTH_TOKEN
+    client = TwilioRestClient(account_sid, auth_token)
+    message = client.messages.create(
+        body='Use verification code: ' + code + '\nvalid for 30 min',
+        to=phone_no,
+        from_=settings.EKATA_TWILIO_PHONE_NO
+    )
+    return message.status
+    """lookup = cache.get('%s_lookup' % phone_no)
     if lookup:
         carrier_name = lookup['carrier']['name']
         carrier = Carrier.objects.filter(
@@ -117,15 +126,7 @@ def send_phone_verfication_code(phone_no, code):
             )
             return message.status
     else:
-        account_sid = settings.EKATA_TWILIO_ACCOUNT_SID
-        auth_token = settings.EKATA_TWILIO_AUTH_TOKEN
-        client = TwilioRestClient(account_sid, auth_token)
-        message = client.messages.create(
-            body='Use verification code: ' + code + '\nvalid for 30 min',
-            to=phone_no,
-            from_=settings.EKATA_TWILIO_PHONE_NO
-        )
-        return message.status
+    """
 
 
 def collect_twilio_data(community_signup):
