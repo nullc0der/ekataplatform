@@ -35,7 +35,7 @@
         url: registerfrm.attr('action'),
         data: registerfrm.serialize(),
         success: function(data, textStatus, jqXHR) {
-          location.href = '/';
+          location.href = $('input[name="next"]').val();
         },
         error: function(data, textStatus, jqXHR) {
           var response = $.parseJSON(data.responseText);
