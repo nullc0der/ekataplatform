@@ -12,7 +12,7 @@ from invitationsystem.tasks import send_invitation,\
 class InvitationAdmin(DjangoObjectActions, admin.ModelAdmin):
     list_filter = ('approved', 'sent', 'invitation_type')
     readonly_fields = ['invitation_type']
-    actions = ['resend_invitations']
+    actions = ['resend_invitations', 'mass_approve']
     change_actions = ['resend_invitations']
 
     @takes_instance_or_queryset
@@ -52,6 +52,19 @@ class InvitationAdmin(DjangoObjectActions, admin.ModelAdmin):
             request,
             'Total resend: %s' % count
         )
+
+    def mass_approve(self, request, queryset):
+        count = 0
+        for invitation in queryset:
+            invitation.approved = True
+            invitation.save()
+            count += 1
+        self.message_user(
+            request,
+            'Total approved invitation and scheduled to send: %s' % count
+        )
+
+    mass_approve.short_description = 'Mass Approve'
     resend_invitations.short_description = 'Resend Invitation'
     resend_invitations.label = 'Resend'
 

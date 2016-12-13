@@ -594,6 +594,8 @@ def signups_page(request):
 def signups_settings(request):
     accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
     emailtemplate = ApprovedMailTemplate.objects.filter(selected=True)
+    signups_count = CommunitySignup.objects.latest('id')
+    signups_count = signups_count.id
     if not emailtemplate:
         default_template = True
     else:
@@ -607,7 +609,8 @@ def signups_settings(request):
         'autosignup/settings.html',
         {
             'accountprovider': accountprovider,
-            'default_template': default_template
+            'default_template': default_template,
+            'signups_count': signups_count
         }
     )
 
@@ -905,14 +908,23 @@ def download_member_csv(request):
     fieldnames = [
         'signup_date',
         'date_verified',
+        'first_name',
+        'last_name',
         'full_name',
-        'useraddress_in_db',
-        'useraddress_from_twilio',
-        'useraddress_from_geoip',
+        'house_number',
+        'street',
+        'zip_code',
+        'city',
+        'state',
+        'country',
+        'email_id',
+        'phone_number',
         'referred_by',
         'referral_code',
         'wallet_address',
-        'status'
+        'is_on_distribution',
+        'status',
+        'is_signed_up'
     ]
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
@@ -926,29 +938,42 @@ def download_member_csv(request):
             row['date_verified'] = get_date(community_signup.verified_date)
         else:
             row['date_verified'] = ''
+        if community_signup.user.first_name:
+            row['first_name'] = community_signup.user.first_name
+        else:
+            row['first_name'] = ''
+        if community_signup.user.last_name:
+            row['last_name'] = community_signup.user.last_name
+        else:
+            row['last_name'] = ''
         if community_signup.user.get_full_name:
             row['full_name'] = community_signup.user.get_full_name()
         else:
             row['full_name'] = ''
-        if community_signup.useraddress_in_db:
-            row['useraddress_in_db'] = parse_address(community_signup.useraddress_in_db)
-        else:
-            row['useraddress_in_db'] = ''
-        if community_signup.useraddress_from_twilio:
-            row['useraddress_from_twilio'] = parse_address(community_signup.useraddress_from_twilio)
-        else:
-            row['useraddress_from_twilio'] = ''
-        if community_signup.useraddress_from_twilio:
-            row['useraddress_from_geoip'] = parse_address(community_signup.useraddress_from_geoip)
-        else:
-            row['useraddress_from_geoip'] = ''
-        if community_signup.referred_by:
-            row['referred_by'] = community_signup.referred_by
-        else:
-            row['referred_by'] = ''
-        if community_signup.referral_code:
-            row['referral_code'] = community_signup.referral_code
-        else:
+        address = community_signup.useraddresses.filter(address_type='db')
+        if address:
+            row['house_number'] = address[0].house_number
+            row['street'] = address[0].street
+            row['zip_code'] = address[0].zip_code
+            row['city'] = address[0].city
+            row['state'] = address[0].state
+            row['country'] = address[0].country
+        row['email_id'] = community_signup.useremail
+        row['phone_number'] = community_signup.userphone
+        if community_signup.user.profile.referred_by:
+            try:
+                rcode_obj = ReferralCode.objects.get(
+                    user=community_signup.user.profile.referred_by
+                )
+                row['referred_by'] = rcode_obj.code
+            except ObjectDoesNotExist:
+                row['referred_by'] = ''
+        try:
+            referral_code = ReferralCode.objects.get(
+                user=community_signup.user
+            )
+            row['referral_code'] = referral_code.code
+        except ObjectDoesNotExist:
             row['referral_code'] = ''
         if community_signup.wallet_address:
             row['wallet_address'] = community_signup.wallet_address
@@ -958,6 +983,8 @@ def download_member_csv(request):
             row['status'] = community_signup.status
         else:
             row['status'] = ''
+        row['is_on_distribution'] = community_signup.is_on_distribution
+        row['is_signed_up'] = 'true'
         writer.writerow(row)
     f.close()
     f = open(filename)

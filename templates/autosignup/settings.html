@@ -181,7 +181,7 @@
 {% block extrascripts %}
     <script type="text/javascript">
     var memberSlider = $("#memberslider").bootstrapSlider({
-        max: 200,
+        max: {{ signups_count }},
         min: 0,
         value: 0,
         range: true
