@@ -224,16 +224,16 @@
         'pageList': [5, 10, 15, 20, 25],
     });
     $('#downcsv').click(function(){
+        $(this).text("Generating File...")
+        var self = $(this);
         $.ajax({
             url: '{% url 'autosignup:download_member_csv' %}',
             type: 'GET',
             data: {'id': {{ accountprovider.id }}, 'range': $("#memberslider").val() },
             success: function(data){
-                var blob=new Blob([data]);
-                var link=document.createElement('a');
-                link.href=window.URL.createObjectURL(blob);
-                link.download="membercsv.csv";
-                link.click();
+                var blob=new Blob([data], {type: "text/plain;charset=utf-8"});
+                saveAs(blob, "membercsv.csv");
+                self.text("{% trans "Download Member Data CSV" %}");
             }
         });
     });
