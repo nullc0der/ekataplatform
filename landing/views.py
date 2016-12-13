@@ -196,6 +196,7 @@ def get_invitation_key_from_production(request):
             invitation = Invitation()
             invitation.email = email
             invitation.invitation_id = get_random_string(length=6)
+            invitation.production_created = True
             invitation.save()
             send_notification_to_reviewer.delay(email)
             task_send_notification_email_to_sms.delay(email)

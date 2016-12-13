@@ -139,18 +139,21 @@ def collect_twilio_data(community_signup):
     if res.status_code == 200:
         data = json.loads(res.content)
         if data['add_ons']['results']['whitepages_pro_caller_id']['status'] == 'successful':
-            name = data['add_ons']['results']['whitepages_pro_caller_id']['result']['results'][0]['belongs_to'][0]['names'][0]
-            address = data['add_ons']['results']['whitepages_pro_caller_id']['result']['results'][0]['associated_locations'][0]
-            country = countries.get(address['country_code'])
-            twilio_address, created = AutoSignupAddress.objects.get_or_create(
-                address_type='twilio',
-                user=community_signup.user,
-                signup=community_signup,
-                zip_code=address['postal_code'],
-                city=address['city'],
-                country=country.name
-            )
-            return twilio_address
+            try:
+                name = data['add_ons']['results']['whitepages_pro_caller_id']['result']['results'][0]['belongs_to'][0]['names'][0]
+                address = data['add_ons']['results']['whitepages_pro_caller_id']['result']['results'][0]['associated_locations'][0]
+                country = countries.get(address['country_code'])
+                twilio_address, created = AutoSignupAddress.objects.get_or_create(
+                    address_type='twilio',
+                    user=community_signup.user,
+                    signup=community_signup,
+                    zip_code=address['postal_code'] if address['postal_code'] else '',
+                    city=address['city'] if address['city'] else '',
+                    country=country.name
+                )
+                return twilio_address
+            except:
+                return False
         else:
             return False
     else:

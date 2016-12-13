@@ -36,6 +36,7 @@ class Invitation(models.Model):
     sent = models.BooleanField(default=False, editable=False)
     username = models.CharField(max_length=100, editable=False, default='')
     password = models.CharField(max_length=100, editable=False, default='')
+    production_created = models.BooleanField(default=False, editable=False)
 
     def save(self, *args, **kwargs):
         if self.approved:
@@ -50,15 +51,16 @@ class Invitation(models.Model):
                         self.invitation_id
                     )
                 self.sent = True
-                payload = {
-                    'email': self.email,
-                    'api_key': '475195da-682e-464c-a8f6-8f321306fbf3'
-                }
-                requests.post(
-                    'https://ekata.social/setverified/',
-                    payload,
-                    verify=False
-                )
+                if self.production_created:
+                    payload = {
+                        'email': self.email,
+                        'api_key': '475195da-682e-464c-a8f6-8f321306fbf3'
+                    }
+                    requests.post(
+                        'https://ekata.social/setverified/',
+                        payload,
+                        verify=False
+                    )
         super(Invitation, self).save(*args, **kwargs)
 
     def __unicode__(self):
