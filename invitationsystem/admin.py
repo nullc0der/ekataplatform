@@ -32,15 +32,16 @@ class InvitationAdmin(DjangoObjectActions, admin.ModelAdmin):
                         invitation.password,
                         invitation.invitation_id
                     )
-                payload = {
-                    'email': invitation.email,
-                    'api_key': '475195da-682e-464c-a8f6-8f321306fbf3'
-                }
-                requests.post(
-                    'https://ekata.social/setverified/',
-                    payload,
-                    verify=False
-                )
+                if invitation.production_created:
+                    payload = {
+                        'email': invitation.email,
+                        'api_key': '475195da-682e-464c-a8f6-8f321306fbf3'
+                    }
+                    requests.post(
+                        'https://ekata.social/setverified/',
+                        payload,
+                        verify=False
+                    )
                 invitation.sent = True
                 invitation.save()
                 count += 1
