@@ -939,27 +939,27 @@ def download_member_csv(request):
         else:
             row['date_verified'] = ''
         if community_signup.user.first_name:
-            row['first_name'] = community_signup.user.first_name
+            row['first_name'] = community_signup.user.first_name.encode('utf-8')
         else:
             row['first_name'] = ''
         if community_signup.user.last_name:
-            row['last_name'] = community_signup.user.last_name
+            row['last_name'] = community_signup.user.last_name.encode('utf-8')
         else:
             row['last_name'] = ''
         if community_signup.user.get_full_name:
-            row['full_name'] = community_signup.user.get_full_name()
+            row['full_name'] = community_signup.user.get_full_name().encode('utf-8')
         else:
             row['full_name'] = ''
         address = community_signup.useraddresses.filter(address_type='db')
         if address:
-            row['house_number'] = address[0].house_number
-            row['street'] = address[0].street
-            row['zip_code'] = address[0].zip_code
-            row['city'] = address[0].city
-            row['state'] = address[0].state
-            row['country'] = address[0].country
-        row['email_id'] = community_signup.useremail
-        row['phone_number'] = community_signup.userphone
+            row['house_number'] = address[0].house_number.encode('utf-8') if address[0].house_number else ''
+            row['street'] = address[0].street.encode('utf-8') if address[0].street else ''
+            row['zip_code'] = address[0].zip_code.encode('utf-8') if address[0].zip_code else ''
+            row['city'] = address[0].city.encode('utf-8') if address[0].city else ''
+            row['state'] = address[0].state.encode('utf-8') if address[0].state else ''
+            row['country'] = address[0].country.encode('utf-8') if address[0].country else ''
+        row['email_id'] = community_signup.useremail.encode('utf-8') if community_signup.useremail else ''
+        row['phone_number'] = community_signup.userphone.encode('utf-8') if community_signup.userphone else ''
         if community_signup.user.profile.referred_by:
             try:
                 rcode_obj = ReferralCode.objects.get(
