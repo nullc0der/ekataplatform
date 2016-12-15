@@ -1,6 +1,8 @@
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.models import User
 
 
 def send_invitation_notification_email(email):
@@ -61,11 +63,17 @@ def send_invitation_email(email, invitation_id):
 
 
 def send_csv_member_invitation_email(email, username, password, invitation_id):
+    try:
+        user = User.objects.get(username=username)
+        gc_name = user.first_name if user.first_name else ''
+    except ObjectDoesNotExist:
+        gc_name = ''
     c = {
         'email': email,
         'invitation_id': invitation_id,
         'username': username,
-        'password': password
+        'password': password,
+        'gc_name': gc_name
     }
     email_subject = "You are invited to Ekata"
     email_body = "Invitation id: " + invitation_id + "\nUsername: " + username + '\nPassword: ' + password
