@@ -14,6 +14,7 @@ class InvitationAdmin(DjangoObjectActions, admin.ModelAdmin):
     readonly_fields = ['invitation_type']
     actions = ['resend_invitations', 'mass_approve']
     change_actions = ['resend_invitations']
+    search_fields = ['email']
 
     @takes_instance_or_queryset
     def resend_invitations(self, request, queryset):
