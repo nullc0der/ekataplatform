@@ -5,9 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.files import File
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
+from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User, Group
+from django.template import loader
 
 from guardian.shortcuts import assign_perm, remove_perm, get_perms
 from guardian.decorators import permission_required_or_403
@@ -534,10 +536,24 @@ def create_member_post(request, group_id):
             post.basic_group = basicgroup
             post.creator = request.user
             post.admin_created = False
+            if basicgroup.auto_approve_post:
+                post.approved = True
             post.save()
-            return HttpResponse(
-                _("Post will be shown once admin/moderator approves")
-            )
+            if basicgroup.auto_approve_post:
+                template = loader.get_template('groupsystem/singlepost.html')
+                contexts = {'group': basicgroup, 'post': post}
+                post_html = template.render(contexts)
+                response_data = {
+                    'response_type': 'html',
+                    'response': post_html
+                }
+                data = json.dumps(response_data)
+                content_type = 'application/json'
+                return HttpResponse(data, content_type)
+            else:
+                return HttpResponse(
+                    _("Post will be shown once admin/moderator approves")
+                )
         else:
             return render(
                 request,
@@ -579,10 +595,24 @@ def comment_post(request, group_id, post_id):
         postcomment.post = post
         postcomment.comment = comment
         postcomment.basic_group = group
+        if group.auto_approve_comment:
+            postcomment.approved = True
         postcomment.save()
-        return HttpResponse(
-            _("Thank you for commenting your comment will show once a admin/moderator approves")
-        )
+        if group.auto_approve_comment:
+            template = loader.get_template('groupsystem/singlecomment.html')
+            contexts = {'comment': postcomment}
+            comment_html = template.render(contexts)
+            response_data = {
+                'response_type': 'html',
+                'response': comment_html
+            }
+            data = json.dumps(response_data)
+            content_type = 'application/json'
+            return HttpResponse(data, content_type)
+        else:
+            return HttpResponse(
+                _("Thank you for commenting your comment will show once a admin/moderator approves")
+            )
     else:
         return HttpResponseForbidden()
 
@@ -611,6 +641,33 @@ def group_admin_settings_page(request, group_id):
             )
         }
     )
+
+
+@require_POST
+@login_required
+def group_admin_settings_toggle(request, group_id):
+    basicgroup = BasicGroup.objects.get(id=group_id)
+    if request.user.has_perm('can_edit_group_profile', basicgroup):
+        if 'post_toggle' in request.POST:
+            post_toggle = request.POST.get('post_toggle')
+            if post_toggle == 'on':
+                basicgroup.auto_approve_post = True
+            if post_toggle == 'off':
+                basicgroup.auto_approve_post = False
+            basicgroup.save()
+            return HttpResponse(status=200)
+        if 'comment_toggle' in request.POST:
+            comment_toggle = request.POST.get('comment_toggle')
+            if comment_toggle == 'on':
+                basicgroup.auto_approve_comment = True
+            if comment_toggle == 'off':
+                basicgroup.auto_approve_comment = False
+            basicgroup.save()
+            return HttpResponse(status=200)
+    else:
+        return HttpResponseForbidden(
+            _('You don\'t have permissions to edit settings')
+        )
 
 
 @login_required

@@ -188,4 +188,9 @@ urlpatterns = [
         views.edit_extra_permissions,
         name='edituserperm'
     ),
+    url(
+        r'^group/edittoggle/(?P<group_id>\d+)/$',
+        views.group_admin_settings_toggle,
+        name='edittoggle'
+    )
 ]

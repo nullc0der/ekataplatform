@@ -62,6 +62,8 @@ class BasicGroup(models.Model):
         editable=False
     )  # seperated by ';' from higher permission level to lower
     created_on = models.DateTimeField(auto_now_add=True)
+    auto_approve_post = models.BooleanField(default=True, blank=True)
+    auto_approve_comment = models.BooleanField(default=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('g:groupdetails', args=[self.id, ])

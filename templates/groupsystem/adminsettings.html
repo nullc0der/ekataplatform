@@ -59,6 +59,22 @@
                             </div>
                         </div>
                     {% endif %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>{% trans "Auto approve post: " %}</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" {% if group.auto_approve_post %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" data-size="mini" class="groupSetting" data-setting-name='post_toggle'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>{% trans "Auto approve comment: " %}</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" {% if group.auto_approve_comment %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Enabled" data-off="Disabled" data-size="mini" class="groupSetting" data-setting-name='comment_toggle'>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,6 +150,27 @@
                 },
                 error: function(data) {
                     frm.html(data.responseText);
+                }
+            });
+        });
+        $(".groupSetting").change(function(){
+            var self = $(this);
+            var checked = self.is(':checked');
+            if (self.attr('data-setting-name') == 'post_toggle') {
+                var data = {'post_toggle': checked?'on':'off'};
+            }
+            if (self.attr('data-setting-name') == 'comment_toggle') {
+                var data = {'comment_toggle': checked?'on':'off'};
+            }
+            $.ajax({
+                url: '{% url 'g:edittoggle' group.id %}',
+                type: 'POST',
+                data: data,
+                error: function(data) {
+                    $('.top-right').notify({
+                        message: { text: data.responseText },
+                        type: 'error'
+                    }).show();
                 }
             });
         });
