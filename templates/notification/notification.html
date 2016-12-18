@@ -85,14 +85,14 @@
         {% endifequal %}
         {% ifequal notification.notification_type 11 %}
             <li class="notification" data-id="{{ notification.id }}">
-                <a href="/g/group/{{ notification.group_id }}/">
+                <a href="/type/group/{{ notification.group_id }}/">
                     <i class="fa fa-user-plus text-red"></i> {{ notification.sender }} {% trans "invited you to group" %} {{ notification.group_name }}
                 </a>
             </li>
         {% endifequal %}
         {% ifequal notification.notification_type 12 %}
             <li class="notification" data-id="{{ notification.id }}">
-                <a href="/g/joinrequests/{{ notification.group_id }}">
+                <a href="/type/group/joinrequests/{{ notification.group_id }}/">
                     <i class="fa fa-user-plus text-green"></i> {{ notification.sender }} {% trans "sent a join request to group" %} {{ notification.group_name }}
                 </a>
             </li>
