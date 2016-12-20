@@ -121,6 +121,13 @@
                         </div>
                     </div>
                     {% endif %}
+                    {% if 'can_access_admin' in group_perms %}
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-sm-12 border-right">
+                            <a class="btn btn-primary btn-block" href="{% url 'g:groupdashboard' group.id %}">{% trans "Go to Group Admin" %}</a>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
