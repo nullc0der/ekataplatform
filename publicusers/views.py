@@ -289,7 +289,32 @@ def send_sub_connection(request):
         if mainconn == 'Family':
             subconn = {
                 'main': unicode(_('Family type')),
-                'sub': [unicode(_('Mother')), unicode(_('Father')), unicode(_('Sister')), unicode(_('Brother'))]
+                'sub': [
+                    unicode(_('Father')),
+                    unicode(_('Son')),
+                    unicode(_('Husband')),
+                    unicode(_('Brother')),
+                    unicode(_('Grandfather')),
+                    unicode(_('Grandson')),
+                    unicode(_('Uncle')),
+                    unicode(_('Nephew')),
+                    unicode(_('Cousin')),
+                    unicode(_('Mother')),
+                    unicode(_('Daughter')),
+                    unicode(_('Wife')),
+                    unicode(_('Sister')),
+                    unicode(_('Grandmother')),
+                    unicode(_('Granddaughter')),
+                    unicode(_('Aunt')),
+                    unicode(_('Niece')),
+                    unicode(_('Cousin')),
+                    unicode(_('Parent')),
+                    unicode(_('Child')),
+                    unicode(_('Spouse')),
+                    unicode(_('Sibling')),
+                    unicode(_('Grandparent')),
+                    unicode(_('Grandchild'))
+                ]
             }
         if mainconn == 'Contact':
             subconn = {

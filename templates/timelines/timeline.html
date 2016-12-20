@@ -159,7 +159,8 @@
                             {% endifequal %}
                         </h3>
                         <div class="timeline-body">
-                            <p>{% trans "Connection type: " %} {{ item.conn_main }}</p>
+                            <p>{% trans "Connection type: " %} {{ item.conn_main }} ({{ item.conn_sub }})</p>
+                            {% comment %}
                             {% ifequal item.conn_main 'Family' %}
                                 <p>{% trans "Family type: " %} {{ item.conn_sub }}</p>
                             {% endifequal %}
@@ -169,6 +170,7 @@
                             {% ifequal item.conn_main 'Contact' %}
                                 <p>{% trans "Contact type: " %} {{ item.conn_sub }}</p>
                             {% endifequal %}
+                            {% endcomment %}
                         </div>
                      </div>
                  </li>
