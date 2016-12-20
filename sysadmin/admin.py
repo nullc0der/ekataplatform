@@ -21,6 +21,7 @@ class EmailIdsInline(admin.TabularInline):
 
 class EmailGroupAdmin(DjangoObjectActions, admin.ModelAdmin):
     inlines = [EmailIdsInline]
+    search_fields = ['name']
 
     actions = ['save_emailids_from_csv']
     change_actions = ['save_emailids_from_csv']
@@ -48,6 +49,8 @@ class EmailGroupAdmin(DjangoObjectActions, admin.ModelAdmin):
 
 
 class EmailUpdateAdmin(DjangoObjectActions, admin.ModelAdmin):
+    search_fields = ['subject']
+
     actions = ['send_email_update']
     change_actions = ['send_email_update']
 
