@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'groupsystem',
     'invitationsystem',
     'sysadmin',
+    'eblast',
     'emailtosms',
     'autosignup'
 ]
