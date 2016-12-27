@@ -13,7 +13,7 @@ DATABASES = {
         'NAME': get_env_variable('DJANGO_DATABASE_NAME'),
         'USER': get_env_variable('DJANGO_DATABASE_USERNAME'),
         'PASSWORD': get_env_variable('DJANGO_DATABASE_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': get_env_variable('DJANGO_DATABASE_HOST'),
         'PORT': '',
     }
 }
