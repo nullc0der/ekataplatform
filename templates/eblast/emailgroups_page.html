@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block title %}
+    {% trans "EmailGroups | eBlast" %}
+{% endblock title %}
+{% block extrastyle %}
+    <style>
+        .content-header {
+            padding: 0;
+        }
+    </style>
+{% endblock %}
+{% block content_header_new %}
+    <section class="content-header-new container">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Email Groups" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "eBlast" %}</a></li>
+                <li class="active">{% trans "emailgroups" %}</li>
+            </ol>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search here...">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+    </section>
+{% endblock content_header_new %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                {% comment %}
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Email Groups" %}</h3>
+                </div>
+                {% endcomment %}
+                <div class="box-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+
+{% endblock %}

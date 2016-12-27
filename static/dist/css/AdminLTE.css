@@ -5173,3 +5173,70 @@ table.text-center th {
 .signup-actions {
     margin-top: 20px;
 }
+
+.content-header-new {
+    background: rgb(255, 255, 255);
+    box-shadow: -5px 3px 1px -3px rgb(0, 0, 0);
+    position: relative;
+    padding: 15px 15px 0 15px;
+}
+
+.content-header-new h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.content-header-new .breadcrumb {
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+}
+
+.content-header-new .breadcrumb > li > a {
+  color: #444;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.content-header-new .breadcrumb > li + li:before {
+  content: '>\00a0';
+}
+
+.content-header-new .filterbtn {
+    left: 10px;
+}
+
+.content-header-new .btn-content-header {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 0;
+}
+
+.content-header-new .btn-content-header>.fa {
+    color: #8a8989;
+}
+
+.content-header-new .input-group {
+    left: 20%;
+}
+
+@media (max-width: 991px) {
+    .content-header-new .input-group {
+        left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+.content-header-new .form-control {
+    border-right: transparent;
+}
+
+.content-header-new .btn-content-search {
+    border-left: transparent;
+}
