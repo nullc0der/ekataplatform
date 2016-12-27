@@ -36,3 +36,12 @@ SESSION_COOKIE_SECURE = True
 CSRF_TOKEN_SECURE = True
 
 X_FRAME_OPTIONS = 'DENY'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': get_env_variable('DJANGO_REDIS_HOST') + ':6379',
+    },
+}
+
+BROKER_URL = 'redis://' + get_env_variable('DJANGO_REDIS_HOST') + ':6379/0'
