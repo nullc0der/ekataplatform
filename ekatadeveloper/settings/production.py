@@ -5,7 +5,7 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['beta.ekata.social', 'ekata.social']
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
