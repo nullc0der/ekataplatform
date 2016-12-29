@@ -11,7 +11,7 @@
     </style>
 {% endblock %}
 {% block content_header_new %}
-    <section class="content-header-new container">
+    <section class="content-header-new container-fluid">
         <div class="col-md-4">
             <h1>
                 {% trans "Email Groups" %}<br>
@@ -41,7 +41,7 @@
                 <div class="box-body listcontent-wrapper">
                     <div class="listcontent-list col-md-3 col-sm-3">
                         <div class="listcontent-header text-center">
-                            <h4>{% trans "Groups" %}</h4>
+                            <h4>{% trans "Group Lists" %}</h4>
                         </div>
                         <div class="listcontent-body">
                             <ul>
@@ -57,7 +57,7 @@
                         {% if emailgroups %}
                         <div class="listcontent-addnewbtn newbtn" id="addnewgroup">
                             <p>
-                                {% trans "Add new Email Group" %}
+                                {% trans "Create List" %}
                             </p>
                         </div>
                         {% endif %}
