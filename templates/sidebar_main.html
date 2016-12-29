@@ -70,4 +70,18 @@
         <li class="{% active request 'information:contact' %}"><a href="{% url 'information:contact' %}"><i class="fa fa-circle-o"></i>{% trans "Contact Details" %}</a></li>
     </ul>
 </li>
+{% if request.user.is_staff %}
+<li class="treeview mainnavcontent {% active request 'eblast:emailgroups' %}">
+    <a href="#">
+        <i class="fa fa-envelope-o"></i>
+        <span>{% trans "eBlast" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'eblast:emailgroups' %}"><a href="{% url 'eblast:emailgroups' %}"><i class="fa fa-circle-o"></i>{% trans "EmailGroups" %}</a></li>
+    </ul>
+</li>
+{% endif %}
 <li class="mainnavcontent {% active request 'hashtag:index' %}"><a href="{% url 'hashtag:index' %}"><i class="fa fa-hashtag"></i><span>{% trans "Hashtag Campaign" %}</span></a></li>

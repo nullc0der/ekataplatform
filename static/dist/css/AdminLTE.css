@@ -5219,7 +5219,7 @@ table.text-center th {
 }
 
 .content-header-new .btn-content-header>.fa {
-    color: #8a8989;
+    color: #9B9B9B;
 }
 
 .content-header-new .input-group {
@@ -5239,4 +5239,89 @@ table.text-center th {
 
 .content-header-new .btn-content-search {
     border-left: transparent;
+}
+
+.listcontent-wrapper {
+    min-height: 500px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+    padding-bottom: 0;
+}
+
+
+.listcontent-list, .listcontent-content {
+    min-height: inherit;
+}
+
+
+.listcontent-list {
+    border-right: 1px solid #efefef;
+    margin-left: -10px;
+}
+
+.listcontent-header {
+    border-bottom: 1px solid #efefef;
+    margin: 0 -15px;
+}
+
+.listcontent-header h4 {
+    font-weight: 600;
+}
+
+.listcontent-body>ul {
+    padding: 0;
+    margin-top: 5px;
+}
+
+.listcontent-body>ul>li {
+    list-style-type: none;
+    padding: 5px 5px 0 5px;
+    font-size: 20px;
+    margin: 0 -10px;
+    border-bottom: 1px solid #efefef;
+}
+
+.listcontent-body>ul>li:hover {
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.25);
+}
+
+.listcontent-body>ul>li.selected {
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.25);
+}
+
+.listcontent-body>ul>li>p {
+    font-size: 11px;
+}
+
+.listcontent-addnewbtn {
+    background-color: #397CCB;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.newbtn {
+    padding: 15px;
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    text-align: center;
+}
+
+.listcontent-addnewbtn p {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.addgroupmember {
+    margin: 0 10%;
+}
+
+.listcontent-actions {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

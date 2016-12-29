@@ -1,0 +1,14 @@
+{% load i18n bootstrap_tags %}
+<div class="listcontent-header text-center">
+    <h4>{% trans "Add new group" %}</h4>
+</div>
+<div class="listcontent-body">
+    <div class="addgroupmember">
+        <form class="form-horizontal" id="newemailgroupform" action="{% url 'eblast:create_emailgroup' %}" method="post" enctype="multipart/form-data">
+            {{ form | as_bootstrap }}
+        </form>
+        <button type="button" id="newemailgroupformbtn" class="btn btn-primary btn-block" style="margin-top: 10px">
+          {% trans "Submit" %}
+        </button>
+    </div>
+</div>

@@ -15,7 +15,6 @@ class EmailGroup(models.Model):
     users = models.ManyToManyField(
         User,
         verbose_name='Site user',
-        help_text="Site user's email id will be added to emailids by system automatically",
         blank=True,
         related_name='emailgroups'
     )
