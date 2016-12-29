@@ -5322,6 +5322,6 @@ table.text-center th {
 
 .listcontent-actions {
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
     width: 100%;
 }

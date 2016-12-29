@@ -11,14 +11,19 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class EmailGroup(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name='List Name')
     users = models.ManyToManyField(
         User,
-        verbose_name='Site user',
+        verbose_name='Select from List',
         blank=True,
         related_name='emailgroups'
     )
-    csv_file = models.FileField(upload_to='csvs', null=True, blank=True)
+    csv_file = models.FileField(
+        verbose_name='CSV Upload List',
+        upload_to='csvs',
+        null=True,
+        blank=True
+    )
 
     def __unicode__(self):
         return self.name
