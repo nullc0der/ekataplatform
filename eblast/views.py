@@ -4,7 +4,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import user_passes_test
 
 from eblast.models import EmailGroup, EmailId, EmailTemplate, EmailCampaign
-from eblast.forms import EmailGroupForm
+from eblast.forms import EmailGroupForm, EmailTemplateForm
 # Create your views here.
 
 
@@ -113,3 +113,90 @@ def subscribe_emailid(request):
     email_id.send_email_from_group = True
     email_id.save()
     return HttpResponse(status=200)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def emailtemplates_page(request):
+    emailtemplates = EmailTemplate.objects.all()
+    if emailtemplates:
+        emailtemplate = emailtemplates[0]
+    else:
+        emailtemplate = None
+    if 'emailtemplate' in request.GET:
+        emailtemplate = EmailTemplate.objects.get(id=request.GET.get('emailtemplate'))
+        return render(
+            request,
+            'eblast/emailtemplate.html',
+            {
+                'emailtemplate': emailtemplate,
+                'form': EmailTemplateForm(instance=emailtemplate)
+            }
+        )
+    return render(
+        request,
+        'eblast/emailtemplates_page.html',
+        {
+            'form': EmailTemplateForm(instance=emailtemplate) if emailtemplate else EmailTemplateForm(),
+            'emailtemplates': emailtemplates,
+        }
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
+def add_emailtemplate(request):
+    if request.method == 'POST':
+        form = EmailTemplateForm(request.POST, request.FILES)
+        if form.is_valid():
+            emailtemplate = form.save()
+            return HttpResponse(emailtemplate.id)
+        else:
+            return render(
+                request,
+                'eblast/emailtemplateform.html',
+                {
+                    'form': form
+                },
+                status=500
+            )
+    else:
+        return render(
+            request,
+            'eblast/emailtemplateform.html',
+            {
+                'form': EmailTemplateForm()
+            }
+        )
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def delete_emailtemplate(request):
+    emailtemplate = EmailTemplate.objects.get(id=request.POST.get('id'))
+    emailtemplate.delete()
+    return HttpResponse(status=200)
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def edit_emailtemplate(request, id):
+    emailtemplate = EmailTemplate.objects.get(id=id)
+    form = EmailTemplateForm(request.POST, request.FILES, instance=emailtemplate)
+    if form.is_valid():
+        emailtemplate = form.save()
+        return HttpResponse(emailtemplate.id)
+    else:
+        return render(
+            request,
+            'eblast/emailtemplateedit.html',
+            {
+                'emailtemplate': emailtemplate,
+                'form': EmailTemplateForm(instance=emailtemplate)
+            },
+            status=500
+        )
+
+
+@user_passes_test(lambda u: u.is_staff)
+def preview_emailtemplate(request, id):
+    emailtemplate = EmailTemplate.objects.get(id=id)
+    return HttpResponse(emailtemplate.html_file)

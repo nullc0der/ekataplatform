@@ -1,6 +1,15 @@
 {% load i18n bootstrap_tags %}
-<div class="listcontent-header text-center">
-    <h4> {{ emailgroup.name }} </h4>
+<div class="listcontent-header">
+    <div class="text-center">
+        <h4> {{ emailgroup.name }} </h4>
+    </div>
+    <div class="action-ellipsis dropdown">
+        <i class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu">
+            <li><a href="#" data-toggle='modal' data-target='#editemailgroupmodal'>{% trans "Update" %}</a></li>
+            <li><a href="#" class="deleteemailgroup" data-group-id={{ emailgroup.id }}>{% trans "Delete" %}</a></li>
+        </ul>
+    </div>
 </div>
 <div class="listcontent-body">
     <table class="table" data-unique-id="id">
@@ -28,16 +37,16 @@
                     <td>{{ emailid.email_id }}</td>
                     <td>
                         {% if emailid.send_email_from_group %}
-                        <button type="button" class="btn btn-primary btn-xs btn-flat unsubbtn" data-id={{ emailid.id }} onclick="unsubscribeEmailid({{ emailid.id }})">
-                            unsubscribe
+                        <button type="button" class="btn btn-primary btn-xs btn-flat unsubbtn" data-id={{ emailid.id }}>
+                            {% trans "Unsubscribe" %}
                         </button>
                         {% else %}
-                        <button type="button" class="btn btn-primary btn-xs btn-flat subbtn" data-id={{ emailid.id }} onclick="subscribeEmailid({{ emailid.id }})">
-                            subscribe
+                        <button type="button" class="btn btn-primary btn-xs btn-flat subbtn" data-id={{ emailid.id }}>
+                            {% trans "Subscribe" %}
                         </button>
                         {% endif %}
                         <button type="button" class="btn btn-danger btn-xs btn-flat" onclick="removeEmailId({{ emailid.id }})">
-                            remove
+                            {% trans "Remove" %}
                         </button>
                     </td>
                 </tr>
@@ -52,7 +61,7 @@
         </button>
     </div>
     <div class="col-md-6">
-        <button type="button" class="btn btn-danger btn-flat btn-block" id="deleteemailgroup" data-group-id={{ emailgroup.id }}>
+        <button type="button" class="btn btn-danger btn-flat btn-block deleteemailgroup" data-group-id={{ emailgroup.id }}>
             {% trans "Delete this emailgroup" %}
         </button>
     </div>

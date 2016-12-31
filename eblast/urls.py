@@ -10,4 +10,9 @@ urlpatterns = [
     url(r'^remove_emailid/$', views.remove_emailid, name='remove_emailid'),
     url(r'^unsubscribe_emailid/$', views.unsubscribe_emailid, name='unsubscribe_emailid'),
     url(r'^subscribe_emailid/$', views.subscribe_emailid, name='subscribe_emailid'),
+    url(r'^emailtemplates/$', views.emailtemplates_page, name='emailtemplates'),
+    url(r'^add_emailtemplate/$', views.add_emailtemplate, name='add_emailtemplate'),
+    url(r'^delete_emailtemplate/$', views.delete_emailtemplate, name='delete_emailtemplate'),
+    url(r'^edit_emailtemplate/(?P<id>\d+)/$', views.edit_emailtemplate, name='edit_emailtemplate'),
+    url(r'^preview_emailtemplate/(?P<id>\d+)/$', views.preview_emailtemplate, name='preview_emailtemplate'),
 ]

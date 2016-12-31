@@ -36,10 +36,10 @@
 {% endblock content_header_new %}
 {% block content %}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
             <div class="box box-solid">
                 <div class="box-body listcontent-wrapper">
-                    <div class="listcontent-list col-md-3 col-sm-3">
+                    <div class="listcontent-list">
                         <div class="listcontent-header text-center">
                             <h4>{% trans "Group Lists" %}</h4>
                         </div>
@@ -62,7 +62,13 @@
                         </div>
                         {% endif %}
                     </div>
-                    <div class="listcontent-content col-md-9 col-sm-9">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="box box-solid">
+                <div class="box-body listcontent-wrapper">
+                    <div class="listcontent-content">
                         {% if emailgroups %}
                             {% for emailgroup in emailgroups %}
                                 {% if forloop.counter == 1 %}
@@ -91,6 +97,9 @@
                     'showExport': true,
                     'exportDataType': 'all',
                     'exportTypes': ['json', 'csv', 'txt', 'excel'],
+                    'icons': {
+                        'export': 'fa fa-download'
+                    }
                 });
                 $('.emailGroup').removeClass('selected');
                 $('.emailGroup[data-id=' + id + ']').addClass('selected');
@@ -112,26 +121,6 @@
                 }
             });
         }
-        function unsubscribeEmailid(id) {
-            $.ajax({
-                url: '{% url 'eblast:unsubscribe_emailid' %}',
-                type: 'POST',
-                data: {'id': id},
-                success: function(){
-                    location.reload();
-                }
-            });
-        }
-        function subscribeEmailid(id) {
-            $.ajax({
-                url: '{% url 'eblast:subscribe_emailid' %}',
-                type: 'POST',
-                data: {'id': id},
-                success: function(){
-                    location.reload();
-                }
-            });
-        }
         $("#id_users").selectpicker({
             liveSearch: true
         });
@@ -147,6 +136,9 @@
             'showExport': true,
             'exportDataType': 'all',
             'exportTypes': ['json', 'csv', 'txt', 'excel'],
+            'icons': {
+                'export': 'fa fa-download'
+            }
         });
         $(document).on('click', '#newemailgroupformbtn', function(){
             var form = $("#newemailgroupform");
@@ -190,7 +182,7 @@
             var self = $(this);
             loadEmailGroup(id);
         });
-        $(document).on('click', '#deleteemailgroup', function(){
+        $(document).on('click', '.deleteemailgroup', function(){
             var emailgroup_id = $(this).attr('data-group-id');
             swal({
                 title: "You are about to delete this email group.",
@@ -241,6 +233,32 @@
                     $('#id_csv_file').fileinput({
                         showUpload: false
                     });
+                }
+            });
+        });
+        $(document).on('click', '.unsubbtn', function () {
+            var self = $(this);
+            $.ajax({
+                url: '{% url 'eblast:unsubscribe_emailid' %}',
+                type: 'POST',
+                data: {'id': self.attr('data-id')},
+                success: function(){
+                    self.text('Subscribe');
+                    self.removeClass('unsubbtn');
+                    self.addClass('subbtn')
+                }
+            });
+        });
+        $(document).on('click', '.subbtn', function () {
+            var self = $(this);
+            $.ajax({
+                url: '{% url 'eblast:subscribe_emailid' %}',
+                type: 'POST',
+                data: {'id': self.attr('data-id')},
+                success: function(){
+                    self.text('Unsubscribe');
+                    self.removeClass('subbtn');
+                    self.addClass('unsubbtn')
                 }
             });
         });
