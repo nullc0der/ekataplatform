@@ -131,7 +131,9 @@
             });
         });
         $("#createGroupModal").on('hidden.bs.modal', function(){
-            $("#creategroupform")[0].reset();
+            if ($("#creategroupform").length > 0) {
+                $("#creategroupform")[0].reset();
+            }
             clear_form_field_errors("#creategroupform");
         });
         $("#div_id_group_type_other").hide();
