@@ -5,7 +5,7 @@ from django.db import models
 from django.db.models.signals import post_save, m2m_changed
 from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
-
+from groupsystem.models import BasicGroup
 
 # Create your models here.
 
@@ -21,6 +21,12 @@ class EmailGroup(models.Model):
     csv_file = models.FileField(
         verbose_name='CSV Upload List',
         upload_to='csvs',
+        null=True,
+        blank=True
+    )
+    basic_group = models.OneToOneField(
+        BasicGroup,
+        verbose_name='Link to Group',
         null=True,
         blank=True
     )

@@ -26,6 +26,7 @@ from groupsystem.forms import\
     EditRolePermForm, EditExtraPermForm
 from notification.utils import create_notification
 from publicusers.views import date_handler
+from eblast.models import EmailGroup
 
 # Create your views here.
 
@@ -283,6 +284,11 @@ def create_group(request):
             for perm in SUPERADMIN_PERMS:
                 setattr(extraperm, perm[0], True)
             extraperm.save()
+            emailgroup, created = EmailGroup.objects.get_or_create(
+                name=basicgroup.name,
+                basic_group=basicgroup
+            )
+            emailgroup.users.add(request.user)
             return render(
                 request,
                 'groupsystem/creategroupsuccess.html',
@@ -400,6 +406,8 @@ def basic_group_details(request, group_id):
                 if extraperm.__getattribute__(perm[0]):
                     remove_perm(perm[0], request.user, basicgroup)
             extraperm.delete()
+            emailgroup = basicgroup.emailgroup
+            emailgroup.users.remove(request.user)
             return HttpResponse(_("Leaved Group"))
         else:
             return HttpResponseForbidden()
@@ -966,6 +974,8 @@ def group_member_page(request, group_id):
                         for perm in MEMBER_PERMS:
                             setattr(extraperm, perm[0], True)
                         extraperm.save()
+                        emailgroup = basicgroup.emailgroup
+                        emailgroup.users.add(user)
                     except ObjectDoesNotExist:
                         pass
                 return HttpResponse("OK")
@@ -1002,6 +1012,8 @@ def group_member_page(request, group_id):
                     if extraperm.__getattribute__(perm[0]):
                         remove_perm(perm[0], user, basicgroup)
                 extraperm.delete()
+                emailgroup = basicgroup.emailgroup
+                emailgroup.users.remove(user)
                 data = json.dumps({'id': user.id})
                 mimetype = 'application/json'
                 return HttpResponse(data, mimetype)
@@ -1040,6 +1052,8 @@ def group_member_page(request, group_id):
                     if extraperm.__getattribute__(perm[0]):
                         remove_perm(perm[0], user, basicgroup)
                 extraperm.delete()
+                emailgroup = basicgroup.emailgroup
+                emailgroup.users.remove(user)
                 data = json.dumps({'id': user.id})
                 mimetype = 'application/json'
                 return HttpResponse(data, mimetype)
@@ -1196,6 +1210,8 @@ def joinrequest_admin_page(request, group_id):
                 for perm in MEMBER_PERMS:
                     setattr(extraperm, perm[0], True)
                 extraperm.save()
+                emailgroup = basicgroup.emailgroup
+                emailgroup.users.add(user)
                 joinrequest_id = {'id': joinrequest.id}
                 data = json.dumps(joinrequest_id)
                 mimetype = 'application/json'
