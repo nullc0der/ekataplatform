@@ -4,7 +4,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import user_passes_test
 
 from eblast.models import EmailGroup, EmailId, EmailTemplate, EmailCampaign
-from eblast.forms import EmailGroupForm, EmailTemplateForm
+from eblast.forms import EmailGroupForm, EmailTemplateForm, EmailTemplateEditForm
 # Create your views here.
 
 
@@ -129,14 +129,14 @@ def emailtemplates_page(request):
             'eblast/emailtemplate.html',
             {
                 'emailtemplate': emailtemplate,
-                'form': EmailTemplateForm(instance=emailtemplate)
+                'form': EmailTemplateEditForm(instance=emailtemplate)
             }
         )
     return render(
         request,
         'eblast/emailtemplates_page.html',
         {
-            'form': EmailTemplateForm(instance=emailtemplate) if emailtemplate else EmailTemplateForm(),
+            'form': EmailTemplateEditForm(instance=emailtemplate) if emailtemplate else EmailTemplateForm(),
             'emailtemplates': emailtemplates,
         }
     )
@@ -180,7 +180,7 @@ def delete_emailtemplate(request):
 @user_passes_test(lambda u: u.is_staff)
 def edit_emailtemplate(request, id):
     emailtemplate = EmailTemplate.objects.get(id=id)
-    form = EmailTemplateForm(request.POST, request.FILES, instance=emailtemplate)
+    form = EmailTemplateEditForm(request.POST, request.FILES, instance=emailtemplate)
     if form.is_valid():
         emailtemplate = form.save()
         return HttpResponse(emailtemplate.id)
@@ -199,4 +199,4 @@ def edit_emailtemplate(request, id):
 @user_passes_test(lambda u: u.is_staff)
 def preview_emailtemplate(request, id):
     emailtemplate = EmailTemplate.objects.get(id=id)
-    return HttpResponse(emailtemplate.html_file)
+    return HttpResponse(emailtemplate.template)

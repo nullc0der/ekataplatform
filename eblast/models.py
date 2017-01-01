@@ -54,6 +54,7 @@ class EmailId(models.Model):
 class EmailTemplate(models.Model):
     name = models.CharField(max_length=300, blank=False)
     html_file = models.FileField(upload_to='emailtemplates', null=True, blank=True)
+    template = RichTextUploadingField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -110,8 +111,19 @@ def save_emailids_from_siteusers(sender, instance, **kwargs):
                 )
                 emailid.save()
 
+
+def populate_template(sender, instance, **kwargs):
+    if instance.html_file and not instance.template:
+        html_file = open(instance.html_file.path, 'r')
+        html = html_file.read()
+        instance.template = html
+        html_file.close()
+        instance.save()
+
+
 post_save.connect(save_emailids_from_csv, sender=EmailGroup)
 m2m_changed.connect(
     save_emailids_from_siteusers,
     sender=EmailGroup.users.through
 )
+post_save.connect(populate_template, sender=EmailTemplate)

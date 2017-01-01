@@ -7,7 +7,7 @@
         <i class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu">
             <li><a href="#" data-id='{{ emailtemplate.id }}' class="deleteemailtemplate">{% trans "Delete" %}</a></li>
-            {% if emailtemplate.html_file %}
+            {% if emailtemplate.template %}
                 <li><a href="{% url 'eblast:preview_emailtemplate' emailtemplate.id %}" target="_blank">{% trans "Preview" %}</a></li>
             {% endif %}
         </ul>

@@ -85,7 +85,20 @@
     </div>
 {% endblock %}
 {% block extrascripts %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
     <script type="text/javascript">
+        function reloadCKEditor() {
+            $('textarea[data-type=ckeditortype]').each(function(){
+                if($(this).data('processed') == "0" && $(this).attr('id').indexOf('__prefix__') == -1){
+                    $(this).data('processed',"1");
+                    $($(this).data('external-plugin-resources')).each(function(){
+                        CKEDITOR.plugins.addExternal(this[0], this[1], this[2]);
+                    });
+                    CKEDITOR.replace($(this).attr('id'), $(this).data('config'));
+                }
+            });
+        }
         function loadEmailTemplate(id) {
             $('.listcontent-content').load('{% url 'eblast:emailtemplates' %}?emailtemplate=' + id, function(){
                 $('.emailTemplate').removeClass('selected');
@@ -93,6 +106,7 @@
                 $('#id_html_file').fileinput({
                     showUpload: false
                 });
+                reloadCKEditor();
             });
         }
         $('#id_html_file').fileinput({
@@ -119,6 +133,7 @@
                     $('#id_html_file').fileinput({
                         showUpload: false
                     });
+                    reloadCKEditor();
                 }
             });
         });
@@ -127,6 +142,7 @@
                 $('#id_html_file').fileinput({
                     showUpload: false
                 });
+                reloadCKEditor();
             });
         });
         $('.emailTemplate').click(function(){
@@ -165,11 +181,14 @@
             return false;
         });
         $(document).on('click', '#editemailtemplateformbtn', function(){
+            for(var instanceName in CKEDITOR.instances) {
+                CKEDITOR.instances[instanceName].updateElement();
+            }
             var form = $("#editemailtemplateform");
             var data = new FormData(form[0]);
             $.ajax({
-                url: $(form).attr('action'),
-                type: $(form).attr('method'),
+                url: form.attr('action'),
+                type: form.attr('method'),
                 data: data,
                 contentType: false,
                 processData: false,
@@ -181,6 +200,7 @@
                     $('#id_html_file').fileinput({
                         showUpload: false
                     });
+                    reloadCKEditor();
                 }
             });
         });

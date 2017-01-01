@@ -11,4 +11,10 @@ class EmailGroupForm(forms.ModelForm):
 class EmailTemplateForm(forms.ModelForm):
     class Meta:
         model = EmailTemplate
-        fields = '__all__'
+        fields = ['name', 'html_file']
+
+
+class EmailTemplateEditForm(forms.ModelForm):
+    class Meta:
+        model = EmailTemplate
+        fields = ['name', 'template']
