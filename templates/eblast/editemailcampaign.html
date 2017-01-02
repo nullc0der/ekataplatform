@@ -1,0 +1,7 @@
+{% load i18n bootstrap_tags %}
+<form class="form-horizontal" id="editemailcampaignform" action="{% url 'eblast:edit_emailcampaign' emailcampaign.id %}" method="post" enctype="multipart/form-data">
+    {{ form | as_bootstrap }}
+</form>
+<button type="button" id="editemailcampaignformbtn" class="btn btn-primary btn-block" style="margin-top: 10px">
+  {% trans "Update" %}
+</button>

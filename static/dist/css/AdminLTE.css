@@ -5338,3 +5338,15 @@ table.text-center th {
     position: relative;
     border-radius: 0;
 }
+
+.trackingbox {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.12);
+}
+
+.trackingbox>h4 {
+    color: #1f7eb9;
+    font-size: 800%;
+}

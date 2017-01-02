@@ -1,0 +1,6 @@
+{% load i18n bootstrap_tags %}
+<div class="col-md-12">
+    <form class="form-horizontal" id="sendmailform" action="{% url 'eblast:send_campaign' emailcampaign.id %}" method="post">
+        {{ sendform | as_bootstrap }}
+    </form>
+</div>

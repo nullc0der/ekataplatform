@@ -1,0 +1,21 @@
+{% load i18n bootstrap_tags %}
+<div class="listcontent-header">
+    <div class="text-center">
+        <h4> {% trans "Tracking data for " %} {{ campaign.campaign_name }} </h4>
+    </div>
+</div>
+<div class="listcontent-body">
+    <div class="addgroupmember">
+        <div class="col-md-5 trackingbox">
+            <h4>{{ sent }}</h4>
+            <p>{% trans "Emails Sent" %}</p>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-5 trackingbox">
+            <h4>{{ opened }}</h4>
+            <p>{% trans "Emails Opened" %}</p>
+        </div>
+    </div>
+</div>

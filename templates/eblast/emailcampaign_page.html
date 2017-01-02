@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load i18n staticfiles bootstrap_tags %}
+{% block title %}
+    {% trans "EmailCampaigns | eBlast" %}
+{% endblock title %}
+{% block extrastyle %}
+    <style>
+        .content-header {
+            padding: 0;
+        }
+    </style>
+{% endblock %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Email Campaigns" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "eBlast" %}</a></li>
+                <li class="active">{% trans "emailcampaigns" %}</li>
+            </ol>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search here...">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+    </section>
+{% endblock content_header_new %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-solid">
+                <div class="box-body listcontent-wrapper">
+                    <div class="listcontent-list">
+                        <div class="listcontent-header text-center">
+                            <h4>{% trans "Campaign Lists" %}</h4>
+                        </div>
+                        <div class="listcontent-body">
+                            <ul>
+                                {% for emailcampaign in emailcampaigns %}
+                                    {% if forloop.counter == 1 %}
+                                        <li class="selected emailCampaign" data-id={{ emailcampaign.id }} style="padding: 10px">{{ emailcampaign.campaign_name }}</li>
+                                    {% else %}
+                                        <li class="emailCampaign" data-id={{ emailcampaign.id }} style="padding: 10px">{{ emailcampaign.campaign_name }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% if emailcampaigns %}
+                        <div class="listcontent-addnewbtn newbtn" id="addnewcampaign">
+                            <p>
+                                {% trans "Create Campaign" %}
+                            </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="box box-solid">
+                <div class="box-body listcontent-wrapper">
+                    <div class="listcontent-content">
+                        {% if emailcampaigns %}
+                            {% for emailcampaign in emailcampaigns %}
+                                {% if forloop.counter == 1 %}
+                                    {% include "eblast/emailcampaign.html" %}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            {% include "eblast/emailcampaignform.html" %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript">
+        function reloadCKEditor() {
+            $('textarea[data-type=ckeditortype]').each(function(){
+                if($(this).data('processed') == "0" && $(this).attr('id').indexOf('__prefix__') == -1){
+                    $(this).data('processed',"1");
+                    $($(this).data('external-plugin-resources')).each(function(){
+                        CKEDITOR.plugins.addExternal(this[0], this[1], this[2]);
+                    });
+                    CKEDITOR.replace($(this).attr('id'), $(this).data('config'));
+                }
+            });
+        }
+        function loadEmailCampaign(id) {
+            $('.listcontent-content').load('{% url 'eblast:emailcampaign_page' %}?emailcampaign=' + id, function(){
+                $('.emailCampaign').removeClass('selected');
+                $('.emailCampaign[data-id=' + id + ']').addClass('selected');
+                reloadCKEditor();
+                $("#id_to_groups").selectpicker({
+                    liveSearch: true
+                });
+            });
+        }
+        $("#id_to_groups").selectpicker({
+            liveSearch: true
+        });
+        $(document).on('click', '.emailCampaign', function(){
+            var id = $(this).attr('data-id');
+            loadEmailCampaign(id);
+        });
+        $(document).on('change', '#id_template', function(){
+            var id = $(this).val();
+            $.ajax({
+                url: '/en/eblast/preview_emailtemplate/' + id + '/',
+                success: function(data){
+                    CKEDITOR.instances['id_message'].setData(data);
+                }
+            })
+        })
+        $(document).on('click', '#newemailcampaignbtn', function(){
+            for(var instanceName in CKEDITOR.instances) {
+                CKEDITOR.instances[instanceName].updateElement();
+            }
+            var form = $("#newemailcampaignform");
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                success: function(data){
+                    {% if emailcampaigns %}
+                        loadEmailCampaign(data)
+                    {% else %}
+                        location.reload();
+                    {% endif %}
+                },
+                error: function(data){
+                    $('.listcontent-content').html(data.responseText);
+                    reloadCKEditor();
+                }
+            });
+        });
+        $("#addnewcampaign").click(function(){
+            $('.listcontent-content').load('{% url 'eblast:add_emailcampaign' %}', function(){
+                reloadCKEditor();
+            });
+        });
+        $(document).on('click', '#editemailcampaignformbtn', function(){
+            for(var instanceName in CKEDITOR.instances) {
+                CKEDITOR.instances[instanceName].updateElement();
+            }
+            var form = $("#editemailcampaignform");
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                success: function(data){
+                    loadEmailCampaign(data)
+                },
+                error: function(data){
+                    $('.addgroupmember').html(data.responseText);
+                    reloadCKEditor();
+                }
+            });
+        });
+        $(document).on('click', '.deleteemailcampaign', function(){
+            var emailcampaign_id = $(this).attr('data-id');
+            swal({
+                title: "You are about to delete this campaign.",
+                text: "Do you want to delete this?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function(){
+                $.ajax({
+                    url: '{% url 'eblast:delete_emailcampaign' %}',
+                    type: 'POST',
+                    data: {'id': emailcampaign_id},
+                    success: function(data){
+                        swal({
+                            title: "Deleted!",
+                            text: "Campaign has been deleted.",
+                            type: "success"
+                        }, function () {
+                            location.reload();
+                            }
+                        );
+                    }
+                });
+            });
+            return false;
+        });
+        $(document).on('click', '#testsendcampaign', function(){
+            var form = $("#testsendmailform");
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                success: function() {
+                    $("#testsendmodal").modal("hide");
+                    $('.top-right').notify({
+                        text: 'Success!! campaign will be sent',
+                        type: 'success'
+                    });
+                },
+                error: function(data) {
+                    $("testsendmailform").html(data.responseText);
+                }
+            });
+        });
+        $(document).on('click', '#sendcampaign', function(){
+            var form = $("#sendmailform");
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                success: function() {
+                    $("#sendmodal").modal("hide");
+                    $('.top-right').notify({
+                        text: 'Success!! campaign will be sent',
+                        type: 'success'
+                    });
+                },
+                error: function(data) {
+                    $("sendmailform").html(data.responseText);
+                    $("#id_to_groups").selectpicker({
+                        liveSearch: true
+                    });
+                }
+            });
+        });
+        $(document).on('click', '#showTracking', function(){
+            var id = $(this).attr('data-campaign-id');
+            $('.listcontent-content').load('{% url 'eblast:campaign_tracking_data' %}?id=' + id);
+        });
+    </script>
+{% endblock %}

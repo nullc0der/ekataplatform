@@ -1,10 +1,13 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import user_passes_test
+from django.utils.timezone import now
 
-from eblast.models import EmailGroup, EmailId, EmailTemplate, EmailCampaign
-from eblast.forms import EmailGroupForm, EmailTemplateForm, EmailTemplateEditForm
+from eblast.models import EmailGroup, EmailId, EmailTemplate, EmailCampaign, CampaignTracking
+from eblast.forms import EmailGroupForm, EmailTemplateForm,\
+ EmailTemplateEditForm, EmailCampaignForm, EmailTestSendForm, EmailSendForm
+from eblast.tasks import task_send_test_mail, task_send_campaign_email
 # Create your views here.
 
 
@@ -190,7 +193,7 @@ def edit_emailtemplate(request, id):
             'eblast/emailtemplateedit.html',
             {
                 'emailtemplate': emailtemplate,
-                'form': EmailTemplateForm(instance=emailtemplate)
+                'form': form
             },
             status=500
         )
@@ -200,3 +203,172 @@ def edit_emailtemplate(request, id):
 def preview_emailtemplate(request, id):
     emailtemplate = EmailTemplate.objects.get(id=id)
     return HttpResponse(emailtemplate.template)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def emailcampaign_page(request):
+    emailcampaigns = EmailCampaign.objects.all()
+    if emailcampaigns:
+        emailcampaign = emailcampaigns[0]
+    else:
+        emailcampaign = None
+    if 'emailcampaign' in request.GET:
+        emailcampaign = EmailCampaign.objects.get(id=request.GET.get('emailcampaign'))
+        return render(
+            request,
+            'eblast/emailcampaign.html',
+            {
+                'emailcampaign': emailcampaign,
+                'form': EmailCampaignForm(instance=emailcampaign),
+                'testform': EmailTestSendForm(),
+                'sendform': EmailSendForm()
+            }
+        )
+    return render(
+        request,
+        'eblast/emailcampaign_page.html',
+        {
+            'form': EmailCampaignForm(instance=emailcampaign) if emailcampaign else EmailCampaignForm(),
+            'emailcampaigns': emailcampaigns,
+            'testform': EmailTestSendForm(),
+            'sendform': EmailSendForm()
+        }
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
+def add_emailcampaign(request):
+    if request.method == 'POST':
+        form = EmailCampaignForm(request.POST)
+        if form.is_valid():
+            emailcampaign = form.save()
+            return HttpResponse(emailcampaign.id)
+        else:
+            return render(
+                request,
+                'eblast/emailcampaignform.html',
+                {
+                    'form': form
+                },
+                status=500
+            )
+    else:
+        return render(
+            request,
+            'eblast/emailcampaignform.html',
+            {
+                'form': EmailCampaignForm
+            }
+        )
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def edit_emailcampaign(request, id):
+    emailcampaign = EmailCampaign.objects.get(id=id)
+    form = EmailCampaignForm(request.POST, instance=emailcampaign)
+    if form.is_valid():
+        emailcampaign = form.save()
+        return HttpResponse(emailcampaign.id)
+    else:
+        return render(
+            request,
+            'eblast/editemailcampaign.html',
+            {
+                'emailcampaign': emailcampaign,
+                'form': form
+            },
+            status=500
+        )
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def delete_emailcampaign(request):
+    emailcampaign = EmailCampaign.objects.get(id=request.POST.get('id'))
+    emailcampaign.delete()
+    return HttpResponse(status=200)
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def test_send_campaign(request, id):
+    if request.method == 'POST':
+        form = EmailTestSendForm(request.POST)
+        if form.is_valid():
+            task_send_test_mail.delay(
+                id,
+                form.cleaned_data.get('from_email_id'),
+                form.cleaned_data.get('test_email')
+            )
+            return HttpResponse(status=200)
+        else:
+            return render(
+                request,
+                'eblast/testsendmailform.html',
+                {
+                    form: form
+                },
+                status=500
+            )
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def send_campaign(request, id):
+    if request.method == 'POST':
+        form = EmailSendForm(request.POST)
+        if form.is_valid():
+            campaign = EmailCampaign.objects.get(id=id)
+            campaign.draft = False
+            campaign.save()
+            task_send_campaign_email.delay(
+                id,
+                form.cleaned_data.get('from_email_id'),
+                form.cleaned_data.get('to_groups')
+            )
+            return HttpResponse(status=200)
+        else:
+            return render(
+                request,
+                'eblast/sendmailform.html',
+                {
+                    form: form
+                },
+                status=500
+            )
+
+
+def view_email_in_browser(request, id):
+    emailcampaign = get_object_or_404(EmailCampaign, id=id)
+    message = emailcampaign.message
+    return HttpResponse(message)
+
+
+def get_campaign_image_link(request, campaign_id, reciever_id):
+    url = 'https://google.co.in'
+    campaign = EmailCampaign.objects.filter(tracking_id=campaign_id)
+    tracking = CampaignTracking.objects.filter(tracking_id=reciever_id)
+    if tracking:
+        tracking = tracking[0]
+        tracking.opened = True
+        tracking.opened_at = now()
+        tracking.save()
+    return HttpResponse(url)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def campaign_tracking_data(request):
+    campaign = EmailCampaign.objects.get(id=request.GET.get('id'))
+    trackings = campaign.trackings.all()
+    opened = trackings.filter(opened=True).count()
+    sent = trackings.count()
+    return render(
+        request,
+        'eblast/tracking_data.html',
+        {
+            'opened': opened,
+            'sent': sent,
+            'campaign': campaign
+        }
+    )

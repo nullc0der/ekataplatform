@@ -4,10 +4,16 @@ import csv
 from django.db import models
 from django.db.models.signals import post_save, m2m_changed
 from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
+
 from ckeditor_uploader.fields import RichTextUploadingField
 from groupsystem.models import BasicGroup
 
 # Create your models here.
+
+
+def random_string():
+    return get_random_string(length=6)
 
 
 class EmailGroup(models.Model):
@@ -61,24 +67,25 @@ class EmailTemplate(models.Model):
 
 
 class EmailCampaign(models.Model):
-    FROM_EMAIL_CHOICES = (
-        ('support@ekata.social', 'support@ekata.social'),
-        ('news@ekata.social', 'news@ekata.social'),
-        ('newsletter@ekata.social', 'newsletter@ekata.social'),
-    )
     campaign_name = models.CharField(max_length=300, blank=False)
-    template = models.OneToOneField(EmailTemplate)
-    to_groups = models.ManyToManyField(EmailGroup)
+    template = models.ForeignKey(EmailTemplate)
     subject = models.CharField(max_length=100)
     message = RichTextUploadingField()
-    from_email = models.EmailField(
-        default='support@ekata.social',
-        choices=FROM_EMAIL_CHOICES
-    )
     timestamp = models.DateTimeField(auto_now_add=True)
+    draft = models.BooleanField(default=True)
+    tracking_id = models.CharField(default=random_string, editable=False, max_length=10)
 
     def __unicode__(self):
         return self.campaign_name
+
+
+class CampaignTracking(models.Model):
+    campaign = models.ForeignKey(EmailCampaign, related_name='trackings')
+    emailid = models.EmailField(null=True)
+    sent = models.BooleanField(default=False)
+    opened = models.BooleanField(default=False)
+    opened_at = models.DateTimeField(null=True, blank=True)
+    tracking_id = models.CharField(default=random_string, editable=False, max_length=10)
 
 
 def save_emailids_from_csv(sender, instance, **kwargs):
