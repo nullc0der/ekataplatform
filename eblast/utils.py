@@ -48,7 +48,7 @@ def send_campaign_email(id, from_email, groups):
             sent=True
         )
         url = '/en/eblast/image/' + emailcampaign.tracking_id + '/' + campaigntracking.tracking_id + '/'
-        url = "http://" + Site.objects.get_current().domain + url
+        url = "https://" + Site.objects.get_current().domain + url
         image_tag = '<img src="' + url + '" style="visibity: hidden"></img>'
         email_html = Template(email_html)
         context = Context({'image_tag': image_tag})
