@@ -5176,7 +5176,7 @@ table.text-center th {
 
 .content-header-new {
     background: rgb(255, 255, 255);
-    box-shadow: -5px 3px 1px -3px rgb(0, 0, 0);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.25);
     position: relative;
     padding: 15px 15px 0 15px;
 }
