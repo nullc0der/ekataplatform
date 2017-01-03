@@ -1,11 +1,11 @@
 {% load i18n bootstrap_tags %}
 <div class="listcontent-header">
-    <div class="text-center">
+    <div class="text-center objectName" contenteditable="true" data-id={{ emailgroup.id }}>
         <h4> {{ emailgroup.name }} </h4>
     </div>
     <div class="action-ellipsis dropdown">
         <i class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown"></i>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu dropdown-menu-right">
             <li><a href="#" data-toggle='modal' data-target='#editemailgroupmodal'>{% trans "Update" %}</a></li>
             <li><a href="#" class="deleteemailgroup" data-group-id={{ emailgroup.id }}>{% trans "Delete" %}</a></li>
         </ul>
@@ -53,18 +53,6 @@
             {% endfor %}
         </tbody>
     </table>
-</div>
-<div class="listcontent-actions">
-    <div class="col-md-6">
-        <button type="button" data-toggle='modal' data-target='#editemailgroupmodal' class="btn btn-primary btn-flat btn-block">
-            {% trans "Edit this emailgroup" %}
-        </button>
-    </div>
-    <div class="col-md-6">
-        <button type="button" class="btn btn-danger btn-flat btn-block deleteemailgroup" data-group-id={{ emailgroup.id }}>
-            {% trans "Delete this emailgroup" %}
-        </button>
-    </div>
 </div>
 <div class="modal fade" id="editemailgroupmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog">

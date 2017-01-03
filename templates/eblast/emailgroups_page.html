@@ -43,7 +43,7 @@
                         <div class="listcontent-header text-center">
                             <h4>{% trans "Group Lists" %}</h4>
                         </div>
-                        <div class="listcontent-body">
+                        <div class="listcontent-body lists">
                             <ul>
                                 {% for emailgroup in emailgroups %}
                                     {% if forloop.counter == 1 %}
@@ -140,6 +140,7 @@
                 'export': 'fa fa-download'
             }
         });
+        var objectName = $(".objectName").html();
         $(document).on('click', '#newemailgroupformbtn', function(){
             var form = $("#newemailgroupform");
             var data = new FormData(form[0]);
@@ -151,7 +152,10 @@
                 processData: false,
                 success: function(data){
                     {% if emailgroups %}
-                        loadEmailGroup(data);
+                        loadEmailGroup(data.id);
+                        $('.lists>ul').append(data.html);
+                        $('.emailGroup').removeClass('selected');
+                        $('.emailGroup[data-id=' + data.id + ']').addClass('selected');
                     {% else %}
                         location.reload();
                     {% endif %}
@@ -261,6 +265,22 @@
                     self.addClass('unsubbtn')
                 }
             });
+        });
+        $(document).on('blur', '.objectName', function() {
+            if (objectName!=$(this).html()){
+                var id = $(this).data('id');
+                var name = $(this).text();
+                $.ajax({
+                    url: '{% url 'eblast:change_group_name' %}',
+                    data: {'id': id, 'name': name},
+                    type: 'POST',
+                    success: function () {
+                        var p_text = $('.emailGroup[data-id=' + id + ']>p').text();
+                        var emailgroup = $('.emailGroup[data-id=' + id + ']').text(name);
+                        emailgroup.append('<p>'+ p_text +'</p>')
+                    }
+                });
+            }
         });
     </script>
 {% endblock %}

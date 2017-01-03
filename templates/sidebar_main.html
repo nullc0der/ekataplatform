@@ -71,7 +71,7 @@
     </ul>
 </li>
 {% if request.user.is_staff %}
-<li class="treeview mainnavcontent {% active request 'eblast:emailgroups' %}">
+<li class="treeview mainnavcontent {% active request 'eblast:emailgroups' %} {% active request 'eblast:emailtemplates' %} {% active request 'eblast:emailcampaign_page' %}">
     <a href="#">
         <i class="fa fa-envelope-o"></i>
         <span>{% trans "eBlast" %}</span>

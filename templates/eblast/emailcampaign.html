@@ -1,11 +1,15 @@
 {% load i18n bootstrap_tags %}
 <div class="listcontent-header">
-    <div class="text-center">
+    <div class="text-center objectName"
+        {% if emailcampaign.draft %}
+        contenteditable="true" data-id="{{ emailcampaign.id }}"
+        {% endif %}
+    >
         <h4> {{ emailcampaign.campaign_name }} </h4>
     </div>
     <div class="action-ellipsis dropdown">
         <i class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown"></i>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu dropdown-menu-right">
             <li><a href="#" data-id='{{ emailcampaign.id }}' class="deleteemailcampaign">{% trans "Delete" %}</a></li>
             {% if emailcampaign.draft %}
                 <li><a href="#" data-toggle="modal" data-target="#testsendmodal">{% trans "Test send" %}</a></li>

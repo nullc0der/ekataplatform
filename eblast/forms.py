@@ -8,6 +8,12 @@ class EmailGroupForm(forms.ModelForm):
         fields = '__all__'
 
 
+class EmailGroupEditForm(forms.ModelForm):
+    class Meta:
+        model = EmailGroup
+        exclude = ['name']
+
+
 class EmailTemplateForm(forms.ModelForm):
     class Meta:
         model = EmailTemplate
@@ -17,13 +23,19 @@ class EmailTemplateForm(forms.ModelForm):
 class EmailTemplateEditForm(forms.ModelForm):
     class Meta:
         model = EmailTemplate
-        fields = ['name', 'template']
+        fields = ['template']
 
 
 class EmailCampaignForm(forms.ModelForm):
     class Meta:
         model = EmailCampaign
         exclude = ['draft']
+
+
+class EmailCampaignEditForm(forms.ModelForm):
+    class Meta:
+        model = EmailCampaign
+        exclude = ['draft', 'campaign_name']
 
 
 class EmailTestSendForm(forms.Form):

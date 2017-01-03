@@ -5258,7 +5258,7 @@ table.text-center th {
 
 .listcontent-header {
     border-bottom: 1px solid #efefef;
-    margin: 0 -15px;
+    width: 100%;
 }
 
 .listcontent-header h4 {
@@ -5325,18 +5325,11 @@ table.text-center th {
 }
 
 .action-ellipsis {
-    position: absolute;
-    top: 3%;
-    right: 2%;
+    display: inline-block;
 }
 
 .action-ellipsis>.fa {
     font-size: 20px;
-}
-
-.action-ellipsis>.dropdown-menu {
-    position: relative;
-    border-radius: 0;
 }
 
 .trackingbox {
@@ -5349,4 +5342,22 @@ table.text-center th {
 .trackingbox>h4 {
     color: #1f7eb9;
     font-size: 800%;
+}
+
+.objectName {
+    display: inline-block;
+    width: 98%;
+}
+
+.objectName:focus {
+    outline: 0 solid transparent;
+}
+
+.action-ellipsis>.dropdown-menu>li>a:hover {
+    border-radius: 5px;
+}
+
+.action-ellipsis>.dropdown-menu>li {
+    width: 90%;
+    margin-left: 5%;
 }

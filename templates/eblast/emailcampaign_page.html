@@ -43,7 +43,7 @@
                         <div class="listcontent-header text-center">
                             <h4>{% trans "Campaign Lists" %}</h4>
                         </div>
-                        <div class="listcontent-body">
+                        <div class="listcontent-body lists">
                             <ul>
                                 {% for emailcampaign in emailcampaigns %}
                                     {% if forloop.counter == 1 %}
@@ -112,6 +112,8 @@
         $("#id_to_groups").selectpicker({
             liveSearch: true
         });
+        var objectName = $(".objectName").html();
+        CKEDITOR.disableAutoInline = true;
         $(document).on('click', '.emailCampaign', function(){
             var id = $(this).attr('data-id');
             loadEmailCampaign(id);
@@ -136,7 +138,10 @@
                 data: form.serialize(),
                 success: function(data){
                     {% if emailcampaigns %}
-                        loadEmailCampaign(data)
+                        loadEmailCampaign(data.id);
+                        $('.lists>ul').append(data.html);
+                        $('.emailCampaign').removeClass('selected');
+                        $('.emailCampaign[data-id=' + data.id + ']').addClass('selected');
                     {% else %}
                         location.reload();
                     {% endif %}
@@ -242,6 +247,20 @@
         $(document).on('click', '#showTracking', function(){
             var id = $(this).attr('data-campaign-id');
             $('.listcontent-content').load('{% url 'eblast:campaign_tracking_data' %}?id=' + id);
+        });
+        $(document).on('blur', '.objectName', function() {
+            if (objectName!=$(this).html()){
+                var id = $(this).data('id');
+                var name = $(this).text();
+                $.ajax({
+                    url: '{% url 'eblast:change_campaign_name' %}',
+                    data: {'id': id, 'name': name},
+                    type: 'POST',
+                    success: function () {
+                        $('.emailCampaign[data-id=' + id + ']').text(name);
+                    }
+                });
+            }
         });
     </script>
 {% endblock %}

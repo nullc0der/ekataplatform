@@ -1,12 +1,15 @@
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.timezone import now
+from django.template import loader
 
 from eblast.models import EmailGroup, EmailId, EmailTemplate, EmailCampaign, CampaignTracking
 from eblast.forms import EmailGroupForm, EmailTemplateForm,\
- EmailTemplateEditForm, EmailCampaignForm, EmailTestSendForm, EmailSendForm
+ EmailTemplateEditForm, EmailCampaignForm, EmailTestSendForm, EmailSendForm, EmailGroupEditForm, EmailCampaignEditForm
 from eblast.tasks import task_send_test_mail, task_send_campaign_email
 # Create your views here.
 
@@ -25,14 +28,14 @@ def emailgroups_page(request):
             'eblast/emailgroup.html',
             {
                 'emailgroup': emailgroup,
-                'form': EmailGroupForm(instance=emailgroup)
+                'form': EmailGroupEditForm(instance=emailgroup)
             }
         )
     return render(
         request,
         'eblast/emailgroups_page.html',
         {
-            'form': EmailGroupForm(instance=emailgroup) if emailgroups else EmailGroupForm(),
+            'form': EmailGroupEditForm(instance=emailgroup) if emailgroups else EmailGroupForm(),
             'emailgroups': emailgroups,
         }
     )
@@ -44,7 +47,15 @@ def create_emailgroup(request):
         form = EmailGroupForm(request.POST, request.FILES)
         if form.is_valid():
             emailgroup = form.save()
-            return HttpResponse(emailgroup.id)
+            template = loader.get_template('eblast/singleemailgrouplist.html')
+            context = {'emailgroup': emailgroup}
+            html = template.render(context)
+            response_dict = {
+                'id': emailgroup.id,
+                'html': html
+            }
+            data = json.dumps(response_dict)
+            return HttpResponse(data, 'application/json')
         else:
             return render(
                 request,
@@ -76,7 +87,7 @@ def delete_emailgroup(request):
 @user_passes_test(lambda u: u.is_staff)
 def edit_emailgroup(request, id):
     emailgroup = EmailGroup.objects.get(id=id)
-    form = EmailGroupForm(request.POST, request.FILES, instance=emailgroup)
+    form = EmailGroupEditForm(request.POST, request.FILES, instance=emailgroup)
     if form.is_valid():
         emailgroup = form.save()
         return HttpResponse(emailgroup.id)
@@ -86,10 +97,19 @@ def edit_emailgroup(request, id):
             'eblast/emailgroupedit.html',
             {
                 'emailgroup': emailgroup,
-                'form': EmailGroupForm(instance=emailgroup)
+                'form': form
             },
             status=500
         )
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def change_group_name(request):
+    emailgroup = EmailGroup.objects.get(id=request.POST.get('id'))
+    emailgroup.name = request.POST.get('name')
+    emailgroup.save()
+    return HttpResponse(status=200)
 
 
 @require_POST
@@ -151,7 +171,15 @@ def add_emailtemplate(request):
         form = EmailTemplateForm(request.POST, request.FILES)
         if form.is_valid():
             emailtemplate = form.save()
-            return HttpResponse(emailtemplate.id)
+            template = loader.get_template('eblast/singletemplatelist.html')
+            context = {'emailtemplate': emailtemplate}
+            html = template.render(context)
+            response_dict = {
+                'id': emailtemplate.id,
+                'html': html
+            }
+            data = json.dumps(response_dict)
+            return HttpResponse(data, 'application/json')
         else:
             return render(
                 request,
@@ -205,6 +233,15 @@ def preview_emailtemplate(request, id):
     return HttpResponse(emailtemplate.template)
 
 
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def change_template_name(request):
+    emailtemplate = EmailTemplate.objects.get(id=request.POST.get('id'))
+    emailtemplate.name = request.POST.get('name')
+    emailtemplate.save()
+    return HttpResponse(status=200)
+
+
 @user_passes_test(lambda u: u.is_staff)
 def emailcampaign_page(request):
     emailcampaigns = EmailCampaign.objects.all()
@@ -219,7 +256,7 @@ def emailcampaign_page(request):
             'eblast/emailcampaign.html',
             {
                 'emailcampaign': emailcampaign,
-                'form': EmailCampaignForm(instance=emailcampaign),
+                'form': EmailCampaignEditForm(instance=emailcampaign),
                 'testform': EmailTestSendForm(),
                 'sendform': EmailSendForm()
             }
@@ -228,7 +265,7 @@ def emailcampaign_page(request):
         request,
         'eblast/emailcampaign_page.html',
         {
-            'form': EmailCampaignForm(instance=emailcampaign) if emailcampaign else EmailCampaignForm(),
+            'form': EmailCampaignEditForm(instance=emailcampaign) if emailcampaign else EmailCampaignForm(),
             'emailcampaigns': emailcampaigns,
             'testform': EmailTestSendForm(),
             'sendform': EmailSendForm()
@@ -242,7 +279,15 @@ def add_emailcampaign(request):
         form = EmailCampaignForm(request.POST)
         if form.is_valid():
             emailcampaign = form.save()
-            return HttpResponse(emailcampaign.id)
+            template = loader.get_template('eblast/singlecampaignlist.html')
+            context = {'emailcampaign': emailcampaign}
+            html = template.render(context)
+            response_dict = {
+                'id': emailcampaign.id,
+                'html': html
+            }
+            data = json.dumps(response_dict)
+            return HttpResponse(data, 'application/json')
         else:
             return render(
                 request,
@@ -266,7 +311,7 @@ def add_emailcampaign(request):
 @user_passes_test(lambda u: u.is_staff)
 def edit_emailcampaign(request, id):
     emailcampaign = EmailCampaign.objects.get(id=id)
-    form = EmailCampaignForm(request.POST, instance=emailcampaign)
+    form = EmailCampaignEditForm(request.POST, instance=emailcampaign)
     if form.is_valid():
         emailcampaign = form.save()
         return HttpResponse(emailcampaign.id)
@@ -372,3 +417,12 @@ def campaign_tracking_data(request):
             'campaign': campaign
         }
     )
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def change_campaign_name(request):
+    emailcampaign = EmailCampaign.objects.get(id=request.POST.get('id'))
+    emailcampaign.campaign_name = request.POST.get('name')
+    emailcampaign.save()
+    return HttpResponse(status=200)
