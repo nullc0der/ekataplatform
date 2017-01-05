@@ -78,10 +78,10 @@
 {% endblock %}
 {% block filter_sidebar_options %}
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-sm-6 col-xs-6">
         <button class="btn-filter btn-filter-left" data-filter-name='sent' data-selected='false'>{% trans "Sent" %}</button>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 col-sm-6 col-xs-6">
         <button class="btn-filter" data-filter-name='draft' data-selected='false'>{% trans "Draft" %}</button>
     </div>
 </div>
@@ -295,6 +295,9 @@
                 data: {'filters_enabled': filters},
                 success: function (data) {
                     $('.lists').html(data);
+                    var o = $.AdminLTE.options.filterSidebarOptions;
+                    var sidebar = $(o.selector);
+                    $.AdminLTE.filterSidebar.close(sidebar, o.slide);
                 }
             });
         });
@@ -313,6 +316,19 @@
                     $('.lists').html(data);
                 }
             });
+        });
+        var mouse_is_inside = false;
+        $(".filterbtn").hover(function(){
+            mouse_is_inside=true;
+        }, function(){
+            mouse_is_inside=false;
+        });
+        $(document).click(function () {
+            var o = $.AdminLTE.options.filterSidebarOptions;
+            var sidebar = $(o.selector);
+            if (($('body').hasClass('filter-sidebar-open') || sidebar.hasClass('filter-sidebar-open')) && ! mouse_is_inside) {
+                $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+            }
         });
     </script>
 {% endblock %}
