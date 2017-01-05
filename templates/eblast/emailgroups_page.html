@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-6">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search here...">
+                <input type="text" class="form-control" placeholder="Search by Group Name..." id="liveSearch">
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
                 </span>
@@ -44,15 +44,7 @@
                             <h4>{% trans "Group Lists" %}</h4>
                         </div>
                         <div class="listcontent-body lists">
-                            <ul>
-                                {% for emailgroup in emailgroups %}
-                                    {% if forloop.counter == 1 %}
-                                        <li class="selected emailGroup" data-id={{ emailgroup.id }}>{{ emailgroup.name }} <p>{{ emailgroup.emailids.count }} {% trans "emailids" %}</p></li>
-                                    {% else %}
-                                        <li class="emailGroup" data-id={{ emailgroup.id }}>{{ emailgroup.name }} <p>{{ emailgroup.emailids.count }} {% trans "emailids" %}</p></li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
+                            {% include "eblast/emailgroupslist.html" %}
                         </div>
                         {% if emailgroups %}
                         <div class="listcontent-addnewbtn newbtn" id="addnewgroup">
@@ -299,6 +291,16 @@
                     }
                 });
             }
+        });
+        $("#liveSearch").keyup(function(){
+            var _this = $(this);
+            $.ajax({
+                url: '{% url 'eblast:filter_groups' %}',
+                data: {'query': _this.val()},
+                success: function (data) {
+                    $('.lists').html(data);
+                }
+            });
         });
     </script>
 {% endblock %}

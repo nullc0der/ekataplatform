@@ -23,12 +23,12 @@
         </div>
         <div class="col-md-6">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search here...">
+                <input type="text" class="form-control" placeholder="Search by Campaign Name...." id="liveSearch">
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
                 </span>
                 <span class="input-group-btn filterbtn">
-                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                    <button class="btn btn-content-header" data-toggle="filter-sidebar"><i class="fa fa-filter"></i></button>
                 </span>
             </div>
         </div>
@@ -44,15 +44,7 @@
                             <h4>{% trans "Campaign Lists" %}</h4>
                         </div>
                         <div class="listcontent-body lists">
-                            <ul>
-                                {% for emailcampaign in emailcampaigns %}
-                                    {% if forloop.counter == 1 %}
-                                        <li class="selected emailCampaign" data-id={{ emailcampaign.id }} style="padding: 10px">{{ emailcampaign.campaign_name }}</li>
-                                    {% else %}
-                                        <li class="emailCampaign" data-id={{ emailcampaign.id }} style="padding: 10px">{{ emailcampaign.campaign_name }}</li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
+                            {% include "eblast/emailcampaignlist.html" %}
                         </div>
                         {% if emailcampaigns %}
                         <div class="listcontent-addnewbtn newbtn" id="addnewcampaign">
@@ -84,6 +76,16 @@
         </div>
     </div>
 {% endblock %}
+{% block filter_sidebar_options %}
+<div class="row">
+    <div class="col-md-6">
+        <button class="btn-filter btn-filter-left" data-filter-name='sent' data-selected='false'>{% trans "Sent" %}</button>
+    </div>
+    <div class="col-md-6">
+        <button class="btn-filter" data-filter-name='draft' data-selected='false'>{% trans "Draft" %}</button>
+    </div>
+</div>
+{% endblock %}
 {% block extrascripts %}
     <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
     <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
@@ -113,6 +115,7 @@
             liveSearch: true
         });
         var objectName = $(".objectName").html();
+        var filters_enabled = []
         CKEDITOR.disableAutoInline = true;
         $(document).on('click', '.emailCampaign', function(){
             var id = $(this).attr('data-id');
@@ -261,6 +264,55 @@
                     }
                 });
             }
+        });
+        $('.btn-filter').click(function(){
+            var _this = $(this);
+            if (_this.data('selected') === 'true') {
+                var index = filters_enabled.indexOf(_this.data('filter-name'));
+                if (index > -1) {
+                    filters_enabled.splice(index, 1);
+                }
+                _this.data('selected', 'false');
+                _this.removeClass('btn-filter-selected');
+                console.log(filters_enabled);
+            }
+            else {
+                filters_enabled.push(_this.data('filter-name'));
+                _this.data('selected', 'true');
+                _this.addClass('btn-filter-selected');
+                console.log(filters_enabled);
+            }
+        })
+        $('#applyFilters').click(function() {
+            if (filters_enabled.length) {
+                var filters = filters_enabled;
+            }
+            else {
+                var filters = ['sent', 'draft'];
+            }
+            $.ajax({
+                url: '{% url 'eblast:filter_campaign' %}',
+                data: {'filters_enabled': filters},
+                success: function (data) {
+                    $('.lists').html(data);
+                }
+            });
+        });
+        $("#liveSearch").keyup(function(){
+            if (filters_enabled.length) {
+                var filters = filters_enabled;
+            }
+            else {
+                var filters = ['sent', 'draft'];
+            }
+            var _this = $(this);
+            $.ajax({
+                url: '{% url 'eblast:filter_campaign' %}',
+                data: {'filters_enabled': filters, 'query': _this.val()},
+                success: function (data) {
+                    $('.lists').html(data);
+                }
+            });
         });
     </script>
 {% endblock %}

@@ -496,6 +496,26 @@
         <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
+        <!-- The Filter Sidebar -->
+        <aside class="filter-sidebar filter-sidebar-light filter-options">
+            <!-- Content of the sidebar goes here -->
+            <div class="filter-sidebar-header">
+                {% trans "Filter Options" %}
+            </div>
+            {% block filter_sidebar_options %}
+                {% comment %}
+                    use this block to add filter sidebar buttons
+                {% endcomment %}
+            {% endblock %}
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn-filter-apply" id="applyFilters">{% trans "Apply" %}</button>
+                </div>
+            </div>
+        </aside>
+        <!-- The sidebar's background -->
+        <!-- This div must placed right after the sidebar for it to work-->
+        <div class="filter-sidebar-bg"></div>
         <div class="se-pre-con"></div>
     </div>
     <!-- ./wrapper -->

@@ -164,6 +164,18 @@ def subscribe_emailid(request):
 
 
 @user_passes_test(lambda u: u.is_staff)
+def filter_groups(request):
+    emailgroups = EmailGroup.objects.filter(name__icontains=request.GET.get('query'))
+    return render(
+        request,
+        'eblast/emailgroupslist.html',
+        {
+            'emailgroups': emailgroups
+        }
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
 def emailtemplates_page(request):
     emailtemplates = EmailTemplate.objects.all()
     if emailtemplates:
@@ -265,6 +277,18 @@ def change_template_name(request):
     emailtemplate.name = request.POST.get('name')
     emailtemplate.save()
     return HttpResponse(status=200)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def filter_template(request):
+    emailtemplates = EmailTemplate.objects.filter(name__icontains=request.GET.get('query'))
+    return render(
+        request,
+        'eblast/emailtemplateslist.html',
+        {
+            'emailtemplates': emailtemplates
+        }
+    )
 
 
 @user_passes_test(lambda u: u.is_staff)
@@ -451,3 +475,24 @@ def change_campaign_name(request):
     emailcampaign.campaign_name = request.POST.get('name')
     emailcampaign.save()
     return HttpResponse(status=200)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def filter_campaign(request):
+    filters_enabled = request.GET.getlist('filters_enabled')
+    if 'sent' in filters_enabled:
+        emailcampaigns = EmailCampaign.objects.filter(draft=False)
+    if 'draft' in filters_enabled:
+        emailcampaigns = EmailCampaign.objects.filter(draft=True)
+    if 'sent' in filters_enabled and 'draft' in filters_enabled:
+        emailcampaigns = EmailCampaign.objects.all()
+    if 'query' in request.GET:
+        query = request.GET.get('query')
+        emailcampaigns = emailcampaigns.filter(campaign_name__icontains=query)
+    return render(
+        request,
+        'eblast/emailcampaignlist.html',
+        {
+            'emailcampaigns': emailcampaigns
+        }
+    )
