@@ -1,0 +1,9 @@
+<ul>
+    {% for emailtemplate in emailtemplates %}
+        {% if forloop.counter == 1 %}
+            <li class="selected emailTemplate" data-id={{ emailtemplate.id }} style="padding: 10px">{{ emailtemplate.name }}</li>
+        {% else %}
+            <li class="emailTemplate" data-id={{ emailtemplate.id }} style="padding: 10px">{{ emailtemplate.name }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>

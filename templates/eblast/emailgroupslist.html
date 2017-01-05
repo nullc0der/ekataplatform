@@ -1,0 +1,10 @@
+{% load i18n %}
+<ul>
+    {% for emailgroup in emailgroups %}
+        {% if forloop.counter == 1 %}
+            <li class="selected emailGroup" data-id={{ emailgroup.id }}>{{ emailgroup.name }} <p>{{ emailgroup.emailids.count }} {% trans "emailids" %}</p></li>
+        {% else %}
+            <li class="emailGroup" data-id={{ emailgroup.id }}>{{ emailgroup.name }} <p>{{ emailgroup.emailids.count }} {% trans "emailids" %}</p></li>
+        {% endif %}
+    {% endfor %}
+</ul>

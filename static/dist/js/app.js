@@ -101,6 +101,15 @@ $.AdminLTE.options = {
     //Enable slide over content
     slide: true
   },
+  enableFilterSidebar: true,
+  filterSidebarOptions: {
+    //Which button should trigger the open/close event
+    toggleBtnSelector: "[data-toggle='filter-sidebar']",
+    //The sidebar selector
+    selector: ".filter-sidebar",
+    //Enable slide over content
+    slide: true
+  },
   //Box Widget Plugin. Enable this plugin
   //to allow boxes to be collapsed and/or removed
   enableBoxWidget: true,
@@ -194,6 +203,11 @@ $(function () {
   if (o.enableControlSidebar) {
     $.AdminLTE.controlSidebar.activate();
   }
+
+  if (o.enableFilterSidebar) {
+    $.AdminLTE.filterSidebar.activate();
+  }
+
 
   //Add slimscroll to navbar dropdown
   if (o.navbarMenuSlimscroll && typeof $.fn.slimscroll != 'undefined') {
@@ -558,6 +572,102 @@ function _init() {
       $(".content-wrapper, .right-side").css('min-height', sidebar.height());
     }
   };
+
+
+  $.AdminLTE.filterSidebar = {
+    //instantiate the object
+    activate: function () {
+      //Get the object
+      var _this = this;
+      //Update options
+      var o = $.AdminLTE.options.filterSidebarOptions;
+      //Get the sidebar
+      var sidebar = $(o.selector);
+      //The toggle button
+      var btn = $(o.toggleBtnSelector);
+
+      //Listen to the click event
+      btn.on('click', function (e) {
+        e.preventDefault();
+        //If the sidebar is not open
+        if (!sidebar.hasClass('filter-sidebar-open')
+          && !$('body').hasClass('filter-sidebar-open')) {
+          //Open the sidebar
+          _this.open(sidebar, o.slide);
+        } else {
+          _this.close(sidebar, o.slide);
+        }
+      });
+
+      //If the body has a boxed layout, fix the sidebar bg position
+      var bg = $(".filter-sidebar-bg");
+      _this._fix(bg);
+
+      //If the body has a fixed layout, make the control sidebar fixed
+      if ($('body').hasClass('fixed')) {
+        _this._fixForFixed(sidebar);
+      } else {
+        //If the content height is less than the sidebar's height, force max height
+        if ($('.content-wrapper, .right-side').height() < sidebar.height()) {
+          _this._fixForContent(sidebar);
+        }
+      }
+    },
+    //Open the control sidebar
+    open: function (sidebar, slide) {
+      //Slide over content
+      if (slide) {
+        sidebar.addClass('filter-sidebar-open');
+        $('.content-header-new .input-group').addClass('pushleft');
+      } else {
+        //Push the content by adding the open class to the body instead
+        //of the sidebar itself
+        $('body').addClass('filter-sidebar-open');
+        $('.content-header-new .input-group').addClass('pushleft');
+      }
+    },
+    //Close the control sidebar
+    close: function (sidebar, slide) {
+      if (slide) {
+        sidebar.removeClass('filter-sidebar-open');
+        $('.content-header-new .input-group').removeClass('pushleft');
+      } else {
+        $('body').removeClass('filter-sidebar-open');
+        $('.content-header-new .input-group').removeClass('pushleft');
+      }
+    },
+    _fix: function (sidebar) {
+      var _this = this;
+      if ($("body").hasClass('layout-boxed')) {
+        sidebar.css('position', 'absolute');
+        sidebar.height($(".wrapper").height());
+        if (_this.hasBindedResize) {
+          return;
+        }
+        $(window).resize(function () {
+          _this._fix(sidebar);
+        });
+        _this.hasBindedResize = true;
+      } else {
+        sidebar.css({
+          'position': 'fixed',
+          'height': 'auto'
+        });
+      }
+    },
+    _fixForFixed: function (sidebar) {
+      sidebar.css({
+        'position': 'fixed',
+        'max-height': '100%',
+        'overflow': 'auto',
+        'padding-bottom': '50px'
+      });
+    },
+    _fixForContent: function (sidebar) {
+      $(".content-wrapper, .right-side").css('min-height', sidebar.height());
+    }
+  };
+
 
   /* BoxWidget
    * =========

@@ -1,0 +1,91 @@
+{% load i18n bootstrap_tags %}
+<div class="listcontent-header">
+    <div class="text-center objectName" contenteditable="true" data-id={{ emailgroup.id }}>
+        <h4> {{ emailgroup.name }} </h4>
+    </div>
+    <div class="action-ellipsis dropdown">
+        <i class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#" data-toggle='modal' data-target='#addusermodal'>{% trans "Add Recipient" %}</a></li>
+            <li><a href="#" data-toggle='modal' data-target='#addcsvmodal'>{% trans "Upload CSV" %}</a></li>
+            <li><a href="#" class="deleteemailgroup" data-group-id={{ emailgroup.id }}>{% trans "Delete" %}</a></li>
+        </ul>
+    </div>
+</div>
+<div class="listcontent-body">
+    <table class="table" data-unique-id="id">
+        <thead>
+            <tr>
+                <th data-visible="false" data-field="id">Id</th>
+                <th data-sortable="true">First Name</th>
+                <th data-sortable="true">Last Name</th>
+                <th data-sortable="true">Username</th>
+                <th data-sortable="true">EmailID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emailid in emailgroup.emailids.all  %}
+                <tr>
+                    <td>{{ emailid.id }}</td>
+                    <td>{{ emailid.first_name }}</td>
+                    <td>{{ emailid.last_name }}</td>
+                    {% if emailid.user %}
+                        <td>{{ emailid.user.username }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    <td>{{ emailid.email_id }}</td>
+                    <td>
+                        {% if emailid.send_email_from_group %}
+                        <button type="button" class="btn btn-primary btn-xs btn-flat unsubbtn" data-id={{ emailid.id }}>
+                            {% trans "Unsubscribe" %}
+                        </button>
+                        {% else %}
+                        <button type="button" class="btn btn-primary btn-xs btn-flat subbtn" data-id={{ emailid.id }}>
+                            {% trans "Subscribe" %}
+                        </button>
+                        {% endif %}
+                        <button type="button" class="btn btn-danger btn-xs btn-flat" onclick="removeEmailId({{ emailid.id }})">
+                            {% trans "Remove" %}
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="addusermodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Add Recipient" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% include "eblast/addrecipient.html" %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+        <button type="button" class="btn btn-primary" id="adduser">{% trans "Add" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addcsvmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Upload a CSV" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% include "eblast/addcsv.html" %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+        <button type="button" class="btn btn-primary" id="addcsv">{% trans "Upload" %}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+{% load i18n bootstrap_tags %}
+<div class="listcontent-header">
+    <div class="text-center objectName"
+        {% if emailcampaign.draft %}
+        contenteditable="true" data-id="{{ emailcampaign.id }}"
+        {% endif %}
+    >
+        <h4> {{ emailcampaign.campaign_name }} </h4>
+    </div>
+    <div class="action-ellipsis dropdown">
+        <i class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#" data-id='{{ emailcampaign.id }}' class="deleteemailcampaign">{% trans "Delete" %}</a></li>
+            {% if emailcampaign.draft %}
+                <li><a href="#" data-toggle="modal" data-target="#testsendmodal">{% trans "Test send" %}</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#sendmodal">{% trans "Send" %}</a></li>
+            {% else %}
+                <li><a href="#" data-toggle="modal" data-target="#sendmodal">{% trans "Resend" %}</a></li>
+                <li><a href="javascript:void(0);" data-campaign-id="{{ emailcampaign.id }}" id="showTracking">{% trans "Show tracking data" %}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<div class="listcontent-body">
+    <div class="addgroupmember">
+        {% if emailcampaign.draft %}
+            {% include "eblast/editemailcampaign.html" %}
+        {% else %}
+            {% include "eblast/emailcampaign_sent.html" %}
+        {% endif %}
+    </div>
+</div>
+<div class="modal fade" id="testsendmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Send a test email" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% include "eblast/testsendmailform.html" %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+        <button type="button" class="btn btn-primary" id="testsendcampaign">{% trans "Send" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="sendmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Send email" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% include "eblast/sendmailform.html" %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+        <button type="button" class="btn btn-primary" id="sendcampaign">{% trans "Send" %}</button>
+      </div>
+    </div>
+  </div>
+</div>

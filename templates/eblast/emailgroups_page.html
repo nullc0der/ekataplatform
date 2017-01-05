@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+{% load i18n staticfiles bootstrap_tags %}
+{% block title %}
+    {% trans "EmailGroups | eBlast" %}
+{% endblock title %}
+{% block extrastyle %}
+    <style>
+        .content-header {
+            padding: 0;
+        }
+    </style>
+{% endblock %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Email Groups" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "eBlast" %}</a></li>
+                <li class="active">{% trans "emailgroups" %}</li>
+            </ol>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Group Name..." id="liveSearch">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+    </section>
+{% endblock content_header_new %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box box-solid">
+                <div class="box-body listcontent-wrapper">
+                    <div class="listcontent-list">
+                        <div class="listcontent-header text-center">
+                            <h4>{% trans "Group Lists" %}</h4>
+                        </div>
+                        <div class="listcontent-body lists">
+                            {% include "eblast/emailgroupslist.html" %}
+                        </div>
+                        {% if emailgroups %}
+                        <div class="listcontent-addnewbtn newbtn" id="addnewgroup">
+                            <p>
+                                {% trans "Create List" %}
+                            </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="box box-solid">
+                <div class="box-body listcontent-wrapper">
+                    <div class="listcontent-content">
+                        {% if emailgroups %}
+                            {% for emailgroup in emailgroups %}
+                                {% if forloop.counter == 1 %}
+                                    {% include "eblast/emailgroup.html" %}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            {% include "eblast/emailgroupform.html" %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+    <script type="text/javascript">
+        function loadEmailGroup(id) {
+            $('.listcontent-content').load('{% url 'eblast:emailgroups' %}?emailgroup=' + id, function(){
+                $(".table").bootstrapTable({
+                    'pagination': true,
+                    'pageNumber': 1,
+                    'pageSize': 5,
+                    'pageList': [5, 10, 15, 20, 25],
+                    'search': true,
+                    'showExport': true,
+                    'exportDataType': 'all',
+                    'exportTypes': ['json', 'csv', 'txt', 'excel'],
+                    'icons': {
+                        'export': 'fa fa-download'
+                    }
+                });
+                $('.emailGroup').removeClass('selected');
+                $('.emailGroup[data-id=' + id + ']').addClass('selected');
+                $("#id_users").selectpicker({
+                    liveSearch: true
+                });
+                $('#id_csv_file').fileinput({
+                    showUpload: false
+                });
+            });
+        }
+        function removeEmailId(id){
+            $.ajax({
+                url: '{% url 'eblast:remove_emailid' %}',
+                type: 'POST',
+                data: {'id': id},
+                success: function(){
+                    $(".table").bootstrapTable('removeByUniqueId', id);
+                }
+            });
+        }
+        $("#id_users").selectpicker({
+            liveSearch: true
+        });
+        $('#id_csv_file').fileinput({
+            showUpload: false
+        });
+        $(".table").bootstrapTable({
+            'pagination': true,
+            'pageNumber': 1,
+            'pageSize': 5,
+            'pageList': [5, 10, 15, 20, 25],
+            'search': true,
+            'showExport': true,
+            'exportDataType': 'all',
+            'exportTypes': ['json', 'csv', 'txt', 'excel'],
+            'icons': {
+                'export': 'fa fa-download'
+            }
+        });
+        var objectName = $(".objectName").html();
+        $(document).on('click', '#newemailgroupformbtn', function(){
+            var form = $("#newemailgroupform");
+            var data = new FormData(form[0]);
+            $.ajax({
+                url: $(form).attr('action'),
+                type: $(form).attr('method'),
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(data){
+                    {% if emailgroups %}
+                        loadEmailGroup(data.id);
+                        $('.lists>ul').append(data.html);
+                        $('.emailGroup').removeClass('selected');
+                        $('.emailGroup[data-id=' + data.id + ']').addClass('selected');
+                    {% else %}
+                        location.reload();
+                    {% endif %}
+                },
+                error: function(data){
+                    $('.listcontent-content').html(data.responseText);
+                    $("#id_users").selectpicker({
+                        liveSearch: true
+                    });
+                    $('#id_csv_file').fileinput({
+                        showUpload: false
+                    });
+                }
+            });
+        });
+        $("#addnewgroup").click(function(){
+            $('.listcontent-content').load('{% url 'eblast:create_emailgroup' %}', function(){
+                $("#id_users").selectpicker({
+                    liveSearch: true
+                });
+                $('#id_csv_file').fileinput({
+                    showUpload: false
+                });
+            });
+        });
+        $('.emailGroup').click(function(){
+            var id = $(this).attr('data-id');
+            var self = $(this);
+            loadEmailGroup(id);
+        });
+        $(document).on('click', '.deleteemailgroup', function(){
+            var emailgroup_id = $(this).attr('data-group-id');
+            swal({
+                title: "You are about to delete this email group.",
+                text: "Do you want to delete this record?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function(){
+                $.ajax({
+                    url: '{% url 'eblast:delete_emailgroup' %}',
+                    type: 'POST',
+                    data: {'id': emailgroup_id},
+                    success: function(data){
+                        swal({
+                            title: "Deleted!",
+                            text: "Record has been deleted.",
+                            type: "success"
+                        }, function () {
+                            location.reload();
+                            }
+                        );
+                    }
+                });
+            });
+            return false;
+        });
+        $(document).on('click', '#adduser', function(){
+            var form = $("#adduserform");
+            var data = new FormData(form[0]);
+            $.ajax({
+                url: $(form).attr('action'),
+                type: $(form).attr('method'),
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(data){
+                    loadEmailGroup(data);
+                    $("#addusermodal").modal('hide');
+                },
+                error: function(data){
+                    $('.listcontent-content').html(data.responseText);
+                    $("#id_users").selectpicker({
+                        liveSearch: true
+                    });
+                }
+            });
+        });
+        $(document).on('click', '#addcsv', function(){
+            var form = $("#addcsvform");
+            var data = new FormData(form[0]);
+            $.ajax({
+                url: $(form).attr('action'),
+                type: $(form).attr('method'),
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(data){
+                    loadEmailGroup(data);
+                    $("#addcsvmodal").modal('hide');
+                },
+                error: function(data){
+                    $('.listcontent-content').html(data.responseText);
+                    $('#id_csv_file').fileinput({
+                        showUpload: false
+                    });
+                }
+            });
+        });
+        $(document).on('click', '.unsubbtn', function () {
+            var self = $(this);
+            $.ajax({
+                url: '{% url 'eblast:unsubscribe_emailid' %}',
+                type: 'POST',
+                data: {'id': self.attr('data-id')},
+                success: function(){
+                    self.text('Subscribe');
+                    self.removeClass('unsubbtn');
+                    self.addClass('subbtn')
+                }
+            });
+        });
+        $(document).on('click', '.subbtn', function () {
+            var self = $(this);
+            $.ajax({
+                url: '{% url 'eblast:subscribe_emailid' %}',
+                type: 'POST',
+                data: {'id': self.attr('data-id')},
+                success: function(){
+                    self.text('Unsubscribe');
+                    self.removeClass('subbtn');
+                    self.addClass('unsubbtn')
+                }
+            });
+        });
+        $(document).on('blur', '.objectName', function() {
+            if (objectName!=$(this).html()){
+                var id = $(this).data('id');
+                var name = $(this).text();
+                $.ajax({
+                    url: '{% url 'eblast:change_group_name' %}',
+                    data: {'id': id, 'name': name},
+                    type: 'POST',
+                    success: function () {
+                        var p_text = $('.emailGroup[data-id=' + id + ']>p').text();
+                        var emailgroup = $('.emailGroup[data-id=' + id + ']').text(name);
+                        emailgroup.append('<p>'+ p_text +'</p>')
+                    }
+                });
+            }
+        });
+        $("#liveSearch").keyup(function(){
+            var _this = $(this);
+            $.ajax({
+                url: '{% url 'eblast:filter_groups' %}',
+                data: {'query': _this.val()},
+                success: function (data) {
+                    $('.lists').html(data);
+                }
+            });
+        });
+    </script>
+{% endblock %}

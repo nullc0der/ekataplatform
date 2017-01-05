@@ -1,0 +1,9 @@
+<ul>
+    {% for emailcampaign in emailcampaigns %}
+        {% if forloop.counter == 1 %}
+            <li class="selected emailCampaign" data-id={{ emailcampaign.id }} style="padding: 10px">{{ emailcampaign.campaign_name }}</li>
+        {% else %}
+            <li class="emailCampaign" data-id={{ emailcampaign.id }} style="padding: 10px">{{ emailcampaign.campaign_name }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>

@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/2.2.6/assets/css/emojione.min.css"/>
     <link rel="stylesheet" href="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?n=7">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.1.5">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/_all-skins.min.css" %}">
@@ -380,6 +380,9 @@
 
                 {% endblock content_header %}
             </section>
+            {% block content_header_new %}
+
+            {% endblock %}
             <!-- Main content -->
             <section class="content">
                 <div class="notifications top-right"></div>
@@ -493,6 +496,26 @@
         <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
+        <!-- The Filter Sidebar -->
+        <aside class="filter-sidebar filter-sidebar-light filter-options">
+            <!-- Content of the sidebar goes here -->
+            <div class="filter-sidebar-header">
+                {% trans "Filter Options" %}
+            </div>
+            {% block filter_sidebar_options %}
+                {% comment %}
+                    use this block to add filter sidebar buttons
+                {% endcomment %}
+            {% endblock %}
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn-filter-apply" id="applyFilters">{% trans "Apply" %}</button>
+                </div>
+            </div>
+        </aside>
+        <!-- The sidebar's background -->
+        <!-- This div must placed right after the sidebar for it to work-->
+        <div class="filter-sidebar-bg"></div>
         <div class="se-pre-con"></div>
     </div>
     <!-- ./wrapper -->

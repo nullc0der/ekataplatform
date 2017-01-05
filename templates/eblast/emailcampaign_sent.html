@@ -1,0 +1,6 @@
+{% load i18n bootstrap_tags %}
+<h4 style="font-weight: 600">{% trans "Sent to: " %}<span style="font-size: 500%; color: #88bf88">{{ emailcampaign.trackings.count }}</span> {% trans "Email Address" %}</h4>
+<h4 style="font-weight: 600">{% trans "Subject: " %}</h4>
+<p>{{ emailcampaign.subject }}</p>
+<h4 style="font-weight: 600">{% trans "Message: " %}</h4>
+<iframe src="{% url 'eblast:viewinbrowser' emailcampaign.id %}" width="600" height="500" style="border: none"></iframe>
