@@ -6,7 +6,8 @@
     <div class="action-ellipsis dropdown">
         <i class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#" data-toggle='modal' data-target='#editemailgroupmodal'>{% trans "Update" %}</a></li>
+            <li><a href="#" data-toggle='modal' data-target='#addusermodal'>{% trans "Add Recipient" %}</a></li>
+            <li><a href="#" data-toggle='modal' data-target='#addcsvmodal'>{% trans "Upload CSV" %}</a></li>
             <li><a href="#" class="deleteemailgroup" data-group-id={{ emailgroup.id }}>{% trans "Delete" %}</a></li>
         </ul>
     </div>
@@ -54,19 +55,36 @@
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="editemailgroupmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal fade" id="addusermodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">{% trans "Edit EmailGroup" %}</h4>
+        <h4 class="modal-title" id="">{% trans "Add Recipient" %}</h4>
       </div>
-      <div class="modal-body" id="editemailgroupmodalbody">
-          {% include "eblast/emailgroupedit.html" %}
+      <div class="modal-body">
+        {% include "eblast/addrecipient.html" %}
       </div>
-      <div class="modal-footer" id="signupfooter">
+      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
-        <button type="button" class="btn btn-primary" id="editemailgroupmodalsubmit">{% trans "Submit" %}</button>
+        <button type="button" class="btn btn-primary" id="adduser">{% trans "Add" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addcsvmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Upload a CSV" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% include "eblast/addcsv.html" %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+        <button type="button" class="btn btn-primary" id="addcsv">{% trans "Upload" %}</button>
       </div>
     </div>
   </div>

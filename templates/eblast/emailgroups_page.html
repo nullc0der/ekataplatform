@@ -216,8 +216,8 @@
             });
             return false;
         });
-        $(document).on('click', '#editemailgroupmodalsubmit', function(){
-            var form = $("#editemailgroupform");
+        $(document).on('click', '#adduser', function(){
+            var form = $("#adduserform");
             var data = new FormData(form[0]);
             $.ajax({
                 url: $(form).attr('action'),
@@ -227,13 +227,31 @@
                 processData: false,
                 success: function(data){
                     loadEmailGroup(data);
-                    $("#editemailgroupmodal").modal('hide');
+                    $("#addusermodal").modal('hide');
                 },
                 error: function(data){
                     $('.listcontent-content').html(data.responseText);
                     $("#id_users").selectpicker({
                         liveSearch: true
                     });
+                }
+            });
+        });
+        $(document).on('click', '#addcsv', function(){
+            var form = $("#addcsvform");
+            var data = new FormData(form[0]);
+            $.ajax({
+                url: $(form).attr('action'),
+                type: $(form).attr('method'),
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(data){
+                    loadEmailGroup(data);
+                    $("#addcsvmodal").modal('hide');
+                },
+                error: function(data){
+                    $('.listcontent-content').html(data.responseText);
                     $('#id_csv_file').fileinput({
                         showUpload: false
                     });

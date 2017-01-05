@@ -8,10 +8,16 @@ class EmailGroupForm(forms.ModelForm):
         fields = '__all__'
 
 
-class EmailGroupEditForm(forms.ModelForm):
+class EmailGroupAddUserForm(forms.ModelForm):
     class Meta:
         model = EmailGroup
-        exclude = ['name']
+        fields = ['users']
+
+
+class EmailGroupCSVForm(forms.ModelForm):
+    class Meta:
+        model = EmailGroup
+        fields = ['csv_file']
 
 
 class EmailTemplateForm(forms.ModelForm):

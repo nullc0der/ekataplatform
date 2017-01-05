@@ -7,9 +7,11 @@ from django.contrib.auth.decorators import user_passes_test
 from django.utils.timezone import now
 from django.template import loader
 
-from eblast.models import EmailGroup, EmailId, EmailTemplate, EmailCampaign, CampaignTracking
+from eblast.models import EmailGroup, EmailId, EmailTemplate,\
+ EmailCampaign, CampaignTracking
 from eblast.forms import EmailGroupForm, EmailTemplateForm,\
- EmailTemplateEditForm, EmailCampaignForm, EmailTestSendForm, EmailSendForm, EmailGroupEditForm, EmailCampaignEditForm
+ EmailTemplateEditForm, EmailCampaignForm, EmailTestSendForm, EmailSendForm,\
+ EmailCampaignEditForm, EmailGroupAddUserForm, EmailGroupCSVForm
 from eblast.tasks import task_send_test_mail, task_send_campaign_email
 # Create your views here.
 
@@ -28,14 +30,17 @@ def emailgroups_page(request):
             'eblast/emailgroup.html',
             {
                 'emailgroup': emailgroup,
-                'form': EmailGroupEditForm(instance=emailgroup)
+                'userform': EmailGroupAddUserForm(instance=emailgroup),
+                'csvform': EmailGroupCSVForm(instance=emailgroup)
             }
         )
     return render(
         request,
         'eblast/emailgroups_page.html',
         {
-            'form': EmailGroupEditForm(instance=emailgroup) if emailgroups else EmailGroupForm(),
+            'form': EmailGroupForm(),
+            'userform': EmailGroupAddUserForm(instance=emailgroup) if emailgroup else EmailGroupAddUserForm(),
+            'csvform': EmailGroupCSVForm(instance=emailgroup) if emailgroup else EmailGroupCSVForm(),
             'emailgroups': emailgroups,
         }
     )
@@ -85,19 +90,39 @@ def delete_emailgroup(request):
 
 @require_POST
 @user_passes_test(lambda u: u.is_staff)
-def edit_emailgroup(request, id):
+def add_user_to_emailgroup(request, id):
     emailgroup = EmailGroup.objects.get(id=id)
-    form = EmailGroupEditForm(request.POST, request.FILES, instance=emailgroup)
+    form = EmailGroupAddUserForm(request.POST, instance=emailgroup)
     if form.is_valid():
         emailgroup = form.save()
         return HttpResponse(emailgroup.id)
     else:
         return render(
             request,
-            'eblast/emailgroupedit.html',
+            'eblast/addrecipient.html',
             {
                 'emailgroup': emailgroup,
-                'form': form
+                'userform': form
+            },
+            status=500
+        )
+
+
+@require_POST
+@user_passes_test(lambda u: u.is_staff)
+def add_csv_to_emailgroup(request, id):
+    emailgroup = EmailGroup.objects.get(id=id)
+    form = EmailGroupCSVForm(request.POST, request.FILES, instance=emailgroup)
+    if form.is_valid():
+        emailgroup = form.save()
+        return HttpResponse(emailgroup.id)
+    else:
+        return render(
+            request,
+            'eblast/addcsv.html',
+            {
+                'emailgroup': emailgroup,
+                'csvform': form
             },
             status=500
         )

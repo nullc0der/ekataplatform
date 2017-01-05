@@ -1,0 +1,6 @@
+{% load bootstrap_tags %}
+<div class="col-md-12">
+    <form class="form-horizontal" action="{% url 'eblast:add_user_to_emailgroup' emailgroup.id %}" method="post" id="adduserform">
+        {{ userform|as_bootstrap }}
+    </form>
+</div>

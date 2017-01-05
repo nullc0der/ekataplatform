@@ -34,7 +34,8 @@ class EmailGroup(models.Model):
         BasicGroup,
         verbose_name='Link to Group',
         null=True,
-        blank=True
+        blank=True,
+        editable=False
     )
 
     def __unicode__(self):
