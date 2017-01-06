@@ -34,7 +34,6 @@ def send_campaign_email(id, from_email, groups):
         linktag = soup.new_tag('a', href=url)
         linktag.string = 'View in browser'
         soup.webversion.append(linktag)
-        print(soup.webversion)
         email_html = soup.prettify()
     emailaddress_set = set()
     for group in groups:
@@ -62,3 +61,5 @@ def send_campaign_email(id, from_email, groups):
         )
         msg.attach_alternative(email_html, "text/html")
         msg.send()
+
+    return soup.webversion
