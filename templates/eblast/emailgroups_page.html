@@ -113,8 +113,13 @@
                 }
             });
         }
+        {% if emailgroups %}
+            var listheight = 500 - ($('.newbtn').outerHeight() + $('.newbtn').innerHeight());
+        {% else %}
+            var listheight = 500;
+        {% endif %}
         $(".lists").slimscroll({
-            height: '500px'
+            height: listheight + 'px'
         });
         $("#id_users").selectpicker({
             liveSearch: true
@@ -303,7 +308,7 @@
                 success: function (data) {
                     $('.lists').html(data);
                     $(".lists").slimscroll({
-                        height: '500px'
+                        height: listheight + 'px'
                     });
                 }
             });

@@ -101,11 +101,16 @@
                 reloadCKEditor();
             });
         }
+        {% if emailgroups %}
+            var listheight = 500 - ($('.newbtn').outerHeight() + $('.newbtn').innerHeight());
+        {% else %}
+            var listheight = 500;
+        {% endif %}
         $('#id_html_file').fileinput({
             showUpload: false
         });
         $(".lists").slimscroll({
-            height: '500px'
+            height: listheight + 'px'
         });
         var objectName = $(".objectName").html();
         CKEDITOR.disableAutoInline = true;
@@ -226,7 +231,7 @@
                 success: function (data) {
                     $('.lists').html(data);
                     $(".lists").slimscroll({
-                        height: '500px'
+                        height: listheight + 'px'
                     });
                 }
             });

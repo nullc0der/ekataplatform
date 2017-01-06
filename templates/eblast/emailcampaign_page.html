@@ -160,8 +160,13 @@
                 reloadCKEditor();
             });
         });
+        {% if emailgroups %}
+            var listheight = 500 - ($('.newbtn').outerHeight() + $('.newbtn').innerHeight());
+        {% else %}
+            var listheight = 500;
+        {% endif %}
         $(".lists").slimscroll({
-            height: '500px'
+            height: listheight + 'px'
         });
         $(document).on('click', '#editemailcampaignformbtn', function(){
             for(var instanceName in CKEDITOR.instances) {
@@ -318,7 +323,7 @@
                 success: function (data) {
                     $('.lists').html(data);
                     $(".lists").slimscroll({
-                        height: '500px'
+                        height: listheight + 'px'
                     });
                 }
             });
