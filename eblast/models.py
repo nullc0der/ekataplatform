@@ -60,7 +60,12 @@ class EmailId(models.Model):
 
 class EmailTemplate(models.Model):
     name = models.CharField(max_length=300, blank=False)
-    html_file = models.FileField(upload_to='emailtemplates', null=True, blank=True)
+    html_file = models.FileField(
+        upload_to='emailtemplates',
+        null=True,
+        blank=True,
+        verbose_name='HTML File'
+    )
     template = RichTextUploadingField(null=True, blank=True)
 
     def __unicode__(self):

@@ -59,7 +59,7 @@
         </div>
         <div class="col-md-9">
             <div class="box box-solid">
-                <div class="box-body listcontent-wrapper">
+                <div class="box-body listcontent-contentwrapper">
                     <div class="listcontent-content">
                         {% if emailgroups %}
                             {% for emailgroup in emailgroups %}
@@ -113,6 +113,9 @@
                 }
             });
         }
+        $(".lists").slimscroll({
+            height: '500px'
+        });
         $("#id_users").selectpicker({
             liveSearch: true
         });
@@ -173,7 +176,7 @@
                 });
             });
         });
-        $('.emailGroup').click(function(){
+        $(document).on('click', '.emailGroup', function(){
             var id = $(this).attr('data-id');
             var self = $(this);
             loadEmailGroup(id);
@@ -299,6 +302,9 @@
                 data: {'query': _this.val()},
                 success: function (data) {
                     $('.lists').html(data);
+                    $(".lists").slimscroll({
+                        height: '500px'
+                    });
                 }
             });
         });

@@ -59,7 +59,7 @@
         </div>
         <div class="col-md-9">
             <div class="box box-solid">
-                <div class="box-body listcontent-wrapper">
+                <div class="box-body listcontent-contentwrapper">
                     <div class="listcontent-content">
                         {% if emailcampaigns %}
                             {% for emailcampaign in emailcampaigns %}
@@ -159,6 +159,9 @@
             $('.listcontent-content').load('{% url 'eblast:add_emailcampaign' %}', function(){
                 reloadCKEditor();
             });
+        });
+        $(".lists").slimscroll({
+            height: '500px'
         });
         $(document).on('click', '#editemailcampaignformbtn', function(){
             for(var instanceName in CKEDITOR.instances) {
@@ -314,6 +317,9 @@
                 data: {'filters_enabled': filters, 'query': _this.val()},
                 success: function (data) {
                     $('.lists').html(data);
+                    $(".lists").slimscroll({
+                        height: '500px'
+                    });
                 }
             });
         });

@@ -5244,7 +5244,13 @@ table.text-center th {
 .listcontent-wrapper {
     min-height: 500px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
-    padding-bottom: 0;
+    padding: 0;
+}
+
+.listcontent-contentwrapper {
+    min-height: 500px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+    padding-bottom: 10px;
 }
 
 
@@ -5274,7 +5280,6 @@ table.text-center th {
     list-style-type: none;
     padding: 5px 5px 0 5px;
     font-size: 20px;
-    margin: 0 -10px;
     border-bottom: 1px solid #efefef;
 }
 

@@ -59,7 +59,7 @@
         </div>
         <div class="col-md-9">
             <div class="box box-solid">
-                <div class="box-body listcontent-wrapper">
+                <div class="box-body listcontent-contentwrapper">
                     <div class="listcontent-content">
                         {% if emailtemplates %}
                             {% for emailtemplate in emailtemplates %}
@@ -104,6 +104,9 @@
         $('#id_html_file').fileinput({
             showUpload: false
         });
+        $(".lists").slimscroll({
+            height: '500px'
+        });
         var objectName = $(".objectName").html();
         CKEDITOR.disableAutoInline = true;
         $(document).on('click', '#newemailtemplateformbtn', function(){
@@ -142,7 +145,7 @@
                 reloadCKEditor();
             });
         });
-        $('.emailTemplate').click(function(){
+        $(document).on('click', '.emailTemplate', function(){
             var id = $(this).attr('data-id');
             var self = $(this);
             loadEmailTemplate(id);
@@ -222,6 +225,9 @@
                 data: {'query': _this.val()},
                 success: function (data) {
                     $('.lists').html(data);
+                    $(".lists").slimscroll({
+                        height: '500px'
+                    });
                 }
             });
         });

@@ -1,2 +1,2 @@
 {% load i18n %}
-<li class="emailGroup" data-id={{ emailgroup.id }}>{{ emailgroup.name }} <p>{{ emailgroup.emailids.count }} {% trans "emailids" %}</p></li>
+<li class="emailGroup" data-id={{ emailgroup.id }}>{{ emailgroup.name }} <p>{{ emailgroup.emailids.count }} {% if emailgroup.emailids.count > 1 %}{% trans "emails" %}{% else %}{% trans "email" %}{% endif %}</p></li>
