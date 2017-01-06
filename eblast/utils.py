@@ -12,6 +12,15 @@ def send_test_mail(id, from_email, to_email):
     emailcampaign = EmailCampaign.objects.get(id=id)
     email_html = emailcampaign.message
     subject = emailcampaign.subject
+    soup = BeautifulSoup(email_html)
+    if soup.webversion:
+        url = reverse('eblast:viewinbrowser', args=[emailcampaign.id, ])
+        url = "https://" + Site.objects.get_current().domain + url
+        soup.webversion.clear()
+        linktag = soup.new_tag('a', href=url)
+        linktag.string = 'View in browser'
+        soup.webversion.append(linktag)
+        email_html = soup.prettify()
     msg = EmailMultiAlternatives(
         subject,
         email_html,
@@ -61,5 +70,3 @@ def send_campaign_email(id, from_email, groups):
         )
         msg.attach_alternative(email_html, "text/html")
         msg.send()
-
-    return soup.webversion
