@@ -32,8 +32,9 @@ def send_campaign_email(id, from_email, groups):
         url = "https://" + Site.objects.get_current().domain + url
         soup.webversion.clear()
         linktag = soup.new_tag('a', href=url)
-        linktag.string = 'View email in browser'
+        linktag.string = 'View in browser'
         soup.webversion.append(linktag)
+        print(soup.webversion)
         email_html = soup.prettify()
     emailaddress_set = set()
     for group in groups:
