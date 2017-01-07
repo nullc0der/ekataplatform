@@ -1,5 +1,6 @@
-from ws4redis.redis_store import RedisMessage
-from ws4redis.publisher import RedisPublisher
+import json
+from django.template import loader
+from channels import Group
 from notification.models import UserNotification
 from notification.onesignal import OneSignal
 
@@ -64,10 +65,9 @@ def create_notification(
         message = "%s sent a join request to group %s" % (sender, group_name)
     if ntype == 13:
         message = "New system notification published"
-    notification_message = RedisMessage(message)
-    RedisPublisher(
-        facility='realtime_notification',
-        users=[user.username]).publish_message(notification_message)
+    Group('%s-notifications' % user.username).send({
+        "text": message
+    })
     onesignals = user.onesignals.all()
     if onesignals:
         player_ids = []

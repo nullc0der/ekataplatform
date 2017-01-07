@@ -924,22 +924,16 @@
         });
     </script>
     <script type="text/javascript" src="{% static "dist/js/widgetstate.js" %}"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/ws4redis.js"></script>
+    <script type="text/javascript" src="{% static "plugins/reconnectingwebsocket/reconnecting-websocket.js" %}"></script>
     <script type="text/javascript">
-        var protocol = location.protocol;
-        var proto = protocol == 'https:' ? 'wss:' : 'ws:';
-        var ws4redis = WS4Redis({
-            uri: proto + '//' + location.host + '/ws/realtime_notification?subscribe-user',
-            connecting: on_connecting,
-            receive_message: receiveMessage,
-            heartbeat_msg: {{ WS4REDIS_HEARTBEAT }}
-        });
-        function on_connecting (){
-            console.log("connecting....");
-        }
-        function receiveMessage(msg) {
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var realtime_notification_path = ws_scheme + '://' + window.location.host + "/notifications/stream/";
+        console.log("Connecting to " + realtime_notification_path);
+        var notification_socket = new ReconnectingWebSocket(realtime_notification_path);
+        // Handle incoming messages
+        notification_socket.onmessage = function(message) {
             $('.top-right').notify({
-                message: { text: msg},
+                message: { text: message.data},
                 type: 'info',
             }).show();
             var audio = document.getElementById('notificaudio');
@@ -957,52 +951,73 @@
                     $("#notindicator").show();
                 }
             });
-        }
+        };
+        // Helpful debugging
+        notification_socket.onopen = function() { console.log("Connected to notification socket"); }
+        notification_socket.onclose = function() { console.log("Disconnected to notification socket"); }
+        var realtime_message_path = ws_scheme + '://' + window.location.host + "/messaging/stream/";
+        console.log("Connecting to " + realtime_message_path);
+        var message_socket = new ReconnectingWebSocket(realtime_message_path);
         {% url 'messaging:index' as mess %}
         {% ifequal request.path mess %}
-        {% else %}
-            var messaging_realtime = WS4Redis({
-                uri: proto + '//' + location.host + '/ws/messaging_realtime?subscribe-user',
-                connecting: console.log("connecting...."),
-                receive_message: receiveRMessage,
-                heartbeat_msg: {{ WS4REDIS_HEARTBEAT }}
-            });
-            function receiveRMessage(msg) {
-                var data = JSON.parse(msg);
-                var chatroom = data.chatroom;
-                var activediv = $("#msgbox").data('name');
-                if (chatroom === activediv){
-                    $('.direct-chat-messages').append(data.message);
-                    $(".direct-chat-messages").slimscroll({
-                        scrollBy: '100px',
-                    });
-                    convertEmojis(true);
-                    setMessageRead(true, data.message_id);
-                }
-                else {
-                    $.ajax({
-                        url: '{% url 'messaging:index' %}?navbar',
-                        success: function(data){
-                            $("#navmessages").append(data.html);
-                            $(".menu").slimscroll({
-                                height: '200px',
-                                size: '3px',
-                                alwaysVisible: false
-                            });
-                            $("li[data-name='" + chatroom + "']").addClass("blink");
-                            var messageaudio = document.getElementById('messagingaudio');
-                            messageaudio.play();
-                            if (data.has_unread) {
-                                $("#chatindicator").text(data.has_unread);
-                                $("#chatindicator").show();
-                                $("#sidebarchat").text(data.has_unread);
-                                $("#sidebarchat").show();
-                            }
-                        }
-                    });
-                }
+        message_socket.onmessage = function (message) {
+            var data = JSON.parse(message.data);
+            var chatroom = data.chatroom;
+            var chatdiv = $("div[data-name='" + chatroom + "']");
+            if (chatdiv.prop('active')){
+                $('.direct-chat-messages').append(data.message);
+                $(".direct-chat-messages").slimscroll({
+                    scrollTo: $('.direct-chat-messages')[0].scrollHeight,
+                });
+                convertEmojis(true);
+                setMessageRead(true, data.message_id);
             }
+            else {
+                chatdiv.addClass("blink");
+                var messageaudio = document.getElementById('messagingaudio');
+                messageaudio.play();
+            }
+        }
+        {% else %}
+        message_socket.onmessage = function (message) {
+            var data = JSON.parse(message.data);
+            var chatroom = data.chatroom;
+            var activediv = $("#msgbox").data('name');
+            if (chatroom === activediv){
+                $('.direct-chat-messages').append(data.message);
+                $(".direct-chat-messages").slimscroll({
+                    scrollBy: '100px',
+                });
+                convertEmojis(true);
+                setMessageRead(true, data.message_id);
+            }
+            else {
+                $.ajax({
+                    url: '{% url 'messaging:index' %}?navbar',
+                    success: function(data){
+                        $("#navmessages").append(data.html);
+                        $(".menu").slimscroll({
+                            height: '200px',
+                            size: '3px',
+                            alwaysVisible: false
+                        });
+                        $("li[data-name='" + chatroom + "']").addClass("blink");
+                        var messageaudio = document.getElementById('messagingaudio');
+                        messageaudio.play();
+                        if (data.has_unread) {
+                            $("#chatindicator").text(data.has_unread);
+                            $("#chatindicator").show();
+                            $("#sidebarchat").text(data.has_unread);
+                            $("#sidebarchat").show();
+                        }
+                    }
+                });
+            }
+        }
         {% endifequal %}
+        // Helpful debugging
+        message_socket.onopen = function() { console.log("Connected to messaging socket"); }
+        message_socket.onclose = function() { console.log("Disconnected to messaging socket"); }
         $(".ackupdate").click(function(){
             var sysupdate_id = $(this).attr('data-id');
             $.ajax({

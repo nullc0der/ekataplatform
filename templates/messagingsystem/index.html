@@ -131,7 +131,7 @@
             height: '450px',
             size: '3px',
             alwaysVisible: false,
-            start: 'bottom' 
+            start: 'bottom'
         });
         $("#searchroom").keyup(function(){
             var query = $(this).val();
@@ -162,7 +162,7 @@
                                     $(".emojionearea-editor").text('');
                                     convertEmojis(true);
                                 }
-                            }); 
+                            });
                         }
                     }
                 },
@@ -175,9 +175,9 @@
             document.activeElement.blur();
         });
         var mouse_is_inside = false;
-        $(".emojionearea-picker, .emojionearea-button").hover(function(){ 
+        $(".emojionearea-picker, .emojionearea-button").hover(function(){
             mouse_is_inside=true;
-        }, function(){ 
+        }, function(){
             mouse_is_inside=false;
         });
         $(document).mouseup(function(){
@@ -200,7 +200,7 @@
                     height: '450px',
                     size: '3px',
                     alwaysVisible: false,
-                    start: 'bottom' 
+                    start: 'bottom'
                 });
                 convertEmojis();
                 setMessageRead();
@@ -223,11 +223,11 @@
                         $('.emojionearea-editor').text('');
                         convertEmojis(true);
                     }
-                }); 
+                });
             }
         });
         $('.actions').popover({
-            html: true, 
+            html: true,
             content: function() {
                 return $("#actionslist").html();
             },
@@ -279,37 +279,6 @@
         $("#requestUnitModal").on('hidden.bs.modal', function(){
             $("#requestform")[0].reset();
             clear_form_field_errors("#requestform");
-        }); 
-    </script>
-    <script type="text/javascript">
-        var protocol = location.protocol;
-        var proto = protocol == 'https:' ? 'wss:' : 'ws:';
-        var ws4redis = WS4Redis({
-            uri: proto + '//' + location.host + '/ws/messagepage_realtime?subscribe-user',
-            connecting: on_connecting,
-            receive_message: receiveMessage,
-            heartbeat_msg: {{ WS4REDIS_HEARTBEAT }}
         });
-        function on_connecting (){
-            console.log("connecting....");
-        }
-        function receiveMessage(msg) {
-            var data = JSON.parse(msg);
-            var chatroom = data.chatroom;
-            var chatdiv = $("div[data-name='" + chatroom + "']");
-            if (chatdiv.prop('active')){
-                $('.direct-chat-messages').append(data.message);
-                $(".direct-chat-messages").slimscroll({
-                    scrollTo: $('.direct-chat-messages')[0].scrollHeight,
-                });
-                convertEmojis(true);
-                setMessageRead(true, data.message_id);
-            }
-            else {
-                chatdiv.addClass("blink");
-                var messageaudio = document.getElementById('messagingaudio');
-                messageaudio.play();
-            }
-        }
     </script>
 {% endblock extrascripts %}
