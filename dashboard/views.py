@@ -1,4 +1,5 @@
 from __future__ import division
+import datetime
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -6,6 +7,8 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from profilesystem.models import UserCompletionRing
 from publicusers.models import Connection
+from dashboard.models import ActiveMemberCount, NewMemberCount,\
+    TotalMemberCount
 # Create your views here.
 
 
@@ -44,6 +47,18 @@ def dashboard_page(request):
     unread_messages_count = request.user.recieved_messages.filter(
         read=False
     ).count()
+    activemembercounts = ActiveMemberCount.objects.filter(
+        date__lte=datetime.datetime.today(),
+        date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
+    )
+    newmembercounts = NewMemberCount.objects.filter(
+        date__lte=datetime.datetime.today(),
+        date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
+    )
+    totalmembercounts = TotalMemberCount.objects.filter(
+        date__lte=datetime.datetime.today(),
+        date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
+    )
     variables = {
         'completed': int(completed_percent),
         'completed_list': completed_list,
@@ -59,7 +74,10 @@ def dashboard_page(request):
         'contacts': int(contacts_percent),
         'total_conn': total_conn,
         'no_connection': no_connection,
-        'unread_messages_count': unread_messages_count
+        'unread_messages_count': unread_messages_count,
+        'activemembercounts': activemembercounts,
+        'newmembercounts': newmembercounts,
+        'totalmembercounts': totalmembercounts
     }
     return render(request, 'dashboard/dashboard.html', context=variables)
 

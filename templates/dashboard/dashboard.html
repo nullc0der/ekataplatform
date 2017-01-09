@@ -207,6 +207,30 @@
             </div><!-- /.box -->
         </div>
     </div>
+    {% if request.user.is_staff %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Daily new members" %}</h3>
+                </div>
+                <div class="box-body">
+                    <canvas id="newMemberChart" style="height:230px"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Total members" %}</h3>
+                </div>
+                <div class="box-body">
+                    <canvas id="totalMemberChart" style="height:230px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <nav class="float-nav closed">
         <ul>
             <li><h2>{% trans "Add Widget" %}</h2></li>
@@ -607,5 +631,61 @@
         container: 'body',
         trigger: 'focus'
     });
+    {% if request.user.is_staff %}
+    var newMemberChartCanvas = $("#newMemberChart").get(0).getContext("2d");
+    var newMemberChart = new Chart(newMemberChartCanvas);
+    var newMemberChartData = {
+      labels: [{% for activemembercount in activemembercounts %} "{{ activemembercount.date | date:"d/m/Y" }}", {% endfor %}],
+      datasets: [
+        {
+          label: "Active Member",
+          fillColor: "rgba(210, 214, 222, 1)",
+          strokeColor: "rgba(210, 214, 222, 1)",
+          pointColor: "rgba(210, 214, 222, 1)",
+          pointStrokeColor: "#c1c7d1",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: [{% for activemembercount in activemembercounts %} {{ activemembercount.count }}, {% endfor %}]
+        },
+        {
+          label: "New Member",
+          fillColor: "rgba(60,141,188,0.9)",
+          strokeColor: "rgba(60,141,188,0.8)",
+          pointColor: "#3b8bba",
+          pointStrokeColor: "rgba(60,141,188,1)",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(60,141,188,1)",
+          data: [{% for newmembercount in newmembercounts %} {{ newmembercounts.count }}, {% endfor %}]
+        }
+      ]
+    };
+    var newMemberChartOptions = {
+        scaleBeginAtZero: true,
+        responsive: true,
+    }
+    newMemberChart.Bar(newMemberChartData, newMemberChartOptions);
+    var totalMemberChartCanvas = $("#totalMemberChart").get(0).getContext("2d");
+    var totalMemberChart = new Chart(totalMemberChartCanvas);
+    var totalMemberChartData = {
+        labels: [{% for totalmembercount in totalmembercounts %} "{{ totalmembercount.date | date:"d/m/Y" }}", {% endfor %}],
+        datasets: [
+          {
+            label: "Total Member",
+            fillColor: "rgba(60,141,188,0.9)",
+            strokeColor: "rgba(60,141,188,0.8)",
+            pointColor: "#3b8bba",
+            pointStrokeColor: "rgba(60,141,188,1)",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(60,141,188,1)",
+            data: [{% for totalmembercount in totalmembercounts %} {{ totalmembercount.count }}, {% endfor %}]
+          }
+      ]
+    }
+    var totalMemberChartOptions = {
+      responsive: true,
+      datasetFill: false
+    };
+    totalMemberChart.Line(totalMemberChartData, totalMemberChartOptions);
+    {% endif %}
 </script>
 {% endblock %}

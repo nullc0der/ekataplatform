@@ -13,3 +13,27 @@ class VersionInfo(models.Model):
 
     class Meta:
         get_latest_by = 'id'
+
+
+class ActiveMemberCount(models.Model):
+    count = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+
+    def __unicode__(self):
+        return "%s/%s/%s" % (self.date.day, self.date.month, self.date.year)
+
+
+class NewMemberCount(models.Model):
+    count = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+
+    def __unicode__(self):
+        return "%s/%s/%s" % (self.date.day, self.date.month, self.date.year)
+
+
+class TotalMemberCount(models.Model):
+    count = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+
+    def __unicode__(self):
+        return "%s/%s/%s" % (self.date.day, self.date.month, self.date.year)
