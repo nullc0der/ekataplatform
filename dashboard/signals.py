@@ -9,7 +9,6 @@ from dashboard.models import ActiveMemberCount, NewMemberCount,\
 
 @receiver(user_signed_up)
 def add_new_and_total_member(request, user, **kwargs):
-    print("executing")
     newmember, created = NewMemberCount.objects.get_or_create(
         date=now().date()
     )

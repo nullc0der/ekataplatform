@@ -212,7 +212,7 @@
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{% trans "Daily new members" %}</h3>
+                    <h3 class="box-title">{% trans "New and Active Member" %}</h3>
                 </div>
                 <div class="box-body">
                     <canvas id="newMemberChart" style="height:230px"></canvas>
@@ -222,7 +222,7 @@
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{% trans "Total members" %}</h3>
+                    <h3 class="box-title">{% trans "Total Ekata Member" %}</h3>
                 </div>
                 <div class="box-body">
                     <canvas id="totalMemberChart" style="height:230px"></canvas>
@@ -655,7 +655,7 @@
           pointStrokeColor: "rgba(60,141,188,1)",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [{% for newmembercount in newmembercounts %} {{ newmembercounts.count }}, {% endfor %}]
+          data: [{% for newmembercount in newmembercounts %} {{ newmembercount.count }}, {% endfor %}]
         }
       ]
     };
