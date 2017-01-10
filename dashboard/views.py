@@ -50,15 +50,15 @@ def dashboard_page(request):
     activemembercounts = ActiveMemberCount.objects.filter(
         date__lte=datetime.datetime.today(),
         date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
-    )
+    ).order_by('date')
     newmembercounts = NewMemberCount.objects.filter(
         date__lte=datetime.datetime.today(),
         date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
-    )
+    ).order_by('date')
     totalmembercounts = TotalMemberCount.objects.filter(
         date__lte=datetime.datetime.today(),
         date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
-    )
+    ).order_by('date')
     variables = {
         'completed': int(completed_percent),
         'completed_list': completed_list,

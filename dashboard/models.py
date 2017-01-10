@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class VersionInfo(models.Model):
@@ -16,8 +17,8 @@ class VersionInfo(models.Model):
 
 
 class ActiveMemberCount(models.Model):
-    count = models.IntegerField(default=0)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
+    users = models.ManyToManyField(User)
 
     def __unicode__(self):
         return "%s/%s/%s" % (self.date.day, self.date.month, self.date.year)
@@ -25,7 +26,7 @@ class ActiveMemberCount(models.Model):
 
 class NewMemberCount(models.Model):
     count = models.IntegerField(default=0)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
 
     def __unicode__(self):
         return "%s/%s/%s" % (self.date.day, self.date.month, self.date.year)
@@ -33,7 +34,7 @@ class NewMemberCount(models.Model):
 
 class TotalMemberCount(models.Model):
     count = models.IntegerField(default=0)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
 
     def __unicode__(self):
         return "%s/%s/%s" % (self.date.day, self.date.month, self.date.year)
