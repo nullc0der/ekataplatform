@@ -129,7 +129,7 @@ class UserProfile(models.Model):
         if kwargs["created"]:
             user_profile = UserProfile(user=user)
             user_profile.save()
-    post_save.connect(create_profile, sender=User)
+#    post_save.connect(create_profile, sender=User)
 
     class Meta:
         verbose_name_plural = 'Profile'
