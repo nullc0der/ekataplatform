@@ -7,8 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
 from django.contrib.auth.models import User
 
-from ws4redis.redis_store import RedisMessage
-from ws4redis.publisher import RedisPublisher
+from channels import Group
 
 from messagingsystem.models import ChatRoom, Message
 from useraccount.forms import TransactionForm, RequestForm
@@ -154,11 +153,11 @@ def send_message(request, chat_id):
         message = Message(user=request.user)
         message.content = request.POST.get('content')
         message.room = chatroom
-        otheruser = []
+        otherusers = []
         for user in chatroom.subscribers.all():
             if user != request.user:
-                otheruser.append(user)
-        message.to_user = otheruser[0]
+                otherusers.append(user)
+        message.to_user = otherusers[0]
         message.save()
         template = loader.get_template(
             'messagingsystem/singlemessage_reciever.html'
@@ -171,15 +170,10 @@ def send_message(request, chat_id):
             'message_id': message.id
         }
         message_json = json.dumps(message_dict)
-        realtime_message = RedisMessage(message_json)
-        RedisPublisher(
-            facility='messagepage_realtime',
-            users=otheruser
-        ).publish_message(realtime_message)
-        RedisPublisher(
-            facility='messaging_realtime',
-            users=otheruser
-        ).publish_message(realtime_message)
+        for otheruser in otherusers:
+            Group('%s-messages' % otheruser.username).send({
+                'text': message_json
+            })
     return render(
         request,
         'messagingsystem/singlemessage_sender.html',

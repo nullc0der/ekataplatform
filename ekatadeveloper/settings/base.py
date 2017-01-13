@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.twitter',
     'django_forms_bootstrap',
-    'ws4redis',
+    'channels',
     'bootstrap_pagination',
     'versatileimagefield',
     'phonenumber_field',
@@ -121,7 +121,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
                 'django.core.context_processors.static',
-                'ws4redis.context_processors.default',
                 'messagingsystem.context_processors.unread_message',
                 'dashboard.context_processors.version_info',
                 'sysadmin.context_processors.get_sytemupdate'
@@ -130,7 +129,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ws4redis.django_runserver.application'
+WSGI_APPLICATION = 'ekatadeveloper.wsgi.application'
 
 
 # Password validation
@@ -265,13 +264,6 @@ SITE_ID = 1
 
 # Celery
 BROKER_URL = 'redis://localhost:6379/0'
-
-
-# Websocket
-WEBSOCKET_URL = '/ws/'
-WS4REDIS_PREFIX = 'ws'
-WS4REDIS_HEARTBEAT = '--heartbeat--'
-WS4REDIS_EXPIRE = 5
 
 
 # Per object permission - Guardian
@@ -412,3 +404,14 @@ EKATA_TWILIO_PHONE_NO = get_env_variable('EKATA_TWILIO_PHONE_NO')
 
 # EMAIL
 DEFAULT_FROM_EMAIL = "email.verify@ekata.social"
+
+# Channel's Config
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+        "ROUTING": "ekatadeveloper.routing.channel_routing",
+    },
+}

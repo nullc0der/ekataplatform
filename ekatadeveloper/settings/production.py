@@ -45,3 +45,14 @@ CACHES = {
 }
 
 BROKER_URL = 'redis://' + get_env_variable('DJANGO_REDIS_HOST') + ':6379/0'
+
+# Channel's Config
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(get_env_variable('DJANGO_REDIS_HOST'), 6379)],
+        },
+        "ROUTING": "ekatadeveloper.routing.channel_routing",
+    },
+}
