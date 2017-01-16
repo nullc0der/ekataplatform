@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/2.2.6/assets/css/emojione.min.css"/>
     <link rel="stylesheet" href="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.1.8">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.2.0">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/_all-skins.min.css" %}">
@@ -103,21 +103,18 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
         <header class="main-header">
+            {% ifequal SITE_TYPE 'beta' %}
+            <div class="ribbon-wrapper">
+                <div class="ribbon"><span>BETA</span></div>
+            </div>
+            {% endifequal %}
             <!-- Logo -->
             <a href="{% url 'dashboard:index' %}" class="logo">
-                {% ifequal SITE_TYPE 'beta' %}
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini" style="font-size: 10px">EKATA(b)</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">EKATA(Beta)</span>
-                {% else %}
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">EKATA</span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">EKATA</span>
-                {% endifequal %}
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
