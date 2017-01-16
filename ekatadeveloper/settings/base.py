@@ -41,6 +41,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EKATA_SITE_TYPE = get_env_variable('EKATA_SITE_TYPE')
 
 # Application definition
 
@@ -123,7 +124,8 @@ TEMPLATES = [
                 'django.core.context_processors.static',
                 'messagingsystem.context_processors.unread_message',
                 'dashboard.context_processors.version_info',
-                'sysadmin.context_processors.get_sytemupdate'
+                'sysadmin.context_processors.get_sytemupdate',
+                'dashboard.context_processors.site_type',
             ],
         },
     },
@@ -159,6 +161,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+if EKATA_SITE_TYPE == 'beta':
+    ACCOUNT_ADAPTER = 'profilesystem.adapter.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'profilesystem.adapter.SocialAccountAdapter'
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {

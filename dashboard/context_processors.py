@@ -1,5 +1,6 @@
 from dashboard.models import VersionInfo
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 
 
 def version_info(request):
@@ -16,4 +17,15 @@ def version_info(request):
         'VERSION_NAME': name,
         'VERSION_COLOR': color,
         'VERSION_NUMBER': version_number
+    }
+
+
+def site_type(request):
+    ekata_site_type = settings.EKATA_SITE_TYPE
+    if ekata_site_type == 'beta':
+        return {
+            'SITE_TYPE': 'beta'
+        }
+    return {
+        'SITE_TYPE': None
     }

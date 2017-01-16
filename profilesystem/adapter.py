@@ -2,6 +2,7 @@ import requests
 import tempfile
 
 from django.core import files
+from allauth.account.adapter import DefaultAccountAdapter
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 
 
@@ -20,9 +21,18 @@ def download_file_from_url(url):
     return files.File(lf)
 
 
+class AccountAdapter(DefaultAccountAdapter):
+    def is_open_for_signup(self, request):
+        return False
+
+
 class SocialAccountAdapter(DefaultSocialAccountAdapter):
     def save_user(self, request, sociallogin, form=None):
-        user = super(SocialAccountAdapter, self).save_user(request, sociallogin, form)
+        user = super(SocialAccountAdapter, self).save_user(
+            request,
+            sociallogin,
+            form
+        )
         url = sociallogin.account.get_avatar_url()
         avatar = download_file_from_url(url)
         if avatar:
