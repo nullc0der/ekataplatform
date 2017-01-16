@@ -21,7 +21,7 @@ class UserAccount(models.Model):
             user_account = UserAccount(user=user)
             user_account.next_release = user.date_joined + timedelta(minutes=settings.NEXT_RELEASE)
             user_account.save()
-#    post_save.connect(create_account, sender=User)
+    post_save.connect(create_account, sender=User)
 
     def __unicode__(self):
         return self.user.username
