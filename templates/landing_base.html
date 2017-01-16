@@ -36,7 +36,7 @@
     	<link rel="stylesheet" href="{% static "dist/css/bootstrap-notify.css" %}">
 
 		<!-- custom css -->
-		<link rel="stylesheet" href="{% static "dist/css/templatemo-style.css" %}?v=2">
+		<link rel="stylesheet" href="{% static "dist/css/templatemo-style.css" %}?v=2.0.1">
 
 		{% block extrastyles %}
 		{% endblock %}
@@ -51,6 +51,11 @@
 		<!-- start navigation -->
 		<nav class="navbar navbar-default navbar-fixed-top templatemo-nav" role="navigation">
 			<div class="container-fluid">
+				{% ifequal SITE_TYPE 'beta' %}
+	            <div class="ribbon-wrapper">
+	                <div class="ribbon"><span>BETA</span></div>
+	            </div>
+	            {% endifequal %}
 				<div class="navbar-header">
 					<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="icon icon-bar"></span>
