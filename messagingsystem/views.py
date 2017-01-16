@@ -75,6 +75,8 @@ def messaging_index(request):
 
 @login_required
 def get_chat(request, chat_id):
+    messages = None
+    otheruser = None
     try:
         chat = ChatRoom.objects.get(id=chat_id)
         for subscriber in chat.subscribers.all():
