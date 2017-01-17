@@ -103,9 +103,15 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'easy_timezones.middleware.EasyTimezoneMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
-    'profilesystem.middleware.CheckInvitationMiddleware',
     'profilesystem.middleware.RemoveSkippedMiddleware'
 ]
+
+
+if EKATA_SITE_TYPE == 'beta':
+    MIDDLEWARE_CLASSES += [
+        'profilesystem.middleware.CheckInvitationMiddleware'
+    ]
+
 
 ROOT_URLCONF = 'ekatadeveloper.urls'
 

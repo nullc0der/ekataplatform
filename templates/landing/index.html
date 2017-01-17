@@ -228,6 +228,7 @@ end installer -->
 </section>
 <!-- end hashtag -->
 
+{% if SITE_TYPE == 'beta' %}
 <!-- begin beta invite -->
 {% if not request.user.is_authenticated %}
 <section id="betainvite">
@@ -248,6 +249,7 @@ end installer -->
 </section>
 {% endif %}
 <!-- end beta invite -->
+{% endif %}
 
 <!-- begin news
 <section id="news">
