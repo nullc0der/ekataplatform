@@ -19,58 +19,21 @@ from notification.utils import create_notification
 
 @login_required
 def users_page(request):
-    query_set = []
-    connections = Connection.objects.filter(accepted=True)
-    connections = connections.filter(
-        Q(sender=request.user) | Q(reciever=request.user)
+    users = User.objects.all()
+    page_template = 'publicusers/users.html'
+    template = 'publicusers/userlist.html'
+    if request.is_ajax():
+        template = page_template
+    if 'q' in request.GET:
+        users = User.objects.filter(username__icontains=request.GET.get('q'))
+    return render(
+        request,
+        template,
+        {
+            'users': users,
+            'page_template': page_template
+        }
     )
-    for connection in connections:
-        query_set.append(connection.sender)
-        query_set.append(connection.reciever)
-    userlists = User.objects.all()
-    for user in userlists:
-        if user not in query_set:
-            query_set.append(user)
-    if request.user in query_set:
-        query_set.remove(request.user)
-    paginator = Paginator(query_set, 12)  # group the users by 12
-    page = request.GET.get('page')  # get page no
-    try:
-        users = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integet, deliver first page
-        users = paginator.page(1)
-    except EmptyPage:
-        users = paginator.page(paginator.num_pages)
-    if 'username' in request.GET:
-        username = request.GET.get('username')
-        if username:
-            query_set = []
-            connections = connections.filter(
-                Q(sender__username__istartswith=username) |
-                Q(reciever__username__istartswith=username)
-            )
-            for connection in connections:
-                query_set.append(connection.sender)
-                query_set.append(connection.reciever)
-            userlists = User.objects.filter(username__istartswith=username)
-            for user in userlists:
-                if user not in query_set:
-                    query_set.append(user)
-            if request.user in query_set:
-                query_set.remove(request.user)
-        paginator = Paginator(query_set, 12)  # group the users by 12
-        page = request.GET.get('page')  # get page no
-        try:
-            users = paginator.page(page)
-        except PageNotAnInteger:
-            # If page is not an integet, deliver first page
-            users = paginator.page(1)
-        except EmptyPage:
-            users = paginator.page(paginator.num_pages)
-        if request.is_ajax():
-            return render(request, 'publicusers/users.html', {'users': users})
-    return render(request, 'publicusers/userlist.html', {'users': users})
 
 
 @login_required
@@ -515,10 +478,11 @@ def get_onlineusers(request):
     users_status = {}
     users = User.objects.all()
     for user in users:
-        if user.profile.online():
-            users_status[user.id] = "online"
-        else:
-            users_status[user.id] = user.profile.last_seen()
+        if hasattr(user, 'profile'):
+            if user.profile.online():
+                users_status[user.id] = "online"
+            else:
+                users_status[user.id] = user.profile.last_seen()
     data = json.dumps(users_status, default=date_handler)
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)

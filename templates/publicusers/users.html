@@ -1,41 +1,36 @@
-{% load staticfiles bootstrap_pagination i18n %}
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">Users</h3>
-    </div>
-    <div class="box-body no-padding">
-        <ul class="users-list clearfix">
-            {% for user in users %}
-                {% ifequal user.username request.user.username %}
-                {% else %}
-                <li>
-                    {% if user.profile.avatar_public %}
-                        {% if user.profile.avatar %}
-                            <a href="{% url 'publicusers:user' user.id %}"><img src="{{ user.profile.avatar.thumbnail.128x128 }}" alt="User Image"></a>
-                        {% else %}
-                            <a href="{% url 'publicusers:user' user.id %}"><img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image"></a>
+{% load staticfiles el_pagination_tags i18n %}
+{% paginate 14 users %}
+<div class="member-wrapper">
+    {% for user in users %}
+        {% if user.username == 'AnonymousUser' or user.username == request.user.username %}
+        {% else %}
+            <div class="member {% if user.is_staff %}member-staff{% endif %}">
+                <a href="{% url 'publicusers:user' user.id %}">
+                    <div class="member-image">
+                        {% if user.profile.avatar_public %}
+                            {% if user.profile.avatar %}
+                                <img src="{{ user.profile.avatar.thumbnail.128x128 }}" alt="User Image">
+                            {% else %}
+                                <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image">
+                            {% endif %}
+                            {% else %}
+                                <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image">
                         {% endif %}
-                    {% else %}
-                        <a href="{% url 'publicusers:user' user.id %}"><img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image"></a>
-                    {% endif %}
-
-                    <a class="users-list-name" href="{% url 'publicusers:user' user.id %}">{{ user.username }}</a>
-                    <p class="users-list-date userstatus" data-user-id='{{ user.id }}'  data-toggle="tooltip" title="{% trans "lastseen: " %}{{ user.profile.last_seen }}">
-                        {% if user.profile.online %}
-                            <i class="fa fa-circle text-success onlinestatus"></i> {% trans "Online" %}
-                        {% else %}
-                            <i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}
-                        {% endif %}
-                    </p>
-                      <span class="users-list-date">{{ user.profile.street }}</span>
-                </li>
-                {% endifequal %}
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="box-footer">
-        <div class="pull-right">
-            {% bootstrap_paginate users %}
-        </div>
-    </div>
+                        <p class="users-list-date userstatus" data-user-id='{{ user.id }}'>
+                            {% if user.profile.online %}
+                                <i class="fa fa-circle text-success onlinestatus"></i>
+                            {% else %}
+                                <i class="fa fa-circle onlinestatus"></i>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-username">{{ user.username }}</p>
+                        <p class="member-status">{% if user.is_staff %}{% trans "Staff" %}{% else %}{% trans "Member" %}{% endif %}</p>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
 </div>
+{% show_more "Load more" "" %}
