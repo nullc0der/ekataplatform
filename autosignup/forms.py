@@ -65,7 +65,7 @@ class ReferralCodeForm(forms.Form):
         label='Referral Code',
         max_length=40,
         required=False,
-        help_text='Enter a referral code if you have any'
+        help_text='If someone gave you a referral code please enter it here'
     )
 
     def clean_referral_code(self):
