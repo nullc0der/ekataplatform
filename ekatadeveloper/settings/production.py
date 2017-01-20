@@ -37,6 +37,8 @@ CSRF_TOKEN_SECURE = True
 
 X_FRAME_OPTIONS = 'DENY'
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 CACHES = {
     'default': {
         'BACKEND': 'redis_cache.RedisCache',
