@@ -31,7 +31,7 @@
                     <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
                 </span>
                 <span class="input-group-btn filterbtn">
-                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                    <button class="btn btn-content-header" data-toggle="filter-sidebar"><i class="fa fa-filter"></i></button>
                 </span>
             </div>
         </div>
@@ -44,9 +44,26 @@
     </div>
 </div>
 {% endblock content %}
+{% block filter_sidebar_options %}
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <button class="btn-filter btn-filter-left" data-filter-name='online' data-selected='false'>{% trans "Online" %}</button>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <button class="btn-filter" data-filter-name='offline' data-selected='false'>{% trans "Offline" %}</button>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <button class="btn-filter btn-filter-left" data-filter-name='staff' data-selected='false'>{% trans "Staff" %}</button>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <button class="btn-filter" data-filter-name='member' data-selected='false'>{% trans "Member" %}</button>
+    </div>
+</div>
+{% endblock %}
 {% block extrascripts %}
     <script src="{% static "el-pagination/js/el-pagination.js" %}"></script>
     <script type="text/javascript">
+    var filters_enabled = [];
     (function getOnlineUsers(){
         $.ajax({
             url: '{% url 'publicusers:getonlineusers' %}',
@@ -87,14 +104,70 @@
         });
     })();
     $.endlessPaginate({
-        paginateOnScroll: true,
+        //paginateOnScroll: true,
         paginateOnScrollMargin: 20
     });
+    $('.btn-filter').click(function(){
+        var _this = $(this);
+        if (_this.data('selected') === 'true') {
+            var index = filters_enabled.indexOf(_this.data('filter-name'));
+            if (index > -1) {
+                filters_enabled.splice(index, 1);
+            }
+            _this.data('selected', 'false');
+            _this.removeClass('btn-filter-selected');
+            console.log(filters_enabled);
+        }
+        else {
+            filters_enabled.push(_this.data('filter-name'));
+            _this.data('selected', 'true');
+            _this.addClass('btn-filter-selected');
+            console.log(filters_enabled);
+        }
+    });
+    $('#applyFilters').click(function() {
+        if (filters_enabled.length) {
+            var filters = filters_enabled;
+            $.ajax({
+                url: '{% url 'publicusers:index' %}',
+                data: {'filters_enabled': filters},
+                success: function (data) {
+                    $('#searchresults').html(data);
+                    var o = $.AdminLTE.options.filterSidebarOptions;
+                    var sidebar = $(o.selector);
+                    $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+                }
+            });
+        }
+    });
     $("#liveSearch").keyup(function(){
-        var query = $(this).val();
-        $("#searchresults").load(
-            "{% url 'publicusers:index' %}?q=" + encodeURIComponent(query)
-        );
+        var _this = $(this);
+        if (filters_enabled.length) {
+            var data = {'filters_enabled': filters_enabled, 'q': _this.val()};
+        }
+        else {
+            var data = {'q': _this.val()};
+        }
+        $.ajax({
+            url: '{% url 'publicusers:index' %}',
+            data: data,
+            success: function (data) {
+                $('#searchresults').html(data);
+            }
+        });
+    });
+    var mouse_is_inside = false;
+    $(".filterbtn, .filter-sidebar, .filter-sidebar-bg").hover(function(){
+        mouse_is_inside=true;
+    }, function(){
+        mouse_is_inside=false;
+    });
+    $(document).click(function () {
+        var o = $.AdminLTE.options.filterSidebarOptions;
+        var sidebar = $(o.selector);
+        if (($('body').hasClass('filter-sidebar-open') || sidebar.hasClass('filter-sidebar-open')) && ! mouse_is_inside) {
+            $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+        }
     });
     </script>
 {% endblock extrascripts %}

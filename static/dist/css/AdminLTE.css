@@ -5716,8 +5716,8 @@ table.text-center th {
     margin: 0px;
     font-size: 10px;
     position: relative;
-    left: -55%;
-    bottom: -15px;
+    left: -50%;
+    bottom: -7px;
 }
 
 .member-info {
@@ -5755,16 +5755,36 @@ table.text-center th {
     color: #fff;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 320px) {
     .member {
         width: 40%;
         margin-left: 7%;
     }
 }
 
+@media (min-width: 321px) and (max-width: 767px){
+    .member {
+        width: 30%;
+        margin-left: 3%;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
     .member {
         width: 22%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {
+    .member {
+        width: 15%;
+        margin-left: 1%;
+    }
+}
+
+@media (min-width: 2560px) {
+    .member {
+        width: 5%;
     }
 }
 
@@ -5776,16 +5796,25 @@ table.text-center th {
 
 .endless_container {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .endless_more {
-    padding: 5px;
+    padding: 10px 40%;
     background-color: #3c8dbc;
     color: #fff;
     font-weight: 600;
-    border-radius: 3px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+}
+
+@media (max-width: 320px) {
+    .endless_more {
+        padding: 10px 30%;
+    }
 }
 
 .endless_more:hover {

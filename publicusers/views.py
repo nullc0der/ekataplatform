@@ -24,8 +24,33 @@ def users_page(request):
     template = 'publicusers/userlist.html'
     if request.is_ajax():
         template = page_template
+    filters_enabled = request.GET.getlist('filters_enabled')
+    if 'staff' in filters_enabled and 'member' in filters_enabled:
+        users = users
+    else:
+        if 'staff' in filters_enabled:
+            users = users.filter(is_staff=True)
+        if 'member' in filters_enabled:
+            users = users.filter(is_staff=False)
+    if 'online' in filters_enabled and 'offline' in filters_enabled:
+        users = users
+    else:
+        if 'online' in filters_enabled:
+            online_users = []
+            for u in users:
+                if hasattr(u, 'profile'):
+                    if u.profile.online():
+                        online_users.append(u)
+            users = online_users
+        if 'offline' in filters_enabled:
+            offline_users = []
+            for u in users:
+                if hasattr(u, 'profile'):
+                    if not u.profile.online():
+                        offline_users.append(u)
+            users = offline_users
     if 'q' in request.GET:
-        users = User.objects.filter(username__icontains=request.GET.get('q'))
+        users = users.filter(username__icontains=request.GET.get('q'))
     return render(
         request,
         template,

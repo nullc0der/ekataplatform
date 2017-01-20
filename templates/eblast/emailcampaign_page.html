@@ -282,15 +282,15 @@
                 }
                 _this.data('selected', 'false');
                 _this.removeClass('btn-filter-selected');
-                console.log(filters_enabled);
+                //console.log(filters_enabled);
             }
             else {
                 filters_enabled.push(_this.data('filter-name'));
                 _this.data('selected', 'true');
                 _this.addClass('btn-filter-selected');
-                console.log(filters_enabled);
+                //console.log(filters_enabled);
             }
-        })
+        });
         $('#applyFilters').click(function() {
             if (filters_enabled.length) {
                 var filters = filters_enabled;
