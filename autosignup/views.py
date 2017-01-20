@@ -21,7 +21,8 @@ from autosignup.models import CommunitySignup, EmailVerfication,\
     ApprovedMailTemplate, AccountProviderCSV, ReferralCode, AutoSignupAddress
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
-    AdditionalStepForm, AccountAddContactForm, CommunitySignupForm
+    AdditionalStepForm, AccountAddContactForm, CommunitySignupForm, \
+    ReferralCodeForm
 from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail,\
     task_add_member_from_csv, task_find_location_and_save
@@ -100,13 +101,20 @@ def step_1_signup(request, id):
         address.save()
     community_signup = CommunitySignup.objects.get(id=id)
     uform = UserInfoForm(instance=request.user, prefix='userinfo')
+    rform = ReferralCodeForm(prefix='referral')
     form = AddressForm(instance=address)
     if request.method == 'POST':
         uform = UserInfoForm(request.POST, instance=request.user, prefix='userinfo')
+        rform = ReferralCodeForm(request.POST, prefix='referral')
         form = AddressForm(request.POST, instance=address)
-        if uform.is_valid() and form.is_valid():
+        if uform.is_valid() and form.is_valid() and rform.is_valid():
             uform.save()
             address = form.save()
+            referral_code = rform.cleaned_data.get('referral_code')
+            if referral_code:
+                rcode_obj = ReferralCode.objects.get(code=referral_code)
+                request.user.profile.referred_by = rcode_obj.user
+                request.user.profile.save()
             asignupaddress, created = AutoSignupAddress.objects.get_or_create(
                 address_type='db',
                 user=request.user,
@@ -148,13 +156,13 @@ def step_1_signup(request, id):
             return render(
                 request,
                 'autosignup/step_1_form.html',
-                {'form': form, 'uform': uform, 'community_signup': community_signup},
+                {'form': form, 'uform': uform, 'rform': rform, 'community_signup': community_signup},
                 status=500
             )
     return render(
         request,
         'autosignup/step_1_form.html',
-        {'form': form, 'uform': uform, 'community_signup': community_signup}
+        {'form': form, 'uform': uform, 'rform': rform, 'community_signup': community_signup}
     )
 
 

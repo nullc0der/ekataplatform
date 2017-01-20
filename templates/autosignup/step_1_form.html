@@ -22,6 +22,7 @@
                 {% csrf_token %}
                 {{ uform|as_bootstrap }}
                 {{ form|as_bootstrap }}
+                {{ rform|as_bootstrap }}
             </form>
             <div class="text-center" id="gears">
                 <img src="{% static "dist/img/gears.gif" %}" alt="loading">

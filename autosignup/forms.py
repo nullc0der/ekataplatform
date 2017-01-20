@@ -13,7 +13,7 @@ from phonenumber_field.widgets import PhonePrefixSelect
 
 from profilesystem.models import UserAddress
 from autosignup.models import EmailVerfication, PhoneVerification,\
-    CommunitySignup, AccountAddContact
+    CommunitySignup, AccountAddContact, ReferralCode
 
 
 def carrier_lookup(phone_no):
@@ -58,6 +58,23 @@ class AddressForm(forms.ModelForm):
             'state',
             'country',
         ]
+
+
+class ReferralCodeForm(forms.Form):
+    referral_code = forms.CharField(
+        label='Referral Code',
+        max_length=40,
+        required=False,
+        help_text='Enter a referral code if you have any'
+    )
+
+    def clean_referral_code(self):
+        if self.cleaned_data.get('referral_code'):
+            try:
+                referral_code = ReferralCode.objects.get(code=self.cleaned_data.get('referral_code'))
+            except ObjectDoesNotExist:
+                raise forms.ValidationError('Code is invalid')
+        return self.cleaned_data.get('referral_code')
 
 
 class EmailForm(forms.Form):
