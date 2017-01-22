@@ -47,23 +47,39 @@
 {% block filter_sidebar_options %}
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <button class="btn-filter btn-filter-left" data-filter-name='online' data-selected='false'>{% trans "Online" %}</button>
+        <button class="btn-filter btn-filter-left btn-filter-selected" data-filter-name='online' data-selected='true'>{% trans "Online" %}</button>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <button class="btn-filter" data-filter-name='offline' data-selected='false'>{% trans "Offline" %}</button>
+        <button class="btn-filter btn-filter-selected" data-filter-name='offline' data-selected='true'>{% trans "Offline" %}</button>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <button class="btn-filter btn-filter-left" data-filter-name='staff' data-selected='false'>{% trans "Staff" %}</button>
+        <button class="btn-filter btn-filter-left btn-filter-selected" data-filter-name='staff' data-selected='true'>{% trans "Staff" %}</button>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <button class="btn-filter" data-filter-name='member' data-selected='false'>{% trans "Member" %}</button>
+        <button class="btn-filter btn-filter-selected" data-filter-name='member' data-selected='true'>{% trans "Member" %}</button>
     </div>
 </div>
 {% endblock %}
 {% block extrascripts %}
     <script src="{% static "el-pagination/js/el-pagination.js" %}"></script>
     <script type="text/javascript">
-    var filters_enabled = [];
+    var filters_enabled = ['online', 'offline', 'staff', 'member'];
+    var isFilterChanged = false;
+    function applyFilters() {
+        if (filters_enabled.length && isFilterChanged) {
+            var filters = filters_enabled;
+            $.ajax({
+                url: '{% url 'publicusers:index' %}',
+                data: {'filters_enabled': filters},
+                success: function (data) {
+                    $('#searchresults').html(data);
+                    var o = $.AdminLTE.options.filterSidebarOptions;
+                    var sidebar = $(o.selector);
+                    $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+                }
+            });
+        }
+    };
     (function getOnlineUsers(){
         $.ajax({
             url: '{% url 'publicusers:getonlineusers' %}',
@@ -109,36 +125,29 @@
     });
     $('.btn-filter').click(function(){
         var _this = $(this);
-        if (_this.data('selected') === 'true') {
+        if (_this.data('selected')) {
             var index = filters_enabled.indexOf(_this.data('filter-name'));
+
             if (index > -1) {
                 filters_enabled.splice(index, 1);
             }
-            _this.data('selected', 'false');
+            _this.data('selected', false);
             _this.removeClass('btn-filter-selected');
-            console.log(filters_enabled);
+            isFilterChanged = true;
+
         }
         else {
             filters_enabled.push(_this.data('filter-name'));
-            _this.data('selected', 'true');
+            _this.data('selected', true);
             _this.addClass('btn-filter-selected');
-            console.log(filters_enabled);
+            isFilterChanged = true;
         }
     });
     $('#applyFilters').click(function() {
-        if (filters_enabled.length) {
-            var filters = filters_enabled;
-            $.ajax({
-                url: '{% url 'publicusers:index' %}',
-                data: {'filters_enabled': filters},
-                success: function (data) {
-                    $('#searchresults').html(data);
-                    var o = $.AdminLTE.options.filterSidebarOptions;
-                    var sidebar = $(o.selector);
-                    $.AdminLTE.filterSidebar.close(sidebar, o.slide);
-                }
-            });
-        }
+        var o = $.AdminLTE.options.filterSidebarOptions;
+        var sidebar = $(o.selector);
+        $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+        applyFilters();
     });
     $("#liveSearch").keyup(function(){
         var _this = $(this);
@@ -167,6 +176,14 @@
         var sidebar = $(o.selector);
         if (($('body').hasClass('filter-sidebar-open') || sidebar.hasClass('filter-sidebar-open')) && ! mouse_is_inside) {
             $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+            applyFilters();
+        }
+    });
+    $(".btn-content-header").click(function(){
+        var o = $.AdminLTE.options.filterSidebarOptions;
+        var sidebar = $(o.selector);
+        if (($('body').hasClass('filter-sidebar-open') || sidebar.hasClass('filter-sidebar-open'))) {
+            applyFilters();
         }
     });
     </script>
