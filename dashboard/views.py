@@ -1,10 +1,14 @@
 from __future__ import division
 import datetime
+import json
+import csv
+import os
 
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.utils.crypto import get_random_string
 from profilesystem.models import UserCompletionRing
 from publicusers.models import Connection
 from dashboard.models import ActiveMemberCount, NewMemberCount,\
@@ -104,3 +108,63 @@ def skipped_tasks(request):
         usercomplete.skipped_list = {"skipped": skipped_tasks}
         usercomplete.save()
         return HttpResponse("OK")
+
+
+@login_required
+def download_member_stats(request):
+    stat_type = request.GET.get('stat')
+    filename = '/tmp/%s.csv' % get_random_string()
+    download_filename = 'blank'
+    f = open(filename, 'w+')
+    fieldnames = ['date', 'count']
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    if stat_type == 'active_member':
+        activemembercounts = ActiveMemberCount.objects.all().order_by('date')
+        for activemembercount in activemembercounts:
+            row = {}
+            row['date'] = "{0}/{1}/{2}".format(
+                activemembercount.date.day,
+                activemembercount.date.month,
+                activemembercount.date.year
+            )
+            row['count'] = activemembercount.users.count()
+            writer.writerow(row)
+        download_filename = 'active_member_stats'
+    if stat_type == 'new_member':
+        newmembercounts = NewMemberCount.objects.all().order_by('date')
+        for newmembercount in newmembercounts:
+            row = {}
+            row['date'] = "{0}/{1}/{2}".format(
+                newmembercount.date.day,
+                newmembercount.date.month,
+                newmembercount.date.year
+            )
+            row['count'] = newmembercount.count
+            writer.writerow(row)
+        download_filename = 'new_users_stats'
+    if stat_type == 'total_member':
+        totalmembercounts = TotalMemberCount.objects.all().order_by('date')
+        for totalmembercount in totalmembercounts:
+            row = {}
+            row['date'] = "{0}/{1}/{2}".format(
+                totalmembercount.date.day,
+                totalmembercount.date.month,
+                totalmembercount.date.year
+            )
+            row['count'] = totalmembercount.count
+            writer.writerow(row)
+        download_filename = 'total_member_stats'
+    f.close()
+    f = open(filename)
+    csv_data = f.read()
+    f.close()
+    os.remove(f.name)
+    response = HttpResponse(
+        csv_data,
+        content_type='text/plain'
+    )
+    response['Content-Disposition'] = 'attachment; filename="{0}.csv"'.format(
+        download_filename
+    )
+    return response

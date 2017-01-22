@@ -213,6 +213,9 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">{% trans "New Members" %}</h3>
+                    <div class="box-tools pull-right">
+                        <a href="{% url 'dashboard:download_member_stats' %}?stat=new_member" class="btn btn-box-tool"><i class="fa fa-download"></i></a>
+                    </div>
                 </div>
                 <div class="box-body">
                     <canvas id="newMemberChart" style="height:230px"></canvas>
@@ -223,6 +226,9 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">{% trans "Total Ekata Members" %}</h3>
+                    <div class="box-tools pull-right">
+                        <a href="{% url 'dashboard:download_member_stats' %}?stat=total_member" class="btn btn-box-tool"><i class="fa fa-download"></i></a>
+                    </div>
                 </div>
                 <div class="box-body">
                     <canvas id="totalMemberChart" style="height:230px"></canvas>
@@ -235,6 +241,9 @@
             <div class="box box-success">
                 <div class="box-header with-border">
                     <h3 class="box-title">{% trans "Active Members" %}</h3>
+                    <div class="box-tools pull-right">
+                        <a href="{% url 'dashboard:download_member_stats' %}?stat=active_member" class="btn btn-box-tool"><i class="fa fa-download"></i></a>
+                    </div>
                 </div>
                 <div class="box-body">
                     <canvas id="activeMemberChart" style="height:230px"></canvas>
