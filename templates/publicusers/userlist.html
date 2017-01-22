@@ -80,39 +80,72 @@
             });
         }
     };
+    function isOnlineFilterEnabled() {
+        var index = filters_enabled.indexOf('online');
+        if (index > -1) {
+            return true;
+        }
+        return false;
+    }
     (function getOnlineUsers(){
         $.ajax({
             url: '{% url 'publicusers:getonlineusers' %}',
             success: function(data){
-                $('.userstatus').each(function(){
-                    var user_id = $(this).data('user-id');
-                    var userstatus = $(this);
+                if (isFilterChanged && isOnlineFilterEnabled()) {
+                    var notVisibleMembers = [];
                     $.each(data, function(k, v){
-                        if (k == user_id) {
-                            if (data[k] === 'online') {
-                                $(userstatus).empty();
-                                $(userstatus).removeAttr('data-toggle');
-                                $(userstatus).removeAttr('title');
-                                $(userstatus).append('<i class="fa fa-circle text-success onlinestatus"></i>');
-                            }
-                            else {
-                                if (data[k]) {
-                                    var lastseen = moment(data[k]).format('MMMM Do YYYY, hh:mm a')
-                                    $(userstatus).empty();
-                                    $(userstatus).append('<i class="fa fa-circle onlinestatus"></i>');
-                                    $(userstatus).attr('data-toggle', 'tooltip');
-                                    $(userstatus).attr('title', '{% trans "lastseen: " %}' + lastseen);
-                                }
-                                else {
-                                    $(userstatus).empty();
-                                    $(userstatus).append('<i class="fa fa-circle onlinestatus"></i>')
-                                    $(userstatus).attr('data-toggle', 'tooltip');
-                                    $(userstatus).attr('title', '{% trans "lastseen: unknown" %}');
-                                }
+                        if(data[k] === 'online') {
+                            if (!($(".member[data-id=" + k + "]").length)) {
+                                notVisibleMembers.push(k);
                             }
                         }
-                    })
-                });
+                        else {
+                            if ($(".member[data-id=" + k + "]").length) {
+                                $(".member[data-id=" + k + "]").remove();
+                            }
+                        }
+                    });
+                    if (notVisibleMembers.length) {
+                        $.ajax({
+                            url: '{% url 'publicusers:get_missing_users' %}',
+                            data: {'users': notVisibleMembers},
+                            success: function(data) {
+                                $(".member-wrapper").append(data);
+                            }
+                        });
+                    }
+                }
+                else {
+                    $('.userstatus').each(function(){
+                        var user_id = $(this).data('user-id');
+                        var userstatus = $(this);
+                        $.each(data, function(k, v){
+                            if (k == user_id) {
+                                if (data[k] === 'online') {
+                                    $(userstatus).empty();
+                                    $(userstatus).removeAttr('data-toggle');
+                                    $(userstatus).removeAttr('title');
+                                    $(userstatus).append('<i class="fa fa-circle text-success onlinestatus"></i>');
+                                }
+                                else {
+                                    if (data[k]) {
+                                        var lastseen = moment(data[k]).format('MMMM Do YYYY, hh:mm a')
+                                        $(userstatus).empty();
+                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i>');
+                                        $(userstatus).attr('data-toggle', 'tooltip');
+                                        $(userstatus).attr('title', '{% trans "lastseen: " %}' + lastseen);
+                                    }
+                                    else {
+                                        $(userstatus).empty();
+                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i>')
+                                        $(userstatus).attr('data-toggle', 'tooltip');
+                                        $(userstatus).attr('title', '{% trans "lastseen: unknown" %}');
+                                    }
+                                }
+                            }
+                        })
+                    });
+                }
             },
             complete: function() {
                 setTimeout(getOnlineUsers, 15000);

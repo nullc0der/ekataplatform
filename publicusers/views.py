@@ -3,6 +3,7 @@ from __future__ import division
 import json
 from django.http import HttpResponse, HttpResponseServerError
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
@@ -19,7 +20,8 @@ from notification.utils import create_notification
 
 @login_required
 def users_page(request):
-    users = User.objects.all()
+    users = User.objects.exclude(
+        username='AnonymousUser').exclude(username=request.user.username)
     page_template = 'publicusers/users.html'
     template = 'publicusers/userlist.html'
     if request.is_ajax():
@@ -503,7 +505,7 @@ def get_onlineusers(request):
     users_status = {}
     users = User.objects.all()
     for user in users:
-        if hasattr(user, 'profile'):
+        if hasattr(user, 'profile') and not user == request.user:
             if user.profile.online():
                 users_status[user.id] = "online"
             else:
@@ -518,3 +520,22 @@ def date_handler(obj):
         return obj.isoformat()
     else:
         raise TypeError
+
+
+@login_required
+def get_missing_users(request):
+    userslist = request.GET.getlist('users')
+    users = []
+    for id in userslist:
+        try:
+            user = User.objects.get(id=id)
+            users.append(user)
+        except ObjectDoesNotExist:
+            pass
+    return render(
+        request,
+        'publicusers/missing_users.html',
+        {
+            'users': users
+        }
+    )
