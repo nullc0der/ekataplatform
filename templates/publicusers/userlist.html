@@ -47,26 +47,31 @@
 {% block filter_sidebar_options %}
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <button class="btn-filter btn-filter-left btn-filter-selected" data-filter-name='online' data-selected='true'>{% trans "Online" %}</button>
+        <button class="btn-filter btn-filter-left{% if 'online' in filters_enabled %} btn-filter-selected{% endif %}" data-filter-name='online' data-selected='true'>{% trans "Online" %}</button>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <button class="btn-filter btn-filter-selected" data-filter-name='offline' data-selected='true'>{% trans "Offline" %}</button>
+        <button class="btn-filter{% if 'offline' in filters_enabled %} btn-filter-selected{% endif %}" data-filter-name='offline' data-selected='true'>{% trans "Offline" %}</button>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <button class="btn-filter btn-filter-left btn-filter-selected" data-filter-name='staff' data-selected='true'>{% trans "Staff" %}</button>
+        <button class="btn-filter btn-filter-left{% if 'staff' in filters_enabled %} btn-filter-selected{% endif %}" data-filter-name='staff' data-selected='true'>{% trans "Staff" %}</button>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <button class="btn-filter btn-filter-selected" data-filter-name='member' data-selected='true'>{% trans "Member" %}</button>
+        <button class="btn-filter{% if 'member' in filters_enabled %} btn-filter-selected{% endif %}" data-filter-name='member' data-selected='true'>{% trans "Member" %}</button>
     </div>
 </div>
 {% endblock %}
 {% block extrascripts %}
     <script src="{% static "el-pagination/js/el-pagination.js" %}"></script>
     <script type="text/javascript">
-    var filters_enabled = ['online', 'offline', 'staff', 'member'];
-    var isFilterChanged = false;
+    var filters_enabled =
+    [{% for filter_enabled in filters_enabled %}
+        '{{ filter_enabled }}',
+    {% endfor %}];
+    function isFilterChanged(){
+        return filters_enabled.length !== 4;
+    }
     function applyFilters() {
-        if (filters_enabled.length && isFilterChanged) {
+        if (filters_enabled.length) {
             var filters = filters_enabled;
             $.ajax({
                 url: '{% url 'publicusers:index' %}',
@@ -91,7 +96,7 @@
         $.ajax({
             url: '{% url 'publicusers:getonlineusers' %}',
             success: function(data){
-                if (isFilterChanged && isOnlineFilterEnabled()) {
+                if (isFilterChanged() && isOnlineFilterEnabled()) {
                     var notVisibleMembers = [];
                     $.each(data, function(k, v){
                         if(data[k] === 'online') {
@@ -166,14 +171,11 @@
             }
             _this.data('selected', false);
             _this.removeClass('btn-filter-selected');
-            isFilterChanged = true;
-
         }
         else {
             filters_enabled.push(_this.data('filter-name'));
             _this.data('selected', true);
             _this.addClass('btn-filter-selected');
-            isFilterChanged = true;
         }
     });
     $('#applyFilters').click(function() {

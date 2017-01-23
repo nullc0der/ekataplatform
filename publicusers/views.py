@@ -24,41 +24,54 @@ def users_page(request):
         username='AnonymousUser').exclude(username=request.user.username)
     page_template = 'publicusers/users.html'
     template = 'publicusers/userlist.html'
-    if request.is_ajax():
-        template = page_template
-    filters_enabled = request.GET.getlist('filters_enabled')
-    if 'staff' in filters_enabled and 'member' in filters_enabled:
-        users = users
-    else:
-        if 'staff' in filters_enabled:
-            users = users.filter(is_staff=True)
-        if 'member' in filters_enabled:
-            users = users.filter(is_staff=False)
-    if 'online' in filters_enabled and 'offline' in filters_enabled:
-        users = users
-    else:
-        if 'online' in filters_enabled:
-            online_users = []
-            for u in users:
-                if hasattr(u, 'profile'):
-                    if u.profile.online():
-                        online_users.append(u)
-            users = online_users
-        if 'offline' in filters_enabled:
-            offline_users = []
-            for u in users:
-                if hasattr(u, 'profile'):
-                    if not u.profile.online():
-                        offline_users.append(u)
-            users = offline_users
+    filter_changed = False
+    original_filters = ['online', 'offline', 'staff', 'member']
+    filters_enabled = original_filters
+    if 'filters_enabled' in request.session:
+        filters_enabled = request.session['filters_enabled']
+        if not set(filters_enabled).issuperset(set(original_filters)):
+            filter_changed = True
+    if 'filters_enabled' in request.GET:
+        filters_enabled = request.GET.getlist('filters_enabled')
+        if not set(filters_enabled).issuperset(set(original_filters)):
+            filter_changed = True
+    if filter_changed:
+        if 'staff' in filters_enabled and 'member' in filters_enabled:
+            users = users
+        else:
+            if 'staff' in filters_enabled:
+                users = users.filter(is_staff=True)
+            if 'member' in filters_enabled:
+                users = users.filter(is_staff=False)
+        if 'online' in filters_enabled and 'offline' in filters_enabled:
+            users = users
+        else:
+            if 'online' in filters_enabled:
+                online_users = []
+                for u in users:
+                    if hasattr(u, 'profile'):
+                        if u.profile.online():
+                            online_users.append(u)
+                users = online_users
+            if 'offline' in filters_enabled:
+                offline_users = []
+                for u in users:
+                    if hasattr(u, 'profile'):
+                        if not u.profile.online():
+                            offline_users.append(u)
+                users = offline_users
     if 'q' in request.GET:
         users = users.filter(username__icontains=request.GET.get('q'))
+    request.session['filters_enabled'] = filters_enabled
+    if request.is_ajax():
+        template = page_template
     return render(
         request,
         template,
         {
             'users': users,
-            'page_template': page_template
+            'page_template': page_template,
+            'filters_enabled': filters_enabled if filters_enabled else original_filters
         }
     )
 
