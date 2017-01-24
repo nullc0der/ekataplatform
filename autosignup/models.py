@@ -66,7 +66,8 @@ class CommunitySignup(models.Model):
     STATUS_CHOICES = (
         ('pending', 'Pending'),
         ('approved', 'Approved'),
-        ('declined', 'Declined')
+        ('declined', 'Declined'),
+        ('incomplete', 'Incomplete')
     )
     user = models.ForeignKey(User, related_name='communitysignups')
     community = models.CharField(max_length=100, choices=COMMUNITY_CHOICES, editable=False)
@@ -82,7 +83,7 @@ class CommunitySignup(models.Model):
     step_2_done = models.BooleanField(default=False, editable=False)
     step_3_done = models.BooleanField(default=False, editable=False)
     additional_step_done = models.BooleanField(default=False, editable=False)
-    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='incomplete')
     distance_db_vs_twilio = models.CharField(max_length=100, default='', editable=False)
     distance_db_vs_geoip = models.CharField(max_length=100, default='', editable=False)
     failed_auto_signup = models.BooleanField(default=False, editable=False)

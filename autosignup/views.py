@@ -397,6 +397,7 @@ def verify_phone_code(request, id):
                             phone_used_before = True
                     if phone_used_before:
                         community_signup.failed_auto_signup = True
+                        community_signup.status = 'pending'
                         community_signup.auto_signup_fail_reason = 'Phone number submitted was used for another account'
                         community_signup.sent_to_community_staff = True
                         community_signup.save()
@@ -421,17 +422,20 @@ def verify_phone_code(request, id):
                                 task_send_approval_mail.delay(community_signup, template_path)
                             else:
                                 community_signup.failed_auto_signup = True
+                                community_signup.status = 'pending'
                                 community_signup.auto_signup_fail_reason = 'Distance not within allowed range'
                                 community_signup.sent_to_community_staff = True
                                 community_signup.save()
                         else:
                             community_signup.failed_auto_signup = True
+                            community_signup.status = 'pending'
                             community_signup.auto_signup_fail_reason = 'No distance data'
                             community_signup.sent_to_community_staff = True
                             community_signup.save()
                 else:
                     community_signup.step_3_done = True
                     community_signup.failed_auto_signup = True
+                    community_signup.status = 'pending'
                     community_signup.auto_signup_fail_reason = 'No data from twilio'
                     community_signup.sent_to_community_staff = True
                     community_signup.save()
@@ -481,6 +485,7 @@ def step_3_no_code(request, id):
     community_signup.not_verifiable_number = True
     community_signup.step_3_done = True
     community_signup.failed_auto_signup = True
+    community_signup.status = 'pending'
     community_signup.auto_signup_fail_reason =\
         "Mobile number could not be verified."
     community_signup.sent_to_community_staff = True
@@ -538,7 +543,7 @@ def additional_step(request, id):
 @login_required
 def signups_page(request):
     signups = CommunitySignup.objects.filter(
-        sent_to_community_staff=True
+        community='grantcoin'
     ).filter(status='pending')
     if signups:
         signup = signups[0]
@@ -721,7 +726,7 @@ def resend_approval(request):
 @login_required
 def filter_signup(request):
     sfilter = request.GET.get('sfilter', 'pending')
-    signups = CommunitySignup.objects.filter(sent_to_community_staff=True)
+    signups = CommunitySignup.objects.filter(community='grantcoin')
     signups = signups.filter(status=sfilter)
     return render(
         request,
@@ -735,7 +740,7 @@ def search_signup(request):
     sfilter = request.GET.get('sfilter')
     username = request.GET.get('username')
     signups = CommunitySignup.objects.filter(
-        sent_to_community_staff=True,
+        community='grantcoin',
         status=sfilter,
         user__username__icontains=username
     )
@@ -905,7 +910,7 @@ def download_member_csv(request):
     ranges = request.GET.get('range').split(',')
     community_signups = CommunitySignup.objects.filter(community=accountprovider.name)
     signs = []
-    for i in range(int(ranges[0]), int(ranges[1])):
+    for i in range(int(ranges[0]), int(ranges[1]) + 1):
         try:
             sign = community_signups.get(id=i)
             signs.append(sign)
