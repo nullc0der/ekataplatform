@@ -15,4 +15,4 @@ def unique_ekata_id_setter(sender, profile):
             not_unique = False
     profile.ekata_id = ekata_id
     profile.save()
-    return "{0} ekata_id set to {1}".format(profile.user.username, ekata_id)
+    return "{0} ekata_id set to {1}".format(profile.user.username.encode('utf-8'), ekata_id)

@@ -182,9 +182,7 @@
     <script type="text/javascript">
     var memberSlider = $("#memberslider").bootstrapSlider({
         max: {{ signups_count }},
-        min: 0,
-        value: 0,
-        range: true
+        min: 1
     });
     $('#signup_status').change(function(){
         var checked = $(this).is(':checked');

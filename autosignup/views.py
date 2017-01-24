@@ -607,8 +607,7 @@ def signups_page(request):
 def signups_settings(request):
     accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
     emailtemplate = ApprovedMailTemplate.objects.filter(selected=True)
-    signups_count = CommunitySignup.objects.latest('id')
-    signups_count = signups_count.id
+    signups_count = CommunitySignup.objects.all().count()
     if not emailtemplate:
         default_template = True
     else:
@@ -907,15 +906,17 @@ def parse_address(address):
 @login_required
 def download_member_csv(request):
     accountprovider = AccountProvider.objects.get(id=request.GET.get('id'))
-    ranges = request.GET.get('range').split(',')
+    ranges = request.GET.get('range')
     community_signups = CommunitySignup.objects.filter(community=accountprovider.name)
-    signs = []
-    for i in range(int(ranges[0]), int(ranges[1]) + 1):
+    signs = community_signups[0:int(ranges) + 1]
+    """
+    for i in range(0, int(ranges) + 1):
         try:
             sign = community_signups.get(id=i)
             signs.append(sign)
         except ObjectDoesNotExist:
             pass
+    """
     filename = '/tmp/%s.csv' % get_random_string()
     f = open(filename, 'w+')
     fieldnames = [
