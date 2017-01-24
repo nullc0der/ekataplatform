@@ -924,12 +924,23 @@ def download_member_csv(request):
         'first_name',
         'last_name',
         'full_name',
+        'username',
+        'ekata_id',
         'house_number',
         'street',
         'zip_code',
         'city',
         'state',
         'country',
+        'twilio_data',
+        'twilio_house_number',
+        'twilio_street',
+        'twilio_zip_code',
+        'twilio_city',
+        'twilio_state',
+        'twilio_country',
+        'twilio_latitude',
+        'twilio_longitude',
         'email_id',
         'phone_number',
         'referred_by',
@@ -963,6 +974,15 @@ def download_member_csv(request):
             row['full_name'] = community_signup.user.get_full_name().encode('utf-8')
         else:
             row['full_name'] = ''
+        if community_signup.user.username:
+            row['username'] = community_signup.user.username.encode('utf-8')
+        else:
+            row['username'] = ''
+        if hasattr(community_signup.user, 'profile'):
+            if community_signup.user.profile.ekata_id:
+                row['ekata_id'] = community_signup.user.profile.ekata_id
+            else:
+                row['ekata_id'] = ''
         address = community_signup.useraddresses.filter(address_type='db')
         if address:
             row['house_number'] = address[0].house_number.encode('utf-8') if address[0].house_number else ''
@@ -971,6 +991,19 @@ def download_member_csv(request):
             row['city'] = address[0].city.encode('utf-8') if address[0].city else ''
             row['state'] = address[0].state.encode('utf-8') if address[0].state else ''
             row['country'] = address[0].country.encode('utf-8') if address[0].country else ''
+        twilio_address = community_signup.useraddresses.filter(address_type='twilio')
+        if twilio_address:
+            row['twilio_data'] = 'true'
+            row['twilio_house_number'] = address[0].house_number.encode('utf-8') if address[0].house_number else ''
+            row['twilio_street'] = address[0].street.encode('utf-8') if address[0].street else ''
+            row['twilio_zip_code'] = address[0].zip_code.encode('utf-8') if address[0].zip_code else ''
+            row['twilio_city'] = address[0].city.encode('utf-8') if address[0].city else ''
+            row['twilio_state'] = address[0].state.encode('utf-8') if address[0].state else ''
+            row['twilio_country'] = address[0].country.encode('utf-8') if address[0].country else ''
+            row['twilio_latitude'] = address[0].latitude.encode('utf-8') if address[0].latitude else ''
+            row['twilio_longitude'] = address[0].longitude.encode('utf-8') if address[0].longitude else ''
+        else:
+            row['twilio_data'] = 'false'
         row['email_id'] = community_signup.useremail.encode('utf-8') if community_signup.useremail else ''
         row['phone_number'] = community_signup.userphone.encode('utf-8') if community_signup.userphone else ''
         if community_signup.user.profile.referred_by:
