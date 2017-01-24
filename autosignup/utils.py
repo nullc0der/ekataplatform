@@ -1,9 +1,9 @@
 import json
 import requests
 from iso3166 import countries
-import csv
 
 import piexif
+import unicodecsv as csv
 
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
