@@ -9,6 +9,8 @@ from django.db.models.signals import post_save, post_delete
 from django.utils.translation import ugettext_lazy as _
 from versatileimagefield.fields import VersatileImageField
 from jsonfield import JSONField
+
+from profilesystem.tasks import task_unique_ekata_id_setter
 # Create your models here.
 
 
@@ -92,6 +94,7 @@ class UserProfile(models.Model):
     about_me = models.TextField(default='', blank=True)
     account_type = models.CharField(max_length=100, default='personal', blank=True)
     referred_by = models.ForeignKey(User, null=True, blank=True)
+    ekata_id = models.CharField(max_length=100, default='', blank=True)
 
     name_public = models.BooleanField(default=True)
     website_public = models.BooleanField(default=True)
@@ -289,3 +292,9 @@ class UserOneSignal(models.Model):
 class ReadSysUpdate(models.Model):
     user = models.ForeignKey(User, related_name='readsysupdate')
     sysupdate = models.IntegerField()
+
+
+def set_unique_id(sender, instance, **kwargs):
+    if not instance.ekata_id:
+        task_unique_ekata_id_setter.delay(sender, instance)
+post_save.connect(set_unique_id, sender=UserProfile)
