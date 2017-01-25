@@ -30,7 +30,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(
                 'Processing row: %s' % row_number
             ))
-            user = User.objects.get(email=membercsv['email_id'])
+            user = User.objects.filter(email=membercsv['email_id'])[0]
             self.stdout.write(self.style.SUCCESS(
                 'User: %s' % user.username
             ))
