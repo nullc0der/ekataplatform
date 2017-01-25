@@ -4,6 +4,7 @@ from iso3166 import countries
 
 import piexif
 import unicodecsv as csv
+import traceback
 
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -427,9 +428,10 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                 c += 1
                 integrate_status = 'partially processed'
                 processed_to = c
-            except:
+            except Exception as e:
                 failed_csv_writer.writerow(membercsv)
                 row_written = True
+                traceback.print_exc()
         if row_written:
             accountprovidercsv.status = 'partially processed'
             accountprovidercsv.processed_to = processed_to
