@@ -27,7 +27,7 @@ from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail,\
     task_add_member_from_csv, task_find_location_and_save
 from autosignup.utils import collect_twilio_data, AddressCompareUtil,\
-    unique_referral_code_generator, location_finder_util
+    unique_referral_code_generator, location_finder_util, add_user_to_group
 from profilesystem.models import UserAddress, UserPhone
 from hashtag.views import get_client_ip
 from invitationsystem.models import Invitation
@@ -420,6 +420,7 @@ def verify_phone_code(request, id):
                                 rcode_obj.save()
                                 template_path = get_selected_template_path()
                                 task_send_approval_mail.delay(community_signup, template_path)
+                                add_user_to_group(community_signup.user)
                             else:
                                 community_signup.failed_auto_signup = True
                                 community_signup.status = 'pending'
@@ -693,6 +694,7 @@ def edit_signup(request, id):
                     rcode_obj.save()
                     template_path = get_selected_template_path()
                     task_send_approval_mail.delay(community_signup, template_path)
+                    add_user_to_group(community_signup.user)
             community_signup.save()
             return HttpResponse(community_signup.id)
         else:
@@ -719,6 +721,7 @@ def resend_approval(request):
     community_signup.save()
     template_path = get_selected_template_path()
     task_send_approval_mail.delay(community_signup, template_path)
+    add_user_to_group(community_signup.user)
     return HttpResponse(status=200)
 
 

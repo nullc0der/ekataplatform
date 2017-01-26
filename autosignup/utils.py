@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.template import Template, Context
 from django.conf import settings
 from django.core.cache import cache
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.utils.crypto import get_random_string
 from django.utils.dateparse import parse_date
 from django.core.exceptions import ObjectDoesNotExist
@@ -24,7 +24,40 @@ from emailtosms.models import Carrier
 from invitationsystem.models import Invitation
 from profilesystem.models import UserAddress
 from autosignup.models import CommunitySignup, GlobalEmail,\
-    GlobalPhone, ReferralCode, AutoSignupAddress
+    GlobalPhone, ReferralCode, AutoSignupAddress, AccountProvider
+from groupsystem.models import BasicGroup, JoinRequest, GroupMemberRole,\
+    GroupMemberExtraPerm
+from groupsystem.views import MEMBER_PERMS
+
+
+def add_user_to_group(user):
+    accountprovider = AccountProvider.objects.get(name='grantcoin')
+    basicgroup = accountprovider.basicgroup
+    basicgroup.members.add(user)
+    try:
+        joinrequest = JoinRequest.objects.get(user=user)
+        joinrequest.approved = True
+        joinrequest.save()
+    except ObjectDoesNotExist:
+        pass
+    member_group = Group.objects.get(
+        name='%s_member' % basicgroup.id
+    )
+    user.groups.add(member_group)
+    groupmemberrole, created = GroupMemberRole.objects.get_or_create(
+        basic_group=basicgroup,
+        user=user
+    )
+    groupmemberrole.user = user
+    groupmemberrole.role_name = 'member'
+    groupmemberrole.save()
+    extraperm = GroupMemberExtraPerm(basic_group=basicgroup)
+    extraperm.user = user
+    for perm in MEMBER_PERMS:
+        setattr(extraperm, perm[0], True)
+    extraperm.save()
+    emailgroup = basicgroup.emailgroup
+    emailgroup.users.add(user)
 
 
 def unique_referral_code_generator():
@@ -365,6 +398,7 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                 if invitation:
                     signup.invitation = invitation
                 signup.save()
+                add_user_to_group(signup.user)
                 if membercsv['referral_code']:
                     rcodes = ReferralCode.objects.filter(code=membercsv['referral_code'])
                     if rcodes:
