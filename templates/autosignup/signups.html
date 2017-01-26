@@ -208,6 +208,22 @@
                 getSignup(signup_id);
                 return false;
             })
+            $(document).on('click', '#fetchtwilio', function(){
+                var signup_id = $(this).attr('data-signup-id');
+                $(this).text("{% trans "Fetching..." %}");
+                $.ajax({
+                    url: '{% url 'autosignup:refetch_twilio_data' %}',
+                    type: 'POST',
+                    data: {'id': signup_id},
+                    success: function () {
+                        getSignup(signup_id);
+                    },
+                    error: function () {
+                        getSignup(signup_id);
+                    }
+                });
+                return false;
+            })
         });
         $('#signup_status').change(function(){
             var checked = $(this).is(':checked');

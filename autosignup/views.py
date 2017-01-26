@@ -1066,3 +1066,11 @@ def invite_code_settings(request):
         accountprovider.invite_code = invite_code
         accountprovider.save()
         return HttpResponse(status=200)
+
+
+@require_POST
+@login_required
+def refetch_twilio_data(request):
+    community_signup = CommunitySignup.objects.get(id=request.POST.get('id'))
+    collect_twilio_data(community_signup)
+    return HttpResponse(status=200)

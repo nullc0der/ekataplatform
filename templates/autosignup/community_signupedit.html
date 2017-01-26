@@ -3,6 +3,7 @@
     {% csrf_token %}
     {{ form|as_bootstrap }}
     <div class="pull-right">
+        <button class="btn btn-flat btn-warning" id="fetchtwilio" data-signup-id='{{ community_signup.id }}'>{% trans "Fetch twilio data" %}</button>
         <button class="btn btn-flat btn-danger" id='delete' data-signup-id='{{ community_signup.id }}'>{% trans "Delete" %}</button>
         <button class="btn btn-flat btn-primary" id='save'>{% trans "Save" %}</button>
         <button class="btn btn-flat btn-default" id="canceledit" data-signup-id='{{ community_signup.id }}'>{% trans "Cancel" %}</button>

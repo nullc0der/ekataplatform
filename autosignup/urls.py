@@ -157,5 +157,10 @@ urlpatterns = [
         r'^invite_code_settings/$',
         views.invite_code_settings,
         name='invite_code_settings'
+    ),
+    url(
+        r'^refetch_twilio_data/$',
+        views.refetch_twilio_data,
+        name='refetch_twilio_data'
     )
 ]
