@@ -230,7 +230,7 @@
             data: {'id': {{ accountprovider.id }}, 'range': $("#memberslider").val() },
             success: function(data){
                 var blob=new Blob([data], {type: "text/plain;charset=utf-8"});
-                saveAs(blob, "membercsv.csv");
+                saveAs(blob, "membercsv_" + moment().format('DD_MM_YYYY_h_mm_ss_a') + ".csv");
                 self.text("{% trans "Download Member Data CSV" %}");
             }
         });

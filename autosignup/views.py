@@ -12,7 +12,7 @@ from django.contrib.gis.geoip2 import GeoIP2
 from django.utils.timezone import now
 from django.core.cache import cache
 from django.views.decorators.http import require_POST
-from django.utils.timezone import now
+
 
 from allauth.account.models import EmailAddress
 
@@ -923,13 +923,13 @@ def download_member_csv(request):
     filename = '/tmp/%s.csv' % get_random_string()
     f = open(filename, 'w+')
     fieldnames = [
+        'ekata_id',
         'signup_date',
         'date_verified',
+        'username',
         'first_name',
         'last_name',
         'full_name',
-        'username',
-        'ekata_id',
         'house_number',
         'street',
         'zip_code',
