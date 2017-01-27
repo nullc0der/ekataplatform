@@ -35,7 +35,7 @@ def add_user_to_group(user):
     basicgroup = accountprovider.basicgroup
     basicgroup.members.add(user)
     try:
-        joinrequest = JoinRequest.objects.get(user=user)
+        joinrequest = JoinRequest.objects.get(user=user, basic_group=basicgroup)
         joinrequest.approved = True
         joinrequest.save()
     except ObjectDoesNotExist:
