@@ -895,7 +895,7 @@ def send_member_invitation(request):
 
 
 def get_date(date_obj):
-    return str(date_obj.year) + '-' + str(date_obj.month) + '-' + str(date_obj.day)
+    return str(date_obj.month) + '/' + str(date_obj.day) + '/' + str(date_obj.year)
 
 
 def parse_address(address):
@@ -960,7 +960,7 @@ def download_member_csv(request):
     for community_signup in signs:
         row = {}
         if community_signup.signup_date:
-            row['signup_date'] = get_date(community_signup.signup_date)
+            row['signup_date'] = get_date(community_signup.signup_date, )
         else:
             row['signup_date'] = ''
         if community_signup.verified_date:
