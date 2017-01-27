@@ -182,7 +182,9 @@
     <script type="text/javascript">
     var memberSlider = $("#memberslider").bootstrapSlider({
         max: {{ signups_count }},
-        min: 1
+        min: 1,
+        range: true,
+        value: 1
     });
     $('#signup_status').change(function(){
         var checked = $(this).is(':checked');
@@ -227,7 +229,7 @@
         $.ajax({
             url: '{% url 'autosignup:download_member_csv' %}',
             type: 'GET',
-            data: {'id': {{ accountprovider.id }}, 'range': $("#memberslider").val() },
+            data: {'id': {{ accountprovider.id }}, 'ranges': $("#memberslider").val() },
             success: function(data){
                 var blob=new Blob([data], {type: "text/plain;charset=utf-8"});
                 saveAs(blob, "membercsv_" + moment().format('DD_MM_YYYY_h_mm_ss_a') + ".csv");

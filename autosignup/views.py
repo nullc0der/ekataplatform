@@ -909,9 +909,10 @@ def parse_address(address):
 @login_required
 def download_member_csv(request):
     accountprovider = AccountProvider.objects.get(id=request.GET.get('id'))
-    ranges = request.GET.get('range')
+    ranges = request.GET.get('ranges')
+    ranges = ranges.split(',')
     community_signups = CommunitySignup.objects.filter(community=accountprovider.name)
-    signs = community_signups[0:int(ranges) + 1]
+    signs = community_signups[int(ranges[0]):int(ranges[1]) + 1]
     """
     for i in range(0, int(ranges) + 1):
         try:
