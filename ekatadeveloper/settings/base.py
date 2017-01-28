@@ -103,7 +103,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'easy_timezones.middleware.EasyTimezoneMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
-    'profilesystem.middleware.RemoveSkippedMiddleware'
+    'profilesystem.middleware.RemoveSkippedMiddleware',
+    'profilesystem.middleware.EkataIDMiddleware'
 ]
 
 

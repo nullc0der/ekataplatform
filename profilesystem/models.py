@@ -297,4 +297,6 @@ class ReadSysUpdate(models.Model):
 def set_unique_id(sender, instance, **kwargs):
     if not instance.ekata_id:
         task_unique_ekata_id_setter.delay(sender, instance)
+
+
 post_save.connect(set_unique_id, sender=UserProfile)

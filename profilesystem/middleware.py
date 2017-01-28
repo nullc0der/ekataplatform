@@ -46,3 +46,14 @@ class CheckInvitationMiddleware(object):
                 ]:
                 if not request.user.profile.invitation_verified:
                     return redirect(reverse('invitationsystem:addinvitation'))
+
+
+class EkataIDMiddleware(object):
+    def process_request(self, request):
+        if hasattr(request.user, 'profile'):
+            ekata_id = request.user.profile.ekata_id.split('.')
+            if len(ekata_id) > 2:
+                if ekata_id[2] == 'registered':
+                    ekata_id[2] = 'member'
+                    request.user.profile.ekata_id = '.'.join(ekata_id)
+                    request.user.profile.save()

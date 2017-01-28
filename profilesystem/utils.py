@@ -9,7 +9,7 @@ def unique_ekata_id_setter(sender, profile):
             length=10,
             allowed_chars='0123456789'
         )
-        ekata_id = 'ekatasocial.{}.member'.format(random_string)
+        ekata_id = 'ekatasocial.{}.registered'.format(random_string)
         userprofiles = sender.objects.filter(ekata_id=ekata_id)
         if not len(userprofiles):
             not_unique = False
