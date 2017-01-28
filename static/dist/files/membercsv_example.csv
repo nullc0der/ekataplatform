@@ -1,6 +1,6 @@
 ekata_id,signup_date,date_verified,username,first_name,last_name,full_name,house_number,street,zip_code,city,state,country,twilio_data,twilio_house_number,twilio_street,twilio_zip_code,twilio_city,twilio_state,twilio_country,twilio_latitude,twilio_longitude,email_id,phone_number,referred_by,referral_code,wallet_address,is_on_distribution,status,is_signed_up
 DELETE FROM THIS LINES BEFORE UPLOAD
 ##############################################################################################################################################
-signup_date,date_verified----------------must be in format yyyy-mm-dd
+signup_date,date_verified----------------must be in format mm/dd/yyyy
 is_on_distribution, is_signed_up------------true/false
 status------------------------------------pending/approved/declined

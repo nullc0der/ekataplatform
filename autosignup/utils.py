@@ -1,3 +1,5 @@
+import datetime
+import re
 import json
 import requests
 from iso3166 import countries
@@ -12,7 +14,6 @@ from django.conf import settings
 from django.core.cache import cache
 from django.contrib.auth.models import User, Group
 from django.utils.crypto import get_random_string
-from django.utils.dateparse import parse_date
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files import File
 from django.utils.timezone import now
@@ -28,6 +29,18 @@ from autosignup.models import CommunitySignup, GlobalEmail,\
 from groupsystem.models import BasicGroup, JoinRequest, GroupMemberRole,\
     GroupMemberExtraPerm
 from groupsystem.views import MEMBER_PERMS
+
+
+date_re = re.compile(
+    r'(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<year>\d{4})$'
+)
+
+
+def parse_date(value):
+    match = date_re.match(value)
+    if match:
+        kw = {k: int(v) for k, v in six.iteritems(match.groupdict())}
+        return datetime.date(**kw)
 
 
 def add_user_to_group(user):
