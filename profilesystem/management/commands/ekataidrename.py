@@ -12,8 +12,8 @@ class Command(BaseCommand):
                 if hasattr(user, 'profile'):
                     ekata_id = user.profile.ekata_id.split('.')
                     if len(ekata_id) > 2:
-                        if ekata_id[2] == 'registered':
-                            ekata_id[2] = 'member'
+                        if ekata_id[2] == 'member':
+                            ekata_id[2] = 'registered'
                             user.profile.ekata_id = '.'.join(ekata_id)
                             user.profile.save()
                             self.stdout.write(self.style.SUCCESS(
