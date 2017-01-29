@@ -5686,8 +5686,12 @@ table.text-center th {
   border-top: 3px solid #1e5799;
 }
 
+.member-wrapper {
+    margin: 0 5%;
+}
+
 .member {
-    width: 12%;
+    width: 14%;
     float: left;
     margin-left: 2%;
     background-color: #fff;
@@ -5722,7 +5726,14 @@ table.text-center th {
 
 .member-info {
     text-align: center;
+    overflow: hidden;
 }
+
+@keyframes marquee {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
 
 .member-username {
     font-family: "Source Sans Pro";
@@ -5732,6 +5743,11 @@ table.text-center th {
     margin-top: 10px;
     margin-bottom: 0px;
     color: #4A4A4A;
+    padding: 0 5px;
+}
+
+.marquee {
+    animation: marquee 15s linear infinite;
 }
 
 .member-status {
@@ -5756,6 +5772,10 @@ table.text-center th {
 }
 
 @media (max-width: 320px) {
+    .member-wrapper {
+        margin: 0;
+    }
+
     .member {
         width: 40%;
         margin-left: 7%;
@@ -5764,18 +5784,26 @@ table.text-center th {
 
 @media (min-width: 321px) and (max-width: 767px){
     .member {
-        width: 30%;
-        margin-left: 3%;
+        width: 40%;
+        margin-left: 6%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+    .member-wrapper {
+        margin: 0;
+    }
+
     .member {
         width: 22%;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1024px) {
+    .member-wrapper {
+        margin: 0;
+    }
+
     .member {
         width: 15%;
         margin-left: 1%;
@@ -5783,6 +5811,10 @@ table.text-center th {
 }
 
 @media (min-width: 2560px) {
+    .member-wrapper {
+        margin: 0;
+    }
+
     .member {
         width: 5%;
     }

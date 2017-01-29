@@ -221,5 +221,15 @@
             applyFilters();
         }
     });
+    $('.member-username').mouseenter(function() {
+        if ($(this)[0].scrollWidth > $(this).innerWidth()) {
+            $(this).addClass('marquee');
+        }
+    });
+    $('.member-username').mouseleave(function() {
+        if ($(this).hasClass('marquee')) {
+            $(this).removeClass('marquee');
+        }
+    });
     </script>
 {% endblock extrascripts %}

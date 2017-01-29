@@ -1,5 +1,5 @@
 {% load staticfiles el_pagination_tags i18n %}
-{% paginate 14 users %}
+{% paginate 12 users %}
 <div class="member-wrapper">
     {% for user in users %}
         <div class="member {% if user.is_staff %}member-staff{% endif %}" data-id="{{ user.id }}">
