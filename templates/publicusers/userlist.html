@@ -221,13 +221,12 @@
             applyFilters();
         }
     });
-    $('.member-username').mouseenter(function() {
+    $(document).on('mouseenter', '.member-username', function() {
         if ($(this)[0].scrollWidth > $(this).innerWidth()) {
-            console.log("exec");
             $(this).addClass('marquee');
         }
     });
-    $('.member-username').mouseleave(function() {
+    $(document).on('mouseleave', '.member-username', function() {
         if ($(this).hasClass('marquee')) {
             $(this).removeClass('marquee');
         }
