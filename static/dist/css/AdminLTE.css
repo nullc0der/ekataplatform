@@ -5799,7 +5799,7 @@ table.text-center th {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1024px) {
+@media (min-width: 992px) and (max-width: 1200px) {
     .member-wrapper {
         margin: 0;
     }
