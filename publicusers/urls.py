@@ -30,5 +30,6 @@ urlpatterns = [
         views.get_onlinestate,
         name='getonline'
     ),
-    url('getonlineusers', views.get_onlineusers, name='getonlineusers')
+    url('getonlineusers', views.get_onlineusers, name='getonlineusers'),
+    url('get_missing_users', views.get_missing_users, name='get_missing_users')
 ]

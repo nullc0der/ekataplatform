@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'django_object_actions',
     'simple_history',
+    'el_pagination',
     'landing',
     'profilesystem',
     'publicusers',

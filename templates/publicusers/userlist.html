@@ -1,108 +1,126 @@
 {% extends "base.html" %}
 {% load i18n staticfiles %}
 {% block title %}
-    {% trans "Users" %}
+    {% trans "Members" %}
 {% endblock title %}
 {% block extrastyle %}
 <style>
-    .search-box {
-        background: #f9f9f9;
-        padding: 15px;
-        position: relative;
+    .content-header {
+        padding: 0;
     }
-
-    .search-box > .form-group {
-        margin-bottom: 0px;
-    }
-
-    .search-box > .form-group > .form-control {
-        height: 47px;
-    }
-
-    .search-box > .form-group .fa {
-        position: absolute;
-        top: 27px;
-        left: 25px;
-        font-size: 25px;
-        color: #bbbbbb;
-    }
-
-    .search-box > .form-group > .btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        border-radius: 0px;
-    }
-
-    .center-col {
-	    float:none !important;
-	    margin:30px auto;
+    .content-wrapper {
+        background-color: #f9f9f9;
     }
 </style>
-{% endblock extrastyle %} {% block content_header %}
-<h1>
-    {% trans "Users" %}<br>
-    <small><i class="fa fa-user"></i>
-            {% if user and not user.is_anonymous %}
-                <a>
-                {% blocktrans with username_t=user.username trimmed %}
-                   Hello, {{ username_t }}!
-                {% endblocktrans %}
-                </a>
-                <br>
-            {% else %}
-                <a>Hello, User!</a>
-                <br>
-            {% endif %}
-        </small>
-</h1>
-<ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-users"></i>{% trans "Users" %}</a></li>
-</ol>
-{% endblock content_header %} {% block content %}
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Search Users</h3>
-            </div><!-- /.box-header -->
-            <div class="box-body">
-                <div class="col-lg-5 center-col search-box">
-                    <form class="form-group" action="." id="usersearch">
-                        <input type="text" class="form-control" placeholder="{% trans " Search Users " %}" id="users" name="username">
-                        {% comment %}
-                            <i class="fa fa-search"></i>
-                        <button type="submit" class="btn btn-primary btn-lg">{% trans "Search" %}</button>
-                        {% endcomment %}
-                    </form>
-                </div>
+{% endblock extrastyle %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Members" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Dashboard" %}</a></li>
+                <li class="active">{% trans "Members" %}</li>
+            </ol>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by username..." id="liveSearch">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button class="btn btn-content-header" data-toggle="filter-sidebar"><i class="fa fa-filter"></i></button>
+                </span>
             </div>
         </div>
-    </div>
+    </section>
+{% endblock content_header_new %}
+{% block content %}
+<div class="row">
     <div class="col-md-12" id="searchresults">
-        {% include "publicusers/users.html" %}
+        {% include page_template %}
     </div>
 </div>
 {% endblock content %}
+{% block filter_sidebar_options %}
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <button class="btn-filter btn-filter-left{% if 'online' in filters_enabled %} btn-filter-selected{% endif %}" data-filter-name='online' data-selected='true'>{% trans "Online" %}</button>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <button class="btn-filter{% if 'offline' in filters_enabled %} btn-filter-selected{% endif %}" data-filter-name='offline' data-selected='true'>{% trans "Offline" %}</button>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <button class="btn-filter btn-filter-left{% if 'staff' in filters_enabled %} btn-filter-selected{% endif %}" data-filter-name='staff' data-selected='true'>{% trans "Staff" %}</button>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <button class="btn-filter{% if 'member' in filters_enabled %} btn-filter-selected{% endif %}" data-filter-name='member' data-selected='true'>{% trans "Member" %}</button>
+    </div>
+</div>
+{% endblock %}
 {% block extrascripts %}
+    <script src="{% static "el-pagination/js/el-pagination.js" %}"></script>
     <script type="text/javascript">
-        /*$("#usersearch").submit(function() {
-             var query = $("#users").val();
-            $("#searchresults").load(
-                "{% url 'publicusers:index' %}?username=" + encodeURIComponent(query)
-            );
-            return false;
-        })*/
-        $("#users").keyup(function(){
-            var query = $(this).val();
-            $("#searchresults").load(
-                "{% url 'publicusers:index' %}?username=" + encodeURIComponent(query)
-            );
-        });
-        (function getOnlineUsers(){
+    var filters_enabled =
+    [{% for filter_enabled in filters_enabled %}
+        '{{ filter_enabled }}',
+    {% endfor %}];
+    function isFilterChanged(){
+        return filters_enabled.length !== 4;
+    }
+    function applyFilters() {
+        if (filters_enabled.length) {
+            var filters = filters_enabled;
             $.ajax({
-                url: '{% url 'publicusers:getonlineusers' %}',
-                success: function(data){
+                url: '{% url 'publicusers:index' %}',
+                data: {'filters_enabled': filters},
+                success: function (data) {
+                    $('#searchresults').html(data);
+                    var o = $.AdminLTE.options.filterSidebarOptions;
+                    var sidebar = $(o.selector);
+                    $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+                }
+            });
+        }
+    };
+    function isOnlineFilterEnabled() {
+        var index = filters_enabled.indexOf('online');
+        if (index > -1) {
+            return true;
+        }
+        return false;
+    }
+    (function getOnlineUsers(){
+        $.ajax({
+            url: '{% url 'publicusers:getonlineusers' %}',
+            success: function(data){
+                if (isFilterChanged() && isOnlineFilterEnabled()) {
+                    var notVisibleMembers = [];
+                    $.each(data, function(k, v){
+                        if(data[k] === 'online') {
+                            if (!($(".member[data-id=" + k + "]").length)) {
+                                notVisibleMembers.push(k);
+                            }
+                        }
+                        else {
+                            if ($(".member[data-id=" + k + "]").length) {
+                                $(".member[data-id=" + k + "]").remove();
+                            }
+                        }
+                    });
+                    if (notVisibleMembers.length) {
+                        $.ajax({
+                            url: '{% url 'publicusers:get_missing_users' %}',
+                            data: {'users': notVisibleMembers},
+                            success: function(data) {
+                                $(".member-wrapper").append(data);
+                            }
+                        });
+                    }
+                }
+                else {
                     $('.userstatus').each(function(){
                         var user_id = $(this).data('user-id');
                         var userstatus = $(this);
@@ -112,19 +130,19 @@
                                     $(userstatus).empty();
                                     $(userstatus).removeAttr('data-toggle');
                                     $(userstatus).removeAttr('title');
-                                    $(userstatus).append('<i class="fa fa-circle text-success onlinestatus"></i> {% trans "Online" %}');
+                                    $(userstatus).append('<i class="fa fa-circle text-success onlinestatus"></i>');
                                 }
                                 else {
                                     if (data[k]) {
                                         var lastseen = moment(data[k]).format('MMMM Do YYYY, hh:mm a')
                                         $(userstatus).empty();
-                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}');
+                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i>');
                                         $(userstatus).attr('data-toggle', 'tooltip');
                                         $(userstatus).attr('title', '{% trans "lastseen: " %}' + lastseen);
                                     }
                                     else {
                                         $(userstatus).empty();
-                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i> {% trans "Offline" %}')
+                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i>')
                                         $(userstatus).attr('data-toggle', 'tooltip');
                                         $(userstatus).attr('title', '{% trans "lastseen: unknown" %}');
                                     }
@@ -132,11 +150,86 @@
                             }
                         })
                     });
-                },
-                complete: function() {
-                    setTimeout(getOnlineUsers, 15000);
                 }
-            });
-        })();
+            },
+            complete: function() {
+                setTimeout(getOnlineUsers, 15000);
+            }
+        });
+    })();
+    $.endlessPaginate({
+        paginateOnScroll: true,
+        paginateOnScrollMargin: 20
+    });
+    $('.btn-filter').click(function(){
+        var _this = $(this);
+        if (_this.data('selected')) {
+            var index = filters_enabled.indexOf(_this.data('filter-name'));
+
+            if (index > -1) {
+                filters_enabled.splice(index, 1);
+            }
+            _this.data('selected', false);
+            _this.removeClass('btn-filter-selected');
+        }
+        else {
+            filters_enabled.push(_this.data('filter-name'));
+            _this.data('selected', true);
+            _this.addClass('btn-filter-selected');
+        }
+    });
+    $('#applyFilters').click(function() {
+        var o = $.AdminLTE.options.filterSidebarOptions;
+        var sidebar = $(o.selector);
+        $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+        applyFilters();
+    });
+    $("#liveSearch").keyup(function(){
+        var _this = $(this);
+        if (filters_enabled.length) {
+            var data = {'filters_enabled': filters_enabled, 'q': _this.val()};
+        }
+        else {
+            var data = {'q': _this.val()};
+        }
+        $.ajax({
+            url: '{% url 'publicusers:index' %}',
+            data: data,
+            success: function (data) {
+                $('#searchresults').html(data);
+            }
+        });
+    });
+    var mouse_is_inside = false;
+    $(".filterbtn, .filter-sidebar, .filter-sidebar-bg").hover(function(){
+        mouse_is_inside=true;
+    }, function(){
+        mouse_is_inside=false;
+    });
+    $(document).click(function () {
+        var o = $.AdminLTE.options.filterSidebarOptions;
+        var sidebar = $(o.selector);
+        if (($('body').hasClass('filter-sidebar-open') || sidebar.hasClass('filter-sidebar-open')) && ! mouse_is_inside) {
+            $.AdminLTE.filterSidebar.close(sidebar, o.slide);
+            applyFilters();
+        }
+    });
+    $(".btn-content-header").click(function(){
+        var o = $.AdminLTE.options.filterSidebarOptions;
+        var sidebar = $(o.selector);
+        if (($('body').hasClass('filter-sidebar-open') || sidebar.hasClass('filter-sidebar-open'))) {
+            applyFilters();
+        }
+    });
+    $(document).on('mouseenter', '.member-username', function() {
+        if ($(this)[0].scrollWidth > $(this).innerWidth()) {
+            $(this).addClass('marquee');
+        }
+    });
+    $(document).on('mouseleave', '.member-username', function() {
+        if ($(this).hasClass('marquee')) {
+            $(this).removeClass('marquee');
+        }
+    });
     </script>
 {% endblock extrascripts %}

@@ -1,0 +1,29 @@
+{% load i18n static %}
+{% for user in users %}
+    <div class="member {% if user.is_staff %}member-staff{% endif %}" data-id="{{ user.id }}">
+        <a href="{% url 'publicusers:user' user.id %}">
+            <div class="member-image">
+                {% if user.profile.avatar_public %}
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.thumbnail.128x128 }}" alt="User Image">
+                    {% else %}
+                        <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image">
+                    {% endif %}
+                    {% else %}
+                        <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image">
+                {% endif %}
+                <p class="users-list-date userstatus" data-user-id='{{ user.id }}'>
+                    {% if user.profile.online %}
+                        <i class="fa fa-circle text-success onlinestatus"></i>
+                    {% else %}
+                        <i class="fa fa-circle onlinestatus"></i>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="member-info">
+                <p class="member-username">{{ user.username }}</p>
+                <p class="member-status">{% if user.is_staff %}{% trans "Staff" %}{% else %}{% trans "Member" %}{% endif %}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
