@@ -62,7 +62,8 @@ def users_page(request):
                 users = offline_users
     if 'q' in request.GET:
         if type(users) == list:
-            users = User.objects.filter(id__in=users)
+            users_id = [x.id for x in users]
+            users = User.objects.filter(id__in=users_id)
         users = users.filter(username__icontains=request.GET.get('q'))
     request.session['filters_enabled'] = filters_enabled
     if request.is_ajax():
