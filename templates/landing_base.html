@@ -1,4 +1,4 @@
-{% load staticfiles i18n raven %}
+{% load staticfiles i18n raven compress %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -19,9 +19,11 @@
 
 		{% block extrameta %}
 		{% endblock %}
+		<!-- google font -->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,800' rel='stylesheet' type='text/css'>
 
-        <link rel="shortcut icon" type="image/png" href="{% static "dist/img/favicon.ico" %}">
-
+		<link rel="shortcut icon" type="image/png" href="{% static "dist/img/favicon.ico" %}">
+		{% compress css %}
 		<!-- animate css -->
         <link rel="stylesheet" href="{% static "dist/css/animate.min.css" %}">
 		<!-- bootstrap css -->
@@ -30,14 +32,14 @@
 		<link rel="stylesheet" href="{% static "dist/css/font-awesome.min.css" %}">
 		<!-- bootstrap social icon -->
 		<link rel="stylesheet" href="{% static "dist/css/bootstrap-social.css" %}">
-		<!-- google font -->
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,800' rel='stylesheet' type='text/css'>
+
 		<!-- Bootstrap Notify -->
     	<link rel="stylesheet" href="{% static "dist/css/bootstrap-notify.css" %}">
 
 		<!-- custom css -->
 		<link rel="stylesheet" href="{% static "dist/css/templatemo-style.css" %}?v=2.0.1">
 
+		{% endcompress %}
 		{% block extrastyles %}
 		{% endblock %}
 
@@ -253,14 +255,15 @@
 		</footer>
 		<!-- end footer -->
 
-		<script src="{% static "dist/js/jquery.js" %}"></script>
 		<script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
+		<script src="{% static "dist/js/jquery.js" %}"></script>
 		<script>Raven.config('{% sentry_public_dsn %}').install()</script>
 		<script src="{% static "dist/js/bootstrap.min.js" %}"></script>
 		<script src="{% static "dist/js/wow.min.js" %}"></script>
 		<script src="{% static "dist/js/jquery.singlePageNav.min.js" %}"></script>
     	<script src="{% static "dist/js/bootstrap-notify.js" %}"></script>
 		<script src="{% static "dist/js/custom.js" %}"></script>
+		{% compress js %}
 		<script type="text/javascript">
 			function getCookie(name) {
 				var cookieValue = null;
@@ -331,6 +334,7 @@
 				x.parentNode.insertBefore(s, x);
 			})();
 		</script>
+		{% endcompress %}
 		{% block extrascripts %}
 
 		{% endblock %}

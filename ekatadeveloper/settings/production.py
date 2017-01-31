@@ -58,3 +58,12 @@ CHANNEL_LAYERS = {
         "ROUTING": "ekatadeveloper.routing.channel_routing",
     },
 }
+
+STATIC_ROOT = os.path.join(BASE_DIR, "statics")
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
