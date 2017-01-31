@@ -22,6 +22,14 @@ STATIC_URL = '/statics/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "statics")
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = get_env_variable('DJANGO_EMAIL_HOST')
 EMAIL_PORT = 25
@@ -58,12 +66,3 @@ CHANNEL_LAYERS = {
         "ROUTING": "ekatadeveloper.routing.channel_routing",
     },
 }
-
-STATIC_ROOT = os.path.join(BASE_DIR, "statics")
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # other finders..
-    'compressor.finders.CompressorFinder',
-)

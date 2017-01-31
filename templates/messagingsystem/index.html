@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block title %}
     {% trans "Messaging" %}
 {% endblock title %}
 {% block extrastyle %}
+    {% compress css %}
     <style>
         .chatuser {
             padding: 6px;
@@ -48,6 +49,7 @@
             color: #fff;
         }
     </style>
+    {% endcompress %}
 {% endblock extrastyle %}
 {% block content_header %}
     <h1>
@@ -114,6 +116,7 @@
     </div>
 {% endblock content %}
 {% block extrascripts %}
+    {% compress js %}
     <script>
         function clear_form_field_errors(form) {
             $(".error-msg", $(form)).remove();
@@ -281,4 +284,5 @@
             clear_form_field_errors("#requestform");
         });
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

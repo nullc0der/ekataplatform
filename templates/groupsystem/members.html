@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles bootstrap_tags guardian_tags %}
+{% load i18n staticfiles bootstrap_tags guardian_tags compress %}
 {% block title %}
     {{ group.name }} | {% trans "Members" %} | Admin
 {% endblock title %}
@@ -111,6 +111,7 @@
     </div><!-- /.Edit User Perm Modal -->
 {% endblock content %}
 {% block extrascripts %}
+    {% compress js %}
     <script>
         function removeMember(username) {
             $.ajax({
@@ -279,4 +280,5 @@
             });
         });
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

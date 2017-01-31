@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block title %}
     {% trans "Members" %}
 {% endblock title %}
@@ -62,6 +62,7 @@
 {% endblock %}
 {% block extrascripts %}
     <script src="{% static "el-pagination/js/el-pagination.js" %}"></script>
+    {% compress js %}
     <script type="text/javascript">
     var filters_enabled =
     [{% for filter_enabled in filters_enabled %}
@@ -232,4 +233,5 @@
         }
     });
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

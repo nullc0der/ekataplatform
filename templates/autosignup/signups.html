@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block title %}
     {% trans "Signups" %}
 {% endblock %}
@@ -71,6 +71,7 @@
     </div>
 {% endblock %}
 {% block extrascripts %}
+    {% compress js %}
     <script type="text/javascript">
         function revertToHistory(history_id, history_object_id, history_date) {
             var ans = confirm('This will change signup data to ' + history_date + '\n' + 'Are you sure?');
@@ -231,4 +232,5 @@
             }
         });
     </script>
+    {% endcompress %}
 {% endblock %}

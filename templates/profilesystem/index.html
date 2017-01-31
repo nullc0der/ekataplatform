@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% load staticfiles i18n %}
+{% load staticfiles i18n compress %}
 
 {% block title %}
     {% trans "Profile" %}
 {% endblock title %}
 
 {% block extrastyle %}
+    {% compress css %}
     <style>
         #editdiv {
             display: none;
@@ -31,6 +32,7 @@
             font-size: 15px;
         }
     </style>
+    {% endcompress %}
 {% endblock extrastyle %}
 
 {% block content_header %}
@@ -726,6 +728,7 @@
 {% endblock content %}
 
 {% block extrascripts %}
+    {% compress js %}
     <script type="text/javascript">
         function getCookie(name) {
             var cookieValue = null;
@@ -1100,4 +1103,5 @@
             });
         });
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

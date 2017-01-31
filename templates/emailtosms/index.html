@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block title %}
     {% trans "Email to sms" %}
 {% endblock title %}
@@ -105,6 +105,7 @@
 </div>
 {% endblock content %}
 {% block extrascripts %}
+    {% compress js %}
     <script>
         $("#confirmationdiv").hide();
         $("#verificationform").hide();
@@ -167,4 +168,5 @@
             'search': true,
         });
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

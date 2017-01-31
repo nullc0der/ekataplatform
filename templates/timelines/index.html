@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n bootstrap_tags staticfiles %}
+{% load i18n bootstrap_tags staticfiles compress %}
 {% block title %}
     {% trans "Timeline" %}
 {% endblock title %}
@@ -128,6 +128,7 @@
 {% endblock content %}
 {% block extrascripts %}
     <script type="text/javascript" src="{% static "plugins/pace/pace.min.js" %}"></script>
+    {% compress js %}
     <script type="text/javascript">
          // using jQuery
         function getCookie(name) {
@@ -277,4 +278,5 @@
         $(anchor).find(".timeline-item").css("background-color", "#327aa3");
         setTimeout(function(){ $(anchor).find(".timeline-item").css("background-color", ""); }, 2000);
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block extrastyle %}
     <link rel="stylesheet" href="{% static "dist/css/dashboard.css" %}?v=1">
 {% endblock extrastyle %}
@@ -293,6 +293,7 @@
 {% endblock content %}
 {% block extrascripts %}
 <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
+{% compress js %}
 <script type="text/javascript">
     //var next_release = moment.tz("{{ next_release|date:"Y-m-d H:i" }}", 'UTC');
     //var next_release = moment.utc('{{ next_release|date:"Y-m-d H:i" }}').toDate();
@@ -456,4 +457,5 @@
         })
     });
 </script>
+{% endcompress %}
 {% endblock %}

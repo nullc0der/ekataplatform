@@ -94,7 +94,6 @@ INSTALLED_APPS = [
     'autosignup'
 ]
 
-COMPRESS_ENABLED = True
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
