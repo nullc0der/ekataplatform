@@ -1,3 +1,7 @@
+import requests
+
+from django.contrib.auth.models import User
+from django.core import serializers
 from eblast.models import EmailGroup
 
 
@@ -16,3 +20,11 @@ def create_emailgroup(basicgroup):
         emailgroup.users.add(user)
 
     return 1
+
+
+def send_serialized_user(pk_set):
+    users = User.objects.filter(id__in=pk_set)
+    data = serializers.serialize('json', users)
+    url = 'http://localhost:8001'
+    res = requests.post(url, json=data)
+    return res.status_code

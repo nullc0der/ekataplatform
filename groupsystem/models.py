@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.db.models.signals import m2m_changed
 
 from versatileimagefield.fields import VersatileImageField
 from versatileimagefield.placeholder import OnStoragePlaceholderImage
@@ -64,6 +65,7 @@ class BasicGroup(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     auto_approve_post = models.BooleanField(default=True, blank=True)
     auto_approve_comment = models.BooleanField(default=True, blank=True)
+    is_beta_test_group = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('g:groupdetails', args=[self.id, ])
@@ -268,3 +270,15 @@ class GroupMemberExtraPerm(models.Model):
     can_read_custom_role = models.BooleanField(default=False)
     can_update_custom_role = models.BooleanField(default=False)
     can_create_custom_role = models.BooleanField(default=False)
+
+
+def sync_users_to_dev(sender, instance, **kwargs):
+    if instance.is_beta_test_group:
+        action = kwargs.pop('action', None)
+        if action == 'post_add':
+            pk_set = kwargs.pop('pk_set', None)
+            from groupsystem.tasks import task_send_serialized_user
+            task_send_serialized_user.delay(pk_set)
+
+
+m2m_changed.connect(sync_users_to_dev, sender=BasicGroup.members.through)
