@@ -1,4 +1,4 @@
-{% load staticfiles i18n bip_extras raven %}
+{% load staticfiles i18n bip_extras raven compress %}
 <!DOCTYPE html>
 <html>
 
@@ -25,6 +25,14 @@
     <!-- Emojione -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/2.2.6/assets/css/emojione.min.css"/>
     <link rel="stylesheet" href="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css">
+    <!-- Selectpicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+    <!--Dropzone-->
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+    <!--Bootstrap Slider-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/css/bootstrap-slider.min.css" />
+    <link rel="manifest" href="/manifest.json">
+    {% compress css %}
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.2.9">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -44,14 +52,10 @@
     <link rel="stylesheet" href="{% static "plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css" %}">
     <!--Color Picker -->
     <link rel="stylesheet" href="{% static "plugins/colorpicker/bootstrap-colorpicker.min.css" %}">
-    <!-- Selectpicker -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     <!-- Bootstrap Notify -->
     <link rel="stylesheet" href="{% static "dist/css/bootstrap-notify.css" %}">
     <!--Bootstrap Table -->
     <link rel="stylesheet" href="{% static "plugins/bootstrap-table/bootstrap-table.min.css" %}">
-    <!--Dropzone-->
-    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
     <!--Full Calendar -->
     <link rel="stylesheet" href="{% static "plugins/fullcalendar/fullcalendar.min.css" %}">
     <!-- File Input -->
@@ -64,9 +68,6 @@
     <link rel="stylesheet" href="{% static "plugins/picedit/css/picedit.min.css" %}">
     <!--Sweet Alert-->
     <link rel="stylesheet" href="{% static "plugins/swal/sweetalert.css" %}">
-    <!--Bootstrap Slider-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/css/bootstrap-slider.min.css" />
-    <link rel="manifest" href="/manifest.json">
 
     <style>
         #msgbox {
@@ -92,6 +93,7 @@
             display: none;
         }
     </style>
+    {% endcompress %}
     {% block extrastyle %} {% endblock extrastyle %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -603,6 +605,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/bootstrap-slider.min.js"></script>
     <!-- File Saver -->
     <script src="{% static "plugins/filesaver/FileSaver.min.js" %}"></script>
+    {% compress js %}
     <script type="text/javascript">
         var convertEmojis = function (single) {
             emojione.imageType = 'svg';
@@ -927,8 +930,10 @@
             });
         });
     </script>
+    {% endcompress %}
     <script type="text/javascript" src="{% static "dist/js/widgetstate.js" %}"></script>
     <script type="text/javascript" src="{% static "plugins/reconnectingwebsocket/reconnecting-websocket.js" %}"></script>
+    {% compress js %}
     <script type="text/javascript">
         var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
         var realtime_notification_path = ws_scheme + '://' + window.location.host + "/notifications/stream/";
@@ -1046,6 +1051,7 @@
             });
         })();
     </script>
+    {% endcompress %}
     {% block extrascripts %}
     {% endblock extrascripts %}
     <script type="text/javascript">

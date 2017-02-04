@@ -1,11 +1,13 @@
 {% extends "landing_base.html" %}
-{% load staticfiles i18n %}
+{% load staticfiles i18n compress %}
 {% block title %}
     Hashtag
 {% endblock %}
 {% block extrastyles %}
     <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-    <link rel="stylesheet" href="{% static "dist/css/bootstrap-image-gallery.min.css" %}" charset="utf-8">
+    {% compress css %}
+        <link rel="stylesheet" href="{% static "dist/css/bootstrap-image-gallery.min.css" %}" charset="utf-8">
+    {% endcompress %}
 {% endblock %}
 {% block extrameta %}
 {% if ogtag %}
@@ -126,6 +128,7 @@
 {% endblock %}
 {% block extrascripts %}
     <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    {% compress js %}
     <script src="{% static "dist/js/bootstrap-image-gallery.min.js" %}"></script>
     <script type="text/javascript">
         function hashTagMap() {
@@ -190,5 +193,6 @@
             });
         }
     </script>
+    {% endcompress %}
     <script src="https://maps.googleapis.com/maps/api/js?callback=hashTagMap&key=AIzaSyDT9La3M6Mq1ncgY8INIhurRFNiFuw8AuQ"></script>
 {% endblock %}

@@ -192,5 +192,9 @@ urlpatterns = [
         r'^group/edittoggle/(?P<group_id>\d+)/$',
         views.group_admin_settings_toggle,
         name='edittoggle'
+    ),
+    url(
+        r'^integrate_users/$',
+        views.integrate_users
     )
 ]

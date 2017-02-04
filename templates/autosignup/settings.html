@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block title %}
     {% trans "Signups settings" %}
 {% endblock %}
@@ -179,6 +179,7 @@
     </div>
 {% endblock %}
 {% block extrascripts %}
+    {% compress js %}
     <script type="text/javascript">
     var memberSlider = $("#memberslider").bootstrapSlider({
         max: {{ signups_count }},
@@ -263,4 +264,5 @@
         });
     });
     </script>
+    {% endcompress %}
 {% endblock %}

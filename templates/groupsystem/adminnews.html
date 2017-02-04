@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n bootstrap_tags guardian_tags %}
+{% load i18n bootstrap_tags guardian_tags compress %}
 {% block title %}
     {{ group.name }} | {% trans "Admin" %} | {% trans "News" %}
 {% endblock title %}
@@ -73,6 +73,7 @@
     </div>
 {% endblock content %}
 {% block extrascripts %}
+    {% compress js %}
     <script>
         function editNews(news_id) {
             $.ajax({
@@ -103,4 +104,5 @@
             });
         });
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

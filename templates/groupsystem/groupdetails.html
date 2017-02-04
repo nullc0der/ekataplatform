@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n guardian_tags %}
+{% load i18n guardian_tags compress %}
 {% block title %}
     {{ group.name }}
 {% endblock title %}
@@ -176,6 +176,7 @@
     {% endif %}
 {% endblock content %}
 {% block extrascripts %}
+    {% compress js %}
     <script>
         function showNews(news_id) {
             $.ajax({
@@ -292,4 +293,5 @@
             });
         });
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

@@ -4,8 +4,10 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFoun
 from django.utils.translation import ugettext_lazy as _
 from django.core.files import File
 from django.core.exceptions import ObjectDoesNotExist
+from django.core import serializers
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User, Group
@@ -1594,3 +1596,12 @@ def edit_extra_permissions(request, group_id, user_id):
             'form': form
         }
     )
+
+
+@require_POST
+@csrf_exempt
+def integrate_users(request):
+    data = request.POST.get('data')
+    for obj in serializers.deserialize('json', data):
+        obj.save()
+    return HttpResponse(status=200)

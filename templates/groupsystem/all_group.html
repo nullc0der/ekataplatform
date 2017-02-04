@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% load i18n bootstrap_pagination %}
+{% load i18n bootstrap_pagination compress %}
 
 {% block title %}
     {% trans "All Groups" %}
 {% endblock title %}
 
 {% block extrastyle %}
+    {% compress css %}
     <style>
         .fullscreen-modal .modal-dialog {
             margin: 0;
@@ -29,6 +30,7 @@
             }
         }
     </style>
+    {% endcompress %}
 {% endblock extrastyle %}
 
 {% block content_header %}
@@ -93,6 +95,7 @@
     </div><!-- /.Create Group Modal -->
 {% endblock content %}
 {% block extrascripts %}
+    {% compress js %}
     <script>
         function clear_form_field_errors(form) {
             $(".error-msg", $(form)).remove();
@@ -150,4 +153,5 @@
             }
         });
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

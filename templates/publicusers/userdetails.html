@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block title %}
     {{ user.username }} | Basic Income Project
 {% endblock title %}
 
 
 {% block extrastyle %}
+    {% compress css %}
     <style type="text/css">
         .visibilty {
             position: absolute;
@@ -37,6 +38,7 @@
             width: 100px !important;
         }
     </style>
+    {% endcompress %}
 {% endblock extrastyle %}
 
 
@@ -128,6 +130,7 @@
 {% endblock content %}
 
 {% block extrascripts %}
+    {% compress js %}
     <script type="text/javascript">
         // using jQuery
         function getCookie(name) {
@@ -405,4 +408,5 @@
             });
         })();
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

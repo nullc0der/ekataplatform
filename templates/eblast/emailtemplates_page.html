@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles bootstrap_tags %}
+{% load i18n staticfiles bootstrap_tags compress %}
 {% block title %}
     {% trans "EmailTemplates | eBlast" %}
 {% endblock title %}
@@ -79,6 +79,7 @@
 {% block extrascripts %}
     <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
     <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    {% compress js %}
     <script type="text/javascript">
         function reloadCKEditor() {
             $('textarea[data-type=ckeditortype]').each(function(){
@@ -237,4 +238,5 @@
             });
         });
     </script>
+    {% endcompress %}
 {% endblock %}

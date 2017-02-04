@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block title %}
     {{ title }} | Basic Income Project
 {% endblock title %}
 {% block extrastyle %}
+{% compress css %}
 <style>
     .search-box {
         background: #f9f9f9;
@@ -39,6 +40,7 @@
 	    margin:30px auto;
     }
 </style>
+{% endcompress %}
 {% endblock extrastyle %} {% block content_header %}
 <h1>
     {{ title }}<br>

@@ -1,15 +1,17 @@
 {% extends "base.html" %}
-{% load i18n staticfiles %}
+{% load i18n staticfiles compress %}
 {% block title %}
     {% trans "Dashboard" %}
 {% endblock title %}
 {% block extrastyle %}
+    {% compress css %}
     <link rel="stylesheet" href="{% static "dist/css/dashboard.css" %}?v=1">
     <style>
         .popovercontent {
             display: none;
         }
     </style>
+    {% endcompress %}
 {% endblock %}
 {% block content_header %}
     <h1>
@@ -448,6 +450,7 @@
 {% endblock %}
 {% block extrascripts %}
 <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
+{% compress js %}
 <script type="text/javascript">
     function getCookie(name) {
         var cookieValue = null;
@@ -717,4 +720,5 @@
     totalMemberChart.Line(totalMemberChartData, totalMemberChartOptions);
     {% endif %}
 </script>
+{% endcompress %}
 {% endblock %}

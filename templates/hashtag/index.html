@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% load i18n staticfiles socialaccount %}
+{% load i18n staticfiles socialaccount compress %}
 {% block title %}
     {% trans "Hashtag Banner" %}
 {% endblock title %}
 {% block extrastyle %}
+    {% compress css %}
     <style>
         @media(max-width: 767px) {
             #twitterbtn {
@@ -28,6 +29,7 @@
             height: 90%;
         }
     </style>
+    {% endcompress %}
 {% endblock extrastyle %}
 {% block content_header %}
     <h1>
@@ -131,6 +133,7 @@
 </div><!-- /.Document Upload modal -->
 {% endblock content %}
 {% block extrascripts %}
+    {% compress js %}
     <script>
         var cnvs = document.getElementById('cnvs'),
             ctx = cnvs.getContext('2d'),
@@ -431,4 +434,5 @@
         $("#avatarimg").hide();
         $("#serverimages").hide();
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}

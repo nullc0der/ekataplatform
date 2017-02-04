@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles guardian_tags %}
+{% load i18n staticfiles guardian_tags compress %}
 {% block title %}
     {{ group.name }} | Posts | Admin
 {% endblock title %}
@@ -101,6 +101,7 @@
     {% endif %}
 {% endblock content %}
 {% block extrascripts %}
+    {% compress js %}
     <script>
         function approvePost(post_id) {
             $.ajax({
@@ -167,4 +168,5 @@
             });
         {% endif %}
     </script>
+    {% endcompress %}
 {% endblock extrascripts %}
