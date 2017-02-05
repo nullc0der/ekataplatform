@@ -22,12 +22,9 @@ def send_test_mail(id, from_email, to_email):
         linktag.string = 'View in browser'
         soup.webversion.append(linktag)
         email_html = soup.prettify()
-    try:
-        username = User.objects.get(email=to_email).username
-    except:
-        username = None
+    usernames = User.objects.filter(email=to_email)
     email_html = Template(email_html)
-    context = Context({'username': username})
+    context = Context({'username': usernames[0] if usernames else emailaddress})
     email_html = email_html.render(context)
     msg = EmailMultiAlternatives(
         subject,
@@ -67,12 +64,9 @@ def send_campaign_email(id, from_email, groups):
         url = '/en/eblast/image/' + emailcampaign.tracking_id + '/' + campaigntracking.tracking_id + '/'
         url = "https://" + Site.objects.get_current().domain + url
         image_tag = '<img src="' + url + '" style="visibity: hidden"></img>'
-        try:
-            username = User.objects.get(email=emailaddress).username
-        except:
-            username = None
+        usernames = User.objects.filter(email=emailaddress)
         email_html = Template(email_html)
-        context = Context({'image_tag': image_tag, 'username': username})
+        context = Context({'image_tag': image_tag, 'username': usernames[0] if usernames else emailaddress})
         email_html = email_html.render(context)
         msg = EmailMultiAlternatives(
             subject,
