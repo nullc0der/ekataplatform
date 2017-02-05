@@ -84,7 +84,7 @@
 .skin-blue .sidebar-menu > li.divider {
     color: #fff;
     background: #3d3d3d;
-    padding: 12px;
+    padding: 12.5px;
     font-weight: 600;
     text-align: center;
 }
@@ -94,7 +94,7 @@
 .skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .sidebar-menu > li.active > a {
   color: #ffffff;
-  background-color: #4990E2;
+  background-color: #397CCB;
 }
 .skin-blue .sidebar-menu > li > .treeview-menu {
   background: #ffffff;
