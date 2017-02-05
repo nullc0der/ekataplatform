@@ -5,7 +5,6 @@ from django.core.urlresolvers import reverse
 from django.template import Template, Context
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
 
 from eblast.models import EmailId, EmailCampaign, CampaignTracking
 
@@ -25,7 +24,7 @@ def send_test_mail(id, from_email, to_email):
         email_html = soup.prettify()
     try:
         username = User.objects.get(email=to_email).username
-    except ObjectDoesNotExist:
+    except:
         username = None
     email_html = Template(email_html)
     context = Context({'username': username})
@@ -70,7 +69,7 @@ def send_campaign_email(id, from_email, groups):
         image_tag = '<img src="' + url + '" style="visibity: hidden"></img>'
         try:
             username = User.objects.get(email=emailaddress).username
-        except ObjectDoesNotExist:
+        except:
             username = None
         email_html = Template(email_html)
         context = Context({'image_tag': image_tag, 'username': username})
