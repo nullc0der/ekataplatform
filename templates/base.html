@@ -139,86 +139,6 @@
                         <li class="dropdown notifications-menu"  id="notification">
 
                         </li>
-                         <!--Tasks: style can be found in dropdown.less
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 9 tasks</li>
-                                <li>
-                                     inner menu: contains the actual data
-                                    <ul class="menu">
-                                        <li>
-                                             Task item
-                                            <a href="#">
-                                                <h3>
-                                                    Design some buttons
-                                                    <small class="pull-right">20%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">20% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                         end task item
-                                        <li>
-                                             Task item
-                                            <a href="#">
-                                                <h3>
-                                                    Create a nice theme
-                                                    <small class="pull-right">40%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">40% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                         end task item
-                                        <li>
-                                             Task item
-                                            <a href="#">
-                                                <h3>
-                                                    Some task I need to do
-                                                    <small class="pull-right">60%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">60% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                         end task item
-                                        <li>
-                                             Task item
-                                            <a href="#">
-                                                <h3>
-                                                    Make beautiful transitions
-                                                    <small class="pull-right">80%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                                        aria-valuemax="100">
-                                                        <span class="sr-only">80% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                         end task item
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="#">View all tasks</a>
-                                </li>
-                            </ul>
-                        </li>
-                        -->
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -335,6 +255,10 @@
                             {% if user_in_group or user_in_group_admin %}
                                 <li class="active" data-name="group" data-group-id="{{ group.id }}"><i class="fa fa-cube"></i></li>
                             {% endif %}
+                        {% else %}
+                            {% if group %}
+                                <li data-name="group" data-group-id="{{ group }}"><i class="fa fa-cube"></i></li>
+                            {% endif %}
                         {% endif %}
                         {% comment %}
                         <li data-name="settings"><i class="fa fa-cog"></i></li>
@@ -348,31 +272,6 @@
                         {% else %}
                             {% include TEMPLATE_NAME %}
                         {% endif %}
-                        {% comment %}
-                        <li class="header text-center">
-                            <i class="fa fa-caret-left pull-left" id="navleft"></i>
-                            <span id="navheader">{% trans "MAIN NAVIGATION" %}</span>
-                            <i class="fa fa-caret-right pull-right" id="navright"></i>
-                        </li>
-                        {% if extended_sidebar %}
-                            {% if user_in_group %}
-                                {% include "sidebar_group.html" %}
-                                {% if user_has_admin_access %}
-                                    {% include "sidebar_group_admin.html" %}
-                                {% endif %}
-                                {% include "sidebar_main.html" %}
-                            {% endif %}
-                            {% if user_in_group_admin %}
-                                {% if user_has_admin_access %}
-                                    {% include "sidebar_group_admin.html" %}
-                                {% endif %}
-                                {% include "sidebar_group.html" %}
-                                {% include "sidebar_main.html" %}
-                            {% endif %}
-                        {% else %}
-                            {% include "sidebar_main.html" %}
-                        {% endif %}
-                        {% endcomment %}
                     </ul>
                 </div>
             </section>
@@ -644,100 +543,6 @@
                 });
             }
         }
-        /*{% if extended_sidebar %}
-        $("#navleft").show();
-        $("#navright").show();
-        var navbar = 0;
-        {% if user_in_group %}
-            {% if user_has_admin_access %}
-            var maxnavbar = 2;
-            var navbarcontent_classes = ['.groupnavcontent', '.groupadminnavcontent', '.mainnavcontent'];
-            var navbar_names = ["GROUP NAVIGATION", "GROUP ADMIN NAVIGATION", "{% trans "MAIN NAVIGATION" %}",]
-            {% else %}
-            var maxnavbar = 1;
-            var navbarcontent_classes = ['.groupnavcontent', '.mainnavcontent'];
-            var navbar_names = ["GROUP NAVIGATION", "{% trans "MAIN NAVIGATION" %}",]
-            {% endif %}
-        {% endif %}
-        {% if user_in_group_admin %}
-            {% if user_has_admin_access %}
-            var maxnavbar = 2;
-            var navbarcontent_classes = ['.groupadminnavcontent', '.groupnavcontent', '.mainnavcontent'];
-            var navbar_names = ["GROUP ADMIN NAVIGATION", "GROUP NAVIGATION", "{% trans "MAIN NAVIGATION" %}",]
-            {% else %}
-            var maxnavbar = 1;
-            var navbarcontent_classes = ['.groupnavcontent', '.mainnavcontent'];
-            var navbar_names = ["GROUP NAVIGATION", "{% trans "MAIN NAVIGATION" %}",]
-            {% endif %}
-        {% endif %}
-        $.each(navbarcontent_classes ,function(index) {
-            if (index !== 0) {
-                $(navbarcontent_classes[index]).hide();
-            }
-        });
-        $("#navheader").text(navbar_names[0]);
-        $("#navright").click(function(event) {
-            navRight();
-        });
-        $("#navleft").click(function(event) {
-            navLeft();
-        });
-        $(".header").on('swipeleft', function(event) {
-            navLeft();
-        });
-        $(".header").on('swiperight', function(event) {
-            navRight();
-        });
-        function navRight() {
-            var divclass = navbarcontent_classes[navbar];
-            $(divclass).hide();
-            if (navbar === maxnavbar) {
-                var right_divclass = navbarcontent_classes[0];
-            }
-            else {
-                var right_divclass = navbarcontent_classes[navbar + 1];
-            }
-            if (navbar === maxnavbar) {
-                $("#navheader").text(navbar_names[0]);
-            }
-            else {
-                $("#navheader").text(navbar_names[navbar + 1]);
-            }
-            $(right_divclass).show('slow');
-            if (navbar === maxnavbar) {
-                navbar = 0;
-            }
-            else {
-                navbar = navbar + 1;
-            }
-        }
-        function navLeft() {
-            var divclass = navbarcontent_classes[navbar];
-            $(divclass).hide();
-            if (navbar === 0) {
-                var left_divclass = navbarcontent_classes[maxnavbar];
-            }
-            else {
-                var left_divclass = navbarcontent_classes[navbar - 1];
-            }
-            if (navbar === 0) {
-                $("#navheader").text(navbar_names[maxnavbar]);
-            }
-            else {
-                $("#navheader").text(navbar_names[navbar - 1]);
-            }
-            $(left_divclass).show('slow');
-            if (navbar === 0) {
-                navbar = maxnavbar;
-            }
-            else {
-                navbar = navbar - 1;
-            }
-        }
-        {% else %}
-        $("#navleft").hide();
-        $("#navright").hide();
-        {% endif %}*/
         function getChats(){
             $.ajax({
                 url: '{% url 'messaging:index' %}?navbar',

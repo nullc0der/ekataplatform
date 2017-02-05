@@ -78,3 +78,13 @@ def active_menu_tab(request):
         'ACTIVE_TAB': None,
         'TEMPLATE_NAME': None
     }
+
+
+def last_accessed_group(request):
+    if 'basicgroup' in request.session:
+        return {
+            'group': request.session['basicgroup']
+        }
+    return {
+        'group': None
+    }
