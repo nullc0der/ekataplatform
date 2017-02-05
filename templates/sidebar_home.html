@@ -27,6 +27,7 @@
         <span>{% trans "Profile" %}</span>
     </a>
 </li>
+{% comment %}
 <li class="{% active request 'publicusers:index' %} mainnavcontent"><a href="{% url 'publicusers:index' %}"><i class="fa fa-users"></i> <span>{% trans "Members" %}</span></a></li>
 <li class="treeview mainnavcontent {% active request 'g:allgroups' %} {% active request 'g:joinedgroups' %} {% active request 'g:subscribedgroups' %}">
     <a href="#">
@@ -42,6 +43,7 @@
         <li class="{% active request 'g:subscribedgroups' %}"><a href="{% url 'g:subscribedgroups' %}"><i class="fa fa-circle-o"></i>{% trans "Subscribed Groups" %}</a></li>
     </ul>
 </li>
+{% endcomment %}
 <li class="{% active request 'usertimeline:index' %} treeview mainnavcontent">
     <a href="{% url 'usertimeline:index' %}">
         <i class="fa fa-clock-o"></i>
@@ -51,12 +53,13 @@
 <li class="{% active request 'messaging:index' %} mainnavcontent">
     <a href="{% url 'messaging:index' %}">
         <i class="fa fa-comment"></i>
-        <span>{% trans "Messaging" %}</span>
+        <span>{% trans "Messenger" %}</span>
         <span class="pull-right-container">
             <span class="label bg-red pull-right" id="sidebarchat">{{ UNREAD_MESSAGE }}</span>
         </span>
     </a>
 </li>
+{% comment %}
 <li class="treeview mainnavcontent {% active request 'information:index' %} {% active request 'information:contact' %}">
     <a href="#">
         <i class="fa fa-info-circle"></i>
@@ -87,3 +90,4 @@
 </li>
 {% endif %}
 <li class="mainnavcontent {% active request 'hashtag:index' %}"><a href="{% url 'hashtag:index' %}"><i class="fa fa-hashtag"></i><span>{% trans "Hashtag Campaign" %}</span></a></li>
+{% endcomment %}

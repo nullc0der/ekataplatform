@@ -107,14 +107,15 @@ body {
 .content-wrapper,
 .right-side {
   min-height: 100%;
-  background-color: #ecf0f5;
+  background-color: #f9f9f9;
   z-index: 800;
 }
 .main-footer {
-  background: #fff;
-  padding: 15px;
-  color: #444;
-  border-top: 1px solid #d2d6de;
+    background: #fff;
+    padding: 15px;
+    color: #444;
+    margin: 0;
+    border: 1px solid #D3D6DB;
 }
 /* Fixed layout */
 .fixed .main-header,
@@ -154,7 +155,7 @@ body.hold-transition .main-header .logo {
 }
 /* Content */
 .content {
-  min-height: 250px;
+  min-height: inherit;
   padding: 15px;
   margin-right: auto;
   margin-left: auto;
@@ -520,10 +521,22 @@ a:focus {
 .user-panel > .info > a > .glyphicon {
   margin-right: 3px;
 }
+.sidebar-menu-wrapper{
+    display: flex;
+}
+.sidebar-menu-tab {
+    padding: 0;
+    list-style: none;
+    margin-bottom: -500%;
+}
+.sidebar-menu-tab>li {
+    padding: 11px;
+}
 .sidebar-menu {
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
 }
 .sidebar-menu > li {
   position: relative;

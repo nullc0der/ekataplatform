@@ -34,10 +34,10 @@
     <link rel="manifest" href="/manifest.json">
     {% compress css %}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.2.9">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.3.1">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{% static "dist/css/skins/_all-skins.min.css" %}">
+    <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{% static "plugins/iCheck/flat/blue.css" %}">
     <!-- Morris chart -->
@@ -121,7 +121,7 @@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
                     <span class="sr-only">{% trans "Toggle navigation" %}</span>
                 </a>
 
@@ -293,62 +293,88 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <!-- Sidebar user panel -->
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        {% if request.user.profile.avatar %}
-                            <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle useravatar" alt="User Image" id="userimage">
-                        {% else %}
-                            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle useravatar" width="160" height="160" id="userimage">
-                        {% endif %}
-                    </div>
-                    <div class="pull-left info">
-                        <p>
-                            {% if request.user.username %}
-                                {{ request.user.username }}
+                <div class="sidebar-user-panel-form-wrapper">
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            {% if request.user.profile.avatar %}
+                                <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle useravatar" alt="User Image" id="userimage">
                             {% else %}
-                                {% trans "Hello User" %}
+                                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle useravatar" width="160" height="160" id="userimage">
                             {% endif %}
-                        </p>
-                        <!-- TODO: logic for online -->
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                        <div class="pull-left info">
+                            <p>
+                                {% if request.user.username %}
+                                    {{ request.user.username }}
+                                {% else %}
+                                    {% trans "Hello User" %}
+                                {% endif %}
+                            </p>
+                            <!-- TODO: logic for setting status -->
+                            <a href="#"><i class="fa fa-circle text-success" style="color: #7ED321"></i> Online</a>
+                        </div>
                     </div>
+                     <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
                 </div>
-                 <!-- search form -->
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </form>
-                <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
-                <ul class="sidebar-menu">
-                    <li class="header text-center">
-                        <i class="fa fa-caret-left pull-left" id="navleft"></i>
-                        <span id="navheader">{% trans "MAIN NAVIGATION" %}</span>
-                        <i class="fa fa-caret-right pull-right" id="navright"></i>
-                    </li>
-                    {% if extended_sidebar %}
-                        {% if user_in_group %}
-                            {% include "sidebar_group.html" %}
-                            {% if user_has_admin_access %}
-                                {% include "sidebar_group_admin.html" %}
+                <div class="sidebar-menu-wrapper">
+                    <ul class="sidebar-menu-tab">
+                        <li {% ifequal ACTIVE_TAB 'home' %}class="active"{% endifequal %} data-name="home"><i class="fa fa-home"></i></li>
+                        <li {% ifequal ACTIVE_TAB 'community' %}class="active"{% endifequal %} data-name="community"><i class="fa fa-compass"></i></li>
+                        <li {% ifequal ACTIVE_TAB 'apps' %}class="active"{% endifequal %} data-name="apps"><i class="fa fa-futbol-o"></i></li>
+                        {% if extended_sidebar %}
+                            {% if user_in_group or user_in_group_admin %}
+                                <li class="active" data-name="group" data-group-id="{{ group.id }}"><i class="fa fa-cube"></i></li>
                             {% endif %}
+                        {% endif %}
+                        {% comment %}
+                        <li data-name="settings"><i class="fa fa-cog"></i></li>
+                        {% endcomment %}
+                    </ul>
+                    <ul class="sidebar-menu">
+                        {% if extended_sidebar %}
+                            {% if user_in_group or user_in_group_admin %}
+                                {% include "sidebar_group.html" %}
+                            {% endif %}
+                        {% else %}
+                            {% include TEMPLATE_NAME %}
+                        {% endif %}
+                        {% comment %}
+                        <li class="header text-center">
+                            <i class="fa fa-caret-left pull-left" id="navleft"></i>
+                            <span id="navheader">{% trans "MAIN NAVIGATION" %}</span>
+                            <i class="fa fa-caret-right pull-right" id="navright"></i>
+                        </li>
+                        {% if extended_sidebar %}
+                            {% if user_in_group %}
+                                {% include "sidebar_group.html" %}
+                                {% if user_has_admin_access %}
+                                    {% include "sidebar_group_admin.html" %}
+                                {% endif %}
+                                {% include "sidebar_main.html" %}
+                            {% endif %}
+                            {% if user_in_group_admin %}
+                                {% if user_has_admin_access %}
+                                    {% include "sidebar_group_admin.html" %}
+                                {% endif %}
+                                {% include "sidebar_group.html" %}
+                                {% include "sidebar_main.html" %}
+                            {% endif %}
+                        {% else %}
                             {% include "sidebar_main.html" %}
                         {% endif %}
-                        {% if user_in_group_admin %}
-                            {% if user_has_admin_access %}
-                                {% include "sidebar_group_admin.html" %}
-                            {% endif %}
-                            {% include "sidebar_group.html" %}
-                            {% include "sidebar_main.html" %}
-                        {% endif %}
-                    {% else %}
-                        {% include "sidebar_main.html" %}
-                    {% endif %}
-                </ul>
+                        {% endcomment %}
+                    </ul>
+                </div>
             </section>
             <!-- /.sidebar -->
         </aside>
@@ -381,11 +407,6 @@
                     {% endfor %}
                 {% endif %}
             </section>
-            <section class="content-header">
-                {% block content_header %}
-
-                {% endblock content_header %}
-            </section>
             {% block content_header_new %}
 
             {% endblock %}
@@ -396,17 +417,17 @@
 
                 {% endblock content %}
             </section>
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <small class="label bg-blue">Ekata</small>
+                    <b><small class="label {{ VERSION_COLOR }}">{{ VERSION_NAME }}</small> v{{ VERSION_NUMBER }} </b>
+                </div>
+                <strong>Copyright &copy; 2014-2016 <a href="/">Ekata</a>.</strong> All rights
+                reserved.
+                <small class="label bg-green"><a href="https://www.djangoproject.com/" target='_blank' style="color: #fff;">Powered by Django</a></small>
+            </footer>
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <small class="label bg-blue">Ekata</small>
-                <b><small class="label {{ VERSION_COLOR }}">{{ VERSION_NAME }}</small> v{{ VERSION_NUMBER }} </b>
-            </div>
-            <strong>Copyright &copy; 2014-2016 <a href="/">Ekata</a>.</strong> All rights
-            reserved.
-            <small class="label bg-green"><a href="https://www.djangoproject.com/" target='_blank' style="color: #fff;">Powered by Django</a></small>
-        </footer>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -417,49 +438,6 @@
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-                <!-- Home tab content -->
-                <div class="tab-pane" id="control-sidebar-home-tab">
-                    <!-- hidden untill todo is implemented
-                    <h3 class="control-sidebar-heading">{% trans "Todo" %}</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h4 class="control-sidebar-subheading">
-                                    Note by c0defreak: If todo is implemented for user could be shown here
-                                    otherwise this tab will be removed
-                                </h4>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h4 class="control-sidebar-subheading">
-                                    Update Resume
-                                </h4>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h4 class="control-sidebar-subheading">
-                                    Laravel Integration
-                                </h4>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <h4 class="control-sidebar-subheading">
-                                    Back End Framework
-                                </h4>
-                            </a>
-                        </li>
-                    </ul>
-                    /.control-sidebar-menu -->
-
-                </div>
-                <!-- /.tab-pane -->
-                <!-- Stats tab content -->
-                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-                <!-- /.tab-pane -->
-                <!-- Settings tab content -->
                 <div class="tab-pane" id="control-sidebar-settings-tab">
                         <h3 class="control-sidebar-heading">{% trans "Language Settings" %}</h3>
                         <form action="{% url 'set_language' %}" method="post">
@@ -478,22 +456,9 @@
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm">
-                                {% comment %}
-                                    Translators: This is for language select submit button
-                                {% endcomment %}
                                 {% trans "Set" %}
                             </button>
                         </form>
-                        <!--
-                        <h3 class="control-sidebar-heading">{% trans "Chat Settings" %}</h3>
-
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                {% trans "Show me as online" %}
-                                <input type="checkbox" class="pull-right" checked>
-                            </label>
-                        </div>
-                         /.form-group -->
                 </div>
                 <!-- /.tab-pane -->
             </div>
@@ -627,18 +592,6 @@
                 });
             }
         };
-        /*function expandCollapseNavbar(content_class, pos_class) {
-           if ($(content_class).is(":visible")) {
-                $(content_class).slideUp();
-                $(pos_class).removeClass('fa-minus');
-                $(pos_class).addClass('fa-plus');
-           }
-           else {
-                $(content_class).slideDown();
-                $(pos_class).removeClass('fa-plus');
-                $(pos_class).addClass('fa-minus');
-           }
-        }*/
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -691,7 +644,7 @@
                 });
             }
         }
-        {% if extended_sidebar %}
+        /*{% if extended_sidebar %}
         $("#navleft").show();
         $("#navright").show();
         var navbar = 0;
@@ -784,7 +737,7 @@
         {% else %}
         $("#navleft").hide();
         $("#navright").hide();
-        {% endif %}
+        {% endif %}*/
         function getChats(){
             $.ajax({
                 url: '{% url 'messaging:index' %}?navbar',
@@ -832,6 +785,24 @@
             });
         }
         {% endifequal %}
+        $(".sidebar-menu-tab>li").click(function(){
+            var _this = $(this);
+            var name = _this.data('name');
+            var id = _this.data('group-id');
+            if (id !== undefined) {
+                suffix = '?navbar=' + name + '&groupid=' + id;
+            }
+            else {
+                suffix = '?navbar=' + name;
+            }
+            $(".sidebar-menu").load('{% url 'getmenu' %}' + suffix, function () {
+                $(".sidebar-menu-tab>li").removeClass('active');
+                _this.addClass('active');
+                if ($("#sidebarchat").text() === '0') {
+                    $("#sidebarchat").hide();
+                }
+            })
+        });
         $('.langselect').selectpicker();
         $(window).load(function() {
             // Animate loader off screen

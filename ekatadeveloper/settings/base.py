@@ -136,6 +136,7 @@ TEMPLATES = [
                 'dashboard.context_processors.version_info',
                 'sysadmin.context_processors.get_sytemupdate',
                 'dashboard.context_processors.site_type',
+                'dashboard.context_processors.active_menu_tab'
             ],
         },
     },

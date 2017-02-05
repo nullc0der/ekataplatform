@@ -1,0 +1,15 @@
+{% load i18n bip_extras %}
+<li class="treeview mainnavcontent {% active request 'information:index' %} {% active request 'information:contact' %}">
+    <a href="#">
+        <i class="fa fa-info-circle"></i>
+        <span>{% trans "Information" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'information:index' %}"><a href="{% url 'information:index' %}"><i class="fa fa-circle-o"></i>{% trans "About Our System" %}</a></li>
+        <li class="{% active request 'information:contact' %}"><a href="{% url 'information:contact' %}"><i class="fa fa-circle-o"></i>{% trans "Contact Details" %}</a></li>
+    </ul>
+</li>
+<li class="mainnavcontent {% active request 'hashtag:index' %}"><a href="{% url 'hashtag:index' %}"><i class="fa fa-hashtag"></i><span>{% trans "Hashtag Campaign" %}</span></a></li>
