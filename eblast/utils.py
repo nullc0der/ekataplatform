@@ -4,6 +4,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.template import Template, Context
 from django.contrib.sites.models import Site
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 from eblast.models import EmailId, EmailCampaign, CampaignTracking
 
@@ -21,6 +23,13 @@ def send_test_mail(id, from_email, to_email):
         linktag.string = 'View in browser'
         soup.webversion.append(linktag)
         email_html = soup.prettify()
+    try:
+        username = User.objects.get(email=to_email).username
+    except ObjectDoesNotExist:
+        username = None
+    email_html = Template(email_html)
+    context = Context({'username': username})
+    email_html = email_html.render(context)
     msg = EmailMultiAlternatives(
         subject,
         email_html,
@@ -59,8 +68,12 @@ def send_campaign_email(id, from_email, groups):
         url = '/en/eblast/image/' + emailcampaign.tracking_id + '/' + campaigntracking.tracking_id + '/'
         url = "https://" + Site.objects.get_current().domain + url
         image_tag = '<img src="' + url + '" style="visibity: hidden"></img>'
+        try:
+            username = User.objects.get(email=emailaddress).username
+        except ObjectDoesNotExist:
+            username = None
         email_html = Template(email_html)
-        context = Context({'image_tag': image_tag})
+        context = Context({'image_tag': image_tag, 'username': username})
         email_html = email_html.render(context)
         msg = EmailMultiAlternatives(
             subject,
