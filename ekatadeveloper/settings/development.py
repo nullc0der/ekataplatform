@@ -12,7 +12,7 @@ DATABASES = {
 
 DEBUG = True
 
-COMPRESS_ENABLED = True
+# COMPRESS_ENABLED = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "statics")
 

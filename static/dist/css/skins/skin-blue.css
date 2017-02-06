@@ -60,7 +60,8 @@
 }
 .skin-blue .sidebar-user-panel-form-wrapper {
     background-color: #4990E2;
-    padding-bottom: 5px;
+    min-height: 122px;
+    margin-bottom: -10px;
 }
 .skin-blue .user-panel > .info,
 .skin-blue .user-panel > .info > a {
@@ -74,12 +75,15 @@
 }
 .skin-blue .sidebar-menu-tab>li {
     color: #878787;
-    font-size: 15.5px;
+    font-size: 19px;
+    line-height: 19px;
 }
 .skin-blue .sidebar-menu-tab>li:hover,
 .skin-blue .sidebar-menu-tab>li.active {
     color: #ffffff;
     background-color: #3d3d3d;
+    font-size: 20px;
+    line-height: 20px;
 }
 .skin-blue .sidebar-menu > li.divider {
     color: #fff;
@@ -91,10 +95,13 @@
 .skin-blue .sidebar-menu > li > a {
   border-left: 3px solid transparent;
 }
-.skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .sidebar-menu > li.active > a {
   color: #ffffff;
   background-color: #397CCB;
+  height: 42px;
+}
+.skin-blue .sidebar-menu > li.active:hover > a {
+    color: #ffffff;
 }
 .skin-blue .sidebar-menu > li > .treeview-menu {
   background: #ffffff;
@@ -108,6 +115,7 @@
 .skin-blue .treeview-menu > li > a {
   color: #9F9F9F;
 }
+.skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .treeview-menu > li.active > a,
 .skin-blue .treeview-menu > li > a:hover {
   color: #397CCB;
@@ -120,7 +128,7 @@
 .skin-blue .sidebar-form .btn {
   box-shadow: none;
   background-color: rgba(0,0,0,0.09);
-  height: 40px;
+  height: 38px;
 }
 .skin-blue .sidebar-form input[type="text"] {
   color: #fff;
@@ -132,12 +140,15 @@
 }
 .skin-blue .sidebar-form input[type="text"]::-moz-placeholder {
     color: #fff;
+    opacity: 0.5;
 }
 .skin-blue .sidebar-form input[type="text"]::-webkit-input-placeholder  {
     color: #fff;
+    opacity: 0.5;
 }
 .skin-blue .sidebar-form input[type="text"]::-ms-input-placeholder {
     color: #fff;
+    opacity: 0.5;
 }
 .skin-blue .sidebar-form input[type="text"]:focus,
 .skin-blue .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
@@ -150,6 +161,9 @@
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
+}
+.skin-blue .sidebar-form .btn>.fa {
+    opacity: 0.5;
 }
 .skin-blue.layout-top-nav .main-header > .logo {
   background-color: #3c8dbc;

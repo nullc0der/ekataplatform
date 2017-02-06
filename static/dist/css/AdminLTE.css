@@ -214,7 +214,7 @@ a:focus {
   margin-bottom: 0;
   margin-left: 230px;
   border: none;
-  min-height: 50px;
+  min-height: 51px;
   border-radius: 0;
 }
 .layout-top-nav .main-header .navbar {
@@ -528,6 +528,7 @@ a:focus {
     padding: 0;
     list-style: none;
     margin-bottom: -500%;
+    width: 41px;
 }
 .sidebar-menu-tab>li {
     padding: 11px;
@@ -595,6 +596,7 @@ a:focus {
   padding: 5px 5px 5px 15px;
   display: block;
   font-size: 14px;
+  border-left: 20px solid transparent;
 }
 .sidebar-menu .treeview-menu > li > a > .fa,
 .sidebar-menu .treeview-menu > li > a > .glyphicon,
