@@ -18,6 +18,8 @@ COMMUNITY = [
     reverse('g:allgroups'),
     reverse('g:joinedgroups'),
     reverse('g:subscribedgroups'),
+    reverse('information:index'),
+    reverse('information:contact'),
     reverse('eblast:emailtemplates'),
     reverse('eblast:emailgroups'),
     reverse('eblast:emailcampaign_page')
@@ -25,8 +27,6 @@ COMMUNITY = [
 
 APPS = [
     reverse('hashtag:index'),
-    reverse('information:index'),
-    reverse('information:contact')
 ]
 
 
