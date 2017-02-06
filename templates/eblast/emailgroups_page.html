@@ -14,9 +14,10 @@
                 <li class="active">{% trans "emailgroups" %}</li>
             </ol>
         </div>
+        {% comment %}
         <div class="col-md-6">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search by Group Name..." id="liveSearch">
+                <input type="text" class="form-control" placeholder="Search..." id="liveSearch">
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
                 </span>
@@ -25,6 +26,7 @@
                 </span>
             </div>
         </div>
+        {% endcomment %}
     </section>
 {% endblock content_header_new %}
 {% block content %}
