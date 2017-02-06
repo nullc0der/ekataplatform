@@ -37,18 +37,6 @@ def send_test_mail(id, from_email, to_email):
 
 
 def send_campaign_email(id, from_email, groups):
-    emailcampaign = EmailCampaign.objects.get(id=id)
-    email_html = emailcampaign.message
-    subject = emailcampaign.subject
-    soup = BeautifulSoup(email_html)
-    if soup.webversion:
-        url = '/eblast/campaign/' + str(emailcampaign.id) + '/'
-        url = "https://" + Site.objects.get_current().domain + url
-        soup.webversion.clear()
-        linktag = soup.new_tag('a', href=url)
-        linktag.string = 'View in browser'
-        soup.webversion.append(linktag)
-        email_html = soup.prettify()
     emailaddress_set = set()
     for group in groups:
         emailids = group.emailids.all()
@@ -56,6 +44,18 @@ def send_campaign_email(id, from_email, groups):
             if emailid.email_id and emailid.send_email_from_group:
                 emailaddress_set.add(emailid.email_id.strip())
     for emailaddress in emailaddress_set:
+        emailcampaign = EmailCampaign.objects.get(id=id)
+        email_html = emailcampaign.message
+        subject = emailcampaign.subject
+        soup = BeautifulSoup(email_html)
+        if soup.webversion:
+            url = '/eblast/campaign/' + str(emailcampaign.id) + '/'
+            url = "https://" + Site.objects.get_current().domain + url
+            soup.webversion.clear()
+            linktag = soup.new_tag('a', href=url)
+            linktag.string = 'View in browser'
+            soup.webversion.append(linktag)
+            email_html = soup.prettify()
         campaigntracking, created = CampaignTracking.objects.get_or_create(
             campaign=emailcampaign,
             emailid=emailaddress,

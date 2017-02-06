@@ -3,4 +3,6 @@
 <h4 style="font-weight: 600">{% trans "Subject: " %}</h4>
 <p>{{ emailcampaign.subject }}</p>
 <h4 style="font-weight: 600">{% trans "Message: " %}</h4>
-<iframe src="{% url 'eblast:viewinbrowser' emailcampaign.id %}" width="600" height="500" style="border: none"></iframe>
+<div style="height: 500px; width: 700px; overflow: scroll">
+    {{ emailcampaign.message|safe }}
+</div>
