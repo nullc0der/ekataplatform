@@ -6,21 +6,31 @@
 {% block title %}
     {% trans "Transfer" %}
 {% endblock title %}
-{% block content_header %}
-    <h1>
-        {% trans "Transfer" %}<br>
-        <small><i class="fa fa-user"></i>
-            {% if user and not user.is_anonymous %}
-                <a>Hello, {{ user.username }}!</a>
-                <br>
-            {% endif %}
-        </small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li class="active">Transfer</li>
-    </ol>
-{% endblock content_header %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Transfer" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "transfer" %}</a></li>
+            </ol>
+        </div>
+        {% comment %}
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search..." id="liveSearch">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+        {% endcomment %}
+    </section>
+{% endblock content_header_new %}
 {% block content %}
     <div class="row">
         <div class="col-md-3">
@@ -34,7 +44,7 @@
                     <p>Units</p>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-                    
+
                 </div>
             </div><!-- /.box -->
         </div>
@@ -49,29 +59,29 @@
                             <div class="col-md-8 col-md-offset-2">
                                 {% comment %}
                                     <div class="input-group">
-                                    <input type="text" id="query" class="form-control" name="q" placeholder="Search user"> 
+                                    <input type="text" id="query" class="form-control" name="q" placeholder="Search user">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-flat btn-primary dropdown-toggle" data-toggle="dropdown">
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             {% for sender in senders %}
-                                                <li><a onclick="loadDetail({{ sender.from_user.id }})"><img src="{{ sender.from_user.profile.avatar.thumbnail.20x20 }}" alt="user" width="20" height="20" class="img-circle"> {{ sender.from_user.username }}</a></li> 
+                                                <li><a onclick="loadDetail({{ sender.from_user.id }})"><img src="{{ sender.from_user.profile.avatar.thumbnail.20x20 }}" alt="user" width="20" height="20" class="img-circle"> {{ sender.from_user.username }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
                                 </div>
                                 <span class="input-group-btn">
                                     <button class="btn btn-flat btn-primary" type="button" id="usersearch"><span class="fa fa-search"></span></button>
-                                </span>    
+                                </span>
                                 {% endcomment %}
-                                <input type="text" id="query" class="form-control" name="q" placeholder="Search user">            
+                                <input type="text" id="query" class="form-control" name="q" placeholder="Search user">
                             </div>
                         </div>
                         <div class="row" style="margin-top:10px;">
                             <div class="col-md-12">
                                 <div id="usersearchresults">
-                                    
+
                                 </div>
                             </div>
                         </div>

@@ -3,17 +3,33 @@
 {% block title %}
     {{ group.name }} | {% trans "Admin" %} | {% trans "Settings" %}
 {% endblock title %}
-{% block content_header %}
-    <h1>
-        {{ group.name }} - {% trans "admin" %} - {% trans "settings" %}<br>
-        <small><i class="fa fa-user"></i>
-            {% if user and not user.is_anonymous %}
-                <a>Hello, {{ user.username }}!</a>
-                <br>
-            {% endif %}
-        </small>
-    </h1>
-{% endblock content_header %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Settings" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Group" %}</a></li>
+                <li>{% trans "Admin" %}</li>
+                <li class="active">{% trans "Settings" %}</li>
+            </ol>
+        </div>
+        {% comment %}
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search..." id="liveSearch">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+        {% endcomment %}
+    </section>
+{% endblock content_header_new %}
 {% block content %}
     {% get_obj_perms request.user for group as "group_perms" %}
     {% if 'can_create_notification' in group_perms %}

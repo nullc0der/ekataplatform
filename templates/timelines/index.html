@@ -11,21 +11,31 @@
         }
     </style>
 {% endblock extrastyle %}
-{% block content_header %}
-    <h1>
-        {% trans "My Timeline" %}<br>
-        <small><i class="fa fa-user"></i>
-            {% if user and not user.is_anonymous %}
-                <a>Hello, {{ user.username }}!</a>
-                <br>
-            {% endif %}
-        </small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li class="active">Timeline</li>
-    </ol>
-{% endblock content_header %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Timeline" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Timeline" %}</a></li>
+            </ol>
+        </div>
+        {% comment %}
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search..." id="liveSearch">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+        {% endcomment %}
+    </section>
+{% endblock content_header_new %}
 {% block content %}
     <div class="row">
         <div class="col-md-4">

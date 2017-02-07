@@ -3,17 +3,34 @@
 {% block title %}
     {{ group.name }} | {% trans "Bannedmembers" %} | Admin
 {% endblock title %}
-{% block content_header %}
-    <h1>
-        {% trans "Bannedmembers" %} - {% trans "admin" %}<br>
-        <small><i class="fa fa-user"></i>
-            {% if user and not user.is_anonymous %}
-                <a>Hello, {{ user.username }}!</a>
-                <br>
-            {% endif %}
-        </small>
-    </h1>
-{% endblock content_header %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Banned Members" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Group" %}</a></li>
+                <li>{% trans "Admin" %}</li>
+                <li class="active">{% trans "Banned Members" %}</li>
+            </ol>
+        </div>
+        {% comment %}
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search..." id="liveSearch">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+        {% endcomment %}
+    </section>
+{% endblock content_header_new %}
+
 {% block content %}
     <div class="row" style="margin-top:10px;">
         <div class="col-md-12">

@@ -3,21 +3,19 @@
 {% block title %}
     {% trans "Signups settings" %}
 {% endblock %}
-{% block content_header %}
-    <h1>
-        {% trans "Signups settings" %}<br>
-        <small><i class="fa fa-user"></i>
-            {% if user and not user.is_anonymous %}
-                <a>Hello, {{ user.username }}!</a>
-                <br>
-            {% endif %}
-        </small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li class="active">Here</li>
-    </ol>
-{% endblock content_header %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Signups settings" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Signups" %}</a></li>
+                <li class="active">{% trans "Signup Settings" %}</li>
+            </ol>
+        </div>
+    </section>
+{% endblock content_header_new %}
 {% block content %}
     <div class="row">
         <div class="col-md-6">

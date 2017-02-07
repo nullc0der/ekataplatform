@@ -31,17 +31,18 @@
     </style>
     {% endcompress %}
 {% endblock extrastyle %}
-{% block content_header %}
-    <h1>
-        {% trans "Hashtag Banner" %}<br>
-        <small><i class="fa fa-user"></i>
-            {% if request.user and not request.user.is_anonymous %}
-                <a>Hello, {{ request.user.username }}!</a>
-                <br>
-            {% endif %}
-        </small>
-    </h1>
-{% endblock content_header %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Hashtag" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Hashtag" %}</a></li>
+            </ol>
+        </div>
+    </section>
+{% endblock content_header_new %}
 {% block content %}
     <div class="row">
         <div class="col-md-12">

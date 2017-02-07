@@ -309,6 +309,7 @@ def create_group(request):
 @login_required
 def basic_group_details(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     notifications = basicgroup.notifications.all().order_by('-created_on')
     if notifications:
         notifications = notifications[0]
@@ -449,6 +450,7 @@ def news_details(request, news_id, group_id):
 @permission_required_or_403('can_read_events', (BasicGroup, 'id', 'group_id'))
 def group_events_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     events = basicgroup.events.all()
     return render(
         request,
@@ -469,6 +471,7 @@ def group_events_page(request, group_id):
 @permission_required_or_403('can_read_post', (BasicGroup, 'id', 'group_id'))
 def group_admin_post_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     posts = basicgroup.posts.filter(admin_created=True)
     return render(
         request,
@@ -489,6 +492,7 @@ def group_admin_post_page(request, group_id):
 @permission_required_or_403('can_read_post', (BasicGroup, 'id', 'group_id'))
 def group_member_post_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     posts = basicgroup.posts.filter(admin_created=False)
     return render(
         request,
@@ -511,6 +515,7 @@ def group_member_post_page(request, group_id):
 @permission_required_or_403('can_read_post', (BasicGroup, 'id', 'group_id'))
 def postdetails_page(request, group_id, post_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     post = GroupPost.objects.get(id=post_id)
     if post.admin_created:
         memberpost = False
@@ -628,6 +633,7 @@ def comment_post(request, group_id, post_id):
 @permission_required_or_403('can_edit_group_profile', (BasicGroup, 'id', 'group_id'))
 def group_admin_settings_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     form = EditGroupForm(instance=basicgroup)
     notificationform = NotificationForm()
     if request.method == 'POST':
@@ -681,6 +687,7 @@ def group_admin_settings_toggle(request, group_id):
 @permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
 def group_admin_news_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     news = basicgroup.news.all()
     form = CreateNewsForm()
     if request.method == 'POST':
@@ -747,6 +754,7 @@ def edit_news(request, group_id):
 @permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
 def groupadmin_admin_post_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     posts = basicgroup.posts.filter(admin_created=True)
     return render(
         request,
@@ -769,6 +777,7 @@ def groupadmin_admin_post_page(request, group_id):
 @permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
 def groupadmin_member_post_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     posts = basicgroup.posts.filter(admin_created=False)
     return render(
         request,
@@ -835,6 +844,7 @@ def create_admin_post(request, group_id):
 @permission_required_or_403('can_update_post', (BasicGroup, 'id', 'group_id'))
 def edit_post_admin_page(request, group_id, post_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     post = GroupPost.objects.get(id=post_id)
     form = EditPostForm(instance=post)
     if request.method == 'POST':
@@ -861,6 +871,7 @@ def edit_post_admin_page(request, group_id, post_id):
 @permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
 def notapproved_comment_admin_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     comments = basicgroup.postcomments.filter(approved=False)
     return render(
         request,
@@ -881,6 +892,7 @@ def notapproved_comment_admin_page(request, group_id):
 @permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
 def approved_comment_admin_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     comments = basicgroup.postcomments.filter(approved=True)
     return render(
         request,
@@ -901,6 +913,7 @@ def approved_comment_admin_page(request, group_id):
 @permission_required_or_403('can_update_comment', (BasicGroup, 'id', 'group_id'))
 def edit_comment_admin_page(request, group_id, comment_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     comment = PostComment.objects.get(id=comment_id)
     form = EditCommentForm(instance=comment)
     if request.method == 'POST':
@@ -947,6 +960,7 @@ def approve_comment(request, group_id):
 @permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
 def group_member_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     memberroles = basicgroup.memberrole.all()
     if request.method == 'POST':
         req_type = request.POST.get('req_type')
@@ -1132,6 +1146,7 @@ def group_member_page(request, group_id):
 @permission_required_or_403('can_lift_member_ban', (BasicGroup, 'id', 'group_id'))
 def group_banned_members_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     if request.method == 'POST':
         username = request.POST.get('username')
         user = User.objects.get(username=username)
@@ -1182,6 +1197,7 @@ def users_autocomplete(request, group_id):
 @permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
 def joinrequest_admin_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     joinrequests = basicgroup.joinrequest.filter(approved=False)
     if request.method == 'POST':
         req_type = request.POST.get('req_type')
@@ -1276,6 +1292,7 @@ def invite_user(request, group_id):
 @permission_required_or_403('can_create_events', (BasicGroup, 'id', 'group_id'))
 def group_events_admin_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     events = basicgroup.events.all()
     form = EventForm()
     if request.method == 'POST':
@@ -1360,6 +1377,7 @@ def create_notification_admin(request, group_id):
 @permission_required_or_403('can_access_admin', (BasicGroup, 'id', 'group_id'))
 def group_dashboard_admin_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     pendingpost = GroupPost.objects.filter(
         basic_group=basicgroup
     ).filter(approved=False).count()
@@ -1390,6 +1408,7 @@ def group_dashboard_admin_page(request, group_id):
 @permission_required_or_403('can_read_role', (BasicGroup, 'id', 'group_id'))
 def group_default_role_admin_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     default_roles = basicgroup.default_roles.split(';')
     if 'role_details' in request.GET:
         role = request.GET.get('role_details')
@@ -1472,6 +1491,7 @@ def group_default_role_admin_page(request, group_id):
 @permission_required_or_403('can_read_custom_role', (BasicGroup, 'id', 'group_id'))
 def group_custom_role_admin_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
+    request.session['basicgroup'] = basicgroup.id
     customroles = basicgroup.customrole.all()
     form = CustomRoleCreateForm()
     if request.method == 'POST':

@@ -1,0 +1,45 @@
+{% load i18n bip_extras %}
+<li class="{% active request 'publicusers:index' %} mainnavcontent"><a href="{% url 'publicusers:index' %}"><i class="fa fa-users"></i> <span>{% trans "Members" %}</span></a></li>
+<li class="treeview mainnavcontent {% active request 'g:allgroups' %} {% active request 'g:joinedgroups' %} {% active request 'g:subscribedgroups' %}">
+    <a href="#">
+        <i class="fa fa-cubes"></i>
+        <span>{% trans "Groups" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'g:allgroups' %}"><a href="{% url 'g:allgroups' %}"><i class="fa fa-circle-o"></i>{% trans "All Groups" %}</a></li>
+        <li class="{% active request 'g:joinedgroups' %}"><a href="{% url 'g:joinedgroups' %}"><i class="fa fa-circle-o"></i>{% trans "Joined Groups" %}</a></li>
+        <li class="{% active request 'g:subscribedgroups' %}"><a href="{% url 'g:subscribedgroups' %}"><i class="fa fa-circle-o"></i>{% trans "Subscribed Groups" %}</a></li>
+    </ul>
+</li>
+<li class="treeview mainnavcontent {% active request 'information:index' %} {% active request 'information:contact' %}">
+    <a href="#">
+        <i class="fa fa-info-circle"></i>
+        <span>{% trans "Information" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'information:index' %}"><a href="{% url 'information:index' %}"><i class="fa fa-circle-o"></i>{% trans "About Our System" %}</a></li>
+        <li class="{% active request 'information:contact' %}"><a href="{% url 'information:contact' %}"><i class="fa fa-circle-o"></i>{% trans "Contact Details" %}</a></li>
+    </ul>
+</li>
+{% if request.user.is_staff %}
+<li class="treeview mainnavcontent {% active request 'eblast:emailgroups' %} {% active request 'eblast:emailtemplates' %} {% active request 'eblast:emailcampaign_page' %}">
+    <a href="#">
+        <i class="fa fa-envelope-o"></i>
+        <span>{% trans "eBlast" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'eblast:emailgroups' %}"><a href="{% url 'eblast:emailgroups' %}"><i class="fa fa-circle-o"></i>{% trans "Email Lists" %}</a></li>
+        <li class="{% active request 'eblast:emailtemplates' %}"><a href="{% url 'eblast:emailtemplates' %}"><i class="fa fa-circle-o"></i>{% trans "Email Templates" %}</a></li>
+        <li class="{% active request 'eblast:emailcampaign_page' %}"><a href="{% url 'eblast:emailcampaign_page' %}"><i class="fa fa-circle-o"></i>{% trans "Email Campaigns" %}</a></li>
+    </ul>
+</li>
+{% endif %}

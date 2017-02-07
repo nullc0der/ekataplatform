@@ -3,17 +3,19 @@
 {% block title %}
     {% trans "Email to sms" %}
 {% endblock title %}
-{% block content_header %}
-    <h1>
-        {% trans "Email to sms" %}<br>
-        <small><i class="fa fa-user"></i>
-            {% if request.user and not request.user.is_anonymous %}
-                <a>Hello, {{ request.user.username }}!</a>
-                <br>
-            {% endif %}
-        </small>
-    </h1>
-{% endblock content_header %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Email to SMS" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "email to sms" %}</a></li>
+            </ol>
+        </div>
+    </section>
+{% endblock content_header_new %}
+
 {% block extrastyle %}
     <style type="text/css">
         .bootstrap-table {

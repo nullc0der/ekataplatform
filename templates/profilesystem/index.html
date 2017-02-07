@@ -35,27 +35,31 @@
     {% endcompress %}
 {% endblock extrastyle %}
 
-{% block content_header %}
-     <h1>
-        {% trans "Profile" %}<br>
-        <small><i class="fa fa-user"></i>
-            {% if user and not user.is_anonymous %}
-                <a>
-                {% blocktrans with username_t=user.username trimmed %}
-                   Hello, {{ username_t }}!
-                {% endblocktrans %}
-                </a>
-                <br>
-            {% else %}
-                <a>{% trans "Hello, User!" %}</a>
-                <br>
-            {% endif %}
-        </small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="{% url 'profilesystem:index' %}"><i class="fa fa-user"></i>{% trans "Profile" %}</a></li>
-    </ol>
-{% endblock content_header %}
+{% block content_header_new %}
+    <section class="content-header-new container-fluid">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Profile" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Profile" %}</a></li>
+            </ol>
+        </div>
+        {% comment %}
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search..." id="liveSearch">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+        {% endcomment %}
+    </section>
+{% endblock content_header_new %}
 
 {% block content %}
 <div class="row">

@@ -3,7 +3,7 @@
  * ----------
  */
 .skin-blue .main-header .navbar {
-  background-color: #3c8dbc;
+  background-color: #4990E2;
 }
 .skin-blue .main-header .navbar .nav > li > a {
   color: #ffffff;
@@ -28,9 +28,6 @@
 .skin-blue .main-header .navbar .sidebar-toggle {
   color: #fff;
 }
-.skin-blue .main-header .navbar .sidebar-toggle:hover {
-  background-color: #367fa9;
-}
 @media (max-width: 767px) {
   .skin-blue .main-header .navbar .dropdown-menu li.divider {
     background-color: rgba(255, 255, 255, 0.1);
@@ -43,15 +40,15 @@
   }
 }
 .skin-blue .main-header .logo {
-  background-color: #367fa9;
+  background-color: #397CCB;
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
 .skin-blue .main-header .logo:hover {
-  background-color: #357ca5;
+  background-color: #397CCB;
 }
 .skin-blue .main-header li.user-header {
-  background-color: #3c8dbc;
+  background-color: #397CCB;
 }
 .skin-blue .content-header {
   background: transparent;
@@ -59,75 +56,118 @@
 .skin-blue .wrapper,
 .skin-blue .main-sidebar,
 .skin-blue .left-side {
-  background-color: #222d32;
+  background-color: #ffffff;
+}
+.skin-blue .sidebar-user-panel-form-wrapper {
+    background-color: #4990E2;
+    min-height: 122px;
 }
 .skin-blue .user-panel > .info,
 .skin-blue .user-panel > .info > a {
   color: #fff;
 }
-.skin-blue .sidebar-menu > li.header {
-  color: #4b646f;
-  background: #1a2226;
+.skin-blue .sidebar-menu-wrapper {
+    background-color: #ffffff;
+}
+.skin-blue .sidebar-menu-tab {
+    background-color: #F1F1F1;
+}
+.skin-blue .sidebar-menu-tab>li {
+    color: #878787;
+    font-size: 19px;
+    line-height: 19px;
+}
+.skin-blue .sidebar-menu-tab>li:hover,
+.skin-blue .sidebar-menu-tab>li.active {
+    color: #ffffff;
+    background-color: #3d3d3d;
+}
+.skin-blue .sidebar-menu-tab>li.active {
+    font-size: 20px;
+    line-height: 20px;
+}
+.skin-blue .sidebar-menu-tab>li:hover {
+    opacity: 0.87;
+}
+.skin-blue .sidebar-menu > li.divider {
+    color: #fff;
+    background: #3d3d3d;
+    padding: 11px;
+    font-weight: 600;
+    text-align: center;
 }
 .skin-blue .sidebar-menu > li > a {
   border-left: 3px solid transparent;
 }
-.skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .sidebar-menu > li.active > a {
   color: #ffffff;
-  background: #1e282c;
-  border-left-color: #3c8dbc;
+  background-color: #397CCB;
+  height: 42px;
+}
+.skin-blue .sidebar-menu > li.active:hover > a {
+    color: #ffffff;
 }
 .skin-blue .sidebar-menu > li > .treeview-menu {
-  margin: 0 1px;
-  background: #2c3b41;
+  background: #ffffff;
 }
 .skin-blue .sidebar a {
-  color: #b8c7ce;
+  color: #9F9F9F;
 }
 .skin-blue .sidebar a:hover {
   text-decoration: none;
 }
 .skin-blue .treeview-menu > li > a {
-  color: #8aa4af;
+  color: #9F9F9F;
 }
+.skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .treeview-menu > li.active > a,
 .skin-blue .treeview-menu > li > a:hover {
-  color: #ffffff;
+  color: #397CCB;
 }
 .skin-blue .sidebar-form {
   border-radius: 3px;
-  border: 1px solid #374850;
-  margin: 10px 10px;
+  margin: 10px 10px 0 10px;
 }
 .skin-blue .sidebar-form input[type="text"],
 .skin-blue .sidebar-form .btn {
   box-shadow: none;
-  background-color: #374850;
-  border: 1px solid transparent;
-  height: 35px;
+  background-color: rgba(0,0,0,0.09);
+  height: 38px;
 }
 .skin-blue .sidebar-form input[type="text"] {
-  color: #666;
+  color: #fff;
+  border: 1px solid transparent;
   border-top-left-radius: 2px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 2px;
 }
+.skin-blue .sidebar-form input[type="text"]::-moz-placeholder {
+    color: #fff;
+    opacity: 0.5;
+}
+.skin-blue .sidebar-form input[type="text"]::-webkit-input-placeholder  {
+    color: #fff;
+    opacity: 0.5;
+}
+.skin-blue .sidebar-form input[type="text"]::-ms-input-placeholder {
+    color: #fff;
+    opacity: 0.5;
+}
 .skin-blue .sidebar-form input[type="text"]:focus,
 .skin-blue .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
-  background-color: #fff;
-  color: #666;
-}
-.skin-blue .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
-  border-left-color: #fff;
+  background-color: rgba(0,0,0,0.09);
+  color: #fff;
 }
 .skin-blue .sidebar-form .btn {
-  color: #999;
+  color: #fff;
   border-top-left-radius: 0;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
+}
+.skin-blue .sidebar-form .btn>.fa {
+    opacity: 0.5;
 }
 .skin-blue.layout-top-nav .main-header > .logo {
   background-color: #3c8dbc;

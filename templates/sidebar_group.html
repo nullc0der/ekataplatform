@@ -1,19 +1,19 @@
-{% load i18n guardian_tags %}
+{% load i18n guardian_tags bip_extras %}
 {% get_obj_perms request.user for group as "group_perms" %}
-<li class="treeview groupnavcontent">
+<li class="treeview {% active request 'g:groupdetails' group.id %}">
     <a href="{% url 'g:groupdetails' group.id %}">
         <i class="fa fa-home"></i> <span>{% trans "Homepage" %}</span>
     </a>
 </li>
 {% if 'can_read_events' in group_perms %}
-<li class="treeview groupnavcontent">
+<li class="treeview {% active request 'g:events' group.id %}">
     <a href="{% url 'g:events' group.id %}">
         <i class="fa fa-calendar"></i> <span>{% trans "Events" %}</span>
     </a>
 </li>
 {% endif %}
 {% if 'can_read_post' in group_perms %}
-<li class="treeview groupnavcontent">
+<li class="treeview {% active request 'g:adminposts' group.id %} {% active request 'g:memberposts' group.id %}">
     <a href="#">
         <i class="fa fa-edit"></i>
         <span>{% trans "Posts" %}</span>
@@ -22,8 +22,127 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="{% url 'g:adminposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Group's Posts" %}</a></li>
-        <li><a href="{% url 'g:memberposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Member's Posts" %}</a></li>
+        <li class="{% active request 'g:adminposts' group.id %}"><a href="{% url 'g:adminposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Group's Posts" %}</a></li>
+        <li class="{% active request 'g:memberposts' group.id %}"><a href="{% url 'g:memberposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Member's Posts" %}</a></li>
     </ul>
 </li>
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+<li class="divider">{% trans "Group Admin Section" %}</li>
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+<li class="treeview {% active request 'g:groupdashboard' group.id %}">
+    <a href="{% url 'g:groupdashboard' group.id %}">
+        <i class="fa fa-dashboard"></i> <span>{% trans "Dashboard" %}</span>
+    </a>
+</li>
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+{% if 'can_create_news' in group_perms or 'can_update_news' in group_perms %}
+<li class="treeview {% active request 'g:adminnews' group.id %}">
+    <a href="{% url 'g:adminnews' group.id %}">
+        <i class="fa fa-newspaper-o"></i> <span>{% trans "News" %}</span>
+    </a>
+</li>
+{% endif %}
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+{% if 'can_create_post' in group_perms or 'can_update_post' in group_perms or 'can_approve_post' in group_perms %}
+<li class="treeview {% active request 'g:memberpostsadmin' group.id %} {% active request 'g:adminpostsadmin' group.id %}">
+    <a href="#">
+        <i class="fa fa-edit"></i>
+        <span>{% trans "Posts" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'g:adminpostsadmin' group.id %}"><a href="{% url 'g:adminpostsadmin' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Group's Posts" %}</a></li>
+        <li class="{% active request 'g:memberpostsadmin' group.id %}"><a href="{% url 'g:memberpostsadmin' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Member's Posts" %}</a></li>
+    </ul>
+</li>
+{% endif %}
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+{% if 'can_update_comment' in group_perms or 'can_approve_comment' in group_perms %}
+<li class="treeview {% active request 'g:notapprovedcomments' group.id %} {% active request 'g:approvedcomments' group.id %}">
+    <a href="#">
+        <i class="fa fa-comments"></i>
+        <span>{% trans "Comments" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'g:notapprovedcomments' group.id %}"><a href="{% url 'g:notapprovedcomments' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Not Approved" %}</a></li>
+        <li class="{% active request 'g:approvedcomments' group.id %}"><a href="{% url 'g:approvedcomments' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Approved" %}</a></li>
+    </ul>
+</li>
+{% endif %}
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+<li class="treeview {% active request 'g:members' group.id %} {% active request 'g:joinrequest' group.id %} {% active request 'g:bannedmembers' group.id %}">
+    <a href="#">
+        <i class="fa fa-users"></i>
+        <span>{% trans "Members" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'g:members' group.id %}"><a href="{% url 'g:members' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Members" %}</a></li>
+        {% if 'can_approve_joinrequest' in group_perms or 'can_deny_joinrequest' in group_perms %}
+        <li class="{% active request 'g:joinrequest' group.id %}"><a href="{% url 'g:joinrequest' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Requests" %}</a></li>
+        {% endif %}
+        {% if 'can_lift_member_ban' in group_perms %}
+        <li class="{% active request 'g:bannedmembers' group.id %}"><a href="{% url 'g:bannedmembers' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Banned Members" %}</a></li>
+        {% endif %}
+    </ul>
+</li>
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+{% if 'can_create_events' in group_perms %}
+<li class="treeview {% active request 'g:eventsadmin' group.id %}">
+    <a href="{% url 'g:eventsadmin' group.id %}">
+        <i class="fa fa-calendar"></i> <span>{% trans "Events" %}</span>
+    </a>
+</li>
+{% endif %}
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+{% if 'can_read_role' in group_perms or 'can_read_custom_role' in group_perms %}
+<li class="treeview {% active request 'g:groupdefaultrole' group.id %} {% active request 'g:groupcustomrole' group.id %}">
+    <a href="#">
+        <i class="fa fa-eye"></i>
+        <span>{% trans "Roles" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        {% if 'can_read_role' in group_perms %}
+            <li class="{% active request 'g:groupdefaultrole' group.id %}"><a href="{% url 'g:groupdefaultrole' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Defaults" %}</a></li>
+        {% endif %}
+        {% if 'can_read_custom_role' in group_perms %}
+            <li class="{% active request 'g:groupcustomrole' group.id %}"><a href="{% url 'g:groupcustomrole' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Custom" %}</a></li>
+        {% endif %}
+    </ul>
+</li>
+{% endif %}
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+{% if group.account_signups %}
+{% if request.user.is_superuser or request.user.profile.grantcoin_staff %}
+    <li class="treeview {% active request 'autosignup:signups' %}"><a href="{% url 'autosignup:signups' %}"><i class="fa fa-user-plus"></i>{% trans "Account Signups" %}</a></li>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if 'can_access_admin' in group_perms %}
+{% if 'can_edit_group_profile' in group_perms %}
+<li class="treeview {% active request 'g:adminsettings' group.id %}">
+    <a href="{% url 'g:adminsettings' group.id %}">
+        <i class="fa fa-cog"></i> <span>{% trans "Settings" %}</span>
+    </a>
+</li>
+{% endif %}
 {% endif %}
