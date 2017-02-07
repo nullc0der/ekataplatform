@@ -22,8 +22,8 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li class="{% active request 'g:memberposts' group.id %}"><a href="{% url 'g:adminposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Group's Posts" %}</a></li>
-        <li class="{% active request 'g:adminposts' group.id %}"><a href="{% url 'g:memberposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Member's Posts" %}</a></li>
+        <li class="{% active request 'g:adminposts' group.id %}"><a href="{% url 'g:adminposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Group's Posts" %}</a></li>
+        <li class="{% active request 'g:memberposts' group.id %}"><a href="{% url 'g:memberposts' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Member's Posts" %}</a></li>
     </ul>
 </li>
 {% endif %}
