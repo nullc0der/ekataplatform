@@ -522,22 +522,27 @@ a:focus {
   margin-right: 3px;
 }
 .sidebar-menu-wrapper{
-    display: flex;
+    position: absolute;
+    height: 100%;
 }
 .sidebar-menu-tab {
     padding: 0;
     list-style: none;
-    margin-bottom: -500%;
     width: 41px;
+    float: left;
+    position: absolute;
+    height: 100%;
 }
 .sidebar-menu-tab>li {
-    padding: 11px;
+    padding: 10px;
+    min-height: 42px;
 }
 .sidebar-menu {
   list-style: none;
   margin: 0;
   padding: 0;
-  flex: 1;
+  width: 189px;
+  margin-left: 41px;
 }
 .sidebar-menu > li {
   position: relative;
@@ -545,7 +550,7 @@ a:focus {
   padding: 0;
 }
 .sidebar-menu > li > a {
-  padding: 12px 5px 12px 15px;
+  padding: 12px 5px 10px 15px;
   display: block;
 }
 .sidebar-menu > li > a > .fa,

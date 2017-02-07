@@ -61,7 +61,6 @@
 .skin-blue .sidebar-user-panel-form-wrapper {
     background-color: #4990E2;
     min-height: 122px;
-    margin-bottom: -10px;
 }
 .skin-blue .user-panel > .info,
 .skin-blue .user-panel > .info > a {
@@ -82,13 +81,18 @@
 .skin-blue .sidebar-menu-tab>li.active {
     color: #ffffff;
     background-color: #3d3d3d;
+}
+.skin-blue .sidebar-menu-tab>li.active {
     font-size: 20px;
     line-height: 20px;
+}
+.skin-blue .sidebar-menu-tab>li:hover {
+    opacity: 0.87;
 }
 .skin-blue .sidebar-menu > li.divider {
     color: #fff;
     background: #3d3d3d;
-    padding: 12.5px;
+    padding: 11px;
     font-weight: 600;
     text-align: center;
 }
@@ -122,7 +126,7 @@
 }
 .skin-blue .sidebar-form {
   border-radius: 3px;
-  margin: 10px 10px;
+  margin: 10px 10px 0 10px;
 }
 .skin-blue .sidebar-form input[type="text"],
 .skin-blue .sidebar-form .btn {
