@@ -7,13 +7,13 @@
 <li class="treeview {% active request 'myaccount:index' %} {% active request 'myaccount:transfer' %} mainnavcontent">
     <a href="#">
         <i class="fa fa-bank"></i>
-        <span>{% trans "My Account" %}</span>
+        <span>{% trans "My Accounts" %}</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
-        <li class="{% active request 'myaccount:index' %}"><a href="{% url 'myaccount:index' %}"><i class="fa fa-circle-o"></i>{% trans "Account" %}</a></li>
+        <li class="{% active request 'myaccount:index' %}"><a href="{% url 'myaccount:index' %}"><i class="fa fa-circle-o"></i>{% trans "Accounts" %}</a></li>
         <li class="{% active request 'myaccount:transfer' %}"><a href="{% url 'myaccount:transfer' %}"><i class="fa fa-circle-o"></i>{% trans "Transfer" %}</a></li>
     </ul>
 </li>

@@ -95,7 +95,7 @@
         <li class="{% active request 'g:joinrequest' group.id %}"><a href="{% url 'g:joinrequest' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Requests" %}</a></li>
         {% endif %}
         {% if 'can_lift_member_ban' in group_perms %}
-        <li class="{% active request 'g:bannedmembers' group.id %}"><a href="{% url 'g:bannedmembers' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Banned members" %}</a></li>
+        <li class="{% active request 'g:bannedmembers' group.id %}"><a href="{% url 'g:bannedmembers' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Banned Members" %}</a></li>
         {% endif %}
     </ul>
 </li>
