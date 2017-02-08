@@ -220,7 +220,7 @@
         }
         function editExtraPerm(user_id) {
             $.ajax({
-                url: '/g/edituserperm/' + '{{ group.id }}' + '/' + user_id + '/',
+                url: '/type/group/edituserperm/' + '{{ group.id }}' + '/' + user_id + '/',
                 success: function (data) {
                     $("#edituserpermbody").html(data);
                     $("#editUserPermModal").modal('show');
