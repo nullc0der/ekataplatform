@@ -20,6 +20,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+tags
 
 # Installer logs
 pip-log.txt
@@ -60,3 +61,4 @@ docs/_build/
 
 # Editor Configs
 project.cson
+.vscode
