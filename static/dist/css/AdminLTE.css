@@ -5268,13 +5268,21 @@ table.text-center th {
 }
 
 .content-header-new .input-group {
-    left: 30%;
+    left: 33%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 @media (max-width: 991px) {
     .content-header-new .input-group {
         left: 0;
-        margin-bottom: 10px;
+        margin: 0;
+    }
+    .content-header-new {
+        height: 100px;
+    }
+    .no-search-bar {
+        height: 55px;
     }
 }
 
@@ -5681,6 +5689,12 @@ table.text-center th {
 
 .pushleft {
     left: -10% !important;
+}
+
+@media (max-width: 991px) {
+    .pushleft {
+        left: 0 !important;
+    }
 }
 
 .ribbon-wrapper {
