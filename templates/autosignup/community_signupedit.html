@@ -1,6 +1,7 @@
 {% load i18n bootstrap_tags %}
 <form id='signupeditform' action="{% url 'autosignup:edit_signup' community_signup.id %}" method="post">
     {% csrf_token %}
+    {{ rform|as_bootstrap }}
     {{ form|as_bootstrap }}
     <div class="pull-right">
         <button class="btn btn-flat btn-warning" id="fetchtwilio" data-signup-id='{{ community_signup.id }}'>{% trans "Fetch Twilio Data" %}</button>

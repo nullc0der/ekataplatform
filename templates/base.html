@@ -270,7 +270,9 @@
                                 {% include "sidebar_group.html" %}
                             {% endif %}
                         {% else %}
-                            {% include TEMPLATE_NAME %}
+                            {% if TEMPLATE_NAME %}
+                                {% include TEMPLATE_NAME %}
+                            {% endif %}
                         {% endif %}
                     </ul>
                 </div>

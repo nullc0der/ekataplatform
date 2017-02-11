@@ -22,7 +22,7 @@ from autosignup.models import CommunitySignup, EmailVerfication,\
 from autosignup.forms import UserInfoForm, AddressForm, EmailForm,\
     EmailVerficationForm, PhoneForm, PhoneVerificationForm,\
     AdditionalStepForm, AccountAddContactForm, CommunitySignupForm, \
-    ReferralCodeForm
+    ReferralCodeForm, ReferralCodeEditForm
 from autosignup.tasks import task_send_email_verfication_code,\
     task_send_phone_verfication_code, task_send_approval_mail,\
     task_add_member_from_csv, task_find_location_and_save
@@ -679,10 +679,16 @@ def add_account(request):
 @login_required
 def edit_signup(request, id):
     community_signup = CommunitySignup.objects.get(id=id)
+    try:
+        rcode_obj = ReferralCode.objects.get(user=community_signup.user)
+        rform = ReferralCodeEditForm(community_signup.user, initial={'referral_code': rcode_obj.code})
+    except ObjectDoesNotExist:
+        rform = ReferralCodeEditForm(community_signup.user)
     form = CommunitySignupForm(instance=community_signup)
     if request.method == 'POST':
         form = CommunitySignupForm(request.POST, instance=community_signup)
-        if form.is_valid:
+        rform = ReferralCodeEditForm(community_signup.user, request.POST)
+        if form.is_valid() and rform.is_valid():
             community_signup = form.save(commit=False)
             if community_signup.status == 'approved' and not community_signup.approval_mail_sent:
                     community_signup.verified_date = now()
@@ -696,18 +702,24 @@ def edit_signup(request, id):
                     task_send_approval_mail.delay(community_signup, template_path)
                     add_user_to_group(community_signup.user)
             community_signup.save()
+            referral_code = rform.cleaned_data.get('referral_code')
+            rcode_obj, created = ReferralCode.objects.get_or_create(
+                user=community_signup.user
+            )
+            rcode_obj.code = referral_code
+            rcode_obj.save()
             return HttpResponse(community_signup.id)
         else:
             return render(
                 request,
                 'autosignup/community_signupedit.html',
-                {'form': form, 'community_signup': community_signup},
+                {'form': form, 'rform': rform, 'community_signup': community_signup},
                 status=500
             )
     return render(
         request,
         'autosignup/community_signupedit.html',
-        {'form': form, 'community_signup': community_signup}
+        {'form': form, 'rform': rform, 'community_signup': community_signup}
     )
 
 

@@ -5,15 +5,28 @@ import requests
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.timezone import now
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.cache import cache
+from django.core.validators import RegexValidator
 from phonenumber_field.widgets import PhonePrefixSelect
 
 from profilesystem.models import UserAddress
 from autosignup.models import EmailVerfication, PhoneVerification,\
     CommunitySignup, AccountAddContact, ReferralCode
+
+
+alphanumeric_validator = RegexValidator(
+    r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.'
+)
+
+
+def referral_code_length_validator(val):
+    if len(val) != 10:
+        raise ValidationError(
+            "Referral code must be 10 char long"
+        )
 
 
 def carrier_lookup(phone_no):
@@ -201,3 +214,31 @@ class CommunitySignupForm(forms.ModelForm):
             'status',
             'is_on_distribution'
         ]
+
+
+class ReferralCodeEditForm(forms.Form):
+    referral_code = forms.CharField(
+        label='Referral Code',
+        max_length=40,
+        required=False,
+        validators=[alphanumeric_validator, referral_code_length_validator]
+    )
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(ReferralCodeEditForm, self).__init__(*args, **kwargs)
+
+    def clean_referral_code(self):
+        referral_code = self.cleaned_data.get('referral_code')
+        if referral_code:
+            try:
+                rcode_obj = ReferralCode.objects.get(code=referral_code)
+                if rcode_obj.user == self.user:
+                    return referral_code
+                else:
+                    raise forms.ValidationError(
+                        "This code is used"
+                    )
+            except ObjectDoesNotExist:
+                return referral_code
+        return referral_code
