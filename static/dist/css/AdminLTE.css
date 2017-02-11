@@ -5221,13 +5221,15 @@ table.text-center th {
     background: rgb(255, 255, 255);
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.25);
     position: relative;
-    padding: 15px 15px 0 15px;
+    /*padding: 15px 15px 0 15px;*/
+    height: 62px;
 }
 
 .content-header-new h1 {
   margin: 0;
   font-size: 24px;
   font-weight: 600;
+  margin-top: 10px;
 }
 
 .content-header-new .breadcrumb {
@@ -5266,13 +5268,21 @@ table.text-center th {
 }
 
 .content-header-new .input-group {
-    left: 30%;
+    left: 33%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 @media (max-width: 991px) {
     .content-header-new .input-group {
         left: 0;
-        margin-bottom: 10px;
+        margin: 0;
+    }
+    .content-header-new {
+        height: 100px;
+    }
+    .no-search-bar {
+        height: 55px;
     }
 }
 
@@ -5679,6 +5689,12 @@ table.text-center th {
 
 .pushleft {
     left: -10% !important;
+}
+
+@media (max-width: 991px) {
+    .pushleft {
+        left: 0 !important;
+    }
 }
 
 .ribbon-wrapper {
