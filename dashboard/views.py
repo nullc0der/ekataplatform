@@ -124,8 +124,8 @@ def download_member_stats(request):
         for activemembercount in activemembercounts:
             row = {}
             row['date'] = "{0}/{1}/{2}".format(
-                activemembercount.date.day,
                 activemembercount.date.month,
+                activemembercount.date.day,
                 activemembercount.date.year
             )
             row['count'] = activemembercount.users.count()
@@ -136,8 +136,8 @@ def download_member_stats(request):
         for newmembercount in newmembercounts:
             row = {}
             row['date'] = "{0}/{1}/{2}".format(
-                newmembercount.date.day,
                 newmembercount.date.month,
+                newmembercount.date.day,
                 newmembercount.date.year
             )
             row['count'] = newmembercount.count
@@ -148,8 +148,8 @@ def download_member_stats(request):
         for totalmembercount in totalmembercounts:
             row = {}
             row['date'] = "{0}/{1}/{2}".format(
-                totalmembercount.date.day,
                 totalmembercount.date.month,
+                totalmembercount.date.day,
                 totalmembercount.date.year
             )
             row['count'] = totalmembercount.count

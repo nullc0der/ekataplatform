@@ -656,7 +656,7 @@
     var newMemberChartCanvas = $("#newMemberChart").get(0).getContext("2d");
     var newMemberChart = new Chart(newMemberChartCanvas);
     var newMemberChartData = {
-      labels: [{% for newmembercount in newmembercounts %} "{{ newmembercount.date | date:"d/m/Y" }}", {% endfor %}],
+      labels: [{% for newmembercount in newmembercounts %} "{{ newmembercount.date | date:"m/d/Y" }}", {% endfor %}],
       datasets: [
         {
           label: "New Members",
@@ -678,7 +678,7 @@
     var activeMemberChartCanvas = $("#activeMemberChart").get(0).getContext("2d");
     var activeMemberChart = new Chart(activeMemberChartCanvas);
     var activeMemberChartData = {
-      labels: [{% for activemembercount in activemembercounts %} "{{ activemembercount.date | date:"d/m/Y" }}", {% endfor %}],
+      labels: [{% for activemembercount in activemembercounts %} "{{ activemembercount.date | date:"m/d/Y" }}", {% endfor %}],
       datasets: [
         {
           label: "Active Members",
@@ -696,7 +696,7 @@
     var totalMemberChartCanvas = $("#totalMemberChart").get(0).getContext("2d");
     var totalMemberChart = new Chart(totalMemberChartCanvas);
     var totalMemberChartData = {
-        labels: [{% for totalmembercount in totalmembercounts %} "{{ totalmembercount.date | date:"d/m/Y" }}", {% endfor %}],
+        labels: [{% for totalmembercount in totalmembercounts %} "{{ totalmembercount.date | date:"m/d/Y" }}", {% endfor %}],
         datasets: [
           {
             label: "Total Members",
