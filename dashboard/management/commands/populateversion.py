@@ -12,7 +12,8 @@ class Command(BaseCommand):
         parser.add_argument('version_color', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        git_version = subprocess.check_output(['git', 'tag'])
+        git_version = subprocess.check_output(['git', 'tag']).split('\n')
+        git_version = git_version[len(git_version) - 2]
         self.stdout.write(
             self.style.SUCCESS(
                 "Latest tag is {}".format(git_version.strip())
