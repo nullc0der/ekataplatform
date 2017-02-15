@@ -1,0 +1,11 @@
+{% load i18n %}
+<h4>{% trans "User: " %}<a href="{% url 'publicusers:user' payment.user.id %}">{{ payment.user.username }}</a></h4>
+<h4>{% trans "Amount: " %}{{ payment.amount }}$</h4>
+<h4>{% trans "Date: " %}{{ payment.date|date:"m/d/Y" }}</h4>
+<h4>{% trans "Charge ID(Stripe): " %}{{ payment.charge_id }}</h4>
+{% if payment.message %}
+<h4>{% trans "Message: " %}{{ payment.message }}</h4>
+{% endif %}
+{% if payment.fail_reason %}
+<h4>{% trans "Fail Reason: " %}{{ payment.fail_reason }}</h4>
+{% endif %}
