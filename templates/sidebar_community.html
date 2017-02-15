@@ -27,7 +27,9 @@
         <li class="{% active request 'information:contact' %}"><a href="{% url 'information:contact' %}"><i class="fa fa-circle-o"></i>{% trans "Contact Details" %}</a></li>
     </ul>
 </li>
+<li class="{% active request 'crowdfunding:index' %} mainnavcontent"><a href="{% url 'crowdfunding:index' %}"><i class="fa fa-usd"></i> <span>{% trans "Crowdfund" %}</span></a></li>
 {% if request.user.is_staff %}
+<li class="{% active request 'crowdfunding:crowdfund_admin' %} mainnavcontent"><a href="{% url 'crowdfunding:crowdfund_admin' %}"><i class="fa fa-adn"></i> <span>{% trans "Crowdfund Admin" %}</span></a></li>
 <li class="treeview mainnavcontent {% active request 'eblast:emailgroups' %} {% active request 'eblast:emailtemplates' %} {% active request 'eblast:emailcampaign_page' %}">
     <a href="#">
         <i class="fa fa-envelope-o"></i>

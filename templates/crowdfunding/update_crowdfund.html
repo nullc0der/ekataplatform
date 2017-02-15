@@ -1,0 +1,10 @@
+{% load i18n bootstrap_tags %}
+<div class="form-wrapper" style="margin-bottom: 100px">
+    <form action="#" method="post" id="adminform">
+        {% csrf_token %}
+        {{ form|as_bootstrap }}
+    </form>
+</div>
+<div class="boxcontent-submitbtn newbtn" id="submitbtn">
+    <p>{% trans "Submit" %}</p>
+</div>

@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% load i18n staticfiles compress bootstrap_tags %}
+{% block title %}
+    {% trans "Crowdfund Admin" %}
+{% endblock %}
+{% block extrastyle %}
+    {% compress css %}
+        <style media="screen">
+            .fixed-table-container {
+                border: none;
+            }
+            .bootstrap-table .table {
+                border-bottom: none;
+            }
+            .bootstrap-table .table>thead>tr>th, .table>thead>tr>th {
+                border-bottom: none;
+            }
+            .fixed-table-container tbody td, .fixed-table-container thead th  {
+                border-left: none;
+            }
+            .fixed-table-container table {
+                width: 75%;
+                margin-left: 10%;
+                font-size: 12px;
+                color: #9B9B9B;
+            }
+            .fixed-table-pagination .pagination-detail, .fixed-table-pagination div.pagination {
+                color: #9B9B9B;
+            }
+        </style>
+    {% endcompress %}
+{% endblock %}
+{% block content_header_new %}
+    <section class="content-header-new no-search-bar">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Crowdfund Admin" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Crowdfund Admin" %}</a></li>
+            </ol>
+        </div>
+    </section>
+{% endblock content_header_new %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="box box-solid">
+                <div class="box-body">
+                    {% if crowdfund %}
+                    {% if crowdfund.ongoing %}
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Stats" %}</h4>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
+                            <p>{{ crowdfund.raised }}$/{{ crowdfund.goal }}$</p>
+                        </div>
+                    </div>
+                    <hr class="widget-box-separator">
+                    {% endif %}
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Status" %}</h4>
+                        <h1>{% if crowdfund.ongoing %}{% trans "Ongoing" %}{% else %}{% trans "Stopped" %}{% endif %}</h1>
+                    </div>
+                    {% else %}
+                    <div class="widget-box" style="text-align: center">
+                        <h4>{% trans "No Crowdfund started" %}</h4>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Settings" %}</h3>
+                </div>
+                <div class="box-body" id="settings">
+                    {% if crowdfund %}
+                    {% include "crowdfunding/update_crowdfund.html" %}
+                    {% else %}
+                    <div class="widget-box" style="text-align: center; margin-bottom: 100px">
+                        <h4>{% trans "No Crowdfund started" %}</h4>
+                    </div>
+                    <div class="boxcontent-submitbtn newbtn" id="startnew">
+                        <p>{% trans "Start new" %}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Payments" %}</h3>
+                </div>
+                <div class="box-body">
+                    {% if crowdfund %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>User</th>
+                                <th data-sortable="true">Date</th>
+                                <th data-sortable="true">Amount</th>
+                                <th>Success</th>
+                                <th>Charge ID(Stripe)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for payment in payments %}
+                               <tr>
+                                    <td>{{ payment.id }}</td>
+                                    <td>{{ payment.user.username }}</td>
+                                    <td>{{ payment.date|date:"m/d/Y" }}</td>
+                                    <td>{{ payment.amount }}</td>
+                                    <td>{% if payment.is_success %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times"></i>{% endif %}</td>
+                                    <td>{{ payment.charge_id }}</td>
+                               </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="widget-box" style="text-align: center">
+                        <h4>{% trans "No Crowdfund started" %}</h4>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="paymentDetails" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Payment Details</h4>
+      </div>
+      <div class="modal-body" id="paymentDetailsBody">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extrascripts %}
+    {% compress js %}
+        <script type="text/javascript">
+            $(document).on('click', '#startnew', function() {
+                $("#settings").load('{% url 'crowdfunding:start_crowdfund' %}');
+            });
+            $(document).on('click', '#submitbtn', function() {
+                var form = $("#adminform");
+                $.ajax({
+                    url: '{% url 'crowdfunding:update_crowdfund' %}',
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function () {
+                        location.reload();
+                    },
+                    error: function (data) {
+                        $("#settings").html(data.responseText);
+                    }
+                });
+            });
+            $(".table").bootstrapTable({
+                'pagination': true,
+                'pageNumber': 1,
+                'pageSize': 5,
+                'pageList': [5, 10, 15, 20, 25],
+                'search': true,
+                'showExport': true,
+                'exportDataType': 'all',
+                'exportTypes': ['json', 'csv', 'txt', 'excel'],
+                'icons': {
+                    'export': 'fa fa-download'
+                },
+                onClickRow: function (row) {
+                    $.ajax({
+                        url: '{% url 'crowdfunding:payment_details' %}',
+                        data: {'id': row[0]},
+                        success: function(data) {
+                            $("#paymentDetailsBody").html(data);
+                            $("#paymentDetails").modal('show');
+                        }
+                    })
+                }
+            });
+        </script>
+    {% endcompress %}
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% load i18n staticfiles compress %}
+{% block title %}
+    {% trans "Crowdfunding" %}
+{% endblock %}
+{% block extrastyle %}
+    <style media="screen">
+        label {
+            display: block;
+        }
+    </style>
+{% endblock %}
+{% block content_header_new %}
+    <section class="content-header-new no-search-bar">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Crowdfund" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Crowdfund" %}</a></li>
+            </ol>
+        </div>
+    </section>
+{% endblock content_header_new %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid" style="min-height: 300px;background:linear-gradient(rgba(74, 144, 226, 0.85), rgba(74, 144, 226, 0.85)),url({% static "dist/img/photo1.png" %})">
+                <div class="box-body">
+                    <div class="widget-box" style="text-align: center; margin-top: 8%">
+                        <i class="fa fa-play-circle" style="font-size: 80px; color: #FFFFFF"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="box box-solid" style="min-height: 300px">
+                <div class="box-body">
+                    <div class="widget-box" style="text-align: center; margin-top: 25%">
+                        <h4>{% trans "Product Features" %}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="box box-solid" style="min-height: 300px">
+                <div class="box-body">
+                    <div class="widget-box">
+                        <h3>{% trans "Introduction" %}</h3>
+                        <p style="font-weight: 300; line-height: 18px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    {% if crowdfund.ongoing %}
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Stats" %}</h4>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
+                            <p>{{ crowdfund.raised }}$/{{ crowdfund.goal }}$</p>
+                        </div>
+                        <button class="material-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "Fund Now" %}</button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="paymentFormModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{% trans "Fund Now" %}</h4>
+          </div>
+          <div class="modal-body" id="paymentFormBody">
+              <form action="{% url 'crowdfunding:accept_payment' %}" method="post" id="payment-form">
+                  <div class="alert alert-danger" id="payment-errors"></div>
+                  <div class="">
+                      <label>
+                          <span>{% trans "Card" %}</span>
+                          <div id="card-element">
+
+                          </div>
+                      </label>
+                  </div>
+                  <div class="form-group" id="div_id_amount">
+                      <label>
+                          <span>{% trans "Amount" %}</span>
+                          <input class="form-control" type="number" name="amount" placeholder="Enter amount" step="0.01" min="1" required="required" id="id_amount">
+                      </label>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 50px" id="div_id_message">
+                      <label>
+                          <span>{% trans "Feedback" %}</span>
+                          <input class="form-control" type="text" name="message" id="id_message">
+                      </label>
+                  </div>
+                  <div class="boxcontent-submitbtn newbtn" id="submitbtn" style="border-radius: 0">
+                      <p>{% trans "Submit" %}</p>
+                  </div
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+    {% compress js %}
+    <script type="text/javascript">
+        $("#payment-errors").hide();
+        var stripe = Stripe('{{ STRIPE_PUBLISHABLE_KEY }}');
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        var form = $('#payment-form');
+        var payment_success = false;
+        function apply_form_field_error(fieldname, error) {
+          var input = $("#id_" + fieldname),
+              container = $("#div_id_" + fieldname),
+              error_msg = $("<span />").addClass("help-inline ajax-error").text(error[0]);
+          container.addClass("has-error");
+          error_msg.insertAfter(input);
+        }
+        function clear_form_field_errors(form) {
+          $(".ajax-error", $(form)).remove();
+          $(".has-error", $(form)).removeClass("has-error");
+          $("#payment-errors").hide();
+        }
+        function django_message(error) {
+          $("#payment-errors").html(error);
+          $("#payment-errors").show();
+        }
+        function stripeTokenHandler(token) {
+            $("#submitbtn").hide();
+            previous_token = form.find("input[name='stripeToken']");
+            if (previous_token.length) {
+                for(i=0; i<previous_token.length; i++) { previous_token[i].remove(); }
+            }
+            form.append("<input type='hidden' name='stripeToken' value='" + token.id + "'>");
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: form.serialize(),
+                success: function (data) {
+                    $("#paymentFormBody").html(data);
+                    payment_success = true;
+                },
+                error: function (data) {
+                    $("#submitbtn").show();
+                    clear_form_field_errors(form);
+                    var response = $.parseJSON(data.responseText);
+                    $.each(response, function(index, value) {
+                      if (index === "__all__") {
+                        django_message(value);
+                      } else {
+                        apply_form_field_error(index, value);
+                      }
+                    });
+                }
+            });
+        }
+        card.mount('#card-element');
+        card.addEventListener('change', function(event) {
+            clear_form_field_errors(form);
+            if (event.error) {
+                django_message(event.error.message);
+                $("#submitbtn").show();
+            }
+        });
+        $(document).on('click', '#submitbtn', function(){
+            $("#submitbtn").hide();
+            stripe.createToken(card).then(function(result) {
+                clear_form_field_errors(form);
+                if (result.error) {
+                    django_message(result.error.message);
+                    $("#submitbtn").show();
+                } else {
+                    stripeTokenHandler(result.token);
+                }
+            });
+        });
+        $("#paymentFormModal").on('hidden.bs.modal', function () {
+            if (payment_success) {
+                location.reload();
+            }
+        })
+    </script>
+    {% endcompress %}
+{% endblock %}

@@ -71,7 +71,8 @@ urlpatterns += i18n_patterns(
     url(r'^emailtosms/', include('emailtosms.urls', namespace='emailtosms')),
     url(r'^autosignup/', include('autosignup.urls', namespace='autosignup')),
     url(r'^eblast/', include('eblast.urls', namespace='eblast')),
-    url(r'^getmenu/', send_menus, name='getmenu')
+    url(r'^getmenu/', send_menus, name='getmenu'),
+    url(r'^crowdfunding/', include('crowdfunding.urls', namespace='crowdfunding'))
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [

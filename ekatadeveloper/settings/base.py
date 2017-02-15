@@ -91,7 +91,9 @@ INSTALLED_APPS = [
     'sysadmin',
     'eblast',
     'emailtosms',
-    'autosignup'
+    'autosignup',
+    'stripepayment',
+    'crowdfunding'
 ]
 
 
@@ -138,7 +140,8 @@ TEMPLATES = [
                 'sysadmin.context_processors.get_sytemupdate',
                 'dashboard.context_processors.site_type',
                 'dashboard.context_processors.active_menu_tab',
-                'dashboard.context_processors.last_accessed_group'
+                'dashboard.context_processors.last_accessed_group',
+                'stripepayment.context_processors.stripe_public_key'
             ],
         },
     },
@@ -432,3 +435,7 @@ CHANNEL_LAYERS = {
         "ROUTING": "ekatadeveloper.routing.channel_routing",
     },
 }
+
+# Stripe Keys
+STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')

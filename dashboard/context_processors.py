@@ -20,6 +20,8 @@ COMMUNITY = [
     reverse('g:subscribedgroups'),
     reverse('information:index'),
     reverse('information:contact'),
+    reverse('crowdfunding:index'),
+    reverse('crowdfunding:crowdfund_admin'),
     reverse('eblast:emailtemplates'),
     reverse('eblast:emailgroups'),
     reverse('eblast:emailcampaign_page')
