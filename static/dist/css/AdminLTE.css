@@ -5932,18 +5932,16 @@ table.text-center th {
     margin-right: 2%;
 }
 
-.material-btn {
+.fund-btn {
     padding: 10px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 10px rgba(0,0,0,0.15);
-    border: 1px solid #4990E2;
-    background-color: #4990E2;
+    border: 1px solid #fff;
+    background-color: transparent;
     width: 200px;
     font-weight: 600;
     color: #fff;
-    margin-left: 35%;
 }
 
-.material-btn:active, .material-btn:focus {
+.fund-btn:active, .fund-btn:focus {
     outline: none;
 }
 

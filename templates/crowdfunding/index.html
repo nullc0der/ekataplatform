@@ -29,6 +29,8 @@
                 <div class="box-body">
                     <div class="widget-box" style="text-align: center; margin-top: 8%">
                         <i class="fa fa-play-circle" style="font-size: 80px; color: #FFFFFF"></i>
+                        <p style="color: #fff; font-weight: 600; font-size: 18px">{% trans "Watch video" %}</p>
+                        <button class="fund-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "FUND" %}</button>
                     </div>
                 </div>
             </div>
@@ -58,7 +60,6 @@
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
                             <p>${{ crowdfund.raised|intcomma }}/${{ crowdfund.goal|intcomma }}</p>
                         </div>
-                        <button class="material-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "Fund Now" %}</button>
                     </div>
                     {% endif %}
                 </div>
