@@ -48,7 +48,7 @@
             <div class="box box-solid">
                 <div class="box-body">
                     {% if crowdfund %}
-                    {% if crowdfund.ongoing %}
+                    {% if crowdfund.active %}
                     <div class="widget-box">
                         <h4 class="widget-box-title">{% trans "Stats" %}</h4>
                         <div class="progress">
@@ -60,7 +60,7 @@
                     {% endif %}
                     <div class="widget-box">
                         <h4 class="widget-box-title">{% trans "Status" %}</h4>
-                        <h1>{% if crowdfund.ongoing %}{% trans "Ongoing" %}{% else %}{% trans "Stopped" %}{% endif %}</h1>
+                        <h1>{% if crowdfund.active %}{% trans "Active" %}{% else %}{% trans "Stopped" %}{% endif %}</h1>
                     </div>
                     {% else %}
                     <div class="widget-box" style="text-align: center">

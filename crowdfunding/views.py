@@ -50,7 +50,7 @@ def accept_payment(request):
                 crowdfund = CrowdFund.objects.latest()
                 crowdfund.raised += Decimal(request.POST['amount'])
                 if crowdfund.raised >= crowdfund.goal:
-                    crowdfund.ongoing = False
+                    crowdfund.active = False
                 crowdfund.save()
             except ObjectDoesNotExist:
                 pass

@@ -13,7 +13,7 @@ class CrowdFund(models.Model):
     raised = models.DecimalField(
         null=True, blank=True, max_digits=30, decimal_places=2, default=0.00
     )
-    ongoing = models.BooleanField(default=False)
+    active = models.BooleanField(default=False)
 
     class Meta:
         get_latest_by = 'id'
