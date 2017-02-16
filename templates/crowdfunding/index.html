@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles compress %}
+{% load i18n staticfiles compress humanize %}
 {% block title %}
     {% trans "Crowdfunding" %}
 {% endblock %}
@@ -56,7 +56,7 @@
                         <h4 class="widget-box-title">{% trans "Stats" %}</h4>
                         <div class="progress">
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
-                            <p>{{ crowdfund.raised }}$/{{ crowdfund.goal }}$</p>
+                            <p>${{ crowdfund.raised|intcomma }}/${{ crowdfund.goal|intcomma }}</p>
                         </div>
                         <button class="material-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "Fund Now" %}</button>
                     </div>
@@ -86,7 +86,7 @@
                   <div class="form-group" id="div_id_amount">
                       <label>
                           <span>{% trans "Amount" %}</span>
-                          <input class="form-control" type="number" name="amount" placeholder="Enter amount" step="0.01" min="1" required="required" id="id_amount">
+                          <input class="form-control" type="number" name="amount" placeholder="Enter amount" min="1" required="required" id="id_amount">
                       </label>
                   </div>
                   <div class="form-group" style="margin-bottom: 50px" id="div_id_message">

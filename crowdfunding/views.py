@@ -1,5 +1,4 @@
 import json
-from decimal import Decimal
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -20,7 +19,7 @@ def index(request):
     try:
         crowdfund = CrowdFund.objects.latest()
         if crowdfund.raised:
-            percent_raised = int((crowdfund.raised/crowdfund.goal) * 100)
+            percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
     except ObjectDoesNotExist:
         crowdfund = None
     return render(
@@ -42,13 +41,16 @@ def accept_payment(request):
         payment_success = stripepayment.process_payment(
             token=request.POST['stripeToken'],
             payment_type='crowdfund',
-            amount=float(request.POST['amount']),
+            amount=int(request.POST['amount']),
             message=request.POST['message']
         )
         if payment_success:
             try:
                 crowdfund = CrowdFund.objects.latest()
-                crowdfund.raised += Decimal(request.POST['amount'])
+                if crowdfund.raised:
+                    crowdfund.raised += int(request.POST['amount'])
+                else:
+                    crowdfund.raised = int(request.POST['amount'])
                 if crowdfund.raised >= crowdfund.goal:
                     crowdfund.active = False
                 crowdfund.save()
@@ -77,7 +79,7 @@ def crowdfund_admin(request):
         crowdfund = CrowdFund.objects.latest()
         form = AdminForm(instance=crowdfund)
         if crowdfund.raised:
-            percent_raised = int((crowdfund.raised/crowdfund.goal) * 100)
+            percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
     except ObjectDoesNotExist:
         crowdfund = None
     payments = Payment.objects.filter(payment_type='crowdfund')

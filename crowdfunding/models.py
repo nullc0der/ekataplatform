@@ -7,11 +7,11 @@ from django.core.validators import MinValueValidator
 
 
 class CrowdFund(models.Model):
-    goal = models.DecimalField(
-        max_digits=30, decimal_places=2, validators=[MinValueValidator(1.00)]
+    goal = models.PositiveIntegerField(
+        null=True, blank=True
     )
-    raised = models.DecimalField(
-        null=True, blank=True, max_digits=30, decimal_places=2, default=0.00
+    raised = models.PositiveIntegerField(
+        null=True, blank=True
     )
     active = models.BooleanField(default=False)
 
