@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 
 class Payment(models.Model):
     user = models.ForeignKey(User, related_name='payments')
-    amount = models.DecimalField(
-        null=True, blank=True, max_digits=30, decimal_places=2
+    amount = models.PositiveIntegerField(
+        null=True, blank=True
     )
     is_success = models.BooleanField(default=False)
     message = models.CharField(default='', max_length=250)
