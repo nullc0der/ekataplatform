@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.3.7">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}?v=1.0.7">
+    <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}?v=1.0.11">
     <!-- iCheck -->
     <link rel="stylesheet" href="{% static "plugins/iCheck/flat/blue.css" %}">
     <!-- Morris chart -->
@@ -249,7 +249,7 @@
                 <div class="sidebar-menu-wrapper">
                     <ul class="sidebar-menu-tab">
                         <li {% ifequal ACTIVE_TAB 'home' %}class="active"{% endifequal %} data-name="home"><i class="fa fa-home"></i></li>
-                        <li {% ifequal ACTIVE_TAB 'community' %}class="active"{% endifequal %} data-name="community"><i class="fa fa-compass"></i></li>
+                        <li {% ifequal ACTIVE_TAB 'community' %}class="active"{% endifequal %} data-name="community"><i class="fa fa-compass" style="font-size: 21px"></i></li>
                         <li {% ifequal ACTIVE_TAB 'apps' %}class="active"{% endifequal %} data-name="apps"><i class="fa fa-futbol-o"></i></li>
                         {% if extended_sidebar %}
                             {% if user_in_group or user_in_group_admin %}
