@@ -34,7 +34,7 @@
     <link rel="manifest" href="/manifest.json">
     {% compress css %}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.3.7">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.3.10">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}?v=1.0.11">
@@ -244,6 +244,11 @@
                         </div>
                     </form>
                     <!-- /.search form -->
+                    <!-- Collasped search button -->
+                    <div class="sidebar-search-btn">
+                        <button class="btn btn-flat" data-toggle="offcanvas"><i class="fa fa-search"></i></button>
+                    </div>
+                    <!--/.Collapsed search button -->
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <div class="sidebar-menu-wrapper">

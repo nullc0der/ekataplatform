@@ -5946,3 +5946,32 @@ table.text-center th {
 .material-btn:active, .material-btn:focus {
     outline: none;
 }
+
+.sidebar-search-btn {
+    text-align: center;
+}
+
+.sidebar-search-btn .btn {
+    margin: 0px 10px 10px 10px;
+    padding: 6px 20px;
+    box-shadow: none;
+    background-color: rgba(0,0,0,0.09);
+    height: 38px;
+    color: #fff;
+    border-radius: 3px;
+    opacity: 0.5;
+}
+
+.sidebar-search-btn .btn:hover, .sidebar-search-btn .btn:active {
+    outline: none;
+}
+
+.sidebar-search-btn {
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .sidebar-mini.sidebar-collapse .sidebar-user-panel-form-wrapper>.sidebar-search-btn {
+        display: block !important;
+    }
+}
