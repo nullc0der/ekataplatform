@@ -30,7 +30,9 @@
                     <div class="widget-box" style="text-align: center; margin-top: 8%">
                         <i class="fa fa-play-circle" style="font-size: 80px; color: #FFFFFF"></i>
                         <p style="color: #fff; font-weight: 600; font-size: 18px">{% trans "Watch video" %}</p>
+                        {% if crowdfund.active %}
                         <button class="fund-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "FUND" %}</button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -66,6 +68,7 @@
             </div>
         </div>
     </div>
+    {% if crowdfund.active %}
     <div class="modal fade" id="paymentFormModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -104,6 +107,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
 {% endblock %}
 {% block extrascripts %}
     <script src="https://js.stripe.com/v3/"></script>
