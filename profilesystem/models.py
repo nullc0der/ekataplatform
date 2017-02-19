@@ -9,6 +9,7 @@ from django.db.models.signals import post_save, post_delete
 from django.utils.translation import ugettext_lazy as _
 from versatileimagefield.fields import VersatileImageField
 from jsonfield import JSONField
+from django_countries.fields import CountryField
 
 from profilesystem.tasks import task_unique_ekata_id_setter
 # Create your models here.
@@ -163,11 +164,11 @@ def delete_file(sender, instance, **kwargs):
 class UserAddress(models.Model):
     user = models.OneToOneField(User, related_name='address')
     house_number = models.CharField(verbose_name=_('House Number'), max_length=10, default='', blank=True)
-    street = models.CharField(verbose_name=_('street'), max_length=200, default='', blank=True)
-    zip_code = models.CharField(verbose_name=_('zip code'), max_length=10, default='', blank=True)
-    city = models.CharField(verbose_name=_('city'), max_length=100, default='', blank=True)
-    state = models.CharField(verbose_name=_('state'), max_length=100, default='', blank=True)
-    country = models.CharField(verbose_name=_('country'), max_length=100, default='', blank=True)
+    street = models.CharField(verbose_name=_('Street'), max_length=200, default='', blank=True)
+    zip_code = models.CharField(verbose_name=_('Zip Code'), max_length=10, default='', blank=True)
+    city = models.CharField(verbose_name=_('City'), max_length=100, default='', blank=True)
+    state = models.CharField(verbose_name=_('State'), max_length=100, default='', blank=True)
+    country = CountryField(verbose_name=_('Country'), max_length=100, default='', blank=True)
 
 
 class UserPhone(models.Model):

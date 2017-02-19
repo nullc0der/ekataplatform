@@ -221,7 +221,7 @@
                     {% if user.address.country %}
                         <strong><i class="fa fa-globe margin-r-5"></i>{% trans "Country" %}</strong>
                         <p class="text-muted">
-                            {{ user.address.country }}
+                            {{ user.address.country.name }}
                         </p>
                     {% endif %}
                 </div>
