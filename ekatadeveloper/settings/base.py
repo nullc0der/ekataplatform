@@ -94,7 +94,8 @@ INSTALLED_APPS = [
     'emailtosms',
     'autosignup',
     'stripepayment',
-    'crowdfunding'
+    'crowdfunding',
+    'translation'
 ]
 
 
@@ -235,9 +236,10 @@ USE_TZ = True
 LANGUAGES = [
     ('de', _('German')),
     ('en', _('English')),
-    ('as', _('Assamese')),
+    ('hi', _('Hindi')),
 ]
 
+"""
 EXTRA_LANG_INFO = {
     'as': {
         'code': 'as',
@@ -248,7 +250,7 @@ EXTRA_LANG_INFO = {
 
 LANG_INFO = dict(django.conf.locale.LANG_INFO.items() + EXTRA_LANG_INFO.items())
 django.conf.locale.LANG_INFO = LANG_INFO
-
+"""
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
@@ -440,3 +442,6 @@ CHANNEL_LAYERS = {
 # Stripe Keys
 STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')
+
+# Translate API
+GOOGLE_TRANSLATE_API_KEY = get_env_variable('GOOGLE_TRANSLATE_API_KEY')

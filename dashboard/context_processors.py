@@ -5,30 +5,30 @@ from django.core.urlresolvers import reverse
 
 
 HOME = [
-    reverse('dashboard:index'),
-    reverse('myaccount:index'),
-    reverse('myaccount:transfer'),
-    reverse('profilesystem:index'),
-    reverse('usertimeline:index'),
-    reverse('messaging:index')
+    reverse('dashboard:index')[3:],
+    reverse('myaccount:index')[3:],
+    reverse('myaccount:transfer')[3:],
+    reverse('profilesystem:index')[3:],
+    reverse('usertimeline:index')[3:],
+    reverse('messaging:index')[3:]
 ]
 
 COMMUNITY = [
-    reverse('publicusers:index'),
-    reverse('g:allgroups'),
-    reverse('g:joinedgroups'),
-    reverse('g:subscribedgroups'),
-    reverse('information:index'),
-    reverse('information:contact'),
-    reverse('crowdfunding:index'),
-    reverse('crowdfunding:crowdfund_admin'),
-    reverse('eblast:emailtemplates'),
-    reverse('eblast:emailgroups'),
-    reverse('eblast:emailcampaign_page')
+    reverse('publicusers:index')[3:],
+    reverse('g:allgroups')[3:],
+    reverse('g:joinedgroups')[3:],
+    reverse('g:subscribedgroups')[3:],
+    reverse('information:index')[3:],
+    reverse('information:contact')[3:],
+    reverse('crowdfunding:index')[3:],
+    reverse('crowdfunding:crowdfund_admin')[3:],
+    reverse('eblast:emailtemplates')[3:],
+    reverse('eblast:emailgroups')[3:],
+    reverse('eblast:emailcampaign_page')[3:]
 ]
 
 APPS = [
-    reverse('hashtag:index'),
+    reverse('hashtag:index')[3:],
 ]
 
 
@@ -61,17 +61,17 @@ def site_type(request):
 
 
 def active_menu_tab(request):
-    if request.path in HOME:
+    if request.path[3:] in HOME:
         return {
             'ACTIVE_TAB': 'home',
             'TEMPLATE_NAME': 'sidebar_home.html'
         }
-    if request.path in COMMUNITY:
+    if request.path[3:] in COMMUNITY:
         return {
             'ACTIVE_TAB': 'community',
             'TEMPLATE_NAME': 'sidebar_community.html'
         }
-    if request.path in APPS:
+    if request.path[3:] in APPS:
         return {
             'ACTIVE_TAB': 'apps',
             'TEMPLATE_NAME': 'sidebar_apps.html'
