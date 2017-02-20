@@ -249,7 +249,7 @@
                         <!-- box-body -->
                         <div class="box-footer">
                             <div class="pull-right">
-                                <a data-target="#fileModal" data-toggle="modal" class="btn btn-primary"><i class="fa fa-cloud-upload"></i>&nbsp;Upload Document</a>
+                                <a data-target="#fileModal" data-toggle="modal" class="btn btn-primary"><i class="fa fa-cloud-upload"></i>&nbsp;{% trans "Upload Document" %}</a>
                             </div>
                         </div>
                         <!-- box-footer -->
@@ -307,21 +307,21 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Name</td>
+                                        <td>{% trans "Name" %}</td>
                                         <td>{{ request.user.get_full_name }}</td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.name_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="name_public">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Website </td>
+                                        <td>{% trans "Website" %} </td>
                                         <td> {{ request.user.profile.website }}</td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.website_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="website_public">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Gender</td>
+                                        <td>{% trans "Gender" %}</td>
                                         <td id="sgen">{% if request.user.profile.gender %}
                                                 {{ request.user.profile.get_gender_display }}
                                             {% else %}
@@ -332,14 +332,14 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Avatar</td>
+                                        <td>{% trans "Avatar" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.avatar_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="avatar_public">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>About Me</td>
+                                        <td>{% trans "About Me" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.bio_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="bio_public">
@@ -360,7 +360,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Location</td>
+                                        <td>{% trans "Location" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.location_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="location_public">
@@ -372,7 +372,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Phone No</td>
+                                        <td>{% trans "Phone No" %}</td>
                                         <td>{{ request.user.profile.phone_mobile }}</td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.phone_public %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Public" data-off="Private" id="phone_public">
@@ -393,7 +393,7 @@
                                 </table>
                             </section>
                             {% else %}
-                                <p>Please edit profile information to change visibility</p>
+                                <p>{% trans "Please edit profile information to change visibility" %}</p>
                             {% endif %}
                             <div class="text-center" id="customizelink">
                                 <h5><strong>{% trans "Customize links of landing dropdown" %}</strong></h5>
@@ -401,42 +401,42 @@
                             <section class="table-responsive">
                                 <table class="table table-condensed">
                                     <tr>
-                                        <td>Users</td>
+                                        <td>{% trans "Users" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.users_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="users_link_visible">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Groups</td>
+                                        <td>{% trans "Groups" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.groups_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="groups_link_visible">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Timeline</td>
+                                        <td>{% trans "Timeline" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.timeline_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="timeline_link_visible">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Messaging</td>
+                                        <td>{% trans "Messaging" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.messaging_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="messaging_link_visible">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Information</td>
+                                        <td>{% trans "Information" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.information_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="information_link_visible">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Hashtag</td>
+                                        <td>{% trans "Hashtag" %}</td>
                                         <td></td>
                                         <td align="right">
                                             <input type="checkbox" {% if request.user.profile.hashtagcampaign_link_visible %}checked{% endif %} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Visible" data-off="Invisible" id="hashtagcampaign_link_visible">
@@ -449,15 +449,15 @@
                         <div class="box-footer">
                             {% if request.user.has_usable_password %}
                             <div class="pull-left">
-                                <a class="btn btn-danger" href="{% url 'changepassword' %}">Change password</a>
+                                <a class="btn btn-danger" href="{% url 'changepassword' %}">{% trans "Change password" %}</a>
                             </div>
                             {% else %}
                             <div class="pull-left">
-                                <a class="btn btn-danger" href="{% url 'setpassword' %}">Set password</a>
+                                <a class="btn btn-danger" href="{% url 'setpassword' %}">{% trans "Set password" %}</a>
                             </div>
                             {% endif %}
                             <div class="pull-right">
-                                <button class="btn btn-primary" id="public">View As Public</button>
+                                <button class="btn btn-primary" id="public">{% trans "View As Public" %}</button>
                             </div>
                         </div>
                     </div>

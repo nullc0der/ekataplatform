@@ -63,7 +63,7 @@
                 <span class="info-box-icon bg-orange"><i class="fa fa-bank"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">{% trans "Account Balance" %}</span>
-                    <span class="info-box-number">{{ request.user.useraccount.balance }} units</span>
+                    <span class="info-box-number">{{ request.user.useraccount.balance }} {% trans "units" %}</span>
                 </div>
             </div>
         </div>
@@ -93,24 +93,24 @@
                     <div class="col-md-12 text-center">
                         <div class="countdowntext">
                             <h4>
-                                Day
+                                {% trans "Day" %}
                             </h4>
                         </div>
                         <div class="countdowntext">
                             <h4>
-                                Hour
+                                {% trans "Hour" %}
                             </h4>
                         </div>
                         <div class="countdowntext">
                             <h4>
-                                Minute
+                                {% trans "Minute" %}
                             </h4>
                         </div>
                     </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     <div class="pull-right">
-                        <a href="{% url 'myaccount:index' %}" class="btn btn-sm btn-primary">More info</a>
+                        <a href="{% url 'myaccount:index' %}" class="btn btn-sm btn-primary">{% trans "More info" %}</a>
                     </div>
                 </div>
             </div><!-- /.box -->

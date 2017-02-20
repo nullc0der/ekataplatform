@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-20 19:42+0000\n"
+"POT-Creation-Date: 2017-02-20 21:08+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -183,8 +183,9 @@ msgstr "Político"
 #: templates/groupsystem/adminnews.html:17
 #: templates/groupsystem/adminnews.html:22
 #: templates/groupsystem/adminnews.html:49
-#: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:173
-#: templates/sidebar_group.html:44 templates/sidebar_group_admin.html:14
+#: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:80
+#: templates/landing_base.html:173 templates/sidebar_group.html:44
+#: templates/sidebar_group_admin.html:14
 msgid "News"
 msgstr "Noticias"
 
@@ -208,166 +209,183 @@ msgstr "Organización sin ánimo de lucro"
 msgid "Other"
 msgstr "Otro"
 
-#: groupsystem/models.py:33
+#: groupsystem/models.py:28 templates/profilesystem/index.html:311
+#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
+msgid "Name"
+msgstr "Nombre"
+
+#: groupsystem/models.py:30
+msgid "Short About"
+msgstr "Sobre corta"
+
+#: groupsystem/models.py:32
+msgid "Long About"
+msgstr "largo Sobre"
+
+#: groupsystem/models.py:34
+msgid "Group Type"
+msgstr "Grupo"
+
+#: groupsystem/models.py:36
 msgid "Please Specify"
 msgstr "Por favor especifica"
 
-#: groupsystem/models.py:81 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/models.py:84 groupsystem/views.py:38 groupsystem/views.py:77
 #: groupsystem/views.py:110
 msgid "Can access admin"
 msgstr "Se puede acceder de administración"
 
-#: groupsystem/models.py:82 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/models.py:85 groupsystem/views.py:39 groupsystem/views.py:78
 #: groupsystem/views.py:111 groupsystem/views.py:128 groupsystem/views.py:139
 msgid "Can read news"
 msgstr "Puede leer noticias"
 
-#: groupsystem/models.py:83 groupsystem/views.py:40 groupsystem/views.py:79
+#: groupsystem/models.py:86 groupsystem/views.py:40 groupsystem/views.py:79
 msgid "Can create news"
 msgstr "Puede crear noticias"
 
-#: groupsystem/models.py:84 groupsystem/views.py:41 groupsystem/views.py:80
+#: groupsystem/models.py:87 groupsystem/views.py:41 groupsystem/views.py:80
 msgid "Can update news"
 msgstr "Se puede actualizar noticias"
 
-#: groupsystem/models.py:85 groupsystem/views.py:42 groupsystem/views.py:81
+#: groupsystem/models.py:88 groupsystem/views.py:42 groupsystem/views.py:81
 msgid "Can delete news"
 msgstr "Se puede eliminar de noticias"
 
-#: groupsystem/models.py:86 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/models.py:89 groupsystem/views.py:43 groupsystem/views.py:82
 #: groupsystem/views.py:112 groupsystem/views.py:129
 msgid "Can read post"
 msgstr "Puede leer entrada"
 
-#: groupsystem/models.py:87 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/models.py:90 groupsystem/views.py:44 groupsystem/views.py:83
 #: groupsystem/views.py:113 groupsystem/views.py:130
 msgid "Can create post"
 msgstr "Se puede crear el mensaje"
 
-#: groupsystem/models.py:88 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/models.py:91 groupsystem/views.py:45 groupsystem/views.py:84
 #: groupsystem/views.py:114
 msgid "Can update post"
 msgstr "Se puede actualizar poste"
 
-#: groupsystem/models.py:89 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/models.py:92 groupsystem/views.py:46 groupsystem/views.py:85
 #: groupsystem/views.py:115
 msgid "Can approve post"
 msgstr "Puede aprobar poste"
 
-#: groupsystem/models.py:90 groupsystem/views.py:47 groupsystem/views.py:86
+#: groupsystem/models.py:93 groupsystem/views.py:47 groupsystem/views.py:86
 #: groupsystem/views.py:116
 msgid "Can delete post"
 msgstr "Se puede eliminar el mensaje"
 
-#: groupsystem/models.py:91 groupsystem/views.py:48 groupsystem/views.py:87
+#: groupsystem/models.py:94 groupsystem/views.py:48 groupsystem/views.py:87
 #: groupsystem/views.py:117 groupsystem/views.py:131
 msgid "Can read comment"
 msgstr "Puede leer comentario"
 
-#: groupsystem/models.py:92 groupsystem/views.py:49 groupsystem/views.py:88
+#: groupsystem/models.py:95 groupsystem/views.py:49 groupsystem/views.py:88
 #: groupsystem/views.py:118 groupsystem/views.py:132
 msgid "Can create comment"
 msgstr "Se puede crear el comentario"
 
-#: groupsystem/models.py:93 groupsystem/views.py:50 groupsystem/views.py:89
+#: groupsystem/models.py:96 groupsystem/views.py:50 groupsystem/views.py:89
 #: groupsystem/views.py:119
 msgid "Can update comment"
 msgstr "Se puede actualizar comentario"
 
-#: groupsystem/models.py:94 groupsystem/views.py:51 groupsystem/views.py:90
+#: groupsystem/models.py:97 groupsystem/views.py:51 groupsystem/views.py:90
 #: groupsystem/views.py:120
 msgid "Can approve comment"
 msgstr "Puede aprobar comentario"
 
-#: groupsystem/models.py:95 groupsystem/views.py:52 groupsystem/views.py:91
+#: groupsystem/models.py:98 groupsystem/views.py:52 groupsystem/views.py:91
 #: groupsystem/views.py:121
 msgid "Can delete comment"
 msgstr "Puede borrar comentarios"
 
-#: groupsystem/models.py:96 groupsystem/views.py:53 groupsystem/views.py:92
+#: groupsystem/models.py:99 groupsystem/views.py:53 groupsystem/views.py:92
 #: groupsystem/views.py:122 groupsystem/views.py:133
 msgid "Can like post"
 msgstr "Puede gusta la publicación"
 
-#: groupsystem/models.py:97 groupsystem/views.py:54
+#: groupsystem/models.py:100 groupsystem/views.py:54
 msgid "Can create notification"
 msgstr "Se puede crear una notificación"
 
-#: groupsystem/models.py:98 groupsystem/views.py:55 groupsystem/views.py:93
+#: groupsystem/models.py:101 groupsystem/views.py:55 groupsystem/views.py:93
 #: groupsystem/views.py:123 groupsystem/views.py:134
 msgid "Can create invite"
 msgstr "Puede crear invite"
 
-#: groupsystem/models.py:99 groupsystem/views.py:56 groupsystem/views.py:94
+#: groupsystem/models.py:102 groupsystem/views.py:56 groupsystem/views.py:94
 msgid "Can add member"
 msgstr "Se puede agregar miembro"
 
-#: groupsystem/models.py:100 groupsystem/views.py:57 groupsystem/views.py:95
+#: groupsystem/models.py:103 groupsystem/views.py:57 groupsystem/views.py:95
 msgid "Can remove member"
 msgstr "Se puede eliminar el miembro"
 
-#: groupsystem/models.py:101 groupsystem/views.py:58 groupsystem/views.py:96
+#: groupsystem/models.py:104 groupsystem/views.py:58 groupsystem/views.py:96
 msgid "Can ban member"
 msgstr "miembro puede prohibir"
 
-#: groupsystem/models.py:102 groupsystem/views.py:59 groupsystem/views.py:97
+#: groupsystem/models.py:105 groupsystem/views.py:59 groupsystem/views.py:97
 msgid "Can lift member ban"
 msgstr "Puede levantar la prohibición miembro"
 
-#: groupsystem/models.py:103 groupsystem/views.py:60 groupsystem/views.py:98
+#: groupsystem/models.py:106 groupsystem/views.py:60 groupsystem/views.py:98
 msgid "Can change member role"
 msgstr "Puede cambiar la función miembro"
 
-#: groupsystem/models.py:104 groupsystem/views.py:61 groupsystem/views.py:99
+#: groupsystem/models.py:107 groupsystem/views.py:61 groupsystem/views.py:99
 msgid "Can edit member permission"
 msgstr "Puede editar el permiso miembro"
 
-#: groupsystem/models.py:105 groupsystem/views.py:62 groupsystem/views.py:100
+#: groupsystem/models.py:108 groupsystem/views.py:62 groupsystem/views.py:100
 #: groupsystem/views.py:124 groupsystem/views.py:135
 msgid "Can read events"
 msgstr "Puede leer eventos"
 
-#: groupsystem/models.py:106 groupsystem/views.py:63 groupsystem/views.py:101
+#: groupsystem/models.py:109 groupsystem/views.py:63 groupsystem/views.py:101
 msgid "Can create events"
 msgstr "Puede crear eventos"
 
-#: groupsystem/models.py:107 groupsystem/views.py:64 groupsystem/views.py:102
+#: groupsystem/models.py:110 groupsystem/views.py:64 groupsystem/views.py:102
 msgid "Can update events"
 msgstr "Se puede actualizar eventos"
 
-#: groupsystem/models.py:108 groupsystem/views.py:65 groupsystem/views.py:103
+#: groupsystem/models.py:111 groupsystem/views.py:65 groupsystem/views.py:103
 msgid "Can delete events"
 msgstr "Puede eliminar eventos"
 
-#: groupsystem/models.py:109 groupsystem/views.py:66 groupsystem/views.py:104
+#: groupsystem/models.py:112 groupsystem/views.py:66 groupsystem/views.py:104
 msgid "Can read join requests"
 msgstr "Puede leer unirse a las solicitudes"
 
-#: groupsystem/models.py:110 groupsystem/views.py:67 groupsystem/views.py:105
+#: groupsystem/models.py:113 groupsystem/views.py:67 groupsystem/views.py:105
 msgid "Can approve join requests"
 msgstr "Puede aprobar unirse a las solicitudes"
 
-#: groupsystem/models.py:111 groupsystem/views.py:68 groupsystem/views.py:106
+#: groupsystem/models.py:114 groupsystem/views.py:68 groupsystem/views.py:106
 msgid "Can deny joinrequest"
 msgstr "Puede negar joinrequest"
 
-#: groupsystem/models.py:112 groupsystem/views.py:69
+#: groupsystem/models.py:115 groupsystem/views.py:69
 msgid "Can edit group profile"
 msgstr "Puede editar el perfil de grupo"
 
-#: groupsystem/models.py:113 groupsystem/views.py:70
+#: groupsystem/models.py:116 groupsystem/views.py:70
 msgid "Can read role"
 msgstr "Puede leer el papel"
 
-#: groupsystem/models.py:114 groupsystem/views.py:71
+#: groupsystem/models.py:117 groupsystem/views.py:71
 msgid "Can read custom role"
 msgstr "Puede leer función personalizada"
 
-#: groupsystem/models.py:115 groupsystem/views.py:72
+#: groupsystem/models.py:118 groupsystem/views.py:72
 msgid "Can update custom role"
 msgstr "Se puede actualizar la función personalizada"
 
-#: groupsystem/models.py:116 groupsystem/views.py:73
+#: groupsystem/models.py:119 groupsystem/views.py:73
 msgid "Can create custom role"
 msgstr "Puede crear función personalizada"
 
@@ -471,6 +489,31 @@ msgstr "función permiso cambiado"
 #: groupsystem/views.py:1598
 msgid "User permission changed"
 msgstr "el permiso del usuario ha cambiado"
+
+#: information/models.py:10
+msgid "First Name"
+msgstr "Nombre de pila"
+
+#: information/models.py:11
+msgid "Last Name"
+msgstr "Último pago enviado"
+
+#: information/models.py:13
+msgid "Company Name"
+msgstr "nombre de empresa"
+
+#: information/models.py:14 templates/eblast/emailcampaign_sent.html:2
+#: templates/profilesystem/index.html:515
+msgid "Email Address"
+msgstr "Dirección de correo electrónico"
+
+#: information/models.py:16
+msgid "Telephone Number"
+msgstr "Número de casa"
+
+#: information/models.py:19
+msgid "Comment"
+msgstr "comentarios"
 
 #: profilesystem/forms.py:22
 msgid "Usernames can only contain letters, digits and @/./+/-/_."
@@ -1115,6 +1158,7 @@ msgstr "Email"
 #: templates/autosignup/step_2_verification.html:12
 #: templates/autosignup/step_3_form.html:12
 #: templates/autosignup/step_3_verification.html:12
+#: templates/profilesystem/index.html:377
 msgid "Phone No"
 msgstr "Telefono no"
 
@@ -1481,6 +1525,14 @@ msgstr "Perfil"
 msgid "Sign out"
 msgstr "desconectar"
 
+#: templates/base.html:234 templates/publicusers/user.html:24
+#: templates/publicusers/userdetails.html:393
+#: templates/publicusers/userlist.html:40
+#: templates/publicusers/userlist_old.html:116
+#: templates/publicusers/users_old.html:25
+msgid "Online"
+msgstr "En línea"
+
 #: templates/base.html:306
 msgid "System notice: "
 msgstr "Aviso del sistema:"
@@ -1568,8 +1620,9 @@ msgstr "Fondo Ahora"
 msgid "Card"
 msgstr "Tarjeta"
 
-#: templates/crowdfunding/index.html:92 useraccount/forms.py:8
-#: useraccount/forms.py:27
+#: templates/crowdfunding/index.html:92 templates/useraccount/index.html:175
+#: templates/useraccount/index.html:215 templates/useraccount/index.html:242
+#: useraccount/forms.py:8 useraccount/forms.py:27
 msgid "Amount"
 msgstr "Cantidad"
 
@@ -1632,13 +1685,42 @@ msgid "Messages"
 msgstr "mensajes"
 
 #: templates/dashboard/dashboard.html:65 templates/dashboard/dashboard.html:257
+#: templates/useraccount/index.html:111 templates/useraccount/transfer.html:43
 msgid "Account Balance"
 msgstr "Saldo de la cuenta"
+
+#: templates/dashboard/dashboard.html:66
+#: templates/notification/notification.html:19
+#: templates/notification/notification.html:26
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "units"
+msgstr "unidades"
 
 #: templates/dashboard/dashboard.html:75 templates/dashboard/dashboard.html:258
 #: templates/useraccount/index.html:123
 msgid "Next Release"
 msgstr "A continuación estreno"
+
+#: templates/dashboard/dashboard.html:96 templates/useraccount/index.html:140
+msgid "Day"
+msgstr "Día"
+
+#: templates/dashboard/dashboard.html:101 templates/useraccount/index.html:145
+msgid "Hour"
+msgstr "Hora"
+
+#: templates/dashboard/dashboard.html:106 templates/useraccount/index.html:150
+msgid "Minute"
+msgstr "Minuto"
+
+#: templates/dashboard/dashboard.html:113
+#: templates/groupsystem/admindashboard.html:46
+#: templates/groupsystem/admindashboard.html:60
+#: templates/groupsystem/admindashboard.html:74
+#: templates/groupsystem/admindashboard.html:88
+msgid "More info"
+msgstr "Más información"
 
 #: templates/dashboard/dashboard.html:121 templates/publicusers/user.html:277
 msgid "Profile Completed"
@@ -1865,11 +1947,6 @@ msgstr "Borrador"
 msgid "Sent to: "
 msgstr "Enviado a:"
 
-#: templates/eblast/emailcampaign_sent.html:2
-#: templates/profilesystem/index.html:515
-msgid "Email Address"
-msgstr "Dirección de correo electrónico"
-
 #: templates/eblast/emailcampaign_sent.html:3
 msgid "Subject: "
 msgstr "Tema:"
@@ -2080,13 +2157,6 @@ msgstr "Administración"
 msgid "Group"
 msgstr "Grupo"
 
-#: templates/groupsystem/admindashboard.html:46
-#: templates/groupsystem/admindashboard.html:60
-#: templates/groupsystem/admindashboard.html:74
-#: templates/groupsystem/admindashboard.html:88
-msgid "More info"
-msgstr "Más información"
-
 #: templates/groupsystem/admindashboard.html:54
 msgid "New Request"
 msgstr "Nueva solicitud"
@@ -2148,7 +2218,8 @@ msgid "All Groups"
 msgstr "todos los Grupos"
 
 #: templates/groupsystem/all_group.html:43 templates/landing_base.html:108
-#: templates/landing_base.html:167 templates/sidebar_community.html:6
+#: templates/landing_base.html:167 templates/profilesystem/index.html:413
+#: templates/sidebar_community.html:6
 msgid "Groups"
 msgstr "grupos"
 
@@ -2486,7 +2557,8 @@ msgid "Hashtag Banner"
 msgstr "hashtag Banner"
 
 #: templates/hashtag/index.html:38 templates/hashtag/index.html:41
-#: templates/landing_base.html:131
+#: templates/landing_base.html:79 templates/landing_base.html:131
+#: templates/profilesystem/index.html:441
 msgid "Hashtag"
 msgstr "Hashtag"
 
@@ -2573,8 +2645,8 @@ msgstr "No me puedo subir ahora !! intenta más tarde"
 
 #: templates/information/contact.html:4 templates/information/contact.html:10
 #: templates/information/contact.html:13 templates/information/success.html:4
-#: templates/information/success.html:10 templates/landing_base.html:198
-#: templates/profilesystem/index.html:154
+#: templates/information/success.html:10 templates/landing_base.html:78
+#: templates/landing_base.html:198 templates/profilesystem/index.html:154
 #: templates/profilesystem/index.html:373 templates/publicusers/user.html:65
 #: templates/publicusers/user.html:236
 msgid "Contact"
@@ -2591,7 +2663,8 @@ msgid ""
 msgstr ""
 
 #: templates/information/index.html:4 templates/information/index.html:13
-#: templates/information/index.html:24 templates/sidebar_community.html:20
+#: templates/information/index.html:24 templates/profilesystem/index.html:434
+#: templates/sidebar_community.html:20
 msgid "Information"
 msgstr "Información"
 
@@ -2803,14 +2876,24 @@ msgid "Trending"
 msgstr "Tendencias"
 
 #: templates/landing/news.html:80 templates/landing/newsdetail.html:45
+#: templates/profilesystem/index.html:343
 msgid "About Me"
 msgstr "Sobre mi"
+
+#: templates/landing_base.html:74
+msgid "Home"
+msgstr "Página principal"
+
+#: templates/landing_base.html:75
+msgid "Features"
+msgstr "Más características"
 
 #: templates/landing_base.html:99 templates/landing_base.html:164
 msgid "My Account"
 msgstr "Mi cuenta"
 
 #: templates/landing_base.html:104 templates/landing_base.html:166
+#: templates/profilesystem/index.html:406
 #: templates/publicusers/userdetails.html:50
 #: templates/publicusers/userlist_old.html:4
 #: templates/publicusers/userlist_old.html:44
@@ -2819,8 +2902,9 @@ msgid "Users"
 msgstr "usuarios"
 
 #: templates/landing_base.html:112 templates/landing_base.html:168
-#: templates/sidebar_home.html:50 templates/timelines/index.html:4
-#: templates/timelines/index.html:18 templates/timelines/index.html:21
+#: templates/profilesystem/index.html:420 templates/sidebar_home.html:50
+#: templates/timelines/index.html:4 templates/timelines/index.html:18
+#: templates/timelines/index.html:21
 msgid "Timeline"
 msgstr "Línea de tiempo"
 
@@ -2856,6 +2940,10 @@ msgstr "Suscribirse a la Newsletter"
 msgid "Please feel free to inquire more about the EKATA platform."
 msgstr "Por favor, siéntase libre de investigar más sobre la plataforma Ekata."
 
+#: templates/landing_base.html:249
+msgid "Powered by "
+msgstr "Energizado por"
+
 #: templates/messagingsystem/chats.html:70
 msgid "Send Unit to: "
 msgstr "Enviar a Unidad:"
@@ -2871,6 +2959,7 @@ msgid "Request"
 msgstr "Solicitud"
 
 #: templates/messagingsystem/index.html:4
+#: templates/profilesystem/index.html:427
 msgid "Messaging"
 msgstr "Mensajería"
 
@@ -2901,13 +2990,6 @@ msgstr "Todo atrapados"
 #: templates/timelines/timeline.html:72
 msgid "sent"
 msgstr "expedido"
-
-#: templates/notification/notification.html:19
-#: templates/notification/notification.html:26
-#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
-#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
-msgid "units"
-msgstr "unidades"
 
 #: templates/notification/notification.html:26
 msgid "requested"
@@ -2981,6 +3063,23 @@ msgstr "Teléfonos de emergencia"
 msgid "Click add button to add your phone number"
 msgstr "Haga clic en el botón Añadir para agregar su número de teléfono"
 
+#: templates/profilesystem/documents.html:4
+msgid "Profile Images"
+msgstr "Hacer una imagen de perfil"
+
+#: templates/profilesystem/documents.html:18
+msgid "Images"
+msgstr "cargar imágenes"
+
+#: templates/profilesystem/documents.html:34
+#: templates/profilesystem/index.html:223
+msgid "Documents"
+msgstr "Documentos"
+
+#: templates/profilesystem/documents.html:50
+msgid "Legal"
+msgstr "Legal"
+
 #: templates/profilesystem/emailaddress.html:4
 msgid "Email address associated with your account"
 msgstr "dirección de correo electrónico asociada con su cuenta"
@@ -2999,6 +3098,7 @@ msgid "Personal Information"
 msgstr "Informacion personal"
 
 #: templates/profilesystem/index.html:115
+#: templates/profilesystem/index.html:365
 msgid "Location"
 msgstr "Ubicación"
 
@@ -3014,14 +3114,14 @@ msgstr "Fecha de activacion"
 msgid "More"
 msgstr "Más"
 
-#: templates/profilesystem/index.html:223
-msgid "Documents"
-msgstr "Documentos"
-
 #: templates/profilesystem/index.html:236
 #: templates/publicusers/connections.html:74
 msgid "Search..."
 msgstr "Buscar..."
+
+#: templates/profilesystem/index.html:253
+msgid "Upload Document"
+msgstr "Documentos compartidos"
 
 #: templates/profilesystem/index.html:268
 msgid "Shared Documents"
@@ -3030,6 +3130,20 @@ msgstr "Documentos compartidos"
 #: templates/profilesystem/index.html:300
 msgid "Change Public Visibility"
 msgstr "Cambiar la visibilidad pública"
+
+#: templates/profilesystem/index.html:318 templates/profilesystem/pinfo.html:42
+#: templates/publicusers/user.html:138
+msgid "Website"
+msgstr "Sitio web"
+
+#: templates/profilesystem/index.html:325 templates/profilesystem/pinfo.html:23
+#: templates/publicusers/user.html:126
+msgid "Gender"
+msgstr "Género"
+
+#: templates/profilesystem/index.html:336
+msgid "Avatar"
+msgstr "Añadir avatar"
 
 #: templates/profilesystem/index.html:361 templates/publicusers/user.html:188
 msgid "Address"
@@ -3043,9 +3157,26 @@ msgstr "Otros"
 msgid "Profile completion"
 msgstr "perfil completado"
 
+#: templates/profilesystem/index.html:398
+msgid "Please edit profile information to change visibility"
+msgstr ""
+"Por favor, editar la información del perfil para cambiar la visibilidad"
+
 #: templates/profilesystem/index.html:401
 msgid "Customize links of landing dropdown"
 msgstr "Personalizar enlaces de aterrizaje desplegable"
+
+#: templates/profilesystem/index.html:454
+msgid "Change password"
+msgstr "Cambia la contraseña"
+
+#: templates/profilesystem/index.html:458
+msgid "Set password"
+msgstr "Configurar la clave"
+
+#: templates/profilesystem/index.html:462
+msgid "View As Public"
+msgstr "Ver Como Pública"
 
 #: templates/profilesystem/index.html:473
 msgid "Linked social account"
@@ -3103,21 +3234,9 @@ msgstr "Último pago enviado"
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
-msgid "Name"
-msgstr "Nombre"
-
-#: templates/profilesystem/pinfo.html:23 templates/publicusers/user.html:126
-msgid "Gender"
-msgstr "Género"
-
 #: templates/profilesystem/pinfo.html:38
 msgid "Community"
 msgstr "Comunidad"
-
-#: templates/profilesystem/pinfo.html:42 templates/publicusers/user.html:138
-msgid "Website"
-msgstr "Sitio web"
 
 #: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
 msgid "About me"
@@ -3196,14 +3315,6 @@ msgstr "Personal"
 #: templates/publicusers/users_old.html:23
 msgid "lastseen: "
 msgstr "ultima vez visto:"
-
-#: templates/publicusers/user.html:24
-#: templates/publicusers/userdetails.html:393
-#: templates/publicusers/userlist.html:40
-#: templates/publicusers/userlist_old.html:116
-#: templates/publicusers/users_old.html:25
-msgid "Online"
-msgstr "En línea"
 
 #: templates/publicusers/user.html:26
 #: templates/publicusers/userdetails.html:397
@@ -3465,9 +3576,30 @@ msgstr "Puntos de pulso"
 msgid "Quick Review"
 msgstr "Revisión rápida"
 
+#: templates/useraccount/index.html:113 templates/useraccount/transfer.html:45
+msgid "Units"
+msgstr "unidades"
+
 #: templates/useraccount/index.html:165
 msgid "Transactions"
 msgstr "Actas"
+
+#: templates/useraccount/index.html:171
+msgid "Id"
+msgstr "Carné de identidad"
+
+#: templates/useraccount/index.html:172 templates/useraccount/index.html:207
+msgid "From"
+msgstr "De"
+
+#: templates/useraccount/index.html:173 templates/useraccount/index.html:203
+msgid "To"
+msgstr "A"
+
+#: templates/useraccount/index.html:174 templates/useraccount/index.html:211
+#: templates/useraccount/index.html:241
+msgid "Date"
+msgstr "Fecha:"
 
 #: templates/useraccount/index.html:196
 msgid "Details"
@@ -3476,6 +3608,10 @@ msgstr "detalles"
 #: templates/useraccount/index.html:234
 msgid "Basic Income Release"
 msgstr "Renta Básica de estreno"
+
+#: templates/useraccount/index.html:255
+msgid "No release yet"
+msgstr "A continuación estreno"
 
 #: templates/useraccount/index.html:286
 msgid "Please contact a Grantcoin staff on your Account Status"
@@ -3494,6 +3630,10 @@ msgstr "transferir"
 #: templates/useraccount/transfer.html:55
 msgid "Select User"
 msgstr "Seleccionar usuario"
+
+#: templates/useraccount/transfer.html:80
+msgid "Search user"
+msgstr "Buscar Usuarios"
 
 #: templates/useraccount/transferunit.html:4
 msgid "Send Amount To"

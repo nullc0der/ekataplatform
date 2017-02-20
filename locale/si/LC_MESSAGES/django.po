@@ -1,0 +1,3632 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-20 21:21+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: autosignup/forms.py:150
+msgid "Max attempt reached! try later"
+msgstr "මැක්ස් උත්සාහයක් ළඟා! පසුව උත්සාහ"
+
+#: autosignup/forms.py:155 autosignup/forms.py:162
+msgid "Provide a valid mobile number"
+msgstr "වලංගු ජංගම දුරකථන අංකය ලබා"
+
+#: autosignup/forms.py:157 autosignup/forms.py:164
+msgid "Something went wrong! Try later"
+msgstr "මොකක්හරි වැරද්දක් වෙලා! පසුව උත්සාහ"
+
+#: ekatadeveloper/settings/base.py:237
+msgid "German"
+msgstr "ජර්මානු"
+
+#: ekatadeveloper/settings/base.py:238
+msgid "English"
+msgstr "ඉංග්රීසි"
+
+#: ekatadeveloper/settings/base.py:239
+msgid "Hindi"
+msgstr "හින්දි"
+
+#: ekatadeveloper/settings/base.py:240
+msgid "Spanish"
+msgstr "ස්පාඤ්ඤ"
+
+#: ekatadeveloper/settings/base.py:241
+msgid "Bengali"
+msgstr "බෙංගාලි"
+
+#: ekatadeveloper/settings/base.py:242
+msgid "Belarusian"
+msgstr "බෙලරුසියානු"
+
+#: ekatadeveloper/settings/base.py:243
+msgid "Portuguese"
+msgstr "පෘතුගීසි"
+
+#: ekatadeveloper/settings/base.py:244
+msgid "Bulgarian"
+msgstr "බල්ගේරියානු"
+
+#: ekatadeveloper/settings/base.py:245
+msgid "French"
+msgstr "ප්රංශ"
+
+#: ekatadeveloper/settings/base.py:246
+msgid "Croatian"
+msgstr "භාෂාව ක්රොවේසියන්"
+
+#: ekatadeveloper/settings/base.py:247
+msgid "Greek"
+msgstr "ග්රීක"
+
+#: ekatadeveloper/settings/base.py:248
+msgid "Czech"
+msgstr "චෙක්"
+
+#: ekatadeveloper/settings/base.py:249
+msgid "Danish"
+msgstr "ඩෙන්මාර්ක"
+
+#: ekatadeveloper/settings/base.py:250
+msgid "Arabic"
+msgstr "අරාබි"
+
+#: ekatadeveloper/settings/base.py:251
+msgid "Finland"
+msgstr "ෆින්ලන්තය"
+
+#: ekatadeveloper/settings/base.py:252
+msgid "France"
+msgstr "ප්රංශය"
+
+#: ekatadeveloper/settings/base.py:253
+msgid "Hungarian"
+msgstr "හංගේරියානු"
+
+#: ekatadeveloper/settings/base.py:254
+msgid "Indonessian"
+msgstr "Indonessian"
+
+#: ekatadeveloper/settings/base.py:255
+msgid "Italian"
+msgstr "ඉතාලි"
+
+#: ekatadeveloper/settings/base.py:256
+msgid "Japanese"
+msgstr "ජපන්"
+
+#: ekatadeveloper/settings/base.py:257
+msgid "Russian"
+msgstr "රුසියානු"
+
+#: ekatadeveloper/settings/base.py:258
+msgid "Latvian"
+msgstr "ලැට්වියානු"
+
+#: ekatadeveloper/settings/base.py:259
+msgid "Lithunian"
+msgstr "Lithunian"
+
+#: ekatadeveloper/settings/base.py:260
+msgid "Nepali"
+msgstr "නේපාල"
+
+#: ekatadeveloper/settings/base.py:261
+msgid "Norwegian"
+msgstr "නෝර්වේ"
+
+#: ekatadeveloper/settings/base.py:262
+msgid "Urdu"
+msgstr "හංගේරියානු"
+
+#: ekatadeveloper/settings/base.py:263
+msgid "Polish"
+msgstr "පෝලන්ත"
+
+#: ekatadeveloper/settings/base.py:264
+msgid "Romanian"
+msgstr "රුමේනියානු"
+
+#: ekatadeveloper/settings/base.py:265
+msgid "Tamil"
+msgstr "දෙමළ"
+
+#: ekatadeveloper/settings/base.py:266
+msgid "Korean"
+msgstr "කොරියානු"
+
+#: ekatadeveloper/settings/base.py:267
+msgid "Sinhalese"
+msgstr "සිංහල"
+
+#: ekatadeveloper/settings/base.py:268
+msgid "Thai"
+msgstr "තායි"
+
+#: groupsystem/forms.py:20
+msgid "Group Exist"
+msgstr "සමූහ පවතී"
+
+#: groupsystem/forms.py:32 groupsystem/forms.py:89
+msgid "You must specify other group type"
+msgstr "ඔබට වෙනත් කණ්ඩායමක් වර්ගය නියම කල යුතුය"
+
+#: groupsystem/forms.py:38 groupsystem/forms.py:95
+msgid "You can't fill this field with default group types"
+msgstr "ඔබ පෙරනිමි පිරිසක් වර්ග සමග මෙම ක්ෂේත්රය පිරවීමට නොහැකි"
+
+#: groupsystem/forms.py:186
+msgid "You can't choose a default role name"
+msgstr "ඔබ විසින් ප්රකෘති භූමිකාව නමක් තෝරා නොහැකි"
+
+#: groupsystem/forms.py:193
+msgid "Role exist"
+msgstr "කාර්යභාරය පවතී"
+
+#: groupsystem/models.py:18
+msgid "Art"
+msgstr "කලාව"
+
+#: groupsystem/models.py:19
+msgid "Activist"
+msgstr "ක්රියාකාරිකයකු"
+
+#: groupsystem/models.py:20
+msgid "Political"
+msgstr "දේශපාලන"
+
+#: groupsystem/models.py:21 templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:17
+#: templates/groupsystem/adminnews.html:22
+#: templates/groupsystem/adminnews.html:49
+#: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:80
+#: templates/landing_base.html:173 templates/sidebar_group.html:44
+#: templates/sidebar_group_admin.html:14
+msgid "News"
+msgstr "පුවත්"
+
+#: groupsystem/models.py:22 publicusers/views.py:328
+msgid "Business"
+msgstr "ව්යාපාරික"
+
+#: groupsystem/models.py:23
+msgid "Government"
+msgstr "ආණ්ඩුව"
+
+#: groupsystem/models.py:24
+msgid "Blog"
+msgstr "බ්ලොග්"
+
+#: groupsystem/models.py:25
+msgid "Nonprofit Organization"
+msgstr "ලාභ අරමුණු නොවන සංවිධාන"
+
+#: groupsystem/models.py:26
+msgid "Other"
+msgstr "වෙනත්"
+
+#: groupsystem/models.py:28 templates/profilesystem/index.html:311
+#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
+msgid "Name"
+msgstr "නම"
+
+#: groupsystem/models.py:30
+msgid "Short About"
+msgstr "ගැන කෙටි"
+
+#: groupsystem/models.py:32
+msgid "Long About"
+msgstr "ගැන දිගු"
+
+#: groupsystem/models.py:34
+msgid "Group Type"
+msgstr "සමූහය"
+
+#: groupsystem/models.py:36
+msgid "Please Specify"
+msgstr "විස්තර සඳහන් කරන්න"
+
+#: groupsystem/models.py:84 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/views.py:110
+msgid "Can access admin"
+msgstr "පරිපාලක වෙත පිවිසිය හැකිය"
+
+#: groupsystem/models.py:85 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/views.py:111 groupsystem/views.py:128 groupsystem/views.py:139
+msgid "Can read news"
+msgstr "පුවත් කියවන්න පුළුවන්"
+
+#: groupsystem/models.py:86 groupsystem/views.py:40 groupsystem/views.py:79
+msgid "Can create news"
+msgstr "ප්රවෘත්ති නිර්මාණය කළ හැකිය"
+
+#: groupsystem/models.py:87 groupsystem/views.py:41 groupsystem/views.py:80
+msgid "Can update news"
+msgstr "පුවත් යාවත්කාලීන කළ හැකිය"
+
+#: groupsystem/models.py:88 groupsystem/views.py:42 groupsystem/views.py:81
+msgid "Can delete news"
+msgstr "පුවත් මකා දැමිය හැක"
+
+#: groupsystem/models.py:89 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/views.py:112 groupsystem/views.py:129
+msgid "Can read post"
+msgstr "පශ්චාත් කියවන්න පුළුවන්"
+
+#: groupsystem/models.py:90 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/views.py:113 groupsystem/views.py:130
+msgid "Can create post"
+msgstr "පශ්චාත් නිර්මාණය කළ හැකිය"
+
+#: groupsystem/models.py:91 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/views.py:114
+msgid "Can update post"
+msgstr "පශ්චාත් යාවත්කාලීන කළ හැකිය"
+
+#: groupsystem/models.py:92 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/views.py:115
+msgid "Can approve post"
+msgstr "පශ්චාත් අනුමත කළ හැකි ද"
+
+#: groupsystem/models.py:93 groupsystem/views.py:47 groupsystem/views.py:86
+#: groupsystem/views.py:116
+msgid "Can delete post"
+msgstr "පශ්චාත් මකා දැමිය හැක"
+
+#: groupsystem/models.py:94 groupsystem/views.py:48 groupsystem/views.py:87
+#: groupsystem/views.py:117 groupsystem/views.py:131
+msgid "Can read comment"
+msgstr "අදහස් කියවන්න පුළුවන්"
+
+#: groupsystem/models.py:95 groupsystem/views.py:49 groupsystem/views.py:88
+#: groupsystem/views.py:118 groupsystem/views.py:132
+msgid "Can create comment"
+msgstr "අදහස් නිර්මාණය කළ හැකිය"
+
+#: groupsystem/models.py:96 groupsystem/views.py:50 groupsystem/views.py:89
+#: groupsystem/views.py:119
+msgid "Can update comment"
+msgstr "අදහස් යාවත්කාලීන කළ හැකිය"
+
+#: groupsystem/models.py:97 groupsystem/views.py:51 groupsystem/views.py:90
+#: groupsystem/views.py:120
+msgid "Can approve comment"
+msgstr "අදහස් අනුමත කළ හැකි ද"
+
+#: groupsystem/models.py:98 groupsystem/views.py:52 groupsystem/views.py:91
+#: groupsystem/views.py:121
+msgid "Can delete comment"
+msgstr "අදහස් මකා දැමිය හැක"
+
+#: groupsystem/models.py:99 groupsystem/views.py:53 groupsystem/views.py:92
+#: groupsystem/views.py:122 groupsystem/views.py:133
+msgid "Can like post"
+msgstr "පශ්චාත් කැමති හැකිද"
+
+#: groupsystem/models.py:100 groupsystem/views.py:54
+msgid "Can create notification"
+msgstr "නිවේදනයක් නිර්මාණය කළ හැකිය"
+
+#: groupsystem/models.py:101 groupsystem/views.py:55 groupsystem/views.py:93
+#: groupsystem/views.py:123 groupsystem/views.py:134
+msgid "Can create invite"
+msgstr "ආරාධනා නිර්මාණය කළ හැකිය"
+
+#: groupsystem/models.py:102 groupsystem/views.py:56 groupsystem/views.py:94
+msgid "Can add member"
+msgstr "සාමාජික එක් කළ හැකිය"
+
+#: groupsystem/models.py:103 groupsystem/views.py:57 groupsystem/views.py:95
+msgid "Can remove member"
+msgstr "සාමාජික ඉවත් කළ හැක"
+
+#: groupsystem/models.py:104 groupsystem/views.py:58 groupsystem/views.py:96
+msgid "Can ban member"
+msgstr "සාමාජික තහනම් කළ හැකිද"
+
+#: groupsystem/models.py:105 groupsystem/views.py:59 groupsystem/views.py:97
+msgid "Can lift member ban"
+msgstr "සාමාජික තහනම ඉවත් කළ හැකිද"
+
+#: groupsystem/models.py:106 groupsystem/views.py:60 groupsystem/views.py:98
+msgid "Can change member role"
+msgstr "සාමාජික භූමිකාව වෙනස් කළ හැකිද"
+
+#: groupsystem/models.py:107 groupsystem/views.py:61 groupsystem/views.py:99
+msgid "Can edit member permission"
+msgstr "සාමාජික අවසර සංස්කරණය කළ හැකි"
+
+#: groupsystem/models.py:108 groupsystem/views.py:62 groupsystem/views.py:100
+#: groupsystem/views.py:124 groupsystem/views.py:135
+msgid "Can read events"
+msgstr "සිද්ධීන් කියවන්න පුළුවන්"
+
+#: groupsystem/models.py:109 groupsystem/views.py:63 groupsystem/views.py:101
+msgid "Can create events"
+msgstr "සිද්ධීන් නිර්මාණය කළ හැකිය"
+
+#: groupsystem/models.py:110 groupsystem/views.py:64 groupsystem/views.py:102
+msgid "Can update events"
+msgstr "සිද්ධීන් යාවත්කාලීන කළ හැකිය"
+
+#: groupsystem/models.py:111 groupsystem/views.py:65 groupsystem/views.py:103
+msgid "Can delete events"
+msgstr "සිද්ධීන් මකා දැමිය හැක"
+
+#: groupsystem/models.py:112 groupsystem/views.py:66 groupsystem/views.py:104
+msgid "Can read join requests"
+msgstr "ඉල්ලීම් එක්වන කියවන්න පුළුවන්"
+
+#: groupsystem/models.py:113 groupsystem/views.py:67 groupsystem/views.py:105
+msgid "Can approve join requests"
+msgstr "ඉල්ලීම් එක්වන අනුමත කළ හැකි ද"
+
+#: groupsystem/models.py:114 groupsystem/views.py:68 groupsystem/views.py:106
+msgid "Can deny joinrequest"
+msgstr "joinrequest ප්රතික්ෂේප කළ හැක්කේ"
+
+#: groupsystem/models.py:115 groupsystem/views.py:69
+msgid "Can edit group profile"
+msgstr "පිරිසක් පැතිකඩ සංස්කරණය කළ හැකි"
+
+#: groupsystem/models.py:116 groupsystem/views.py:70
+msgid "Can read role"
+msgstr "භූමිකාව කියවන්න පුළුවන්"
+
+#: groupsystem/models.py:117 groupsystem/views.py:71
+msgid "Can read custom role"
+msgstr "අභිරුචි භූමිකාව කියවන්න පුළුවන්"
+
+#: groupsystem/models.py:118 groupsystem/views.py:72
+msgid "Can update custom role"
+msgstr "අභිරුචි භූමිකාව යාවත්කාලීන කළ හැකිය"
+
+#: groupsystem/models.py:119 groupsystem/views.py:73
+msgid "Can create custom role"
+msgstr "අභිරුචි භූමිකාවක් නිර්මාණය කළ හැකි"
+
+#: groupsystem/views.py:358
+msgid "Already requested"
+msgstr "මේ වන විටත් ඉල්ලා"
+
+#: groupsystem/views.py:360
+msgid "You're banned from this group"
+msgstr "ඔබ මෙම කණ්ඩායම තහනම් කරනවා"
+
+#: groupsystem/views.py:367 templates/autosignup/index.html:36
+#: templates/useraccount/index.html:50 templates/useraccount/index.html:65
+msgid "Subscribed"
+msgstr "දායක"
+
+#: groupsystem/views.py:374
+msgid "Unsubscribed"
+msgstr "කෙරෙනු"
+
+#: groupsystem/views.py:380
+msgid "Request Canceled"
+msgstr "ඉල්ලීම අවලංගු කරන ලදි"
+
+#: groupsystem/views.py:411
+msgid "Leaved Group"
+msgstr "පැහැ කොළ සමූහය"
+
+#: groupsystem/views.py:567
+msgid "Post will be shown once admin/moderator approves"
+msgstr "තැපැල් පරිපාලක / පරිනියාමක අනුමත වරක් ඔප්පු කරනු ඇත"
+
+#: groupsystem/views.py:626
+#, fuzzy
+#| msgid "Post will be shown once admin/moderator approves"
+msgid ""
+"Thank you for commenting your comment will show once a admin/moderator "
+"approves"
+msgstr "තැපැල් පරිපාලක / පරිනියාමක අනුමත වරක් ඔප්පු කරනු ඇත"
+
+#: groupsystem/views.py:682
+msgid "You don't have permissions to edit settings"
+msgstr "ඔබ සැකසුම් සංස්කරණය කිරීමට අවසර නොමැත"
+
+#: groupsystem/views.py:702
+msgid "You don't have permission to create news"
+msgstr "ඔබ ප්රවෘත්ති සංස්කරණය කිරීම හෝ ඔබ විසින් සිදු"
+
+#: groupsystem/views.py:810
+msgid "You dont have permissions to approve post"
+msgstr "ඔබ පශ්චාත් අනුමත කිරීමට අවසර තිබුනනම්"
+
+#: groupsystem/views.py:830
+msgid "Post created"
+msgstr "තැපැල් නිර්මාණය"
+
+#: groupsystem/views.py:952
+msgid "You dont have permissions to approve comment"
+msgstr "ඔබ අදහස් අනුමත කිරීමට අවසර තිබුනනම්"
+
+#: groupsystem/views.py:997
+msgid "You don't have permission to add memeber"
+msgstr "ඔබ memeber එකතු කිරීමට අවසර නැත"
+
+#: groupsystem/views.py:1035
+msgid "You dont have permission to remove member"
+msgstr "ඔබ සාමාජික ඉවත් කිරීමට අවසර තිබුනනම්"
+
+#: groupsystem/views.py:1075
+msgid "You dont have permission to ban member"
+msgstr "ඔබ සාමාජික තහනම් කිරීමට අවසර තිබුනනම්"
+
+#: groupsystem/views.py:1126
+msgid "You don't have permissions to change member role"
+msgstr "ඔබ සාමාජික භූමිකාව වෙනස් කිරීමට අවසර නොමැත"
+
+#: groupsystem/views.py:1236
+msgid "You don't have permission to approve request"
+msgstr "ඔබ ඉල්ලීම අනුමත කිරීමට අවසර නැත"
+
+#: groupsystem/views.py:1249
+msgid "You don't have permission to deny request"
+msgstr "ඔබ ඉල්ලීම ප්රතික්ෂේප කිරීමට අවසර නැත"
+
+#: groupsystem/views.py:1288
+msgid "Users invited"
+msgstr "පරිශීලකයන් ආරාධනා"
+
+#: groupsystem/views.py:1506
+msgid "Role created, reload page to edit permissions"
+msgstr "නිර්මාණය භූමිකාව, අවසර සංස්කරණය කිරීමට පිටුව යළිපූරණය නොට"
+
+#: groupsystem/views.py:1519
+msgid "You don't have permission to create custom role"
+msgstr "ඔබ අභිරුචි භූමිකාවක් නිර්මාණය කිරීමට අවසර නැත"
+
+#: groupsystem/views.py:1555
+msgid "Role permission changed"
+msgstr "කාර්යභාරය අවසර වෙනස්"
+
+#: groupsystem/views.py:1598
+msgid "User permission changed"
+msgstr "පරිශීලක අවසර වෙනස්"
+
+#: information/models.py:10
+msgid "First Name"
+msgstr "මුල් නම"
+
+#: information/models.py:11
+msgid "Last Name"
+msgstr "අවසන් වරට ගෙවීම් යවා"
+
+#: information/models.py:13
+msgid "Company Name"
+msgstr "සමාගම් නාමය"
+
+#: information/models.py:14 templates/eblast/emailcampaign_sent.html:2
+#: templates/profilesystem/index.html:515
+msgid "Email Address"
+msgstr "විද්යුත් තැපැල් ලිපිනය"
+
+#: information/models.py:16
+msgid "Telephone Number"
+msgstr "නිවෙස් අංකය"
+
+#: information/models.py:19
+msgid "Comment"
+msgstr "අදහස්"
+
+#: profilesystem/forms.py:22
+msgid "Usernames can only contain letters, digits and @/./+/-/_."
+msgstr "පරිශීලක නාමය ඇරඹී අකුරු, ඉලක්කම් සහ @ / අඩංගු විය හැක / / -. / _."
+
+#: profilesystem/forms.py:31
+msgid "Username already taken"
+msgstr "පරිශීලක නාමය දැනටමත් ගෙන"
+
+#: profilesystem/models.py:20
+msgid "Male"
+msgstr "පිරිමි"
+
+#: profilesystem/models.py:21
+msgid "Female"
+msgstr "කාන්තා"
+
+#: profilesystem/models.py:166 templates/profilesystem/address.html:5
+#: templates/publicusers/user.html:193
+msgid "House Number"
+msgstr "නිවෙස් අංකය"
+
+#: profilesystem/models.py:167 templates/profilesystem/address.html:11
+#: templates/publicusers/user.html:199
+msgid "Street"
+msgstr "වීදිය"
+
+#: profilesystem/models.py:168 templates/profilesystem/address.html:17
+#: templates/publicusers/user.html:205
+msgid "Zip Code"
+msgstr "කලාප කේතය"
+
+#: profilesystem/models.py:169 templates/profilesystem/address.html:23
+#: templates/publicusers/user.html:211
+msgid "City"
+msgstr "නගරය"
+
+#: profilesystem/models.py:170 templates/profilesystem/address.html:29
+#: templates/publicusers/user.html:217
+msgid "State"
+msgstr "රජයේ"
+
+#: profilesystem/models.py:171 templates/profilesystem/address.html:35
+#: templates/publicusers/user.html:223
+msgid "Country"
+msgstr "රට"
+
+#: publicusers/views.py:183 templates/groupsystem/adminnews.html:113
+#: templates/groupsystem/adminsettings.html:165
+msgid "Success"
+msgstr "සාර්ථකත්වය"
+
+#: publicusers/views.py:185
+msgid "You already thumb uped this user"
+msgstr "ඔබ මේ වන විටත් අතේ මාපට ඇඟිල්ල මෙම පරිශීලකයා uped"
+
+#: publicusers/views.py:292
+msgid "Friend type"
+msgstr "මිතුරා වර්ගය"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:71
+msgid "Best"
+msgstr "හොඳ"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:63
+#: templates/publicusers/user.html:72
+msgid "Friend"
+msgstr "මිතුරා"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:73
+msgid "Soulmate"
+msgstr "ටිචර්ට"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:74
+msgid "Acquaintance"
+msgstr "අඳුනන"
+
+#: publicusers/views.py:297
+msgid "Family type"
+msgstr "පවුලේ වර්ගය"
+
+#: publicusers/views.py:299
+msgid "Father"
+msgstr "පියා"
+
+#: publicusers/views.py:300
+msgid "Son"
+msgstr "පුතා"
+
+#: publicusers/views.py:301
+msgid "Husband"
+msgstr "ස්වාමිපුරුෂයා"
+
+#: publicusers/views.py:302
+msgid "Brother"
+msgstr "සහෝදරයා"
+
+#: publicusers/views.py:303
+msgid "Grandfather"
+msgstr "සීයා"
+
+#: publicusers/views.py:304
+msgid "Grandson"
+msgstr "මුනුපුරා"
+
+#: publicusers/views.py:305
+msgid "Uncle"
+msgstr "මාමා"
+
+#: publicusers/views.py:306
+msgid "Nephew"
+msgstr "ඥාති පුත්රයා"
+
+#: publicusers/views.py:307 publicusers/views.py:316
+msgid "Cousin"
+msgstr "ඥාති සහෝදරයා"
+
+#: publicusers/views.py:308
+msgid "Mother"
+msgstr "මව"
+
+#: publicusers/views.py:309
+msgid "Daughter"
+msgstr "දියණිය"
+
+#: publicusers/views.py:310
+msgid "Wife"
+msgstr "බිරිඳ"
+
+#: publicusers/views.py:311
+msgid "Sister"
+msgstr "සහෝදරිය"
+
+#: publicusers/views.py:312
+msgid "Grandmother"
+msgstr "ආච්චි"
+
+#: publicusers/views.py:313
+msgid "Granddaughter"
+msgstr "මිණිපිරිය"
+
+#: publicusers/views.py:314
+msgid "Aunt"
+msgstr "නැන්දා"
+
+#: publicusers/views.py:315
+msgid "Niece"
+msgstr "ලේලිය"
+
+#: publicusers/views.py:317
+msgid "Parent"
+msgstr "මව්"
+
+#: publicusers/views.py:318
+msgid "Child"
+msgstr "ළමා"
+
+#: publicusers/views.py:319
+msgid "Spouse"
+msgstr "සහකරු හෝ සහකාරිය"
+
+#: publicusers/views.py:320
+msgid "Sibling"
+msgstr "සහෝදර"
+
+#: publicusers/views.py:321
+msgid "Grandparent"
+msgstr "Grandparent"
+
+#: publicusers/views.py:322
+msgid "Grandchild"
+msgstr "හව්හරනක්"
+
+#: publicusers/views.py:327
+msgid "Contact type"
+msgstr "අප අමතන්න වර්ගය"
+
+#: publicusers/views.py:328
+msgid "Personal"
+msgstr "පුද්ගලික"
+
+#: publicusers/views.py:343
+msgid "connection already sent by "
+msgstr "දැනටමත් යවා සම්බන්ධයෙන්"
+
+#: publicusers/views.py:382
+msgid "A request is sent to "
+msgstr "ඉල්ලීමක් වෙත යවනු ලැබේ"
+
+#: publicusers/views.py:401
+msgid "Connection accepted"
+msgstr "සම්බන්ධතා පිළිගත්"
+
+#: publicusers/views.py:443
+msgid "Canceled connection request"
+msgstr "අවලංගු සම්බන්ධතා ඉල්ලීමට"
+
+#: publicusers/views.py:445
+msgid "Rejected connection"
+msgstr "ප්රතික්ෂේප සම්බන්ධයෙන්"
+
+#: publicusers/views.py:447
+msgid "Disconneted"
+msgstr "Disconneted"
+
+#: publicusers/views.py:449 templates/groupsystem/eventsadmin.html:111
+msgid "Success!!"
+msgstr "සාර්ථකත්වය!!"
+
+#: templates/403.html:4
+msgid "Permission denied"
+msgstr "අවසරය ප්රතික්ෂේප කෙරිණි"
+
+#: templates/403.html:10
+msgid "Oops!! You don't have permissions to view this page"
+msgstr "අපොයි !! ඔබ විසින් මෙම පිටුව බැලීම සඳහා අවසර නොමැත"
+
+#: templates/403.html:12 templates/404.html:12 templates/500.html:12
+msgid "Return to dashboard"
+msgstr "උපකරණ පුවරුව වෙත ආපසු යන්න"
+
+#: templates/404.html:4
+msgid "Page Not Found"
+msgstr "පිටුව සොයාගැනීමට නොහැකි"
+
+#: templates/404.html:10
+msgid "Oops!! The requested url can't be found in this server"
+msgstr "අපොයි !! ඉල්ලා url මෙම සේවාදායකය සොයා ගත නො හැකි"
+
+#: templates/500.html:4
+msgid "Server Error"
+msgstr "සේවාදායක දෝෂය"
+
+#: templates/500.html:10
+msgid "Something is not working!! Try again later"
+msgstr "යමක් වැඩ කරන්නේ නැති !! පසුව නැවත උත්සාහ කරන්න"
+
+#: templates/account/disclaimer.html:4 templates/landing_base.html:172
+msgid "Disclaimer"
+msgstr "වගකීමෙන් යුතුව ඔබ එවන"
+
+#: templates/account/disclaimer.html:28
+msgid "WEBSITE DISCLAIMER"
+msgstr "වෙබ් අඩවිය වියාචනය"
+
+#: templates/account/disclaimer.html:30
+msgid "No warranties"
+msgstr "කිසිදු වගකීම්"
+
+#: templates/account/disclaimer.html:32
+msgid ""
+"This website is provided “as is” without any representations or warranties, "
+"express or implied. "
+msgstr ""
+
+#: templates/account/disclaimer.html:33
+msgid ""
+"makes no representations or warranties in relation to this website or the "
+"information and materials provided on this website. "
+msgstr ""
+
+#: templates/account/disclaimer.html:34
+msgid "Without prejudice to the generality of the foregoing paragraph, "
+msgstr "ඉහත ඡේදය generality අගතියක් තොරව,"
+
+#: templates/account/disclaimer.html:34
+msgid "does not warrant that:"
+msgstr "බව වගකීමක් නොමැති:"
+
+#: templates/account/disclaimer.html:36
+msgid "this website will be constantly available, or available at all; or"
+msgstr "මෙම වෙබ් අඩවිය සියල්ල නිරන්තරයෙන් ලබා ගත හැකි, හෝ ලබා ගත හැකි වනු ඇත; හෝ"
+
+#: templates/account/disclaimer.html:37
+msgid ""
+"the information on this website is complete, true, accurate or non-"
+"misleading."
+msgstr ""
+
+#: templates/account/disclaimer.html:39
+msgid ""
+"Nothing on this website constitutes, or is meant to constitute, advice of "
+"any kind. "
+msgstr ""
+
+#: templates/account/disclaimer.html:40
+msgid "Limitations of liability"
+msgstr "වගකීම් මාධ්යක් මාහට"
+
+#: templates/account/disclaimer.html:42
+msgid ""
+"will not be liable to you (whether under the law of contact, the law of "
+"torts or otherwise) in relation to the contents of, or use of, or otherwise "
+"in connection with, this website:"
+msgstr ""
+
+#: templates/account/disclaimer.html:44
+msgid "for any indirect, special or consequential loss; or"
+msgstr ", අනියම්, විශේෂ හෝ විපාක දැවී; හෝ"
+
+#: templates/account/disclaimer.html:45
+msgid ""
+"for any business losses, loss of revenue, income, profits or anticipated "
+"savings, loss of contracts or business relationships, loss of reputation or "
+"goodwill, or loss or corruption of information or data."
+msgstr ""
+
+#: templates/account/disclaimer.html:47
+msgid "These limitations of liability apply even if "
+msgstr "වගකීම් මෙම සීමාවන් පවා නම් අදාළ"
+
+#: templates/account/disclaimer.html:47
+msgid " has been expressly advised of the potential loss."
+msgstr "ප්රකාශිතව හැකියාව අහිමි හෙළි වී ඇත."
+
+#: templates/account/disclaimer.html:48
+msgid "Exceptions"
+msgstr "ව්යතිරේක"
+
+#: templates/account/disclaimer.html:50
+msgid ""
+"Nothing in this website disclaimer will exclude or limit any warranty "
+"implied by law that it would be unlawful to exclude or limit; and nothing in "
+"this website disclaimer will exclude or limit "
+msgstr ""
+
+#: templates/account/disclaimer.html:50
+msgid "'s liability in respect of any:"
+msgstr "ගේ සම්බන්ධෙයන් යම් වගකීම්:"
+
+#: templates/account/disclaimer.html:52
+msgid "death or personal injury caused by "
+msgstr "මරණය හෝ සිදුවන පෞද්ගලික තුවාල"
+
+#: templates/account/disclaimer.html:52
+msgid "'s negligence;"
+msgstr "ගේ නොසැලකිල්ල;"
+
+#: templates/account/disclaimer.html:53
+msgid "fraud or fraudulent misrepresentation on the part of "
+msgstr "පැත්තෙන් වංචා හෝ වංචනික කරුණු විකෘති ලෙස අර්ථ දැක්වීමක්"
+
+#: templates/account/disclaimer.html:53
+msgid " or"
+msgstr "හෝ"
+
+#: templates/account/disclaimer.html:54
+msgid "matter which it would be illegal or unlawful for "
+msgstr "එය නීති විරෝධී හෝ නීති විරෝධී විය හැකි කරුණක්"
+
+#: templates/account/disclaimer.html:54
+msgid ""
+" to exclude or limit, or to attempt or purport to exclude or limit, its "
+"liability."
+msgstr ""
+
+#: templates/account/disclaimer.html:57
+msgid "Reasonableness"
+msgstr "සාධාරණ"
+
+#: templates/account/disclaimer.html:59
+msgid ""
+"By using this website, you agree that the exclusions and limitations of "
+"liability set out in this website disclaimer are reasonable.If you do not "
+"think they are reasonable, you must not use this website."
+msgstr ""
+
+#: templates/account/disclaimer.html:60
+msgid "Other parties"
+msgstr "අනෙකුත් පක්ෂ"
+
+#: templates/account/disclaimer.html:62
+msgid "You accept that, as a limited liability entity, "
+msgstr "ඔබ සීමිත වගකීම් සහිත ආයතනයක් ලෙස, ඇති බව පිළිගන්න,"
+
+#: templates/account/disclaimer.html:62
+msgid ""
+" has an interest in limiting the personal liability of its officers and "
+"employees. You agree that you will not bring any claim personally against "
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid ""
+"'s officers or employees in respect of any losses you suffer in connection "
+"with the website."
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"[Without prejudice to the foregoing paragraph,] you agree that the "
+"limitations of warranties and liability set out in this website disclaimer "
+"will protect"
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"'s officers, employees, agents, subsidiaries, successors, assigns and sub-"
+"contractors as well as "
+msgstr ""
+
+#: templates/account/disclaimer.html:64
+msgid "Unenforceable provisions"
+msgstr "බලාත්මක කල නොහැකි විධිවිධාන"
+
+#: templates/account/disclaimer.html:66
+msgid ""
+"If any provision of this website disclaimer is, or is found to be, "
+"unenforceable under applicable law, that will not affect the enforceability "
+"of the other provisions of this website disclaimer."
+msgstr ""
+
+#: templates/account/email.html:5 templates/account/email.html:8
+msgid "Manage Email"
+msgstr "විද්යුත් කළමනාකරණය"
+
+#: templates/account/email.html:10
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "පහත සදහන් ඉ-තැපැල් ලිපින ඔබගේ ගිණුම හා සම්බන්ධ කර ඇත:"
+
+#: templates/account/email.html:26
+msgid "(P)"
+msgstr "(P)"
+
+#: templates/account/email.html:40
+msgid "Make Primary"
+msgstr "ප්රාථමික කරන්න"
+
+#: templates/account/email.html:41
+msgid "Re-send Verification"
+msgstr "නැවත එවන සත්යාපන"
+
+#: templates/account/email.html:42 templates/eblast/emailgroup.html:50
+#: templates/groupsystem/members.html:84
+msgid "Remove"
+msgstr "ඉවත් කරන්න"
+
+#: templates/account/email.html:54
+msgid "Add E-mail"
+msgstr "ඊ-තැපැල එකතු කරන්න"
+
+#: templates/account/email.html:59
+msgid "Back to profile"
+msgstr "ආපසු පැතිකඩ වෙත"
+
+#: templates/account/email.html:64
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "ඔබ ඇත්තටම තෝරාගත් මෙම ඊ-තැපැල් ලිපිනය ඉවත් කිරීමට අවශ්ය ද?"
+
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You have received this to confirm your email in the %(site_domain)s "
+"community platform.\n"
+"\n"
+"Please click this link to confirm your email %(activate_url)s\n"
+msgstr ""
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "ඊතැපැල් ලිපිනය තහවුරු කරන්න"
+
+#: templates/account/email_confirm.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: templates/account/email_confirm.html:21
+msgid "Confirm"
+msgstr "තහවුරු කරන්න"
+
+#: templates/account/email_confirm.html:28
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: templates/account/login.html:6
+msgid "Login"
+msgstr "ඇතුල් වන්න"
+
+#: templates/account/login.html:9
+msgid "Sign in to start your session"
+msgstr "ඔබේ සැසිය ආරම්භ කිරීමට පුරනය වන්න"
+
+#: templates/account/login.html:18
+msgid "Log In"
+msgstr "ඇතුල් වන්න"
+
+#: templates/account/login.html:34
+msgid "Forgot Password?"
+msgstr "මුරපදය අමතක වුණා ද?"
+
+#: templates/account/login.html:36 templates/account/signup.html:9
+#: templates/socialaccount/signup.html:8
+msgid "Register a new membership"
+msgstr "නව සාමාජිකත්වය ලියාපදිංචි"
+
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:17
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+#: templates/account/password_reset_from_key.html:21
+msgid "Change Password"
+msgstr "මුරපදය වෙනස් කරන්න"
+
+#: templates/account/password_change.html:11
+msgid "Change your password"
+msgstr "ඔබගේ මුර පදය වෙනස් කරන්න"
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+msgid "Password Reset"
+msgstr "මුරපදය නැවත සකසන්න"
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:22
+msgid "Reset My Password"
+msgstr "මගේ මුරපදය යළි පිහිටුවන්න"
+
+#: templates/account/password_reset.html:26
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr "ඔබ ඔබේ මුරවචනය නැවත කිසිදු කරදර ඇති නම් කරුණාකර අප අමතන්න."
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr "නරක ටෝකනය"
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:25
+msgid "Your password is now changed."
+msgstr "ඔබගේ මුරපදය දැන් වෙනස් කර ඇත."
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "සකසන්න මුරපදය"
+
+#: templates/account/rform.html:10 templates/socialaccount/signup.html:17
+msgid "Register"
+msgstr "රෙජිස්ටර්"
+
+#: templates/account/rform.html:30 templates/account/rform.html:54
+#: templates/account/rform.html:78 templates/account/rform.html:102
+msgid ""
+"This project is a new social platform to simulate and promote  the basic "
+"income"
+msgstr ""
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid "Please read the"
+msgstr "කරුණාකර කියවන්න"
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid " Disclaimer"
+msgstr "වගකීමෙන් යුතුව ඔබ එවන"
+
+#: templates/account/rform.html:36 templates/account/rform.html:60
+#: templates/account/rform.html:84 templates/account/rform.html:108
+#: templates/autosignup/community_signupedit.html:10
+#: templates/timelines/timeline.html:149
+msgid "Cancel"
+msgstr "අවලංගු කරන්න"
+
+#: templates/account/rform.html:39 templates/account/rform.html:63
+#: templates/account/rform.html:87 templates/account/rform.html:111
+msgid "Agree"
+msgstr "එකඟ"
+
+#: templates/account/signup.html:11
+msgid "I already have a membership"
+msgstr "මම දැනටමත් සාමාජිකත්වය ලබා"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr "සංවෘත සයින් අප්"
+
+#: templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed for beta site"
+msgstr "අපට කනගාටුයි, නමුත් බීටා අඩවිය සඳහා ගිණුමක් ආරම්භ දැනට වසා ඇත"
+
+#: templates/account/signup_closed.html:11
+msgid "Please signup to"
+msgstr "කිරීමට ලියාපදිංචි වීමේ කරුණාකර"
+
+#: templates/account/signup_closed.html:11
+msgid "main site"
+msgstr "ප්රධාන වෙබ් අඩවිය"
+
+#: templates/autosignup/additional_step.html:6
+#: templates/autosignup/complete_previous_step.html:6
+#: templates/autosignup/step_1_form.html:6
+#: templates/autosignup/step_2_form.html:6
+#: templates/autosignup/step_2_verification.html:6
+#: templates/autosignup/step_3_form.html:6
+#: templates/autosignup/step_3_verification.html:6
+msgid "Name and Address"
+msgstr "නම සහ ලිපිනය"
+
+#: templates/autosignup/additional_step.html:9
+#: templates/autosignup/complete_previous_step.html:9
+#: templates/autosignup/step_1_form.html:9
+#: templates/autosignup/step_2_form.html:9
+#: templates/autosignup/step_2_verification.html:9
+#: templates/autosignup/step_3_form.html:9
+#: templates/autosignup/step_3_verification.html:9
+msgid "Email"
+msgstr "විද්යුත් තැපෑල"
+
+#: templates/autosignup/additional_step.html:12
+#: templates/autosignup/complete_previous_step.html:12
+#: templates/autosignup/step_1_form.html:12
+#: templates/autosignup/step_2_form.html:12
+#: templates/autosignup/step_2_verification.html:12
+#: templates/autosignup/step_3_form.html:12
+#: templates/autosignup/step_3_verification.html:12
+#: templates/profilesystem/index.html:377
+msgid "Phone No"
+msgstr "දුරකතන අංකය"
+
+#: templates/autosignup/additional_step.html:15
+#: templates/autosignup/complete_previous_step.html:16
+#: templates/autosignup/step_1_form.html:16
+#: templates/autosignup/step_2_form.html:16
+#: templates/autosignup/step_2_verification.html:16
+#: templates/autosignup/step_3_form.html:16
+#: templates/autosignup/step_3_verification.html:16
+msgid "Docs"
+msgstr "ලියකියවිලි"
+
+#: templates/autosignup/community_signupedit.html:7
+#: templates/autosignup/settings.html:118
+msgid "Fetch Twilio Data"
+msgstr "Twilio දත්ත බෝගයන්ගේ"
+
+#: templates/autosignup/community_signupedit.html:8
+#: templates/autosignup/signupinfo.html:207
+#: templates/eblast/emailcampaign.html:13 templates/eblast/emailgroup.html:11
+#: templates/eblast/emailtemplate.html:9
+msgid "Delete"
+msgstr "Delete"
+
+#: templates/autosignup/community_signupedit.html:9
+msgid "Save"
+msgstr "සුරකින්න"
+
+#: templates/autosignup/complete_previous_step.html:21
+msgid "Please complete previous steps"
+msgstr "පෙර පියවර සම්පූර්ණ කරන්න"
+
+#: templates/autosignup/index.html:4
+msgid "MyAccounts"
+msgstr "MyAccounts"
+
+#: templates/autosignup/index.html:8
+msgid "Myaccounts"
+msgstr "Myaccounts"
+
+#: templates/autosignup/index.html:26 templates/sidebar_home.html:16
+#: templates/useraccount/index.html:13 templates/useraccount/index.html:16
+#: templates/useraccount/index.html:40
+msgid "Accounts"
+msgstr "ගිණුම්"
+
+#: templates/autosignup/index.html:33 templates/useraccount/index.html:47
+msgid "DummyDB"
+msgstr "DummyDB"
+
+#: templates/autosignup/index.html:45 templates/useraccount/index.html:59
+msgid "Grantcoin"
+msgstr "Grantcoin"
+
+#: templates/autosignup/index.html:48 templates/useraccount/index.html:73
+msgid "Signup"
+msgstr "ලියාපදිංචි වන්න"
+
+#: templates/autosignup/index.html:57
+msgid "The pulse"
+msgstr "හද ගැස්ම"
+
+#: templates/autosignup/index.html:60 templates/useraccount/index.html:86
+msgid "Coming soon"
+msgstr "ඉක්මණින් පැමිණෙන"
+
+#: templates/autosignup/index.html:81 templates/useraccount/index.html:266
+#: templates/useraccount/index.html:283
+msgid "Signup to Grantcoin"
+msgstr "Grantcoin කිරීමට ලියාපදිංචි වීමේ"
+
+#: templates/autosignup/index.html:87 templates/eblast/emailcampaign.html:44
+#: templates/eblast/emailcampaign.html:61 templates/eblast/emailgroup.html:69
+#: templates/eblast/emailgroup.html:86
+#: templates/groupsystem/groupdetails.html:186
+#: templates/profilesystem/index.html:96 templates/profilesystem/index.html:127
+#: templates/profilesystem/index.html:166 templates/useraccount/index.html:272
+#: templates/useraccount/index.html:302
+msgid "Close"
+msgstr "සමීප"
+
+#: templates/autosignup/index.html:88 templates/autosignup/settings.html:48
+#: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:103
+#: templates/crowdfunding/update_crowdfund.html:9
+#: templates/eblast/emailcampaignform.html:11
+#: templates/eblast/emailgroupform.html:11
+#: templates/eblast/emailtemplateform.html:11
+#: templates/groupsystem/adminnews.html:83
+#: templates/groupsystem/adminsettings.html:108
+#: templates/groupsystem/editcommentpage.html:50
+#: templates/groupsystem/editcustomrole.html:6
+#: templates/groupsystem/editnews.html:6
+#: templates/groupsystem/editpostpage.html:52
+#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:110
+#: templates/groupsystem/postsadmin.html:113
+#: templates/information/contact.html:32
+#: templates/invitationsystem/checkinvitation.html:31
+#: templates/invitationsystem/index.html:20
+#: templates/landing/getinvitationform.html:4
+#: templates/profilesystem/index.html:102
+#: templates/profilesystem/index.html:139
+#: templates/profilesystem/index.html:178 templates/useraccount/index.html:273
+#: templates/useraccount/index.html:303
+msgid "Submit"
+msgstr "ඉදිරිපත්"
+
+#: templates/autosignup/settings.html:4 templates/autosignup/settings.html:10
+msgid "Signups settings"
+msgstr "Signups සැකසුම්"
+
+#: templates/autosignup/settings.html:13 templates/autosignup/signups.html:4
+#: templates/autosignup/signups.html:10 templates/autosignup/signups.html:13
+#: templates/autosignup/signups.html:38
+msgid "Signups"
+msgstr "Signups"
+
+#: templates/autosignup/settings.html:14
+msgid "Signup Settings"
+msgstr "ලියාපදිංචි වීමේ සැකසුම්"
+
+#: templates/autosignup/settings.html:24
+msgid "Autosignup settings"
+msgstr "Autosignup සැකසුම්"
+
+#: templates/autosignup/settings.html:45
+msgid "KM"
+msgstr "KM"
+
+#: templates/autosignup/settings.html:54
+msgid "Approved Email Template"
+msgstr "අනුමත විද්යුත් සැකිල්ල"
+
+#: templates/autosignup/settings.html:56
+msgid "Select from one"
+msgstr "එක් තෝරන්න"
+
+#: templates/autosignup/settings.html:57
+msgid "Default"
+msgstr "පෙරනිමි"
+
+#: templates/autosignup/settings.html:69
+msgid "Or"
+msgstr "හෝ"
+
+#: templates/autosignup/settings.html:75
+msgid "File must be html document"
+msgstr "ගොනුව හෙඩිම විය යුතුය"
+
+#: templates/autosignup/settings.html:82
+msgid "Invite Code"
+msgstr "සංග්රහයේ ආරාධනා"
+
+#: templates/autosignup/settings.html:88
+msgid "Status:"
+msgstr "තත්ත්වය:"
+
+#: templates/autosignup/settings.html:96
+msgid "Code:"
+msgstr "කේතය:"
+
+#: templates/autosignup/settings.html:109
+msgid "Upload and Download CSV"
+msgstr "CSV උඩුගත කරන්න සහ බාගත"
+
+#: templates/autosignup/settings.html:120
+msgid "Download example copy"
+msgstr "බාගත උදාහරණයක් පිටපතක්"
+
+#: templates/autosignup/settings.html:126
+msgid "Uploaded CSVs"
+msgstr "උඩුගත CSVs"
+
+#: templates/autosignup/settings.html:167
+msgid "Select range"
+msgstr "පරාසයක තෝරන්න"
+
+#: templates/autosignup/settings.html:169
+#: templates/autosignup/settings.html:235
+msgid "Download Member Data CSV"
+msgstr "සාමාජික දත්ත CSV බාගන්න"
+
+#: templates/autosignup/sfilter.html:5 templates/autosignup/signups.html:57
+#: templates/groupsystem/admindashboard.html:40
+#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:17
+#: templates/groupsystem/members.html:22 templates/publicusers/userlist.html:4
+#: templates/publicusers/userlist.html:10
+#: templates/publicusers/userlist.html:14 templates/sidebar_community.html:2
+#: templates/sidebar_group.html:87 templates/sidebar_group.html:93
+#: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
+msgid "Members"
+msgstr "සාමාජිකයින්"
+
+#: templates/autosignup/sfilter.html:14 templates/autosignup/signups.html:66
+#: templates/crowdfunding/admin.html:76
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:10
+#: templates/groupsystem/adminsettings.html:15
+#: templates/profilesystem/index.html:292 templates/sidebar_group.html:144
+#: templates/sidebar_group_admin.html:114
+msgid "Settings"
+msgstr "සැකසුම්"
+
+#: templates/autosignup/sfilter.html:26 templates/autosignup/signups.html:78
+msgid "No signups yet!! "
+msgstr "තවමත් signups කිසිදු !!"
+
+#: templates/autosignup/signupclosed.html:4
+msgid "Signup is closed! try later"
+msgstr "ලියාපදිංචි වීමේ වසා ඇත! පසුව උත්සාහ"
+
+#: templates/autosignup/signuphistories.html:36
+msgid "This signup is not associated with any history"
+msgstr "මෙම ලියාපදිංචි වීමේ කිසිදු ඉතිහාසය හා සම්බන්ධ නැත"
+
+#: templates/autosignup/signupinfo.html:13
+#: templates/autosignup/signupinfo.html:42
+msgid "Validated"
+msgstr "වලංගු"
+
+#: templates/autosignup/signupinfo.html:19
+msgid "This email id was used for these previous signup "
+msgstr "මෙම ඊ-id මෙම පෙර ලියාපදිංචි වීමේ සඳහා භාවිතා කරන ලදී"
+
+#: templates/autosignup/signupinfo.html:36
+msgid "Mobile"
+msgstr "ජංගම"
+
+#: templates/autosignup/signupinfo.html:39
+msgid "Not a Verifiable No"
+msgstr "නො විමසා බැලිය නොමැත"
+
+#: templates/autosignup/signupinfo.html:49
+msgid "This phone number was used for these previous signup "
+msgstr "මෙම දුරකථන අංකය මෙම පෙර ලියාපදිංචි වීමේ සඳහා භාවිතා කරන ලදී"
+
+#: templates/autosignup/signupinfo.html:137
+msgid "Distance from database address: "
+msgstr "දත්ත සමුදාය ලිපිනය සිට දුර:"
+
+#: templates/autosignup/signupinfo.html:137
+msgid " KM"
+msgstr "KM"
+
+#: templates/autosignup/signupinfo.html:208
+#: templates/groupsystem/members.html:124 templates/profilesystem/index.html:99
+#: templates/profilesystem/index.html:131
+#: templates/profilesystem/index.html:170
+msgid "Edit"
+msgstr "සංස්කරණය කරන්න"
+
+#: templates/autosignup/signupinfo.html:209
+msgid "History"
+msgstr "ඉතිහාසය"
+
+#: templates/autosignup/signupinfo.html:211
+msgid "Resend Approval Email"
+msgstr "නැවත භාරදුන් අනුමැතිය විද්යුත්"
+
+#: templates/autosignup/signupinfo.html:214
+msgid "Send Invitation Email"
+msgstr "ආරාධිත විද්යුත් යවන්න"
+
+#: templates/autosignup/signups.html:44 templates/useraccount/index.html:67
+msgid "Pending"
+msgstr "විභාග"
+
+#: templates/autosignup/signups.html:45 templates/sidebar_group.html:78
+#: templates/sidebar_group_admin.html:48
+msgid "Approved"
+msgstr "අනුමත"
+
+#: templates/autosignup/signups.html:46
+msgid "Declined"
+msgstr "අඩු"
+
+#: templates/autosignup/signups.html:47 templates/useraccount/index.html:70
+msgid "Incomplete"
+msgstr "අසම්පූර්ණ"
+
+#: templates/autosignup/signups.html:226
+msgid "Fetching..."
+msgstr "ලබාගනිමින් ..."
+
+#: templates/autosignup/step_2_form.html:22
+msgid "Verify Your Email"
+msgstr "ඔබේ විද්යුත් තහවුරු කරන්න"
+
+#: templates/autosignup/step_2_verification.html:22
+msgid "Enter code sent to your email below"
+msgstr "පහත ඔබගේ ඊ-තැපැල් ලිපිනය වෙත යොමු කේතය ඇතුලත් කරන්න"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "Didn't get code yet?"
+msgstr "තවමත් කේතය ලබා ගැනීමට නොහැකි වුණේ ඇයි?"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "try again"
+msgstr "නැවත උත්සහා කරන්න"
+
+#: templates/autosignup/step_3_form.html:22
+msgid "Verify Your Mobile Number"
+msgstr "ඔබේ ජංගම දුරකතන අංකය තහවුරු කරන්න"
+
+#: templates/autosignup/step_3_verification.html:22
+msgid "Enter code sent to your phone below"
+msgstr "පහත ඔබගේ දුරකථනයට ලබා කේතය ඇතුලත් කරන්න"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "I am not getting a verification code for my number"
+msgstr "මම මගේ සංඛ්යාවක් සඳහා සත්යාපන කේතය ලැබෙන්නේ නැහැ"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "skip"
+msgstr "මඟ"
+
+#: templates/autosignup/step_3_verification.html:34
+msgid "This needs some time don't close/refresh browser"
+msgstr "මෙම / සමීප නැවුම් කරන්න නොවේ බ්රව්සරය කරන්න යම් කාලයක් අවශ්ය"
+
+#: templates/autosignup/thankyou.html:4
+msgid "Thank you for signing up to Grantcoin and providing us your information"
+msgstr "Grantcoin දක්වා අත්සන් අප ඔබේ තොරතුරු ලබා දීම සඳහා ඔබට ස්තුතියි"
+
+#: templates/autosignup/thankyou.html:5
+msgid ""
+"Your account will be processed soon, return to this page to check on your "
+"status."
+msgstr ""
+
+#: templates/base.html:125
+msgid "Toggle navigation"
+msgstr "ටොගල් කරන්න සංචලනය"
+
+#: templates/base.html:154 templates/base.html:173 templates/base.html:230
+msgid "Hello User"
+msgstr "ආයුබෝවන් පරිශීලක"
+
+#: templates/base.html:170
+msgid "Member Since "
+msgstr "මන්ත්රී සිට"
+
+#: templates/base.html:184 templates/useraccount/index.html:7
+msgid "Account"
+msgstr "ගිණුම"
+
+#: templates/base.html:187
+msgid "Landing"
+msgstr "ගොඩ"
+
+#: templates/base.html:195 templates/landing_base.html:101
+#: templates/landing_base.html:165 templates/profilesystem/index.html:5
+#: templates/profilesystem/index.html:42 templates/profilesystem/index.html:45
+#: templates/sidebar_home.html:27
+msgid "Profile"
+msgstr "නරඹන්න"
+
+#: templates/base.html:198
+msgid "Sign out"
+msgstr "වරන්න"
+
+#: templates/base.html:234 templates/publicusers/user.html:24
+#: templates/publicusers/userdetails.html:393
+#: templates/publicusers/userlist.html:40
+#: templates/publicusers/userlist_old.html:116
+#: templates/publicusers/users_old.html:25
+msgid "Online"
+msgstr "ඔන්ලයින්"
+
+#: templates/base.html:306
+msgid "System notice: "
+msgstr "පද්ධතිය දැනුම්දීම:"
+
+#: templates/base.html:349
+msgid "Language Settings"
+msgstr "භාෂා සැකසුම්"
+
+#: templates/base.html:366
+msgid "Set"
+msgstr "set"
+
+#: templates/base.html:381
+msgid "Filter Options"
+msgstr "පෙරහන් විකල්ප"
+
+#: templates/base.html:391
+msgid "Apply"
+msgstr "අදාළ"
+
+#: templates/crowdfunding/admin.html:4 templates/crowdfunding/admin.html:37
+#: templates/crowdfunding/admin.html:40 templates/sidebar_community.html:32
+msgid "Crowdfund Admin"
+msgstr "Crowdfund පරිපාලක"
+
+#: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:60
+msgid "Stats"
+msgstr "සංඛ්යාන"
+
+#: templates/crowdfunding/admin.html:62
+msgid "Status"
+msgstr "තත්ත්වය"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Active"
+msgstr "ක්රියාකාරී"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Stopped"
+msgstr "නතර"
+
+#: templates/crowdfunding/admin.html:67 templates/crowdfunding/admin.html:83
+#: templates/crowdfunding/admin.html:127
+msgid "No Crowdfund started"
+msgstr "කිසිදු Crowdfund ආරම්භ"
+
+#: templates/crowdfunding/admin.html:86
+msgid "Start new"
+msgstr "නව අරඹන්න"
+
+#: templates/crowdfunding/admin.html:97
+msgid "Payments"
+msgstr "ගෙවීම"
+
+#: templates/crowdfunding/index.html:4
+msgid "Crowdfunding"
+msgstr "Crowdfunding"
+
+#: templates/crowdfunding/index.html:17 templates/crowdfunding/index.html:20
+#: templates/sidebar_community.html:30
+msgid "Crowdfund"
+msgstr "Crowdfund"
+
+#: templates/crowdfunding/index.html:32
+msgid "Watch video"
+msgstr "වොච් වීඩියෝ"
+
+#: templates/crowdfunding/index.html:34
+msgid "FUND"
+msgstr "අරමුදල"
+
+#: templates/crowdfunding/index.html:46
+msgid "Product Features"
+msgstr "නිෂ්පාදන විශේෂාංග"
+
+#: templates/crowdfunding/index.html:55
+msgid "Introduction"
+msgstr "හැදින්වීම"
+
+#: templates/crowdfunding/index.html:77
+msgid "Fund Now"
+msgstr "අරමුදල දැන්"
+
+#: templates/crowdfunding/index.html:84
+msgid "Card"
+msgstr "කාඩ්"
+
+#: templates/crowdfunding/index.html:92 templates/useraccount/index.html:175
+#: templates/useraccount/index.html:215 templates/useraccount/index.html:242
+#: useraccount/forms.py:8 useraccount/forms.py:27
+msgid "Amount"
+msgstr "ප්රමාණය"
+
+#: templates/crowdfunding/index.html:98
+msgid "Feedback"
+msgstr "ඔබෙන් ලැබෙන ප්රයෝජනාත්මක ප්රතිචාරය"
+
+#: templates/crowdfunding/payment_details.html:2
+msgid "User: "
+msgstr "පරිශීලක:"
+
+#: templates/crowdfunding/payment_details.html:3
+msgid "Amount: "
+msgstr "ප්රමාණය:"
+
+#: templates/crowdfunding/payment_details.html:4
+msgid "Date: "
+msgstr "දිනය:"
+
+#: templates/crowdfunding/payment_details.html:5
+msgid "Charge ID(Stripe): "
+msgstr "භාර හැඳුනුම්පත (Stripe):"
+
+#: templates/crowdfunding/payment_details.html:7
+#: templates/eblast/emailcampaign_sent.html:5
+msgid "Message: "
+msgstr "පණිවුඩය:"
+
+#: templates/crowdfunding/payment_details.html:10
+msgid "Fail Reason: "
+msgstr "හේතුව අසාර්ථක:"
+
+#: templates/crowdfunding/thankyou.html:3
+msgid "Thank You"
+msgstr "ඔබට ස්තුතියි"
+
+#: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:20
+#: templates/dashboard/dashboard.html:23
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:10
+#: templates/groupsystem/admindashboard.html:15 templates/landing_base.html:97
+#: templates/landing_base.html:163 templates/publicusers/userlist.html:13
+#: templates/sidebar_group.html:36 templates/sidebar_group_admin.html:6
+#: templates/sidebar_home.html:4
+msgid "Dashboard"
+msgstr "උපකරණ පුවරුව"
+
+#: templates/dashboard/dashboard.html:35 templates/profilesystem/index.html:202
+#: templates/publicusers/user.html:174
+msgid "References"
+msgstr "ආශ්රිත"
+
+#: templates/dashboard/dashboard.html:45 templates/dashboard/dashboard.html:172
+msgid "Connections"
+msgstr "සම්බන්ධතා"
+
+#: templates/dashboard/dashboard.html:55 templates/landing_base.html:118
+#: templates/landing_base.html:169
+msgid "Messages"
+msgstr "පණිවිඩ"
+
+#: templates/dashboard/dashboard.html:65 templates/dashboard/dashboard.html:257
+#: templates/useraccount/index.html:111 templates/useraccount/transfer.html:43
+msgid "Account Balance"
+msgstr "ගිණුම් ශේෂය"
+
+#: templates/dashboard/dashboard.html:66
+#: templates/notification/notification.html:19
+#: templates/notification/notification.html:26
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "units"
+msgstr "ඒකක"
+
+#: templates/dashboard/dashboard.html:75 templates/dashboard/dashboard.html:258
+#: templates/useraccount/index.html:123
+msgid "Next Release"
+msgstr "ඊළඟට නිකුත්"
+
+#: templates/dashboard/dashboard.html:96 templates/useraccount/index.html:140
+msgid "Day"
+msgstr "දවස"
+
+#: templates/dashboard/dashboard.html:101 templates/useraccount/index.html:145
+msgid "Hour"
+msgstr "පැය"
+
+#: templates/dashboard/dashboard.html:106 templates/useraccount/index.html:150
+msgid "Minute"
+msgstr "ව්යවස්ථාව"
+
+#: templates/dashboard/dashboard.html:113
+#: templates/groupsystem/admindashboard.html:46
+#: templates/groupsystem/admindashboard.html:60
+#: templates/groupsystem/admindashboard.html:74
+#: templates/groupsystem/admindashboard.html:88
+msgid "More info"
+msgstr "වැඩි තොරතුරු"
+
+#: templates/dashboard/dashboard.html:121 templates/publicusers/user.html:277
+msgid "Profile Completed"
+msgstr "නරඹන්න සම්පූර්ණ"
+
+#: templates/dashboard/dashboard.html:138 templates/publicusers/user.html:290
+msgid "Completed"
+msgstr "සම්පූර්ණ කරන ලද"
+
+#: templates/dashboard/dashboard.html:144 templates/publicusers/user.html:296
+msgid "Not completed"
+msgstr "අවසන් නැත"
+
+#: templates/dashboard/dashboard.html:150 templates/publicusers/user.html:302
+msgid "Not verified"
+msgstr "සත්යාපනය කර නැත"
+
+#: templates/dashboard/dashboard.html:156 templates/publicusers/user.html:308
+msgid "Skipped"
+msgstr "හැරී"
+
+#: templates/dashboard/dashboard.html:182
+msgid "You have no connection to display data"
+msgstr "ඔබ දත්ත ප්රදර්ශනය කිරීම සඳහා කිසි ම සම්බන්ධයක් නොමැති"
+
+#: templates/dashboard/dashboard.html:195
+msgid " Friends"
+msgstr "මිතුරන්"
+
+#: templates/dashboard/dashboard.html:196
+msgid " Families"
+msgstr "පවුල්"
+
+#: templates/dashboard/dashboard.html:197
+msgid " Contacts"
+msgstr "අප අමතන්න"
+
+#: templates/dashboard/dashboard.html:214
+msgid "New Members"
+msgstr "නව සාමාජිකයන්"
+
+#: templates/dashboard/dashboard.html:227
+msgid "Total Ekata Members"
+msgstr "මුළු Ekata මන්ත්රීවරුන්"
+
+#: templates/dashboard/dashboard.html:242
+msgid "Active Members"
+msgstr "ක්රියාකාරී සාමාජිකයන්"
+
+#: templates/dashboard/dashboard.html:256
+msgid "Add Widget"
+msgstr "විජට් Add"
+
+#: templates/dashboard/dashboard.html:259 templates/timelines/index.html:77
+#: templates/timelines/index.html:79
+msgid "Connection"
+msgstr "සම්බන්ධතා"
+
+#: templates/dashboard/dashboard.html:260
+msgid "Profile Completion Ring"
+msgstr "නරඹන්න අවසන් කිරීම රිං"
+
+#: templates/dashboard/dashboard.html:270
+msgid "Website added"
+msgstr "වෙබ් අඩවිය සඳහන් කළේය"
+
+#: templates/dashboard/dashboard.html:277
+msgid "Gender added"
+msgstr "ස්ත්රී පුරුෂ භාවය එකතු"
+
+#: templates/dashboard/dashboard.html:284
+msgid "Phone added"
+msgstr "දුරකථන එකතු"
+
+#: templates/dashboard/dashboard.html:291
+msgid "Avatar added"
+msgstr "අවතාර් එකතු"
+
+#: templates/dashboard/dashboard.html:298
+msgid "Address added"
+msgstr "ලිපිනය සඳහන් කළේය"
+
+#: templates/dashboard/dashboard.html:305
+msgid "Socialaccount added"
+msgstr "Socialaccount එකතු"
+
+#: templates/dashboard/dashboard.html:312
+msgid "Email added"
+msgstr "විද්යුත් එකතු"
+
+#: templates/dashboard/dashboard.html:319
+msgid "Email verified"
+msgstr "ඊ-තැපැල් තහවුරු"
+
+#: templates/dashboard/dashboard.html:331
+#: templates/dashboard/dashboard.html:403
+msgid "Add website"
+msgstr "වෙබ් අඩවිය එකතු කරන්න"
+
+#: templates/dashboard/dashboard.html:332
+#: templates/dashboard/dashboard.html:338
+#: templates/dashboard/dashboard.html:344
+#: templates/dashboard/dashboard.html:350
+#: templates/dashboard/dashboard.html:356
+#: templates/dashboard/dashboard.html:362
+#: templates/dashboard/dashboard.html:368
+#: templates/dashboard/dashboard.html:377
+msgid " (skip)"
+msgstr "(මඟ)"
+
+#: templates/dashboard/dashboard.html:337
+#: templates/dashboard/dashboard.html:408
+msgid "Add gender"
+msgstr "ස්ත්රී පුරුෂ භාවය එකතු කරන්න"
+
+#: templates/dashboard/dashboard.html:343
+#: templates/dashboard/dashboard.html:413
+msgid "Add phone"
+msgstr "දුරකථනය එක් කරන්න"
+
+#: templates/dashboard/dashboard.html:349
+#: templates/dashboard/dashboard.html:418
+msgid "Add avatar"
+msgstr "avatar එකතු කරන්න"
+
+#: templates/dashboard/dashboard.html:355
+#: templates/dashboard/dashboard.html:423
+msgid "Add address"
+msgstr "ලිපිනයක් එක් කරන්න"
+
+#: templates/dashboard/dashboard.html:361
+#: templates/dashboard/dashboard.html:428
+msgid "Add socialaccount"
+msgstr "socialaccount එකතු කරන්න"
+
+#: templates/dashboard/dashboard.html:367
+#: templates/dashboard/dashboard.html:433
+msgid "Add email"
+msgstr "ඊ-තැපෑලක් එක් කරන්න"
+
+#: templates/dashboard/dashboard.html:376
+#: templates/dashboard/dashboard.html:391
+#: templates/dashboard/dashboard.html:441
+msgid "Verify email"
+msgstr "ඊ-තැපැල් තහවුරු කරන්න"
+
+#: templates/dashboard/dashboard.html:392
+msgid "(skip)"
+msgstr "(මඟ)"
+
+#: templates/eblast/editemailcampaign.html:6
+#: templates/eblast/emailtemplateedit.html:6
+msgid "Update"
+msgstr "යාවත්කාලීන"
+
+#: templates/eblast/emailcampaign.html:15
+msgid "Test send"
+msgstr "ටෙස්ට් යැවීමේ"
+
+#: templates/eblast/emailcampaign.html:16
+#: templates/eblast/emailcampaign.html:45
+#: templates/eblast/emailcampaign.html:62
+#: templates/messagingsystem/chats.html:76
+#: templates/publicusers/userdetails.html:106
+#: templates/timelines/index.html:102
+#: templates/useraccount/transferunit.html:22
+msgid "Send"
+msgstr "යවන්න"
+
+#: templates/eblast/emailcampaign.html:18
+msgid "Resend"
+msgstr "නැවත භාරදුන්"
+
+#: templates/eblast/emailcampaign.html:19
+msgid "Show tracking data"
+msgstr "ෙසොයා ගැනීෙම් දත්ත පෙන්වන්න"
+
+#: templates/eblast/emailcampaign.html:38
+msgid "Send a test email"
+msgstr "ටෙස්ට් ඊ-තැපෑල යවන්න"
+
+#: templates/eblast/emailcampaign.html:55
+msgid "Send email"
+msgstr "ඊ-තැපෑල යවන්න"
+
+#: templates/eblast/emailcampaign_page.html:4
+msgid "EmailCampaigns | eBlast"
+msgstr "EmailCampaigns | eBlast"
+
+#: templates/eblast/emailcampaign_page.html:10
+#: templates/sidebar_community.html:44
+msgid "Email Campaigns"
+msgstr "විද්යුත් ප්රචාරණ ව්යාපාර"
+
+#: templates/eblast/emailcampaign_page.html:13
+#: templates/eblast/emailgroups_page.html:13
+#: templates/eblast/emailtemplates_page.html:13
+#: templates/sidebar_community.html:36
+msgid "eBlast"
+msgstr "eBlast"
+
+#: templates/eblast/emailcampaign_page.html:14
+msgid "emailcampaigns"
+msgstr "emailcampaigns"
+
+#: templates/eblast/emailcampaign_page.html:37
+msgid "Campaign Lists"
+msgstr "ව්යාපාරය ලැයිස්තු"
+
+#: templates/eblast/emailcampaign_page.html:45
+#: templates/eblast/emailcampaignform.html:3
+msgid "Create Campaign"
+msgstr "ව්යාපාරය නිර්මාණය කරන්න"
+
+#: templates/eblast/emailcampaign_page.html:75
+msgid "Sent"
+msgstr "එවා"
+
+#: templates/eblast/emailcampaign_page.html:78
+msgid "Draft"
+msgstr "කෙටුම්පත්"
+
+#: templates/eblast/emailcampaign_sent.html:2
+msgid "Sent to: "
+msgstr "වෙත යවන:"
+
+#: templates/eblast/emailcampaign_sent.html:3
+msgid "Subject: "
+msgstr "විෂය:"
+
+#: templates/eblast/emailgroup.html:9 templates/eblast/emailgroup.html:63
+msgid "Add Recipient"
+msgstr "පලමු වරට පිරිනැමු එකතු කරන්න"
+
+#: templates/eblast/emailgroup.html:10
+msgid "Upload CSV"
+msgstr "CSV උඩුගත"
+
+#: templates/eblast/emailgroup.html:42
+#: templates/groupsystem/groupdetails.html:121
+msgid "Unsubscribe"
+msgstr "වනවාද,"
+
+#: templates/eblast/emailgroup.html:46
+#: templates/groupsystem/groupdetails.html:127
+msgid "Subscribe"
+msgstr "දායකත්වය"
+
+#: templates/eblast/emailgroup.html:70 templates/profilesystem/index.html:135
+#: templates/profilesystem/index.html:174
+msgid "Add"
+msgstr "එක් කරන්න"
+
+#: templates/eblast/emailgroup.html:80
+msgid "Upload a CSV"
+msgstr "එය CSV උඩුගත"
+
+#: templates/eblast/emailgroup.html:87 templates/profilesystem/index.html:280
+msgid "Upload"
+msgstr "උඩුගත"
+
+#: templates/eblast/emailgroupform.html:3
+#: templates/eblast/emailgroups_page.html:48
+msgid "Create List"
+msgstr "ලැයිස්තුව නිර්මාණය"
+
+#: templates/eblast/emailgroups_page.html:4
+msgid "EmailGroups | eBlast"
+msgstr "EmailGroups | eBlast"
+
+#: templates/eblast/emailgroups_page.html:10
+msgid "Email Groups"
+msgstr "විද්යුත් කණ්ඩායම්"
+
+#: templates/eblast/emailgroups_page.html:14
+msgid "emailgroups"
+msgstr "emailgroups"
+
+#: templates/eblast/emailgroups_page.html:40
+msgid "Group Lists"
+msgstr "සමූහ ලැයිස්තු"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "emails"
+msgstr "ඊ-තැපැල්"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "email"
+msgstr "විද්යුත් තැපෑල"
+
+#: templates/eblast/emailtemplate.html:11
+msgid "Preview"
+msgstr "පෙරදසුන"
+
+#: templates/eblast/emailtemplateform.html:3
+msgid "Add a new template"
+msgstr "නව සැකිල්ල එක් කරන්න"
+
+#: templates/eblast/emailtemplates_page.html:4
+msgid "EmailTemplates | eBlast"
+msgstr "EmailTemplates | eBlast"
+
+#: templates/eblast/emailtemplates_page.html:10
+#: templates/sidebar_community.html:43
+msgid "Email Templates"
+msgstr "විද්යුත් ආකෘති පත්ර"
+
+#: templates/eblast/emailtemplates_page.html:14
+msgid "emailtemplates"
+msgstr "emailtemplates"
+
+#: templates/eblast/emailtemplates_page.html:40
+msgid "Template Lists"
+msgstr "සැකිල්ල ලැයිස්තු"
+
+#: templates/eblast/emailtemplates_page.html:48
+msgid "Create Template"
+msgstr "සැකිල්ල නිර්මාණය"
+
+#: templates/eblast/tracking_data.html:4
+msgid "Tracking data for "
+msgstr "සඳහා දත්ත සොයා ගැනීමේ"
+
+#: templates/eblast/tracking_data.html:11
+msgid "Emails Sent"
+msgstr "යැවූ විද්යුත් තැපැල් පණිවුඩ"
+
+#: templates/eblast/tracking_data.html:18
+msgid "Emails Opened"
+msgstr "විද්යුත් තැපැල් පණිවුඩ විවෘත"
+
+#: templates/emailtosms/index.html:4 templates/emailtosms/requestcarrier.html:4
+msgid "Email to sms"
+msgstr "කෙටි පණිවිඩ ඊමේල්"
+
+#: templates/emailtosms/index.html:10
+msgid "Email to SMS"
+msgstr "කෙටි පණිවුඩයක් විද්යුත්"
+
+#: templates/emailtosms/index.html:13
+msgid "email to sms"
+msgstr "කෙටි පණිවිඩ ඊමේල්"
+
+#: templates/emailtosms/index.html:33
+msgid "Help us to find working email to sms providers for your mobile number"
+msgstr ""
+"ඔබගේ ජංගම දුරකථන අංකය සඳහා කෙටි පණිවිඩ සේවා සපයන්නන් කිරීමට ඊ-තැපැල් වැඩ සොයා ගැනීමට "
+"අපට උදව් කරන්න"
+
+#: templates/emailtosms/index.html:35
+msgid ""
+"Please provide your mobile carrier, and number then verify you've received a "
+"text or not"
+msgstr ""
+
+#: templates/emailtosms/index.html:39
+msgid "Did you get a code on your mobile?"
+msgstr "ඔබ ඔබේ ජංගම මත කේතය ලැබුණේ කෙසේද?"
+
+#: templates/emailtosms/index.html:40
+msgid "This may take some time..."
+msgstr "මෙම තරමක කාලයක් ගත විය හැක ..."
+
+#: templates/emailtosms/index.html:41
+msgid "Yes"
+msgstr "ඔව්"
+
+#: templates/emailtosms/index.html:42
+msgid "No"
+msgstr "නැත"
+
+#: templates/emailtosms/index.html:46
+msgid "Thank you for helping us verify"
+msgstr "අපට තහවුරු උදව් සඳහා ඔබට ස්තුතියි"
+
+#: templates/emailtosms/index.html:47
+msgid "verify another"
+msgstr "තවත් තහවුරු"
+
+#: templates/emailtosms/requestcarrier.html:8
+msgid "Request Carrier"
+msgstr "ඉල්ලීම ගුවන්"
+
+#: templates/emailtosms/requestcarrier.html:26
+msgid "Thank you, This carrier will be added soon"
+msgstr "ස්තුතියි, මෙම ගුවන් ඉක්මනින් එකතු වනු ඇත"
+
+#: templates/emailtosms/verifierform.html:9
+msgid "Request to add your carrier if not listed"
+msgstr "ලැයිස්තු ගත කර නොමැති නම්, ඔබගේ ගුවන් එකතු කිරීමට ඉල්ලීම"
+
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:14
+#: templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:21
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:14
+#: templates/groupsystem/bannedmembers.html:14
+#: templates/groupsystem/commentadmin.html:21
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:21
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:21
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:14
+#: templates/groupsystem/joinrequests.html:14
+#: templates/groupsystem/members.html:21 templates/groupsystem/members.html:92
+#: templates/groupsystem/postsadmin.html:14
+msgid "Admin"
+msgstr "පරිපාලක"
+
+#: templates/groupsystem/admindashboard.html:13
+#: templates/groupsystem/adminnews.html:20
+#: templates/groupsystem/adminsettings.html:13
+#: templates/groupsystem/bannedmembers.html:13
+#: templates/groupsystem/commentadmin.html:20
+#: templates/groupsystem/customroles.html:20
+#: templates/groupsystem/defaultroles.html:20
+#: templates/groupsystem/editcommentpage.html:13
+#: templates/groupsystem/editpostpage.html:13
+#: templates/groupsystem/events.html:13
+#: templates/groupsystem/eventsadmin.html:13
+#: templates/groupsystem/groupdetails.html:20
+#: templates/groupsystem/joined_group.html:15
+#: templates/groupsystem/joinrequests.html:13
+#: templates/groupsystem/members.html:20
+#: templates/groupsystem/postdetails.html:13
+#: templates/groupsystem/posts.html:13 templates/groupsystem/postsadmin.html:13
+#: templates/groupsystem/subscribed_group.html:15
+msgid "Group"
+msgstr "සමූහය"
+
+#: templates/groupsystem/admindashboard.html:54
+msgid "New Request"
+msgstr "නව ඉල්ලීම්"
+
+#: templates/groupsystem/admindashboard.html:68
+msgid "Pending posts"
+msgstr "විභාග තනතුරු"
+
+#: templates/groupsystem/admindashboard.html:82
+msgid "Pending comment"
+msgstr "විභාග අදහස්"
+
+#: templates/groupsystem/adminnews.html:68
+msgid "No news!!"
+msgstr "පුවත් කිසිවක් !!"
+
+#: templates/groupsystem/adminnews.html:76
+msgid "Create News"
+msgstr "පුවත් නිර්මාණය"
+
+#: templates/groupsystem/adminnews.html:99
+msgid "Edit news"
+msgstr "සංස්කරණය කරන්න පුවත්"
+
+#: templates/groupsystem/adminsettings.html:40
+msgid "Send notification to members"
+msgstr "සාමාජිකයන් වෙත නිවේදනයක් යවන්න"
+
+#: templates/groupsystem/adminsettings.html:73
+#: templates/groupsystem/groupdetails.html:78
+msgid "About Us"
+msgstr "අපි ගැන"
+
+#: templates/groupsystem/adminsettings.html:81
+msgid "Auto approve post: "
+msgstr "වාහන පශ්චාත් අනුමත:"
+
+#: templates/groupsystem/adminsettings.html:89
+msgid "Auto approve comment: "
+msgstr "වාහන අදහස් අනුමත:"
+
+#: templates/groupsystem/adminsettings.html:101
+msgid "Edit Group"
+msgstr "සංස්කරණය කරන්න සමූහ"
+
+#: templates/groupsystem/adminsettings.html:120
+msgid "Create Notification"
+msgstr "නිවේදනය නිර්මාණය"
+
+#: templates/groupsystem/adminsettings.html:126
+#: templates/groupsystem/all_group.html:108
+#: templates/groupsystem/customroles.html:97
+msgid "Create"
+msgstr "නිර්මාණය"
+
+#: templates/groupsystem/all_group.html:5
+#: templates/groupsystem/all_group.html:40 templates/sidebar_community.html:12
+msgid "All Groups"
+msgstr "සියලු කණ්ඩායම්"
+
+#: templates/groupsystem/all_group.html:43 templates/landing_base.html:108
+#: templates/landing_base.html:167 templates/profilesystem/index.html:413
+#: templates/sidebar_community.html:6
+msgid "Groups"
+msgstr "කණ්ඩායම්"
+
+#: templates/groupsystem/all_group.html:44
+msgid "all groups"
+msgstr "සියලු කන්ඩායම්"
+
+#: templates/groupsystem/all_group.html:69
+#: templates/groupsystem/all_group.html:102
+msgid "Create Group"
+msgstr "සමූහ නිර්මාණය"
+
+#: templates/groupsystem/bannedmembers.html:4
+msgid "Bannedmembers"
+msgstr "Bannedmembers"
+
+#: templates/groupsystem/bannedmembers.html:10
+#: templates/groupsystem/bannedmembers.html:15 templates/sidebar_group.html:98
+msgid "Banned Members"
+msgstr "තහනම් මන්ත්රීවරුන්"
+
+#: templates/groupsystem/bannedmembers.html:44
+#: templates/groupsystem/editextraperm.html:3
+#: templates/groupsystem/joinrequests.html:44
+#: templates/groupsystem/members.html:61
+msgid "User"
+msgstr "පරිශීලක"
+
+#: templates/groupsystem/bannedmembers.html:45
+#: templates/groupsystem/joinrequests.html:45
+#: templates/groupsystem/members.html:63
+#: templates/messagingsystem/chats.html:175
+#: templates/messagingsystem/index.html:252
+msgid "Actions"
+msgstr "ක්රියා"
+
+#: templates/groupsystem/bannedmembers.html:58
+msgid "Lift Ban"
+msgstr "ලිෆ්ට් බෑන්"
+
+#: templates/groupsystem/commentadmin.html:17
+#: templates/groupsystem/commentadmin.html:22 templates/sidebar_group.html:71
+#: templates/sidebar_group_admin.html:41
+msgid "Comments"
+msgstr "අදහස්"
+
+#: templates/groupsystem/commentadmin.html:55
+#: templates/groupsystem/editcommentpage.html:39
+msgid "Post: "
+msgstr "තැපැල්:"
+
+#: templates/groupsystem/commentadmin.html:56
+#: templates/groupsystem/editcommentpage.html:42
+msgid "Commented By: "
+msgstr "වන විට මෙසේ අදහස් දැක්වීය:"
+
+#: templates/groupsystem/commentadmin.html:58
+msgid "Comment: "
+msgstr "සටහන්:"
+
+#: templates/groupsystem/commentadmin.html:60
+#: templates/groupsystem/postsadmin.html:89
+msgid "edit"
+msgstr "සංස්කරණය කරන්න"
+
+#: templates/groupsystem/commentadmin.html:62
+msgid "approve"
+msgstr "අනුමත"
+
+#: templates/groupsystem/commentadmin.html:71
+msgid "No comments!!"
+msgstr "ප්රතිචාර නැත!!"
+
+#: templates/groupsystem/creategroupsuccess.html:3
+msgid "Your new group is created"
+msgstr "ඔබගේ නව කණ්ඩායමක් නිර්මාණය"
+
+#: templates/groupsystem/creategroupsuccess.html:4
+msgid "Group UUID: "
+msgstr "සමූහ UUID:"
+
+#: templates/groupsystem/creategroupsuccess.html:5
+msgid "Url: "
+msgstr "url:"
+
+#: templates/groupsystem/creategroupsuccess.html:6
+msgid "More Settings: "
+msgstr "තවත් සැකසුම්:"
+
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:56
+msgid "Custom roles"
+msgstr "රේගු චරිත"
+
+#: templates/groupsystem/customroles.html:17
+#: templates/groupsystem/customroles.html:22
+msgid "Custom Roles"
+msgstr "රේගු භූමිකා"
+
+#: templates/groupsystem/customroles.html:47
+msgid "Create custom role"
+msgstr "අභිරුචි භූමිකාවක් නිර්මාණය"
+
+#: templates/groupsystem/customroles.html:68
+msgid "You don't have any custom roles defined"
+msgstr "ඔබ අර්ථ ඕනෑම චාරිත්රයක් චරිත නැහැ"
+
+#: templates/groupsystem/customroles.html:76
+#: templates/groupsystem/defaultroles.html:62
+msgid "Permissions"
+msgstr "අවසර"
+
+#: templates/groupsystem/customroles.html:91
+msgid "Create Custom Role"
+msgstr "රේගු කාර්යභාරය නිර්මාණය"
+
+#: templates/groupsystem/customroles.html:113
+msgid "You dont have permission to edit role"
+msgstr "ඔබ භූමිකාව සංස්කරණය කරන්න සඳහා අවසර තිබුනනම්"
+
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:46
+msgid "Default roles"
+msgstr "පෙරනිමි භූමිකාව"
+
+#: templates/groupsystem/defaultroles.html:17
+#: templates/groupsystem/defaultroles.html:22
+msgid "Default Roles"
+msgstr "පෙරනිමි භූමිකා"
+
+#: templates/groupsystem/editcommentpage.html:10
+#: templates/groupsystem/editcommentpage.html:14
+#: templates/groupsystem/editpostpage.html:10
+#: templates/groupsystem/editpostpage.html:14
+#: templates/groupsystem/joined_group.html:16
+#: templates/groupsystem/subscribed_group.html:16
+msgid "admin"
+msgstr "පරිපාලක"
+
+#: templates/groupsystem/editcommentpage.html:40
+#: templates/groupsystem/editpostpage.html:42
+msgid "Approved: "
+msgstr "අනුමත:"
+
+#: templates/groupsystem/editcommentpage.html:41
+#: templates/groupsystem/editpostpage.html:43
+msgid "Approved By: "
+msgstr "විසින් අනුමත:"
+
+#: templates/groupsystem/editcommentpage.html:43
+msgid "Commented on: "
+msgstr "පිළිබඳව අදහස්:"
+
+#: templates/groupsystem/editcustomrole.html:3
+msgid "User who assigned with this role"
+msgstr "මෙම භූමිකාව සමග පවරා ඇති, පරිශීලක"
+
+#: templates/groupsystem/editpostpage.html:39
+msgid "Creator: "
+msgstr "මැවුම්කරු:"
+
+#: templates/groupsystem/editpostpage.html:45
+msgid "Post Created on: "
+msgstr "තැපැල් Created on:"
+
+#: templates/groupsystem/eventform.html:7
+msgid "Clear"
+msgstr "පැහැදිලිව"
+
+#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:10
+#: templates/groupsystem/events.html:14 templates/groupsystem/events.html:38
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:10
+#: templates/groupsystem/eventsadmin.html:15
+#: templates/groupsystem/eventsadmin.html:50 templates/sidebar_group.html:11
+#: templates/sidebar_group.html:107 templates/sidebar_group_admin.html:77
+msgid "Events"
+msgstr "සිද්ධීන්"
+
+#: templates/groupsystem/events.html:88
+msgid "Startdate: "
+msgstr "ආරම්භක දිනය:"
+
+#: templates/groupsystem/events.html:90
+msgid "Enddate: "
+msgstr "අවසාන දිනය:"
+
+#: templates/groupsystem/eventsadmin.html:40
+msgid "Create Event"
+msgstr "EVENT නිර්මාණය"
+
+#: templates/groupsystem/groupdetails.html:89
+msgid "Leave Group"
+msgstr "සමූහ තබන්න"
+
+#: templates/groupsystem/groupdetails.html:97
+#: templates/groupsystem/groupdetails.html:113
+msgid "Cancel Request"
+msgstr "ඉල්ලීම් අවලංගු කරන්න"
+
+#: templates/groupsystem/groupdetails.html:102
+#: templates/groupsystem/groupdetails.html:108
+msgid "Join Group"
+msgstr "කණ්ඩායමට එකතුවන්න"
+
+#: templates/groupsystem/groupdetails.html:135
+msgid "Invite User"
+msgstr "පරිශීලක ආරාධනා"
+
+#: templates/groupsystem/groupdetails.html:142
+msgid "Go to Group Admin"
+msgstr "සමූහ පරිපාලක වෙත යන්න"
+
+#: templates/groupsystem/joined_group.html:5
+#: templates/groupsystem/joined_group.html:12
+#: templates/profilesystem/index.html:588 templates/sidebar_community.html:13
+msgid "Joined Groups"
+msgstr "එක් කණ්ඩායම්"
+
+#: templates/groupsystem/joinrequests.html:10
+#: templates/groupsystem/joinrequests.html:15
+msgid "Join Requests"
+msgstr "ඉල්ලීම් සමග එකතු වන්න"
+
+#: templates/groupsystem/joinrequests.html:57
+#: templates/groupsystem/postsadmin.html:79
+msgid "Approve"
+msgstr "අනුමත"
+
+#: templates/groupsystem/joinrequests.html:60
+msgid "Deny"
+msgstr "ප්රතික්ෂේප"
+
+#: templates/groupsystem/members.html:48
+msgid "Add member"
+msgstr "සාමාජික එකතු කරන්න"
+
+#: templates/groupsystem/members.html:62
+msgid "Role"
+msgstr "කාර්යභාරය"
+
+#: templates/groupsystem/members.html:87
+msgid "Ban Member"
+msgstr "බෑන් මන්ත්රී"
+
+#: templates/groupsystem/members.html:91
+msgid "SuperAdmin"
+msgstr "SuperAdmin"
+
+#: templates/groupsystem/members.html:93
+msgid "Moderator"
+msgstr "Moderator"
+
+#: templates/groupsystem/members.html:94
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:49 templates/publicusers/users.html:27
+msgid "Member"
+msgstr "සාමාජික"
+
+#: templates/groupsystem/members.html:101
+msgid "Extra permission"
+msgstr "අමතර අවසර"
+
+#: templates/groupsystem/members.html:118
+msgid "Edit User Perm"
+msgstr "පරිශීලක Perm සංස්කරණය කරන්න"
+
+#: templates/groupsystem/members.html:141
+#: templates/groupsystem/members.html:153
+#: templates/groupsystem/members.html:169
+#: templates/groupsystem/members.html:181
+#: templates/groupsystem/members.html:202
+#: templates/groupsystem/members.html:214
+#: templates/groupsystem/members.html:268
+msgid "Change role"
+msgstr "භූමිකාව වෙනස්"
+
+#: templates/groupsystem/members.html:231
+msgid "You dont have permissions to edit extra permissions"
+msgstr "ඔබ වැඩිපුර අවසර සංස්කරණය කිරීමට අවසර තිබුනනම්"
+
+#: templates/groupsystem/postdetails.html:72
+msgid "Like"
+msgstr "මෙන්"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " likes"
+msgstr "වැන්නන්"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " comments"
+msgstr "අදහස්"
+
+#: templates/groupsystem/posts.html:10 templates/groupsystem/posts.html:14
+#: templates/groupsystem/postsadmin.html:10
+#: templates/groupsystem/postsadmin.html:15 templates/sidebar_group.html:19
+#: templates/sidebar_group.html:54 templates/sidebar_group_admin.html:24
+msgid "Posts"
+msgstr "තැපැල්"
+
+#: templates/groupsystem/posts.html:40 templates/groupsystem/posts.html:104
+#: templates/groupsystem/postsadmin.html:41
+#: templates/groupsystem/postsadmin.html:107
+msgid "Create Post"
+msgstr "තැපැල් නිර්මාණය"
+
+#: templates/groupsystem/posts.html:84 templates/groupsystem/singlepost.html:32
+msgid "more"
+msgstr "තව"
+
+#: templates/groupsystem/posts.html:95 templates/groupsystem/postsadmin.html:99
+msgid "No Posts Yet!!"
+msgstr "එහෙත් තැපැල් කිසිදු !!"
+
+#: templates/groupsystem/postsadmin.html:79
+msgid "Not approved"
+msgstr "අවසර ලබා දී නැති"
+
+#: templates/groupsystem/roledetails.html:10
+msgid "No such default role"
+msgstr "එවැනි කිසිදු පෙරනිමි භූමිකාව"
+
+#: templates/groupsystem/subscribed_group.html:5
+#: templates/groupsystem/subscribed_group.html:12
+#: templates/profilesystem/index.html:609 templates/sidebar_community.html:14
+msgid "Subscribed Groups"
+msgstr "දායක කණ්ඩායම්"
+
+#: templates/hashtag/images.html:14
+msgid "You have no images uploaded"
+msgstr "නැහැ, ඔබ රූප උඩුගත කර ඇත"
+
+#: templates/hashtag/index.html:4
+msgid "Hashtag Banner"
+msgstr "හැෂ්ටැග් බැනරය"
+
+#: templates/hashtag/index.html:38 templates/hashtag/index.html:41
+#: templates/landing_base.html:79 templates/landing_base.html:131
+#: templates/profilesystem/index.html:441
+msgid "Hashtag"
+msgstr "හෑෂ් ටැගය"
+
+#: templates/hashtag/index.html:52
+msgid "Basic Income Hashtag Banner Campaign"
+msgstr "මූලික ආදායම් හැෂ්ටැග් බැනරය ව්යාපාරය"
+
+#: templates/hashtag/index.html:53
+msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgstr "ඔබේ ෆේස්බුක් / ට්විටර් profile photo කිරීමට මූලික ආදායම් ධජය එක් කරන්න."
+
+#: templates/hashtag/index.html:57
+msgid "Add hashtag banner to your facebook account"
+msgstr "ඔබේ ෆේස්බුක් ගිණුමට හැෂ්ටැග් ධජය එකතු කරන්න"
+
+#: templates/hashtag/index.html:62
+msgid "Add hashtag banner to your twitter account"
+msgstr "ඔබේ ට්විටර් ගිණුම වෙත හැෂ්ටැග් ධජය එකතු කරන්න"
+
+#: templates/hashtag/index.html:68
+msgid "You've not added facebook yet! Click the button to add"
+msgstr "ඔබ තවමත් ෆේස්බුක් එකතු නොවේ උනා! එකතු කිරීමට බොත්තම ක්ලික් කරන්න"
+
+#: templates/hashtag/index.html:70
+msgid "Add Facebook"
+msgstr "ෆේස්බුක් එකතු කරන්න"
+
+#: templates/hashtag/index.html:78
+msgid "You've not added twitter yet! Click the button to add"
+msgstr "ඔබ තවමත් ට්විටර් එකතු නොවේ උනා! එකතු කිරීමට බොත්තම ක්ලික් කරන්න"
+
+#: templates/hashtag/index.html:80
+msgid "Add Twitter"
+msgstr "ට්විටර් එකතු කරන්න"
+
+#: templates/hashtag/index.html:87
+msgid "Select from uploaded"
+msgstr "උඩුගත තෝරන්න"
+
+#: templates/hashtag/index.html:93
+msgid "Upload New Images"
+msgstr "නව පින්තූර උඩුගත"
+
+#: templates/hashtag/index.html:98
+msgid "Change Banner Color"
+msgstr "වෙනස් බැනරය වර්ණ"
+
+#: templates/hashtag/index.html:102
+msgid "Make profile image"
+msgstr "පැතිකඩ රූප කරන්න"
+
+#: templates/hashtag/index.html:108
+msgid "Download image"
+msgstr "බාගත රූපය"
+
+#: templates/hashtag/index.html:121
+msgid "Upload Images"
+msgstr "පටවන්න"
+
+#: templates/hashtag/index.html:255 templates/hashtag/index.html:271
+msgid "Upload to facebook"
+msgstr "ෆේස්බුක් වෙත අප්ලෝඩ්"
+
+#: templates/hashtag/index.html:305 templates/hashtag/index.html:321
+msgid "Upload to twitter"
+msgstr "ට්විටර් වෙත උඩුගත"
+
+#: templates/hashtag/index.html:356
+msgid "Uploading....."
+msgstr "උඩුගත ....."
+
+#: templates/hashtag/index.html:365
+msgid "Support #basicincome project"
+msgstr "සහාය"
+
+#: templates/hashtag/index.html:407
+msgid "Uploaded"
+msgstr "උඩුගත"
+
+#: templates/hashtag/index.html:419
+msgid "Cant upload now!! try later"
+msgstr "දැන් උඩුගත නීතියයි !! පසුව උත්සාහ"
+
+#: templates/information/contact.html:4 templates/information/contact.html:10
+#: templates/information/contact.html:13 templates/information/success.html:4
+#: templates/information/success.html:10 templates/landing_base.html:78
+#: templates/landing_base.html:198 templates/profilesystem/index.html:154
+#: templates/profilesystem/index.html:373 templates/publicusers/user.html:65
+#: templates/publicusers/user.html:236
+msgid "Contact"
+msgstr "අමතන්න"
+
+#: templates/information/contact.html:24
+msgid "Get in touch with us"
+msgstr "අප සමඟ සම්බන්ධව ලබා ගන්න"
+
+#: templates/information/contact.html:25
+msgid ""
+"if you have any comments or questions, please get in touch. We’d love to "
+"hear fom you."
+msgstr ""
+
+#: templates/information/index.html:4 templates/information/index.html:13
+#: templates/information/index.html:24 templates/profilesystem/index.html:434
+#: templates/sidebar_community.html:20
+msgid "Information"
+msgstr "විස්තර"
+
+#: templates/information/index.html:10
+msgid "About our system"
+msgstr "අපගේ පද්ධතිය ගැන"
+
+#: templates/information/success.html:13
+msgid "contact"
+msgstr "අමතන්න"
+
+#: templates/information/success.html:24
+msgid "Thank you for your interest"
+msgstr "ඔබේ කැමැත්තට ස්තුතියි"
+
+#: templates/information/success.html:25
+msgid "We will contact you shortly"
+msgstr "අපි ටික කලකට ඔබ හා සම්බන්ධ වනු ඇත"
+
+#: templates/invitationsystem/checkinvitation.html:16
+msgid "Get access to ekata beta"
+msgstr "ekata බීටා කිරීමට ප්රවේශය ලබා ගන්න"
+
+#: templates/invitationsystem/index.html:16
+#: templates/invitationsystem/sent.html:13 templates/landing/index.html:238
+msgid "Get your invite access key to the ekata beta"
+msgstr "මෙම ekata බීටා ඔබේ ආරාධනා ප්රවේශ යතුර ලබා ගන්න"
+
+#: templates/invitationsystem/sent.html:15 templates/landing/index.html:407
+msgid ""
+"Your request is sent!! You will get an invitation email soon with a link and "
+"invite key."
+msgstr ""
+
+#: templates/landing/hashtag.html:35
+msgid "Show Support"
+msgstr "සහාය පෙන්වන්න"
+
+#: templates/landing/hashtag.html:36
+#, fuzzy
+#| msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgid ""
+"In adding the #basicincome hashtag banner to your facebook and twitter "
+"profile !!"
+msgstr "ඔබේ ෆේස්බුක් / ට්විටර් profile photo කිරීමට මූලික ආදායම් ධජය එක් කරන්න."
+
+#: templates/landing/hashtag.html:48
+msgid "World Supporters of Basic Income"
+msgstr "මූලික ආදායම් ලෝක ආධාරකරුවන්"
+
+#: templates/landing/hashtag.html:71
+msgid "Create my banner"
+msgstr "මගේ ධජය නිර්මාණය"
+
+#: templates/landing/hashtag.html:73
+msgid "Login/Signup to be here"
+msgstr "ලොගින් වන්න / ගොණුව මෙතන ඉන්න"
+
+#: templates/landing/index.html:40
+msgid ""
+"Ekata is a social platform for individuals, communities, associations, and "
+"municipalities. Ekata empowers you with the best of today’s online "
+"technologies -- digital tools to help you stay managed, connected, and "
+"informed. Whether you want to build a web presence for yourself or your "
+"organization, or you simply want a place to connect with others who share "
+"your interests and goals, Ekata is the place for you. Welcome!"
+msgstr ""
+
+#: templates/landing/index.html:55
+msgid "Communities"
+msgstr "ප්රජාවන්"
+
+#: templates/landing/index.html:56
+msgid ""
+"You're a social group that shares something in common. Small or large. "
+"Local, national, or global. Virtual or geographically based. Your common "
+"purpose and identity give you a sense of community. Ekata was built to align "
+"with how you wish to relate."
+msgstr ""
+
+#: templates/landing/index.html:60
+msgid "Associations"
+msgstr "සංගම්"
+
+#: templates/landing/index.html:61
+msgid ""
+"You're a homeowners or condo association, property or land trust, or "
+"nonprofit organization. An organized body of people who live or work "
+"together to improve your lives or society. Ekata gives you the tools to "
+"manage your association’s business, membership, activities and interests."
+msgstr ""
+
+#: templates/landing/index.html:65
+msgid "Municipalities"
+msgstr "මහ නගර සභාවලට"
+
+#: templates/landing/index.html:66
+msgid ""
+"You're a town, municipality or county. A government institution with "
+"incorporated status in a jurisdiction. The Ekata platform has the "
+"administrative tools you need to function efficiently and connect with "
+"elected officials, staff, and constituents in the 21st century."
+msgstr ""
+
+#: templates/landing/index.html:78
+msgid "Platform Vision"
+msgstr "වේදිකාව දැක්ම"
+
+#: templates/landing/index.html:86
+msgid ""
+"Mark Witham, social entrepreneur and founder of the Ekata platform (Formally "
+"known as Basic Income Project), is passionate about empowering others with "
+"options to bring about their own social change."
+msgstr ""
+
+#: templates/landing/index.html:91
+msgid ""
+"We combine technology, knowledge, and imagination to build better social "
+"systems for this planet and future generations. Now we need you! Use the "
+"Ekata platform to help create a network for fulfilling lives, communities, "
+"and positive social change."
+msgstr ""
+
+#: templates/landing/index.html:106
+msgid "Social Responsiblity"
+msgstr "සමාජ Responsiblity"
+
+#: templates/landing/index.html:112
+msgid "Ekata has partnered with "
+msgstr "Ekata සමඟ අත්වැල් බැඳගෙන ඇත"
+
+#: templates/landing/index.html:112
+msgid ", a socially responsible digital currency which is distributed as "
+msgstr ", සමාජ වගකීම ඩිජිටල් මුදල් ලෙස බෙදා හරිනු ලබන"
+
+#: templates/landing/index.html:112
+msgid ""
+" to people around the world. Powered by blockchain technology, Grantcoin is "
+"the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization "
+"with a mission for social good. Join Ekata and receive Grantcoin on a "
+"regular basis, for free. Spend it or give it away to other Ekata users -- "
+"artists, musicians, bloggers, nonprofits, or businesses."
+msgstr ""
+
+#: templates/landing/index.html:162
+msgid "Many Key Features"
+msgstr "බොහෝ ප්රධාන ලක්ෂණ"
+
+#: templates/landing/index.html:165
+msgid "Group sites for art, music, news, politics, activism, and business."
+msgstr ""
+"කලා, සංගීතය, ප්රවෘත්ති, දේශපාලනය, ක්රියාකාරිත්වය, සහ ව්යාපාරික කටයුතු සඳහා සමූහය අඩවි."
+
+#: templates/landing/index.html:169
+msgid "Social communication through instant messaging, posts, and comments."
+msgstr "ක්ෂණික පණිවුඩ, තනතුරු, සහ අදහස් තුලින් සමාජ සන්නිවේදන."
+
+#: templates/landing/index.html:173
+msgid "Governance of members, staff roles, social forums, and member voting."
+msgstr "සාමාජිකයන්, කාර්ය මණ්ඩලය චරිත, සමාජ සංසද, හා සාමාජික ඡන්දය පාලනය."
+
+#: templates/landing/index.html:177
+msgid "Web of trust and a socially responsible currency system."
+msgstr "විශ්වාසය හා සමාජ වගකීම මූල්ය පද්ධතිය වෙබ්."
+
+#: templates/landing/index.html:196
+msgid "More Features"
+msgstr "තවත් විශේෂාංග"
+
+#: templates/landing/index.html:198
+msgid "API for building in app and feature integrations."
+msgstr "යෙදුම සහ ලක්ෂණය මනුෂ්යත්වයක් ගොඩනැගිලි සඳහා API."
+
+#: templates/landing/index.html:199
+msgid "Open Source."
+msgstr "විවෘත මෘදුකාංග."
+
+#: templates/landing/index.html:211
+msgid "#BasicIncome Hashtag Banner Campaign"
+msgstr ""
+
+#: templates/landing/index.html:217
+msgid ""
+"Help Ekata in showing your support for basic income by adding a custom "
+"colored #basicincome hashtag banner to your Twitter and Facebook profile "
+"photo. Together let us raise awareness!"
+msgstr ""
+
+#: templates/landing/index.html:219
+msgid "Click here to create and upload the banner"
+msgstr "ධජය නිර්මාණය හා උඩුගත කිරීමට මෙතන ක්ලික් කරන්න"
+
+#: templates/landing/index.html:418
+msgid "Please correct the errors"
+msgstr "දෝෂ නිවැරදි කරන්න"
+
+#: templates/landing/news.html:39
+msgid "News and Stories"
+msgstr "පුවත් සහ කතන්දර"
+
+#: templates/landing/news.html:46
+msgid "Trending"
+msgstr "කරන්නන්ගේ සංබ්යාවද දිනෙන්"
+
+#: templates/landing/news.html:80 templates/landing/newsdetail.html:45
+#: templates/profilesystem/index.html:343
+msgid "About Me"
+msgstr "මා ගැන"
+
+#: templates/landing_base.html:74
+msgid "Home"
+msgstr "මුල් පිටුව"
+
+#: templates/landing_base.html:75
+msgid "Features"
+msgstr "තවත් විශේෂාංග"
+
+#: templates/landing_base.html:99 templates/landing_base.html:164
+msgid "My Account"
+msgstr "මගේ ගිණුම"
+
+#: templates/landing_base.html:104 templates/landing_base.html:166
+#: templates/profilesystem/index.html:406
+#: templates/publicusers/userdetails.html:50
+#: templates/publicusers/userlist_old.html:4
+#: templates/publicusers/userlist_old.html:44
+#: templates/publicusers/userlist_old.html:60
+msgid "Users"
+msgstr "පරිශීලකයන්"
+
+#: templates/landing_base.html:112 templates/landing_base.html:168
+#: templates/profilesystem/index.html:420 templates/sidebar_home.html:50
+#: templates/timelines/index.html:4 templates/timelines/index.html:18
+#: templates/timelines/index.html:21
+msgid "Timeline"
+msgstr "කාල නියමය"
+
+#: templates/landing_base.html:127 templates/landing_base.html:170
+msgid "information"
+msgstr "විස්තර"
+
+#: templates/landing_base.html:134
+msgid "Customize link"
+msgstr "ලින්ක් රිසිකරණය"
+
+#: templates/landing_base.html:136
+msgid "Sign-out"
+msgstr "වරන්න"
+
+#: templates/landing_base.html:161
+msgid "Links"
+msgstr "සබැඳි"
+
+#: templates/landing_base.html:171
+msgid "Create Hashtag"
+msgstr "හැෂ්ටැග් නිර්මාණය"
+
+#: templates/landing_base.html:177
+msgid "Social"
+msgstr "සමාජ"
+
+#: templates/landing_base.html:186
+msgid "Signup for the Newsletter"
+msgstr "මෙම පුවත් පත්රිකා සඳහා ලියාපදිංචි වීමේ"
+
+#: templates/landing_base.html:200
+msgid "Please feel free to inquire more about the EKATA platform."
+msgstr "මෙම EKATA වේදිකාවක් ගැන වැඩි සොයා බැලීමට නිදහස් හැඟීම කරන්න."
+
+#: templates/landing_base.html:249
+msgid "Powered by "
+msgstr "බල ගැන්වුයේ"
+
+#: templates/messagingsystem/chats.html:70
+msgid "Send Unit to: "
+msgstr "ඒකක යවන්න:"
+
+#: templates/messagingsystem/chats.html:87
+msgid "Request Unit from: "
+msgstr "ඉල්ලීමක් ඒකක:"
+
+#: templates/messagingsystem/chats.html:93
+#: templates/publicusers/userdetails.html:123 templates/timelines/index.html:57
+#: templates/timelines/index.html:59
+msgid "Request"
+msgstr "ඉල්ලීම"
+
+#: templates/messagingsystem/index.html:4
+#: templates/profilesystem/index.html:427
+msgid "Messaging"
+msgstr "පණිවිඩ යැවීම"
+
+#: templates/messagingsystem/index.html:58
+#: templates/messagingsystem/index.html:61 templates/sidebar_home.html:56
+msgid "Messenger"
+msgstr "දූතයා"
+
+#: templates/messagingsystem/index.html:93
+#: templates/messagingsystem/index.html:106
+msgid "Sorry you have no chats yet!!!"
+msgstr "සමාවන්න ඔබ තවමත් කිසිදු පිළිසදර ඇති !!!"
+
+#: templates/messagingsystem/index.html:121
+msgid "Send Units"
+msgstr "ඒකක යවන්න"
+
+#: templates/messagingsystem/index.html:126
+msgid "Request Request"
+msgstr "ඉල්ලීම්"
+
+#: templates/messagingsystem/navbarmessage.html:37
+msgid "All caught up"
+msgstr "සියලු හසු"
+
+#: templates/notification/notification.html:19
+#: templates/timelines/index.html:278 templates/timelines/timeline.html:54
+#: templates/timelines/timeline.html:72
+msgid "sent"
+msgstr "එවා"
+
+#: templates/notification/notification.html:26
+msgid "requested"
+msgstr "ඉල්ලා"
+
+#: templates/notification/notification.html:33
+msgid "units released"
+msgstr "නිදහස් ඒකක"
+
+#: templates/notification/notification.html:40
+msgid "verfied as real user"
+msgstr "සැබෑ පරිශීලක ලෙස verfied"
+
+#: templates/notification/notification.html:47
+msgid "unverfied you"
+msgstr "ඔබ unverfied"
+
+#: templates/notification/notification.html:54
+msgid "sent a connection request"
+msgstr "සම්බන්ධතා ඉල්ලීමට යවා"
+
+#: templates/notification/notification.html:61
+msgid "canceled connection request"
+msgstr "අවලංගු සම්බන්ධතා ඉල්ලීමට"
+
+#: templates/notification/notification.html:68
+msgid "accepted connection request"
+msgstr "සම්බන්ධතා ඉල්ලීමට පිළිගත්"
+
+#: templates/notification/notification.html:75
+msgid "rejected connection request"
+msgstr "ප්රතික්ෂේප සම්බන්ධතා ඉල්ලීමට"
+
+#: templates/notification/notification.html:82
+msgid "disconnected you"
+msgstr "ඔබ විසන්ධි"
+
+#: templates/notification/notification.html:89
+msgid "invited you to group"
+msgstr "පිරිසක් ඔබ ආරාධනා"
+
+#: templates/notification/notification.html:96
+msgid "sent a join request to group"
+msgstr "කණ්ඩායමට එක්වන්නේ ඉල්ලීම යවා"
+
+#: templates/notification/notification.html:128
+msgid "All caught up!!"
+msgstr "සියලු හසු !!"
+
+#: templates/profilesystem/address.html:43
+msgid "Click add button to add your address"
+msgstr "ඔබගේ ලිපිනය එකතු කිරීමට බොත්තම එකතු ක්ලික් කරන්න"
+
+#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:241
+msgid "Phone Office"
+msgstr "දුරකථන කාර්යාලය"
+
+#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:247
+msgid "Phone Home"
+msgstr "දුරකථන මුල් පිටුව"
+
+#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:253
+msgid "Phone Mobile"
+msgstr "දුරකථන ජංගම"
+
+#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:259
+msgid "Phone Emergency"
+msgstr "දුරකථන හදිසි"
+
+#: templates/profilesystem/contact.html:30
+msgid "Click add button to add your phone number"
+msgstr "ඔබගේ දුරකථන අංකය එකතු කිරීමට බොත්තම එකතු ක්ලික් කරන්න"
+
+#: templates/profilesystem/documents.html:4
+msgid "Profile Images"
+msgstr "පැතිකඩ රූප කරන්න"
+
+#: templates/profilesystem/documents.html:18
+msgid "Images"
+msgstr "පටවන්න"
+
+#: templates/profilesystem/documents.html:34
+#: templates/profilesystem/index.html:223
+msgid "Documents"
+msgstr "ලිපි ලේඛන"
+
+#: templates/profilesystem/documents.html:50
+msgid "Legal"
+msgstr "නීතිමය"
+
+#: templates/profilesystem/emailaddress.html:4
+msgid "Email address associated with your account"
+msgstr "ඔබගේ ගිණුම හා සම්බන්ධ ඊ-තැපැල් ලිපිනය"
+
+#: templates/profilesystem/emailaddress.html:17
+msgid "(Primary)"
+msgstr "(ප්රාථමික)"
+
+#: templates/profilesystem/emailaddress.html:30
+msgid "No email associated with your account"
+msgstr "ඔබගේ ගිණුම හා සම්බන්ධ ඊ-තැපැල් කිසිදු"
+
+#: templates/profilesystem/index.html:84 templates/profilesystem/index.html:307
+#: templates/publicusers/user.html:112
+msgid "Personal Information"
+msgstr "පුද්ගලික තොරතුරු"
+
+#: templates/profilesystem/index.html:115
+#: templates/profilesystem/index.html:365
+msgid "Location"
+msgstr "ස්ථානය"
+
+#: templates/profilesystem/index.html:191 templates/publicusers/user.html:166
+msgid "Activities"
+msgstr "කටයුතු"
+
+#: templates/profilesystem/index.html:198 templates/publicusers/user.html:170
+msgid "Activation date"
+msgstr "සක්රිය කිරීමේ දිනය"
+
+#: templates/profilesystem/index.html:210
+msgid "More"
+msgstr "තව"
+
+#: templates/profilesystem/index.html:236
+#: templates/publicusers/connections.html:74
+msgid "Search..."
+msgstr "සෙවීම..."
+
+#: templates/profilesystem/index.html:253
+msgid "Upload Document"
+msgstr "හවුල් ලේඛන"
+
+#: templates/profilesystem/index.html:268
+msgid "Shared Documents"
+msgstr "හවුල් ලේඛන"
+
+#: templates/profilesystem/index.html:300
+msgid "Change Public Visibility"
+msgstr "රාජ්ය දෘශ්ය භාවය වෙනස්"
+
+#: templates/profilesystem/index.html:318 templates/profilesystem/pinfo.html:42
+#: templates/publicusers/user.html:138
+msgid "Website"
+msgstr "වෙබ් අඩවිය"
+
+#: templates/profilesystem/index.html:325 templates/profilesystem/pinfo.html:23
+#: templates/publicusers/user.html:126
+msgid "Gender"
+msgstr "ස්ත්රී පුරුෂ භාවය"
+
+#: templates/profilesystem/index.html:336
+msgid "Avatar"
+msgstr "avatar එකතු කරන්න"
+
+#: templates/profilesystem/index.html:361 templates/publicusers/user.html:188
+msgid "Address"
+msgstr "ලිපිනය"
+
+#: templates/profilesystem/index.html:385
+msgid "Others"
+msgstr "අන් අය"
+
+#: templates/profilesystem/index.html:389
+msgid "Profile completion"
+msgstr "නරඹන්න අවසන්"
+
+#: templates/profilesystem/index.html:398
+msgid "Please edit profile information to change visibility"
+msgstr "සැඟවීම් වෙනස් කිරීමට පැතිකඩ තොරතුරු සංස්කරණය කරන්න"
+
+#: templates/profilesystem/index.html:401
+msgid "Customize links of landing dropdown"
+msgstr "ගොඩ මෙනුව සබැඳි රිසිකරණය"
+
+#: templates/profilesystem/index.html:454
+msgid "Change password"
+msgstr "මුරපදය වෙනස් කරන්න"
+
+#: templates/profilesystem/index.html:458
+msgid "Set password"
+msgstr "සකසන්න මුරපදය"
+
+#: templates/profilesystem/index.html:462
+msgid "View As Public"
+msgstr "රාජ්ය ලෙස දැක්ම"
+
+#: templates/profilesystem/index.html:473
+msgid "Linked social account"
+msgstr "සම්බන්ධ සමාජ ගිණුමක්"
+
+#: templates/profilesystem/index.html:525
+msgid "Manage"
+msgstr "කළමනාකරණය"
+
+#: templates/profilesystem/index.html:540
+msgid "Reference"
+msgstr "විමර්ශන"
+
+#: templates/profilesystem/index.html:552
+msgid "Refresh"
+msgstr "නැවුම් කරන්න"
+
+#: templates/profilesystem/index.html:567
+msgid "My Groups"
+msgstr "මගේ කණ්ඩායම්"
+
+#: templates/profilesystem/index.html:632
+msgid "Apps"
+msgstr "යෙදුම්"
+
+#: templates/profilesystem/index.html:648
+msgid "Sites"
+msgstr "අඩවි"
+
+#: templates/profilesystem/index.html:664
+msgid "Ads"
+msgstr "දැන්වීම්"
+
+#: templates/profilesystem/logdata.html:3
+msgid "Logs Details"
+msgstr "ලඝු-සටහන් සඳහා විස්තර"
+
+#: templates/profilesystem/logdata.html:6
+msgid "Last payment received"
+msgstr "අවසන් වරට ගෙවීම් ලැබී"
+
+#: templates/profilesystem/logdata.html:16
+msgid "Advertisement post"
+msgstr "දැන්වීමක් පශ්චාත්"
+
+#: templates/profilesystem/logdata.html:20
+msgid "Last login "
+msgstr "අවසන් පිවිසීම"
+
+#: templates/profilesystem/logdata.html:24
+msgid "Last payment sent"
+msgstr "අවසන් වරට ගෙවීම් යවා"
+
+#: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
+msgid "Username"
+msgstr "පරිශීලක නාමය"
+
+#: templates/profilesystem/pinfo.html:38
+msgid "Community"
+msgstr "ප්රජා"
+
+#: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
+msgid "About me"
+msgstr "මා ගැන"
+
+#: templates/profilesystem/profilecompletiontasks.html:5
+msgid "Add your website to complete your profile."
+msgstr "ඔබේ පැතිකඩ සම්පූර්ණ කිරීම සඳහා ඔබගේ වෙබ් අඩවිය එකතු කරන්න."
+
+#: templates/profilesystem/profilecompletiontasks.html:11
+msgid "Add your gender to complete your profile."
+msgstr "ඔබේ පැතිකඩ සම්පූර්ණ කිරීම සඳහා ඔබගේ ස්ත්රී පුරුෂ එකතු කරන්න."
+
+#: templates/profilesystem/profilecompletiontasks.html:17
+msgid "Add your contact number to complete your profile."
+msgstr "ඔබේ පැතිකඩ සම්පූර්ණ කිරීම සඳහා ඔබගේ දුරකථන අංකය එකතු කරන්න."
+
+#: templates/profilesystem/profilecompletiontasks.html:23
+msgid "Add a profile image to complete your profile."
+msgstr "ඔබේ පැතිකඩ සම්පූර්ණ කිරීම සඳහා පැතිකඩක් රූප එකතු කරන්න."
+
+#: templates/profilesystem/profilecompletiontasks.html:29
+msgid "Add your location to complete your profile."
+msgstr "ඔබේ පැතිකඩ සම්පූර්ණ කිරීම සඳහා ඔබගේ ස්ථානය එක් කරන්න."
+
+#: templates/profilesystem/profilecompletiontasks.html:35
+msgid "Add a social account of yours to complete your profile."
+msgstr "ඔබේ පැතිකඩ සම්පූර්ණ කිරීම සඳහා ඔබේ සමාජ ගිණුමක් එකතු කරන්න."
+
+#: templates/profilesystem/profilecompletiontasks.html:41
+msgid "Add your email account to complete your profile."
+msgstr "ඔබේ පැතිකඩ සම්පූර්ණ කිරීම සඳහා ඔබගේ ඊ-තැපැල් ගිණුම එකතු කරන්න."
+
+#: templates/profilesystem/profilecompletiontasks.html:50
+msgid "Please verify your email address(resend verification)"
+msgstr "ඔබගේ ඊ-තැපැල් ලිපිනය සත්යාපනය කරන්න (සත්යාපනය නැවත භාරදුන්)"
+
+#: templates/profilesystem/reference.html:6
+msgid "Following user verified me"
+msgstr "පහත පරිශීලක මට තහවුරු"
+
+#: templates/profilesystem/reference.html:35
+msgid "Oops!! No Reference Yet"
+msgstr "අපොයි !! එහෙත් ෙයොමු අංකය"
+
+#: templates/profilesystem/unlinksocial.html:69
+msgid "This is your last method to connect to this site."
+msgstr "මෙම මෙම වෙබ් අඩවිය හා සම්බන්ධ වීමට ඔබේ අවසන් ක්රමය වේ."
+
+#: templates/profilesystem/unlinksocial.html:70
+msgid "You will be asked for a password if you proceed"
+msgstr "ඔබ ඉදිරියට යයි නම් ඔබ මුරපදය අසනු ඇත"
+
+#: templates/publicusers/connections.html:50
+#: templates/publicusers/userlist_old.html:48
+#, fuzzy, python-format
+#| msgid "Hello, %(username_t)s!"
+msgid "Hello, %(username_t)s!"
+msgstr "හෙලෝ,% (username_t) ගේ!"
+
+#: templates/publicusers/connusers.html:31
+msgid "No connections"
+msgstr "කිසිදු සම්බන්ධතාවයක්"
+
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:46 templates/publicusers/users.html:27
+msgid "Staff"
+msgstr "කාර්ය මණ්ඩලය"
+
+#: templates/publicusers/user.html:22
+#: templates/publicusers/userdetails.html:401
+#: templates/publicusers/userlist.html:132
+#: templates/publicusers/userlist_old.html:124
+#: templates/publicusers/users_old.html:23
+msgid "lastseen: "
+msgstr "lastseen:"
+
+#: templates/publicusers/user.html:26
+#: templates/publicusers/userdetails.html:397
+#: templates/publicusers/userlist.html:43
+#: templates/publicusers/userlist_old.html:122
+#: templates/publicusers/userlist_old.html:128
+#: templates/publicusers/users_old.html:27
+msgid "Offline"
+msgstr "නොබැඳි"
+
+#: templates/publicusers/user.html:51 templates/timelines/timeline.html:147
+#: templates/timelines/timeline.html:154
+msgid "Disconnect"
+msgstr "විසන්ධි"
+
+#: templates/publicusers/user.html:53
+msgid "Cancel connection request"
+msgstr "සම්බන්ධතා ඉල්ලීමට අවලංගු කරන්න"
+
+#: templates/publicusers/user.html:55
+msgid "Reject connection request"
+msgstr "සම්බන්ධතා ඉල්ලීමට ප්රතික්ෂේප"
+
+#: templates/publicusers/user.html:56
+msgid "Accept connection request"
+msgstr "සම්බන්ධතා ඉල්ලීමට පිළිගන්න"
+
+#: templates/publicusers/user.html:58
+msgid "Connect"
+msgstr "සම්බන්ධ"
+
+#: templates/publicusers/user.html:61
+msgid "Connection type"
+msgstr "සම්බන්ධක වර්ගය"
+
+#: templates/publicusers/user.html:64
+msgid "Family"
+msgstr "පවුලක්"
+
+#: templates/publicusers/user.html:69
+msgid "Friend Type"
+msgstr "මිතුරා වර්ගය"
+
+#: templates/publicusers/user.html:78
+msgid "Send request"
+msgstr "ඉල්ලීම යවන්න"
+
+#: templates/publicusers/user.html:87
+msgid "Unverify"
+msgstr "Unverify"
+
+#: templates/publicusers/user.html:90
+msgid "I verify this user"
+msgstr "මෙම පරිශීලකයා මම තහවුරු"
+
+#: templates/publicusers/user.html:92
+#: templates/publicusers/userdetails.html:100
+msgid "Send Unit"
+msgstr "ඒකකය යවන්න"
+
+#: templates/publicusers/user.html:93
+#: templates/publicusers/userdetails.html:117
+msgid "Request Unit"
+msgstr "ඉල්ලීම ඒකකය"
+
+#: templates/publicusers/user.html:94
+msgid "Message"
+msgstr "පණිවුඩය"
+
+#: templates/publicusers/userdetails.html:67
+msgid "Others who verify"
+msgstr "තහවුරු කරන අය"
+
+#: templates/publicusers/userlist.html:138
+#: templates/publicusers/userlist_old.html:130
+msgid "lastseen: unknown"
+msgstr "lastseen: නොදන්නා"
+
+#: templates/publicusers/userlist_old.html:72
+msgid " Search Users "
+msgstr "සොයන්න පරිශීලකයන්"
+
+#: templates/sidebar_apps.html:2
+msgid "Hashtag Campaign"
+msgstr "හැෂ්ටැග් ව්යාපාරය"
+
+#: templates/sidebar_community.html:26
+msgid "About Our System"
+msgstr "අපේ පද්ධතිය ගැන"
+
+#: templates/sidebar_community.html:27
+msgid "Contact Details"
+msgstr "ඇමතුම් විස්තර"
+
+#: templates/sidebar_community.html:42
+msgid "Email Lists"
+msgstr "ඊ-තැපැල් ලැයිස්තු"
+
+#: templates/sidebar_group.html:5
+msgid "Homepage"
+msgstr "මුල් පිටුව"
+
+#: templates/sidebar_group.html:25 templates/sidebar_group.html:60
+#: templates/sidebar_group_admin.html:30
+msgid "Group's Posts"
+msgstr "සමූහයේ තැපැල්"
+
+#: templates/sidebar_group.html:26 templates/sidebar_group.html:61
+#: templates/sidebar_group_admin.html:31
+msgid "Member's Posts"
+msgstr "මන්ත්රී තැපැල්"
+
+#: templates/sidebar_group.html:31
+msgid "Group Admin Section"
+msgstr "සමූහ පරිපාලක අංශය"
+
+#: templates/sidebar_group.html:77 templates/sidebar_group_admin.html:47
+msgid "Not Approved"
+msgstr "අනුමත නැති"
+
+#: templates/sidebar_group.html:95 templates/sidebar_group_admin.html:65
+msgid "Requests"
+msgstr "ඉල්ලීම්"
+
+#: templates/sidebar_group.html:117 templates/sidebar_group_admin.html:87
+msgid "Roles"
+msgstr "භූමිකා"
+
+#: templates/sidebar_group.html:124 templates/sidebar_group_admin.html:94
+msgid "Defaults"
+msgstr "පෙරනිමි"
+
+#: templates/sidebar_group.html:127 templates/sidebar_group_admin.html:97
+msgid "Custom"
+msgstr "රේගු"
+
+#: templates/sidebar_group.html:136 templates/sidebar_group_admin.html:106
+msgid "Account Signups"
+msgstr "ගිණුම Signups"
+
+#: templates/sidebar_group_admin.html:68
+msgid "Banned members"
+msgstr "තහනම් සාමාජිකයන්"
+
+#: templates/sidebar_home.html:10
+msgid "My Accounts"
+msgstr "මගේ ගිණුම්"
+
+#: templates/sidebar_home.html:17 templates/timelines/index.html:52
+#: templates/timelines/index.html:54 templates/useraccount/transfer.html:7
+#: templates/useraccount/transfer.html:13
+msgid "Transfer"
+msgstr "මාරු"
+
+#: templates/socialaccount/signup.html:9
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: templates/timelines/index.html:43
+msgid "Search: "
+msgstr "සෙවීම:"
+
+#: templates/timelines/index.html:49
+msgid "Filters: "
+msgstr "පෙරහන්:"
+
+#: templates/timelines/index.html:62 templates/timelines/index.html:64
+msgid "Release"
+msgstr "නිකුතු"
+
+#: templates/timelines/index.html:67 templates/timelines/index.html:69
+msgid "Verified"
+msgstr "තහවුරු"
+
+#: templates/timelines/index.html:72 templates/timelines/index.html:74
+msgid "Unverified"
+msgstr "ඔප්පු නොකළ"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "you sent"
+msgstr "ඔබ එවූ"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "units to"
+msgstr "ඒකක"
+
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+msgid "sent you"
+msgstr "ඔබ එවූ"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "you requested"
+msgstr "ඔබ විසින් ඉල්ලා"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "units from"
+msgstr "ඒකක"
+
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "requested you"
+msgstr "ඔබ විසින් ඉල්ලා"
+
+#: templates/timelines/timeline.html:52 templates/timelines/timeline.html:70
+msgid "send"
+msgstr "එවන"
+
+#: templates/timelines/timeline.html:103
+msgid " units basic income released"
+msgstr "ඒකක මූලික ආදායම් නිදහස්"
+
+#: templates/timelines/timeline.html:115
+msgid "you verified"
+msgstr "ඔබ තහවුරු"
+
+#: templates/timelines/timeline.html:115 templates/timelines/timeline.html:130
+msgid "as real user"
+msgstr "සැබෑ පරිශීලක ලෙස"
+
+#: templates/timelines/timeline.html:117
+msgid "verified you as real user"
+msgstr "සැබෑ පරිශීලක ලෙස ඔබ තහවුරු"
+
+#: templates/timelines/timeline.html:130
+msgid "you unverified"
+msgstr "ඔබ කළ බවටද"
+
+#: templates/timelines/timeline.html:132
+msgid "unverified you as real user"
+msgstr "සැබෑ පරිශීලක ලෙස ඔබ ඔප්පු නොකළ"
+
+#: templates/timelines/timeline.html:145
+msgid "Requested connection to "
+msgstr "ඉල්ලා සම්බන්ධයෙන්"
+
+#: templates/timelines/timeline.html:152
+msgid "sent connection request"
+msgstr "එවා සම්බන්ධතා ඉල්ලීමට"
+
+#: templates/timelines/timeline.html:156
+msgid "Reject"
+msgstr "ප්රතික්ෂේප"
+
+#: templates/timelines/timeline.html:157
+msgid "Accept"
+msgstr "පිළිගන්න"
+
+#: templates/timelines/timeline.html:162
+msgid "Connection type: "
+msgstr "සම්බන්ධක වර්ගය:"
+
+#: templates/useraccount/index.html:83
+msgid "Pulse Points"
+msgstr "ස්පන්දන පොයින්ට්ස්"
+
+#: templates/useraccount/index.html:108 templates/useraccount/transfer.html:40
+msgid "Quick Review"
+msgstr "ඉක්මන් සමාලෝචන"
+
+#: templates/useraccount/index.html:113 templates/useraccount/transfer.html:45
+msgid "Units"
+msgstr "ඒකක"
+
+#: templates/useraccount/index.html:165
+msgid "Transactions"
+msgstr "ගනුදෙනු"
+
+#: templates/useraccount/index.html:171
+msgid "Id"
+msgstr "id"
+
+#: templates/useraccount/index.html:172 templates/useraccount/index.html:207
+msgid "From"
+msgstr "සිට"
+
+#: templates/useraccount/index.html:173 templates/useraccount/index.html:203
+msgid "To"
+msgstr "දක්වා"
+
+#: templates/useraccount/index.html:174 templates/useraccount/index.html:211
+#: templates/useraccount/index.html:241
+msgid "Date"
+msgstr "දිනය:"
+
+#: templates/useraccount/index.html:196
+msgid "Details"
+msgstr "විස්තර"
+
+#: templates/useraccount/index.html:234
+msgid "Basic Income Release"
+msgstr "මූලික ආදායම් නිකුත්"
+
+#: templates/useraccount/index.html:255
+msgid "No release yet"
+msgstr "ඊළඟට නිකුත්"
+
+#: templates/useraccount/index.html:286
+msgid "Please contact a Grantcoin staff on your Account Status"
+msgstr "ඔබගේ ගිණුම් තත්වය මත Grantcoin කාර්ය අමතන්න"
+
+#: templates/useraccount/index.html:296
+msgid "Contact to add your organization account"
+msgstr "ඔබගේ සංවිධානය ගිණුමක් එකතු කිරීමට අමතන්න"
+
+#: templates/useraccount/transfer.html:16
+msgid "transfer"
+msgstr "මාරු"
+
+#: templates/useraccount/transfer.html:55
+msgid "Select User"
+msgstr "පරිශීලක තේරීම්"
+
+#: templates/useraccount/transfer.html:80
+msgid "Search user"
+msgstr "සොයන්න පරිශීලකයන්"
+
+#: templates/useraccount/transferunit.html:4
+msgid "Send Amount To"
+msgstr "කිරීම මුදල යවන්න"
+
+#: useraccount/forms.py:7 useraccount/forms.py:26
+msgid "Instruction"
+msgstr "උපදෙස්"
+
+#: useraccount/forms.py:17
+msgid "Amount can't exceed your balance"
+msgstr "මුදල ශේෂ ඉක්මවිය නොහැක"
+
+#: useraccount/views.py:119
+msgid "Transfer completed!!"
+msgstr "මාරු අවසන් !!"
+
+#: useraccount/views.py:187
+msgid "Request Sent!!"
+msgstr "ඉල්ලීම යවන ලදී!!"

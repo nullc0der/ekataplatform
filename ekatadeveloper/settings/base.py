@@ -95,7 +95,8 @@ INSTALLED_APPS = [
     'autosignup',
     'stripepayment',
     'crowdfunding',
-    'translation'
+    'translation',
+    'countrylogger'
 ]
 
 
@@ -112,7 +113,8 @@ MIDDLEWARE_CLASSES = [
     'easy_timezones.middleware.EasyTimezoneMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
     'profilesystem.middleware.RemoveSkippedMiddleware',
-    'profilesystem.middleware.EkataIDMiddleware'
+    'profilesystem.middleware.EkataIDMiddleware',
+    'countrylogger.middleware.CountryMiddleWare'
 ]
 
 

@@ -1,7 +1,7 @@
-{% load staticfiles %}
+{% load staticfiles i18n %}
 {% if show_profile %}
 <div class="row">
-    <h4>Profile Images</h4>
+    <h4>{% trans "Profile Images" %}</h4>
     <hr>
     <div class="col-md-3 text-center" style="margin-top:10px">
         <div class="document-images">
@@ -15,7 +15,7 @@
 {% endif %}
 <div class="row">
     {% if images %}
-        <h4>Images</h4>
+        <h4>{% trans "Images" %}</h4>
         <hr />
         {% for image in images %}
         <div class="col-md-3 text-center" style="margin-top:10px">
@@ -31,7 +31,7 @@
 </div>
 <div class="row">
     {% if documents %}
-        <h4>Documents</h4>
+        <h4>{% trans "Documents" %}</h4>
         <hr>
         {% for document in documents %}
         <div class="col-md-3 text-center" style="margin-top:10px">
@@ -47,7 +47,7 @@
 </div>
 {% if show_legal %}
 <div class="row">
-    <h4>Legal</h4>
+    <h4>{% trans "Legal" %}</h4>
     <hr>
     <div class="col-md-3" style="margin-top:10px">
         <div>

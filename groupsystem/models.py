@@ -25,10 +25,13 @@ class BasicGroup(models.Model):
         ('8', _('Nonprofit Organization')),
         ('9', _('Other')),
     )
-    name = models.CharField(max_length=40)
-    short_about = models.CharField(max_length=300)
-    long_about = models.TextField(null=True, blank=True)
-    group_type = models.CharField(max_length=30, choices=GROUP_TYPES)
+    name = models.CharField(verbose_name=_('Name'), max_length=40)
+    short_about = models.CharField(
+        verbose_name=_('Short About'), max_length=300)
+    long_about = models.TextField(
+        verbose_name=_('Long About'), null=True, blank=True)
+    group_type = models.CharField(
+        verbose_name=_('Group Type'), max_length=30, choices=GROUP_TYPES)
     group_type_other = models.CharField(
         verbose_name=_('Please Specify'),
         max_length=30,

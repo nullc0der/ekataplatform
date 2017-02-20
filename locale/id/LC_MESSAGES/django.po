@@ -1,0 +1,3642 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-20 21:15+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: autosignup/forms.py:150
+msgid "Max attempt reached! try later"
+msgstr "Max upaya mencapai! coba nanti"
+
+#: autosignup/forms.py:155 autosignup/forms.py:162
+msgid "Provide a valid mobile number"
+msgstr "Memberikan nomor ponsel yang benar"
+
+#: autosignup/forms.py:157 autosignup/forms.py:164
+msgid "Something went wrong! Try later"
+msgstr "Ada yang salah! Coba nanti"
+
+#: ekatadeveloper/settings/base.py:237
+msgid "German"
+msgstr "Jerman"
+
+#: ekatadeveloper/settings/base.py:238
+msgid "English"
+msgstr "Inggris"
+
+#: ekatadeveloper/settings/base.py:239
+msgid "Hindi"
+msgstr "Hindi"
+
+#: ekatadeveloper/settings/base.py:240
+msgid "Spanish"
+msgstr "Spanyol"
+
+#: ekatadeveloper/settings/base.py:241
+msgid "Bengali"
+msgstr "Benggala"
+
+#: ekatadeveloper/settings/base.py:242
+msgid "Belarusian"
+msgstr "Belarusia"
+
+#: ekatadeveloper/settings/base.py:243
+msgid "Portuguese"
+msgstr "Portugis"
+
+#: ekatadeveloper/settings/base.py:244
+msgid "Bulgarian"
+msgstr "Bulgaria"
+
+#: ekatadeveloper/settings/base.py:245
+msgid "French"
+msgstr "Perancis"
+
+#: ekatadeveloper/settings/base.py:246
+msgid "Croatian"
+msgstr "Kroasia"
+
+#: ekatadeveloper/settings/base.py:247
+msgid "Greek"
+msgstr "Yunani"
+
+#: ekatadeveloper/settings/base.py:248
+msgid "Czech"
+msgstr "Ceko"
+
+#: ekatadeveloper/settings/base.py:249
+msgid "Danish"
+msgstr "Denmark"
+
+#: ekatadeveloper/settings/base.py:250
+msgid "Arabic"
+msgstr "Arab"
+
+#: ekatadeveloper/settings/base.py:251
+msgid "Finland"
+msgstr "Finlandia"
+
+#: ekatadeveloper/settings/base.py:252
+msgid "France"
+msgstr "Perancis"
+
+#: ekatadeveloper/settings/base.py:253
+msgid "Hungarian"
+msgstr "Hongaria"
+
+#: ekatadeveloper/settings/base.py:254
+msgid "Indonessian"
+msgstr "Indonessian"
+
+#: ekatadeveloper/settings/base.py:255
+msgid "Italian"
+msgstr "Italia"
+
+#: ekatadeveloper/settings/base.py:256
+msgid "Japanese"
+msgstr "Jepang"
+
+#: ekatadeveloper/settings/base.py:257
+msgid "Russian"
+msgstr "Rusia"
+
+#: ekatadeveloper/settings/base.py:258
+msgid "Latvian"
+msgstr "Latvia"
+
+#: ekatadeveloper/settings/base.py:259
+msgid "Lithunian"
+msgstr "Lithunian"
+
+#: ekatadeveloper/settings/base.py:260
+msgid "Nepali"
+msgstr "Nepal"
+
+#: ekatadeveloper/settings/base.py:261
+msgid "Norwegian"
+msgstr "Norwegia"
+
+#: ekatadeveloper/settings/base.py:262
+msgid "Urdu"
+msgstr "Urdu"
+
+#: ekatadeveloper/settings/base.py:263
+msgid "Polish"
+msgstr "Polandia"
+
+#: ekatadeveloper/settings/base.py:264
+msgid "Romanian"
+msgstr "Rumania"
+
+#: ekatadeveloper/settings/base.py:265
+msgid "Tamil"
+msgstr "Tamil"
+
+#: ekatadeveloper/settings/base.py:266
+msgid "Korean"
+msgstr "Korea"
+
+#: ekatadeveloper/settings/base.py:267
+msgid "Sinhalese"
+msgstr "Sinhala"
+
+#: ekatadeveloper/settings/base.py:268
+msgid "Thai"
+msgstr "Thai"
+
+#: groupsystem/forms.py:20
+msgid "Group Exist"
+msgstr "kelompok Exist"
+
+#: groupsystem/forms.py:32 groupsystem/forms.py:89
+msgid "You must specify other group type"
+msgstr "Anda harus menentukan jenis grup lainnya"
+
+#: groupsystem/forms.py:38 groupsystem/forms.py:95
+msgid "You can't fill this field with default group types"
+msgstr "Anda tidak dapat mengisi bidang ini dengan jenis grup standar"
+
+#: groupsystem/forms.py:186
+msgid "You can't choose a default role name"
+msgstr "Anda tidak dapat memilih default nama peran"
+
+#: groupsystem/forms.py:193
+msgid "Role exist"
+msgstr "peran ada"
+
+#: groupsystem/models.py:18
+msgid "Art"
+msgstr "Seni"
+
+#: groupsystem/models.py:19
+msgid "Activist"
+msgstr "Aktivis"
+
+#: groupsystem/models.py:20
+msgid "Political"
+msgstr "Politik"
+
+#: groupsystem/models.py:21 templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:17
+#: templates/groupsystem/adminnews.html:22
+#: templates/groupsystem/adminnews.html:49
+#: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:80
+#: templates/landing_base.html:173 templates/sidebar_group.html:44
+#: templates/sidebar_group_admin.html:14
+msgid "News"
+msgstr "Berita"
+
+#: groupsystem/models.py:22 publicusers/views.py:328
+msgid "Business"
+msgstr "Bisnis"
+
+#: groupsystem/models.py:23
+msgid "Government"
+msgstr "Pemerintah"
+
+#: groupsystem/models.py:24
+msgid "Blog"
+msgstr "Blog"
+
+#: groupsystem/models.py:25
+msgid "Nonprofit Organization"
+msgstr "Organisasi non profit"
+
+#: groupsystem/models.py:26
+msgid "Other"
+msgstr "Lain"
+
+#: groupsystem/models.py:28 templates/profilesystem/index.html:311
+#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
+msgid "Name"
+msgstr "Nama"
+
+#: groupsystem/models.py:30
+msgid "Short About"
+msgstr "Tentang singkat"
+
+#: groupsystem/models.py:32
+msgid "Long About"
+msgstr "panjang Tentang"
+
+#: groupsystem/models.py:34
+msgid "Group Type"
+msgstr "Kelompok"
+
+#: groupsystem/models.py:36
+msgid "Please Specify"
+msgstr "Silahkan Tentukan"
+
+#: groupsystem/models.py:84 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/views.py:110
+msgid "Can access admin"
+msgstr "Dapat mengakses admin"
+
+#: groupsystem/models.py:85 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/views.py:111 groupsystem/views.py:128 groupsystem/views.py:139
+msgid "Can read news"
+msgstr "Dapat membaca berita"
+
+#: groupsystem/models.py:86 groupsystem/views.py:40 groupsystem/views.py:79
+msgid "Can create news"
+msgstr "Dapat membuat berita"
+
+#: groupsystem/models.py:87 groupsystem/views.py:41 groupsystem/views.py:80
+msgid "Can update news"
+msgstr "Dapat update berita"
+
+#: groupsystem/models.py:88 groupsystem/views.py:42 groupsystem/views.py:81
+msgid "Can delete news"
+msgstr "Dapat menghapus berita"
+
+#: groupsystem/models.py:89 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/views.py:112 groupsystem/views.py:129
+msgid "Can read post"
+msgstr "Dapat membaca posting"
+
+#: groupsystem/models.py:90 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/views.py:113 groupsystem/views.py:130
+msgid "Can create post"
+msgstr "Dapat membuat posting"
+
+#: groupsystem/models.py:91 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/views.py:114
+msgid "Can update post"
+msgstr "Bisa update posting"
+
+#: groupsystem/models.py:92 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/views.py:115
+msgid "Can approve post"
+msgstr "Dapat menyetujui posting"
+
+#: groupsystem/models.py:93 groupsystem/views.py:47 groupsystem/views.py:86
+#: groupsystem/views.py:116
+msgid "Can delete post"
+msgstr "Dapat menghapus posting"
+
+#: groupsystem/models.py:94 groupsystem/views.py:48 groupsystem/views.py:87
+#: groupsystem/views.py:117 groupsystem/views.py:131
+msgid "Can read comment"
+msgstr "Bisa baca komentar"
+
+#: groupsystem/models.py:95 groupsystem/views.py:49 groupsystem/views.py:88
+#: groupsystem/views.py:118 groupsystem/views.py:132
+msgid "Can create comment"
+msgstr "Dapat membuat komentar"
+
+#: groupsystem/models.py:96 groupsystem/views.py:50 groupsystem/views.py:89
+#: groupsystem/views.py:119
+msgid "Can update comment"
+msgstr "Dapat memperbarui komentar"
+
+#: groupsystem/models.py:97 groupsystem/views.py:51 groupsystem/views.py:90
+#: groupsystem/views.py:120
+msgid "Can approve comment"
+msgstr "Dapat menyetujui komentar"
+
+#: groupsystem/models.py:98 groupsystem/views.py:52 groupsystem/views.py:91
+#: groupsystem/views.py:121
+msgid "Can delete comment"
+msgstr "Dapat menghapus komentar"
+
+#: groupsystem/models.py:99 groupsystem/views.py:53 groupsystem/views.py:92
+#: groupsystem/views.py:122 groupsystem/views.py:133
+msgid "Can like post"
+msgstr "Bisa seperti pos"
+
+#: groupsystem/models.py:100 groupsystem/views.py:54
+msgid "Can create notification"
+msgstr "Dapat membuat pemberitahuan"
+
+#: groupsystem/models.py:101 groupsystem/views.py:55 groupsystem/views.py:93
+#: groupsystem/views.py:123 groupsystem/views.py:134
+msgid "Can create invite"
+msgstr "Dapat membuat undang"
+
+#: groupsystem/models.py:102 groupsystem/views.py:56 groupsystem/views.py:94
+msgid "Can add member"
+msgstr "Dapat menambahkan anggota"
+
+#: groupsystem/models.py:103 groupsystem/views.py:57 groupsystem/views.py:95
+msgid "Can remove member"
+msgstr "Dapat menghapus anggota"
+
+#: groupsystem/models.py:104 groupsystem/views.py:58 groupsystem/views.py:96
+msgid "Can ban member"
+msgstr "Dapat melarang anggota"
+
+#: groupsystem/models.py:105 groupsystem/views.py:59 groupsystem/views.py:97
+msgid "Can lift member ban"
+msgstr "Dapat mencabut larangan anggota"
+
+#: groupsystem/models.py:106 groupsystem/views.py:60 groupsystem/views.py:98
+msgid "Can change member role"
+msgstr "Dapat mengubah peran anggota"
+
+#: groupsystem/models.py:107 groupsystem/views.py:61 groupsystem/views.py:99
+msgid "Can edit member permission"
+msgstr "Dapat mengedit izin anggota"
+
+#: groupsystem/models.py:108 groupsystem/views.py:62 groupsystem/views.py:100
+#: groupsystem/views.py:124 groupsystem/views.py:135
+msgid "Can read events"
+msgstr "Dapat membaca peristiwa"
+
+#: groupsystem/models.py:109 groupsystem/views.py:63 groupsystem/views.py:101
+msgid "Can create events"
+msgstr "Dapat membuat acara"
+
+#: groupsystem/models.py:110 groupsystem/views.py:64 groupsystem/views.py:102
+msgid "Can update events"
+msgstr "Dapat memperbarui acara"
+
+#: groupsystem/models.py:111 groupsystem/views.py:65 groupsystem/views.py:103
+msgid "Can delete events"
+msgstr "Dapat menghapus acara"
+
+#: groupsystem/models.py:112 groupsystem/views.py:66 groupsystem/views.py:104
+msgid "Can read join requests"
+msgstr "Dapat membaca permintaan bergabung"
+
+#: groupsystem/models.py:113 groupsystem/views.py:67 groupsystem/views.py:105
+msgid "Can approve join requests"
+msgstr "Dapat menyetujui permintaan bergabung"
+
+#: groupsystem/models.py:114 groupsystem/views.py:68 groupsystem/views.py:106
+msgid "Can deny joinrequest"
+msgstr "Dapat menyangkal joinrequest"
+
+#: groupsystem/models.py:115 groupsystem/views.py:69
+msgid "Can edit group profile"
+msgstr "Dapat mengedit profil kelompok"
+
+#: groupsystem/models.py:116 groupsystem/views.py:70
+msgid "Can read role"
+msgstr "Dapat membaca peran"
+
+#: groupsystem/models.py:117 groupsystem/views.py:71
+msgid "Can read custom role"
+msgstr "Dapat membaca peran khusus"
+
+#: groupsystem/models.py:118 groupsystem/views.py:72
+msgid "Can update custom role"
+msgstr "Dapat memperbarui peran khusus"
+
+#: groupsystem/models.py:119 groupsystem/views.py:73
+msgid "Can create custom role"
+msgstr "Dapat membuat peran khusus"
+
+#: groupsystem/views.py:358
+msgid "Already requested"
+msgstr "sudah diminta"
+
+#: groupsystem/views.py:360
+msgid "You're banned from this group"
+msgstr "Anda dilarang dari grup ini"
+
+#: groupsystem/views.py:367 templates/autosignup/index.html:36
+#: templates/useraccount/index.html:50 templates/useraccount/index.html:65
+msgid "Subscribed"
+msgstr "berlangganan"
+
+#: groupsystem/views.py:374
+msgid "Unsubscribed"
+msgstr "Tidak berlangganan"
+
+#: groupsystem/views.py:380
+msgid "Request Canceled"
+msgstr "Permintaan Dibatalkan"
+
+#: groupsystem/views.py:411
+msgid "Leaved Group"
+msgstr "berdaun Grup"
+
+#: groupsystem/views.py:567
+msgid "Post will be shown once admin/moderator approves"
+msgstr "Posting akan ditampilkan setelah admin / moderator menyetujui"
+
+#: groupsystem/views.py:626
+#, fuzzy
+#| msgid "Post will be shown once admin/moderator approves"
+msgid ""
+"Thank you for commenting your comment will show once a admin/moderator "
+"approves"
+msgstr "Posting akan ditampilkan setelah admin / moderator menyetujui"
+
+#: groupsystem/views.py:682
+msgid "You don't have permissions to edit settings"
+msgstr "Anda tidak memiliki izin untuk mengedit pengaturan"
+
+#: groupsystem/views.py:702
+msgid "You don't have permission to create news"
+msgstr "Anda tidak memiliki izin untuk membuat berita"
+
+#: groupsystem/views.py:810
+msgid "You dont have permissions to approve post"
+msgstr "Anda tidak memiliki izin untuk menyetujui posting"
+
+#: groupsystem/views.py:830
+msgid "Post created"
+msgstr "posting dibuat"
+
+#: groupsystem/views.py:952
+msgid "You dont have permissions to approve comment"
+msgstr "Anda tidak memiliki izin untuk menyetujui komentar"
+
+#: groupsystem/views.py:997
+msgid "You don't have permission to add memeber"
+msgstr "Anda tidak memiliki izin untuk menambahkan memeber"
+
+#: groupsystem/views.py:1035
+msgid "You dont have permission to remove member"
+msgstr "Anda tidak memiliki izin untuk menghapus anggota"
+
+#: groupsystem/views.py:1075
+msgid "You dont have permission to ban member"
+msgstr "Anda tidak memiliki izin untuk melarang anggota"
+
+#: groupsystem/views.py:1126
+msgid "You don't have permissions to change member role"
+msgstr "Anda tidak memiliki izin untuk mengubah peran anggota"
+
+#: groupsystem/views.py:1236
+msgid "You don't have permission to approve request"
+msgstr "Anda tidak memiliki izin untuk menyetujui permintaan"
+
+#: groupsystem/views.py:1249
+msgid "You don't have permission to deny request"
+msgstr "Anda tidak memiliki izin untuk menolak permintaan"
+
+#: groupsystem/views.py:1288
+msgid "Users invited"
+msgstr "pengguna diundang"
+
+#: groupsystem/views.py:1506
+msgid "Role created, reload page to edit permissions"
+msgstr "Peran dibuat, kembali halaman untuk mengedit izin"
+
+#: groupsystem/views.py:1519
+msgid "You don't have permission to create custom role"
+msgstr "Anda tidak memiliki izin untuk membuat peran khusus"
+
+#: groupsystem/views.py:1555
+msgid "Role permission changed"
+msgstr "izin peran berubah"
+
+#: groupsystem/views.py:1598
+msgid "User permission changed"
+msgstr "izin pengguna berubah"
+
+#: information/models.py:10
+msgid "First Name"
+msgstr "Nama depan"
+
+#: information/models.py:11
+msgid "Last Name"
+msgstr "pembayaran terakhir dikirim"
+
+#: information/models.py:13
+msgid "Company Name"
+msgstr "Nama Perusahaan"
+
+#: information/models.py:14 templates/eblast/emailcampaign_sent.html:2
+#: templates/profilesystem/index.html:515
+msgid "Email Address"
+msgstr "Alamat email"
+
+#: information/models.py:16
+msgid "Telephone Number"
+msgstr "Nomor rumah"
+
+#: information/models.py:19
+msgid "Comment"
+msgstr "komentar"
+
+#: profilesystem/forms.py:22
+msgid "Usernames can only contain letters, digits and @/./+/-/_."
+msgstr "Nama pengguna hanya dapat berisi huruf, angka dan @ / / / -. / _."
+
+#: profilesystem/forms.py:31
+msgid "Username already taken"
+msgstr "Nama sudah diambil"
+
+#: profilesystem/models.py:20
+msgid "Male"
+msgstr "Pria"
+
+#: profilesystem/models.py:21
+msgid "Female"
+msgstr "Wanita"
+
+#: profilesystem/models.py:166 templates/profilesystem/address.html:5
+#: templates/publicusers/user.html:193
+msgid "House Number"
+msgstr "Nomor rumah"
+
+#: profilesystem/models.py:167 templates/profilesystem/address.html:11
+#: templates/publicusers/user.html:199
+msgid "Street"
+msgstr "jalan"
+
+#: profilesystem/models.py:168 templates/profilesystem/address.html:17
+#: templates/publicusers/user.html:205
+msgid "Zip Code"
+msgstr "Kode Pos"
+
+#: profilesystem/models.py:169 templates/profilesystem/address.html:23
+#: templates/publicusers/user.html:211
+msgid "City"
+msgstr "Kota"
+
+#: profilesystem/models.py:170 templates/profilesystem/address.html:29
+#: templates/publicusers/user.html:217
+msgid "State"
+msgstr "Negara"
+
+#: profilesystem/models.py:171 templates/profilesystem/address.html:35
+#: templates/publicusers/user.html:223
+msgid "Country"
+msgstr "Negara"
+
+#: publicusers/views.py:183 templates/groupsystem/adminnews.html:113
+#: templates/groupsystem/adminsettings.html:165
+msgid "Success"
+msgstr "Keberhasilan"
+
+#: publicusers/views.py:185
+msgid "You already thumb uped this user"
+msgstr "Anda sudah jempol uped pengguna ini"
+
+#: publicusers/views.py:292
+msgid "Friend type"
+msgstr "Jenis teman"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:71
+msgid "Best"
+msgstr "Terbaik"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:63
+#: templates/publicusers/user.html:72
+msgid "Friend"
+msgstr "Teman"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:73
+msgid "Soulmate"
+msgstr "Soulmate"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:74
+msgid "Acquaintance"
+msgstr "Kenalan"
+
+#: publicusers/views.py:297
+msgid "Family type"
+msgstr "Jenis keluarga"
+
+#: publicusers/views.py:299
+msgid "Father"
+msgstr "Ayah"
+
+#: publicusers/views.py:300
+msgid "Son"
+msgstr "Putra"
+
+#: publicusers/views.py:301
+msgid "Husband"
+msgstr "Suami"
+
+#: publicusers/views.py:302
+msgid "Brother"
+msgstr "Saudara"
+
+#: publicusers/views.py:303
+msgid "Grandfather"
+msgstr "Kakek"
+
+#: publicusers/views.py:304
+msgid "Grandson"
+msgstr "cucu lelaki"
+
+#: publicusers/views.py:305
+msgid "Uncle"
+msgstr "Paman"
+
+#: publicusers/views.py:306
+msgid "Nephew"
+msgstr "Keponakan"
+
+#: publicusers/views.py:307 publicusers/views.py:316
+msgid "Cousin"
+msgstr "Sepupu"
+
+#: publicusers/views.py:308
+msgid "Mother"
+msgstr "Ibu"
+
+#: publicusers/views.py:309
+msgid "Daughter"
+msgstr "Putri"
+
+#: publicusers/views.py:310
+msgid "Wife"
+msgstr "Istri"
+
+#: publicusers/views.py:311
+msgid "Sister"
+msgstr "Saudara"
+
+#: publicusers/views.py:312
+msgid "Grandmother"
+msgstr "Nenek"
+
+#: publicusers/views.py:313
+msgid "Granddaughter"
+msgstr "Cucu perempuan"
+
+#: publicusers/views.py:314
+msgid "Aunt"
+msgstr "Bibi"
+
+#: publicusers/views.py:315
+msgid "Niece"
+msgstr "Keponakan"
+
+#: publicusers/views.py:317
+msgid "Parent"
+msgstr "Induk"
+
+#: publicusers/views.py:318
+msgid "Child"
+msgstr "Anak"
+
+#: publicusers/views.py:319
+msgid "Spouse"
+msgstr "Pasangan"
+
+#: publicusers/views.py:320
+msgid "Sibling"
+msgstr "Saudara kandung"
+
+#: publicusers/views.py:321
+msgid "Grandparent"
+msgstr "Eyang"
+
+#: publicusers/views.py:322
+msgid "Grandchild"
+msgstr "Cucu"
+
+#: publicusers/views.py:327
+msgid "Contact type"
+msgstr "tipe kontak"
+
+#: publicusers/views.py:328
+msgid "Personal"
+msgstr "Pribadi"
+
+#: publicusers/views.py:343
+msgid "connection already sent by "
+msgstr "koneksi yang telah dikirim oleh"
+
+#: publicusers/views.py:382
+msgid "A request is sent to "
+msgstr "Permintaan dikirim ke"
+
+#: publicusers/views.py:401
+msgid "Connection accepted"
+msgstr "koneksi diterima"
+
+#: publicusers/views.py:443
+msgid "Canceled connection request"
+msgstr "permintaan sambungan dibatalkan"
+
+#: publicusers/views.py:445
+msgid "Rejected connection"
+msgstr "koneksi ditolak"
+
+#: publicusers/views.py:447
+msgid "Disconneted"
+msgstr "Disconneted"
+
+#: publicusers/views.py:449 templates/groupsystem/eventsadmin.html:111
+msgid "Success!!"
+msgstr "Keberhasilan!!"
+
+#: templates/403.html:4
+msgid "Permission denied"
+msgstr "Izin ditolak"
+
+#: templates/403.html:10
+msgid "Oops!! You don't have permissions to view this page"
+msgstr "Ups !! Anda tidak memiliki izin untuk melihat halaman ini"
+
+#: templates/403.html:12 templates/404.html:12 templates/500.html:12
+msgid "Return to dashboard"
+msgstr "Kembali ke dashboard"
+
+#: templates/404.html:4
+msgid "Page Not Found"
+msgstr "Halaman tidak ditemukan"
+
+#: templates/404.html:10
+msgid "Oops!! The requested url can't be found in this server"
+msgstr "Ups !! url yang diminta tidak ditemukan di server ini"
+
+#: templates/500.html:4
+msgid "Server Error"
+msgstr "server error"
+
+#: templates/500.html:10
+msgid "Something is not working!! Try again later"
+msgstr "Sesuatu yang tidak bekerja !! Coba lagi nanti"
+
+#: templates/account/disclaimer.html:4 templates/landing_base.html:172
+msgid "Disclaimer"
+msgstr "Penolakan"
+
+#: templates/account/disclaimer.html:28
+msgid "WEBSITE DISCLAIMER"
+msgstr "WEBSITE DISCLAIMER"
+
+#: templates/account/disclaimer.html:30
+msgid "No warranties"
+msgstr "Tidak ada jaminan"
+
+#: templates/account/disclaimer.html:32
+msgid ""
+"This website is provided “as is” without any representations or warranties, "
+"express or implied. "
+msgstr ""
+
+#: templates/account/disclaimer.html:33
+msgid ""
+"makes no representations or warranties in relation to this website or the "
+"information and materials provided on this website. "
+msgstr ""
+
+#: templates/account/disclaimer.html:34
+msgid "Without prejudice to the generality of the foregoing paragraph, "
+msgstr "Tanpa mengurangi keumuman dari ayat di atas,"
+
+#: templates/account/disclaimer.html:34
+msgid "does not warrant that:"
+msgstr "tidak menjamin bahwa:"
+
+#: templates/account/disclaimer.html:36
+msgid "this website will be constantly available, or available at all; or"
+msgstr "website ini akan terus tersedia, atau tersedia sama sekali; atau"
+
+#: templates/account/disclaimer.html:37
+msgid ""
+"the information on this website is complete, true, accurate or non-"
+"misleading."
+msgstr ""
+
+#: templates/account/disclaimer.html:39
+msgid ""
+"Nothing on this website constitutes, or is meant to constitute, advice of "
+"any kind. "
+msgstr ""
+
+#: templates/account/disclaimer.html:40
+msgid "Limitations of liability"
+msgstr "Batasan tanggung jawab"
+
+#: templates/account/disclaimer.html:42
+msgid ""
+"will not be liable to you (whether under the law of contact, the law of "
+"torts or otherwise) in relation to the contents of, or use of, or otherwise "
+"in connection with, this website:"
+msgstr ""
+
+#: templates/account/disclaimer.html:44
+msgid "for any indirect, special or consequential loss; or"
+msgstr "atas kerugian tidak langsung, khusus atau konsekuensial; atau"
+
+#: templates/account/disclaimer.html:45
+msgid ""
+"for any business losses, loss of revenue, income, profits or anticipated "
+"savings, loss of contracts or business relationships, loss of reputation or "
+"goodwill, or loss or corruption of information or data."
+msgstr ""
+
+#: templates/account/disclaimer.html:47
+msgid "These limitations of liability apply even if "
+msgstr "Batasan tanggung jawab berlaku meskipun"
+
+#: templates/account/disclaimer.html:47
+msgid " has been expressly advised of the potential loss."
+msgstr "telah tegas diberitahukan mengenai potensi kerugian."
+
+#: templates/account/disclaimer.html:48
+msgid "Exceptions"
+msgstr "pengecualian"
+
+#: templates/account/disclaimer.html:50
+msgid ""
+"Nothing in this website disclaimer will exclude or limit any warranty "
+"implied by law that it would be unlawful to exclude or limit; and nothing in "
+"this website disclaimer will exclude or limit "
+msgstr ""
+
+#: templates/account/disclaimer.html:50
+msgid "'s liability in respect of any:"
+msgstr "&#39;S kewajiban sehubungan:"
+
+#: templates/account/disclaimer.html:52
+msgid "death or personal injury caused by "
+msgstr "kematian atau cedera pribadi yang disebabkan oleh"
+
+#: templates/account/disclaimer.html:52
+msgid "'s negligence;"
+msgstr "&#39;S kelalaian;"
+
+#: templates/account/disclaimer.html:53
+msgid "fraud or fraudulent misrepresentation on the part of "
+msgstr "penipuan atau keliru penipuan pada bagian dari"
+
+#: templates/account/disclaimer.html:53
+msgid " or"
+msgstr "atau"
+
+#: templates/account/disclaimer.html:54
+msgid "matter which it would be illegal or unlawful for "
+msgstr "materi yang akan ilegal atau melanggar hukum"
+
+#: templates/account/disclaimer.html:54
+msgid ""
+" to exclude or limit, or to attempt or purport to exclude or limit, its "
+"liability."
+msgstr ""
+
+#: templates/account/disclaimer.html:57
+msgid "Reasonableness"
+msgstr "kewajaran"
+
+#: templates/account/disclaimer.html:59
+msgid ""
+"By using this website, you agree that the exclusions and limitations of "
+"liability set out in this website disclaimer are reasonable.If you do not "
+"think they are reasonable, you must not use this website."
+msgstr ""
+
+#: templates/account/disclaimer.html:60
+msgid "Other parties"
+msgstr "Pihak lain"
+
+#: templates/account/disclaimer.html:62
+msgid "You accept that, as a limited liability entity, "
+msgstr "Anda menerima bahwa, sebagai entitas perseroan terbatas,"
+
+#: templates/account/disclaimer.html:62
+msgid ""
+" has an interest in limiting the personal liability of its officers and "
+"employees. You agree that you will not bring any claim personally against "
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid ""
+"'s officers or employees in respect of any losses you suffer in connection "
+"with the website."
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"[Without prejudice to the foregoing paragraph,] you agree that the "
+"limitations of warranties and liability set out in this website disclaimer "
+"will protect"
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"'s officers, employees, agents, subsidiaries, successors, assigns and sub-"
+"contractors as well as "
+msgstr ""
+
+#: templates/account/disclaimer.html:64
+msgid "Unenforceable provisions"
+msgstr "ketentuan tidak dapat diterapkan"
+
+#: templates/account/disclaimer.html:66
+msgid ""
+"If any provision of this website disclaimer is, or is found to be, "
+"unenforceable under applicable law, that will not affect the enforceability "
+"of the other provisions of this website disclaimer."
+msgstr ""
+
+#: templates/account/email.html:5 templates/account/email.html:8
+msgid "Manage Email"
+msgstr "mengelola Email"
+
+#: templates/account/email.html:10
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "Alamat e-mail berikut ini terkait dengan akun Anda:"
+
+#: templates/account/email.html:26
+msgid "(P)"
+msgstr "(P)"
+
+#: templates/account/email.html:40
+msgid "Make Primary"
+msgstr "membuat Primer"
+
+#: templates/account/email.html:41
+msgid "Re-send Verification"
+msgstr "Re-mengirim Verifikasi"
+
+#: templates/account/email.html:42 templates/eblast/emailgroup.html:50
+#: templates/groupsystem/members.html:84
+msgid "Remove"
+msgstr "Menghapus"
+
+#: templates/account/email.html:54
+msgid "Add E-mail"
+msgstr "Tambahkan E-mail"
+
+#: templates/account/email.html:59
+msgid "Back to profile"
+msgstr "Kembali ke profil"
+
+#: templates/account/email.html:64
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "Apakah Anda benar-benar ingin menghapus alamat e-mail yang dipilih?"
+
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You have received this to confirm your email in the %(site_domain)s "
+"community platform.\n"
+"\n"
+"Please click this link to confirm your email %(activate_url)s\n"
+msgstr ""
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "Konfirmasi alamat email"
+
+#: templates/account/email_confirm.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: templates/account/email_confirm.html:21
+msgid "Confirm"
+msgstr "Memastikan"
+
+#: templates/account/email_confirm.html:28
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: templates/account/login.html:6
+msgid "Login"
+msgstr "Masuk"
+
+#: templates/account/login.html:9
+msgid "Sign in to start your session"
+msgstr "Masuk untuk memulai sesi Anda"
+
+#: templates/account/login.html:18
+msgid "Log In"
+msgstr "Masuk"
+
+#: templates/account/login.html:34
+msgid "Forgot Password?"
+msgstr "Lupa kata sandi?"
+
+#: templates/account/login.html:36 templates/account/signup.html:9
+#: templates/socialaccount/signup.html:8
+msgid "Register a new membership"
+msgstr "Mendaftar keanggotaan baru"
+
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:17
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+#: templates/account/password_reset_from_key.html:21
+msgid "Change Password"
+msgstr "Ganti kata sandi"
+
+#: templates/account/password_change.html:11
+msgid "Change your password"
+msgstr "Ubah password Anda"
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+msgid "Password Reset"
+msgstr "Password reset"
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:22
+msgid "Reset My Password"
+msgstr "Setel ulang kata sandi saya"
+
+#: templates/account/password_reset.html:26
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+"Silakan hubungi kami jika Anda memiliki masalah pengaturan ulang sandi."
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr "Bad Token"
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:25
+msgid "Your password is now changed."
+msgstr "sandi Anda sekarang berubah."
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "set password"
+
+#: templates/account/rform.html:10 templates/socialaccount/signup.html:17
+msgid "Register"
+msgstr "Daftar"
+
+#: templates/account/rform.html:30 templates/account/rform.html:54
+#: templates/account/rform.html:78 templates/account/rform.html:102
+msgid ""
+"This project is a new social platform to simulate and promote  the basic "
+"income"
+msgstr ""
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid "Please read the"
+msgstr "Silahkan baca"
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid " Disclaimer"
+msgstr "Penolakan"
+
+#: templates/account/rform.html:36 templates/account/rform.html:60
+#: templates/account/rform.html:84 templates/account/rform.html:108
+#: templates/autosignup/community_signupedit.html:10
+#: templates/timelines/timeline.html:149
+msgid "Cancel"
+msgstr "Membatalkan"
+
+#: templates/account/rform.html:39 templates/account/rform.html:63
+#: templates/account/rform.html:87 templates/account/rform.html:111
+msgid "Agree"
+msgstr "Setuju"
+
+#: templates/account/signup.html:11
+msgid "I already have a membership"
+msgstr "Saya sudah memiliki keanggotaan"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr "Pendaftaran ditutup"
+
+#: templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed for beta site"
+msgstr "Mohon maaf, tapi tanda up saat ini ditutup untuk situs beta"
+
+#: templates/account/signup_closed.html:11
+msgid "Please signup to"
+msgstr "Silahkan mendaftar ke"
+
+#: templates/account/signup_closed.html:11
+msgid "main site"
+msgstr "situs utama"
+
+#: templates/autosignup/additional_step.html:6
+#: templates/autosignup/complete_previous_step.html:6
+#: templates/autosignup/step_1_form.html:6
+#: templates/autosignup/step_2_form.html:6
+#: templates/autosignup/step_2_verification.html:6
+#: templates/autosignup/step_3_form.html:6
+#: templates/autosignup/step_3_verification.html:6
+msgid "Name and Address"
+msgstr "Nama dan Alamat"
+
+#: templates/autosignup/additional_step.html:9
+#: templates/autosignup/complete_previous_step.html:9
+#: templates/autosignup/step_1_form.html:9
+#: templates/autosignup/step_2_form.html:9
+#: templates/autosignup/step_2_verification.html:9
+#: templates/autosignup/step_3_form.html:9
+#: templates/autosignup/step_3_verification.html:9
+msgid "Email"
+msgstr "E-mail"
+
+#: templates/autosignup/additional_step.html:12
+#: templates/autosignup/complete_previous_step.html:12
+#: templates/autosignup/step_1_form.html:12
+#: templates/autosignup/step_2_form.html:12
+#: templates/autosignup/step_2_verification.html:12
+#: templates/autosignup/step_3_form.html:12
+#: templates/autosignup/step_3_verification.html:12
+#: templates/profilesystem/index.html:377
+msgid "Phone No"
+msgstr "No Telepon"
+
+#: templates/autosignup/additional_step.html:15
+#: templates/autosignup/complete_previous_step.html:16
+#: templates/autosignup/step_1_form.html:16
+#: templates/autosignup/step_2_form.html:16
+#: templates/autosignup/step_2_verification.html:16
+#: templates/autosignup/step_3_form.html:16
+#: templates/autosignup/step_3_verification.html:16
+msgid "Docs"
+msgstr "Docs"
+
+#: templates/autosignup/community_signupedit.html:7
+#: templates/autosignup/settings.html:118
+msgid "Fetch Twilio Data"
+msgstr "Ambil Twilio data"
+
+#: templates/autosignup/community_signupedit.html:8
+#: templates/autosignup/signupinfo.html:207
+#: templates/eblast/emailcampaign.html:13 templates/eblast/emailgroup.html:11
+#: templates/eblast/emailtemplate.html:9
+msgid "Delete"
+msgstr "Menghapus"
+
+#: templates/autosignup/community_signupedit.html:9
+msgid "Save"
+msgstr "Menyimpan"
+
+#: templates/autosignup/complete_previous_step.html:21
+msgid "Please complete previous steps"
+msgstr "Lengkapi langkah-langkah sebelumnya"
+
+#: templates/autosignup/index.html:4
+msgid "MyAccounts"
+msgstr "MyAccounts"
+
+#: templates/autosignup/index.html:8
+msgid "Myaccounts"
+msgstr "Myaccounts"
+
+#: templates/autosignup/index.html:26 templates/sidebar_home.html:16
+#: templates/useraccount/index.html:13 templates/useraccount/index.html:16
+#: templates/useraccount/index.html:40
+msgid "Accounts"
+msgstr "Akun"
+
+#: templates/autosignup/index.html:33 templates/useraccount/index.html:47
+msgid "DummyDB"
+msgstr "DummyDB"
+
+#: templates/autosignup/index.html:45 templates/useraccount/index.html:59
+msgid "Grantcoin"
+msgstr "Grantcoin"
+
+#: templates/autosignup/index.html:48 templates/useraccount/index.html:73
+msgid "Signup"
+msgstr "Daftar"
+
+#: templates/autosignup/index.html:57
+msgid "The pulse"
+msgstr "denyut nadi"
+
+#: templates/autosignup/index.html:60 templates/useraccount/index.html:86
+msgid "Coming soon"
+msgstr "Segera akan datang"
+
+#: templates/autosignup/index.html:81 templates/useraccount/index.html:266
+#: templates/useraccount/index.html:283
+msgid "Signup to Grantcoin"
+msgstr "Pendaftaran untuk Grantcoin"
+
+#: templates/autosignup/index.html:87 templates/eblast/emailcampaign.html:44
+#: templates/eblast/emailcampaign.html:61 templates/eblast/emailgroup.html:69
+#: templates/eblast/emailgroup.html:86
+#: templates/groupsystem/groupdetails.html:186
+#: templates/profilesystem/index.html:96 templates/profilesystem/index.html:127
+#: templates/profilesystem/index.html:166 templates/useraccount/index.html:272
+#: templates/useraccount/index.html:302
+msgid "Close"
+msgstr "Dekat"
+
+#: templates/autosignup/index.html:88 templates/autosignup/settings.html:48
+#: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:103
+#: templates/crowdfunding/update_crowdfund.html:9
+#: templates/eblast/emailcampaignform.html:11
+#: templates/eblast/emailgroupform.html:11
+#: templates/eblast/emailtemplateform.html:11
+#: templates/groupsystem/adminnews.html:83
+#: templates/groupsystem/adminsettings.html:108
+#: templates/groupsystem/editcommentpage.html:50
+#: templates/groupsystem/editcustomrole.html:6
+#: templates/groupsystem/editnews.html:6
+#: templates/groupsystem/editpostpage.html:52
+#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:110
+#: templates/groupsystem/postsadmin.html:113
+#: templates/information/contact.html:32
+#: templates/invitationsystem/checkinvitation.html:31
+#: templates/invitationsystem/index.html:20
+#: templates/landing/getinvitationform.html:4
+#: templates/profilesystem/index.html:102
+#: templates/profilesystem/index.html:139
+#: templates/profilesystem/index.html:178 templates/useraccount/index.html:273
+#: templates/useraccount/index.html:303
+msgid "Submit"
+msgstr "Menyerahkan"
+
+#: templates/autosignup/settings.html:4 templates/autosignup/settings.html:10
+msgid "Signups settings"
+msgstr "pengaturan pendaftaran"
+
+#: templates/autosignup/settings.html:13 templates/autosignup/signups.html:4
+#: templates/autosignup/signups.html:10 templates/autosignup/signups.html:13
+#: templates/autosignup/signups.html:38
+msgid "Signups"
+msgstr "pendaftaran"
+
+#: templates/autosignup/settings.html:14
+msgid "Signup Settings"
+msgstr "Pengaturan Daftar"
+
+#: templates/autosignup/settings.html:24
+msgid "Autosignup settings"
+msgstr "pengaturan Autosignup"
+
+#: templates/autosignup/settings.html:45
+msgid "KM"
+msgstr "KM"
+
+#: templates/autosignup/settings.html:54
+msgid "Approved Email Template"
+msgstr "Disetujui Template Email"
+
+#: templates/autosignup/settings.html:56
+msgid "Select from one"
+msgstr "Pilih dari satu"
+
+#: templates/autosignup/settings.html:57
+msgid "Default"
+msgstr "kegagalan"
+
+#: templates/autosignup/settings.html:69
+msgid "Or"
+msgstr "Atau"
+
+#: templates/autosignup/settings.html:75
+msgid "File must be html document"
+msgstr "File harus dokumen html"
+
+#: templates/autosignup/settings.html:82
+msgid "Invite Code"
+msgstr "Kode invitasi"
+
+#: templates/autosignup/settings.html:88
+msgid "Status:"
+msgstr "Status:"
+
+#: templates/autosignup/settings.html:96
+msgid "Code:"
+msgstr "Kode:"
+
+#: templates/autosignup/settings.html:109
+msgid "Upload and Download CSV"
+msgstr "Unggah dan Unduh CSV"
+
+#: templates/autosignup/settings.html:120
+msgid "Download example copy"
+msgstr "Ambil contoh copy"
+
+#: templates/autosignup/settings.html:126
+msgid "Uploaded CSVs"
+msgstr "upload CSV"
+
+#: templates/autosignup/settings.html:167
+msgid "Select range"
+msgstr "Pilih rentang"
+
+#: templates/autosignup/settings.html:169
+#: templates/autosignup/settings.html:235
+msgid "Download Member Data CSV"
+msgstr "Ambil Anggota data CSV"
+
+#: templates/autosignup/sfilter.html:5 templates/autosignup/signups.html:57
+#: templates/groupsystem/admindashboard.html:40
+#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:17
+#: templates/groupsystem/members.html:22 templates/publicusers/userlist.html:4
+#: templates/publicusers/userlist.html:10
+#: templates/publicusers/userlist.html:14 templates/sidebar_community.html:2
+#: templates/sidebar_group.html:87 templates/sidebar_group.html:93
+#: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
+msgid "Members"
+msgstr "anggota"
+
+#: templates/autosignup/sfilter.html:14 templates/autosignup/signups.html:66
+#: templates/crowdfunding/admin.html:76
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:10
+#: templates/groupsystem/adminsettings.html:15
+#: templates/profilesystem/index.html:292 templates/sidebar_group.html:144
+#: templates/sidebar_group_admin.html:114
+msgid "Settings"
+msgstr "pengaturan"
+
+#: templates/autosignup/sfilter.html:26 templates/autosignup/signups.html:78
+msgid "No signups yet!! "
+msgstr "Belum ada pendaftaran !!"
+
+#: templates/autosignup/signupclosed.html:4
+msgid "Signup is closed! try later"
+msgstr "Pendaftaran ditutup! coba nanti"
+
+#: templates/autosignup/signuphistories.html:36
+msgid "This signup is not associated with any history"
+msgstr "pendaftaran ini tidak terkait dengan riwayat apapun"
+
+#: templates/autosignup/signupinfo.html:13
+#: templates/autosignup/signupinfo.html:42
+msgid "Validated"
+msgstr "divalidasi"
+
+#: templates/autosignup/signupinfo.html:19
+msgid "This email id was used for these previous signup "
+msgstr "id email ini digunakan untuk ini pendaftaran sebelumnya"
+
+#: templates/autosignup/signupinfo.html:36
+msgid "Mobile"
+msgstr "mobil"
+
+#: templates/autosignup/signupinfo.html:39
+msgid "Not a Verifiable No"
+msgstr "Bukan diverifikasi ada"
+
+#: templates/autosignup/signupinfo.html:49
+msgid "This phone number was used for these previous signup "
+msgstr "Nomor telepon ini digunakan untuk ini pendaftaran sebelumnya"
+
+#: templates/autosignup/signupinfo.html:137
+msgid "Distance from database address: "
+msgstr "Jarak dari alamat basis data:"
+
+#: templates/autosignup/signupinfo.html:137
+msgid " KM"
+msgstr "KM"
+
+#: templates/autosignup/signupinfo.html:208
+#: templates/groupsystem/members.html:124 templates/profilesystem/index.html:99
+#: templates/profilesystem/index.html:131
+#: templates/profilesystem/index.html:170
+msgid "Edit"
+msgstr "mengedit"
+
+#: templates/autosignup/signupinfo.html:209
+msgid "History"
+msgstr "Sejarah"
+
+#: templates/autosignup/signupinfo.html:211
+msgid "Resend Approval Email"
+msgstr "Kirim ulang Persetujuan Email"
+
+#: templates/autosignup/signupinfo.html:214
+msgid "Send Invitation Email"
+msgstr "Kirim Undangan Email"
+
+#: templates/autosignup/signups.html:44 templates/useraccount/index.html:67
+msgid "Pending"
+msgstr "tertunda"
+
+#: templates/autosignup/signups.html:45 templates/sidebar_group.html:78
+#: templates/sidebar_group_admin.html:48
+msgid "Approved"
+msgstr "disetujui"
+
+#: templates/autosignup/signups.html:46
+msgid "Declined"
+msgstr "ditolak"
+
+#: templates/autosignup/signups.html:47 templates/useraccount/index.html:70
+msgid "Incomplete"
+msgstr "Tidak lengkap"
+
+#: templates/autosignup/signups.html:226
+msgid "Fetching..."
+msgstr "Mengambil ..."
+
+#: templates/autosignup/step_2_form.html:22
+msgid "Verify Your Email"
+msgstr "Verifikasi Email Anda"
+
+#: templates/autosignup/step_2_verification.html:22
+msgid "Enter code sent to your email below"
+msgstr "Masukkan kode yang dikirimkan ke email Anda di bawah ini"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "Didn't get code yet?"
+msgstr "Tidak mendapatkan kode belum?"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "try again"
+msgstr "coba lagi"
+
+#: templates/autosignup/step_3_form.html:22
+msgid "Verify Your Mobile Number"
+msgstr "Verifikasi Nomor Handphone Anda"
+
+#: templates/autosignup/step_3_verification.html:22
+msgid "Enter code sent to your phone below"
+msgstr "Masukkan kode yang dikirimkan ke telepon Anda di bawah ini"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "I am not getting a verification code for my number"
+msgstr "Saya tidak mendapatkan kode verifikasi untuk nomor saya"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "skip"
+msgstr "melewatkan"
+
+#: templates/autosignup/step_3_verification.html:34
+msgid "This needs some time don't close/refresh browser"
+msgstr "Ini membutuhkan beberapa waktu tidak menutup / penyegaran Browser"
+
+#: templates/autosignup/thankyou.html:4
+msgid "Thank you for signing up to Grantcoin and providing us your information"
+msgstr ""
+"Terima kasih telah mendaftar untuk Grantcoin dan memberikan kami informasi "
+"Anda"
+
+#: templates/autosignup/thankyou.html:5
+msgid ""
+"Your account will be processed soon, return to this page to check on your "
+"status."
+msgstr ""
+
+#: templates/base.html:125
+msgid "Toggle navigation"
+msgstr "navigasi beralih"
+
+#: templates/base.html:154 templates/base.html:173 templates/base.html:230
+msgid "Hello User"
+msgstr "Hello Pengguna"
+
+#: templates/base.html:170
+msgid "Member Since "
+msgstr "Anggota Sejak"
+
+#: templates/base.html:184 templates/useraccount/index.html:7
+msgid "Account"
+msgstr "Rekening"
+
+#: templates/base.html:187
+msgid "Landing"
+msgstr "Pendaratan"
+
+#: templates/base.html:195 templates/landing_base.html:101
+#: templates/landing_base.html:165 templates/profilesystem/index.html:5
+#: templates/profilesystem/index.html:42 templates/profilesystem/index.html:45
+#: templates/sidebar_home.html:27
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/base.html:198
+msgid "Sign out"
+msgstr "Keluar"
+
+#: templates/base.html:234 templates/publicusers/user.html:24
+#: templates/publicusers/userdetails.html:393
+#: templates/publicusers/userlist.html:40
+#: templates/publicusers/userlist_old.html:116
+#: templates/publicusers/users_old.html:25
+msgid "Online"
+msgstr "On line"
+
+#: templates/base.html:306
+msgid "System notice: "
+msgstr "Sistem pemberitahuan:"
+
+#: templates/base.html:349
+msgid "Language Settings"
+msgstr "Pengaturan bahasa"
+
+#: templates/base.html:366
+msgid "Set"
+msgstr "Set"
+
+#: templates/base.html:381
+msgid "Filter Options"
+msgstr "Filter Options"
+
+#: templates/base.html:391
+msgid "Apply"
+msgstr "Menerapkan"
+
+#: templates/crowdfunding/admin.html:4 templates/crowdfunding/admin.html:37
+#: templates/crowdfunding/admin.html:40 templates/sidebar_community.html:32
+msgid "Crowdfund Admin"
+msgstr "Crowdfund Admin"
+
+#: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:60
+msgid "Stats"
+msgstr "Statistik"
+
+#: templates/crowdfunding/admin.html:62
+msgid "Status"
+msgstr "Status"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Active"
+msgstr "Aktif"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Stopped"
+msgstr "terhenti"
+
+#: templates/crowdfunding/admin.html:67 templates/crowdfunding/admin.html:83
+#: templates/crowdfunding/admin.html:127
+msgid "No Crowdfund started"
+msgstr "Tidak ada Crowdfund mulai"
+
+#: templates/crowdfunding/admin.html:86
+msgid "Start new"
+msgstr "Mulai baru"
+
+#: templates/crowdfunding/admin.html:97
+msgid "Payments"
+msgstr "pembayaran"
+
+#: templates/crowdfunding/index.html:4
+msgid "Crowdfunding"
+msgstr "crowdfunding"
+
+#: templates/crowdfunding/index.html:17 templates/crowdfunding/index.html:20
+#: templates/sidebar_community.html:30
+msgid "Crowdfund"
+msgstr "Crowdfund"
+
+#: templates/crowdfunding/index.html:32
+msgid "Watch video"
+msgstr "Menonton video"
+
+#: templates/crowdfunding/index.html:34
+msgid "FUND"
+msgstr "DANA"
+
+#: templates/crowdfunding/index.html:46
+msgid "Product Features"
+msgstr "Fitur Produk"
+
+#: templates/crowdfunding/index.html:55
+msgid "Introduction"
+msgstr "pengantar"
+
+#: templates/crowdfunding/index.html:77
+msgid "Fund Now"
+msgstr "dana Sekarang"
+
+#: templates/crowdfunding/index.html:84
+msgid "Card"
+msgstr "Kartu"
+
+#: templates/crowdfunding/index.html:92 templates/useraccount/index.html:175
+#: templates/useraccount/index.html:215 templates/useraccount/index.html:242
+#: useraccount/forms.py:8 useraccount/forms.py:27
+msgid "Amount"
+msgstr "Jumlah"
+
+#: templates/crowdfunding/index.html:98
+msgid "Feedback"
+msgstr "umpan balik"
+
+#: templates/crowdfunding/payment_details.html:2
+msgid "User: "
+msgstr "pengguna:"
+
+#: templates/crowdfunding/payment_details.html:3
+msgid "Amount: "
+msgstr "Jumlah:"
+
+#: templates/crowdfunding/payment_details.html:4
+msgid "Date: "
+msgstr "Tanggal:"
+
+#: templates/crowdfunding/payment_details.html:5
+msgid "Charge ID(Stripe): "
+msgstr "Biaya ID (Stripe):"
+
+#: templates/crowdfunding/payment_details.html:7
+#: templates/eblast/emailcampaign_sent.html:5
+msgid "Message: "
+msgstr "Pesan:"
+
+#: templates/crowdfunding/payment_details.html:10
+msgid "Fail Reason: "
+msgstr "Gagal Alasan:"
+
+#: templates/crowdfunding/thankyou.html:3
+msgid "Thank You"
+msgstr "Terima kasih"
+
+#: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:20
+#: templates/dashboard/dashboard.html:23
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:10
+#: templates/groupsystem/admindashboard.html:15 templates/landing_base.html:97
+#: templates/landing_base.html:163 templates/publicusers/userlist.html:13
+#: templates/sidebar_group.html:36 templates/sidebar_group_admin.html:6
+#: templates/sidebar_home.html:4
+msgid "Dashboard"
+msgstr "Dasbor"
+
+#: templates/dashboard/dashboard.html:35 templates/profilesystem/index.html:202
+#: templates/publicusers/user.html:174
+msgid "References"
+msgstr "Referensi"
+
+#: templates/dashboard/dashboard.html:45 templates/dashboard/dashboard.html:172
+msgid "Connections"
+msgstr "koneksi"
+
+#: templates/dashboard/dashboard.html:55 templates/landing_base.html:118
+#: templates/landing_base.html:169
+msgid "Messages"
+msgstr "pesan"
+
+#: templates/dashboard/dashboard.html:65 templates/dashboard/dashboard.html:257
+#: templates/useraccount/index.html:111 templates/useraccount/transfer.html:43
+msgid "Account Balance"
+msgstr "Saldo rekening"
+
+#: templates/dashboard/dashboard.html:66
+#: templates/notification/notification.html:19
+#: templates/notification/notification.html:26
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "units"
+msgstr "unit"
+
+#: templates/dashboard/dashboard.html:75 templates/dashboard/dashboard.html:258
+#: templates/useraccount/index.html:123
+msgid "Next Release"
+msgstr "Rilis berikutnya"
+
+#: templates/dashboard/dashboard.html:96 templates/useraccount/index.html:140
+msgid "Day"
+msgstr "Hari"
+
+#: templates/dashboard/dashboard.html:101 templates/useraccount/index.html:145
+msgid "Hour"
+msgstr "Jam"
+
+#: templates/dashboard/dashboard.html:106 templates/useraccount/index.html:150
+msgid "Minute"
+msgstr "Menit"
+
+#: templates/dashboard/dashboard.html:113
+#: templates/groupsystem/admindashboard.html:46
+#: templates/groupsystem/admindashboard.html:60
+#: templates/groupsystem/admindashboard.html:74
+#: templates/groupsystem/admindashboard.html:88
+msgid "More info"
+msgstr "Info lebih lanjut"
+
+#: templates/dashboard/dashboard.html:121 templates/publicusers/user.html:277
+msgid "Profile Completed"
+msgstr "Profil Selesai"
+
+#: templates/dashboard/dashboard.html:138 templates/publicusers/user.html:290
+msgid "Completed"
+msgstr "Lengkap"
+
+#: templates/dashboard/dashboard.html:144 templates/publicusers/user.html:296
+msgid "Not completed"
+msgstr "Tidak selesai"
+
+#: templates/dashboard/dashboard.html:150 templates/publicusers/user.html:302
+msgid "Not verified"
+msgstr "Tidak diverifikasi"
+
+#: templates/dashboard/dashboard.html:156 templates/publicusers/user.html:308
+msgid "Skipped"
+msgstr "dilewati"
+
+#: templates/dashboard/dashboard.html:182
+msgid "You have no connection to display data"
+msgstr "Anda tidak memiliki koneksi untuk menampilkan data"
+
+#: templates/dashboard/dashboard.html:195
+msgid " Friends"
+msgstr "teman"
+
+#: templates/dashboard/dashboard.html:196
+msgid " Families"
+msgstr "Keluarga"
+
+#: templates/dashboard/dashboard.html:197
+msgid " Contacts"
+msgstr "kontak"
+
+#: templates/dashboard/dashboard.html:214
+msgid "New Members"
+msgstr "Anggota baru"
+
+#: templates/dashboard/dashboard.html:227
+msgid "Total Ekata Members"
+msgstr "Total Anggota Ekata"
+
+#: templates/dashboard/dashboard.html:242
+msgid "Active Members"
+msgstr "Anggota aktif"
+
+#: templates/dashboard/dashboard.html:256
+msgid "Add Widget"
+msgstr "Tambahkan Widget"
+
+#: templates/dashboard/dashboard.html:259 templates/timelines/index.html:77
+#: templates/timelines/index.html:79
+msgid "Connection"
+msgstr "Koneksi"
+
+#: templates/dashboard/dashboard.html:260
+msgid "Profile Completion Ring"
+msgstr "Profil Penyelesaian Cincin"
+
+#: templates/dashboard/dashboard.html:270
+msgid "Website added"
+msgstr "Website menambahkan"
+
+#: templates/dashboard/dashboard.html:277
+msgid "Gender added"
+msgstr "jenis kelamin menambahkan"
+
+#: templates/dashboard/dashboard.html:284
+msgid "Phone added"
+msgstr "telepon menambahkan"
+
+#: templates/dashboard/dashboard.html:291
+msgid "Avatar added"
+msgstr "Avatar menambahkan"
+
+#: templates/dashboard/dashboard.html:298
+msgid "Address added"
+msgstr "alamat menambahkan"
+
+#: templates/dashboard/dashboard.html:305
+msgid "Socialaccount added"
+msgstr "Socialaccount menambahkan"
+
+#: templates/dashboard/dashboard.html:312
+msgid "Email added"
+msgstr "email menambahkan"
+
+#: templates/dashboard/dashboard.html:319
+msgid "Email verified"
+msgstr "email diverifikasi"
+
+#: templates/dashboard/dashboard.html:331
+#: templates/dashboard/dashboard.html:403
+msgid "Add website"
+msgstr "Tambahkan situs"
+
+#: templates/dashboard/dashboard.html:332
+#: templates/dashboard/dashboard.html:338
+#: templates/dashboard/dashboard.html:344
+#: templates/dashboard/dashboard.html:350
+#: templates/dashboard/dashboard.html:356
+#: templates/dashboard/dashboard.html:362
+#: templates/dashboard/dashboard.html:368
+#: templates/dashboard/dashboard.html:377
+msgid " (skip)"
+msgstr "(melewatkan)"
+
+#: templates/dashboard/dashboard.html:337
+#: templates/dashboard/dashboard.html:408
+msgid "Add gender"
+msgstr "Tambahkan jenis kelamin"
+
+#: templates/dashboard/dashboard.html:343
+#: templates/dashboard/dashboard.html:413
+msgid "Add phone"
+msgstr "Tambahkan ponsel"
+
+#: templates/dashboard/dashboard.html:349
+#: templates/dashboard/dashboard.html:418
+msgid "Add avatar"
+msgstr "Tambahkan avatar"
+
+#: templates/dashboard/dashboard.html:355
+#: templates/dashboard/dashboard.html:423
+msgid "Add address"
+msgstr "Tambahkan alamat"
+
+#: templates/dashboard/dashboard.html:361
+#: templates/dashboard/dashboard.html:428
+msgid "Add socialaccount"
+msgstr "Tambahkan socialaccount"
+
+#: templates/dashboard/dashboard.html:367
+#: templates/dashboard/dashboard.html:433
+msgid "Add email"
+msgstr "Tambahkan email"
+
+#: templates/dashboard/dashboard.html:376
+#: templates/dashboard/dashboard.html:391
+#: templates/dashboard/dashboard.html:441
+msgid "Verify email"
+msgstr "Verifikasi email"
+
+#: templates/dashboard/dashboard.html:392
+msgid "(skip)"
+msgstr "(melewatkan)"
+
+#: templates/eblast/editemailcampaign.html:6
+#: templates/eblast/emailtemplateedit.html:6
+msgid "Update"
+msgstr "Memperbarui"
+
+#: templates/eblast/emailcampaign.html:15
+msgid "Test send"
+msgstr "tes send"
+
+#: templates/eblast/emailcampaign.html:16
+#: templates/eblast/emailcampaign.html:45
+#: templates/eblast/emailcampaign.html:62
+#: templates/messagingsystem/chats.html:76
+#: templates/publicusers/userdetails.html:106
+#: templates/timelines/index.html:102
+#: templates/useraccount/transferunit.html:22
+msgid "Send"
+msgstr "Kirim"
+
+#: templates/eblast/emailcampaign.html:18
+msgid "Resend"
+msgstr "Kirim ulang"
+
+#: templates/eblast/emailcampaign.html:19
+msgid "Show tracking data"
+msgstr "Tampilkan data pelacakan"
+
+#: templates/eblast/emailcampaign.html:38
+msgid "Send a test email"
+msgstr "Kirim email tes"
+
+#: templates/eblast/emailcampaign.html:55
+msgid "Send email"
+msgstr "Mengirim email"
+
+#: templates/eblast/emailcampaign_page.html:4
+msgid "EmailCampaigns | eBlast"
+msgstr "EmailCampaigns | eBlast"
+
+#: templates/eblast/emailcampaign_page.html:10
+#: templates/sidebar_community.html:44
+msgid "Email Campaigns"
+msgstr "Kampanye email"
+
+#: templates/eblast/emailcampaign_page.html:13
+#: templates/eblast/emailgroups_page.html:13
+#: templates/eblast/emailtemplates_page.html:13
+#: templates/sidebar_community.html:36
+msgid "eBlast"
+msgstr "eBlast"
+
+#: templates/eblast/emailcampaign_page.html:14
+msgid "emailcampaigns"
+msgstr "emailcampaigns"
+
+#: templates/eblast/emailcampaign_page.html:37
+msgid "Campaign Lists"
+msgstr "Daftar kampanye"
+
+#: templates/eblast/emailcampaign_page.html:45
+#: templates/eblast/emailcampaignform.html:3
+msgid "Create Campaign"
+msgstr "Buat Kampanye"
+
+#: templates/eblast/emailcampaign_page.html:75
+msgid "Sent"
+msgstr "mengirim"
+
+#: templates/eblast/emailcampaign_page.html:78
+msgid "Draft"
+msgstr "Konsep"
+
+#: templates/eblast/emailcampaign_sent.html:2
+msgid "Sent to: "
+msgstr "Dikirim ke:"
+
+#: templates/eblast/emailcampaign_sent.html:3
+msgid "Subject: "
+msgstr "Subyek:"
+
+#: templates/eblast/emailgroup.html:9 templates/eblast/emailgroup.html:63
+msgid "Add Recipient"
+msgstr "Tambah penerima"
+
+#: templates/eblast/emailgroup.html:10
+msgid "Upload CSV"
+msgstr "Unggah CSV"
+
+#: templates/eblast/emailgroup.html:42
+#: templates/groupsystem/groupdetails.html:121
+msgid "Unsubscribe"
+msgstr "berhenti berlangganan"
+
+#: templates/eblast/emailgroup.html:46
+#: templates/groupsystem/groupdetails.html:127
+msgid "Subscribe"
+msgstr "Berlangganan"
+
+#: templates/eblast/emailgroup.html:70 templates/profilesystem/index.html:135
+#: templates/profilesystem/index.html:174
+msgid "Add"
+msgstr "Menambahkan"
+
+#: templates/eblast/emailgroup.html:80
+msgid "Upload a CSV"
+msgstr "Unggah CSV"
+
+#: templates/eblast/emailgroup.html:87 templates/profilesystem/index.html:280
+msgid "Upload"
+msgstr "Upload"
+
+#: templates/eblast/emailgroupform.html:3
+#: templates/eblast/emailgroups_page.html:48
+msgid "Create List"
+msgstr "Buat Daftar"
+
+#: templates/eblast/emailgroups_page.html:4
+msgid "EmailGroups | eBlast"
+msgstr "EmailGroups | eBlast"
+
+#: templates/eblast/emailgroups_page.html:10
+msgid "Email Groups"
+msgstr "Grup email"
+
+#: templates/eblast/emailgroups_page.html:14
+msgid "emailgroups"
+msgstr "emailgroups"
+
+#: templates/eblast/emailgroups_page.html:40
+msgid "Group Lists"
+msgstr "Daftar kelompok"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "emails"
+msgstr "email"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "email"
+msgstr "e-mail"
+
+#: templates/eblast/emailtemplate.html:11
+msgid "Preview"
+msgstr "Preview"
+
+#: templates/eblast/emailtemplateform.html:3
+msgid "Add a new template"
+msgstr "Menambahkan template baru"
+
+#: templates/eblast/emailtemplates_page.html:4
+msgid "EmailTemplates | eBlast"
+msgstr "EmailTemplates | eBlast"
+
+#: templates/eblast/emailtemplates_page.html:10
+#: templates/sidebar_community.html:43
+msgid "Email Templates"
+msgstr "Template email"
+
+#: templates/eblast/emailtemplates_page.html:14
+msgid "emailtemplates"
+msgstr "emailtemplates"
+
+#: templates/eblast/emailtemplates_page.html:40
+msgid "Template Lists"
+msgstr "Daftar Template"
+
+#: templates/eblast/emailtemplates_page.html:48
+msgid "Create Template"
+msgstr "Buat Template"
+
+#: templates/eblast/tracking_data.html:4
+msgid "Tracking data for "
+msgstr "Data pelacakan untuk"
+
+#: templates/eblast/tracking_data.html:11
+msgid "Emails Sent"
+msgstr "email Terkirim"
+
+#: templates/eblast/tracking_data.html:18
+msgid "Emails Opened"
+msgstr "email Dibuka"
+
+#: templates/emailtosms/index.html:4 templates/emailtosms/requestcarrier.html:4
+msgid "Email to sms"
+msgstr "Email ke sms"
+
+#: templates/emailtosms/index.html:10
+msgid "Email to SMS"
+msgstr "Email ke SMS"
+
+#: templates/emailtosms/index.html:13
+msgid "email to sms"
+msgstr "email ke sms"
+
+#: templates/emailtosms/index.html:33
+msgid "Help us to find working email to sms providers for your mobile number"
+msgstr ""
+"Membantu kita untuk menemukan email bekerja untuk penyedia sms untuk nomor "
+"ponsel Anda"
+
+#: templates/emailtosms/index.html:35
+msgid ""
+"Please provide your mobile carrier, and number then verify you've received a "
+"text or not"
+msgstr ""
+
+#: templates/emailtosms/index.html:39
+msgid "Did you get a code on your mobile?"
+msgstr "Apakah Anda mendapatkan kode pada ponsel Anda?"
+
+#: templates/emailtosms/index.html:40
+msgid "This may take some time..."
+msgstr "Ini mungkin memakan waktu ..."
+
+#: templates/emailtosms/index.html:41
+msgid "Yes"
+msgstr "iya nih"
+
+#: templates/emailtosms/index.html:42
+msgid "No"
+msgstr "Tidak"
+
+#: templates/emailtosms/index.html:46
+msgid "Thank you for helping us verify"
+msgstr "Terima kasih telah membantu kami memverifikasi"
+
+#: templates/emailtosms/index.html:47
+msgid "verify another"
+msgstr "memverifikasi lain"
+
+#: templates/emailtosms/requestcarrier.html:8
+msgid "Request Carrier"
+msgstr "Permintaan pembawa"
+
+#: templates/emailtosms/requestcarrier.html:26
+msgid "Thank you, This carrier will be added soon"
+msgstr "Terima kasih, operator ini akan segera ditambahkan"
+
+#: templates/emailtosms/verifierform.html:9
+msgid "Request to add your carrier if not listed"
+msgstr "Permintaan untuk menambahkan operator Anda jika tidak tercantum"
+
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:14
+#: templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:21
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:14
+#: templates/groupsystem/bannedmembers.html:14
+#: templates/groupsystem/commentadmin.html:21
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:21
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:21
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:14
+#: templates/groupsystem/joinrequests.html:14
+#: templates/groupsystem/members.html:21 templates/groupsystem/members.html:92
+#: templates/groupsystem/postsadmin.html:14
+msgid "Admin"
+msgstr "Admin"
+
+#: templates/groupsystem/admindashboard.html:13
+#: templates/groupsystem/adminnews.html:20
+#: templates/groupsystem/adminsettings.html:13
+#: templates/groupsystem/bannedmembers.html:13
+#: templates/groupsystem/commentadmin.html:20
+#: templates/groupsystem/customroles.html:20
+#: templates/groupsystem/defaultroles.html:20
+#: templates/groupsystem/editcommentpage.html:13
+#: templates/groupsystem/editpostpage.html:13
+#: templates/groupsystem/events.html:13
+#: templates/groupsystem/eventsadmin.html:13
+#: templates/groupsystem/groupdetails.html:20
+#: templates/groupsystem/joined_group.html:15
+#: templates/groupsystem/joinrequests.html:13
+#: templates/groupsystem/members.html:20
+#: templates/groupsystem/postdetails.html:13
+#: templates/groupsystem/posts.html:13 templates/groupsystem/postsadmin.html:13
+#: templates/groupsystem/subscribed_group.html:15
+msgid "Group"
+msgstr "Kelompok"
+
+#: templates/groupsystem/admindashboard.html:54
+msgid "New Request"
+msgstr "Permintaan baru"
+
+#: templates/groupsystem/admindashboard.html:68
+msgid "Pending posts"
+msgstr "tertunda posting"
+
+#: templates/groupsystem/admindashboard.html:82
+msgid "Pending comment"
+msgstr "tertunda komentar"
+
+#: templates/groupsystem/adminnews.html:68
+msgid "No news!!"
+msgstr "Tidak ada berita!!"
+
+#: templates/groupsystem/adminnews.html:76
+msgid "Create News"
+msgstr "Buat Berita"
+
+#: templates/groupsystem/adminnews.html:99
+msgid "Edit news"
+msgstr "mengedit berita"
+
+#: templates/groupsystem/adminsettings.html:40
+msgid "Send notification to members"
+msgstr "Kirim pemberitahuan kepada anggota"
+
+#: templates/groupsystem/adminsettings.html:73
+#: templates/groupsystem/groupdetails.html:78
+msgid "About Us"
+msgstr "Tentang kami"
+
+#: templates/groupsystem/adminsettings.html:81
+msgid "Auto approve post: "
+msgstr "Auto menyetujui post:"
+
+#: templates/groupsystem/adminsettings.html:89
+msgid "Auto approve comment: "
+msgstr "Auto menyetujui komentar:"
+
+#: templates/groupsystem/adminsettings.html:101
+msgid "Edit Group"
+msgstr "mengedit Grup"
+
+#: templates/groupsystem/adminsettings.html:120
+msgid "Create Notification"
+msgstr "Buat Pemberitahuan"
+
+#: templates/groupsystem/adminsettings.html:126
+#: templates/groupsystem/all_group.html:108
+#: templates/groupsystem/customroles.html:97
+msgid "Create"
+msgstr "Membuat"
+
+#: templates/groupsystem/all_group.html:5
+#: templates/groupsystem/all_group.html:40 templates/sidebar_community.html:12
+msgid "All Groups"
+msgstr "semua Grup"
+
+#: templates/groupsystem/all_group.html:43 templates/landing_base.html:108
+#: templates/landing_base.html:167 templates/profilesystem/index.html:413
+#: templates/sidebar_community.html:6
+msgid "Groups"
+msgstr "Grup"
+
+#: templates/groupsystem/all_group.html:44
+msgid "all groups"
+msgstr "semua kelompok"
+
+#: templates/groupsystem/all_group.html:69
+#: templates/groupsystem/all_group.html:102
+msgid "Create Group"
+msgstr "Membuat grup"
+
+#: templates/groupsystem/bannedmembers.html:4
+msgid "Bannedmembers"
+msgstr "Bannedmembers"
+
+#: templates/groupsystem/bannedmembers.html:10
+#: templates/groupsystem/bannedmembers.html:15 templates/sidebar_group.html:98
+msgid "Banned Members"
+msgstr "Anggota dilarang"
+
+#: templates/groupsystem/bannedmembers.html:44
+#: templates/groupsystem/editextraperm.html:3
+#: templates/groupsystem/joinrequests.html:44
+#: templates/groupsystem/members.html:61
+msgid "User"
+msgstr "pemakai"
+
+#: templates/groupsystem/bannedmembers.html:45
+#: templates/groupsystem/joinrequests.html:45
+#: templates/groupsystem/members.html:63
+#: templates/messagingsystem/chats.html:175
+#: templates/messagingsystem/index.html:252
+msgid "Actions"
+msgstr "tindakan"
+
+#: templates/groupsystem/bannedmembers.html:58
+msgid "Lift Ban"
+msgstr "angkat Ban"
+
+#: templates/groupsystem/commentadmin.html:17
+#: templates/groupsystem/commentadmin.html:22 templates/sidebar_group.html:71
+#: templates/sidebar_group_admin.html:41
+msgid "Comments"
+msgstr "komentar"
+
+#: templates/groupsystem/commentadmin.html:55
+#: templates/groupsystem/editcommentpage.html:39
+msgid "Post: "
+msgstr "Pos:"
+
+#: templates/groupsystem/commentadmin.html:56
+#: templates/groupsystem/editcommentpage.html:42
+msgid "Commented By: "
+msgstr "Berkomentar Oleh:"
+
+#: templates/groupsystem/commentadmin.html:58
+msgid "Comment: "
+msgstr "Komentar:"
+
+#: templates/groupsystem/commentadmin.html:60
+#: templates/groupsystem/postsadmin.html:89
+msgid "edit"
+msgstr "mengedit"
+
+#: templates/groupsystem/commentadmin.html:62
+msgid "approve"
+msgstr "menyetujui"
+
+#: templates/groupsystem/commentadmin.html:71
+msgid "No comments!!"
+msgstr "Tidak ada komentar!!"
+
+#: templates/groupsystem/creategroupsuccess.html:3
+msgid "Your new group is created"
+msgstr "grup baru Anda dibuat"
+
+#: templates/groupsystem/creategroupsuccess.html:4
+msgid "Group UUID: "
+msgstr "Kelompok UUID:"
+
+#: templates/groupsystem/creategroupsuccess.html:5
+msgid "Url: "
+msgstr "url:"
+
+#: templates/groupsystem/creategroupsuccess.html:6
+msgid "More Settings: "
+msgstr "Pengaturan lebih lanjut:"
+
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:56
+msgid "Custom roles"
+msgstr "peran kustom"
+
+#: templates/groupsystem/customroles.html:17
+#: templates/groupsystem/customroles.html:22
+msgid "Custom Roles"
+msgstr "Peran kustom"
+
+#: templates/groupsystem/customroles.html:47
+msgid "Create custom role"
+msgstr "Buat peran khusus"
+
+#: templates/groupsystem/customroles.html:68
+msgid "You don't have any custom roles defined"
+msgstr "Anda tidak memiliki peran khusus didefinisikan"
+
+#: templates/groupsystem/customroles.html:76
+#: templates/groupsystem/defaultroles.html:62
+msgid "Permissions"
+msgstr "izin"
+
+#: templates/groupsystem/customroles.html:91
+msgid "Create Custom Role"
+msgstr "Membuat Custom Peran"
+
+#: templates/groupsystem/customroles.html:113
+msgid "You dont have permission to edit role"
+msgstr "Anda tidak memiliki izin untuk mengedit peran"
+
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:46
+msgid "Default roles"
+msgstr "role standar"
+
+#: templates/groupsystem/defaultroles.html:17
+#: templates/groupsystem/defaultroles.html:22
+msgid "Default Roles"
+msgstr "Peran bawaan"
+
+#: templates/groupsystem/editcommentpage.html:10
+#: templates/groupsystem/editcommentpage.html:14
+#: templates/groupsystem/editpostpage.html:10
+#: templates/groupsystem/editpostpage.html:14
+#: templates/groupsystem/joined_group.html:16
+#: templates/groupsystem/subscribed_group.html:16
+msgid "admin"
+msgstr "admin"
+
+#: templates/groupsystem/editcommentpage.html:40
+#: templates/groupsystem/editpostpage.html:42
+msgid "Approved: "
+msgstr "disetujui:"
+
+#: templates/groupsystem/editcommentpage.html:41
+#: templates/groupsystem/editpostpage.html:43
+msgid "Approved By: "
+msgstr "Disetujui oleh:"
+
+#: templates/groupsystem/editcommentpage.html:43
+msgid "Commented on: "
+msgstr "Berkomentar pada:"
+
+#: templates/groupsystem/editcustomrole.html:3
+msgid "User who assigned with this role"
+msgstr "Pengguna yang ditugaskan dengan peran ini"
+
+#: templates/groupsystem/editpostpage.html:39
+msgid "Creator: "
+msgstr "Pencipta:"
+
+#: templates/groupsystem/editpostpage.html:45
+msgid "Post Created on: "
+msgstr "Posting Dibuat pada:"
+
+#: templates/groupsystem/eventform.html:7
+msgid "Clear"
+msgstr "Bersih"
+
+#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:10
+#: templates/groupsystem/events.html:14 templates/groupsystem/events.html:38
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:10
+#: templates/groupsystem/eventsadmin.html:15
+#: templates/groupsystem/eventsadmin.html:50 templates/sidebar_group.html:11
+#: templates/sidebar_group.html:107 templates/sidebar_group_admin.html:77
+msgid "Events"
+msgstr "Acara"
+
+#: templates/groupsystem/events.html:88
+msgid "Startdate: "
+msgstr "Mulai tanggal:"
+
+#: templates/groupsystem/events.html:90
+msgid "Enddate: "
+msgstr "enddate:"
+
+#: templates/groupsystem/eventsadmin.html:40
+msgid "Create Event"
+msgstr "Buat Acara"
+
+#: templates/groupsystem/groupdetails.html:89
+msgid "Leave Group"
+msgstr "Meninggalkan grup"
+
+#: templates/groupsystem/groupdetails.html:97
+#: templates/groupsystem/groupdetails.html:113
+msgid "Cancel Request"
+msgstr "Batalkan Permintaan"
+
+#: templates/groupsystem/groupdetails.html:102
+#: templates/groupsystem/groupdetails.html:108
+msgid "Join Group"
+msgstr "Bergabung dengan grup"
+
+#: templates/groupsystem/groupdetails.html:135
+msgid "Invite User"
+msgstr "Undang Pengguna"
+
+#: templates/groupsystem/groupdetails.html:142
+msgid "Go to Group Admin"
+msgstr "Buka Group Admin"
+
+#: templates/groupsystem/joined_group.html:5
+#: templates/groupsystem/joined_group.html:12
+#: templates/profilesystem/index.html:588 templates/sidebar_community.html:13
+msgid "Joined Groups"
+msgstr "Grup bergabung"
+
+#: templates/groupsystem/joinrequests.html:10
+#: templates/groupsystem/joinrequests.html:15
+msgid "Join Requests"
+msgstr "bergabung Permintaan"
+
+#: templates/groupsystem/joinrequests.html:57
+#: templates/groupsystem/postsadmin.html:79
+msgid "Approve"
+msgstr "Menyetujui"
+
+#: templates/groupsystem/joinrequests.html:60
+msgid "Deny"
+msgstr "Menyangkal"
+
+#: templates/groupsystem/members.html:48
+msgid "Add member"
+msgstr "Tambahkan anggota"
+
+#: templates/groupsystem/members.html:62
+msgid "Role"
+msgstr "Peran"
+
+#: templates/groupsystem/members.html:87
+msgid "Ban Member"
+msgstr "Ban Anggota"
+
+#: templates/groupsystem/members.html:91
+msgid "SuperAdmin"
+msgstr "SuperAdmin"
+
+#: templates/groupsystem/members.html:93
+msgid "Moderator"
+msgstr "moderator"
+
+#: templates/groupsystem/members.html:94
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:49 templates/publicusers/users.html:27
+msgid "Member"
+msgstr "Anggota"
+
+#: templates/groupsystem/members.html:101
+msgid "Extra permission"
+msgstr "izin tambahan"
+
+#: templates/groupsystem/members.html:118
+msgid "Edit User Perm"
+msgstr "Mengedit Perm Pengguna"
+
+#: templates/groupsystem/members.html:141
+#: templates/groupsystem/members.html:153
+#: templates/groupsystem/members.html:169
+#: templates/groupsystem/members.html:181
+#: templates/groupsystem/members.html:202
+#: templates/groupsystem/members.html:214
+#: templates/groupsystem/members.html:268
+msgid "Change role"
+msgstr "perubahan peran"
+
+#: templates/groupsystem/members.html:231
+msgid "You dont have permissions to edit extra permissions"
+msgstr "Anda tidak memiliki izin untuk mengedit izin tambahan"
+
+#: templates/groupsystem/postdetails.html:72
+msgid "Like"
+msgstr "Seperti"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " likes"
+msgstr "seperti"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " comments"
+msgstr "komentar"
+
+#: templates/groupsystem/posts.html:10 templates/groupsystem/posts.html:14
+#: templates/groupsystem/postsadmin.html:10
+#: templates/groupsystem/postsadmin.html:15 templates/sidebar_group.html:19
+#: templates/sidebar_group.html:54 templates/sidebar_group_admin.html:24
+msgid "Posts"
+msgstr "Posts"
+
+#: templates/groupsystem/posts.html:40 templates/groupsystem/posts.html:104
+#: templates/groupsystem/postsadmin.html:41
+#: templates/groupsystem/postsadmin.html:107
+msgid "Create Post"
+msgstr "Buat Posting"
+
+#: templates/groupsystem/posts.html:84 templates/groupsystem/singlepost.html:32
+msgid "more"
+msgstr "lebih"
+
+#: templates/groupsystem/posts.html:95 templates/groupsystem/postsadmin.html:99
+msgid "No Posts Yet!!"
+msgstr "Belum ada postingan!!"
+
+#: templates/groupsystem/postsadmin.html:79
+msgid "Not approved"
+msgstr "Tidak disetujui"
+
+#: templates/groupsystem/roledetails.html:10
+msgid "No such default role"
+msgstr "Tidak ada peran bawaan seperti"
+
+#: templates/groupsystem/subscribed_group.html:5
+#: templates/groupsystem/subscribed_group.html:12
+#: templates/profilesystem/index.html:609 templates/sidebar_community.html:14
+msgid "Subscribed Groups"
+msgstr "Grup berlangganan"
+
+#: templates/hashtag/images.html:14
+msgid "You have no images uploaded"
+msgstr "Anda telah ada gambar yang diunggah"
+
+#: templates/hashtag/index.html:4
+msgid "Hashtag Banner"
+msgstr "hashtag Banner"
+
+#: templates/hashtag/index.html:38 templates/hashtag/index.html:41
+#: templates/landing_base.html:79 templates/landing_base.html:131
+#: templates/profilesystem/index.html:441
+msgid "Hashtag"
+msgstr "Tanda pagar"
+
+#: templates/hashtag/index.html:52
+msgid "Basic Income Hashtag Banner Campaign"
+msgstr "Kampanye Penghasilan dasar Hashtag Banner"
+
+#: templates/hashtag/index.html:53
+msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgstr ""
+"Menambahkan banner Penghasilan Dasar untuk profil foto Facebook / Twitter "
+"Anda."
+
+#: templates/hashtag/index.html:57
+msgid "Add hashtag banner to your facebook account"
+msgstr "Tambahkan hashtag spanduk ke akun facebook Anda"
+
+#: templates/hashtag/index.html:62
+msgid "Add hashtag banner to your twitter account"
+msgstr "Tambahkan hashtag spanduk ke akun twitter Anda"
+
+#: templates/hashtag/index.html:68
+msgid "You've not added facebook yet! Click the button to add"
+msgstr "Anda tidak menambahkan facebook belum! Klik tombol untuk menambahkan"
+
+#: templates/hashtag/index.html:70
+msgid "Add Facebook"
+msgstr "Tambahkan Facebook"
+
+#: templates/hashtag/index.html:78
+msgid "You've not added twitter yet! Click the button to add"
+msgstr "Anda tidak menambahkan twitter belum! Klik tombol untuk menambahkan"
+
+#: templates/hashtag/index.html:80
+msgid "Add Twitter"
+msgstr "Tambahkan Twitter"
+
+#: templates/hashtag/index.html:87
+msgid "Select from uploaded"
+msgstr "Pilih dari upload"
+
+#: templates/hashtag/index.html:93
+msgid "Upload New Images"
+msgstr "Unggah Gambar Baru"
+
+#: templates/hashtag/index.html:98
+msgid "Change Banner Color"
+msgstr "Perubahan Banner Warna"
+
+#: templates/hashtag/index.html:102
+msgid "Make profile image"
+msgstr "Membuat gambar profil"
+
+#: templates/hashtag/index.html:108
+msgid "Download image"
+msgstr "Download gambar"
+
+#: templates/hashtag/index.html:121
+msgid "Upload Images"
+msgstr "Unggah Gambar"
+
+#: templates/hashtag/index.html:255 templates/hashtag/index.html:271
+msgid "Upload to facebook"
+msgstr "Upload ke facebook"
+
+#: templates/hashtag/index.html:305 templates/hashtag/index.html:321
+msgid "Upload to twitter"
+msgstr "Upload ke twitter"
+
+#: templates/hashtag/index.html:356
+msgid "Uploading....."
+msgstr "Upload ....."
+
+#: templates/hashtag/index.html:365
+msgid "Support #basicincome project"
+msgstr "Mendukung"
+
+#: templates/hashtag/index.html:407
+msgid "Uploaded"
+msgstr "upload"
+
+#: templates/hashtag/index.html:419
+msgid "Cant upload now!! try later"
+msgstr "Cant upload sekarang !! coba nanti"
+
+#: templates/information/contact.html:4 templates/information/contact.html:10
+#: templates/information/contact.html:13 templates/information/success.html:4
+#: templates/information/success.html:10 templates/landing_base.html:78
+#: templates/landing_base.html:198 templates/profilesystem/index.html:154
+#: templates/profilesystem/index.html:373 templates/publicusers/user.html:65
+#: templates/publicusers/user.html:236
+msgid "Contact"
+msgstr "Kontak"
+
+#: templates/information/contact.html:24
+msgid "Get in touch with us"
+msgstr "Dapatkan berhubungan dengan kami"
+
+#: templates/information/contact.html:25
+msgid ""
+"if you have any comments or questions, please get in touch. We’d love to "
+"hear fom you."
+msgstr ""
+
+#: templates/information/index.html:4 templates/information/index.html:13
+#: templates/information/index.html:24 templates/profilesystem/index.html:434
+#: templates/sidebar_community.html:20
+msgid "Information"
+msgstr "Informasi"
+
+#: templates/information/index.html:10
+msgid "About our system"
+msgstr "Tentang sistem kami"
+
+#: templates/information/success.html:13
+msgid "contact"
+msgstr "kontak"
+
+#: templates/information/success.html:24
+msgid "Thank you for your interest"
+msgstr "Terima kasih atas minat Anda"
+
+#: templates/information/success.html:25
+msgid "We will contact you shortly"
+msgstr "Kami akan segera menghubungi Anda"
+
+#: templates/invitationsystem/checkinvitation.html:16
+msgid "Get access to ekata beta"
+msgstr "Dapatkan akses ke ekata beta"
+
+#: templates/invitationsystem/index.html:16
+#: templates/invitationsystem/sent.html:13 templates/landing/index.html:238
+msgid "Get your invite access key to the ekata beta"
+msgstr "Dapatkan Anda mengundang kunci akses ke beta ekata"
+
+#: templates/invitationsystem/sent.html:15 templates/landing/index.html:407
+msgid ""
+"Your request is sent!! You will get an invitation email soon with a link and "
+"invite key."
+msgstr ""
+
+#: templates/landing/hashtag.html:35
+msgid "Show Support"
+msgstr "Tampilkan Dukungan"
+
+#: templates/landing/hashtag.html:36
+#, fuzzy
+#| msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgid ""
+"In adding the #basicincome hashtag banner to your facebook and twitter "
+"profile !!"
+msgstr ""
+"Menambahkan banner Penghasilan Dasar untuk profil foto Facebook / Twitter "
+"Anda."
+
+#: templates/landing/hashtag.html:48
+msgid "World Supporters of Basic Income"
+msgstr "Pendukung dunia Penghasilan Dasar"
+
+#: templates/landing/hashtag.html:71
+msgid "Create my banner"
+msgstr "Buat banner saya"
+
+#: templates/landing/hashtag.html:73
+msgid "Login/Signup to be here"
+msgstr "Login / Signup berada di sini"
+
+#: templates/landing/index.html:40
+msgid ""
+"Ekata is a social platform for individuals, communities, associations, and "
+"municipalities. Ekata empowers you with the best of today’s online "
+"technologies -- digital tools to help you stay managed, connected, and "
+"informed. Whether you want to build a web presence for yourself or your "
+"organization, or you simply want a place to connect with others who share "
+"your interests and goals, Ekata is the place for you. Welcome!"
+msgstr ""
+
+#: templates/landing/index.html:55
+msgid "Communities"
+msgstr "Komunitas"
+
+#: templates/landing/index.html:56
+msgid ""
+"You're a social group that shares something in common. Small or large. "
+"Local, national, or global. Virtual or geographically based. Your common "
+"purpose and identity give you a sense of community. Ekata was built to align "
+"with how you wish to relate."
+msgstr ""
+
+#: templates/landing/index.html:60
+msgid "Associations"
+msgstr "asosiasi"
+
+#: templates/landing/index.html:61
+msgid ""
+"You're a homeowners or condo association, property or land trust, or "
+"nonprofit organization. An organized body of people who live or work "
+"together to improve your lives or society. Ekata gives you the tools to "
+"manage your association’s business, membership, activities and interests."
+msgstr ""
+
+#: templates/landing/index.html:65
+msgid "Municipalities"
+msgstr "kota"
+
+#: templates/landing/index.html:66
+msgid ""
+"You're a town, municipality or county. A government institution with "
+"incorporated status in a jurisdiction. The Ekata platform has the "
+"administrative tools you need to function efficiently and connect with "
+"elected officials, staff, and constituents in the 21st century."
+msgstr ""
+
+#: templates/landing/index.html:78
+msgid "Platform Vision"
+msgstr "Platform Visi"
+
+#: templates/landing/index.html:86
+msgid ""
+"Mark Witham, social entrepreneur and founder of the Ekata platform (Formally "
+"known as Basic Income Project), is passionate about empowering others with "
+"options to bring about their own social change."
+msgstr ""
+
+#: templates/landing/index.html:91
+msgid ""
+"We combine technology, knowledge, and imagination to build better social "
+"systems for this planet and future generations. Now we need you! Use the "
+"Ekata platform to help create a network for fulfilling lives, communities, "
+"and positive social change."
+msgstr ""
+
+#: templates/landing/index.html:106
+msgid "Social Responsiblity"
+msgstr "Tanggung Jawab sosial"
+
+#: templates/landing/index.html:112
+msgid "Ekata has partnered with "
+msgstr "Ekata telah bermitra dengan"
+
+#: templates/landing/index.html:112
+msgid ", a socially responsible digital currency which is distributed as "
+msgstr ""
+", Mata uang digital yang bertanggung jawab sosial yang didistribusikan "
+"sebagai"
+
+#: templates/landing/index.html:112
+msgid ""
+" to people around the world. Powered by blockchain technology, Grantcoin is "
+"the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization "
+"with a mission for social good. Join Ekata and receive Grantcoin on a "
+"regular basis, for free. Spend it or give it away to other Ekata users -- "
+"artists, musicians, bloggers, nonprofits, or businesses."
+msgstr ""
+
+#: templates/landing/index.html:162
+msgid "Many Key Features"
+msgstr "Banyak Fitur Utama"
+
+#: templates/landing/index.html:165
+msgid "Group sites for art, music, news, politics, activism, and business."
+msgstr ""
+"situs kelompok untuk seni, musik, berita, politik, aktivis, dan bisnis."
+
+#: templates/landing/index.html:169
+msgid "Social communication through instant messaging, posts, and comments."
+msgstr "komunikasi sosial melalui pesan instan, posting, dan komentar."
+
+#: templates/landing/index.html:173
+msgid "Governance of members, staff roles, social forums, and member voting."
+msgstr "Tata Kelola anggota, peran staf, forum sosial, dan anggota voting."
+
+#: templates/landing/index.html:177
+msgid "Web of trust and a socially responsible currency system."
+msgstr ""
+"Web kepercayaan dan sistem mata uang yang bertanggung jawab secara sosial."
+
+#: templates/landing/index.html:196
+msgid "More Features"
+msgstr "Fitur lebih"
+
+#: templates/landing/index.html:198
+msgid "API for building in app and feature integrations."
+msgstr "API untuk membangun di aplikasi dan fitur integrasi."
+
+#: templates/landing/index.html:199
+msgid "Open Source."
+msgstr "Open Source."
+
+#: templates/landing/index.html:211
+msgid "#BasicIncome Hashtag Banner Campaign"
+msgstr ""
+
+#: templates/landing/index.html:217
+msgid ""
+"Help Ekata in showing your support for basic income by adding a custom "
+"colored #basicincome hashtag banner to your Twitter and Facebook profile "
+"photo. Together let us raise awareness!"
+msgstr ""
+
+#: templates/landing/index.html:219
+msgid "Click here to create and upload the banner"
+msgstr "Klik di sini untuk membuat dan meng-upload banner"
+
+#: templates/landing/index.html:418
+msgid "Please correct the errors"
+msgstr "Harap perbaiki kesalahan"
+
+#: templates/landing/news.html:39
+msgid "News and Stories"
+msgstr "Berita dan Cerita"
+
+#: templates/landing/news.html:46
+msgid "Trending"
+msgstr "tren"
+
+#: templates/landing/news.html:80 templates/landing/newsdetail.html:45
+#: templates/profilesystem/index.html:343
+msgid "About Me"
+msgstr "Tentang saya"
+
+#: templates/landing_base.html:74
+msgid "Home"
+msgstr "homepage"
+
+#: templates/landing_base.html:75
+msgid "Features"
+msgstr "Fitur lebih"
+
+#: templates/landing_base.html:99 templates/landing_base.html:164
+msgid "My Account"
+msgstr "Akun saya"
+
+#: templates/landing_base.html:104 templates/landing_base.html:166
+#: templates/profilesystem/index.html:406
+#: templates/publicusers/userdetails.html:50
+#: templates/publicusers/userlist_old.html:4
+#: templates/publicusers/userlist_old.html:44
+#: templates/publicusers/userlist_old.html:60
+msgid "Users"
+msgstr "pengguna"
+
+#: templates/landing_base.html:112 templates/landing_base.html:168
+#: templates/profilesystem/index.html:420 templates/sidebar_home.html:50
+#: templates/timelines/index.html:4 templates/timelines/index.html:18
+#: templates/timelines/index.html:21
+msgid "Timeline"
+msgstr "Timeline"
+
+#: templates/landing_base.html:127 templates/landing_base.html:170
+msgid "information"
+msgstr "informasi"
+
+#: templates/landing_base.html:134
+msgid "Customize link"
+msgstr "Sesuaikan Link"
+
+#: templates/landing_base.html:136
+msgid "Sign-out"
+msgstr "Keluar"
+
+#: templates/landing_base.html:161
+msgid "Links"
+msgstr "Link"
+
+#: templates/landing_base.html:171
+msgid "Create Hashtag"
+msgstr "Buat Hashtag"
+
+#: templates/landing_base.html:177
+msgid "Social"
+msgstr "Sosial"
+
+#: templates/landing_base.html:186
+msgid "Signup for the Newsletter"
+msgstr "Mendaftar untuk Newsletter"
+
+#: templates/landing_base.html:200
+msgid "Please feel free to inquire more about the EKATA platform."
+msgstr "Silahkan untuk menanyakan lebih lanjut tentang platform EKATA."
+
+#: templates/landing_base.html:249
+msgid "Powered by "
+msgstr "Dipersembahkan oleh"
+
+#: templates/messagingsystem/chats.html:70
+msgid "Send Unit to: "
+msgstr "Kirim Satuan ke:"
+
+#: templates/messagingsystem/chats.html:87
+msgid "Request Unit from: "
+msgstr "Meminta Satuan dari:"
+
+#: templates/messagingsystem/chats.html:93
+#: templates/publicusers/userdetails.html:123 templates/timelines/index.html:57
+#: templates/timelines/index.html:59
+msgid "Request"
+msgstr "Permintaan"
+
+#: templates/messagingsystem/index.html:4
+#: templates/profilesystem/index.html:427
+msgid "Messaging"
+msgstr "pesan"
+
+#: templates/messagingsystem/index.html:58
+#: templates/messagingsystem/index.html:61 templates/sidebar_home.html:56
+msgid "Messenger"
+msgstr "Kurir"
+
+#: templates/messagingsystem/index.html:93
+#: templates/messagingsystem/index.html:106
+msgid "Sorry you have no chats yet!!!"
+msgstr "Maaf Anda tidak memiliki chatting belum !!!"
+
+#: templates/messagingsystem/index.html:121
+msgid "Send Units"
+msgstr "Kirim Unit"
+
+#: templates/messagingsystem/index.html:126
+msgid "Request Request"
+msgstr "Permintaan Permintaan"
+
+#: templates/messagingsystem/navbarmessage.html:37
+msgid "All caught up"
+msgstr "semua sudah ketahuan"
+
+#: templates/notification/notification.html:19
+#: templates/timelines/index.html:278 templates/timelines/timeline.html:54
+#: templates/timelines/timeline.html:72
+msgid "sent"
+msgstr "mengirim"
+
+#: templates/notification/notification.html:26
+msgid "requested"
+msgstr "diminta"
+
+#: templates/notification/notification.html:33
+msgid "units released"
+msgstr "unit dirilis"
+
+#: templates/notification/notification.html:40
+msgid "verfied as real user"
+msgstr "verfied sebagai pengguna nyata"
+
+#: templates/notification/notification.html:47
+msgid "unverfied you"
+msgstr "belum diverifikasi Anda"
+
+#: templates/notification/notification.html:54
+msgid "sent a connection request"
+msgstr "mengirimkan permintaan sambungan"
+
+#: templates/notification/notification.html:61
+msgid "canceled connection request"
+msgstr "permintaan sambungan dibatalkan"
+
+#: templates/notification/notification.html:68
+msgid "accepted connection request"
+msgstr "permintaan koneksi diterima"
+
+#: templates/notification/notification.html:75
+msgid "rejected connection request"
+msgstr "permintaan koneksi ditolak"
+
+#: templates/notification/notification.html:82
+msgid "disconnected you"
+msgstr "terputus Anda"
+
+#: templates/notification/notification.html:89
+msgid "invited you to group"
+msgstr "mengundang Anda ke grup"
+
+#: templates/notification/notification.html:96
+msgid "sent a join request to group"
+msgstr "terkirim join permintaan ke grup"
+
+#: templates/notification/notification.html:128
+msgid "All caught up!!"
+msgstr "Semua sudah ketahuan!!"
+
+#: templates/profilesystem/address.html:43
+msgid "Click add button to add your address"
+msgstr "Klik tombol add untuk menambahkan alamat Anda"
+
+#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:241
+msgid "Phone Office"
+msgstr "telepon Kantor"
+
+#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:247
+msgid "Phone Home"
+msgstr "Telepon rumah"
+
+#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:253
+msgid "Phone Mobile"
+msgstr "Telepon Genggam"
+
+#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:259
+msgid "Phone Emergency"
+msgstr "Darurat telepon"
+
+#: templates/profilesystem/contact.html:30
+msgid "Click add button to add your phone number"
+msgstr "Klik tombol add untuk menambahkan nomor telepon Anda"
+
+#: templates/profilesystem/documents.html:4
+msgid "Profile Images"
+msgstr "Membuat gambar profil"
+
+#: templates/profilesystem/documents.html:18
+msgid "Images"
+msgstr "Unggah Gambar"
+
+#: templates/profilesystem/documents.html:34
+#: templates/profilesystem/index.html:223
+msgid "Documents"
+msgstr "dokumen"
+
+#: templates/profilesystem/documents.html:50
+msgid "Legal"
+msgstr "Hukum"
+
+#: templates/profilesystem/emailaddress.html:4
+msgid "Email address associated with your account"
+msgstr "alamat email yang terkait dengan akun Anda"
+
+#: templates/profilesystem/emailaddress.html:17
+msgid "(Primary)"
+msgstr "(Utama)"
+
+#: templates/profilesystem/emailaddress.html:30
+msgid "No email associated with your account"
+msgstr "Tidak ada email yang terkait dengan akun Anda"
+
+#: templates/profilesystem/index.html:84 templates/profilesystem/index.html:307
+#: templates/publicusers/user.html:112
+msgid "Personal Information"
+msgstr "Informasi pribadi"
+
+#: templates/profilesystem/index.html:115
+#: templates/profilesystem/index.html:365
+msgid "Location"
+msgstr "tempat"
+
+#: templates/profilesystem/index.html:191 templates/publicusers/user.html:166
+msgid "Activities"
+msgstr "Kegiatan"
+
+#: templates/profilesystem/index.html:198 templates/publicusers/user.html:170
+msgid "Activation date"
+msgstr "tanggal aktivasi"
+
+#: templates/profilesystem/index.html:210
+msgid "More"
+msgstr "Lebih"
+
+#: templates/profilesystem/index.html:236
+#: templates/publicusers/connections.html:74
+msgid "Search..."
+msgstr "Pencarian..."
+
+#: templates/profilesystem/index.html:253
+msgid "Upload Document"
+msgstr "shared Documents"
+
+#: templates/profilesystem/index.html:268
+msgid "Shared Documents"
+msgstr "shared Documents"
+
+#: templates/profilesystem/index.html:300
+msgid "Change Public Visibility"
+msgstr "Ubah Visibilitas Umum"
+
+#: templates/profilesystem/index.html:318 templates/profilesystem/pinfo.html:42
+#: templates/publicusers/user.html:138
+msgid "Website"
+msgstr "Situs web"
+
+#: templates/profilesystem/index.html:325 templates/profilesystem/pinfo.html:23
+#: templates/publicusers/user.html:126
+msgid "Gender"
+msgstr "Jenis kelamin"
+
+#: templates/profilesystem/index.html:336
+msgid "Avatar"
+msgstr "Tambahkan avatar"
+
+#: templates/profilesystem/index.html:361 templates/publicusers/user.html:188
+msgid "Address"
+msgstr "Alamat"
+
+#: templates/profilesystem/index.html:385
+msgid "Others"
+msgstr "Lainnya"
+
+#: templates/profilesystem/index.html:389
+msgid "Profile completion"
+msgstr "profil selesai"
+
+#: templates/profilesystem/index.html:398
+msgid "Please edit profile information to change visibility"
+msgstr "Harap mengedit informasi profil untuk mengubah visibilitas"
+
+#: templates/profilesystem/index.html:401
+msgid "Customize links of landing dropdown"
+msgstr "Sesuaikan link pendaratan dropdown"
+
+#: templates/profilesystem/index.html:454
+msgid "Change password"
+msgstr "Ganti kata sandi"
+
+#: templates/profilesystem/index.html:458
+msgid "Set password"
+msgstr "set password"
+
+#: templates/profilesystem/index.html:462
+msgid "View As Public"
+msgstr "View Sebagai Public"
+
+#: templates/profilesystem/index.html:473
+msgid "Linked social account"
+msgstr "akun sosial yang terkait"
+
+#: templates/profilesystem/index.html:525
+msgid "Manage"
+msgstr "Mengelola"
+
+#: templates/profilesystem/index.html:540
+msgid "Reference"
+msgstr "Referensi"
+
+#: templates/profilesystem/index.html:552
+msgid "Refresh"
+msgstr "Menyegarkan"
+
+#: templates/profilesystem/index.html:567
+msgid "My Groups"
+msgstr "Grup saya"
+
+#: templates/profilesystem/index.html:632
+msgid "Apps"
+msgstr "Apps"
+
+#: templates/profilesystem/index.html:648
+msgid "Sites"
+msgstr "situs"
+
+#: templates/profilesystem/index.html:664
+msgid "Ads"
+msgstr "Iklan"
+
+#: templates/profilesystem/logdata.html:3
+msgid "Logs Details"
+msgstr "log Detail"
+
+#: templates/profilesystem/logdata.html:6
+msgid "Last payment received"
+msgstr "pembayaran terakhir diterima"
+
+#: templates/profilesystem/logdata.html:16
+msgid "Advertisement post"
+msgstr "Iklan pos"
+
+#: templates/profilesystem/logdata.html:20
+msgid "Last login "
+msgstr "Login terakhir"
+
+#: templates/profilesystem/logdata.html:24
+msgid "Last payment sent"
+msgstr "pembayaran terakhir dikirim"
+
+#: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
+msgid "Username"
+msgstr "Nama pengguna"
+
+#: templates/profilesystem/pinfo.html:38
+msgid "Community"
+msgstr "Masyarakat"
+
+#: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
+msgid "About me"
+msgstr "Tentang saya"
+
+#: templates/profilesystem/profilecompletiontasks.html:5
+msgid "Add your website to complete your profile."
+msgstr "Tambahkan website Anda untuk menyelesaikan profil Anda."
+
+#: templates/profilesystem/profilecompletiontasks.html:11
+msgid "Add your gender to complete your profile."
+msgstr "Tambahkan jenis kelamin Anda untuk menyelesaikan profil Anda."
+
+#: templates/profilesystem/profilecompletiontasks.html:17
+msgid "Add your contact number to complete your profile."
+msgstr "Tambahkan nomor kontak Anda untuk melengkapi profil Anda."
+
+#: templates/profilesystem/profilecompletiontasks.html:23
+msgid "Add a profile image to complete your profile."
+msgstr "Menambahkan gambar profil untuk melengkapi profil Anda."
+
+#: templates/profilesystem/profilecompletiontasks.html:29
+msgid "Add your location to complete your profile."
+msgstr "Menambahkan lokasi Anda untuk menyelesaikan profil Anda."
+
+#: templates/profilesystem/profilecompletiontasks.html:35
+msgid "Add a social account of yours to complete your profile."
+msgstr "Menambahkan akun sosial Anda untuk menyelesaikan profil Anda."
+
+#: templates/profilesystem/profilecompletiontasks.html:41
+msgid "Add your email account to complete your profile."
+msgstr "Tambahkan akun email Anda untuk menyelesaikan profil Anda."
+
+#: templates/profilesystem/profilecompletiontasks.html:50
+msgid "Please verify your email address(resend verification)"
+msgstr "Harap verifikasi alamat email Anda (verifikasi ulang)"
+
+#: templates/profilesystem/reference.html:6
+msgid "Following user verified me"
+msgstr "Berikut pengguna diverifikasi me"
+
+#: templates/profilesystem/reference.html:35
+msgid "Oops!! No Reference Yet"
+msgstr "Ups !! Tidak ada Referensi Namun"
+
+#: templates/profilesystem/unlinksocial.html:69
+msgid "This is your last method to connect to this site."
+msgstr "Ini adalah metode terakhir Anda untuk terhubung ke situs ini."
+
+#: templates/profilesystem/unlinksocial.html:70
+msgid "You will be asked for a password if you proceed"
+msgstr "Anda akan diminta untuk password jika Anda melanjutkan"
+
+#: templates/publicusers/connections.html:50
+#: templates/publicusers/userlist_old.html:48
+#, fuzzy, python-format
+#| msgid "Hello, %(username_t)s!"
+msgid "Hello, %(username_t)s!"
+msgstr "Hello,% (username_t) s!"
+
+#: templates/publicusers/connusers.html:31
+msgid "No connections"
+msgstr "ada koneksi"
+
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:46 templates/publicusers/users.html:27
+msgid "Staff"
+msgstr "Staf"
+
+#: templates/publicusers/user.html:22
+#: templates/publicusers/userdetails.html:401
+#: templates/publicusers/userlist.html:132
+#: templates/publicusers/userlist_old.html:124
+#: templates/publicusers/users_old.html:23
+msgid "lastseen: "
+msgstr "terakhir terlihat:"
+
+#: templates/publicusers/user.html:26
+#: templates/publicusers/userdetails.html:397
+#: templates/publicusers/userlist.html:43
+#: templates/publicusers/userlist_old.html:122
+#: templates/publicusers/userlist_old.html:128
+#: templates/publicusers/users_old.html:27
+msgid "Offline"
+msgstr "Offline"
+
+#: templates/publicusers/user.html:51 templates/timelines/timeline.html:147
+#: templates/timelines/timeline.html:154
+msgid "Disconnect"
+msgstr "Memutuskan"
+
+#: templates/publicusers/user.html:53
+msgid "Cancel connection request"
+msgstr "Membatalkan permintaan sambungan"
+
+#: templates/publicusers/user.html:55
+msgid "Reject connection request"
+msgstr "Menolak permintaan sambungan"
+
+#: templates/publicusers/user.html:56
+msgid "Accept connection request"
+msgstr "Menerima permintaan sambungan"
+
+#: templates/publicusers/user.html:58
+msgid "Connect"
+msgstr "Menghubungkan"
+
+#: templates/publicusers/user.html:61
+msgid "Connection type"
+msgstr "Jenis koneksi"
+
+#: templates/publicusers/user.html:64
+msgid "Family"
+msgstr "Keluarga"
+
+#: templates/publicusers/user.html:69
+msgid "Friend Type"
+msgstr "Jenis teman"
+
+#: templates/publicusers/user.html:78
+msgid "Send request"
+msgstr "Kirim permintaan"
+
+#: templates/publicusers/user.html:87
+msgid "Unverify"
+msgstr "data verifikasi"
+
+#: templates/publicusers/user.html:90
+msgid "I verify this user"
+msgstr "Saya memverifikasi pengguna ini"
+
+#: templates/publicusers/user.html:92
+#: templates/publicusers/userdetails.html:100
+msgid "Send Unit"
+msgstr "Kirim Satuan"
+
+#: templates/publicusers/user.html:93
+#: templates/publicusers/userdetails.html:117
+msgid "Request Unit"
+msgstr "Permintaan Satuan"
+
+#: templates/publicusers/user.html:94
+msgid "Message"
+msgstr "Pesan"
+
+#: templates/publicusers/userdetails.html:67
+msgid "Others who verify"
+msgstr "Orang lain yang memverifikasi"
+
+#: templates/publicusers/userlist.html:138
+#: templates/publicusers/userlist_old.html:130
+msgid "lastseen: unknown"
+msgstr "lastseen: tidak diketahui"
+
+#: templates/publicusers/userlist_old.html:72
+msgid " Search Users "
+msgstr "Cari Pengguna"
+
+#: templates/sidebar_apps.html:2
+msgid "Hashtag Campaign"
+msgstr "Kampanye hashtag"
+
+#: templates/sidebar_community.html:26
+msgid "About Our System"
+msgstr "Tentang Sistem kami"
+
+#: templates/sidebar_community.html:27
+msgid "Contact Details"
+msgstr "Hubungi"
+
+#: templates/sidebar_community.html:42
+msgid "Email Lists"
+msgstr "Daftar email"
+
+#: templates/sidebar_group.html:5
+msgid "Homepage"
+msgstr "homepage"
+
+#: templates/sidebar_group.html:25 templates/sidebar_group.html:60
+#: templates/sidebar_group_admin.html:30
+msgid "Group's Posts"
+msgstr "Kelompok Posts"
+
+#: templates/sidebar_group.html:26 templates/sidebar_group.html:61
+#: templates/sidebar_group_admin.html:31
+msgid "Member's Posts"
+msgstr "Anggota ini Posts"
+
+#: templates/sidebar_group.html:31
+msgid "Group Admin Section"
+msgstr "Bagian Admin grup"
+
+#: templates/sidebar_group.html:77 templates/sidebar_group_admin.html:47
+msgid "Not Approved"
+msgstr "Tidak disetujui"
+
+#: templates/sidebar_group.html:95 templates/sidebar_group_admin.html:65
+msgid "Requests"
+msgstr "permintaan"
+
+#: templates/sidebar_group.html:117 templates/sidebar_group_admin.html:87
+msgid "Roles"
+msgstr "peran"
+
+#: templates/sidebar_group.html:124 templates/sidebar_group_admin.html:94
+msgid "Defaults"
+msgstr "default"
+
+#: templates/sidebar_group.html:127 templates/sidebar_group_admin.html:97
+msgid "Custom"
+msgstr "Adat"
+
+#: templates/sidebar_group.html:136 templates/sidebar_group_admin.html:106
+msgid "Account Signups"
+msgstr "Pendaftaran akun"
+
+#: templates/sidebar_group_admin.html:68
+msgid "Banned members"
+msgstr "anggota dilarang"
+
+#: templates/sidebar_home.html:10
+msgid "My Accounts"
+msgstr "Akun saya"
+
+#: templates/sidebar_home.html:17 templates/timelines/index.html:52
+#: templates/timelines/index.html:54 templates/useraccount/transfer.html:7
+#: templates/useraccount/transfer.html:13
+msgid "Transfer"
+msgstr "Transfer"
+
+#: templates/socialaccount/signup.html:9
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: templates/timelines/index.html:43
+msgid "Search: "
+msgstr "Pencarian:"
+
+#: templates/timelines/index.html:49
+msgid "Filters: "
+msgstr "filter:"
+
+#: templates/timelines/index.html:62 templates/timelines/index.html:64
+msgid "Release"
+msgstr "Melepaskan"
+
+#: templates/timelines/index.html:67 templates/timelines/index.html:69
+msgid "Verified"
+msgstr "Diverifikasi"
+
+#: templates/timelines/index.html:72 templates/timelines/index.html:74
+msgid "Unverified"
+msgstr "Tidak diverifikasi"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "you sent"
+msgstr "kamu mengirim"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "units to"
+msgstr "unit untuk"
+
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+msgid "sent you"
+msgstr "mengirim Anda"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "you requested"
+msgstr "Anda diminta"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "units from"
+msgstr "unit dari"
+
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "requested you"
+msgstr "meminta Anda"
+
+#: templates/timelines/timeline.html:52 templates/timelines/timeline.html:70
+msgid "send"
+msgstr "Kirim"
+
+#: templates/timelines/timeline.html:103
+msgid " units basic income released"
+msgstr "unit penghasilan dasar dirilis"
+
+#: templates/timelines/timeline.html:115
+msgid "you verified"
+msgstr "Anda diverifikasi"
+
+#: templates/timelines/timeline.html:115 templates/timelines/timeline.html:130
+msgid "as real user"
+msgstr "sebagai pengguna nyata"
+
+#: templates/timelines/timeline.html:117
+msgid "verified you as real user"
+msgstr "diverifikasi Anda sebagai pengguna nyata"
+
+#: templates/timelines/timeline.html:130
+msgid "you unverified"
+msgstr "Anda belum diverifikasi"
+
+#: templates/timelines/timeline.html:132
+msgid "unverified you as real user"
+msgstr "diverifikasi Anda sebagai pengguna nyata"
+
+#: templates/timelines/timeline.html:145
+msgid "Requested connection to "
+msgstr "Diminta koneksi ke"
+
+#: templates/timelines/timeline.html:152
+msgid "sent connection request"
+msgstr "permintaan sambungan mengirim"
+
+#: templates/timelines/timeline.html:156
+msgid "Reject"
+msgstr "Menolak"
+
+#: templates/timelines/timeline.html:157
+msgid "Accept"
+msgstr "Menerima"
+
+#: templates/timelines/timeline.html:162
+msgid "Connection type: "
+msgstr "Jenis koneksi:"
+
+#: templates/useraccount/index.html:83
+msgid "Pulse Points"
+msgstr "Pulse Poin"
+
+#: templates/useraccount/index.html:108 templates/useraccount/transfer.html:40
+msgid "Quick Review"
+msgstr "Ulasan cepat"
+
+#: templates/useraccount/index.html:113 templates/useraccount/transfer.html:45
+msgid "Units"
+msgstr "unit"
+
+#: templates/useraccount/index.html:165
+msgid "Transactions"
+msgstr "transaksi"
+
+#: templates/useraccount/index.html:171
+msgid "Id"
+msgstr "id"
+
+#: templates/useraccount/index.html:172 templates/useraccount/index.html:207
+msgid "From"
+msgstr "Dari"
+
+#: templates/useraccount/index.html:173 templates/useraccount/index.html:203
+msgid "To"
+msgstr "Untuk"
+
+#: templates/useraccount/index.html:174 templates/useraccount/index.html:211
+#: templates/useraccount/index.html:241
+msgid "Date"
+msgstr "Tanggal:"
+
+#: templates/useraccount/index.html:196
+msgid "Details"
+msgstr "rincian"
+
+#: templates/useraccount/index.html:234
+msgid "Basic Income Release"
+msgstr "Rilis Pendapatan dasar"
+
+#: templates/useraccount/index.html:255
+msgid "No release yet"
+msgstr "Rilis berikutnya"
+
+#: templates/useraccount/index.html:286
+msgid "Please contact a Grantcoin staff on your Account Status"
+msgstr "Silakan hubungi staf Grantcoin di Status Akun Anda"
+
+#: templates/useraccount/index.html:296
+msgid "Contact to add your organization account"
+msgstr "Hubungi untuk menambahkan akun organisasi Anda"
+
+#: templates/useraccount/transfer.html:16
+msgid "transfer"
+msgstr "transfer"
+
+#: templates/useraccount/transfer.html:55
+msgid "Select User"
+msgstr "Pilih User"
+
+#: templates/useraccount/transfer.html:80
+msgid "Search user"
+msgstr "Cari Pengguna"
+
+#: templates/useraccount/transferunit.html:4
+msgid "Send Amount To"
+msgstr "Kirim Jumlah Untuk"
+
+#: useraccount/forms.py:7 useraccount/forms.py:26
+msgid "Instruction"
+msgstr "Petunjuk"
+
+#: useraccount/forms.py:17
+msgid "Amount can't exceed your balance"
+msgstr "Jumlah tidak dapat melebihi saldo Anda"
+
+#: useraccount/views.py:119
+msgid "Transfer completed!!"
+msgstr "Transfer selesai !!"
+
+#: useraccount/views.py:187
+msgid "Request Sent!!"
+msgstr "Permintaan terkirim!!"
