@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-20 19:30+0000\n"
+"POT-Creation-Date: 2017-02-20 19:42+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -9,83 +9,83 @@ msgstr ""
 
 #: autosignup/forms.py:150
 msgid "Max attempt reached! try later"
-msgstr "Max Versuch erreicht! Versuche es später"
+msgstr "Max intento de alcanzar! intenta más tarde"
 
 #: autosignup/forms.py:155 autosignup/forms.py:162
 msgid "Provide a valid mobile number"
-msgstr "Geben Sie eine gültige Mobilfunknummer"
+msgstr "Proporcionar un número de móvil válido"
 
 #: autosignup/forms.py:157 autosignup/forms.py:164
 msgid "Something went wrong! Try later"
-msgstr "Etwas ist schief gelaufen! Versuche es später"
+msgstr "¡Algo salió mal! Intenta más tarde"
 
 #: ekatadeveloper/settings/base.py:237
 msgid "German"
-msgstr "Deutsche"
+msgstr "alemán"
 
 #: ekatadeveloper/settings/base.py:238
 msgid "English"
-msgstr "Englisch"
+msgstr "Inglés"
 
 #: ekatadeveloper/settings/base.py:239
 msgid "Hindi"
-msgstr "Hindi"
+msgstr "hindi"
 
 #: ekatadeveloper/settings/base.py:240
 msgid "Spanish"
-msgstr "Spanisch"
+msgstr "Español"
 
 #: ekatadeveloper/settings/base.py:241
 msgid "Bengali"
-msgstr "Bengali"
+msgstr "bengalí"
 
 #: ekatadeveloper/settings/base.py:242
 msgid "Belarusian"
-msgstr "Belarussisch"
+msgstr "Bielorruso"
 
 #: ekatadeveloper/settings/base.py:243
 msgid "Portuguese"
-msgstr "Portugiesisch"
+msgstr "portugués"
 
 #: ekatadeveloper/settings/base.py:244
 msgid "Bulgarian"
-msgstr "bulgarisch"
+msgstr "búlgaro"
 
 #: ekatadeveloper/settings/base.py:245
 msgid "French"
-msgstr "Französisch"
+msgstr "francés"
 
 #: ekatadeveloper/settings/base.py:246
 msgid "Croatian"
-msgstr "kroatisch"
+msgstr "croata"
 
 #: ekatadeveloper/settings/base.py:247
 msgid "Greek"
-msgstr "griechisch"
+msgstr "griego"
 
 #: ekatadeveloper/settings/base.py:248
 msgid "Czech"
-msgstr "tschechisch"
+msgstr "checo"
 
 #: ekatadeveloper/settings/base.py:249
 msgid "Danish"
-msgstr "dänisch"
+msgstr "danés"
 
 #: ekatadeveloper/settings/base.py:250
 msgid "Arabic"
-msgstr "Arabisch"
+msgstr "Arábica"
 
 #: ekatadeveloper/settings/base.py:251
 msgid "Finland"
-msgstr "Finnland"
+msgstr "Finlandia"
 
 #: ekatadeveloper/settings/base.py:252
 msgid "France"
-msgstr "Stornieren"
+msgstr "Francia"
 
 #: ekatadeveloper/settings/base.py:253
 msgid "Hungarian"
-msgstr "ungarisch"
+msgstr "húngaro"
 
 #: ekatadeveloper/settings/base.py:254
 msgid "Indonessian"
@@ -93,31 +93,31 @@ msgstr "Indonessian"
 
 #: ekatadeveloper/settings/base.py:255
 msgid "Italian"
-msgstr "Italienisch"
+msgstr "italiano"
 
 #: ekatadeveloper/settings/base.py:256
 msgid "Japanese"
-msgstr "japanisch"
+msgstr "japonés"
 
 #: ekatadeveloper/settings/base.py:257
 msgid "Russian"
-msgstr "Russisch"
+msgstr "ruso"
 
 #: ekatadeveloper/settings/base.py:258
 msgid "Latvian"
-msgstr "lettisch"
+msgstr "letón"
 
 #: ekatadeveloper/settings/base.py:259
 msgid "Lithunian"
-msgstr "litauisch"
+msgstr "Lithunian"
 
 #: ekatadeveloper/settings/base.py:260
 msgid "Nepali"
-msgstr "Nepali"
+msgstr "nepalí"
 
 #: ekatadeveloper/settings/base.py:261
 msgid "Norwegian"
-msgstr "norwegisch"
+msgstr "noruego"
 
 #: ekatadeveloper/settings/base.py:262
 msgid "Urdu"
@@ -125,59 +125,59 @@ msgstr "Urdu"
 
 #: ekatadeveloper/settings/base.py:263
 msgid "Polish"
-msgstr "Englisch"
+msgstr "polaco"
 
 #: ekatadeveloper/settings/base.py:264
 msgid "Romanian"
-msgstr "rumänisch"
+msgstr "rumano"
 
 #: ekatadeveloper/settings/base.py:265
 msgid "Tamil"
-msgstr "Familie"
+msgstr "Tamil"
 
 #: ekatadeveloper/settings/base.py:266
 msgid "Korean"
-msgstr "Koreanisch"
+msgstr "coreano"
 
 #: ekatadeveloper/settings/base.py:267
 msgid "Sinhalese"
-msgstr "Singhalesen"
+msgstr "sinhalese"
 
 #: ekatadeveloper/settings/base.py:268
 msgid "Thai"
-msgstr "thailändisch"
+msgstr "tailandés"
 
 #: groupsystem/forms.py:20
 msgid "Group Exist"
-msgstr "Gruppe Exist"
+msgstr "Existe grupo"
 
 #: groupsystem/forms.py:32 groupsystem/forms.py:89
 msgid "You must specify other group type"
-msgstr "Sie müssen andere Gruppentyp angeben"
+msgstr "Debe especificar otro tipo de grupo"
 
 #: groupsystem/forms.py:38 groupsystem/forms.py:95
 msgid "You can't fill this field with default group types"
-msgstr "Sie können dieses Feld nicht mit Standard-Gruppentypen füllen"
+msgstr "No se puede llenar este campo con los tipos de grupo por defecto"
 
 #: groupsystem/forms.py:186
 msgid "You can't choose a default role name"
-msgstr "Sie können keine Standardrollennamen wählen"
+msgstr "No se puede elegir un nombre de función por defecto"
 
 #: groupsystem/forms.py:193
 msgid "Role exist"
-msgstr "Die Rolle existieren"
+msgstr "papel existe"
 
 #: groupsystem/models.py:18
 msgid "Art"
-msgstr "Kunst"
+msgstr "Art"
 
 #: groupsystem/models.py:19
 msgid "Activist"
-msgstr "Aktivist"
+msgstr "Activista"
 
 #: groupsystem/models.py:20
 msgid "Political"
-msgstr "politisch"
+msgstr "Político"
 
 #: groupsystem/models.py:21 templates/groupsystem/adminnews.html:4
 #: templates/groupsystem/adminnews.html:17
@@ -186,15 +186,15 @@ msgstr "politisch"
 #: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:173
 #: templates/sidebar_group.html:44 templates/sidebar_group_admin.html:14
 msgid "News"
-msgstr "Nachrichten"
+msgstr "Noticias"
 
 #: groupsystem/models.py:22 publicusers/views.py:328
 msgid "Business"
-msgstr "Geschäft"
+msgstr "Negocio"
 
 #: groupsystem/models.py:23
 msgid "Government"
-msgstr "Regierung"
+msgstr "Gobierno"
 
 #: groupsystem/models.py:24
 msgid "Blog"
@@ -202,203 +202,203 @@ msgstr "Blog"
 
 #: groupsystem/models.py:25
 msgid "Nonprofit Organization"
-msgstr "Gemeinnützige Organisation"
+msgstr "Organización sin ánimo de lucro"
 
 #: groupsystem/models.py:26
 msgid "Other"
-msgstr "Andere"
+msgstr "Otro"
 
 #: groupsystem/models.py:33
 msgid "Please Specify"
-msgstr "Bitte angeben"
+msgstr "Por favor especifica"
 
 #: groupsystem/models.py:81 groupsystem/views.py:38 groupsystem/views.py:77
 #: groupsystem/views.py:110
 msgid "Can access admin"
-msgstr "Kann Admin-Zugang"
+msgstr "Se puede acceder de administración"
 
 #: groupsystem/models.py:82 groupsystem/views.py:39 groupsystem/views.py:78
 #: groupsystem/views.py:111 groupsystem/views.py:128 groupsystem/views.py:139
 msgid "Can read news"
-msgstr "Kann Nachrichten lesen"
+msgstr "Puede leer noticias"
 
 #: groupsystem/models.py:83 groupsystem/views.py:40 groupsystem/views.py:79
 msgid "Can create news"
-msgstr "Kann erstellen Nachrichten"
+msgstr "Puede crear noticias"
 
 #: groupsystem/models.py:84 groupsystem/views.py:41 groupsystem/views.py:80
 msgid "Can update news"
-msgstr "Können Sie News"
+msgstr "Se puede actualizar noticias"
 
 #: groupsystem/models.py:85 groupsystem/views.py:42 groupsystem/views.py:81
 msgid "Can delete news"
-msgstr "Kann löschen Nachrichten"
+msgstr "Se puede eliminar de noticias"
 
 #: groupsystem/models.py:86 groupsystem/views.py:43 groupsystem/views.py:82
 #: groupsystem/views.py:112 groupsystem/views.py:129
 msgid "Can read post"
-msgstr "Kann read post"
+msgstr "Puede leer entrada"
 
 #: groupsystem/models.py:87 groupsystem/views.py:44 groupsystem/views.py:83
 #: groupsystem/views.py:113 groupsystem/views.py:130
 msgid "Can create post"
-msgstr "Kann erstellen Beitrag"
+msgstr "Se puede crear el mensaje"
 
 #: groupsystem/models.py:88 groupsystem/views.py:45 groupsystem/views.py:84
 #: groupsystem/views.py:114
 msgid "Can update post"
-msgstr "Kann aktualisieren Post"
+msgstr "Se puede actualizar poste"
 
 #: groupsystem/models.py:89 groupsystem/views.py:46 groupsystem/views.py:85
 #: groupsystem/views.py:115
 msgid "Can approve post"
-msgstr "Kann genehmigen Post"
+msgstr "Puede aprobar poste"
 
 #: groupsystem/models.py:90 groupsystem/views.py:47 groupsystem/views.py:86
 #: groupsystem/views.py:116
 msgid "Can delete post"
-msgstr "Kann löschen Beitrag"
+msgstr "Se puede eliminar el mensaje"
 
 #: groupsystem/models.py:91 groupsystem/views.py:48 groupsystem/views.py:87
 #: groupsystem/views.py:117 groupsystem/views.py:131
 msgid "Can read comment"
-msgstr "Kann lesen Kommentar"
+msgstr "Puede leer comentario"
 
 #: groupsystem/models.py:92 groupsystem/views.py:49 groupsystem/views.py:88
 #: groupsystem/views.py:118 groupsystem/views.py:132
 msgid "Can create comment"
-msgstr "Kann erstellen Kommentar"
+msgstr "Se puede crear el comentario"
 
 #: groupsystem/models.py:93 groupsystem/views.py:50 groupsystem/views.py:89
 #: groupsystem/views.py:119
 msgid "Can update comment"
-msgstr "Kann aktualisieren Kommentar"
+msgstr "Se puede actualizar comentario"
 
 #: groupsystem/models.py:94 groupsystem/views.py:51 groupsystem/views.py:90
 #: groupsystem/views.py:120
 msgid "Can approve comment"
-msgstr "Kann genehmigen Kommentar"
+msgstr "Puede aprobar comentario"
 
 #: groupsystem/models.py:95 groupsystem/views.py:52 groupsystem/views.py:91
 #: groupsystem/views.py:121
 msgid "Can delete comment"
-msgstr "Kann löschen Kommentar"
+msgstr "Puede borrar comentarios"
 
 #: groupsystem/models.py:96 groupsystem/views.py:53 groupsystem/views.py:92
 #: groupsystem/views.py:122 groupsystem/views.py:133
 msgid "Can like post"
-msgstr "Kann gerne Post"
+msgstr "Puede gusta la publicación"
 
 #: groupsystem/models.py:97 groupsystem/views.py:54
 msgid "Can create notification"
-msgstr "Kann Benachrichtigung erstellen"
+msgstr "Se puede crear una notificación"
 
 #: groupsystem/models.py:98 groupsystem/views.py:55 groupsystem/views.py:93
 #: groupsystem/views.py:123 groupsystem/views.py:134
 msgid "Can create invite"
-msgstr "Kann erstellen einladen"
+msgstr "Puede crear invite"
 
 #: groupsystem/models.py:99 groupsystem/views.py:56 groupsystem/views.py:94
 msgid "Can add member"
-msgstr "Kann hinzufügen Mitglied"
+msgstr "Se puede agregar miembro"
 
 #: groupsystem/models.py:100 groupsystem/views.py:57 groupsystem/views.py:95
 msgid "Can remove member"
-msgstr "Kann entfernen Mitglied"
+msgstr "Se puede eliminar el miembro"
 
 #: groupsystem/models.py:101 groupsystem/views.py:58 groupsystem/views.py:96
 msgid "Can ban member"
-msgstr "Kann verbieten Mitglied"
+msgstr "miembro puede prohibir"
 
 #: groupsystem/models.py:102 groupsystem/views.py:59 groupsystem/views.py:97
 msgid "Can lift member ban"
-msgstr "Kann Mitglied Verbot aufheben"
+msgstr "Puede levantar la prohibición miembro"
 
 #: groupsystem/models.py:103 groupsystem/views.py:60 groupsystem/views.py:98
 msgid "Can change member role"
-msgstr "Kann Mitglied Rolle ändern"
+msgstr "Puede cambiar la función miembro"
 
 #: groupsystem/models.py:104 groupsystem/views.py:61 groupsystem/views.py:99
 msgid "Can edit member permission"
-msgstr "Kann Mitglied Erlaubnis bearbeiten"
+msgstr "Puede editar el permiso miembro"
 
 #: groupsystem/models.py:105 groupsystem/views.py:62 groupsystem/views.py:100
 #: groupsystem/views.py:124 groupsystem/views.py:135
 msgid "Can read events"
-msgstr "Kann lesen Veranstaltungen"
+msgstr "Puede leer eventos"
 
 #: groupsystem/models.py:106 groupsystem/views.py:63 groupsystem/views.py:101
 msgid "Can create events"
-msgstr "Kann Ereignisse erstellen"
+msgstr "Puede crear eventos"
 
 #: groupsystem/models.py:107 groupsystem/views.py:64 groupsystem/views.py:102
 msgid "Can update events"
-msgstr "Kann aktualisieren, um Ereignisse"
+msgstr "Se puede actualizar eventos"
 
 #: groupsystem/models.py:108 groupsystem/views.py:65 groupsystem/views.py:103
 msgid "Can delete events"
-msgstr "Kann löschen Ereignisse"
+msgstr "Puede eliminar eventos"
 
 #: groupsystem/models.py:109 groupsystem/views.py:66 groupsystem/views.py:104
 msgid "Can read join requests"
-msgstr "Kann Leseanforderungen beitreten"
+msgstr "Puede leer unirse a las solicitudes"
 
 #: groupsystem/models.py:110 groupsystem/views.py:67 groupsystem/views.py:105
 msgid "Can approve join requests"
-msgstr "Kann genehmigen Anfragen beitreten"
+msgstr "Puede aprobar unirse a las solicitudes"
 
 #: groupsystem/models.py:111 groupsystem/views.py:68 groupsystem/views.py:106
 msgid "Can deny joinrequest"
-msgstr "Kann leugnen joinrequest"
+msgstr "Puede negar joinrequest"
 
 #: groupsystem/models.py:112 groupsystem/views.py:69
 msgid "Can edit group profile"
-msgstr "Kann Gruppenprofil bearbeiten"
+msgstr "Puede editar el perfil de grupo"
 
 #: groupsystem/models.py:113 groupsystem/views.py:70
 msgid "Can read role"
-msgstr "Kann lesen Rolle"
+msgstr "Puede leer el papel"
 
 #: groupsystem/models.py:114 groupsystem/views.py:71
 msgid "Can read custom role"
-msgstr "Kann benutzerdefinierte Rolle lesen"
+msgstr "Puede leer función personalizada"
 
 #: groupsystem/models.py:115 groupsystem/views.py:72
 msgid "Can update custom role"
-msgstr "Kann benutzerdefinierte Rolle aktualisieren"
+msgstr "Se puede actualizar la función personalizada"
 
 #: groupsystem/models.py:116 groupsystem/views.py:73
 msgid "Can create custom role"
-msgstr "Kann benutzerdefinierte Rolle erstellen"
+msgstr "Puede crear función personalizada"
 
 #: groupsystem/views.py:358
 msgid "Already requested"
-msgstr "Bereits angefragt"
+msgstr "Ya solicitado"
 
 #: groupsystem/views.py:360
 msgid "You're banned from this group"
-msgstr "Sie sind aus dieser Gruppe verboten"
+msgstr "Usted está prohibido de este grupo"
 
 #: groupsystem/views.py:367 templates/autosignup/index.html:36
 #: templates/useraccount/index.html:50 templates/useraccount/index.html:65
 msgid "Subscribed"
-msgstr "Gezeichnet"
+msgstr "suscrito"
 
 #: groupsystem/views.py:374
 msgid "Unsubscribed"
-msgstr "Unsubscribed"
+msgstr "no suscribirse"
 
 #: groupsystem/views.py:380
 msgid "Request Canceled"
-msgstr "Anfrage Abgebrochen"
+msgstr "Cancelación de la petición"
 
 #: groupsystem/views.py:411
 msgid "Leaved Group"
-msgstr "leaved Gruppe"
+msgstr "Grupo de hoja ancha"
 
 #: groupsystem/views.py:567
 msgid "Post will be shown once admin/moderator approves"
-msgstr "Post wird angezeigt, sobald Admin / Moderator genehmigt"
+msgstr "Puesto se muestra una vez admin / moderador aprueba"
 
 #: groupsystem/views.py:626
 #, fuzzy
@@ -406,271 +406,272 @@ msgstr "Post wird angezeigt, sobald Admin / Moderator genehmigt"
 msgid ""
 "Thank you for commenting your comment will show once a admin/moderator "
 "approves"
-msgstr "Post wird angezeigt, sobald Admin / Moderator genehmigt"
+msgstr "Puesto se muestra una vez admin / moderador aprueba"
 
 #: groupsystem/views.py:682
 msgid "You don't have permissions to edit settings"
-msgstr "Sie haben keine Berechtigung Einstellungen bearbeiten"
+msgstr "Usted no tiene permisos para modificar los ajustes"
 
 #: groupsystem/views.py:702
 msgid "You don't have permission to create news"
-msgstr "Sie haben keine Berechtigung zum Nachrichten erstellen"
+msgstr "Usted no tiene permiso para crear noticias"
 
 #: groupsystem/views.py:810
 msgid "You dont have permissions to approve post"
-msgstr "Sie müssen nicht Berechtigungen Post zu genehmigen"
+msgstr "Usted no tiene permisos para aprobar poste"
 
 #: groupsystem/views.py:830
 msgid "Post created"
-msgstr "Beitrag erstellt"
+msgstr "Anuncio creado"
 
 #: groupsystem/views.py:952
 msgid "You dont have permissions to approve comment"
-msgstr "Sie müssen nicht Berechtigungen Kommentar zu genehmigen"
+msgstr "Usted no tiene permisos para aprobar comentario"
 
 #: groupsystem/views.py:997
 msgid "You don't have permission to add memeber"
-msgstr "Sie haben keine Berechtigung memeber hinzufügen"
+msgstr "Usted no tiene permiso para añadir memeber"
 
 #: groupsystem/views.py:1035
 msgid "You dont have permission to remove member"
-msgstr "Sie brauchen nicht die Erlaubnis Mitglied zu entfernen,"
+msgstr "Usted no tiene permiso para eliminar miembro"
 
 #: groupsystem/views.py:1075
 msgid "You dont have permission to ban member"
-msgstr "Sie brauchen nicht die Erlaubnis Mitglied zu verbieten haben"
+msgstr "Usted no tiene permiso para prohibir miembro"
 
 #: groupsystem/views.py:1126
 msgid "You don't have permissions to change member role"
-msgstr "Sie haben keine Berechtigung, Mitglied Rolle zu ändern"
+msgstr "Usted no tiene permisos para cambiar la función miembro"
 
 #: groupsystem/views.py:1236
 msgid "You don't have permission to approve request"
-msgstr "Sie haben keine Berechtigung Antrag zu genehmigen"
+msgstr "Usted no tiene permiso para aprobar la solicitud"
 
 #: groupsystem/views.py:1249
 msgid "You don't have permission to deny request"
-msgstr "Sie haben keine Berechtigung Anfrage abzulehnen"
+msgstr "Usted no tiene permiso para denegar la petición"
 
 #: groupsystem/views.py:1288
 msgid "Users invited"
-msgstr "Benutzer eingeladen"
+msgstr "Los usuarios invitados"
 
 #: groupsystem/views.py:1506
 msgid "Role created, reload page to edit permissions"
-msgstr "Rolle erstellt, laden Seite Berechtigungen bearbeiten"
+msgstr "Papel creado, vuelva a cargar la página para editar permisos"
 
 #: groupsystem/views.py:1519
 msgid "You don't have permission to create custom role"
-msgstr "Sie haben keine Berechtigung, benutzerdefinierte Rolle zu erstellen"
+msgstr "Usted no tiene permiso para crear función personalizada"
 
 #: groupsystem/views.py:1555
 msgid "Role permission changed"
-msgstr "Rollen Erlaubnis geändert"
+msgstr "función permiso cambiado"
 
 #: groupsystem/views.py:1598
 msgid "User permission changed"
-msgstr "Benutzerberechtigung geändert"
+msgstr "el permiso del usuario ha cambiado"
 
 #: profilesystem/forms.py:22
 msgid "Usernames can only contain letters, digits and @/./+/-/_."
-msgstr "Benutzernamen können nur Buchstaben, Ziffern und @ / / / -. / _."
+msgstr ""
+"Los nombres de usuario sólo pueden contener letras, dígitos y @ / / / -. / _."
 
 #: profilesystem/forms.py:31
 msgid "Username already taken"
-msgstr "Benutzername bereits vergeben"
+msgstr "nombre de usuario ya tomado"
 
 #: profilesystem/models.py:20
 msgid "Male"
-msgstr "Männlich"
+msgstr "Masculino"
 
 #: profilesystem/models.py:21
 msgid "Female"
-msgstr "Weiblich"
+msgstr "Hembra"
 
 #: profilesystem/models.py:166 templates/profilesystem/address.html:5
 #: templates/publicusers/user.html:193
 msgid "House Number"
-msgstr "Hausnummer"
+msgstr "Número de casa"
 
 #: profilesystem/models.py:167 templates/profilesystem/address.html:11
 #: templates/publicusers/user.html:199
 msgid "Street"
-msgstr "Straße"
+msgstr "Calle"
 
 #: profilesystem/models.py:168 templates/profilesystem/address.html:17
 #: templates/publicusers/user.html:205
 msgid "Zip Code"
-msgstr "Postleitzahl"
+msgstr "Código postal"
 
 #: profilesystem/models.py:169 templates/profilesystem/address.html:23
 #: templates/publicusers/user.html:211
 msgid "City"
-msgstr "Stadt"
+msgstr "Ciudad"
 
 #: profilesystem/models.py:170 templates/profilesystem/address.html:29
 #: templates/publicusers/user.html:217
 msgid "State"
-msgstr "Bundesland"
+msgstr "Estado"
 
 #: profilesystem/models.py:171 templates/profilesystem/address.html:35
 #: templates/publicusers/user.html:223
 msgid "Country"
-msgstr "Land"
+msgstr "País"
 
 #: publicusers/views.py:183 templates/groupsystem/adminnews.html:113
 #: templates/groupsystem/adminsettings.html:165
 msgid "Success"
-msgstr "Erfolg"
+msgstr "Éxito"
 
 #: publicusers/views.py:185
 msgid "You already thumb uped this user"
-msgstr "Sie haben bereits uped Daumen diesen Benutzer"
+msgstr "Ya pulgar uped este usuario"
 
 #: publicusers/views.py:292
 msgid "Friend type"
-msgstr "Freund-Typ"
+msgstr "tipo amigo"
 
 #: publicusers/views.py:293 templates/publicusers/user.html:71
 msgid "Best"
-msgstr "Beste"
+msgstr "Mejor"
 
 #: publicusers/views.py:293 templates/publicusers/user.html:63
 #: templates/publicusers/user.html:72
 msgid "Friend"
-msgstr "Freund"
+msgstr "Amigo"
 
 #: publicusers/views.py:293 templates/publicusers/user.html:73
 msgid "Soulmate"
-msgstr "Seelenverwandte"
+msgstr "alma gemela"
 
 #: publicusers/views.py:293 templates/publicusers/user.html:74
 msgid "Acquaintance"
-msgstr "Bekanntschaft"
+msgstr "Conocido"
 
 #: publicusers/views.py:297
 msgid "Family type"
-msgstr "Familientyp"
+msgstr "tipo de familia"
 
 #: publicusers/views.py:299
 msgid "Father"
-msgstr "Vater"
+msgstr "Padre"
 
 #: publicusers/views.py:300
 msgid "Son"
-msgstr "Sohn"
+msgstr "Hijo"
 
 #: publicusers/views.py:301
 msgid "Husband"
-msgstr "Mann"
+msgstr "Marido"
 
 #: publicusers/views.py:302
 msgid "Brother"
-msgstr "Bruder"
+msgstr "Hermano"
 
 #: publicusers/views.py:303
 msgid "Grandfather"
-msgstr "Großvater"
+msgstr "Abuelo"
 
 #: publicusers/views.py:304
 msgid "Grandson"
-msgstr "Enkel"
+msgstr "Nieto"
 
 #: publicusers/views.py:305
 msgid "Uncle"
-msgstr "Onkel"
+msgstr "Tío"
 
 #: publicusers/views.py:306
 msgid "Nephew"
-msgstr "Neffe"
+msgstr "Sobrino"
 
 #: publicusers/views.py:307 publicusers/views.py:316
 msgid "Cousin"
-msgstr "Cousin"
+msgstr "Prima"
 
 #: publicusers/views.py:308
 msgid "Mother"
-msgstr "Mutter"
+msgstr "Madre"
 
 #: publicusers/views.py:309
 msgid "Daughter"
-msgstr "Tochter"
+msgstr "Hija"
 
 #: publicusers/views.py:310
 msgid "Wife"
-msgstr "Ehefrau"
+msgstr "Esposa"
 
 #: publicusers/views.py:311
 msgid "Sister"
-msgstr "Schwester"
+msgstr "Hermana"
 
 #: publicusers/views.py:312
 msgid "Grandmother"
-msgstr "Oma"
+msgstr "Abuela"
 
 #: publicusers/views.py:313
 msgid "Granddaughter"
-msgstr "Enkelin"
+msgstr "Nieta"
 
 #: publicusers/views.py:314
 msgid "Aunt"
-msgstr "Tante"
+msgstr "Tía"
 
 #: publicusers/views.py:315
 msgid "Niece"
-msgstr "Nichte"
+msgstr "Sobrina"
 
 #: publicusers/views.py:317
 msgid "Parent"
-msgstr "Elternteil"
+msgstr "Padre"
 
 #: publicusers/views.py:318
 msgid "Child"
-msgstr "Kind"
+msgstr "Niño"
 
 #: publicusers/views.py:319
 msgid "Spouse"
-msgstr "Ehepartner"
+msgstr "Esposa"
 
 #: publicusers/views.py:320
 msgid "Sibling"
-msgstr "Geschwister"
+msgstr "Hermano"
 
 #: publicusers/views.py:321
 msgid "Grandparent"
-msgstr "Großeltern"
+msgstr "Abuelo"
 
 #: publicusers/views.py:322
 msgid "Grandchild"
-msgstr "Enkel"
+msgstr "Nieto"
 
 #: publicusers/views.py:327
 msgid "Contact type"
-msgstr "Kontaktart"
+msgstr "Tipo de Contacto"
 
 #: publicusers/views.py:328
 msgid "Personal"
-msgstr "persönlich"
+msgstr "Personal"
 
 #: publicusers/views.py:343
 msgid "connection already sent by "
-msgstr "Verbindung bereits gesendet von"
+msgstr "conexión ya ha sido enviada por"
 
 #: publicusers/views.py:382
 msgid "A request is sent to "
-msgstr "Eine Anforderung wird gesendet"
+msgstr "Se envía una solicitud a"
 
 #: publicusers/views.py:401
 msgid "Connection accepted"
-msgstr "Anschluss akzeptiert"
+msgstr "conexión aceptado"
 
 #: publicusers/views.py:443
 msgid "Canceled connection request"
-msgstr "Abgebrochen Verbindungsanfrage"
+msgstr "solicitud de conexión cancelada"
 
 #: publicusers/views.py:445
 msgid "Rejected connection"
-msgstr "Abgelehnt Verbindung"
+msgstr "conexión rechazada"
 
 #: publicusers/views.py:447
 msgid "Disconneted"
@@ -678,49 +679,47 @@ msgstr "Disconneted"
 
 #: publicusers/views.py:449 templates/groupsystem/eventsadmin.html:111
 msgid "Success!!"
-msgstr "Erfolg!!"
+msgstr "¡¡Éxito!!"
 
 #: templates/403.html:4
 msgid "Permission denied"
-msgstr "Erlaubnis verweigert"
+msgstr "Permiso denegado"
 
 #: templates/403.html:10
 msgid "Oops!! You don't have permissions to view this page"
-msgstr "Hoppla!! Sie haben keine Berechtigung, diese Seite zu sehen"
+msgstr "Vaya !! Usted no tiene permisos para ver esta página"
 
 #: templates/403.html:12 templates/404.html:12 templates/500.html:12
 msgid "Return to dashboard"
-msgstr "Zurück zum Dashboard"
+msgstr "Volver al panel"
 
 #: templates/404.html:4
 msgid "Page Not Found"
-msgstr "Seite nicht gefunden"
+msgstr "Página no encontrada"
 
 #: templates/404.html:10
 msgid "Oops!! The requested url can't be found in this server"
-msgstr ""
-"Hoppla!! Die angeforderte URL kann nicht in diesem Server nicht gefunden "
-"werden"
+msgstr "Vaya !! La URL solicitada no se encuentra en este servidor"
 
 #: templates/500.html:4
 msgid "Server Error"
-msgstr "Serverfehler"
+msgstr "Error del Servidor"
 
 #: templates/500.html:10
 msgid "Something is not working!! Try again later"
-msgstr "Etwas funktioniert nicht !! Versuchen Sie es später noch einmal"
+msgstr "Algo no está funcionando !! Inténtelo más tarde"
 
 #: templates/account/disclaimer.html:4 templates/landing_base.html:172
 msgid "Disclaimer"
-msgstr "Dementi"
+msgstr "Renuncia"
 
 #: templates/account/disclaimer.html:28
 msgid "WEBSITE DISCLAIMER"
-msgstr "Web-Site Haftungsausschluss"
+msgstr "web Exención de responsabilidad"
 
 #: templates/account/disclaimer.html:30
 msgid "No warranties"
-msgstr "Keine Garantien"
+msgstr "No hay garantías"
 
 #: templates/account/disclaimer.html:32
 msgid ""
@@ -736,17 +735,16 @@ msgstr ""
 
 #: templates/account/disclaimer.html:34
 msgid "Without prejudice to the generality of the foregoing paragraph, "
-msgstr "Unbeschadet der Allgemeingültigkeit des vorstehenden Absatzes,"
+msgstr "Sin perjuicio de la generalidad del párrafo anterior,"
 
 #: templates/account/disclaimer.html:34
 msgid "does not warrant that:"
-msgstr "garantiert nicht, dass:"
+msgstr "no garantiza que:"
 
 #: templates/account/disclaimer.html:36
 msgid "this website will be constantly available, or available at all; or"
 msgstr ""
-"Diese Website wird überhaupt ständig verfügbar ist, oder zur Verfügung "
-"stehen; oder"
+"este sitio web estará constantemente disponible, o disponible en absoluto; o"
 
 #: templates/account/disclaimer.html:37
 msgid ""
@@ -762,7 +760,7 @@ msgstr ""
 
 #: templates/account/disclaimer.html:40
 msgid "Limitations of liability"
-msgstr "Haftungsbeschränkungen"
+msgstr "Limitaciones de responsabilidad"
 
 #: templates/account/disclaimer.html:42
 msgid ""
@@ -773,7 +771,7 @@ msgstr ""
 
 #: templates/account/disclaimer.html:44
 msgid "for any indirect, special or consequential loss; or"
-msgstr "für indirekte, spezielle oder Folgeschäden; oder"
+msgstr "por cualquier pérdida indirecta, especial o consecuente; o"
 
 #: templates/account/disclaimer.html:45
 msgid ""
@@ -784,15 +782,15 @@ msgstr ""
 
 #: templates/account/disclaimer.html:47
 msgid "These limitations of liability apply even if "
-msgstr "Diese Haftungsbeschränkungen gelten auch, wenn"
+msgstr "Estas limitaciones de responsabilidad se aplican incluso si"
 
 #: templates/account/disclaimer.html:47
 msgid " has been expressly advised of the potential loss."
-msgstr "wurde für den potenziellen Verlust ausdrücklich hingewiesen wurde."
+msgstr "ha sido expresamente advertido de la posible pérdida."
 
 #: templates/account/disclaimer.html:48
 msgid "Exceptions"
-msgstr "Ausnahmen"
+msgstr "excepciones"
 
 #: templates/account/disclaimer.html:50
 msgid ""
@@ -803,27 +801,27 @@ msgstr ""
 
 #: templates/account/disclaimer.html:50
 msgid "'s liability in respect of any:"
-msgstr "&#39;S Haftung in Bezug auf eine:"
+msgstr "&#39;S responsabilidad con respecto a cualquier:"
 
 #: templates/account/disclaimer.html:52
 msgid "death or personal injury caused by "
-msgstr "Tod oder Körperverletzung verursacht durch"
+msgstr "muerte o daños personales causados ​​por"
 
 #: templates/account/disclaimer.html:52
 msgid "'s negligence;"
-msgstr "&#39;S Fahrlässigkeit;"
+msgstr "&#39;S negligencia;"
 
 #: templates/account/disclaimer.html:53
 msgid "fraud or fraudulent misrepresentation on the part of "
-msgstr "Betrug oder betrügerische Täuschung seitens der"
+msgstr "fraude o tergiversación fraudulenta por parte de"
 
 #: templates/account/disclaimer.html:53
 msgid " or"
-msgstr "oder"
+msgstr "o"
 
 #: templates/account/disclaimer.html:54
 msgid "matter which it would be illegal or unlawful for "
-msgstr "Materie, die wäre es illegal oder rechtswidrig sein,"
+msgstr "cuestión que sería ilegal o ilícito"
 
 #: templates/account/disclaimer.html:54
 msgid ""
@@ -833,7 +831,7 @@ msgstr ""
 
 #: templates/account/disclaimer.html:57
 msgid "Reasonableness"
-msgstr "Angemessenheit"
+msgstr "Sensatez"
 
 #: templates/account/disclaimer.html:59
 msgid ""
@@ -844,11 +842,11 @@ msgstr ""
 
 #: templates/account/disclaimer.html:60
 msgid "Other parties"
-msgstr "Andere Parties"
+msgstr "Otros partidos"
 
 #: templates/account/disclaimer.html:62
 msgid "You accept that, as a limited liability entity, "
-msgstr "Sie akzeptieren, dass, als mit beschränkter Haftung Einheit,"
+msgstr "Usted acepta que, como una entidad de responsabilidad limitada,"
 
 #: templates/account/disclaimer.html:62
 msgid ""
@@ -877,7 +875,7 @@ msgstr ""
 
 #: templates/account/disclaimer.html:64
 msgid "Unenforceable provisions"
-msgstr "undurchführbaren Bestimmungen"
+msgstr "Las disposiciones inaplicables"
 
 #: templates/account/disclaimer.html:66
 msgid ""
@@ -888,40 +886,43 @@ msgstr ""
 
 #: templates/account/email.html:5 templates/account/email.html:8
 msgid "Manage Email"
-msgstr "verwalten Sie per E-Mail"
+msgstr "Manejo de correo electrónico"
 
 #: templates/account/email.html:10
 msgid "The following e-mail addresses are associated with your account:"
-msgstr "Die folgenden E-Mail-Adressen werden mit Ihrem Konto verknüpft:"
+msgstr ""
+"Las direcciones de correo electrónico siguientes están asociados con su "
+"cuenta:"
 
 #: templates/account/email.html:26
 msgid "(P)"
-msgstr "(P)"
+msgstr "(PAG)"
 
 #: templates/account/email.html:40
 msgid "Make Primary"
-msgstr "Make Primary"
+msgstr "hacer primaria"
 
 #: templates/account/email.html:41
 msgid "Re-send Verification"
-msgstr "Re-Bestätigung senden"
+msgstr "Reenviar verificación"
 
 #: templates/account/email.html:42 templates/eblast/emailgroup.html:50
 #: templates/groupsystem/members.html:84
 msgid "Remove"
-msgstr "Entfernen"
+msgstr "retirar"
 
 #: templates/account/email.html:54
 msgid "Add E-mail"
-msgstr "In E-Mail"
+msgstr "Añadir E-mail"
 
 #: templates/account/email.html:59
 msgid "Back to profile"
-msgstr "Zurück zum Profil"
+msgstr "Volver al perfil"
 
 #: templates/account/email.html:64
 msgid "Do you really want to remove the selected e-mail address?"
-msgstr "Wollen Sie wirklich die ausgewählte E-Mail-Adresse zu entfernen?"
+msgstr ""
+"¿Realmente desea eliminar la dirección de correo electrónico seleccionado?"
 
 #: templates/account/email/email_confirmation_message.txt:1
 #, python-format
@@ -937,7 +938,7 @@ msgstr ""
 #: templates/account/email_confirm.html:6
 #: templates/account/email_confirm.html:10
 msgid "Confirm E-mail Address"
-msgstr "E-Mail-Adresse bestätigen"
+msgstr "Confirmar el correo"
 
 #: templates/account/email_confirm.html:17
 #, python-format
@@ -948,7 +949,7 @@ msgstr ""
 
 #: templates/account/email_confirm.html:21
 msgid "Confirm"
-msgstr "Bestätigen"
+msgstr "Confirmar"
 
 #: templates/account/email_confirm.html:28
 #, python-format
@@ -959,24 +960,24 @@ msgstr ""
 
 #: templates/account/login.html:6
 msgid "Login"
-msgstr "Anmeldung"
+msgstr "Iniciar sesión"
 
 #: templates/account/login.html:9
 msgid "Sign in to start your session"
-msgstr "Melden Sie sich Ihre Sitzung zu starten"
+msgstr "Inicia sesión para iniciar la sesión"
 
 #: templates/account/login.html:18
 msgid "Log In"
-msgstr "Einloggen"
+msgstr "Iniciar sesión"
 
 #: templates/account/login.html:34
 msgid "Forgot Password?"
-msgstr "Passwort vergessen?"
+msgstr "¿Se te olvidó tu contraseña?"
 
 #: templates/account/login.html:36 templates/account/signup.html:9
 #: templates/socialaccount/signup.html:8
 msgid "Register a new membership"
-msgstr "Registrieren Sie einen neuen Mitgliedschaft"
+msgstr "Registrar una nueva membresía"
 
 #: templates/account/password_change.html:6
 #: templates/account/password_change.html:17
@@ -984,16 +985,16 @@ msgstr "Registrieren Sie einen neuen Mitgliedschaft"
 #: templates/account/password_reset_from_key.html:9
 #: templates/account/password_reset_from_key.html:21
 msgid "Change Password"
-msgstr "Passwort ändern"
+msgstr "Cambia la contraseña"
 
 #: templates/account/password_change.html:11
 msgid "Change your password"
-msgstr "Ändern Sie Ihr Passwort"
+msgstr "cambia tu contraseña"
 
 #: templates/account/password_reset.html:7
 #: templates/account/password_reset.html:11
 msgid "Password Reset"
-msgstr "Passwort zurücksetzen"
+msgstr "Restablecimiento de contraseña"
 
 #: templates/account/password_reset.html:16
 msgid ""
@@ -1003,17 +1004,17 @@ msgstr ""
 
 #: templates/account/password_reset.html:22
 msgid "Reset My Password"
-msgstr "Setze mein Passwort zurück"
+msgstr "Restablecer mi contraseña"
 
 #: templates/account/password_reset.html:26
 msgid "Please contact us if you have any trouble resetting your password."
 msgstr ""
-"Bitte kontaktieren Sie uns, wenn Sie Probleme haben Ihr Passwort "
-"zurückzusetzen."
+"Por favor, póngase en contacto con nosotros si tiene alguna dificultad para "
+"restablecer su contraseña."
 
 #: templates/account/password_reset_from_key.html:9
 msgid "Bad Token"
-msgstr "Bad Token"
+msgstr "mal de emergencia"
 
 #: templates/account/password_reset_from_key.html:13
 #, python-format
@@ -1025,15 +1026,15 @@ msgstr ""
 
 #: templates/account/password_reset_from_key.html:25
 msgid "Your password is now changed."
-msgstr "Ihr Passwort wird jetzt geändert."
+msgstr "Su contraseña ha sido cambiada."
 
 #: templates/account/password_set.html:6 templates/account/password_set.html:14
 msgid "Set Password"
-msgstr "Passwort festlegen"
+msgstr "Configurar la clave"
 
 #: templates/account/rform.html:10 templates/socialaccount/signup.html:17
 msgid "Register"
-msgstr "Neu registrieren"
+msgstr "Registro"
 
 #: templates/account/rform.html:30 templates/account/rform.html:54
 #: templates/account/rform.html:78 templates/account/rform.html:102
@@ -1045,46 +1046,47 @@ msgstr ""
 #: templates/account/rform.html:32 templates/account/rform.html:56
 #: templates/account/rform.html:80 templates/account/rform.html:104
 msgid "Please read the"
-msgstr "Bitte lesen Sie die"
+msgstr "Por favor leer el"
 
 #: templates/account/rform.html:32 templates/account/rform.html:56
 #: templates/account/rform.html:80 templates/account/rform.html:104
 msgid " Disclaimer"
-msgstr "Dementi"
+msgstr "Renuncia"
 
 #: templates/account/rform.html:36 templates/account/rform.html:60
 #: templates/account/rform.html:84 templates/account/rform.html:108
 #: templates/autosignup/community_signupedit.html:10
 #: templates/timelines/timeline.html:149
 msgid "Cancel"
-msgstr "Stornieren"
+msgstr "Cancelar"
 
 #: templates/account/rform.html:39 templates/account/rform.html:63
 #: templates/account/rform.html:87 templates/account/rform.html:111
 msgid "Agree"
-msgstr "Zustimmen"
+msgstr "De acuerdo"
 
 #: templates/account/signup.html:11
 msgid "I already have a membership"
-msgstr "Ich habe bereits eine Mitgliedschaft"
+msgstr "Ya tengo una membresía"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 msgid "Sign Up Closed"
-msgstr "Anmeldung geschlossen"
+msgstr "Inscripción cerrada"
 
 #: templates/account/signup_closed.html:10
 msgid "We are sorry, but the sign up is currently closed for beta site"
 msgstr ""
-"Es tut uns leid, aber das Schild bis zur Zeit für Beta-Site geschlossen"
+"Lo sentimos, pero la muestra encima se encuentra actualmente cerrado por "
+"sitio beta"
 
 #: templates/account/signup_closed.html:11
 msgid "Please signup to"
-msgstr "Bitte registrieren unter"
+msgstr "Por favor, registrarse para poder"
 
 #: templates/account/signup_closed.html:11
 msgid "main site"
-msgstr "Hauptseite"
+msgstr "sitio principal"
 
 #: templates/autosignup/additional_step.html:6
 #: templates/autosignup/complete_previous_step.html:6
@@ -1094,7 +1096,7 @@ msgstr "Hauptseite"
 #: templates/autosignup/step_3_form.html:6
 #: templates/autosignup/step_3_verification.html:6
 msgid "Name and Address"
-msgstr "Name und Adresse"
+msgstr "Nombre y dirección"
 
 #: templates/autosignup/additional_step.html:9
 #: templates/autosignup/complete_previous_step.html:9
@@ -1114,7 +1116,7 @@ msgstr "Email"
 #: templates/autosignup/step_3_form.html:12
 #: templates/autosignup/step_3_verification.html:12
 msgid "Phone No"
-msgstr "Telefon-Nr"
+msgstr "Telefono no"
 
 #: templates/autosignup/additional_step.html:15
 #: templates/autosignup/complete_previous_step.html:16
@@ -1124,41 +1126,41 @@ msgstr "Telefon-Nr"
 #: templates/autosignup/step_3_form.html:16
 #: templates/autosignup/step_3_verification.html:16
 msgid "Docs"
-msgstr "Text &amp; Tabellen"
+msgstr "Documentos"
 
 #: templates/autosignup/community_signupedit.html:7
 #: templates/autosignup/settings.html:118
 msgid "Fetch Twilio Data"
-msgstr "Fetch Twilio Daten"
+msgstr "Fetch Twilio Datos"
 
 #: templates/autosignup/community_signupedit.html:8
 #: templates/autosignup/signupinfo.html:207
 #: templates/eblast/emailcampaign.html:13 templates/eblast/emailgroup.html:11
 #: templates/eblast/emailtemplate.html:9
 msgid "Delete"
-msgstr "Löschen"
+msgstr "Borrar"
 
 #: templates/autosignup/community_signupedit.html:9
 msgid "Save"
-msgstr "sparen"
+msgstr "Salvar"
 
 #: templates/autosignup/complete_previous_step.html:21
 msgid "Please complete previous steps"
-msgstr "Bitte füllen Sie vorherigen Schritte"
+msgstr "Por favor, complete los pasos anteriores"
 
 #: templates/autosignup/index.html:4
 msgid "MyAccounts"
-msgstr "Meine Accounts"
+msgstr "Mis cuentas"
 
 #: templates/autosignup/index.html:8
 msgid "Myaccounts"
-msgstr "Meine Accounts"
+msgstr "Mis cuentas"
 
 #: templates/autosignup/index.html:26 templates/sidebar_home.html:16
 #: templates/useraccount/index.html:13 templates/useraccount/index.html:16
 #: templates/useraccount/index.html:40
 msgid "Accounts"
-msgstr "Accounts"
+msgstr "cuentas"
 
 #: templates/autosignup/index.html:33 templates/useraccount/index.html:47
 msgid "DummyDB"
@@ -1170,20 +1172,20 @@ msgstr "Grantcoin"
 
 #: templates/autosignup/index.html:48 templates/useraccount/index.html:73
 msgid "Signup"
-msgstr "Anmelden"
+msgstr "Regístrate"
 
 #: templates/autosignup/index.html:57
 msgid "The pulse"
-msgstr "Der Puls"
+msgstr "El pulso"
 
 #: templates/autosignup/index.html:60 templates/useraccount/index.html:86
 msgid "Coming soon"
-msgstr "Demnächst"
+msgstr "Próximamente"
 
 #: templates/autosignup/index.html:81 templates/useraccount/index.html:266
 #: templates/useraccount/index.html:283
 msgid "Signup to Grantcoin"
-msgstr "Abonniere Grantcoin"
+msgstr "Inscripción a Grantcoin"
 
 #: templates/autosignup/index.html:87 templates/eblast/emailcampaign.html:44
 #: templates/eblast/emailcampaign.html:61 templates/eblast/emailgroup.html:69
@@ -1193,7 +1195,7 @@ msgstr "Abonniere Grantcoin"
 #: templates/profilesystem/index.html:166 templates/useraccount/index.html:272
 #: templates/useraccount/index.html:302
 msgid "Close"
-msgstr "Schließen"
+msgstr "Cerca"
 
 #: templates/autosignup/index.html:88 templates/autosignup/settings.html:48
 #: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:103
@@ -1218,25 +1220,25 @@ msgstr "Schließen"
 #: templates/profilesystem/index.html:178 templates/useraccount/index.html:273
 #: templates/useraccount/index.html:303
 msgid "Submit"
-msgstr "einreichen"
+msgstr "Enviar"
 
 #: templates/autosignup/settings.html:4 templates/autosignup/settings.html:10
 msgid "Signups settings"
-msgstr "signups Einstellungen"
+msgstr "configuración de las suscripciones"
 
 #: templates/autosignup/settings.html:13 templates/autosignup/signups.html:4
 #: templates/autosignup/signups.html:10 templates/autosignup/signups.html:13
 #: templates/autosignup/signups.html:38
 msgid "Signups"
-msgstr "signups"
+msgstr "inscripciones"
 
 #: templates/autosignup/settings.html:14
 msgid "Signup Settings"
-msgstr "Anmelden Einstellungen"
+msgstr "Ajustes Registrar"
 
 #: templates/autosignup/settings.html:24
 msgid "Autosignup settings"
-msgstr "Autosignup Einstellungen"
+msgstr "ajustes Autosignup"
 
 #: templates/autosignup/settings.html:45
 msgid "KM"
@@ -1244,56 +1246,56 @@ msgstr "KM"
 
 #: templates/autosignup/settings.html:54
 msgid "Approved Email Template"
-msgstr "Genehmigt E-Mail-Vorlage"
+msgstr "Plantilla de correo electrónico aprobado"
 
 #: templates/autosignup/settings.html:56
 msgid "Select from one"
-msgstr "Wählen Sie aus einer"
+msgstr "Seleccione uno"
 
 #: templates/autosignup/settings.html:57
 msgid "Default"
-msgstr "Standard"
+msgstr "Defecto"
 
 #: templates/autosignup/settings.html:69
 msgid "Or"
-msgstr "Oder"
+msgstr "O"
 
 #: templates/autosignup/settings.html:75
 msgid "File must be html document"
-msgstr "Die Datei muss HTML-Dokument sein"
+msgstr "El archivo debe estar documento html"
 
 #: templates/autosignup/settings.html:82
 msgid "Invite Code"
-msgstr "Invite-Code"
+msgstr "Codigo de invitacion"
 
 #: templates/autosignup/settings.html:88
 msgid "Status:"
-msgstr "Status:"
+msgstr "Estado:"
 
 #: templates/autosignup/settings.html:96
 msgid "Code:"
-msgstr "Code:"
+msgstr "Código:"
 
 #: templates/autosignup/settings.html:109
 msgid "Upload and Download CSV"
-msgstr "Upload und Download von CSV"
+msgstr "Cargar y descargar CSV"
 
 #: templates/autosignup/settings.html:120
 msgid "Download example copy"
-msgstr "Beispiel herunterladen Kopie"
+msgstr "Descargar el ejemplo de copia"
 
 #: templates/autosignup/settings.html:126
 msgid "Uploaded CSVs"
-msgstr "Hochgeladen CSVs"
+msgstr "subidos CSV"
 
 #: templates/autosignup/settings.html:167
 msgid "Select range"
-msgstr "Bereich auswählen"
+msgstr "Seleccione el rango"
 
 #: templates/autosignup/settings.html:169
 #: templates/autosignup/settings.html:235
 msgid "Download Member Data CSV"
-msgstr "Download von Mitgliederdaten CSV"
+msgstr "Descarga de datos CSV miembro"
 
 #: templates/autosignup/sfilter.html:5 templates/autosignup/signups.html:57
 #: templates/groupsystem/admindashboard.html:40
@@ -1304,7 +1306,7 @@ msgstr "Download von Mitgliederdaten CSV"
 #: templates/sidebar_group.html:87 templates/sidebar_group.html:93
 #: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
 msgid "Members"
-msgstr "Mitglieder"
+msgstr "miembros"
 
 #: templates/autosignup/sfilter.html:14 templates/autosignup/signups.html:66
 #: templates/crowdfunding/admin.html:76
@@ -1314,44 +1316,46 @@ msgstr "Mitglieder"
 #: templates/profilesystem/index.html:292 templates/sidebar_group.html:144
 #: templates/sidebar_group_admin.html:114
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "ajustes"
 
 #: templates/autosignup/sfilter.html:26 templates/autosignup/signups.html:78
 msgid "No signups yet!! "
-msgstr "Keine signups noch !!"
+msgstr "No hay inscripciones hasta ahora !!"
 
 #: templates/autosignup/signupclosed.html:4
 msgid "Signup is closed! try later"
-msgstr "Anmelden ist geschlossen! Versuche es später"
+msgstr "Inscripción se cierra! intenta más tarde"
 
 #: templates/autosignup/signuphistories.html:36
 msgid "This signup is not associated with any history"
-msgstr "Diese Anmeldung ist nicht mit einer Geschichte verbunden"
+msgstr "Este registro no está asociado con ningún historial"
 
 #: templates/autosignup/signupinfo.html:13
 #: templates/autosignup/signupinfo.html:42
 msgid "Validated"
-msgstr "Validierte"
+msgstr "validado"
 
 #: templates/autosignup/signupinfo.html:19
 msgid "This email id was used for these previous signup "
-msgstr "Diese E-Mail-ID wurde für diese vorherige Anmeldung verwendet"
+msgstr ""
+"Este correo electrónico de identificación se utiliza para estos registro "
+"anterior"
 
 #: templates/autosignup/signupinfo.html:36
 msgid "Mobile"
-msgstr "Mobile"
+msgstr "Móvil"
 
 #: templates/autosignup/signupinfo.html:39
 msgid "Not a Verifiable No"
-msgstr "Kein Verifizierbar Nein"
+msgstr "No es un verificable n"
 
 #: templates/autosignup/signupinfo.html:49
 msgid "This phone number was used for these previous signup "
-msgstr "Diese Telefonnummer wurde für diese vorherige Anmeldung verwendet"
+msgstr "Se utilizó este número de teléfono de estas registro anterior"
 
 #: templates/autosignup/signupinfo.html:137
 msgid "Distance from database address: "
-msgstr "Entfernung von Datenbank-Adresse:"
+msgstr "Distancia de la dirección de la base de datos:"
 
 #: templates/autosignup/signupinfo.html:137
 msgid " KM"
@@ -1362,84 +1366,83 @@ msgstr "KM"
 #: templates/profilesystem/index.html:131
 #: templates/profilesystem/index.html:170
 msgid "Edit"
-msgstr "Bearbeiten"
+msgstr "Editar"
 
 #: templates/autosignup/signupinfo.html:209
 msgid "History"
-msgstr "Geschichte"
+msgstr "Historia"
 
 #: templates/autosignup/signupinfo.html:211
 msgid "Resend Approval Email"
-msgstr "Erneut senden Zulassung E-Mail"
+msgstr "Reenvío de Correo electrónico de aprobación"
 
 #: templates/autosignup/signupinfo.html:214
 msgid "Send Invitation Email"
-msgstr "Einladung senden E-Mail"
+msgstr "Enviar Invitación por correo electrónico"
 
 #: templates/autosignup/signups.html:44 templates/useraccount/index.html:67
 msgid "Pending"
-msgstr "steht aus"
+msgstr "Pendiente"
 
 #: templates/autosignup/signups.html:45 templates/sidebar_group.html:78
 #: templates/sidebar_group_admin.html:48
 msgid "Approved"
-msgstr "Genehmigt"
+msgstr "Aprobado"
 
 #: templates/autosignup/signups.html:46
 msgid "Declined"
-msgstr "Abgelehnt"
+msgstr "disminuido"
 
 #: templates/autosignup/signups.html:47 templates/useraccount/index.html:70
 msgid "Incomplete"
-msgstr "Unvollständig"
+msgstr "Incompleto"
 
 #: templates/autosignup/signups.html:226
 msgid "Fetching..."
-msgstr "Fetching ..."
+msgstr "Atractivo..."
 
 #: templates/autosignup/step_2_form.html:22
 msgid "Verify Your Email"
-msgstr "Bestätigen Sie Ihre E-Mail"
+msgstr "Verifique su correo electrónico"
 
 #: templates/autosignup/step_2_verification.html:22
 msgid "Enter code sent to your email below"
-msgstr "Code eingeben geschickt unten an deine E-Mail"
+msgstr "Introduzca el código enviado a su correo electrónico debajo"
 
 #: templates/autosignup/step_2_verification.html:26
 #: templates/autosignup/step_3_verification.html:26
 msgid "Didn't get code yet?"
-msgstr "Nicht erhalten Code noch?"
+msgstr "No tuvimos la oportunidad de código todavía?"
 
 #: templates/autosignup/step_2_verification.html:26
 #: templates/autosignup/step_3_verification.html:26
 msgid "try again"
-msgstr "Versuch es noch einmal"
+msgstr "Inténtalo de nuevo"
 
 #: templates/autosignup/step_3_form.html:22
 msgid "Verify Your Mobile Number"
-msgstr "Überprüfen Sie Ihre Handynummer"
+msgstr "Verifique su número de móvil"
 
 #: templates/autosignup/step_3_verification.html:22
 msgid "Enter code sent to your phone below"
-msgstr "Code eingeben, um Ihr Telefon unten geschickt"
+msgstr "Introduzca el código enviado a su teléfono a continuación"
 
 #: templates/autosignup/step_3_verification.html:29
 msgid "I am not getting a verification code for my number"
-msgstr "Ich bin kein Bestätigungs-Code für meine Nummer bekommen"
+msgstr "No estoy recibiendo un código de verificación para mi número de"
 
 #: templates/autosignup/step_3_verification.html:29
 msgid "skip"
-msgstr "überspringen"
+msgstr "omitir"
 
 #: templates/autosignup/step_3_verification.html:34
 msgid "This needs some time don't close/refresh browser"
-msgstr "Dies muss einige Zeit nicht schließen / Refresh-Browser"
+msgstr ""
+"Esto necesita un poco de tiempo no cierran / navegador de actualización"
 
 #: templates/autosignup/thankyou.html:4
 msgid "Thank you for signing up to Grantcoin and providing us your information"
-msgstr ""
-"Vielen Dank für Ihre Anmeldung zu Grantcoin und Bereitstellung von uns Ihre "
-"Informationen"
+msgstr "Gracias por suscribirse a Grantcoin y nos proporciona su información"
 
 #: templates/autosignup/thankyou.html:5
 msgid ""
@@ -1449,92 +1452,92 @@ msgstr ""
 
 #: templates/base.html:125
 msgid "Toggle navigation"
-msgstr "Toggle-Navigation"
+msgstr "Navegación de palanca"
 
 #: templates/base.html:154 templates/base.html:173 templates/base.html:230
 msgid "Hello User"
-msgstr "Hallo Benutzer"
+msgstr "Hola usuario"
 
 #: templates/base.html:170
 msgid "Member Since "
-msgstr "Mitglied seit"
+msgstr "Miembro desde"
 
 #: templates/base.html:184 templates/useraccount/index.html:7
 msgid "Account"
-msgstr "Konto"
+msgstr "Cuenta"
 
 #: templates/base.html:187
 msgid "Landing"
-msgstr "Landung"
+msgstr "Aterrizaje"
 
 #: templates/base.html:195 templates/landing_base.html:101
 #: templates/landing_base.html:165 templates/profilesystem/index.html:5
 #: templates/profilesystem/index.html:42 templates/profilesystem/index.html:45
 #: templates/sidebar_home.html:27
 msgid "Profile"
-msgstr "Profil"
+msgstr "Perfil"
 
 #: templates/base.html:198
 msgid "Sign out"
-msgstr "Ausloggen"
+msgstr "desconectar"
 
 #: templates/base.html:306
 msgid "System notice: "
-msgstr "System Hinweis:"
+msgstr "Aviso del sistema:"
 
 #: templates/base.html:349
 msgid "Language Settings"
-msgstr "Spracheinstellungen"
+msgstr "Ajustes de idioma"
 
 #: templates/base.html:366
 msgid "Set"
-msgstr "Set"
+msgstr "Conjunto"
 
 #: templates/base.html:381
 msgid "Filter Options"
-msgstr "Filteroptionen"
+msgstr "Opciones de filtro"
 
 #: templates/base.html:391
 msgid "Apply"
-msgstr "Sich bewerben"
+msgstr "Aplicar"
 
 #: templates/crowdfunding/admin.html:4 templates/crowdfunding/admin.html:37
 #: templates/crowdfunding/admin.html:40 templates/sidebar_community.html:32
 msgid "Crowdfund Admin"
-msgstr "Crowdfund Admin"
+msgstr "Crowdfund de administración"
 
 #: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:60
 msgid "Stats"
-msgstr "Statistik"
+msgstr "Estadísticas"
 
 #: templates/crowdfunding/admin.html:62
 msgid "Status"
-msgstr "Status"
+msgstr "Estado"
 
 #: templates/crowdfunding/admin.html:63
 msgid "Active"
-msgstr "Aktiv"
+msgstr "Activo"
 
 #: templates/crowdfunding/admin.html:63
 msgid "Stopped"
-msgstr "Gestoppt"
+msgstr "Detenido"
 
 #: templates/crowdfunding/admin.html:67 templates/crowdfunding/admin.html:83
 #: templates/crowdfunding/admin.html:127
 msgid "No Crowdfund started"
-msgstr "Kein Crowdfund gestartet"
+msgstr "No se inició Crowdfund"
 
 #: templates/crowdfunding/admin.html:86
 msgid "Start new"
-msgstr "Neu anfangen"
+msgstr "Comenzar nuevo"
 
 #: templates/crowdfunding/admin.html:97
 msgid "Payments"
-msgstr "Zahlungen"
+msgstr "pagos"
 
 #: templates/crowdfunding/index.html:4
 msgid "Crowdfunding"
-msgstr "Crowdfunding"
+msgstr "crowdfunding"
 
 #: templates/crowdfunding/index.html:17 templates/crowdfunding/index.html:20
 #: templates/sidebar_community.html:30
@@ -1543,65 +1546,65 @@ msgstr "Crowdfund"
 
 #: templates/crowdfunding/index.html:32
 msgid "Watch video"
-msgstr "Video ansehen"
+msgstr "Ver video"
 
 #: templates/crowdfunding/index.html:34
 msgid "FUND"
-msgstr "FONDS"
+msgstr "FONDO"
 
 #: templates/crowdfunding/index.html:46
 msgid "Product Features"
-msgstr "Produkt-Eigenschaften"
+msgstr "Características del producto"
 
 #: templates/crowdfunding/index.html:55
 msgid "Introduction"
-msgstr "Einführung"
+msgstr "Introducción"
 
 #: templates/crowdfunding/index.html:77
 msgid "Fund Now"
-msgstr "Fund Jetzt"
+msgstr "Fondo Ahora"
 
 #: templates/crowdfunding/index.html:84
 msgid "Card"
-msgstr "Karte"
+msgstr "Tarjeta"
 
 #: templates/crowdfunding/index.html:92 useraccount/forms.py:8
 #: useraccount/forms.py:27
 msgid "Amount"
-msgstr "Menge"
+msgstr "Cantidad"
 
 #: templates/crowdfunding/index.html:98
 msgid "Feedback"
-msgstr "Feedback"
+msgstr "Realimentación"
 
 #: templates/crowdfunding/payment_details.html:2
 msgid "User: "
-msgstr "Benutzer:"
+msgstr "Usuario:"
 
 #: templates/crowdfunding/payment_details.html:3
 msgid "Amount: "
-msgstr "Menge:"
+msgstr "Cantidad:"
 
 #: templates/crowdfunding/payment_details.html:4
 msgid "Date: "
-msgstr "Datum:"
+msgstr "Fecha:"
 
 #: templates/crowdfunding/payment_details.html:5
 msgid "Charge ID(Stripe): "
-msgstr "Lade ID (Stripe):"
+msgstr "Identificación de carga (Stripe):"
 
 #: templates/crowdfunding/payment_details.html:7
 #: templates/eblast/emailcampaign_sent.html:5
 msgid "Message: "
-msgstr "Nachricht:"
+msgstr "Mensaje:"
 
 #: templates/crowdfunding/payment_details.html:10
 msgid "Fail Reason: "
-msgstr "Fehlerursache:"
+msgstr "Fallar Motivo:"
 
 #: templates/crowdfunding/thankyou.html:3
 msgid "Thank You"
-msgstr "Danke"
+msgstr "Gracias"
 
 #: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:20
 #: templates/dashboard/dashboard.html:23
@@ -1612,128 +1615,128 @@ msgstr "Danke"
 #: templates/sidebar_group.html:36 templates/sidebar_group_admin.html:6
 #: templates/sidebar_home.html:4
 msgid "Dashboard"
-msgstr "Instrumententafel"
+msgstr "Tablero"
 
 #: templates/dashboard/dashboard.html:35 templates/profilesystem/index.html:202
 #: templates/publicusers/user.html:174
 msgid "References"
-msgstr "Referenzen"
+msgstr "referencias"
 
 #: templates/dashboard/dashboard.html:45 templates/dashboard/dashboard.html:172
 msgid "Connections"
-msgstr "Anschlüsse"
+msgstr "conexiones"
 
 #: templates/dashboard/dashboard.html:55 templates/landing_base.html:118
 #: templates/landing_base.html:169
 msgid "Messages"
-msgstr "Nachrichten"
+msgstr "mensajes"
 
 #: templates/dashboard/dashboard.html:65 templates/dashboard/dashboard.html:257
 msgid "Account Balance"
-msgstr "Kontostand"
+msgstr "Saldo de la cuenta"
 
 #: templates/dashboard/dashboard.html:75 templates/dashboard/dashboard.html:258
 #: templates/useraccount/index.html:123
 msgid "Next Release"
-msgstr "Nächste Veröffentlichung"
+msgstr "A continuación estreno"
 
 #: templates/dashboard/dashboard.html:121 templates/publicusers/user.html:277
 msgid "Profile Completed"
-msgstr "Profil Abgeschlossene"
+msgstr "Perfil Completo"
 
 #: templates/dashboard/dashboard.html:138 templates/publicusers/user.html:290
 msgid "Completed"
-msgstr "Abgeschlossen"
+msgstr "Terminado"
 
 #: templates/dashboard/dashboard.html:144 templates/publicusers/user.html:296
 msgid "Not completed"
-msgstr "Nicht vollständig"
+msgstr "Sin completar"
 
 #: templates/dashboard/dashboard.html:150 templates/publicusers/user.html:302
 msgid "Not verified"
-msgstr "Nicht verifiziert"
+msgstr "No verificado"
 
 #: templates/dashboard/dashboard.html:156 templates/publicusers/user.html:308
 msgid "Skipped"
-msgstr "Übersprungene"
+msgstr "omitido"
 
 #: templates/dashboard/dashboard.html:182
 msgid "You have no connection to display data"
-msgstr "Sie haben keine Verbindungsdaten angezeigt werden"
+msgstr "No tiene una conexión de datos para mostrar"
 
 #: templates/dashboard/dashboard.html:195
 msgid " Friends"
-msgstr "Freunde"
+msgstr "Amigos"
 
 #: templates/dashboard/dashboard.html:196
 msgid " Families"
-msgstr "Familien"
+msgstr "familias"
 
 #: templates/dashboard/dashboard.html:197
 msgid " Contacts"
-msgstr "Impressum"
+msgstr "contactos"
 
 #: templates/dashboard/dashboard.html:214
 msgid "New Members"
-msgstr "Neue Mitglieder"
+msgstr "Nuevos miembros"
 
 #: templates/dashboard/dashboard.html:227
 msgid "Total Ekata Members"
-msgstr "Insgesamt Ekata Mitglieder"
+msgstr "Total de Miembros Ekata"
 
 #: templates/dashboard/dashboard.html:242
 msgid "Active Members"
-msgstr "Aktive Mitglieder"
+msgstr "Usuarios activos"
 
 #: templates/dashboard/dashboard.html:256
 msgid "Add Widget"
-msgstr "Widget hinzufügen"
+msgstr "Añadir Widget"
 
 #: templates/dashboard/dashboard.html:259 templates/timelines/index.html:77
 #: templates/timelines/index.html:79
 msgid "Connection"
-msgstr "Verbindung"
+msgstr "Conexión"
 
 #: templates/dashboard/dashboard.html:260
 msgid "Profile Completion Ring"
-msgstr "Profil Vollendung Ring"
+msgstr "Perfil Anillo de Terminación"
 
 #: templates/dashboard/dashboard.html:270
 msgid "Website added"
-msgstr "Webseite hinzugefügt"
+msgstr "Sitio web añadió"
 
 #: templates/dashboard/dashboard.html:277
 msgid "Gender added"
-msgstr "Geschlecht hinzugefügt"
+msgstr "género añadió"
 
 #: templates/dashboard/dashboard.html:284
 msgid "Phone added"
-msgstr "Telefon hinzugefügt"
+msgstr "teléfono añadió"
 
 #: templates/dashboard/dashboard.html:291
 msgid "Avatar added"
-msgstr "Avatar hinzugefügt"
+msgstr "Avatar añadió"
 
 #: templates/dashboard/dashboard.html:298
 msgid "Address added"
-msgstr "Adresse hinzugefügt"
+msgstr "dirección añadió"
 
 #: templates/dashboard/dashboard.html:305
 msgid "Socialaccount added"
-msgstr "Socialaccount hinzugefügt"
+msgstr "Socialaccount añadió"
 
 #: templates/dashboard/dashboard.html:312
 msgid "Email added"
-msgstr "E-Mail hinzugefügt"
+msgstr "email añadió"
 
 #: templates/dashboard/dashboard.html:319
 msgid "Email verified"
-msgstr "Email überprüft"
+msgstr "Correo Electrónico Verificado"
 
 #: templates/dashboard/dashboard.html:331
 #: templates/dashboard/dashboard.html:403
 msgid "Add website"
-msgstr "Website hinzufügen"
+msgstr "Añadir página web"
 
 #: templates/dashboard/dashboard.html:332
 #: templates/dashboard/dashboard.html:338
@@ -1744,56 +1747,56 @@ msgstr "Website hinzufügen"
 #: templates/dashboard/dashboard.html:368
 #: templates/dashboard/dashboard.html:377
 msgid " (skip)"
-msgstr "(überspringen)"
+msgstr "(omitir)"
 
 #: templates/dashboard/dashboard.html:337
 #: templates/dashboard/dashboard.html:408
 msgid "Add gender"
-msgstr "In der Geschlechter"
+msgstr "Añadir género"
 
 #: templates/dashboard/dashboard.html:343
 #: templates/dashboard/dashboard.html:413
 msgid "Add phone"
-msgstr "phone"
+msgstr "Añadir teléfono"
 
 #: templates/dashboard/dashboard.html:349
 #: templates/dashboard/dashboard.html:418
 msgid "Add avatar"
-msgstr "In avatar"
+msgstr "Añadir avatar"
 
 #: templates/dashboard/dashboard.html:355
 #: templates/dashboard/dashboard.html:423
 msgid "Add address"
-msgstr "Adresse hinzufügen"
+msgstr "Añadir dirección"
 
 #: templates/dashboard/dashboard.html:361
 #: templates/dashboard/dashboard.html:428
 msgid "Add socialaccount"
-msgstr "In socialaccount"
+msgstr "Añadir socialaccount"
 
 #: templates/dashboard/dashboard.html:367
 #: templates/dashboard/dashboard.html:433
 msgid "Add email"
-msgstr "In E-Mail"
+msgstr "Añadir correo electrónico"
 
 #: templates/dashboard/dashboard.html:376
 #: templates/dashboard/dashboard.html:391
 #: templates/dashboard/dashboard.html:441
 msgid "Verify email"
-msgstr "E-Mail bestätigen"
+msgstr "verificar correo electrónico"
 
 #: templates/dashboard/dashboard.html:392
 msgid "(skip)"
-msgstr "(überspringen)"
+msgstr "(omitir)"
 
 #: templates/eblast/editemailcampaign.html:6
 #: templates/eblast/emailtemplateedit.html:6
 msgid "Update"
-msgstr "Aktualisieren"
+msgstr "Actualizar"
 
 #: templates/eblast/emailcampaign.html:15
 msgid "Test send"
-msgstr "Test send"
+msgstr "Enviar prueba"
 
 #: templates/eblast/emailcampaign.html:16
 #: templates/eblast/emailcampaign.html:45
@@ -1803,23 +1806,23 @@ msgstr "Test send"
 #: templates/timelines/index.html:102
 #: templates/useraccount/transferunit.html:22
 msgid "Send"
-msgstr "Senden"
+msgstr "Enviar"
 
 #: templates/eblast/emailcampaign.html:18
 msgid "Resend"
-msgstr "Erneut senden"
+msgstr "reenviar"
 
 #: templates/eblast/emailcampaign.html:19
 msgid "Show tracking data"
-msgstr "Anzeigen-Tracking-Daten"
+msgstr "Mostrar datos de seguimiento"
 
 #: templates/eblast/emailcampaign.html:38
 msgid "Send a test email"
-msgstr "Senden Sie eine E-Mail-Test"
+msgstr "Enviar un mensaje de prueba"
 
 #: templates/eblast/emailcampaign.html:55
 msgid "Send email"
-msgstr "E-Mail senden"
+msgstr "Enviar correo electrónico"
 
 #: templates/eblast/emailcampaign_page.html:4
 msgid "EmailCampaigns | eBlast"
@@ -1828,7 +1831,7 @@ msgstr "EmailCampaigns | eBlast"
 #: templates/eblast/emailcampaign_page.html:10
 #: templates/sidebar_community.html:44
 msgid "Email Campaigns"
-msgstr "E-Mail-Kampagnen"
+msgstr "Campañas de email"
 
 #: templates/eblast/emailcampaign_page.html:13
 #: templates/eblast/emailgroups_page.html:13
@@ -1843,69 +1846,69 @@ msgstr "emailcampaigns"
 
 #: templates/eblast/emailcampaign_page.html:37
 msgid "Campaign Lists"
-msgstr "Kampagnenlisten"
+msgstr "Listas de campaña"
 
 #: templates/eblast/emailcampaign_page.html:45
 #: templates/eblast/emailcampaignform.html:3
 msgid "Create Campaign"
-msgstr "Kampagne erstellen"
+msgstr "crear campaña"
 
 #: templates/eblast/emailcampaign_page.html:75
 msgid "Sent"
-msgstr "Sent"
+msgstr "Expedido"
 
 #: templates/eblast/emailcampaign_page.html:78
 msgid "Draft"
-msgstr "Entwurf"
+msgstr "Borrador"
 
 #: templates/eblast/emailcampaign_sent.html:2
 msgid "Sent to: "
-msgstr "Gesendet an:"
+msgstr "Enviado a:"
 
 #: templates/eblast/emailcampaign_sent.html:2
 #: templates/profilesystem/index.html:515
 msgid "Email Address"
-msgstr "E-Mail-Addresse"
+msgstr "Dirección de correo electrónico"
 
 #: templates/eblast/emailcampaign_sent.html:3
 msgid "Subject: "
-msgstr "Fach:"
+msgstr "Tema:"
 
 #: templates/eblast/emailgroup.html:9 templates/eblast/emailgroup.html:63
 msgid "Add Recipient"
-msgstr "Empfänger hinzufügen"
+msgstr "Agregar destinatario"
 
 #: templates/eblast/emailgroup.html:10
 msgid "Upload CSV"
-msgstr "CSV-Datei hochladen"
+msgstr "subir un archivo CSV"
 
 #: templates/eblast/emailgroup.html:42
 #: templates/groupsystem/groupdetails.html:121
 msgid "Unsubscribe"
-msgstr "Abmelden"
+msgstr "Darse de baja"
 
 #: templates/eblast/emailgroup.html:46
 #: templates/groupsystem/groupdetails.html:127
 msgid "Subscribe"
-msgstr "Abonnieren"
+msgstr "Suscribir"
 
 #: templates/eblast/emailgroup.html:70 templates/profilesystem/index.html:135
 #: templates/profilesystem/index.html:174
 msgid "Add"
-msgstr "Hinzufügen"
+msgstr "Añadir"
 
 #: templates/eblast/emailgroup.html:80
 msgid "Upload a CSV"
-msgstr "Laden Sie eine CSV"
+msgstr "Sube un archivo CSV"
 
 #: templates/eblast/emailgroup.html:87 templates/profilesystem/index.html:280
 msgid "Upload"
-msgstr "Hochladen"
+msgstr "Subir"
 
 #: templates/eblast/emailgroupform.html:3
 #: templates/eblast/emailgroups_page.html:48
 msgid "Create List"
-msgstr "Liste erstellen"
+msgstr "Crear lista"
 
 #: templates/eblast/emailgroups_page.html:4
 msgid "EmailGroups | eBlast"
@@ -1913,7 +1916,7 @@ msgstr "EmailGroups | eBlast"
 
 #: templates/eblast/emailgroups_page.html:10
 msgid "Email Groups"
-msgstr "E-Mail-Gruppen"
+msgstr "Grupos de correo electrónico"
 
 #: templates/eblast/emailgroups_page.html:14
 msgid "emailgroups"
@@ -1921,27 +1924,27 @@ msgstr "emailgroups"
 
 #: templates/eblast/emailgroups_page.html:40
 msgid "Group Lists"
-msgstr "Gruppenlisten"
+msgstr "Listas de grupos"
 
 #: templates/eblast/emailgroupslist.html:5
 #: templates/eblast/emailgroupslist.html:7
 #: templates/eblast/singleemailgrouplist.html:2
 msgid "emails"
-msgstr "E-Mails"
+msgstr "mensajes de correo electrónico"
 
 #: templates/eblast/emailgroupslist.html:5
 #: templates/eblast/emailgroupslist.html:7
 #: templates/eblast/singleemailgrouplist.html:2
 msgid "email"
-msgstr "Email"
+msgstr "correo electrónico"
 
 #: templates/eblast/emailtemplate.html:11
 msgid "Preview"
-msgstr "Vorschau"
+msgstr "Avance"
 
 #: templates/eblast/emailtemplateform.html:3
 msgid "Add a new template"
-msgstr "Fügen Sie eine neue Vorlage"
+msgstr "Añadir una nueva plantilla"
 
 #: templates/eblast/emailtemplates_page.html:4
 msgid "EmailTemplates | eBlast"
@@ -1950,48 +1953,49 @@ msgstr "EmailTemplates | eBlast"
 #: templates/eblast/emailtemplates_page.html:10
 #: templates/sidebar_community.html:43
 msgid "Email Templates"
-msgstr "E-Mail-Vorlagen"
+msgstr "Plantillas de correo electrónico"
 
 #: templates/eblast/emailtemplates_page.html:14
 msgid "emailtemplates"
-msgstr "emailtemplates"
+msgstr "Plantillas de correo electrónico"
 
 #: templates/eblast/emailtemplates_page.html:40
 msgid "Template Lists"
-msgstr "Template-Listen"
+msgstr "Listas de plantilla"
 
 #: templates/eblast/emailtemplates_page.html:48
 msgid "Create Template"
-msgstr "Vorlage erstellen"
+msgstr "crear plantilla"
 
 #: templates/eblast/tracking_data.html:4
 msgid "Tracking data for "
-msgstr "Tracking-Daten für"
+msgstr "para el seguimiento de datos"
 
 #: templates/eblast/tracking_data.html:11
 msgid "Emails Sent"
-msgstr "Gesendete E-Mails"
+msgstr "Los correos electrónicos enviados"
 
 #: templates/eblast/tracking_data.html:18
 msgid "Emails Opened"
-msgstr "E-Mails Eröffnet"
+msgstr "Los correos electrónicos Abierto"
 
 #: templates/emailtosms/index.html:4 templates/emailtosms/requestcarrier.html:4
 msgid "Email to sms"
-msgstr "Eine E-Mail an SMS"
+msgstr "Correo a SMS"
 
 #: templates/emailtosms/index.html:10
 msgid "Email to SMS"
-msgstr "E-Mail an SMS"
+msgstr "De correo electrónico a SMS"
 
 #: templates/emailtosms/index.html:13
 msgid "email to sms"
-msgstr "eine E-Mail an SMS"
+msgstr "correo a SMS"
 
 #: templates/emailtosms/index.html:33
 msgid "Help us to find working email to sms providers for your mobile number"
 msgstr ""
-"Helfen Sie uns, arbeiten E-Mail-SMS-Anbieter für Ihre Handy-Nummer zu finden"
+"Ayúdanos a encontrar de correo electrónico de trabajo a los proveedores de "
+"SMS para su número de móvil"
 
 #: templates/emailtosms/index.html:35
 msgid ""
@@ -2001,39 +2005,39 @@ msgstr ""
 
 #: templates/emailtosms/index.html:39
 msgid "Did you get a code on your mobile?"
-msgstr "Hast du einen Code auf Ihrem Handy?"
+msgstr "¿Recibió un código en tu móvil?"
 
 #: templates/emailtosms/index.html:40
 msgid "This may take some time..."
-msgstr "Dies könnte eine Weile dauern..."
+msgstr "Esto puede tomar algo de tiempo..."
 
 #: templates/emailtosms/index.html:41
 msgid "Yes"
-msgstr "Ja"
+msgstr "Sí"
 
 #: templates/emailtosms/index.html:42
 msgid "No"
-msgstr "Nein"
+msgstr "No"
 
 #: templates/emailtosms/index.html:46
 msgid "Thank you for helping us verify"
-msgstr "Vielen Dank für Ihre Hilfe überprüfen"
+msgstr "Gracias por ayudarnos a verificar"
 
 #: templates/emailtosms/index.html:47
 msgid "verify another"
-msgstr "überprüfen andere"
+msgstr "verificar otra"
 
 #: templates/emailtosms/requestcarrier.html:8
 msgid "Request Carrier"
-msgstr "Anfrage Träger"
+msgstr "solicitud Carrier"
 
 #: templates/emailtosms/requestcarrier.html:26
 msgid "Thank you, This carrier will be added soon"
-msgstr "Vielen Dank, wird dieser Träger in Kürze hinzugefügt"
+msgstr "Gracias, se añadirá Este portador pronto"
 
 #: templates/emailtosms/verifierform.html:9
 msgid "Request to add your carrier if not listed"
-msgstr "Fordern Sie Ihr Träger zu addieren, wenn nicht aufgeführt"
+msgstr "Pide que se añada a su compañía si no se encuentra"
 
 #: templates/groupsystem/admindashboard.html:4
 #: templates/groupsystem/admindashboard.html:14
@@ -2053,7 +2057,7 @@ msgstr "Fordern Sie Ihr Träger zu addieren, wenn nicht aufgeführt"
 #: templates/groupsystem/members.html:21 templates/groupsystem/members.html:92
 #: templates/groupsystem/postsadmin.html:14
 msgid "Admin"
-msgstr "Administrator"
+msgstr "Administración"
 
 #: templates/groupsystem/admindashboard.html:13
 #: templates/groupsystem/adminnews.html:20
@@ -2074,88 +2078,88 @@ msgstr "Administrator"
 #: templates/groupsystem/posts.html:13 templates/groupsystem/postsadmin.html:13
 #: templates/groupsystem/subscribed_group.html:15
 msgid "Group"
-msgstr "Gruppe"
+msgstr "Grupo"
 
 #: templates/groupsystem/admindashboard.html:46
 #: templates/groupsystem/admindashboard.html:60
 #: templates/groupsystem/admindashboard.html:74
 #: templates/groupsystem/admindashboard.html:88
 msgid "More info"
-msgstr "Mehr Infos"
+msgstr "Más información"
 
 #: templates/groupsystem/admindashboard.html:54
 msgid "New Request"
-msgstr "Neue Anfrage"
+msgstr "Nueva solicitud"
 
 #: templates/groupsystem/admindashboard.html:68
 msgid "Pending posts"
-msgstr "Ausstehende Beiträge"
+msgstr "Post pendientes"
 
 #: templates/groupsystem/admindashboard.html:82
 msgid "Pending comment"
-msgstr "Bis Kommentar"
+msgstr "A la espera de comentario"
 
 #: templates/groupsystem/adminnews.html:68
 msgid "No news!!"
-msgstr "Keine Neuigkeiten!!"
+msgstr "¡¡No hay noticias!!"
 
 #: templates/groupsystem/adminnews.html:76
 msgid "Create News"
-msgstr "News erstellen"
+msgstr "crear Noticias"
 
 #: templates/groupsystem/adminnews.html:99
 msgid "Edit news"
-msgstr "Bearbeiten Nachrichten"
+msgstr "Editar noticias"
 
 #: templates/groupsystem/adminsettings.html:40
 msgid "Send notification to members"
-msgstr "Sende Benachrichtigung an Mitglieder"
+msgstr "Enviar una notificación a los miembros"
 
 #: templates/groupsystem/adminsettings.html:73
 #: templates/groupsystem/groupdetails.html:78
 msgid "About Us"
-msgstr "Über uns"
+msgstr "Sobre nosotros"
 
 #: templates/groupsystem/adminsettings.html:81
 msgid "Auto approve post: "
-msgstr "Auto genehmigen Beitrag:"
+msgstr "Auto aprobar mensaje:"
 
 #: templates/groupsystem/adminsettings.html:89
 msgid "Auto approve comment: "
-msgstr "Auto genehmigen Kommentar:"
+msgstr "Auto aprobar comentario:"
 
 #: templates/groupsystem/adminsettings.html:101
 msgid "Edit Group"
-msgstr "Gruppe bearbeiten"
+msgstr "Editar grupo"
 
 #: templates/groupsystem/adminsettings.html:120
 msgid "Create Notification"
-msgstr "Meldung anlegen"
+msgstr "crear Notificación"
 
 #: templates/groupsystem/adminsettings.html:126
 #: templates/groupsystem/all_group.html:108
 #: templates/groupsystem/customroles.html:97
 msgid "Create"
-msgstr "Erstellen"
+msgstr "Crear"
 
 #: templates/groupsystem/all_group.html:5
 #: templates/groupsystem/all_group.html:40 templates/sidebar_community.html:12
 msgid "All Groups"
-msgstr "Alle Gruppen"
+msgstr "todos los Grupos"
 
 #: templates/groupsystem/all_group.html:43 templates/landing_base.html:108
 #: templates/landing_base.html:167 templates/sidebar_community.html:6
 msgid "Groups"
-msgstr "Gruppen"
+msgstr "grupos"
 
 #: templates/groupsystem/all_group.html:44
 msgid "all groups"
-msgstr "Alle Gruppen"
+msgstr "todos los grupos"
 
 #: templates/groupsystem/all_group.html:69
 #: templates/groupsystem/all_group.html:102
 msgid "Create Group"
-msgstr "Gruppe erstellen"
+msgstr "Crea un grupo"
 
 #: templates/groupsystem/bannedmembers.html:4
 msgid "Bannedmembers"
@@ -2164,14 +2168,14 @@ msgstr "Bannedmembers"
 #: templates/groupsystem/bannedmembers.html:10
 #: templates/groupsystem/bannedmembers.html:15 templates/sidebar_group.html:98
 msgid "Banned Members"
-msgstr "Gebannt Mitglieder"
+msgstr "Los miembros prohibidos"
 
 #: templates/groupsystem/bannedmembers.html:44
 #: templates/groupsystem/editextraperm.html:3
 #: templates/groupsystem/joinrequests.html:44
 #: templates/groupsystem/members.html:61
 msgid "User"
-msgstr "Benutzer"
+msgstr "Usuario"
 
 #: templates/groupsystem/bannedmembers.html:45
 #: templates/groupsystem/joinrequests.html:45
@@ -2179,101 +2183,101 @@ msgstr "Benutzer"
 #: templates/messagingsystem/chats.html:175
 #: templates/messagingsystem/index.html:252
 msgid "Actions"
-msgstr "Aktionen"
+msgstr "Comportamiento"
 
 #: templates/groupsystem/bannedmembers.html:58
 msgid "Lift Ban"
-msgstr "Aufzug Ban"
+msgstr "ascensor Ban"
 
 #: templates/groupsystem/commentadmin.html:17
 #: templates/groupsystem/commentadmin.html:22 templates/sidebar_group.html:71
 #: templates/sidebar_group_admin.html:41
 msgid "Comments"
-msgstr "Bemerkungen"
+msgstr "comentarios"
 
 #: templates/groupsystem/commentadmin.html:55
 #: templates/groupsystem/editcommentpage.html:39
 msgid "Post: "
-msgstr "Post:"
+msgstr "Enviar:"
 
 #: templates/groupsystem/commentadmin.html:56
 #: templates/groupsystem/editcommentpage.html:42
 msgid "Commented By: "
-msgstr "Kommentiert von:"
+msgstr "Por comentado:"
 
 #: templates/groupsystem/commentadmin.html:58
 msgid "Comment: "
-msgstr "Kommentar:"
+msgstr "Comentario:"
 
 #: templates/groupsystem/commentadmin.html:60
 #: templates/groupsystem/postsadmin.html:89
 msgid "edit"
-msgstr "bearbeiten"
+msgstr "editar"
 
 #: templates/groupsystem/commentadmin.html:62
 msgid "approve"
-msgstr "genehmigen"
+msgstr "aprobar"
 
 #: templates/groupsystem/commentadmin.html:71
 msgid "No comments!!"
-msgstr "Keine Kommentare!!"
+msgstr "¡¡Sin comentarios!!"
 
 #: templates/groupsystem/creategroupsuccess.html:3
 msgid "Your new group is created"
-msgstr "Ihre neue Gruppe wird erstellt"
+msgstr "Se crea un grupo nuevo"
 
 #: templates/groupsystem/creategroupsuccess.html:4
 msgid "Group UUID: "
-msgstr "Gruppe UUID:"
+msgstr "UUID grupo:"
 
 #: templates/groupsystem/creategroupsuccess.html:5
 msgid "Url: "
-msgstr "URL:"
+msgstr "url:"
 
 #: templates/groupsystem/creategroupsuccess.html:6
 msgid "More Settings: "
-msgstr "Mehr Einstellungen:"
+msgstr "Más ajustes:"
 
 #: templates/groupsystem/customroles.html:4
 #: templates/groupsystem/customroles.html:56
 msgid "Custom roles"
-msgstr "Benutzerdefinierte Rollen"
+msgstr "Las funciones personalizadas"
 
 #: templates/groupsystem/customroles.html:17
 #: templates/groupsystem/customroles.html:22
 msgid "Custom Roles"
-msgstr "Benutzerdefinierte Rollen"
+msgstr "funciones personalizadas"
 
 #: templates/groupsystem/customroles.html:47
 msgid "Create custom role"
-msgstr "Erstellen von benutzerdefinierten Rolle"
+msgstr "Crear función personalizada"
 
 #: templates/groupsystem/customroles.html:68
 msgid "You don't have any custom roles defined"
-msgstr "Sie haben noch keine benutzerdefinierte Rollen definiert"
+msgstr "Usted no tiene ninguna función personalizados definidos"
 
 #: templates/groupsystem/customroles.html:76
 #: templates/groupsystem/defaultroles.html:62
 msgid "Permissions"
-msgstr "Berechtigungen"
+msgstr "permisos"
 
 #: templates/groupsystem/customroles.html:91
 msgid "Create Custom Role"
-msgstr "Erstellen von benutzerdefinierten Rollen"
+msgstr "Crear funciones personalizado"
 
 #: templates/groupsystem/customroles.html:113
 msgid "You dont have permission to edit role"
-msgstr "Sie brauchen nicht die Erlaubnis Rolle zu bearbeiten haben"
+msgstr "Usted no tiene permiso para editar papel"
 
 #: templates/groupsystem/defaultroles.html:4
 #: templates/groupsystem/defaultroles.html:46
 msgid "Default roles"
-msgstr "Standardrollen"
+msgstr "roles predeterminados"
 
 #: templates/groupsystem/defaultroles.html:17
 #: templates/groupsystem/defaultroles.html:22
 msgid "Default Roles"
-msgstr "Standardrollen"
+msgstr "Los roles predeterminados"
 
 #: templates/groupsystem/editcommentpage.html:10
 #: templates/groupsystem/editcommentpage.html:14
@@ -2282,37 +2286,37 @@ msgstr "Standardrollen"
 #: templates/groupsystem/joined_group.html:16
 #: templates/groupsystem/subscribed_group.html:16
 msgid "admin"
-msgstr "Administrator"
+msgstr "administración"
 
 #: templates/groupsystem/editcommentpage.html:40
 #: templates/groupsystem/editpostpage.html:42
 msgid "Approved: "
-msgstr "Genehmigt:"
+msgstr "Aprobado:"
 
 #: templates/groupsystem/editcommentpage.html:41
 #: templates/groupsystem/editpostpage.html:43
 msgid "Approved By: "
-msgstr "Genehmigt durch:"
+msgstr "Aprobado por:"
 
 #: templates/groupsystem/editcommentpage.html:43
 msgid "Commented on: "
-msgstr "Kommentiert am:"
+msgstr "Comentado:"
 
 #: templates/groupsystem/editcustomrole.html:3
 msgid "User who assigned with this role"
-msgstr "Benutzer, die mit dieser Rolle zugewiesen"
+msgstr "Usuario que le asigna esta función"
 
 #: templates/groupsystem/editpostpage.html:39
 msgid "Creator: "
-msgstr "Schöpfer:"
+msgstr "Creador:"
 
 #: templates/groupsystem/editpostpage.html:45
 msgid "Post Created on: "
-msgstr "Beitrag Erstellt am:"
+msgstr "Anuncio creado en:"
 
 #: templates/groupsystem/eventform.html:7
 msgid "Clear"
-msgstr "Klar"
+msgstr "Claro"
 
 #: templates/groupsystem/events.html:4 templates/groupsystem/events.html:10
 #: templates/groupsystem/events.html:14 templates/groupsystem/events.html:38
@@ -2322,95 +2326,95 @@ msgstr "Klar"
 #: templates/groupsystem/eventsadmin.html:50 templates/sidebar_group.html:11
 #: templates/sidebar_group.html:107 templates/sidebar_group_admin.html:77
 msgid "Events"
-msgstr "Veranstaltungen"
+msgstr "Eventos"
 
 #: templates/groupsystem/events.html:88
 msgid "Startdate: "
-msgstr "Anfangsdatum:"
+msgstr "Fecha de inicio:"
 
 #: templates/groupsystem/events.html:90
 msgid "Enddate: "
-msgstr "Enddatum:"
+msgstr "Fecha final:"
 
 #: templates/groupsystem/eventsadmin.html:40
 msgid "Create Event"
-msgstr "Termin eintragen"
+msgstr "Crear evento"
 
 #: templates/groupsystem/groupdetails.html:89
 msgid "Leave Group"
-msgstr "Gruppe verlassen"
+msgstr "Dejar el grupo"
 
 #: templates/groupsystem/groupdetails.html:97
 #: templates/groupsystem/groupdetails.html:113
 msgid "Cancel Request"
-msgstr "Anfrage abbrechen"
+msgstr "Cancelar petición"
 
 #: templates/groupsystem/groupdetails.html:102
 #: templates/groupsystem/groupdetails.html:108
 msgid "Join Group"
-msgstr "Gruppe beitreten"
+msgstr "Unirse al grupo"
 
 #: templates/groupsystem/groupdetails.html:135
 msgid "Invite User"
-msgstr "Benutzer einladen"
+msgstr "invitar usuario"
 
 #: templates/groupsystem/groupdetails.html:142
 msgid "Go to Group Admin"
-msgstr "Zum Group Admin"
+msgstr "Ir al grupo de administración"
 
 #: templates/groupsystem/joined_group.html:5
 #: templates/groupsystem/joined_group.html:12
 #: templates/profilesystem/index.html:588 templates/sidebar_community.html:13
 msgid "Joined Groups"
-msgstr "beigetreten Gruppen"
+msgstr "Grupos unidos"
 
 #: templates/groupsystem/joinrequests.html:10
 #: templates/groupsystem/joinrequests.html:15
 msgid "Join Requests"
-msgstr "Registriert Anfragen"
+msgstr "Únete solicitudes"
 
 #: templates/groupsystem/joinrequests.html:57
 #: templates/groupsystem/postsadmin.html:79
 msgid "Approve"
-msgstr "Genehmigen"
+msgstr "Aprobar"
 
 #: templates/groupsystem/joinrequests.html:60
 msgid "Deny"
-msgstr "Verweigern"
+msgstr "Negar"
 
 #: templates/groupsystem/members.html:48
 msgid "Add member"
-msgstr "Mitglied hinzufügen"
+msgstr "Añadir miembro"
 
 #: templates/groupsystem/members.html:62
 msgid "Role"
-msgstr "Rolle"
+msgstr "Papel"
 
 #: templates/groupsystem/members.html:87
 msgid "Ban Member"
-msgstr "Ban Mitglied"
+msgstr "Ban miembro"
 
 #: templates/groupsystem/members.html:91
 msgid "SuperAdmin"
-msgstr "Superadmin"
+msgstr "SuperAdmin"
 
 #: templates/groupsystem/members.html:93
 msgid "Moderator"
-msgstr "Moderator"
+msgstr "Moderador"
 
 #: templates/groupsystem/members.html:94
 #: templates/publicusers/missing_users.html:25
 #: templates/publicusers/userlist.html:49 templates/publicusers/users.html:27
 msgid "Member"
-msgstr "Mitglied"
+msgstr "Miembro"
 
 #: templates/groupsystem/members.html:101
 msgid "Extra permission"
-msgstr "Extra-Erlaubnis"
+msgstr "permisos adicionales"
 
 #: templates/groupsystem/members.html:118
 msgid "Edit User Perm"
-msgstr "Benutzer bearbeiten Perm"
+msgstr "Editar usuario Perm"
 
 #: templates/groupsystem/members.html:141
 #: templates/groupsystem/members.html:153
@@ -2420,64 +2424,62 @@ msgstr "Benutzer bearbeiten Perm"
 #: templates/groupsystem/members.html:214
 #: templates/groupsystem/members.html:268
 msgid "Change role"
-msgstr "Rolle ändern"
+msgstr "cambio de rol"
 
 #: templates/groupsystem/members.html:231
 msgid "You dont have permissions to edit extra permissions"
-msgstr ""
-"Sie müssen nicht Berechtigungen verfügen, um zusätzliche Berechtigungen "
-"bearbeiten"
+msgstr "Usted no tiene permisos para modificar permisos adicionales"
 
 #: templates/groupsystem/postdetails.html:72
 msgid "Like"
-msgstr "Mögen"
+msgstr "Me gusta"
 
 #: templates/groupsystem/postdetails.html:124
 msgid " likes"
-msgstr "Likes"
+msgstr "gustos"
 
 #: templates/groupsystem/postdetails.html:124
 msgid " comments"
-msgstr "Bemerkungen"
+msgstr "comentarios"
 
 #: templates/groupsystem/posts.html:10 templates/groupsystem/posts.html:14
 #: templates/groupsystem/postsadmin.html:10
 #: templates/groupsystem/postsadmin.html:15 templates/sidebar_group.html:19
 #: templates/sidebar_group.html:54 templates/sidebar_group_admin.html:24
 msgid "Posts"
-msgstr "Beiträge"
+msgstr "Mensajes"
 
 #: templates/groupsystem/posts.html:40 templates/groupsystem/posts.html:104
 #: templates/groupsystem/postsadmin.html:41
 #: templates/groupsystem/postsadmin.html:107
 msgid "Create Post"
-msgstr "erstellen Beitrag"
+msgstr "crear Mensaje"
 
 #: templates/groupsystem/posts.html:84 templates/groupsystem/singlepost.html:32
 msgid "more"
-msgstr "Mehr"
+msgstr "Más"
 
 #: templates/groupsystem/posts.html:95 templates/groupsystem/postsadmin.html:99
 msgid "No Posts Yet!!"
-msgstr "Noch keine Beiträge !!"
+msgstr "¡¡Aún no hay publicaciones!!"
 
 #: templates/groupsystem/postsadmin.html:79
 msgid "Not approved"
-msgstr "Nicht bestätigt"
+msgstr "No aprovado"
 
 #: templates/groupsystem/roledetails.html:10
 msgid "No such default role"
-msgstr "Eine solche Standardrolle"
+msgstr "No existe tal función por defecto"
 
 #: templates/groupsystem/subscribed_group.html:5
 #: templates/groupsystem/subscribed_group.html:12
 #: templates/profilesystem/index.html:609 templates/sidebar_community.html:14
 msgid "Subscribed Groups"
-msgstr "Abonnierte Gruppen"
+msgstr "Grupos suscritos"
 
 #: templates/hashtag/images.html:14
 msgid "You have no images uploaded"
-msgstr "Sie haben keine Bilder hochgeladen"
+msgstr "No tiene imágenes subido"
 
 #: templates/hashtag/index.html:4
 msgid "Hashtag Banner"
@@ -2490,88 +2492,84 @@ msgstr "Hashtag"
 
 #: templates/hashtag/index.html:52
 msgid "Basic Income Hashtag Banner Campaign"
-msgstr "Grundeinkommen Hashtag Banner-Kampagne"
+msgstr "Campaña de Renta Básica de Hashtag Banner"
 
 #: templates/hashtag/index.html:53
 msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
 msgstr ""
-"Fügen Sie ein Grundeinkommen Banner auf Ihrer Facebook / Twitter-Profil-Foto."
+"Añadir un banner Renta Básica a tu foto de perfil de Facebook / Twitter."
 
 #: templates/hashtag/index.html:57
 msgid "Add hashtag banner to your facebook account"
-msgstr "In Hashtag Banner auf Ihrer Facebook-Account"
+msgstr "Añadir bandera hashtag a su cuenta de facebook"
 
 #: templates/hashtag/index.html:62
 msgid "Add hashtag banner to your twitter account"
-msgstr "Fügen Sie Hashtag Banner auf Ihrer Twitter-Account"
+msgstr "Añadir hashtag bandera de su cuenta de twitter"
 
 #: templates/hashtag/index.html:68
 msgid "You've not added facebook yet! Click the button to add"
-msgstr ""
-"Sie haben nicht Facebook noch hinzugefügt! Klicken Sie auf die Schaltfläche "
-"hinzufügen"
+msgstr "No has añadido facebook todavía! Haga clic en el botón para añadir"
 
 #: templates/hashtag/index.html:70
 msgid "Add Facebook"
-msgstr "In Facebook"
+msgstr "Añadir Facebook"
 
 #: templates/hashtag/index.html:78
 msgid "You've not added twitter yet! Click the button to add"
-msgstr ""
-"Sie haben nicht twitter noch hinzugefügt! Klicken Sie auf die Schaltfläche "
-"hinzufügen"
+msgstr "No has añadido Twitter todavía! Haga clic en el botón para añadir"
 
 #: templates/hashtag/index.html:80
 msgid "Add Twitter"
-msgstr "In Twitter"
+msgstr "Añadir Twitter"
 
 #: templates/hashtag/index.html:87
 msgid "Select from uploaded"
-msgstr "Wählen Sie aus hochgeladen"
+msgstr "Seleccione de subida"
 
 #: templates/hashtag/index.html:93
 msgid "Upload New Images"
-msgstr "Laden Sie neue Bilder"
+msgstr "Sube Nuevas Imágenes"
 
 #: templates/hashtag/index.html:98
 msgid "Change Banner Color"
-msgstr "Ändern Banner Farbe"
+msgstr "Cambio Bandera Color"
 
 #: templates/hashtag/index.html:102
 msgid "Make profile image"
-msgstr "Als Profilbild"
+msgstr "Hacer una imagen de perfil"
 
 #: templates/hashtag/index.html:108
 msgid "Download image"
-msgstr "Bild herunterladen"
+msgstr "Descargar imagen"
 
 #: templates/hashtag/index.html:121
 msgid "Upload Images"
-msgstr "Bilder hochladen"
+msgstr "cargar imágenes"
 
 #: templates/hashtag/index.html:255 templates/hashtag/index.html:271
 msgid "Upload to facebook"
-msgstr "Upload auf Facebook"
+msgstr "Sube a facebook"
 
 #: templates/hashtag/index.html:305 templates/hashtag/index.html:321
 msgid "Upload to twitter"
-msgstr "Laden Sie twittern"
+msgstr "Sube a twitter"
 
 #: templates/hashtag/index.html:356
 msgid "Uploading....."
-msgstr "Hochladen ....."
+msgstr "Carga ....."
 
 #: templates/hashtag/index.html:365
 msgid "Support #basicincome project"
-msgstr "Unterstützung"
+msgstr "Apoyo"
 
 #: templates/hashtag/index.html:407
 msgid "Uploaded"
-msgstr "Hochgeladen"
+msgstr "Subida"
 
 #: templates/hashtag/index.html:419
 msgid "Cant upload now!! try later"
-msgstr "Cant jetzt hochladen !! Versuche es später"
+msgstr "No me puedo subir ahora !! intenta más tarde"
 
 #: templates/information/contact.html:4 templates/information/contact.html:10
 #: templates/information/contact.html:13 templates/information/success.html:4
@@ -2580,11 +2578,11 @@ msgstr "Cant jetzt hochladen !! Versuche es später"
 #: templates/profilesystem/index.html:373 templates/publicusers/user.html:65
 #: templates/publicusers/user.html:236
 msgid "Contact"
-msgstr "Kontakt"
+msgstr "Contacto"
 
 #: templates/information/contact.html:24
 msgid "Get in touch with us"
-msgstr "Setzen Sie sich mit uns in Verbindung"
+msgstr "Póngase en contacto con nosotros"
 
 #: templates/information/contact.html:25
 msgid ""
@@ -2595,32 +2593,32 @@ msgstr ""
 #: templates/information/index.html:4 templates/information/index.html:13
 #: templates/information/index.html:24 templates/sidebar_community.html:20
 msgid "Information"
-msgstr "Information"
+msgstr "Información"
 
 #: templates/information/index.html:10
 msgid "About our system"
-msgstr "Über unser System"
+msgstr "Acerca de nuestro sistema"
 
 #: templates/information/success.html:13
 msgid "contact"
-msgstr "Kontakt"
+msgstr "contacto"
 
 #: templates/information/success.html:24
 msgid "Thank you for your interest"
-msgstr "Danke für dein Interesse"
+msgstr "Gracias por su interés"
 
 #: templates/information/success.html:25
 msgid "We will contact you shortly"
-msgstr "Wir werden Sie in Kürze kontaktieren"
+msgstr "Nos pondremos en contacto con usted en breve"
 
 #: templates/invitationsystem/checkinvitation.html:16
 msgid "Get access to ekata beta"
-msgstr "Erhalten Sie Zugang zu Ekata Beta"
+msgstr "Obtener acceso a la beta Ekata"
 
 #: templates/invitationsystem/index.html:16
 #: templates/invitationsystem/sent.html:13 templates/landing/index.html:238
 msgid "Get your invite access key to the ekata beta"
-msgstr "Erhalten Sie Ihren Zugangsschlüssel für die Ekata Beta einladen"
+msgstr "Consigue tu invitación clave de acceso a la beta Ekata"
 
 #: templates/invitationsystem/sent.html:15 templates/landing/index.html:407
 msgid ""
@@ -2630,7 +2628,7 @@ msgstr ""
 
 #: templates/landing/hashtag.html:35
 msgid "Show Support"
-msgstr "zeigen Sie Unterstützung"
+msgstr "Mostrar Apoyo"
 
 #: templates/landing/hashtag.html:36
 #, fuzzy
@@ -2639,19 +2637,19 @@ msgid ""
 "In adding the #basicincome hashtag banner to your facebook and twitter "
 "profile !!"
 msgstr ""
-"Fügen Sie ein Grundeinkommen Banner auf Ihrer Facebook / Twitter-Profil-Foto."
+"Añadir un banner Renta Básica a tu foto de perfil de Facebook / Twitter."
 
 #: templates/landing/hashtag.html:48
 msgid "World Supporters of Basic Income"
-msgstr "Weltunterstützer von Grundeinkommen"
+msgstr "Los partidarios mundo de Renta Básica"
 
 #: templates/landing/hashtag.html:71
 msgid "Create my banner"
-msgstr "Erstellen Sie mein Banner"
+msgstr "Crear mi bandera"
 
 #: templates/landing/hashtag.html:73
 msgid "Login/Signup to be here"
-msgstr "Login / Anmelden, hier zu sein"
+msgstr "Entrar / Registrarse para ser aquí"
 
 #: templates/landing/index.html:40
 msgid ""
@@ -2665,7 +2663,7 @@ msgstr ""
 
 #: templates/landing/index.html:55
 msgid "Communities"
-msgstr "Gemeinschaften"
+msgstr "comunidades"
 
 #: templates/landing/index.html:56
 msgid ""
@@ -2677,7 +2675,7 @@ msgstr ""
 
 #: templates/landing/index.html:60
 msgid "Associations"
-msgstr "Verbände"
+msgstr "asociaciones"
 
 #: templates/landing/index.html:61
 msgid ""
@@ -2689,7 +2687,7 @@ msgstr ""
 
 #: templates/landing/index.html:65
 msgid "Municipalities"
-msgstr "Gemeinden"
+msgstr "municipios"
 
 #: templates/landing/index.html:66
 msgid ""
@@ -2701,7 +2699,7 @@ msgstr ""
 
 #: templates/landing/index.html:78
 msgid "Platform Vision"
-msgstr "Platform Vision-"
+msgstr "plataforma de la visión"
 
 #: templates/landing/index.html:86
 msgid ""
@@ -2720,15 +2718,15 @@ msgstr ""
 
 #: templates/landing/index.html:106
 msgid "Social Responsiblity"
-msgstr "Sozial Verantwortlich"
+msgstr "la Responsabilidad Social"
 
 #: templates/landing/index.html:112
 msgid "Ekata has partnered with "
-msgstr "Ekata hat eine Partnerschaft mit"
+msgstr "Ekata se ha asociado con"
 
 #: templates/landing/index.html:112
 msgid ", a socially responsible digital currency which is distributed as "
-msgstr ", Eine sozial verantwortliche digitale Währung, die als verteilt"
+msgstr ", Una moneda digital socialmente responsable que se distribuye"
 
 #: templates/landing/index.html:112
 msgid ""
@@ -2741,40 +2739,41 @@ msgstr ""
 
 #: templates/landing/index.html:162
 msgid "Many Key Features"
-msgstr "Viele Schlüsselfunktionen"
+msgstr "Muchas de las características clave"
 
 #: templates/landing/index.html:165
 msgid "Group sites for art, music, news, politics, activism, and business."
 msgstr ""
-"Gruppe Standorte für Kunst, Musik, Nachrichten, Politik, Aktivismus und "
-"Wirtschaft."
+"Sitios del grupo de arte, música, noticias, política, activismo, y los "
+"negocios."
 
 #: templates/landing/index.html:169
 msgid "Social communication through instant messaging, posts, and comments."
 msgstr ""
-"Die soziale Kommunikation über Instant Messaging, Beiträge und Kommentare."
+"la comunicación social a través de la mensajería instantánea, mensajes y "
+"comentarios."
 
 #: templates/landing/index.html:173
 msgid "Governance of members, staff roles, social forums, and member voting."
 msgstr ""
-"Governance von Mitgliedern, Mitarbeitern Rollen, Sozialforen und Mitglied "
-"Abstimmung."
+"La gobernabilidad de los miembros, las funciones del personal, foros "
+"sociales, y la votación miembro."
 
 #: templates/landing/index.html:177
 msgid "Web of trust and a socially responsible currency system."
-msgstr "Web of Trust und eine sozial verantwortliche Währungssystem."
+msgstr "Web de confianza y un sistema de moneda socialmente responsable."
 
 #: templates/landing/index.html:196
 msgid "More Features"
-msgstr "Mehr Funktionen"
+msgstr "Más características"
 
 #: templates/landing/index.html:198
 msgid "API for building in app and feature integrations."
-msgstr "API für in-App und Feature-Integrationen zu bauen."
+msgstr "API para la creación de aplicaciones y características integraciones."
 
 #: templates/landing/index.html:199
 msgid "Open Source."
-msgstr "Open Source."
+msgstr "Fuente abierta."
 
 #: templates/landing/index.html:211
 msgid "#BasicIncome Hashtag Banner Campaign"
@@ -2789,27 +2788,27 @@ msgstr ""
 
 #: templates/landing/index.html:219
 msgid "Click here to create and upload the banner"
-msgstr "Klicken Sie hier, zu erstellen und laden Sie das Banner"
+msgstr "Haga clic aquí para crear y subir la bandera"
 
 #: templates/landing/index.html:418
 msgid "Please correct the errors"
-msgstr "Bitte korrigieren Sie die Fehler"
+msgstr "Por favor, corrija los errores"
 
 #: templates/landing/news.html:39
 msgid "News and Stories"
-msgstr "Nachrichten und Berichte"
+msgstr "Noticias e historias"
 
 #: templates/landing/news.html:46
 msgid "Trending"
-msgstr "Trending"
+msgstr "Tendencias"
 
 #: templates/landing/news.html:80 templates/landing/newsdetail.html:45
 msgid "About Me"
-msgstr "Über mich"
+msgstr "Sobre mi"
 
 #: templates/landing_base.html:99 templates/landing_base.html:164
 msgid "My Account"
-msgstr "Mein Konto"
+msgstr "Mi cuenta"
 
 #: templates/landing_base.html:104 templates/landing_base.html:166
 #: templates/publicusers/userdetails.html:50
@@ -2817,372 +2816,373 @@ msgstr "Mein Konto"
 #: templates/publicusers/userlist_old.html:44
 #: templates/publicusers/userlist_old.html:60
 msgid "Users"
-msgstr "Benutzer"
+msgstr "usuarios"
 
 #: templates/landing_base.html:112 templates/landing_base.html:168
 #: templates/sidebar_home.html:50 templates/timelines/index.html:4
 #: templates/timelines/index.html:18 templates/timelines/index.html:21
 msgid "Timeline"
-msgstr "Zeitleiste"
+msgstr "Línea de tiempo"
 
 #: templates/landing_base.html:127 templates/landing_base.html:170
 msgid "information"
-msgstr "Information"
+msgstr "información"
 
 #: templates/landing_base.html:134
 msgid "Customize link"
-msgstr "Link anpassen"
+msgstr "personalizar enlace"
 
 #: templates/landing_base.html:136
 msgid "Sign-out"
-msgstr "Ausloggen"
+msgstr "Desconectar"
 
 #: templates/landing_base.html:161
 msgid "Links"
-msgstr "Links"
+msgstr "Campo de golf"
 
 #: templates/landing_base.html:171
 msgid "Create Hashtag"
-msgstr "erstellen Sie Hashtag"
+msgstr "crear Hashtag"
 
 #: templates/landing_base.html:177
 msgid "Social"
-msgstr "Sozial-"
+msgstr "Social"
 
 #: templates/landing_base.html:186
 msgid "Signup for the Newsletter"
-msgstr "Newsletter-Anmeldung"
+msgstr "Suscribirse a la Newsletter"
 
 #: templates/landing_base.html:200
 msgid "Please feel free to inquire more about the EKATA platform."
-msgstr "Bitte zögern Sie nicht mehr über die Ekata Plattform zu erkundigen."
+msgstr "Por favor, siéntase libre de investigar más sobre la plataforma Ekata."
 
 #: templates/messagingsystem/chats.html:70
 msgid "Send Unit to: "
-msgstr "Senden Unit:"
+msgstr "Enviar a Unidad:"
 
 #: templates/messagingsystem/chats.html:87
 msgid "Request Unit from: "
-msgstr "Anforderungseinheit aus:"
+msgstr "Solicitar Unidad de:"
 
 #: templates/messagingsystem/chats.html:93
 #: templates/publicusers/userdetails.html:123 templates/timelines/index.html:57
 #: templates/timelines/index.html:59
 msgid "Request"
-msgstr "Anfordern"
+msgstr "Solicitud"
 
 #: templates/messagingsystem/index.html:4
 msgid "Messaging"
-msgstr "Messaging"
+msgstr "Mensajería"
 
 #: templates/messagingsystem/index.html:58
 #: templates/messagingsystem/index.html:61 templates/sidebar_home.html:56
 msgid "Messenger"
-msgstr "Bote"
+msgstr "Mensajero"
 
 #: templates/messagingsystem/index.html:93
 #: templates/messagingsystem/index.html:106
 msgid "Sorry you have no chats yet!!!"
-msgstr "Leider haben Sie keine Chats noch !!!"
+msgstr "En este momento usted no tiene aún los chats !!!"
 
 #: templates/messagingsystem/index.html:121
 msgid "Send Units"
-msgstr "senden Einheiten"
+msgstr "Enviar Unidades"
 
 #: templates/messagingsystem/index.html:126
 msgid "Request Request"
-msgstr "Anfrage Anfrage"
+msgstr "Request"
 
 #: templates/messagingsystem/navbarmessage.html:37
 msgid "All caught up"
-msgstr "Alle gefangen"
+msgstr "Todo atrapados"
 
 #: templates/notification/notification.html:19
 #: templates/timelines/index.html:278 templates/timelines/timeline.html:54
 #: templates/timelines/timeline.html:72
 msgid "sent"
-msgstr "geschickt"
+msgstr "expedido"
 
 #: templates/notification/notification.html:19
 #: templates/notification/notification.html:26
 #: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
 #: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
 msgid "units"
-msgstr "Einheiten"
+msgstr "unidades"
 
 #: templates/notification/notification.html:26
 msgid "requested"
-msgstr "fordert"
+msgstr "pedido"
 
 #: templates/notification/notification.html:33
 msgid "units released"
-msgstr "Einheiten freigegeben"
+msgstr "unidades liberados"
 
 #: templates/notification/notification.html:40
 msgid "verfied as real user"
-msgstr "verfied als reale Benutzer"
+msgstr "verfied como usuario real"
 
 #: templates/notification/notification.html:47
 msgid "unverfied you"
-msgstr "unverfied Sie"
+msgstr "que unverfied"
 
 #: templates/notification/notification.html:54
 msgid "sent a connection request"
-msgstr "eine Verbindungsanfrage gesendet"
+msgstr "enviado una solicitud de conexión"
 
 #: templates/notification/notification.html:61
 msgid "canceled connection request"
-msgstr "storniert Verbindungsanfrage"
+msgstr "solicitud de conexión cancelado"
 
 #: templates/notification/notification.html:68
 msgid "accepted connection request"
-msgstr "akzeptierte Verbindungsanfrage"
+msgstr "solicitud de conexión aceptada"
 
 #: templates/notification/notification.html:75
 msgid "rejected connection request"
-msgstr "abgelehnten Verbindungsanfrage"
+msgstr "solicitud de conexión rechazado"
 
 #: templates/notification/notification.html:82
 msgid "disconnected you"
-msgstr "abgeklemmt Sie"
+msgstr "Ha desconectado"
 
 #: templates/notification/notification.html:89
 msgid "invited you to group"
-msgstr "Sie gruppieren eingeladen"
+msgstr "te ha invitado al grupo"
 
 #: templates/notification/notification.html:96
 msgid "sent a join request to group"
-msgstr "schickte eine Anfrage an Gruppe beitreten"
+msgstr "envió una solicitud para unirse al grupo"
 
 #: templates/notification/notification.html:128
 msgid "All caught up!!"
-msgstr "Alles erledigt !!"
+msgstr "¡¡Todo atrapados!!"
 
 #: templates/profilesystem/address.html:43
 msgid "Click add button to add your address"
-msgstr "Klicken Sie auf Hinzufügen, um Ihre Adresse hinzufügen"
+msgstr "Haga clic en el botón Añadir para agregar su dirección"
 
 #: templates/profilesystem/contact.html:5 templates/publicusers/user.html:241
 msgid "Phone Office"
-msgstr "Telefon Büro"
+msgstr "teléfono de la oficina"
 
 #: templates/profilesystem/contact.html:11 templates/publicusers/user.html:247
 msgid "Phone Home"
-msgstr "Zuhause anrufen"
+msgstr "Teléfono de casa"
 
 #: templates/profilesystem/contact.html:17 templates/publicusers/user.html:253
 msgid "Phone Mobile"
-msgstr "Mobiltelefon"
+msgstr "Teléfono móvil"
 
 #: templates/profilesystem/contact.html:23 templates/publicusers/user.html:259
 msgid "Phone Emergency"
-msgstr "Telefon Notfall"
+msgstr "Teléfonos de emergencia"
 
 #: templates/profilesystem/contact.html:30
 msgid "Click add button to add your phone number"
-msgstr "Klicken Sie auf Hinzufügen, um Ihre Telefonnummer hinzufügen"
+msgstr "Haga clic en el botón Añadir para agregar su número de teléfono"
 
 #: templates/profilesystem/emailaddress.html:4
 msgid "Email address associated with your account"
-msgstr "E-Mail-Adresse mit Ihrem Konto verknüpft"
+msgstr "dirección de correo electrónico asociada con su cuenta"
 
 #: templates/profilesystem/emailaddress.html:17
 msgid "(Primary)"
-msgstr "(Primary)"
+msgstr "(Primario)"
 
 #: templates/profilesystem/emailaddress.html:30
 msgid "No email associated with your account"
-msgstr "Keine E-Mail mit Ihrem Konto verknüpft"
+msgstr "Sin correo electrónico asociada con su cuenta"
 
 #: templates/profilesystem/index.html:84 templates/profilesystem/index.html:307
 #: templates/publicusers/user.html:112
 msgid "Personal Information"
-msgstr "Persönliche Angaben"
+msgstr "Informacion personal"
 
 #: templates/profilesystem/index.html:115
 msgid "Location"
-msgstr "Ort"
+msgstr "Ubicación"
 
 #: templates/profilesystem/index.html:191 templates/publicusers/user.html:166
 msgid "Activities"
-msgstr "Aktivitäten"
+msgstr "Ocupaciones"
 
 #: templates/profilesystem/index.html:198 templates/publicusers/user.html:170
 msgid "Activation date"
-msgstr "Aktivierungsdatum"
+msgstr "Fecha de activacion"
 
 #: templates/profilesystem/index.html:210
 msgid "More"
-msgstr "Mehr"
+msgstr "Más"
 
 #: templates/profilesystem/index.html:223
 msgid "Documents"
-msgstr "Unterlagen"
+msgstr "Documentos"
 
 #: templates/profilesystem/index.html:236
 #: templates/publicusers/connections.html:74
 msgid "Search..."
-msgstr "Suche..."
+msgstr "Buscar..."
 
 #: templates/profilesystem/index.html:268
 msgid "Shared Documents"
-msgstr "Veröffentlichte Dokumente"
+msgstr "Documentos compartidos"
 
 #: templates/profilesystem/index.html:300
 msgid "Change Public Visibility"
-msgstr "Ändern Öffentliche Sichtbarkeit"
+msgstr "Cambiar la visibilidad pública"
 
 #: templates/profilesystem/index.html:361 templates/publicusers/user.html:188
 msgid "Address"
-msgstr "Adresse"
+msgstr "Dirección"
 
 #: templates/profilesystem/index.html:385
 msgid "Others"
-msgstr "Andere"
+msgstr "Otros"
 
 #: templates/profilesystem/index.html:389
 msgid "Profile completion"
-msgstr "Profil Vollendung"
+msgstr "perfil completado"
 
 #: templates/profilesystem/index.html:401
 msgid "Customize links of landing dropdown"
-msgstr "Links anpassen Landung Dropdown"
+msgstr "Personalizar enlaces de aterrizaje desplegable"
 
 #: templates/profilesystem/index.html:473
 msgid "Linked social account"
-msgstr "Verknüpfte sozialen Konto"
+msgstr "cuenta social vinculada"
 
 #: templates/profilesystem/index.html:525
 msgid "Manage"
-msgstr "Verwalten"
+msgstr "Gestionar"
 
 #: templates/profilesystem/index.html:540
 msgid "Reference"
-msgstr "Referenz"
+msgstr "Referencia"
 
 #: templates/profilesystem/index.html:552
 msgid "Refresh"
-msgstr "auffrischen"
+msgstr "Refrescar"
 
 #: templates/profilesystem/index.html:567
 msgid "My Groups"
-msgstr "Meine Gruppen"
+msgstr "Mis Grupos"
 
 #: templates/profilesystem/index.html:632
 msgid "Apps"
-msgstr "Apps"
+msgstr "aplicaciones"
 
 #: templates/profilesystem/index.html:648
 msgid "Sites"
-msgstr "Standorte"
+msgstr "sitios"
 
 #: templates/profilesystem/index.html:664
 msgid "Ads"
-msgstr "Anzeigen"
+msgstr "anuncios"
 
 #: templates/profilesystem/logdata.html:3
 msgid "Logs Details"
-msgstr "Logs-Details"
+msgstr "Registros de Detalles"
 
 #: templates/profilesystem/logdata.html:6
 msgid "Last payment received"
-msgstr "Letzte Zahlung empfangen"
+msgstr "Último pago recibido"
 
 #: templates/profilesystem/logdata.html:16
 msgid "Advertisement post"
-msgstr "Werbung Post"
+msgstr "publicar publicidad"
 
 #: templates/profilesystem/logdata.html:20
 msgid "Last login "
-msgstr "Letzte Anmeldung"
+msgstr "Último acceso"
 
 #: templates/profilesystem/logdata.html:24
 msgid "Last payment sent"
-msgstr "Letzte Zahlung gesendet"
+msgstr "Último pago enviado"
 
 #: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
 msgid "Username"
-msgstr "Benutzername"
+msgstr "Nombre de usuario"
 
 #: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
 msgid "Name"
-msgstr "Name"
+msgstr "Nombre"
 
 #: templates/profilesystem/pinfo.html:23 templates/publicusers/user.html:126
 msgid "Gender"
-msgstr "Geschlecht"
+msgstr "Género"
 
 #: templates/profilesystem/pinfo.html:38
 msgid "Community"
-msgstr "Gemeinschaft"
+msgstr "Comunidad"
 
 #: templates/profilesystem/pinfo.html:42 templates/publicusers/user.html:138
 msgid "Website"
-msgstr "Webseite"
+msgstr "Sitio web"
 
 #: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
 msgid "About me"
-msgstr "Über mich"
+msgstr "Sobre mi"
 
 #: templates/profilesystem/profilecompletiontasks.html:5
 msgid "Add your website to complete your profile."
-msgstr "Fügen Sie Ihre Website Ihrem Profil zu vervollständigen."
+msgstr "Añadir su sitio web para completar su perfil."
 
 #: templates/profilesystem/profilecompletiontasks.html:11
 msgid "Add your gender to complete your profile."
-msgstr "Fügen Sie Ihr Geschlecht Ihr Profil zu vervollständigen."
+msgstr "Agregue su género para completar su perfil."
 
 #: templates/profilesystem/profilecompletiontasks.html:17
 msgid "Add your contact number to complete your profile."
-msgstr "Fügen Sie Ihre Telefonnummer Ihr Profil zu vervollständigen."
+msgstr "Añadir su número de contacto para completar su perfil."
 
 #: templates/profilesystem/profilecompletiontasks.html:23
 msgid "Add a profile image to complete your profile."
-msgstr "Fügen Sie ein Profil-Bild Ihrem Profil zu vervollständigen."
+msgstr "Añadir una imagen de perfil para completar su perfil."
 
 #: templates/profilesystem/profilecompletiontasks.html:29
 msgid "Add your location to complete your profile."
-msgstr "Fügen Sie Ihren Standort Ihr Profil zu vervollständigen."
+msgstr "Añadir su ubicación para completar su perfil."
 
 #: templates/profilesystem/profilecompletiontasks.html:35
 msgid "Add a social account of yours to complete your profile."
-msgstr ""
-"Fügen Sie einen sozialen Konto von Ihnen Ihr Profil zu vervollständigen."
+msgstr "Añadir una cuenta social de los suyos para completar su perfil."
 
 #: templates/profilesystem/profilecompletiontasks.html:41
 msgid "Add your email account to complete your profile."
-msgstr "Fügen Sie Ihre E-Mail-Konto Ihr Profil zu vervollständigen."
+msgstr "Agregue su cuenta de correo electrónico para completar su perfil."
 
 #: templates/profilesystem/profilecompletiontasks.html:50
 msgid "Please verify your email address(resend verification)"
-msgstr "Überprüfen Sie bitte Ihre E-Mail-Adresse (resend Überprüfung)"
+msgstr ""
+"Por favor, compruebe su dirección de correo electrónico (verificación del "
+"reenvío)"
 
 #: templates/profilesystem/reference.html:6
 msgid "Following user verified me"
-msgstr "Nach Benutzer verifiziert mich"
+msgstr "Tras usuario me verificados"
 
 #: templates/profilesystem/reference.html:35
 msgid "Oops!! No Reference Yet"
-msgstr "Hoppla!! Keine Referenz Noch"
+msgstr "Vaya !! Sin embargo Referencia"
 
 #: templates/profilesystem/unlinksocial.html:69
 msgid "This is your last method to connect to this site."
-msgstr "Dies ist die letzte Methode, um diese Seite zu verbinden."
+msgstr "Este es el último recurso para conectarse a este sitio."
 
 #: templates/profilesystem/unlinksocial.html:70
 msgid "You will be asked for a password if you proceed"
-msgstr "Sie werden nach einem Passwort gefragt, ob Sie fortfahren"
+msgstr "Se le pedirá una contraseña si continúa"
 
 #: templates/publicusers/connections.html:50
 #: templates/publicusers/userlist_old.html:48
 #, fuzzy, python-format
 #| msgid "Hello, %(username_t)s!"
 msgid "Hello, %(username_t)s!"
-msgstr "Hallo,% (username_t) s!"
+msgstr "Hola,% (username_t) s!"
 
 #: templates/publicusers/connusers.html:31
 msgid "No connections"
-msgstr "Keine Verbindungen"
+msgstr "Sin conexiones"
 
 #: templates/publicusers/missing_users.html:25
 #: templates/publicusers/userlist.html:46 templates/publicusers/users.html:27
@@ -3195,7 +3195,7 @@ msgstr "Personal"
 #: templates/publicusers/userlist_old.html:124
 #: templates/publicusers/users_old.html:23
 msgid "lastseen: "
-msgstr "zuletzt gesehen:"
+msgstr "ultima vez visto:"
 
 #: templates/publicusers/user.html:24
 #: templates/publicusers/userdetails.html:393
@@ -3203,7 +3203,7 @@ msgstr "zuletzt gesehen:"
 #: templates/publicusers/userlist_old.html:116
 #: templates/publicusers/users_old.html:25
 msgid "Online"
-msgstr "Online"
+msgstr "En línea"
 
 #: templates/publicusers/user.html:26
 #: templates/publicusers/userdetails.html:397
@@ -3212,151 +3212,151 @@ msgstr "Online"
 #: templates/publicusers/userlist_old.html:128
 #: templates/publicusers/users_old.html:27
 msgid "Offline"
-msgstr "Offline"
+msgstr "Desconectado"
 
 #: templates/publicusers/user.html:51 templates/timelines/timeline.html:147
 #: templates/timelines/timeline.html:154
 msgid "Disconnect"
-msgstr "Trennen"
+msgstr "Desconectar"
 
 #: templates/publicusers/user.html:53
 msgid "Cancel connection request"
-msgstr "Abbrechen Verbindungsanfrage"
+msgstr "Cancelar solicitud de conexión"
 
 #: templates/publicusers/user.html:55
 msgid "Reject connection request"
-msgstr "Ablehnen Verbindungsanfrage"
+msgstr "Rechazar la solicitud de conexión"
 
 #: templates/publicusers/user.html:56
 msgid "Accept connection request"
-msgstr "Akzeptieren Verbindungsanfrage"
+msgstr "Aceptar solicitud de conexión"
 
 #: templates/publicusers/user.html:58
 msgid "Connect"
-msgstr "Verbinden"
+msgstr "Conectar"
 
 #: templates/publicusers/user.html:61
 msgid "Connection type"
-msgstr "Verbindungstyp"
+msgstr "Tipo de conección"
 
 #: templates/publicusers/user.html:64
 msgid "Family"
-msgstr "Familie"
+msgstr "Familia"
 
 #: templates/publicusers/user.html:69
 msgid "Friend Type"
-msgstr "Freund-Typ"
+msgstr "Tipo amigo"
 
 #: templates/publicusers/user.html:78
 msgid "Send request"
-msgstr "Anfrage senden"
+msgstr "Enviar petición"
 
 #: templates/publicusers/user.html:87
 msgid "Unverify"
-msgstr "Bestätigung aufheben"
+msgstr "Anular verificación"
 
 #: templates/publicusers/user.html:90
 msgid "I verify this user"
-msgstr "Ich bestätige diesen Benutzer"
+msgstr "Verifico este usuario"
 
 #: templates/publicusers/user.html:92
 #: templates/publicusers/userdetails.html:100
 msgid "Send Unit"
-msgstr "senden Einheit"
+msgstr "Enviar Unidad"
 
 #: templates/publicusers/user.html:93
 #: templates/publicusers/userdetails.html:117
 msgid "Request Unit"
-msgstr "Request Unit"
+msgstr "solicitud Unidad"
 
 #: templates/publicusers/user.html:94
 msgid "Message"
-msgstr "Nachricht"
+msgstr "Mensaje"
 
 #: templates/publicusers/userdetails.html:67
 msgid "Others who verify"
-msgstr "Andere, die überprüfen"
+msgstr "Los usuarios que verifiquen"
 
 #: templates/publicusers/userlist.html:138
 #: templates/publicusers/userlist_old.html:130
 msgid "lastseen: unknown"
-msgstr "lastseen: unbekannt"
+msgstr "lastseen: desconocido"
 
 #: templates/publicusers/userlist_old.html:72
 msgid " Search Users "
-msgstr "Suche Benutzer"
+msgstr "Buscar Usuarios"
 
 #: templates/sidebar_apps.html:2
 msgid "Hashtag Campaign"
-msgstr "hashtag-Kampagne"
+msgstr "Campaña hashtag"
 
 #: templates/sidebar_community.html:26
 msgid "About Our System"
-msgstr "Über unser System"
+msgstr "Acerca de Nuestro Sistema"
 
 #: templates/sidebar_community.html:27
 msgid "Contact Details"
-msgstr "Kontakt-Details"
+msgstr "Detalles de contacto"
 
 #: templates/sidebar_community.html:42
 msgid "Email Lists"
-msgstr "E-Mail-Listen"
+msgstr "listas de correo electrónico"
 
 #: templates/sidebar_group.html:5
 msgid "Homepage"
-msgstr "Startseite"
+msgstr "Página principal"
 
 #: templates/sidebar_group.html:25 templates/sidebar_group.html:60
 #: templates/sidebar_group_admin.html:30
 msgid "Group's Posts"
-msgstr "Gruppe Beiträge"
+msgstr "Mensajes de grupo"
 
 #: templates/sidebar_group.html:26 templates/sidebar_group.html:61
 #: templates/sidebar_group_admin.html:31
 msgid "Member's Posts"
-msgstr "Beiträge dieses Mitglieds"
+msgstr "Mensajes de este miembro"
 
 #: templates/sidebar_group.html:31
 msgid "Group Admin Section"
-msgstr "Group Admin Section"
+msgstr "Sección de administración de Grupo"
 
 #: templates/sidebar_group.html:77 templates/sidebar_group_admin.html:47
 msgid "Not Approved"
-msgstr "Nicht bestätigt"
+msgstr "No aprovado"
 
 #: templates/sidebar_group.html:95 templates/sidebar_group_admin.html:65
 msgid "Requests"
-msgstr "Anfragen"
+msgstr "Peticiones"
 
 #: templates/sidebar_group.html:117 templates/sidebar_group_admin.html:87
 msgid "Roles"
-msgstr "Rollen"
+msgstr "Roles"
 
 #: templates/sidebar_group.html:124 templates/sidebar_group_admin.html:94
 msgid "Defaults"
-msgstr "Defaults"
+msgstr "predeterminados"
 
 #: templates/sidebar_group.html:127 templates/sidebar_group_admin.html:97
 msgid "Custom"
-msgstr "Brauch"
+msgstr "Personalizado"
 
 #: templates/sidebar_group.html:136 templates/sidebar_group_admin.html:106
 msgid "Account Signups"
-msgstr "Konto Signups"
+msgstr "Inscripciones cuenta"
 
 #: templates/sidebar_group_admin.html:68
 msgid "Banned members"
-msgstr "Gebannt Mitglieder"
+msgstr "miembros prohibidos"
 
 #: templates/sidebar_home.html:10
 msgid "My Accounts"
-msgstr "Meine Accounts"
+msgstr "Mis cuentas"
 
 #: templates/sidebar_home.html:17 templates/timelines/index.html:52
 #: templates/timelines/index.html:54 templates/useraccount/transfer.html:7
 #: templates/useraccount/transfer.html:13
 msgid "Transfer"
-msgstr "Übertragung"
+msgstr "Transferir"
 
 #: templates/socialaccount/signup.html:9
 #, python-format
@@ -3367,149 +3367,150 @@ msgstr ""
 
 #: templates/timelines/index.html:43
 msgid "Search: "
-msgstr "Suche:"
+msgstr "Buscar:"
 
 #: templates/timelines/index.html:49
 msgid "Filters: "
-msgstr "Filter:"
+msgstr "filtros:"
 
 #: templates/timelines/index.html:62 templates/timelines/index.html:64
 msgid "Release"
-msgstr "Freisetzung"
+msgstr "Lanzamiento"
 
 #: templates/timelines/index.html:67 templates/timelines/index.html:69
 msgid "Verified"
-msgstr "Verifizierte"
+msgstr "verificado"
 
 #: templates/timelines/index.html:72 templates/timelines/index.html:74
 msgid "Unverified"
-msgstr "Ungeprüft"
+msgstr "Inconfirmado"
 
 #: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
 msgid "you sent"
-msgstr "du hast geschickt"
+msgstr "tu enviaste"
 
 #: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
 msgid "units to"
-msgstr "Einheiten"
+msgstr "unidades a"
 
 #: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
 msgid "sent you"
-msgstr "gesendet Sie"
+msgstr "le envió"
 
 #: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
 msgid "you requested"
-msgstr "du hast angefragt"
+msgstr "solicitaste"
 
 #: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
 msgid "units from"
-msgstr "Einheiten, die von"
+msgstr "unidades de"
 
 #: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
 msgid "requested you"
-msgstr "Ihnen angeforderte"
+msgstr "Ha solicitado"
 
 #: templates/timelines/timeline.html:52 templates/timelines/timeline.html:70
 msgid "send"
-msgstr "senden"
+msgstr "enviar"
 
 #: templates/timelines/timeline.html:103
 msgid " units basic income released"
-msgstr "Einheiten Grundeinkommen freigegeben"
+msgstr "unidades liberado renta básica"
 
 #: templates/timelines/timeline.html:115
 msgid "you verified"
-msgstr "Sie überprüft"
+msgstr "Ha verificado"
 
 #: templates/timelines/timeline.html:115 templates/timelines/timeline.html:130
 msgid "as real user"
-msgstr "als reale Benutzer"
+msgstr "como usuario real"
 
 #: templates/timelines/timeline.html:117
 msgid "verified you as real user"
-msgstr "Sie als reale Benutzer überprüft"
+msgstr "Ha verificado como usuario real"
 
 #: templates/timelines/timeline.html:130
 msgid "you unverified"
-msgstr "Sie unverified"
+msgstr "que no verificados"
 
 #: templates/timelines/timeline.html:132
 msgid "unverified you as real user"
-msgstr "Unbestätigte Sie als reale Benutzer"
+msgstr "que no verificadas como usuario real"
 
 #: templates/timelines/timeline.html:145
 msgid "Requested connection to "
-msgstr "Angeforderte Verbindung"
+msgstr "conexión solicitada a"
 
 #: templates/timelines/timeline.html:152
 msgid "sent connection request"
-msgstr "gesendet Verbindungsanfrage"
+msgstr "solicitud de conexión enviado"
 
 #: templates/timelines/timeline.html:156
 msgid "Reject"
-msgstr "Ablehnen"
+msgstr "Rechazar"
 
 #: templates/timelines/timeline.html:157
 msgid "Accept"
-msgstr "Akzeptieren"
+msgstr "Aceptar"
 
 #: templates/timelines/timeline.html:162
 msgid "Connection type: "
-msgstr "Verbindungstyp:"
+msgstr "Tipo de conección:"
 
 #: templates/useraccount/index.html:83
 msgid "Pulse Points"
-msgstr "Puls Punkte"
+msgstr "Puntos de pulso"
 
 #: templates/useraccount/index.html:108 templates/useraccount/transfer.html:40
 msgid "Quick Review"
-msgstr "Quick Review"
+msgstr "Revisión rápida"
 
 #: templates/useraccount/index.html:165
 msgid "Transactions"
-msgstr "Transaktionen"
+msgstr "Actas"
 
 #: templates/useraccount/index.html:196
 msgid "Details"
-msgstr "Einzelheiten"
+msgstr "detalles"
 
 #: templates/useraccount/index.html:234
 msgid "Basic Income Release"
-msgstr "Grundeinkommen Mitteilung"
+msgstr "Renta Básica de estreno"
 
 #: templates/useraccount/index.html:286
 msgid "Please contact a Grantcoin staff on your Account Status"
 msgstr ""
-"Bitte kontaktieren Sie einen Grantcoin Mitarbeiter auf Ihrem Kontostand"
+"Por favor, póngase en contacto con un personal Grantcoin en su Estado de "
+"Cuenta"
 
 #: templates/useraccount/index.html:296
 msgid "Contact to add your organization account"
-msgstr "Kontaktieren Sie Ihre Organisation Konto hinzufügen"
+msgstr "Póngase en contacto para agregar su cuenta de la organización"
 
 #: templates/useraccount/transfer.html:16
 msgid "transfer"
-msgstr "Übertragung"
+msgstr "transferir"
 
 #: templates/useraccount/transfer.html:55
 msgid "Select User"
-msgstr "Wählen Sie Benutzer"
+msgstr "Seleccionar usuario"
 
 #: templates/useraccount/transferunit.html:4
 msgid "Send Amount To"
-msgstr "Senden Betrag zu"
+msgstr "La cantidad a enviar"
 
 #: useraccount/forms.py:7 useraccount/forms.py:26
 msgid "Instruction"
-msgstr "Anweisung"
+msgstr "Instrucción"
 
 #: useraccount/forms.py:17
 msgid "Amount can't exceed your balance"
-msgstr "Der Betrag kann nicht mehr als das Gleichgewicht"
+msgstr "La cantidad no puede exceder el saldo de su"
 
 #: useraccount/views.py:119
 msgid "Transfer completed!!"
-msgstr "Übertragung beendet !!"
+msgstr "Finalizada la transferencia !!"
 
 #: useraccount/views.py:187
 msgid "Request Sent!!"
-msgstr "Anfrage geschickt!!"
+msgstr "¡¡Solicitud enviada!!"

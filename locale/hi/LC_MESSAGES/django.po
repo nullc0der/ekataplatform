@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-19 16:42+0000\n"
+"POT-Creation-Date: 2017-02-20 19:31+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,6 +30,122 @@ msgstr "अंग्रेज़ी"
 #: ekatadeveloper/settings/base.py:239
 msgid "Hindi"
 msgstr "हिंदी"
+
+#: ekatadeveloper/settings/base.py:240
+msgid "Spanish"
+msgstr "स्पेनिश"
+
+#: ekatadeveloper/settings/base.py:241
+msgid "Bengali"
+msgstr "बंगाली"
+
+#: ekatadeveloper/settings/base.py:242
+msgid "Belarusian"
+msgstr "बेलारूसी"
+
+#: ekatadeveloper/settings/base.py:243
+msgid "Portuguese"
+msgstr "पुर्तगाली"
+
+#: ekatadeveloper/settings/base.py:244
+msgid "Bulgarian"
+msgstr "बल्गेरियाई"
+
+#: ekatadeveloper/settings/base.py:245
+msgid "French"
+msgstr "फ्रेंच"
+
+#: ekatadeveloper/settings/base.py:246
+msgid "Croatian"
+msgstr "क्रोएशियाई"
+
+#: ekatadeveloper/settings/base.py:247
+msgid "Greek"
+msgstr "यूनानी"
+
+#: ekatadeveloper/settings/base.py:248
+msgid "Czech"
+msgstr "चेक"
+
+#: ekatadeveloper/settings/base.py:249
+msgid "Danish"
+msgstr "डेनिश"
+
+#: ekatadeveloper/settings/base.py:250
+msgid "Arabic"
+msgstr "अरबी"
+
+#: ekatadeveloper/settings/base.py:251
+msgid "Finland"
+msgstr "फिनलैंड"
+
+#: ekatadeveloper/settings/base.py:252
+msgid "France"
+msgstr "रद्द करना"
+
+#: ekatadeveloper/settings/base.py:253
+msgid "Hungarian"
+msgstr "हंगरी"
+
+#: ekatadeveloper/settings/base.py:254
+msgid "Indonessian"
+msgstr "Indonessian"
+
+#: ekatadeveloper/settings/base.py:255
+msgid "Italian"
+msgstr "इतालवी"
+
+#: ekatadeveloper/settings/base.py:256
+msgid "Japanese"
+msgstr "जापानी"
+
+#: ekatadeveloper/settings/base.py:257
+msgid "Russian"
+msgstr "रूसी"
+
+#: ekatadeveloper/settings/base.py:258
+msgid "Latvian"
+msgstr "लात्वीयावासी"
+
+#: ekatadeveloper/settings/base.py:259
+msgid "Lithunian"
+msgstr "Lithunian"
+
+#: ekatadeveloper/settings/base.py:260
+msgid "Nepali"
+msgstr "नेपाली"
+
+#: ekatadeveloper/settings/base.py:261
+msgid "Norwegian"
+msgstr "नार्वेजियन"
+
+#: ekatadeveloper/settings/base.py:262
+msgid "Urdu"
+msgstr "उर्दू"
+
+#: ekatadeveloper/settings/base.py:263
+msgid "Polish"
+msgstr "अंग्रेज़ी"
+
+#: ekatadeveloper/settings/base.py:264
+msgid "Romanian"
+msgstr "रोमानियाई"
+
+#: ekatadeveloper/settings/base.py:265
+msgid "Tamil"
+msgstr "परिवार"
+
+#: ekatadeveloper/settings/base.py:266
+msgid "Korean"
+msgstr "कोरियाई"
+
+#: ekatadeveloper/settings/base.py:267
+msgid "Sinhalese"
+msgstr "लंका का"
+
+#: ekatadeveloper/settings/base.py:268
+msgid "Thai"
+msgstr "थाई"
 
 #: groupsystem/forms.py:20
 msgid "Group Exist"
@@ -364,37 +480,42 @@ msgstr "उपयोगकर्ता नाम केवल अक्षर, �
 msgid "Username already taken"
 msgstr "उपयोगकर्ता नाम पहले ही लिया जा चुका है"
 
-#: profilesystem/models.py:19
+#: profilesystem/models.py:20
 msgid "Male"
 msgstr "नर"
 
-#: profilesystem/models.py:20
+#: profilesystem/models.py:21
 msgid "Female"
 msgstr "महिला"
 
-#: profilesystem/models.py:165 templates/profilesystem/address.html:5
+#: profilesystem/models.py:166 templates/profilesystem/address.html:5
 #: templates/publicusers/user.html:193
 msgid "House Number"
 msgstr "घर का नंबर"
 
-#: profilesystem/models.py:166
-msgid "street"
+#: profilesystem/models.py:167 templates/profilesystem/address.html:11
+#: templates/publicusers/user.html:199
+msgid "Street"
 msgstr "सड़क"
 
-#: profilesystem/models.py:167
-msgid "zip code"
+#: profilesystem/models.py:168 templates/profilesystem/address.html:17
+#: templates/publicusers/user.html:205
+msgid "Zip Code"
 msgstr "पिन कोड"
 
-#: profilesystem/models.py:168
-msgid "city"
+#: profilesystem/models.py:169 templates/profilesystem/address.html:23
+#: templates/publicusers/user.html:211
+msgid "City"
 msgstr "शहर"
 
-#: profilesystem/models.py:169
-msgid "state"
+#: profilesystem/models.py:170 templates/profilesystem/address.html:29
+#: templates/publicusers/user.html:217
+msgid "State"
 msgstr "राज्य"
 
-#: profilesystem/models.py:170
-msgid "country"
+#: profilesystem/models.py:171 templates/profilesystem/address.html:35
+#: templates/publicusers/user.html:223
+msgid "Country"
 msgstr "देश"
 
 #: publicusers/views.py:183 templates/groupsystem/adminnews.html:113
@@ -1068,7 +1189,7 @@ msgid "Close"
 msgstr "बंद करे"
 
 #: templates/autosignup/index.html:88 templates/autosignup/settings.html:48
-#: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:100
+#: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:103
 #: templates/crowdfunding/update_crowdfund.html:9
 #: templates/eblast/emailcampaignform.html:11
 #: templates/eblast/emailgroupform.html:11
@@ -1373,7 +1494,7 @@ msgstr "लागू करें"
 msgid "Crowdfund Admin"
 msgstr "crowdfund व्यवस्थापक"
 
-#: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:58
+#: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:60
 msgid "Stats"
 msgstr "आँकड़े"
 
@@ -1415,32 +1536,32 @@ msgstr "crowdfund"
 msgid "Watch video"
 msgstr "वीडियो देखेंा"
 
-#: templates/crowdfunding/index.html:33
+#: templates/crowdfunding/index.html:34
 msgid "FUND"
 msgstr "निधि"
 
-#: templates/crowdfunding/index.html:44
+#: templates/crowdfunding/index.html:46
 msgid "Product Features"
 msgstr "उत्पाद की विशेषताएँ"
 
-#: templates/crowdfunding/index.html:53
+#: templates/crowdfunding/index.html:55
 msgid "Introduction"
 msgstr "परिचय"
 
-#: templates/crowdfunding/index.html:74
+#: templates/crowdfunding/index.html:77
 msgid "Fund Now"
 msgstr "फंड अब"
 
-#: templates/crowdfunding/index.html:81
+#: templates/crowdfunding/index.html:84
 msgid "Card"
 msgstr "कार्ड"
 
-#: templates/crowdfunding/index.html:89 useraccount/forms.py:8
+#: templates/crowdfunding/index.html:92 useraccount/forms.py:8
 #: useraccount/forms.py:27
 msgid "Amount"
 msgstr "रकम"
 
-#: templates/crowdfunding/index.html:95
+#: templates/crowdfunding/index.html:98
 msgid "Feedback"
 msgstr "प्रतिक्रिया"
 
@@ -2815,26 +2936,6 @@ msgstr "एक समूह के लिए अनुरोध भेजा श
 #: templates/notification/notification.html:128
 msgid "All caught up!!"
 msgstr "सारी जानकारी प्राप्त!!"
-
-#: templates/profilesystem/address.html:11 templates/publicusers/user.html:199
-msgid "Street"
-msgstr "सड़क"
-
-#: templates/profilesystem/address.html:17 templates/publicusers/user.html:205
-msgid "Zip Code"
-msgstr "पिन कोड"
-
-#: templates/profilesystem/address.html:23 templates/publicusers/user.html:211
-msgid "City"
-msgstr "शहर"
-
-#: templates/profilesystem/address.html:29 templates/publicusers/user.html:217
-msgid "State"
-msgstr "राज्य"
-
-#: templates/profilesystem/address.html:35 templates/publicusers/user.html:223
-msgid "Country"
-msgstr "देश"
 
 #: templates/profilesystem/address.html:43
 msgid "Click add button to add your address"

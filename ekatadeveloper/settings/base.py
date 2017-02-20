@@ -237,20 +237,49 @@ LANGUAGES = [
     ('de', _('German')),
     ('en', _('English')),
     ('hi', _('Hindi')),
+    ('es', _('Spanish')),
+    ('bn', _('Bengali')),
+    ('be', _('Belarusian')),
+    ('pt', _('Portuguese')),
+    ('bg', _('Bulgarian')),
+    ('fr', _('French')),
+    ('hr', _('Croatian')),
+    ('el', _('Greek')),
+    ('cs', _('Czech')),
+    ('da', _('Danish')),
+    ('ar', _('Arabic')),
+    ('fi', _('Finland')),
+    ('fr', _('France')),
+    ('hu', _('Hungarian')),
+    ('id', _('Indonessian')),
+    ('it', _('Italian')),
+    ('ja', _('Japanese')),
+    ('ru', _('Russian')),
+    ('lv', _('Latvian')),
+    ('lt', _('Lithunian')),
+    ('ne', _('Nepali')),
+    ('no', _('Norwegian')),
+    ('ur', _('Urdu')),
+    ('pl', _('Polish')),
+    ('ro', _('Romanian')),
+    ('ta', _('Tamil')),
+    ('ko', _('Korean')),
+    ('si', _('Sinhalese')),
+    ('th', _('Thai'))
 ]
 
-"""
+
 EXTRA_LANG_INFO = {
-    'as': {
-        'code': 'as',
-        'name': 'assamese',
-        'name_local': u'\u0985\u09b8\u09ae\u09c0\u09af\u09bc\u09be',
+    'si': {
+        'code': 'si',
+        'name': 'Sinhalese',
+        'name_local': u'Sinhalese',
     }
 }
 
 LANG_INFO = dict(django.conf.locale.LANG_INFO.items() + EXTRA_LANG_INFO.items())
 django.conf.locale.LANG_INFO = LANG_INFO
-"""
+
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
