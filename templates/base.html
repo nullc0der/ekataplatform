@@ -165,7 +165,7 @@
                                     {% endif %}
                                     <p>
                                         {% if request.user.username %}
-                                            {{ request.user.username }} - {{ request.user.profile.title }}
+                                            {{ request.user.username }}
                                             <small>
                                                 {% trans "Member Since " %} {{ request.user.date_joined|date:"M Y" }}
                                             </small>
@@ -178,7 +178,7 @@
                                 <li class="user-body">
                                     <div class="row">
                                         <div class="col-xs-4 text-center">
-                                            <a href="{% url 'profilesystem:index' %}#reference">References</a>
+                                            <a href="{% url 'profilesystem:index' %}#reference">{% trans "References" %}</a>
                                         </div>
                                         <div class="col-xs-4 text-center">
                                             <a href="{% url 'myaccount:index' %}">{% trans "Account" %}</a>
@@ -348,7 +348,7 @@
                         <h3 class="control-sidebar-heading">{% trans "Language Settings" %}</h3>
                         <form action="{% url 'set_language' %}" method="post">
                             {% csrf_token %}
-                            <input name="next" type="hidden" value="{{ request.path }}" />
+                            <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
                             <div class="form-group">
                                 <select name="language" class="langselect">
                                     {% get_current_language as LANGUAGE_CODE %}
