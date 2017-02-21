@@ -1,0 +1,3629 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-20 21:21+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: autosignup/forms.py:150
+msgid "Max attempt reached! try later"
+msgstr "ความพยายามสูงสุดถึง! ลองใหม่ภายหลัง"
+
+#: autosignup/forms.py:155 autosignup/forms.py:162
+msgid "Provide a valid mobile number"
+msgstr "ให้หมายเลขโทรศัพท์มือถือที่ถูกต้อง"
+
+#: autosignup/forms.py:157 autosignup/forms.py:164
+msgid "Something went wrong! Try later"
+msgstr "บางอย่างผิดพลาด! ลองใหม่ภายหลัง"
+
+#: ekatadeveloper/settings/base.py:237
+msgid "German"
+msgstr "เยอรมัน"
+
+#: ekatadeveloper/settings/base.py:238
+msgid "English"
+msgstr "อังกฤษ"
+
+#: ekatadeveloper/settings/base.py:239
+msgid "Hindi"
+msgstr "ภาษาฮินดี"
+
+#: ekatadeveloper/settings/base.py:240
+msgid "Spanish"
+msgstr "สเปน"
+
+#: ekatadeveloper/settings/base.py:241
+msgid "Bengali"
+msgstr "ประเทศบังคลาเทศ"
+
+#: ekatadeveloper/settings/base.py:242
+msgid "Belarusian"
+msgstr "เบลารุส"
+
+#: ekatadeveloper/settings/base.py:243
+msgid "Portuguese"
+msgstr "โปรตุเกส"
+
+#: ekatadeveloper/settings/base.py:244
+msgid "Bulgarian"
+msgstr "บัลแกเรีย"
+
+#: ekatadeveloper/settings/base.py:245
+msgid "French"
+msgstr "ฝรั่งเศส"
+
+#: ekatadeveloper/settings/base.py:246
+msgid "Croatian"
+msgstr "โครเอเชีย"
+
+#: ekatadeveloper/settings/base.py:247
+msgid "Greek"
+msgstr "กรีก"
+
+#: ekatadeveloper/settings/base.py:248
+msgid "Czech"
+msgstr "สาธารณรัฐเช็ก"
+
+#: ekatadeveloper/settings/base.py:249
+msgid "Danish"
+msgstr "เดนมาร์ก"
+
+#: ekatadeveloper/settings/base.py:250
+msgid "Arabic"
+msgstr "ภาษาอาหรับ"
+
+#: ekatadeveloper/settings/base.py:251
+msgid "Finland"
+msgstr "ฟินแลนด์"
+
+#: ekatadeveloper/settings/base.py:252
+msgid "France"
+msgstr "ฝรั่งเศส"
+
+#: ekatadeveloper/settings/base.py:253
+msgid "Hungarian"
+msgstr "ฮังการี"
+
+#: ekatadeveloper/settings/base.py:254
+msgid "Indonessian"
+msgstr "Indonessian"
+
+#: ekatadeveloper/settings/base.py:255
+msgid "Italian"
+msgstr "อิตาลี"
+
+#: ekatadeveloper/settings/base.py:256
+msgid "Japanese"
+msgstr "ญี่ปุ่น"
+
+#: ekatadeveloper/settings/base.py:257
+msgid "Russian"
+msgstr "รัสเซีย"
+
+#: ekatadeveloper/settings/base.py:258
+msgid "Latvian"
+msgstr "ลัตเวีย"
+
+#: ekatadeveloper/settings/base.py:259
+msgid "Lithunian"
+msgstr "Lithunian"
+
+#: ekatadeveloper/settings/base.py:260
+msgid "Nepali"
+msgstr "เนปาล"
+
+#: ekatadeveloper/settings/base.py:261
+msgid "Norwegian"
+msgstr "นอร์เวย์"
+
+#: ekatadeveloper/settings/base.py:262
+msgid "Urdu"
+msgstr "ภาษาอูรดู"
+
+#: ekatadeveloper/settings/base.py:263
+msgid "Polish"
+msgstr "ขัด"
+
+#: ekatadeveloper/settings/base.py:264
+msgid "Romanian"
+msgstr "โรมาเนีย"
+
+#: ekatadeveloper/settings/base.py:265
+msgid "Tamil"
+msgstr "มิลักขะ"
+
+#: ekatadeveloper/settings/base.py:266
+msgid "Korean"
+msgstr "เกาหลี"
+
+#: ekatadeveloper/settings/base.py:267
+msgid "Sinhalese"
+msgstr "สิงหล"
+
+#: ekatadeveloper/settings/base.py:268
+msgid "Thai"
+msgstr "ไทย"
+
+#: groupsystem/forms.py:20
+msgid "Group Exist"
+msgstr "กลุ่มอยู่"
+
+#: groupsystem/forms.py:32 groupsystem/forms.py:89
+msgid "You must specify other group type"
+msgstr "คุณต้องระบุชนิดของกลุ่มอื่น ๆ"
+
+#: groupsystem/forms.py:38 groupsystem/forms.py:95
+msgid "You can't fill this field with default group types"
+msgstr "คุณไม่สามารถกรอกข้อมูลนี้กับชนิดกลุ่มเริ่มต้น"
+
+#: groupsystem/forms.py:186
+msgid "You can't choose a default role name"
+msgstr "คุณไม่สามารถเลือกชื่อบทบาทเริ่มต้น"
+
+#: groupsystem/forms.py:193
+msgid "Role exist"
+msgstr "บทบาทอยู่"
+
+#: groupsystem/models.py:18
+msgid "Art"
+msgstr "ศิลปะ"
+
+#: groupsystem/models.py:19
+msgid "Activist"
+msgstr "กิจกรรม"
+
+#: groupsystem/models.py:20
+msgid "Political"
+msgstr "ในทางการเมือง"
+
+#: groupsystem/models.py:21 templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:17
+#: templates/groupsystem/adminnews.html:22
+#: templates/groupsystem/adminnews.html:49
+#: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:80
+#: templates/landing_base.html:173 templates/sidebar_group.html:44
+#: templates/sidebar_group_admin.html:14
+msgid "News"
+msgstr "ข่าว"
+
+#: groupsystem/models.py:22 publicusers/views.py:328
+msgid "Business"
+msgstr "ธุรกิจ"
+
+#: groupsystem/models.py:23
+msgid "Government"
+msgstr "รัฐบาล"
+
+#: groupsystem/models.py:24
+msgid "Blog"
+msgstr "บล็อก"
+
+#: groupsystem/models.py:25
+msgid "Nonprofit Organization"
+msgstr "องค์กรไม่แสวงหากำไร"
+
+#: groupsystem/models.py:26
+msgid "Other"
+msgstr "อื่น ๆ"
+
+#: groupsystem/models.py:28 templates/profilesystem/index.html:311
+#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
+msgid "Name"
+msgstr "ชื่อ"
+
+#: groupsystem/models.py:30
+msgid "Short About"
+msgstr "เกี่ยวกับสั้น"
+
+#: groupsystem/models.py:32
+msgid "Long About"
+msgstr "เกี่ยวกับยาว"
+
+#: groupsystem/models.py:34
+msgid "Group Type"
+msgstr "กลุ่ม"
+
+#: groupsystem/models.py:36
+msgid "Please Specify"
+msgstr "โปรดระบุ"
+
+#: groupsystem/models.py:84 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/views.py:110
+msgid "Can access admin"
+msgstr "สามารถเข้าถึงผู้ดูแลระบบ"
+
+#: groupsystem/models.py:85 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/views.py:111 groupsystem/views.py:128 groupsystem/views.py:139
+msgid "Can read news"
+msgstr "สามารถอ่านข่าว"
+
+#: groupsystem/models.py:86 groupsystem/views.py:40 groupsystem/views.py:79
+msgid "Can create news"
+msgstr "สามารถสร้างข่าว"
+
+#: groupsystem/models.py:87 groupsystem/views.py:41 groupsystem/views.py:80
+msgid "Can update news"
+msgstr "สามารถอัปเดตข่าว"
+
+#: groupsystem/models.py:88 groupsystem/views.py:42 groupsystem/views.py:81
+msgid "Can delete news"
+msgstr "สามารถลบข่าว"
+
+#: groupsystem/models.py:89 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/views.py:112 groupsystem/views.py:129
+msgid "Can read post"
+msgstr "สามารถอ่านโพสต์"
+
+#: groupsystem/models.py:90 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/views.py:113 groupsystem/views.py:130
+msgid "Can create post"
+msgstr "สามารถสร้างโพสต์"
+
+#: groupsystem/models.py:91 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/views.py:114
+msgid "Can update post"
+msgstr "สามารถปรับปรุงการโพสต์"
+
+#: groupsystem/models.py:92 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/views.py:115
+msgid "Can approve post"
+msgstr "สามารถอนุมัติการโพสต์"
+
+#: groupsystem/models.py:93 groupsystem/views.py:47 groupsystem/views.py:86
+#: groupsystem/views.py:116
+msgid "Can delete post"
+msgstr "สามารถลบโพสต์"
+
+#: groupsystem/models.py:94 groupsystem/views.py:48 groupsystem/views.py:87
+#: groupsystem/views.py:117 groupsystem/views.py:131
+msgid "Can read comment"
+msgstr "สามารถอ่านความคิดเห็น"
+
+#: groupsystem/models.py:95 groupsystem/views.py:49 groupsystem/views.py:88
+#: groupsystem/views.py:118 groupsystem/views.py:132
+msgid "Can create comment"
+msgstr "สามารถสร้างความคิดเห็น"
+
+#: groupsystem/models.py:96 groupsystem/views.py:50 groupsystem/views.py:89
+#: groupsystem/views.py:119
+msgid "Can update comment"
+msgstr "สามารถอัปเดตความคิดเห็น"
+
+#: groupsystem/models.py:97 groupsystem/views.py:51 groupsystem/views.py:90
+#: groupsystem/views.py:120
+msgid "Can approve comment"
+msgstr "สามารถอนุมัติความคิดเห็น"
+
+#: groupsystem/models.py:98 groupsystem/views.py:52 groupsystem/views.py:91
+#: groupsystem/views.py:121
+msgid "Can delete comment"
+msgstr "สามารถลบความคิดเห็น"
+
+#: groupsystem/models.py:99 groupsystem/views.py:53 groupsystem/views.py:92
+#: groupsystem/views.py:122 groupsystem/views.py:133
+msgid "Can like post"
+msgstr "สามารถชอบโพสต์"
+
+#: groupsystem/models.py:100 groupsystem/views.py:54
+msgid "Can create notification"
+msgstr "สามารถสร้างการแจ้งเตือน"
+
+#: groupsystem/models.py:101 groupsystem/views.py:55 groupsystem/views.py:93
+#: groupsystem/views.py:123 groupsystem/views.py:134
+msgid "Can create invite"
+msgstr "สามารถสร้างเชิญ"
+
+#: groupsystem/models.py:102 groupsystem/views.py:56 groupsystem/views.py:94
+msgid "Can add member"
+msgstr "สามารถเพิ่มสมาชิก"
+
+#: groupsystem/models.py:103 groupsystem/views.py:57 groupsystem/views.py:95
+msgid "Can remove member"
+msgstr "สามารถลบสมาชิก"
+
+#: groupsystem/models.py:104 groupsystem/views.py:58 groupsystem/views.py:96
+msgid "Can ban member"
+msgstr "สามารถห้ามสมาชิก"
+
+#: groupsystem/models.py:105 groupsystem/views.py:59 groupsystem/views.py:97
+msgid "Can lift member ban"
+msgstr "สามารถยกบ้านสมาชิก"
+
+#: groupsystem/models.py:106 groupsystem/views.py:60 groupsystem/views.py:98
+msgid "Can change member role"
+msgstr "สามารถเปลี่ยนบทบาทสมาชิก"
+
+#: groupsystem/models.py:107 groupsystem/views.py:61 groupsystem/views.py:99
+msgid "Can edit member permission"
+msgstr "สามารถแก้ไขได้รับอนุญาตจากสมาชิก"
+
+#: groupsystem/models.py:108 groupsystem/views.py:62 groupsystem/views.py:100
+#: groupsystem/views.py:124 groupsystem/views.py:135
+msgid "Can read events"
+msgstr "สามารถอ่านเหตุการณ์"
+
+#: groupsystem/models.py:109 groupsystem/views.py:63 groupsystem/views.py:101
+msgid "Can create events"
+msgstr "สามารถสร้างกิจกรรม"
+
+#: groupsystem/models.py:110 groupsystem/views.py:64 groupsystem/views.py:102
+msgid "Can update events"
+msgstr "สามารถอัปเดตกิจกรรม"
+
+#: groupsystem/models.py:111 groupsystem/views.py:65 groupsystem/views.py:103
+msgid "Can delete events"
+msgstr "สามารถลบเหตุการณ์"
+
+#: groupsystem/models.py:112 groupsystem/views.py:66 groupsystem/views.py:104
+msgid "Can read join requests"
+msgstr "สามารถอ่านคำขอเข้าร่วม"
+
+#: groupsystem/models.py:113 groupsystem/views.py:67 groupsystem/views.py:105
+msgid "Can approve join requests"
+msgstr "สามารถอนุมัติคำขอเข้าร่วม"
+
+#: groupsystem/models.py:114 groupsystem/views.py:68 groupsystem/views.py:106
+msgid "Can deny joinrequest"
+msgstr "สามารถปฏิเสธ joinrequest"
+
+#: groupsystem/models.py:115 groupsystem/views.py:69
+msgid "Can edit group profile"
+msgstr "สามารถแก้ไขรายละเอียดกลุ่ม"
+
+#: groupsystem/models.py:116 groupsystem/views.py:70
+msgid "Can read role"
+msgstr "สามารถอ่านบทบาท"
+
+#: groupsystem/models.py:117 groupsystem/views.py:71
+msgid "Can read custom role"
+msgstr "สามารถอ่านบทบาทที่กำหนดเอง"
+
+#: groupsystem/models.py:118 groupsystem/views.py:72
+msgid "Can update custom role"
+msgstr "สามารถปรับปรุงบทบาทที่กำหนดเอง"
+
+#: groupsystem/models.py:119 groupsystem/views.py:73
+msgid "Can create custom role"
+msgstr "สามารถสร้างบทบาทที่กำหนดเอง"
+
+#: groupsystem/views.py:358
+msgid "Already requested"
+msgstr "ขอแล้ว"
+
+#: groupsystem/views.py:360
+msgid "You're banned from this group"
+msgstr "คุณไม่ได้รับอนุญาตจากกลุ่มนี้"
+
+#: groupsystem/views.py:367 templates/autosignup/index.html:36
+#: templates/useraccount/index.html:50 templates/useraccount/index.html:65
+msgid "Subscribed"
+msgstr "สมัครเป็นสมาชิก"
+
+#: groupsystem/views.py:374
+msgid "Unsubscribed"
+msgstr "ยกเลิกการเป็นสมาชิก"
+
+#: groupsystem/views.py:380
+msgid "Request Canceled"
+msgstr "ยกเลิกคำขอ"
+
+#: groupsystem/views.py:411
+msgid "Leaved Group"
+msgstr "กลุ่มใบ"
+
+#: groupsystem/views.py:567
+msgid "Post will be shown once admin/moderator approves"
+msgstr "โพสต์จะแสดงครั้งเดียวธุรการ / ดูแลอนุมัติ"
+
+#: groupsystem/views.py:626
+#, fuzzy
+#| msgid "Post will be shown once admin/moderator approves"
+msgid ""
+"Thank you for commenting your comment will show once a admin/moderator "
+"approves"
+msgstr "โพสต์จะแสดงครั้งเดียวธุรการ / ดูแลอนุมัติ"
+
+#: groupsystem/views.py:682
+msgid "You don't have permissions to edit settings"
+msgstr "คุณไม่ได้มีสิทธิ์ในการแก้ไขการตั้งค่า"
+
+#: groupsystem/views.py:702
+msgid "You don't have permission to create news"
+msgstr "คุณไม่ได้รับอนุญาตให้สร้างข่าว"
+
+#: groupsystem/views.py:810
+msgid "You dont have permissions to approve post"
+msgstr "คุณไม่ได้รับอนุญาตให้โพสต์อนุมัติ"
+
+#: groupsystem/views.py:830
+msgid "Post created"
+msgstr "โพสต์ที่สร้างขึ้น"
+
+#: groupsystem/views.py:952
+msgid "You dont have permissions to approve comment"
+msgstr "คุณไม่ได้รับอนุญาตให้อนุมัติการแสดงความคิดเห็น"
+
+#: groupsystem/views.py:997
+msgid "You don't have permission to add memeber"
+msgstr "คุณไม่ได้รับอนุญาตให้เพิ่ม memeber"
+
+#: groupsystem/views.py:1035
+msgid "You dont have permission to remove member"
+msgstr "คุณไม่ได้รับสิทธิ์ในการลบสมาชิก"
+
+#: groupsystem/views.py:1075
+msgid "You dont have permission to ban member"
+msgstr "คุณไม่ได้รับสิทธิ์ที่จะห้ามสมาชิก"
+
+#: groupsystem/views.py:1126
+msgid "You don't have permissions to change member role"
+msgstr "คุณไม่ได้รับอนุญาตให้เปลี่ยนบทบาทสมาชิก"
+
+#: groupsystem/views.py:1236
+msgid "You don't have permission to approve request"
+msgstr "คุณไม่ได้รับอนุญาตให้อนุมัติคำขอ"
+
+#: groupsystem/views.py:1249
+msgid "You don't have permission to deny request"
+msgstr "คุณไม่ได้รับอนุญาตให้ปฏิเสธการร้องขอ"
+
+#: groupsystem/views.py:1288
+msgid "Users invited"
+msgstr "ผู้ใช้ที่ได้รับเชิญ"
+
+#: groupsystem/views.py:1506
+msgid "Role created, reload page to edit permissions"
+msgstr "บทบาทที่สร้างโหลดหน้าเว็บเพื่อแก้ไขสิทธิ์"
+
+#: groupsystem/views.py:1519
+msgid "You don't have permission to create custom role"
+msgstr "คุณไม่ได้รับอนุญาตให้สร้างบทบาทที่กำหนดเอง"
+
+#: groupsystem/views.py:1555
+msgid "Role permission changed"
+msgstr "ได้รับอนุญาตจากบทบาทการเปลี่ยนแปลง"
+
+#: groupsystem/views.py:1598
+msgid "User permission changed"
+msgstr "ได้รับอนุญาตจากผู้ใช้เปลี่ยนแปลง"
+
+#: information/models.py:10
+msgid "First Name"
+msgstr "ชื่อจริง"
+
+#: information/models.py:11
+msgid "Last Name"
+msgstr "ชำระเงินครั้งล่าสุดส่ง"
+
+#: information/models.py:13
+msgid "Company Name"
+msgstr "ชื่อ บริษัท"
+
+#: information/models.py:14 templates/eblast/emailcampaign_sent.html:2
+#: templates/profilesystem/index.html:515
+msgid "Email Address"
+msgstr "ที่อยู่อีเมล"
+
+#: information/models.py:16
+msgid "Telephone Number"
+msgstr "จำนวนบ้าน"
+
+#: information/models.py:19
+msgid "Comment"
+msgstr "ความคิดเห็น"
+
+#: profilesystem/forms.py:22
+msgid "Usernames can only contain letters, digits and @/./+/-/_."
+msgstr "ชื่อผู้ใช้สามารถมีตัวอักษรตัวเลขและ @ / / / -. / _"
+
+#: profilesystem/forms.py:31
+msgid "Username already taken"
+msgstr "ชื่อผู้ใช้งานไปแล้ว"
+
+#: profilesystem/models.py:20
+msgid "Male"
+msgstr "ชาย"
+
+#: profilesystem/models.py:21
+msgid "Female"
+msgstr "หญิง"
+
+#: profilesystem/models.py:166 templates/profilesystem/address.html:5
+#: templates/publicusers/user.html:193
+msgid "House Number"
+msgstr "จำนวนบ้าน"
+
+#: profilesystem/models.py:167 templates/profilesystem/address.html:11
+#: templates/publicusers/user.html:199
+msgid "Street"
+msgstr "ถนน"
+
+#: profilesystem/models.py:168 templates/profilesystem/address.html:17
+#: templates/publicusers/user.html:205
+msgid "Zip Code"
+msgstr "รหัสไปรษณีย์"
+
+#: profilesystem/models.py:169 templates/profilesystem/address.html:23
+#: templates/publicusers/user.html:211
+msgid "City"
+msgstr "เมือง"
+
+#: profilesystem/models.py:170 templates/profilesystem/address.html:29
+#: templates/publicusers/user.html:217
+msgid "State"
+msgstr "สถานะ"
+
+#: profilesystem/models.py:171 templates/profilesystem/address.html:35
+#: templates/publicusers/user.html:223
+msgid "Country"
+msgstr "ประเทศ"
+
+#: publicusers/views.py:183 templates/groupsystem/adminnews.html:113
+#: templates/groupsystem/adminsettings.html:165
+msgid "Success"
+msgstr "ความสำเร็จ"
+
+#: publicusers/views.py:185
+msgid "You already thumb uped this user"
+msgstr "แล้วคุณหัวแม่มือ uped ผู้ใช้นี้"
+
+#: publicusers/views.py:292
+msgid "Friend type"
+msgstr "ประเภทเพื่อน"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:71
+msgid "Best"
+msgstr "ดีที่สุด"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:63
+#: templates/publicusers/user.html:72
+msgid "Friend"
+msgstr "เพื่อน"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:73
+msgid "Soulmate"
+msgstr "เนื้อคู่"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:74
+msgid "Acquaintance"
+msgstr "คนรู้จัก"
+
+#: publicusers/views.py:297
+msgid "Family type"
+msgstr "ประเภทครอบครัว"
+
+#: publicusers/views.py:299
+msgid "Father"
+msgstr "พ่อ"
+
+#: publicusers/views.py:300
+msgid "Son"
+msgstr "บุตรชาย"
+
+#: publicusers/views.py:301
+msgid "Husband"
+msgstr "สามี"
+
+#: publicusers/views.py:302
+msgid "Brother"
+msgstr "พี่ชาย"
+
+#: publicusers/views.py:303
+msgid "Grandfather"
+msgstr "คุณปู่"
+
+#: publicusers/views.py:304
+msgid "Grandson"
+msgstr "หลานชาย"
+
+#: publicusers/views.py:305
+msgid "Uncle"
+msgstr "ลุง"
+
+#: publicusers/views.py:306
+msgid "Nephew"
+msgstr "หลานชาย"
+
+#: publicusers/views.py:307 publicusers/views.py:316
+msgid "Cousin"
+msgstr "ลูกพี่ลูกน้อง"
+
+#: publicusers/views.py:308
+msgid "Mother"
+msgstr "แม่"
+
+#: publicusers/views.py:309
+msgid "Daughter"
+msgstr "ลูกสาว"
+
+#: publicusers/views.py:310
+msgid "Wife"
+msgstr "ภรรยา"
+
+#: publicusers/views.py:311
+msgid "Sister"
+msgstr "น้องสาว"
+
+#: publicusers/views.py:312
+msgid "Grandmother"
+msgstr "ยาย"
+
+#: publicusers/views.py:313
+msgid "Granddaughter"
+msgstr "หลานสาว"
+
+#: publicusers/views.py:314
+msgid "Aunt"
+msgstr "ป้า"
+
+#: publicusers/views.py:315
+msgid "Niece"
+msgstr "หลานสาว"
+
+#: publicusers/views.py:317
+msgid "Parent"
+msgstr "ผู้ปกครอง"
+
+#: publicusers/views.py:318
+msgid "Child"
+msgstr "เด็ก"
+
+#: publicusers/views.py:319
+msgid "Spouse"
+msgstr "คู่สมรส"
+
+#: publicusers/views.py:320
+msgid "Sibling"
+msgstr "พี่น้อง"
+
+#: publicusers/views.py:321
+msgid "Grandparent"
+msgstr "ปู่ย่าตายาย"
+
+#: publicusers/views.py:322
+msgid "Grandchild"
+msgstr "หลาน"
+
+#: publicusers/views.py:327
+msgid "Contact type"
+msgstr "ติดต่อชนิด"
+
+#: publicusers/views.py:328
+msgid "Personal"
+msgstr "ส่วนบุคคล"
+
+#: publicusers/views.py:343
+msgid "connection already sent by "
+msgstr "การเชื่อมต่อส่งแล้วด้วย"
+
+#: publicusers/views.py:382
+msgid "A request is sent to "
+msgstr "คำขอถูกส่งไปยัง"
+
+#: publicusers/views.py:401
+msgid "Connection accepted"
+msgstr "การเชื่อมต่อได้รับการยอมรับ"
+
+#: publicusers/views.py:443
+msgid "Canceled connection request"
+msgstr "ร้องขอการเชื่อมต่อยกเลิก"
+
+#: publicusers/views.py:445
+msgid "Rejected connection"
+msgstr "การเชื่อมต่อถูกปฏิเสธ"
+
+#: publicusers/views.py:447
+msgid "Disconneted"
+msgstr "Disconneted"
+
+#: publicusers/views.py:449 templates/groupsystem/eventsadmin.html:111
+msgid "Success!!"
+msgstr "ที่ประสบความสำเร็จ !!"
+
+#: templates/403.html:4
+msgid "Permission denied"
+msgstr "ปฏิเสธการอนุญาต"
+
+#: templates/403.html:10
+msgid "Oops!! You don't have permissions to view this page"
+msgstr "โอ๊ะ !! คุณไม่ได้รับอนุญาตให้ดูหน้านี้"
+
+#: templates/403.html:12 templates/404.html:12 templates/500.html:12
+msgid "Return to dashboard"
+msgstr "ย้อนกลับไปยังแดชบอร์ด"
+
+#: templates/404.html:4
+msgid "Page Not Found"
+msgstr "ไม่พบหน้านี้"
+
+#: templates/404.html:10
+msgid "Oops!! The requested url can't be found in this server"
+msgstr "โอ๊ะ !! URL ที่ร้องขอไม่สามารถพบได้ในเซิร์ฟเวอร์นี้"
+
+#: templates/500.html:4
+msgid "Server Error"
+msgstr "เซิร์ฟเวอร์ผิดพลาด"
+
+#: templates/500.html:10
+msgid "Something is not working!! Try again later"
+msgstr "สิ่งที่ไม่ทำงาน !! ลองอีกครั้งในภายหลัง"
+
+#: templates/account/disclaimer.html:4 templates/landing_base.html:172
+msgid "Disclaimer"
+msgstr "คำปฏิเสธ"
+
+#: templates/account/disclaimer.html:28
+msgid "WEBSITE DISCLAIMER"
+msgstr "การปฏิเสธความรับผิดเว็บไซต์"
+
+#: templates/account/disclaimer.html:30
+msgid "No warranties"
+msgstr "ไม่มีการรับประกัน"
+
+#: templates/account/disclaimer.html:32
+msgid ""
+"This website is provided “as is” without any representations or warranties, "
+"express or implied. "
+msgstr ""
+
+#: templates/account/disclaimer.html:33
+msgid ""
+"makes no representations or warranties in relation to this website or the "
+"information and materials provided on this website. "
+msgstr ""
+
+#: templates/account/disclaimer.html:34
+msgid "Without prejudice to the generality of the foregoing paragraph, "
+msgstr "โดยปราศจากอคติกับทั่วไปของวรรคก่อนที่"
+
+#: templates/account/disclaimer.html:34
+msgid "does not warrant that:"
+msgstr "ไม่รับประกันว่า:"
+
+#: templates/account/disclaimer.html:36
+msgid "this website will be constantly available, or available at all; or"
+msgstr "เว็บไซต์นี้จะสามารถใช้ได้อย่างต่อเนื่องหรือที่มีอยู่ในทุกคน หรือ"
+
+#: templates/account/disclaimer.html:37
+msgid ""
+"the information on this website is complete, true, accurate or non-"
+"misleading."
+msgstr ""
+
+#: templates/account/disclaimer.html:39
+msgid ""
+"Nothing on this website constitutes, or is meant to constitute, advice of "
+"any kind. "
+msgstr ""
+
+#: templates/account/disclaimer.html:40
+msgid "Limitations of liability"
+msgstr "ข้อจำกัดความรับผิด"
+
+#: templates/account/disclaimer.html:42
+msgid ""
+"will not be liable to you (whether under the law of contact, the law of "
+"torts or otherwise) in relation to the contents of, or use of, or otherwise "
+"in connection with, this website:"
+msgstr ""
+
+#: templates/account/disclaimer.html:44
+msgid "for any indirect, special or consequential loss; or"
+msgstr "สำหรับทางอ้อมพิเศษหรือเป็นผลสืบเนื่องการสูญเสียใด ๆ หรือ"
+
+#: templates/account/disclaimer.html:45
+msgid ""
+"for any business losses, loss of revenue, income, profits or anticipated "
+"savings, loss of contracts or business relationships, loss of reputation or "
+"goodwill, or loss or corruption of information or data."
+msgstr ""
+
+#: templates/account/disclaimer.html:47
+msgid "These limitations of liability apply even if "
+msgstr "ข้อ จำกัด เหล่านี้ของความรับผิดใช้แม้ว่า"
+
+#: templates/account/disclaimer.html:47
+msgid " has been expressly advised of the potential loss."
+msgstr "ได้รับทราบอย่างชัดแจ้งของการสูญเสียที่อาจเกิดขึ้น"
+
+#: templates/account/disclaimer.html:48
+msgid "Exceptions"
+msgstr "ข้อยกเว้น"
+
+#: templates/account/disclaimer.html:50
+msgid ""
+"Nothing in this website disclaimer will exclude or limit any warranty "
+"implied by law that it would be unlawful to exclude or limit; and nothing in "
+"this website disclaimer will exclude or limit "
+msgstr ""
+
+#: templates/account/disclaimer.html:50
+msgid "'s liability in respect of any:"
+msgstr "&#39;s ภาระใด ๆ"
+
+#: templates/account/disclaimer.html:52
+msgid "death or personal injury caused by "
+msgstr "เสียชีวิตหรือบาดเจ็บที่เกิดจากการ"
+
+#: templates/account/disclaimer.html:52
+msgid "'s negligence;"
+msgstr "&#39;s ประมาท"
+
+#: templates/account/disclaimer.html:53
+msgid "fraud or fraudulent misrepresentation on the part of "
+msgstr "การฉ้อโกงหรือการหลอกลวงในส่วนของ"
+
+#: templates/account/disclaimer.html:53
+msgid " or"
+msgstr "หรือ"
+
+#: templates/account/disclaimer.html:54
+msgid "matter which it would be illegal or unlawful for "
+msgstr "เรื่องที่มันจะผิดกฎหมายหรือผิดกฎหมาย"
+
+#: templates/account/disclaimer.html:54
+msgid ""
+" to exclude or limit, or to attempt or purport to exclude or limit, its "
+"liability."
+msgstr ""
+
+#: templates/account/disclaimer.html:57
+msgid "Reasonableness"
+msgstr "ความเหมาะสม"
+
+#: templates/account/disclaimer.html:59
+msgid ""
+"By using this website, you agree that the exclusions and limitations of "
+"liability set out in this website disclaimer are reasonable.If you do not "
+"think they are reasonable, you must not use this website."
+msgstr ""
+
+#: templates/account/disclaimer.html:60
+msgid "Other parties"
+msgstr "กิจการอื่น ๆ"
+
+#: templates/account/disclaimer.html:62
+msgid "You accept that, as a limited liability entity, "
+msgstr "คุณยอมรับว่าเป็นนิติบุคคลรับผิด จำกัด"
+
+#: templates/account/disclaimer.html:62
+msgid ""
+" has an interest in limiting the personal liability of its officers and "
+"employees. You agree that you will not bring any claim personally against "
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid ""
+"'s officers or employees in respect of any losses you suffer in connection "
+"with the website."
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"[Without prejudice to the foregoing paragraph,] you agree that the "
+"limitations of warranties and liability set out in this website disclaimer "
+"will protect"
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"'s officers, employees, agents, subsidiaries, successors, assigns and sub-"
+"contractors as well as "
+msgstr ""
+
+#: templates/account/disclaimer.html:64
+msgid "Unenforceable provisions"
+msgstr "บทบัญญัติ"
+
+#: templates/account/disclaimer.html:66
+msgid ""
+"If any provision of this website disclaimer is, or is found to be, "
+"unenforceable under applicable law, that will not affect the enforceability "
+"of the other provisions of this website disclaimer."
+msgstr ""
+
+#: templates/account/email.html:5 templates/account/email.html:8
+msgid "Manage Email"
+msgstr "จัดการอีเมล์"
+
+#: templates/account/email.html:10
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "ที่อยู่อีเมลต่อไปนี้จะเชื่อมโยงกับบัญชีของคุณ:"
+
+#: templates/account/email.html:26
+msgid "(P)"
+msgstr "(P)"
+
+#: templates/account/email.html:40
+msgid "Make Primary"
+msgstr "ทำให้ประถม"
+
+#: templates/account/email.html:41
+msgid "Re-send Verification"
+msgstr "Re: ส่งการยืนยัน"
+
+#: templates/account/email.html:42 templates/eblast/emailgroup.html:50
+#: templates/groupsystem/members.html:84
+msgid "Remove"
+msgstr "เอาออก"
+
+#: templates/account/email.html:54
+msgid "Add E-mail"
+msgstr "เพิ่ม E-mail"
+
+#: templates/account/email.html:59
+msgid "Back to profile"
+msgstr "กลับไปที่โปรไฟล์"
+
+#: templates/account/email.html:64
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "จริงๆคุณต้องการลบอีเมลที่เลือก?"
+
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You have received this to confirm your email in the %(site_domain)s "
+"community platform.\n"
+"\n"
+"Please click this link to confirm your email %(activate_url)s\n"
+msgstr ""
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "ยืนยันที่อยู่อีเมล"
+
+#: templates/account/email_confirm.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: templates/account/email_confirm.html:21
+msgid "Confirm"
+msgstr "ยืนยัน"
+
+#: templates/account/email_confirm.html:28
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: templates/account/login.html:6
+msgid "Login"
+msgstr "เข้าสู่ระบบ"
+
+#: templates/account/login.html:9
+msgid "Sign in to start your session"
+msgstr "เข้าสู่ระบบเพื่อเริ่มต้นเซสชันของคุณ"
+
+#: templates/account/login.html:18
+msgid "Log In"
+msgstr "เข้าสู่ระบบ"
+
+#: templates/account/login.html:34
+msgid "Forgot Password?"
+msgstr "ลืมรหัสผ่าน?"
+
+#: templates/account/login.html:36 templates/account/signup.html:9
+#: templates/socialaccount/signup.html:8
+msgid "Register a new membership"
+msgstr "ลงทะเบียนเป็นสมาชิกใหม่"
+
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:17
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+#: templates/account/password_reset_from_key.html:21
+msgid "Change Password"
+msgstr "เปลี่ยนรหัสผ่าน"
+
+#: templates/account/password_change.html:11
+msgid "Change your password"
+msgstr "เปลี่ยนรหัสผ่านของคุณ"
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+msgid "Password Reset"
+msgstr "รีเซ็ตรหัสผ่าน"
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:22
+msgid "Reset My Password"
+msgstr "รีเซ็ตรหัสผ่านของฉัน"
+
+#: templates/account/password_reset.html:26
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr "กรุณาติดต่อเราหากคุณมีปัญหาใดรีเซ็ตรหัสผ่านของคุณ"
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr "Token ที่ไม่ดี"
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:25
+msgid "Your password is now changed."
+msgstr "รหัสผ่านของคุณมีการเปลี่ยนแปลงในขณะนี้"
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "ตั้งรหัสผ่าน"
+
+#: templates/account/rform.html:10 templates/socialaccount/signup.html:17
+msgid "Register"
+msgstr "สมัครสมาชิก"
+
+#: templates/account/rform.html:30 templates/account/rform.html:54
+#: templates/account/rform.html:78 templates/account/rform.html:102
+msgid ""
+"This project is a new social platform to simulate and promote  the basic "
+"income"
+msgstr ""
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid "Please read the"
+msgstr "โปรดอ่าน"
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid " Disclaimer"
+msgstr "คำปฏิเสธ"
+
+#: templates/account/rform.html:36 templates/account/rform.html:60
+#: templates/account/rform.html:84 templates/account/rform.html:108
+#: templates/autosignup/community_signupedit.html:10
+#: templates/timelines/timeline.html:149
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: templates/account/rform.html:39 templates/account/rform.html:63
+#: templates/account/rform.html:87 templates/account/rform.html:111
+msgid "Agree"
+msgstr "ตกลง"
+
+#: templates/account/signup.html:11
+msgid "I already have a membership"
+msgstr "ฉันมีสมาชิก"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr "ปิดการลงทะเบียน"
+
+#: templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed for beta site"
+msgstr "เราจะเสียใจ แต่หมายถึงปิดให้บริการในขณะนี้สำหรับเว็บไซต์เบต้า"
+
+#: templates/account/signup_closed.html:11
+msgid "Please signup to"
+msgstr "กรุณาลงทะเบียนเพื่อ"
+
+#: templates/account/signup_closed.html:11
+msgid "main site"
+msgstr "เว็บไซต์หลัก"
+
+#: templates/autosignup/additional_step.html:6
+#: templates/autosignup/complete_previous_step.html:6
+#: templates/autosignup/step_1_form.html:6
+#: templates/autosignup/step_2_form.html:6
+#: templates/autosignup/step_2_verification.html:6
+#: templates/autosignup/step_3_form.html:6
+#: templates/autosignup/step_3_verification.html:6
+msgid "Name and Address"
+msgstr "ชื่อและที่อยู่"
+
+#: templates/autosignup/additional_step.html:9
+#: templates/autosignup/complete_previous_step.html:9
+#: templates/autosignup/step_1_form.html:9
+#: templates/autosignup/step_2_form.html:9
+#: templates/autosignup/step_2_verification.html:9
+#: templates/autosignup/step_3_form.html:9
+#: templates/autosignup/step_3_verification.html:9
+msgid "Email"
+msgstr "อีเมล์"
+
+#: templates/autosignup/additional_step.html:12
+#: templates/autosignup/complete_previous_step.html:12
+#: templates/autosignup/step_1_form.html:12
+#: templates/autosignup/step_2_form.html:12
+#: templates/autosignup/step_2_verification.html:12
+#: templates/autosignup/step_3_form.html:12
+#: templates/autosignup/step_3_verification.html:12
+#: templates/profilesystem/index.html:377
+msgid "Phone No"
+msgstr "โทรศัพท์ไม่มี"
+
+#: templates/autosignup/additional_step.html:15
+#: templates/autosignup/complete_previous_step.html:16
+#: templates/autosignup/step_1_form.html:16
+#: templates/autosignup/step_2_form.html:16
+#: templates/autosignup/step_2_verification.html:16
+#: templates/autosignup/step_3_form.html:16
+#: templates/autosignup/step_3_verification.html:16
+msgid "Docs"
+msgstr "เอกสาร"
+
+#: templates/autosignup/community_signupedit.html:7
+#: templates/autosignup/settings.html:118
+msgid "Fetch Twilio Data"
+msgstr "ดึงข้อมูล Twilio"
+
+#: templates/autosignup/community_signupedit.html:8
+#: templates/autosignup/signupinfo.html:207
+#: templates/eblast/emailcampaign.html:13 templates/eblast/emailgroup.html:11
+#: templates/eblast/emailtemplate.html:9
+msgid "Delete"
+msgstr "ลบ"
+
+#: templates/autosignup/community_signupedit.html:9
+msgid "Save"
+msgstr "บันทึก"
+
+#: templates/autosignup/complete_previous_step.html:21
+msgid "Please complete previous steps"
+msgstr "โปรดทำตามขั้นตอนก่อนหน้านี้"
+
+#: templates/autosignup/index.html:4
+msgid "MyAccounts"
+msgstr "MyAccounts"
+
+#: templates/autosignup/index.html:8
+msgid "Myaccounts"
+msgstr "Myaccounts"
+
+#: templates/autosignup/index.html:26 templates/sidebar_home.html:16
+#: templates/useraccount/index.html:13 templates/useraccount/index.html:16
+#: templates/useraccount/index.html:40
+msgid "Accounts"
+msgstr "บัญชี"
+
+#: templates/autosignup/index.html:33 templates/useraccount/index.html:47
+msgid "DummyDB"
+msgstr "DummyDB"
+
+#: templates/autosignup/index.html:45 templates/useraccount/index.html:59
+msgid "Grantcoin"
+msgstr "Grantcoin"
+
+#: templates/autosignup/index.html:48 templates/useraccount/index.html:73
+msgid "Signup"
+msgstr "ลงชื่อ"
+
+#: templates/autosignup/index.html:57
+msgid "The pulse"
+msgstr "ชีพจร"
+
+#: templates/autosignup/index.html:60 templates/useraccount/index.html:86
+msgid "Coming soon"
+msgstr "เร็ว ๆ นี้"
+
+#: templates/autosignup/index.html:81 templates/useraccount/index.html:266
+#: templates/useraccount/index.html:283
+msgid "Signup to Grantcoin"
+msgstr "ลงทะเบียนเพื่อ Grantcoin"
+
+#: templates/autosignup/index.html:87 templates/eblast/emailcampaign.html:44
+#: templates/eblast/emailcampaign.html:61 templates/eblast/emailgroup.html:69
+#: templates/eblast/emailgroup.html:86
+#: templates/groupsystem/groupdetails.html:186
+#: templates/profilesystem/index.html:96 templates/profilesystem/index.html:127
+#: templates/profilesystem/index.html:166 templates/useraccount/index.html:272
+#: templates/useraccount/index.html:302
+msgid "Close"
+msgstr "ปิด"
+
+#: templates/autosignup/index.html:88 templates/autosignup/settings.html:48
+#: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:103
+#: templates/crowdfunding/update_crowdfund.html:9
+#: templates/eblast/emailcampaignform.html:11
+#: templates/eblast/emailgroupform.html:11
+#: templates/eblast/emailtemplateform.html:11
+#: templates/groupsystem/adminnews.html:83
+#: templates/groupsystem/adminsettings.html:108
+#: templates/groupsystem/editcommentpage.html:50
+#: templates/groupsystem/editcustomrole.html:6
+#: templates/groupsystem/editnews.html:6
+#: templates/groupsystem/editpostpage.html:52
+#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:110
+#: templates/groupsystem/postsadmin.html:113
+#: templates/information/contact.html:32
+#: templates/invitationsystem/checkinvitation.html:31
+#: templates/invitationsystem/index.html:20
+#: templates/landing/getinvitationform.html:4
+#: templates/profilesystem/index.html:102
+#: templates/profilesystem/index.html:139
+#: templates/profilesystem/index.html:178 templates/useraccount/index.html:273
+#: templates/useraccount/index.html:303
+msgid "Submit"
+msgstr "เสนอ"
+
+#: templates/autosignup/settings.html:4 templates/autosignup/settings.html:10
+msgid "Signups settings"
+msgstr "การตั้งค่าการสมัคร"
+
+#: templates/autosignup/settings.html:13 templates/autosignup/signups.html:4
+#: templates/autosignup/signups.html:10 templates/autosignup/signups.html:13
+#: templates/autosignup/signups.html:38
+msgid "Signups"
+msgstr "การสมัคร"
+
+#: templates/autosignup/settings.html:14
+msgid "Signup Settings"
+msgstr "การตั้งค่าลงทะเบียน"
+
+#: templates/autosignup/settings.html:24
+msgid "Autosignup settings"
+msgstr "การตั้งค่า Autosignup"
+
+#: templates/autosignup/settings.html:45
+msgid "KM"
+msgstr "KM"
+
+#: templates/autosignup/settings.html:54
+msgid "Approved Email Template"
+msgstr "Email แม่ได้รับการอนุมัติ"
+
+#: templates/autosignup/settings.html:56
+msgid "Select from one"
+msgstr "เลือกจากตัวเลือกอย่างใดอย่างหนึ่ง"
+
+#: templates/autosignup/settings.html:57
+msgid "Default"
+msgstr "ค่าเริ่มต้น"
+
+#: templates/autosignup/settings.html:69
+msgid "Or"
+msgstr "หรือ"
+
+#: templates/autosignup/settings.html:75
+msgid "File must be html document"
+msgstr "ไฟล์ต้องมีเอกสาร HTML"
+
+#: templates/autosignup/settings.html:82
+msgid "Invite Code"
+msgstr "รหัสเชิญ"
+
+#: templates/autosignup/settings.html:88
+msgid "Status:"
+msgstr "สถานะ:"
+
+#: templates/autosignup/settings.html:96
+msgid "Code:"
+msgstr "รหัส:"
+
+#: templates/autosignup/settings.html:109
+msgid "Upload and Download CSV"
+msgstr "อัปโหลดและดาวน์โหลด CSV"
+
+#: templates/autosignup/settings.html:120
+msgid "Download example copy"
+msgstr "ดาวน์โหลดสำเนาตัวอย่างเช่น"
+
+#: templates/autosignup/settings.html:126
+msgid "Uploaded CSVs"
+msgstr "อัปโหลด CSV ทั้งหมด"
+
+#: templates/autosignup/settings.html:167
+msgid "Select range"
+msgstr "เลือกช่วง"
+
+#: templates/autosignup/settings.html:169
+#: templates/autosignup/settings.html:235
+msgid "Download Member Data CSV"
+msgstr "ดาวน์โหลดข้อมูลสมาชิก CSV"
+
+#: templates/autosignup/sfilter.html:5 templates/autosignup/signups.html:57
+#: templates/groupsystem/admindashboard.html:40
+#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:17
+#: templates/groupsystem/members.html:22 templates/publicusers/userlist.html:4
+#: templates/publicusers/userlist.html:10
+#: templates/publicusers/userlist.html:14 templates/sidebar_community.html:2
+#: templates/sidebar_group.html:87 templates/sidebar_group.html:93
+#: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
+msgid "Members"
+msgstr "สมาชิก"
+
+#: templates/autosignup/sfilter.html:14 templates/autosignup/signups.html:66
+#: templates/crowdfunding/admin.html:76
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:10
+#: templates/groupsystem/adminsettings.html:15
+#: templates/profilesystem/index.html:292 templates/sidebar_group.html:144
+#: templates/sidebar_group_admin.html:114
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+#: templates/autosignup/sfilter.html:26 templates/autosignup/signups.html:78
+msgid "No signups yet!! "
+msgstr "ไม่มีการสมัครเลย !!"
+
+#: templates/autosignup/signupclosed.html:4
+msgid "Signup is closed! try later"
+msgstr "ลงทะเบียนถูกปิด! ลองใหม่ภายหลัง"
+
+#: templates/autosignup/signuphistories.html:36
+msgid "This signup is not associated with any history"
+msgstr "สมัครใช้งานนี้ไม่เกี่ยวข้องกับประวัติศาสตร์ใด ๆ"
+
+#: templates/autosignup/signupinfo.html:13
+#: templates/autosignup/signupinfo.html:42
+msgid "Validated"
+msgstr "การตรวจสอบ"
+
+#: templates/autosignup/signupinfo.html:19
+msgid "This email id was used for these previous signup "
+msgstr "Email รหัสนี้ถูกใช้สำหรับการสมัครใช้งานก่อนหน้านี้เหล่านี้"
+
+#: templates/autosignup/signupinfo.html:36
+msgid "Mobile"
+msgstr "โทรศัพท์มือถือ"
+
+#: templates/autosignup/signupinfo.html:39
+msgid "Not a Verifiable No"
+msgstr "ไม่ได้เป็นที่พิสูจน์ไม่ได้"
+
+#: templates/autosignup/signupinfo.html:49
+msgid "This phone number was used for these previous signup "
+msgstr "หมายเลขโทรศัพท์นี้ถูกใช้สำหรับการสมัครใช้งานก่อนหน้านี้เหล่านี้"
+
+#: templates/autosignup/signupinfo.html:137
+msgid "Distance from database address: "
+msgstr "ระยะห่างจากฐานข้อมูลที่อยู่:"
+
+#: templates/autosignup/signupinfo.html:137
+msgid " KM"
+msgstr "KM"
+
+#: templates/autosignup/signupinfo.html:208
+#: templates/groupsystem/members.html:124 templates/profilesystem/index.html:99
+#: templates/profilesystem/index.html:131
+#: templates/profilesystem/index.html:170
+msgid "Edit"
+msgstr "แก้ไข"
+
+#: templates/autosignup/signupinfo.html:209
+msgid "History"
+msgstr "ประวัติศาสตร์"
+
+#: templates/autosignup/signupinfo.html:211
+msgid "Resend Approval Email"
+msgstr "ส่งอีเมลขอการอนุมัติ"
+
+#: templates/autosignup/signupinfo.html:214
+msgid "Send Invitation Email"
+msgstr "ส่งคำเชิญอีเมล์"
+
+#: templates/autosignup/signups.html:44 templates/useraccount/index.html:67
+msgid "Pending"
+msgstr "รอดำเนินการ"
+
+#: templates/autosignup/signups.html:45 templates/sidebar_group.html:78
+#: templates/sidebar_group_admin.html:48
+msgid "Approved"
+msgstr "ได้รับการอนุมัติ"
+
+#: templates/autosignup/signups.html:46
+msgid "Declined"
+msgstr "ปรับตัวลดลง"
+
+#: templates/autosignup/signups.html:47 templates/useraccount/index.html:70
+msgid "Incomplete"
+msgstr "ไม่สมบูรณ์"
+
+#: templates/autosignup/signups.html:226
+msgid "Fetching..."
+msgstr "การดึงข้อมูล ..."
+
+#: templates/autosignup/step_2_form.html:22
+msgid "Verify Your Email"
+msgstr "ยืนยันอีเมลของคุณ"
+
+#: templates/autosignup/step_2_verification.html:22
+msgid "Enter code sent to your email below"
+msgstr "ใส่รหัสที่ส่งไปยังอีเมลของคุณด้านล่าง"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "Didn't get code yet?"
+msgstr "ไม่ได้รับรหัสหรือยัง"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "try again"
+msgstr "ลองอีกครั้ง"
+
+#: templates/autosignup/step_3_form.html:22
+msgid "Verify Your Mobile Number"
+msgstr "ตรวจสอบหมายเลขโทรศัพท์มือถือของคุณ"
+
+#: templates/autosignup/step_3_verification.html:22
+msgid "Enter code sent to your phone below"
+msgstr "ใส่รหัสที่ส่งไปยังโทรศัพท์ของคุณด้านล่าง"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "I am not getting a verification code for my number"
+msgstr "ฉันไม่ได้รับรหัสยืนยันสำหรับหมายเลขของฉัน"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "skip"
+msgstr "กระโดด"
+
+#: templates/autosignup/step_3_verification.html:34
+msgid "This needs some time don't close/refresh browser"
+msgstr "นี้ความต้องการบางเวลาไม่ปิด / เบราว์เซอร์รีเฟรช"
+
+#: templates/autosignup/thankyou.html:4
+msgid "Thank you for signing up to Grantcoin and providing us your information"
+msgstr "ขอขอบคุณสำหรับการลงนามเพื่อ Grantcoin และการให้ข้อมูลของคุณ"
+
+#: templates/autosignup/thankyou.html:5
+msgid ""
+"Your account will be processed soon, return to this page to check on your "
+"status."
+msgstr ""
+
+#: templates/base.html:125
+msgid "Toggle navigation"
+msgstr "สลับลูกศร"
+
+#: templates/base.html:154 templates/base.html:173 templates/base.html:230
+msgid "Hello User"
+msgstr "สวัสดีผู้ใช้"
+
+#: templates/base.html:170
+msgid "Member Since "
+msgstr "สมาชิกตั้งแต่"
+
+#: templates/base.html:184 templates/useraccount/index.html:7
+msgid "Account"
+msgstr "บัญชี"
+
+#: templates/base.html:187
+msgid "Landing"
+msgstr "ท่าเรือ"
+
+#: templates/base.html:195 templates/landing_base.html:101
+#: templates/landing_base.html:165 templates/profilesystem/index.html:5
+#: templates/profilesystem/index.html:42 templates/profilesystem/index.html:45
+#: templates/sidebar_home.html:27
+msgid "Profile"
+msgstr "ข้อมูลส่วนตัว"
+
+#: templates/base.html:198
+msgid "Sign out"
+msgstr "ออกจากระบบ"
+
+#: templates/base.html:234 templates/publicusers/user.html:24
+#: templates/publicusers/userdetails.html:393
+#: templates/publicusers/userlist.html:40
+#: templates/publicusers/userlist_old.html:116
+#: templates/publicusers/users_old.html:25
+msgid "Online"
+msgstr "ออนไลน์"
+
+#: templates/base.html:306
+msgid "System notice: "
+msgstr "แจ้งให้ทราบของระบบ:"
+
+#: templates/base.html:349
+msgid "Language Settings"
+msgstr "ตั้งค่าภาษา"
+
+#: templates/base.html:366
+msgid "Set"
+msgstr "ตั้งค่า"
+
+#: templates/base.html:381
+msgid "Filter Options"
+msgstr "ตัวกรอง"
+
+#: templates/base.html:391
+msgid "Apply"
+msgstr "ใช้"
+
+#: templates/crowdfunding/admin.html:4 templates/crowdfunding/admin.html:37
+#: templates/crowdfunding/admin.html:40 templates/sidebar_community.html:32
+msgid "Crowdfund Admin"
+msgstr "Crowdfund ผู้ดูแลระบบ"
+
+#: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:60
+msgid "Stats"
+msgstr "สถิติ"
+
+#: templates/crowdfunding/admin.html:62
+msgid "Status"
+msgstr "สถานะ"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Active"
+msgstr "คล่องแคล่ว"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Stopped"
+msgstr "หยุด"
+
+#: templates/crowdfunding/admin.html:67 templates/crowdfunding/admin.html:83
+#: templates/crowdfunding/admin.html:127
+msgid "No Crowdfund started"
+msgstr "ไม่มี Crowdfund เริ่มต้น"
+
+#: templates/crowdfunding/admin.html:86
+msgid "Start new"
+msgstr "เริ่มต้นใหม่"
+
+#: templates/crowdfunding/admin.html:97
+msgid "Payments"
+msgstr "การชำระเงิน"
+
+#: templates/crowdfunding/index.html:4
+msgid "Crowdfunding"
+msgstr "crowdfunding"
+
+#: templates/crowdfunding/index.html:17 templates/crowdfunding/index.html:20
+#: templates/sidebar_community.html:30
+msgid "Crowdfund"
+msgstr "Crowdfund"
+
+#: templates/crowdfunding/index.html:32
+msgid "Watch video"
+msgstr "ดูวีดีโอ"
+
+#: templates/crowdfunding/index.html:34
+msgid "FUND"
+msgstr "กองทุน"
+
+#: templates/crowdfunding/index.html:46
+msgid "Product Features"
+msgstr "คุณสมบัติของสินค้า"
+
+#: templates/crowdfunding/index.html:55
+msgid "Introduction"
+msgstr "บทนำ"
+
+#: templates/crowdfunding/index.html:77
+msgid "Fund Now"
+msgstr "กองทุนตอนนี้"
+
+#: templates/crowdfunding/index.html:84
+msgid "Card"
+msgstr "บัตร"
+
+#: templates/crowdfunding/index.html:92 templates/useraccount/index.html:175
+#: templates/useraccount/index.html:215 templates/useraccount/index.html:242
+#: useraccount/forms.py:8 useraccount/forms.py:27
+msgid "Amount"
+msgstr "จำนวน"
+
+#: templates/crowdfunding/index.html:98
+msgid "Feedback"
+msgstr "ข้อเสนอแนะ"
+
+#: templates/crowdfunding/payment_details.html:2
+msgid "User: "
+msgstr "ผู้ใช้:"
+
+#: templates/crowdfunding/payment_details.html:3
+msgid "Amount: "
+msgstr "จำนวนเงิน:"
+
+#: templates/crowdfunding/payment_details.html:4
+msgid "Date: "
+msgstr "วันที่:"
+
+#: templates/crowdfunding/payment_details.html:5
+msgid "Charge ID(Stripe): "
+msgstr "ค่าใช้จ่าย ID (Stripe):"
+
+#: templates/crowdfunding/payment_details.html:7
+#: templates/eblast/emailcampaign_sent.html:5
+msgid "Message: "
+msgstr "ข้อความ:"
+
+#: templates/crowdfunding/payment_details.html:10
+msgid "Fail Reason: "
+msgstr "ล้มเหลวเหตุผล:"
+
+#: templates/crowdfunding/thankyou.html:3
+msgid "Thank You"
+msgstr "ขอขอบคุณ"
+
+#: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:20
+#: templates/dashboard/dashboard.html:23
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:10
+#: templates/groupsystem/admindashboard.html:15 templates/landing_base.html:97
+#: templates/landing_base.html:163 templates/publicusers/userlist.html:13
+#: templates/sidebar_group.html:36 templates/sidebar_group_admin.html:6
+#: templates/sidebar_home.html:4
+msgid "Dashboard"
+msgstr "แผงควบคุม"
+
+#: templates/dashboard/dashboard.html:35 templates/profilesystem/index.html:202
+#: templates/publicusers/user.html:174
+msgid "References"
+msgstr "อ้างอิง"
+
+#: templates/dashboard/dashboard.html:45 templates/dashboard/dashboard.html:172
+msgid "Connections"
+msgstr "สัมพันธ์"
+
+#: templates/dashboard/dashboard.html:55 templates/landing_base.html:118
+#: templates/landing_base.html:169
+msgid "Messages"
+msgstr "ข้อความ"
+
+#: templates/dashboard/dashboard.html:65 templates/dashboard/dashboard.html:257
+#: templates/useraccount/index.html:111 templates/useraccount/transfer.html:43
+msgid "Account Balance"
+msgstr "ยอดเงินในบัญชี"
+
+#: templates/dashboard/dashboard.html:66
+#: templates/notification/notification.html:19
+#: templates/notification/notification.html:26
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "units"
+msgstr "หน่วย"
+
+#: templates/dashboard/dashboard.html:75 templates/dashboard/dashboard.html:258
+#: templates/useraccount/index.html:123
+msgid "Next Release"
+msgstr "รุ่นถัดไป"
+
+#: templates/dashboard/dashboard.html:96 templates/useraccount/index.html:140
+msgid "Day"
+msgstr "วัน"
+
+#: templates/dashboard/dashboard.html:101 templates/useraccount/index.html:145
+msgid "Hour"
+msgstr "ชั่วโมง"
+
+#: templates/dashboard/dashboard.html:106 templates/useraccount/index.html:150
+msgid "Minute"
+msgstr "นาที"
+
+#: templates/dashboard/dashboard.html:113
+#: templates/groupsystem/admindashboard.html:46
+#: templates/groupsystem/admindashboard.html:60
+#: templates/groupsystem/admindashboard.html:74
+#: templates/groupsystem/admindashboard.html:88
+msgid "More info"
+msgstr "ข้อมูลเพิ่มเติม"
+
+#: templates/dashboard/dashboard.html:121 templates/publicusers/user.html:277
+msgid "Profile Completed"
+msgstr "ข้อมูลส่วนตัวเสร็จสมบูรณ์"
+
+#: templates/dashboard/dashboard.html:138 templates/publicusers/user.html:290
+msgid "Completed"
+msgstr "เสร็จ"
+
+#: templates/dashboard/dashboard.html:144 templates/publicusers/user.html:296
+msgid "Not completed"
+msgstr "ยังไม่เสร็จสมบูรณ์"
+
+#: templates/dashboard/dashboard.html:150 templates/publicusers/user.html:302
+msgid "Not verified"
+msgstr "ยังไม่ยืนยัน"
+
+#: templates/dashboard/dashboard.html:156 templates/publicusers/user.html:308
+msgid "Skipped"
+msgstr "ข้ามไป"
+
+#: templates/dashboard/dashboard.html:182
+msgid "You have no connection to display data"
+msgstr "คุณไม่มีการเชื่อมต่อเพื่อแสดงข้อมูล"
+
+#: templates/dashboard/dashboard.html:195
+msgid " Friends"
+msgstr "เพื่อน"
+
+#: templates/dashboard/dashboard.html:196
+msgid " Families"
+msgstr "ครอบครัว"
+
+#: templates/dashboard/dashboard.html:197
+msgid " Contacts"
+msgstr "รายชื่อผู้ติดต่อ"
+
+#: templates/dashboard/dashboard.html:214
+msgid "New Members"
+msgstr "สมาชิกใหม่"
+
+#: templates/dashboard/dashboard.html:227
+msgid "Total Ekata Members"
+msgstr "จำนวนสมาชิกทั้งหมด Ekata"
+
+#: templates/dashboard/dashboard.html:242
+msgid "Active Members"
+msgstr "สมาชิกที่ใช้งาน"
+
+#: templates/dashboard/dashboard.html:256
+msgid "Add Widget"
+msgstr "เพิ่มวิดเจ็ต"
+
+#: templates/dashboard/dashboard.html:259 templates/timelines/index.html:77
+#: templates/timelines/index.html:79
+msgid "Connection"
+msgstr "สัมพันธ์"
+
+#: templates/dashboard/dashboard.html:260
+msgid "Profile Completion Ring"
+msgstr "ข้อมูลส่วนตัวเสร็จแหวน"
+
+#: templates/dashboard/dashboard.html:270
+msgid "Website added"
+msgstr "เว็บไซต์เพิ่ม"
+
+#: templates/dashboard/dashboard.html:277
+msgid "Gender added"
+msgstr "เพศเพิ่ม"
+
+#: templates/dashboard/dashboard.html:284
+msgid "Phone added"
+msgstr "โทรศัพท์เพิ่ม"
+
+#: templates/dashboard/dashboard.html:291
+msgid "Avatar added"
+msgstr "Avatar เพิ่ม"
+
+#: templates/dashboard/dashboard.html:298
+msgid "Address added"
+msgstr "ที่อยู่เพิ่ม"
+
+#: templates/dashboard/dashboard.html:305
+msgid "Socialaccount added"
+msgstr "Socialaccount เพิ่ม"
+
+#: templates/dashboard/dashboard.html:312
+msgid "Email added"
+msgstr "อีเมล์เพิ่ม"
+
+#: templates/dashboard/dashboard.html:319
+msgid "Email verified"
+msgstr "การตรวจสอบอีเมล์"
+
+#: templates/dashboard/dashboard.html:331
+#: templates/dashboard/dashboard.html:403
+msgid "Add website"
+msgstr "เพิ่มเว็บไซต์"
+
+#: templates/dashboard/dashboard.html:332
+#: templates/dashboard/dashboard.html:338
+#: templates/dashboard/dashboard.html:344
+#: templates/dashboard/dashboard.html:350
+#: templates/dashboard/dashboard.html:356
+#: templates/dashboard/dashboard.html:362
+#: templates/dashboard/dashboard.html:368
+#: templates/dashboard/dashboard.html:377
+msgid " (skip)"
+msgstr "(เฮี๊ยบ)"
+
+#: templates/dashboard/dashboard.html:337
+#: templates/dashboard/dashboard.html:408
+msgid "Add gender"
+msgstr "เพิ่มเพศ"
+
+#: templates/dashboard/dashboard.html:343
+#: templates/dashboard/dashboard.html:413
+msgid "Add phone"
+msgstr "เพิ่มโทรศัพท์"
+
+#: templates/dashboard/dashboard.html:349
+#: templates/dashboard/dashboard.html:418
+msgid "Add avatar"
+msgstr "เพิ่ม Avatar"
+
+#: templates/dashboard/dashboard.html:355
+#: templates/dashboard/dashboard.html:423
+msgid "Add address"
+msgstr "เพิ่มที่อยู่"
+
+#: templates/dashboard/dashboard.html:361
+#: templates/dashboard/dashboard.html:428
+msgid "Add socialaccount"
+msgstr "เพิ่ม socialaccount"
+
+#: templates/dashboard/dashboard.html:367
+#: templates/dashboard/dashboard.html:433
+msgid "Add email"
+msgstr "เพิ่มอีเมล"
+
+#: templates/dashboard/dashboard.html:376
+#: templates/dashboard/dashboard.html:391
+#: templates/dashboard/dashboard.html:441
+msgid "Verify email"
+msgstr "ตรวจสอบอีเมล์"
+
+#: templates/dashboard/dashboard.html:392
+msgid "(skip)"
+msgstr "(เฮี๊ยบ)"
+
+#: templates/eblast/editemailcampaign.html:6
+#: templates/eblast/emailtemplateedit.html:6
+msgid "Update"
+msgstr "ปรับปรุง"
+
+#: templates/eblast/emailcampaign.html:15
+msgid "Test send"
+msgstr "ทดสอบส่ง"
+
+#: templates/eblast/emailcampaign.html:16
+#: templates/eblast/emailcampaign.html:45
+#: templates/eblast/emailcampaign.html:62
+#: templates/messagingsystem/chats.html:76
+#: templates/publicusers/userdetails.html:106
+#: templates/timelines/index.html:102
+#: templates/useraccount/transferunit.html:22
+msgid "Send"
+msgstr "ส่ง"
+
+#: templates/eblast/emailcampaign.html:18
+msgid "Resend"
+msgstr "ส่งซ้ำ"
+
+#: templates/eblast/emailcampaign.html:19
+msgid "Show tracking data"
+msgstr "แสดงข้อมูลการติดตาม"
+
+#: templates/eblast/emailcampaign.html:38
+msgid "Send a test email"
+msgstr "ส่งอีเมลทดสอบ"
+
+#: templates/eblast/emailcampaign.html:55
+msgid "Send email"
+msgstr "ส่งอีเมล"
+
+#: templates/eblast/emailcampaign_page.html:4
+msgid "EmailCampaigns | eBlast"
+msgstr "EmailCampaigns | eBlast"
+
+#: templates/eblast/emailcampaign_page.html:10
+#: templates/sidebar_community.html:44
+msgid "Email Campaigns"
+msgstr "แคมเปญอีเมล"
+
+#: templates/eblast/emailcampaign_page.html:13
+#: templates/eblast/emailgroups_page.html:13
+#: templates/eblast/emailtemplates_page.html:13
+#: templates/sidebar_community.html:36
+msgid "eBlast"
+msgstr "eBlast"
+
+#: templates/eblast/emailcampaign_page.html:14
+msgid "emailcampaigns"
+msgstr "emailcampaigns"
+
+#: templates/eblast/emailcampaign_page.html:37
+msgid "Campaign Lists"
+msgstr "รายการแคมเปญ"
+
+#: templates/eblast/emailcampaign_page.html:45
+#: templates/eblast/emailcampaignform.html:3
+msgid "Create Campaign"
+msgstr "สร้างแคมเปญ"
+
+#: templates/eblast/emailcampaign_page.html:75
+msgid "Sent"
+msgstr "ส่ง"
+
+#: templates/eblast/emailcampaign_page.html:78
+msgid "Draft"
+msgstr "ร่าง"
+
+#: templates/eblast/emailcampaign_sent.html:2
+msgid "Sent to: "
+msgstr "ส่งไปยัง:"
+
+#: templates/eblast/emailcampaign_sent.html:3
+msgid "Subject: "
+msgstr "เรื่อง:"
+
+#: templates/eblast/emailgroup.html:9 templates/eblast/emailgroup.html:63
+msgid "Add Recipient"
+msgstr "เพิ่มผู้รับ"
+
+#: templates/eblast/emailgroup.html:10
+msgid "Upload CSV"
+msgstr "อัปโหลด CSV"
+
+#: templates/eblast/emailgroup.html:42
+#: templates/groupsystem/groupdetails.html:121
+msgid "Unsubscribe"
+msgstr "ยกเลิกการรับข่าวสาร"
+
+#: templates/eblast/emailgroup.html:46
+#: templates/groupsystem/groupdetails.html:127
+msgid "Subscribe"
+msgstr "สมัครสมาชิก"
+
+#: templates/eblast/emailgroup.html:70 templates/profilesystem/index.html:135
+#: templates/profilesystem/index.html:174
+msgid "Add"
+msgstr "เพิ่ม"
+
+#: templates/eblast/emailgroup.html:80
+msgid "Upload a CSV"
+msgstr "อัปโหลดไฟล์ CSV"
+
+#: templates/eblast/emailgroup.html:87 templates/profilesystem/index.html:280
+msgid "Upload"
+msgstr "อัปโหลด"
+
+#: templates/eblast/emailgroupform.html:3
+#: templates/eblast/emailgroups_page.html:48
+msgid "Create List"
+msgstr "สร้างรายการ"
+
+#: templates/eblast/emailgroups_page.html:4
+msgid "EmailGroups | eBlast"
+msgstr "EmailGroups | eBlast"
+
+#: templates/eblast/emailgroups_page.html:10
+msgid "Email Groups"
+msgstr "กลุ่มอีเมล์"
+
+#: templates/eblast/emailgroups_page.html:14
+msgid "emailgroups"
+msgstr "emailgroups"
+
+#: templates/eblast/emailgroups_page.html:40
+msgid "Group Lists"
+msgstr "รายชื่อกลุ่ม"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "emails"
+msgstr "อีเมล"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "email"
+msgstr "อีเมล"
+
+#: templates/eblast/emailtemplate.html:11
+msgid "Preview"
+msgstr "ดูตัวอย่าง"
+
+#: templates/eblast/emailtemplateform.html:3
+msgid "Add a new template"
+msgstr "เพิ่มแม่แบบใหม่"
+
+#: templates/eblast/emailtemplates_page.html:4
+msgid "EmailTemplates | eBlast"
+msgstr "EmailTemplates | eBlast"
+
+#: templates/eblast/emailtemplates_page.html:10
+#: templates/sidebar_community.html:43
+msgid "Email Templates"
+msgstr "แม่แบบอีเมล"
+
+#: templates/eblast/emailtemplates_page.html:14
+msgid "emailtemplates"
+msgstr "emailtemplates"
+
+#: templates/eblast/emailtemplates_page.html:40
+msgid "Template Lists"
+msgstr "รายการแม่แบบ"
+
+#: templates/eblast/emailtemplates_page.html:48
+msgid "Create Template"
+msgstr "สร้างแม่แบบ"
+
+#: templates/eblast/tracking_data.html:4
+msgid "Tracking data for "
+msgstr "ข้อมูลสำหรับการติดตาม"
+
+#: templates/eblast/tracking_data.html:11
+msgid "Emails Sent"
+msgstr "อีเมลที่ส่ง"
+
+#: templates/eblast/tracking_data.html:18
+msgid "Emails Opened"
+msgstr "อีเมล์เปิด"
+
+#: templates/emailtosms/index.html:4 templates/emailtosms/requestcarrier.html:4
+msgid "Email to sms"
+msgstr "ส่งอีเมล์ไปยัง sms"
+
+#: templates/emailtosms/index.html:10
+msgid "Email to SMS"
+msgstr "ส่งอีเมล์ไปยัง SMS"
+
+#: templates/emailtosms/index.html:13
+msgid "email to sms"
+msgstr "ส่งอีเมล์ถึง sms"
+
+#: templates/emailtosms/index.html:33
+msgid "Help us to find working email to sms providers for your mobile number"
+msgstr "ช่วยให้เราพบอีเมลทำงานกับผู้ให้บริการ SMS สำหรับหมายเลขโทรศัพท์มือถือของคุณ"
+
+#: templates/emailtosms/index.html:35
+msgid ""
+"Please provide your mobile carrier, and number then verify you've received a "
+"text or not"
+msgstr ""
+
+#: templates/emailtosms/index.html:39
+msgid "Did you get a code on your mobile?"
+msgstr "คุณไม่ได้รับโค้ดบนมือถือของคุณหรือไม่?"
+
+#: templates/emailtosms/index.html:40
+msgid "This may take some time..."
+msgstr "ซึ่งอาจใช้เวลาบางอย่าง ..."
+
+#: templates/emailtosms/index.html:41
+msgid "Yes"
+msgstr "ใช่"
+
+#: templates/emailtosms/index.html:42
+msgid "No"
+msgstr "ไม่"
+
+#: templates/emailtosms/index.html:46
+msgid "Thank you for helping us verify"
+msgstr "ขอขอบคุณสำหรับการช่วยให้เราตรวจสอบ"
+
+#: templates/emailtosms/index.html:47
+msgid "verify another"
+msgstr "ตรวจสอบอีก"
+
+#: templates/emailtosms/requestcarrier.html:8
+msgid "Request Carrier"
+msgstr "คำขอ Carrier"
+
+#: templates/emailtosms/requestcarrier.html:26
+msgid "Thank you, This carrier will be added soon"
+msgstr "ขอขอบคุณผู้ให้บริการนี้จะเพิ่มเร็ว ๆ นี้"
+
+#: templates/emailtosms/verifierform.html:9
+msgid "Request to add your carrier if not listed"
+msgstr "คำขอให้เพิ่มบริการของคุณหากไม่ได้ระบุไว้"
+
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:14
+#: templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:21
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:14
+#: templates/groupsystem/bannedmembers.html:14
+#: templates/groupsystem/commentadmin.html:21
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:21
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:21
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:14
+#: templates/groupsystem/joinrequests.html:14
+#: templates/groupsystem/members.html:21 templates/groupsystem/members.html:92
+#: templates/groupsystem/postsadmin.html:14
+msgid "Admin"
+msgstr "ผู้ดูแลระบบ"
+
+#: templates/groupsystem/admindashboard.html:13
+#: templates/groupsystem/adminnews.html:20
+#: templates/groupsystem/adminsettings.html:13
+#: templates/groupsystem/bannedmembers.html:13
+#: templates/groupsystem/commentadmin.html:20
+#: templates/groupsystem/customroles.html:20
+#: templates/groupsystem/defaultroles.html:20
+#: templates/groupsystem/editcommentpage.html:13
+#: templates/groupsystem/editpostpage.html:13
+#: templates/groupsystem/events.html:13
+#: templates/groupsystem/eventsadmin.html:13
+#: templates/groupsystem/groupdetails.html:20
+#: templates/groupsystem/joined_group.html:15
+#: templates/groupsystem/joinrequests.html:13
+#: templates/groupsystem/members.html:20
+#: templates/groupsystem/postdetails.html:13
+#: templates/groupsystem/posts.html:13 templates/groupsystem/postsadmin.html:13
+#: templates/groupsystem/subscribed_group.html:15
+msgid "Group"
+msgstr "กลุ่ม"
+
+#: templates/groupsystem/admindashboard.html:54
+msgid "New Request"
+msgstr "คำขอใหม่"
+
+#: templates/groupsystem/admindashboard.html:68
+msgid "Pending posts"
+msgstr "รอโพส"
+
+#: templates/groupsystem/admindashboard.html:82
+msgid "Pending comment"
+msgstr "รอดำเนินการแสดงความคิดเห็น"
+
+#: templates/groupsystem/adminnews.html:68
+msgid "No news!!"
+msgstr "ไม่มีข่าว!!"
+
+#: templates/groupsystem/adminnews.html:76
+msgid "Create News"
+msgstr "สร้างข่าว"
+
+#: templates/groupsystem/adminnews.html:99
+msgid "Edit news"
+msgstr "แก้ไขข่าว"
+
+#: templates/groupsystem/adminsettings.html:40
+msgid "Send notification to members"
+msgstr "ส่งการแจ้งเตือนไปยังสมาชิก"
+
+#: templates/groupsystem/adminsettings.html:73
+#: templates/groupsystem/groupdetails.html:78
+msgid "About Us"
+msgstr "เกี่ยวกับเรา"
+
+#: templates/groupsystem/adminsettings.html:81
+msgid "Auto approve post: "
+msgstr "ออโต้อนุมัติโพสต์:"
+
+#: templates/groupsystem/adminsettings.html:89
+msgid "Auto approve comment: "
+msgstr "อนุมัติอัตโนมัติหมายเหตุ:"
+
+#: templates/groupsystem/adminsettings.html:101
+msgid "Edit Group"
+msgstr "แก้ไขกลุ่ม"
+
+#: templates/groupsystem/adminsettings.html:120
+msgid "Create Notification"
+msgstr "สร้างใบแจ้ง"
+
+#: templates/groupsystem/adminsettings.html:126
+#: templates/groupsystem/all_group.html:108
+#: templates/groupsystem/customroles.html:97
+msgid "Create"
+msgstr "สร้าง"
+
+#: templates/groupsystem/all_group.html:5
+#: templates/groupsystem/all_group.html:40 templates/sidebar_community.html:12
+msgid "All Groups"
+msgstr "ทุกกลุ่ม"
+
+#: templates/groupsystem/all_group.html:43 templates/landing_base.html:108
+#: templates/landing_base.html:167 templates/profilesystem/index.html:413
+#: templates/sidebar_community.html:6
+msgid "Groups"
+msgstr "กลุ่ม"
+
+#: templates/groupsystem/all_group.html:44
+msgid "all groups"
+msgstr "ทุกกลุ่ม"
+
+#: templates/groupsystem/all_group.html:69
+#: templates/groupsystem/all_group.html:102
+msgid "Create Group"
+msgstr "สร้างกลุ่ม"
+
+#: templates/groupsystem/bannedmembers.html:4
+msgid "Bannedmembers"
+msgstr "Bannedmembers"
+
+#: templates/groupsystem/bannedmembers.html:10
+#: templates/groupsystem/bannedmembers.html:15 templates/sidebar_group.html:98
+msgid "Banned Members"
+msgstr "ห้ามสมาชิก"
+
+#: templates/groupsystem/bannedmembers.html:44
+#: templates/groupsystem/editextraperm.html:3
+#: templates/groupsystem/joinrequests.html:44
+#: templates/groupsystem/members.html:61
+msgid "User"
+msgstr "ผู้ใช้งาน"
+
+#: templates/groupsystem/bannedmembers.html:45
+#: templates/groupsystem/joinrequests.html:45
+#: templates/groupsystem/members.html:63
+#: templates/messagingsystem/chats.html:175
+#: templates/messagingsystem/index.html:252
+msgid "Actions"
+msgstr "การปฏิบัติ"
+
+#: templates/groupsystem/bannedmembers.html:58
+msgid "Lift Ban"
+msgstr "ยกบ้าน"
+
+#: templates/groupsystem/commentadmin.html:17
+#: templates/groupsystem/commentadmin.html:22 templates/sidebar_group.html:71
+#: templates/sidebar_group_admin.html:41
+msgid "Comments"
+msgstr "ความคิดเห็น"
+
+#: templates/groupsystem/commentadmin.html:55
+#: templates/groupsystem/editcommentpage.html:39
+msgid "Post: "
+msgstr "โพสต์:"
+
+#: templates/groupsystem/commentadmin.html:56
+#: templates/groupsystem/editcommentpage.html:42
+msgid "Commented By: "
+msgstr "แสดงความเห็นโดย:"
+
+#: templates/groupsystem/commentadmin.html:58
+msgid "Comment: "
+msgstr "แสดงความคิดเห็น:"
+
+#: templates/groupsystem/commentadmin.html:60
+#: templates/groupsystem/postsadmin.html:89
+msgid "edit"
+msgstr "แก้ไข"
+
+#: templates/groupsystem/commentadmin.html:62
+msgid "approve"
+msgstr "อนุมัติ"
+
+#: templates/groupsystem/commentadmin.html:71
+msgid "No comments!!"
+msgstr "ไม่มีความคิดเห็น!!"
+
+#: templates/groupsystem/creategroupsuccess.html:3
+msgid "Your new group is created"
+msgstr "กลุ่มใหม่ของคุณจะถูกสร้างขึ้น"
+
+#: templates/groupsystem/creategroupsuccess.html:4
+msgid "Group UUID: "
+msgstr "UUID กลุ่ม:"
+
+#: templates/groupsystem/creategroupsuccess.html:5
+msgid "Url: "
+msgstr "URL:"
+
+#: templates/groupsystem/creategroupsuccess.html:6
+msgid "More Settings: "
+msgstr "การตั้งค่าเพิ่มเติม:"
+
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:56
+msgid "Custom roles"
+msgstr "บทบาทที่กำหนดเอง"
+
+#: templates/groupsystem/customroles.html:17
+#: templates/groupsystem/customroles.html:22
+msgid "Custom Roles"
+msgstr "บทบาทที่กำหนดเอง"
+
+#: templates/groupsystem/customroles.html:47
+msgid "Create custom role"
+msgstr "สร้างบทบาทที่กำหนดเอง"
+
+#: templates/groupsystem/customroles.html:68
+msgid "You don't have any custom roles defined"
+msgstr "คุณไม่ได้มีบทบาทที่กำหนดเองใด ๆ ที่กำหนดไว้"
+
+#: templates/groupsystem/customroles.html:76
+#: templates/groupsystem/defaultroles.html:62
+msgid "Permissions"
+msgstr "สิทธิ์"
+
+#: templates/groupsystem/customroles.html:91
+msgid "Create Custom Role"
+msgstr "สร้างบทบาทที่กำหนดเอง"
+
+#: templates/groupsystem/customroles.html:113
+msgid "You dont have permission to edit role"
+msgstr "คุณไม่ได้รับอนุญาตให้แก้ไขบทบาท"
+
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:46
+msgid "Default roles"
+msgstr "บทบาทเริ่มต้น"
+
+#: templates/groupsystem/defaultroles.html:17
+#: templates/groupsystem/defaultroles.html:22
+msgid "Default Roles"
+msgstr "บทบาทเริ่มต้น"
+
+#: templates/groupsystem/editcommentpage.html:10
+#: templates/groupsystem/editcommentpage.html:14
+#: templates/groupsystem/editpostpage.html:10
+#: templates/groupsystem/editpostpage.html:14
+#: templates/groupsystem/joined_group.html:16
+#: templates/groupsystem/subscribed_group.html:16
+msgid "admin"
+msgstr "ผู้ดูแลระบบ"
+
+#: templates/groupsystem/editcommentpage.html:40
+#: templates/groupsystem/editpostpage.html:42
+msgid "Approved: "
+msgstr "อนุมัติ:"
+
+#: templates/groupsystem/editcommentpage.html:41
+#: templates/groupsystem/editpostpage.html:43
+msgid "Approved By: "
+msgstr "อนุญาตโดย:"
+
+#: templates/groupsystem/editcommentpage.html:43
+msgid "Commented on: "
+msgstr "แสดงความคิดเห็นใน:"
+
+#: templates/groupsystem/editcustomrole.html:3
+msgid "User who assigned with this role"
+msgstr "ผู้ใช้ที่ได้รับมอบหมายกับบทบาทนี้"
+
+#: templates/groupsystem/editpostpage.html:39
+msgid "Creator: "
+msgstr "ผู้สร้าง:"
+
+#: templates/groupsystem/editpostpage.html:45
+msgid "Post Created on: "
+msgstr "โพสต์สร้างเมื่อ:"
+
+#: templates/groupsystem/eventform.html:7
+msgid "Clear"
+msgstr "ชัดเจน"
+
+#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:10
+#: templates/groupsystem/events.html:14 templates/groupsystem/events.html:38
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:10
+#: templates/groupsystem/eventsadmin.html:15
+#: templates/groupsystem/eventsadmin.html:50 templates/sidebar_group.html:11
+#: templates/sidebar_group.html:107 templates/sidebar_group_admin.html:77
+msgid "Events"
+msgstr "เหตุการณ์ที่เกิดขึ้น"
+
+#: templates/groupsystem/events.html:88
+msgid "Startdate: "
+msgstr "วันที่เริ่มต้น:"
+
+#: templates/groupsystem/events.html:90
+msgid "Enddate: "
+msgstr "ENDDATE:"
+
+#: templates/groupsystem/eventsadmin.html:40
+msgid "Create Event"
+msgstr "สร้างกิจกรรม"
+
+#: templates/groupsystem/groupdetails.html:89
+msgid "Leave Group"
+msgstr "ออกจากกลุ่ม"
+
+#: templates/groupsystem/groupdetails.html:97
+#: templates/groupsystem/groupdetails.html:113
+msgid "Cancel Request"
+msgstr "ยกเลิกการร้องขอ"
+
+#: templates/groupsystem/groupdetails.html:102
+#: templates/groupsystem/groupdetails.html:108
+msgid "Join Group"
+msgstr "เข้าร่วมกลุ่ม"
+
+#: templates/groupsystem/groupdetails.html:135
+msgid "Invite User"
+msgstr "เชิญผู้ใช้"
+
+#: templates/groupsystem/groupdetails.html:142
+msgid "Go to Group Admin"
+msgstr "ไปที่กลุ่มผู้ดูแลระบบ"
+
+#: templates/groupsystem/joined_group.html:5
+#: templates/groupsystem/joined_group.html:12
+#: templates/profilesystem/index.html:588 templates/sidebar_community.html:13
+msgid "Joined Groups"
+msgstr "เข้าร่วมกลุ่ม"
+
+#: templates/groupsystem/joinrequests.html:10
+#: templates/groupsystem/joinrequests.html:15
+msgid "Join Requests"
+msgstr "คำขอเข้าร่วม"
+
+#: templates/groupsystem/joinrequests.html:57
+#: templates/groupsystem/postsadmin.html:79
+msgid "Approve"
+msgstr "อนุมัติ"
+
+#: templates/groupsystem/joinrequests.html:60
+msgid "Deny"
+msgstr "ปฏิเสธ"
+
+#: templates/groupsystem/members.html:48
+msgid "Add member"
+msgstr "เพิ่มสมาชิก"
+
+#: templates/groupsystem/members.html:62
+msgid "Role"
+msgstr "บทบาท"
+
+#: templates/groupsystem/members.html:87
+msgid "Ban Member"
+msgstr "บ้านสมาชิก"
+
+#: templates/groupsystem/members.html:91
+msgid "SuperAdmin"
+msgstr "ดูแลระบบระดับสูง"
+
+#: templates/groupsystem/members.html:93
+msgid "Moderator"
+msgstr "พิธีกร"
+
+#: templates/groupsystem/members.html:94
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:49 templates/publicusers/users.html:27
+msgid "Member"
+msgstr "สมาชิก"
+
+#: templates/groupsystem/members.html:101
+msgid "Extra permission"
+msgstr "ได้รับอนุญาตเป็นพิเศษ"
+
+#: templates/groupsystem/members.html:118
+msgid "Edit User Perm"
+msgstr "แก้ไข Perm ผู้ใช้"
+
+#: templates/groupsystem/members.html:141
+#: templates/groupsystem/members.html:153
+#: templates/groupsystem/members.html:169
+#: templates/groupsystem/members.html:181
+#: templates/groupsystem/members.html:202
+#: templates/groupsystem/members.html:214
+#: templates/groupsystem/members.html:268
+msgid "Change role"
+msgstr "เปลี่ยนบทบาท"
+
+#: templates/groupsystem/members.html:231
+msgid "You dont have permissions to edit extra permissions"
+msgstr "คุณไม่ได้รับอนุญาตให้แก้ไขสิทธิ์พิเศษ"
+
+#: templates/groupsystem/postdetails.html:72
+msgid "Like"
+msgstr "ชอบ"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " likes"
+msgstr "ชอบ"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " comments"
+msgstr "แสดงความคิดเห็น"
+
+#: templates/groupsystem/posts.html:10 templates/groupsystem/posts.html:14
+#: templates/groupsystem/postsadmin.html:10
+#: templates/groupsystem/postsadmin.html:15 templates/sidebar_group.html:19
+#: templates/sidebar_group.html:54 templates/sidebar_group_admin.html:24
+msgid "Posts"
+msgstr "โพสต์"
+
+#: templates/groupsystem/posts.html:40 templates/groupsystem/posts.html:104
+#: templates/groupsystem/postsadmin.html:41
+#: templates/groupsystem/postsadmin.html:107
+msgid "Create Post"
+msgstr "สร้างโพสต์"
+
+#: templates/groupsystem/posts.html:84 templates/groupsystem/singlepost.html:32
+msgid "more"
+msgstr "มากกว่า"
+
+#: templates/groupsystem/posts.html:95 templates/groupsystem/postsadmin.html:99
+msgid "No Posts Yet!!"
+msgstr "ไม่มีกระทู้ แต่ !!"
+
+#: templates/groupsystem/postsadmin.html:79
+msgid "Not approved"
+msgstr "ไม่ได้รับอนุมัติ"
+
+#: templates/groupsystem/roledetails.html:10
+msgid "No such default role"
+msgstr "ไม่มีบทบาทเริ่มต้นดังกล่าว"
+
+#: templates/groupsystem/subscribed_group.html:5
+#: templates/groupsystem/subscribed_group.html:12
+#: templates/profilesystem/index.html:609 templates/sidebar_community.html:14
+msgid "Subscribed Groups"
+msgstr "กลุ่มที่สมัครเป็นสมาชิก"
+
+#: templates/hashtag/images.html:14
+msgid "You have no images uploaded"
+msgstr "คุณมีภาพไม่มีอัปโหลด"
+
+#: templates/hashtag/index.html:4
+msgid "Hashtag Banner"
+msgstr "hashtag แบนเนอร์"
+
+#: templates/hashtag/index.html:38 templates/hashtag/index.html:41
+#: templates/landing_base.html:79 templates/landing_base.html:131
+#: templates/profilesystem/index.html:441
+msgid "Hashtag"
+msgstr "hashtag"
+
+#: templates/hashtag/index.html:52
+msgid "Basic Income Hashtag Banner Campaign"
+msgstr "แคมเปญฐานรายได้ Hashtag แบนเนอร์"
+
+#: templates/hashtag/index.html:53
+msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgstr "เพิ่มแบนเนอร์ฐานรายได้ให้กับรูปโปรไฟล์ Facebook / Twitter ของคุณ"
+
+#: templates/hashtag/index.html:57
+msgid "Add hashtag banner to your facebook account"
+msgstr "เพิ่มแบนเนอร์ hashtag ไปยังบัญชี facebook ของคุณ"
+
+#: templates/hashtag/index.html:62
+msgid "Add hashtag banner to your twitter account"
+msgstr "เพิ่มแบนเนอร์ hashtag ไปยังบัญชี Twitter ของคุณ"
+
+#: templates/hashtag/index.html:68
+msgid "You've not added facebook yet! Click the button to add"
+msgstr "คุณไม่ได้เพิ่ม Facebook ๆ ! คลิกที่ปุ่มเพื่อเพิ่ม"
+
+#: templates/hashtag/index.html:70
+msgid "Add Facebook"
+msgstr "เพิ่ม Facebook"
+
+#: templates/hashtag/index.html:78
+msgid "You've not added twitter yet! Click the button to add"
+msgstr "คุณไม่ได้เพิ่ม Twitter ๆ ! คลิกที่ปุ่มเพื่อเพิ่ม"
+
+#: templates/hashtag/index.html:80
+msgid "Add Twitter"
+msgstr "เพิ่มทวิตเตอร์"
+
+#: templates/hashtag/index.html:87
+msgid "Select from uploaded"
+msgstr "เลือกจากที่อัปโหลด"
+
+#: templates/hashtag/index.html:93
+msgid "Upload New Images"
+msgstr "อัพโหลดรูปภาพใหม่"
+
+#: templates/hashtag/index.html:98
+msgid "Change Banner Color"
+msgstr "เปลี่ยนสีแบนเนอร์"
+
+#: templates/hashtag/index.html:102
+msgid "Make profile image"
+msgstr "ทำให้ภาพรายละเอียด"
+
+#: templates/hashtag/index.html:108
+msgid "Download image"
+msgstr "ดาวน์โหลดภาพ"
+
+#: templates/hashtag/index.html:121
+msgid "Upload Images"
+msgstr "อัพโหลดรูปภาพ"
+
+#: templates/hashtag/index.html:255 templates/hashtag/index.html:271
+msgid "Upload to facebook"
+msgstr "อัปโหลดไปยัง Facebook"
+
+#: templates/hashtag/index.html:305 templates/hashtag/index.html:321
+msgid "Upload to twitter"
+msgstr "อัปโหลดไปยัง Twitter"
+
+#: templates/hashtag/index.html:356
+msgid "Uploading....."
+msgstr "อัปโหลด ....."
+
+#: templates/hashtag/index.html:365
+msgid "Support #basicincome project"
+msgstr "สนับสนุน"
+
+#: templates/hashtag/index.html:407
+msgid "Uploaded"
+msgstr "อัปโหลด"
+
+#: templates/hashtag/index.html:419
+msgid "Cant upload now!! try later"
+msgstr "ลาดเทอัปโหลดในขณะนี้ !! ลองใหม่ภายหลัง"
+
+#: templates/information/contact.html:4 templates/information/contact.html:10
+#: templates/information/contact.html:13 templates/information/success.html:4
+#: templates/information/success.html:10 templates/landing_base.html:78
+#: templates/landing_base.html:198 templates/profilesystem/index.html:154
+#: templates/profilesystem/index.html:373 templates/publicusers/user.html:65
+#: templates/publicusers/user.html:236
+msgid "Contact"
+msgstr "ติดต่อ"
+
+#: templates/information/contact.html:24
+msgid "Get in touch with us"
+msgstr "ติดต่อกับพวกเรา"
+
+#: templates/information/contact.html:25
+msgid ""
+"if you have any comments or questions, please get in touch. We’d love to "
+"hear fom you."
+msgstr ""
+
+#: templates/information/index.html:4 templates/information/index.html:13
+#: templates/information/index.html:24 templates/profilesystem/index.html:434
+#: templates/sidebar_community.html:20
+msgid "Information"
+msgstr "ข้อมูล"
+
+#: templates/information/index.html:10
+msgid "About our system"
+msgstr "เกี่ยวกับระบบของเรา"
+
+#: templates/information/success.html:13
+msgid "contact"
+msgstr "ติดต่อ"
+
+#: templates/information/success.html:24
+msgid "Thank you for your interest"
+msgstr "ขอขอบคุณสำหรับความสนใจของคุณ"
+
+#: templates/information/success.html:25
+msgid "We will contact you shortly"
+msgstr "เราจะติดต่อคุณโดยเร็ว"
+
+#: templates/invitationsystem/checkinvitation.html:16
+msgid "Get access to ekata beta"
+msgstr "ได้รับการเข้าถึง ekata เบต้า"
+
+#: templates/invitationsystem/index.html:16
+#: templates/invitationsystem/sent.html:13 templates/landing/index.html:238
+msgid "Get your invite access key to the ekata beta"
+msgstr "ได้รับเชิญของคุณที่สำคัญการเข้าถึงเบต้า ekata"
+
+#: templates/invitationsystem/sent.html:15 templates/landing/index.html:407
+msgid ""
+"Your request is sent!! You will get an invitation email soon with a link and "
+"invite key."
+msgstr ""
+
+#: templates/landing/hashtag.html:35
+msgid "Show Support"
+msgstr "แสดงการสนับสนุน"
+
+#: templates/landing/hashtag.html:36
+#, fuzzy
+#| msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgid ""
+"In adding the #basicincome hashtag banner to your facebook and twitter "
+"profile !!"
+msgstr "เพิ่มแบนเนอร์ฐานรายได้ให้กับรูปโปรไฟล์ Facebook / Twitter ของคุณ"
+
+#: templates/landing/hashtag.html:48
+msgid "World Supporters of Basic Income"
+msgstr "สนับสนุนโลกของฐานรายได้"
+
+#: templates/landing/hashtag.html:71
+msgid "Create my banner"
+msgstr "สร้างแบนเนอร์ของฉัน"
+
+#: templates/landing/hashtag.html:73
+msgid "Login/Signup to be here"
+msgstr "เข้าสู่ระบบ / สมัครสมาชิกจะอยู่ที่นี่"
+
+#: templates/landing/index.html:40
+msgid ""
+"Ekata is a social platform for individuals, communities, associations, and "
+"municipalities. Ekata empowers you with the best of today’s online "
+"technologies -- digital tools to help you stay managed, connected, and "
+"informed. Whether you want to build a web presence for yourself or your "
+"organization, or you simply want a place to connect with others who share "
+"your interests and goals, Ekata is the place for you. Welcome!"
+msgstr ""
+
+#: templates/landing/index.html:55
+msgid "Communities"
+msgstr "ชุมชน"
+
+#: templates/landing/index.html:56
+msgid ""
+"You're a social group that shares something in common. Small or large. "
+"Local, national, or global. Virtual or geographically based. Your common "
+"purpose and identity give you a sense of community. Ekata was built to align "
+"with how you wish to relate."
+msgstr ""
+
+#: templates/landing/index.html:60
+msgid "Associations"
+msgstr "สมาคม"
+
+#: templates/landing/index.html:61
+msgid ""
+"You're a homeowners or condo association, property or land trust, or "
+"nonprofit organization. An organized body of people who live or work "
+"together to improve your lives or society. Ekata gives you the tools to "
+"manage your association’s business, membership, activities and interests."
+msgstr ""
+
+#: templates/landing/index.html:65
+msgid "Municipalities"
+msgstr "ในเขตเทศบาลเมือง"
+
+#: templates/landing/index.html:66
+msgid ""
+"You're a town, municipality or county. A government institution with "
+"incorporated status in a jurisdiction. The Ekata platform has the "
+"administrative tools you need to function efficiently and connect with "
+"elected officials, staff, and constituents in the 21st century."
+msgstr ""
+
+#: templates/landing/index.html:78
+msgid "Platform Vision"
+msgstr "วิสัยทัศน์แพลตฟอร์ม"
+
+#: templates/landing/index.html:86
+msgid ""
+"Mark Witham, social entrepreneur and founder of the Ekata platform (Formally "
+"known as Basic Income Project), is passionate about empowering others with "
+"options to bring about their own social change."
+msgstr ""
+
+#: templates/landing/index.html:91
+msgid ""
+"We combine technology, knowledge, and imagination to build better social "
+"systems for this planet and future generations. Now we need you! Use the "
+"Ekata platform to help create a network for fulfilling lives, communities, "
+"and positive social change."
+msgstr ""
+
+#: templates/landing/index.html:106
+msgid "Social Responsiblity"
+msgstr "ความรับผิดชอบทางสังคม"
+
+#: templates/landing/index.html:112
+msgid "Ekata has partnered with "
+msgstr "Ekata ได้ร่วมมือกับ"
+
+#: templates/landing/index.html:112
+msgid ", a socially responsible digital currency which is distributed as "
+msgstr "สกุลเงินดิจิตอลความรับผิดชอบต่อสังคมซึ่งกระจายเป็น"
+
+#: templates/landing/index.html:112
+msgid ""
+" to people around the world. Powered by blockchain technology, Grantcoin is "
+"the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization "
+"with a mission for social good. Join Ekata and receive Grantcoin on a "
+"regular basis, for free. Spend it or give it away to other Ekata users -- "
+"artists, musicians, bloggers, nonprofits, or businesses."
+msgstr ""
+
+#: templates/landing/index.html:162
+msgid "Many Key Features"
+msgstr "คุณสมบัติที่สำคัญหลายคน"
+
+#: templates/landing/index.html:165
+msgid "Group sites for art, music, news, politics, activism, and business."
+msgstr "เว็บไซต์กลุ่มศิลปะดนตรี, ข่าว, การเมือง, การเคลื่อนไหวและทำธุรกิจใน"
+
+#: templates/landing/index.html:169
+msgid "Social communication through instant messaging, posts, and comments."
+msgstr "การสื่อสารในสังคมผ่านการส่งข้อความโต้ตอบแบบทันทีโพสต์และแสดงความคิดเห็น"
+
+#: templates/landing/index.html:173
+msgid "Governance of members, staff roles, social forums, and member voting."
+msgstr "การกำกับดูแลของสมาชิกในบทบาทพนักงานฟอรั่มสังคมและสมาชิกที่มีสิทธิออกเสียง"
+
+#: templates/landing/index.html:177
+msgid "Web of trust and a socially responsible currency system."
+msgstr "เว็บของความไว้วางใจและระบบสกุลเงินความรับผิดชอบต่อสังคม"
+
+#: templates/landing/index.html:196
+msgid "More Features"
+msgstr "คุณสมบัติอื่น ๆ"
+
+#: templates/landing/index.html:198
+msgid "API for building in app and feature integrations."
+msgstr "API สำหรับการสร้างในการตรวจสอบและมีการผนวกรวม"
+
+#: templates/landing/index.html:199
+msgid "Open Source."
+msgstr "โอเพ่นซอร์ส."
+
+#: templates/landing/index.html:211
+msgid "#BasicIncome Hashtag Banner Campaign"
+msgstr ""
+
+#: templates/landing/index.html:217
+msgid ""
+"Help Ekata in showing your support for basic income by adding a custom "
+"colored #basicincome hashtag banner to your Twitter and Facebook profile "
+"photo. Together let us raise awareness!"
+msgstr ""
+
+#: templates/landing/index.html:219
+msgid "Click here to create and upload the banner"
+msgstr "คลิกที่นี่เพื่อสร้างและอัปโหลดแบนเนอร์"
+
+#: templates/landing/index.html:418
+msgid "Please correct the errors"
+msgstr "โปรดแก้ไขข้อผิดพลาด"
+
+#: templates/landing/news.html:39
+msgid "News and Stories"
+msgstr "ข่าวและเรื่องราว"
+
+#: templates/landing/news.html:46
+msgid "Trending"
+msgstr "ได้รับความนิยม"
+
+#: templates/landing/news.html:80 templates/landing/newsdetail.html:45
+#: templates/profilesystem/index.html:343
+msgid "About Me"
+msgstr "เกี่ยวกับฉัน"
+
+#: templates/landing_base.html:74
+msgid "Home"
+msgstr "โฮมเพจ"
+
+#: templates/landing_base.html:75
+msgid "Features"
+msgstr "คุณสมบัติอื่น ๆ"
+
+#: templates/landing_base.html:99 templates/landing_base.html:164
+msgid "My Account"
+msgstr "บัญชีของฉัน"
+
+#: templates/landing_base.html:104 templates/landing_base.html:166
+#: templates/profilesystem/index.html:406
+#: templates/publicusers/userdetails.html:50
+#: templates/publicusers/userlist_old.html:4
+#: templates/publicusers/userlist_old.html:44
+#: templates/publicusers/userlist_old.html:60
+msgid "Users"
+msgstr "ผู้ใช้"
+
+#: templates/landing_base.html:112 templates/landing_base.html:168
+#: templates/profilesystem/index.html:420 templates/sidebar_home.html:50
+#: templates/timelines/index.html:4 templates/timelines/index.html:18
+#: templates/timelines/index.html:21
+msgid "Timeline"
+msgstr "ไทม์ไลน์"
+
+#: templates/landing_base.html:127 templates/landing_base.html:170
+msgid "information"
+msgstr "ข้อมูล"
+
+#: templates/landing_base.html:134
+msgid "Customize link"
+msgstr "ปรับแต่งการเชื่อมโยง"
+
+#: templates/landing_base.html:136
+msgid "Sign-out"
+msgstr "ออกจากระบบ"
+
+#: templates/landing_base.html:161
+msgid "Links"
+msgstr "การเชื่อมโยง"
+
+#: templates/landing_base.html:171
+msgid "Create Hashtag"
+msgstr "สร้างแฮชแท็ก"
+
+#: templates/landing_base.html:177
+msgid "Social"
+msgstr "สังคม"
+
+#: templates/landing_base.html:186
+msgid "Signup for the Newsletter"
+msgstr "ลงทะเบียนเพื่อรับจดหมายข่าว"
+
+#: templates/landing_base.html:200
+msgid "Please feel free to inquire more about the EKATA platform."
+msgstr "โปรดอย่าลังเลที่จะสอบถามเพิ่มเติมเกี่ยวกับแพลตฟอร์ม EKATA"
+
+#: templates/landing_base.html:249
+msgid "Powered by "
+msgstr "ขับเคลื่อนด้วย"
+
+#: templates/messagingsystem/chats.html:70
+msgid "Send Unit to: "
+msgstr "ส่งหน่วย:"
+
+#: templates/messagingsystem/chats.html:87
+msgid "Request Unit from: "
+msgstr "ขอหน่วยจาก:"
+
+#: templates/messagingsystem/chats.html:93
+#: templates/publicusers/userdetails.html:123 templates/timelines/index.html:57
+#: templates/timelines/index.html:59
+msgid "Request"
+msgstr "ขอร้อง"
+
+#: templates/messagingsystem/index.html:4
+#: templates/profilesystem/index.html:427
+msgid "Messaging"
+msgstr "การส่งข้อความ"
+
+#: templates/messagingsystem/index.html:58
+#: templates/messagingsystem/index.html:61 templates/sidebar_home.html:56
+msgid "Messenger"
+msgstr "ผู้สื่อสาร"
+
+#: templates/messagingsystem/index.html:93
+#: templates/messagingsystem/index.html:106
+msgid "Sorry you have no chats yet!!!"
+msgstr "หากคุณยังไม่มีการสนทนา แต่ !!!"
+
+#: templates/messagingsystem/index.html:121
+msgid "Send Units"
+msgstr "ส่งหน่วย"
+
+#: templates/messagingsystem/index.html:126
+msgid "Request Request"
+msgstr "คำขอที่ขอ"
+
+#: templates/messagingsystem/navbarmessage.html:37
+msgid "All caught up"
+msgstr "ทั้งหมดแล้ว"
+
+#: templates/notification/notification.html:19
+#: templates/timelines/index.html:278 templates/timelines/timeline.html:54
+#: templates/timelines/timeline.html:72
+msgid "sent"
+msgstr "ส่ง"
+
+#: templates/notification/notification.html:26
+msgid "requested"
+msgstr "ร้องขอ"
+
+#: templates/notification/notification.html:33
+msgid "units released"
+msgstr "หน่วยการปล่อยตัว"
+
+#: templates/notification/notification.html:40
+msgid "verfied as real user"
+msgstr "verfied เป็นผู้ใช้จริง"
+
+#: templates/notification/notification.html:47
+msgid "unverfied you"
+msgstr "ไม่มีการยืนยันคุณ"
+
+#: templates/notification/notification.html:54
+msgid "sent a connection request"
+msgstr "ส่งคำขอการเชื่อมต่อ"
+
+#: templates/notification/notification.html:61
+msgid "canceled connection request"
+msgstr "ร้องขอการเชื่อมต่อยกเลิก"
+
+#: templates/notification/notification.html:68
+msgid "accepted connection request"
+msgstr "ร้องขอการเชื่อมต่อได้รับการยอมรับ"
+
+#: templates/notification/notification.html:75
+msgid "rejected connection request"
+msgstr "ร้องขอการเชื่อมต่อถูกปฏิเสธ"
+
+#: templates/notification/notification.html:82
+msgid "disconnected you"
+msgstr "ตัดการเชื่อมต่อคุณ"
+
+#: templates/notification/notification.html:89
+msgid "invited you to group"
+msgstr "เชิญคุณเข้าร่วมกลุ่ม"
+
+#: templates/notification/notification.html:96
+msgid "sent a join request to group"
+msgstr "ส่งคำขอเข้าร่วมกับกลุ่ม"
+
+#: templates/notification/notification.html:128
+msgid "All caught up!!"
+msgstr "ทั้งหมดแล้ว !!"
+
+#: templates/profilesystem/address.html:43
+msgid "Click add button to add your address"
+msgstr "คลิกที่ปุ่มเพิ่มเพื่อเพิ่มที่อยู่ของคุณ"
+
+#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:241
+msgid "Phone Office"
+msgstr "โทรศัพท์ที่ทำงาน"
+
+#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:247
+msgid "Phone Home"
+msgstr "โทรศัพท์บ้าน"
+
+#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:253
+msgid "Phone Mobile"
+msgstr "โทรศัพท์มือถือ"
+
+#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:259
+msgid "Phone Emergency"
+msgstr "โทรศัพท์ฉุกเฉิน"
+
+#: templates/profilesystem/contact.html:30
+msgid "Click add button to add your phone number"
+msgstr "คลิกที่ปุ่มเพิ่มเพื่อเพิ่มหมายเลขโทรศัพท์ของคุณ"
+
+#: templates/profilesystem/documents.html:4
+msgid "Profile Images"
+msgstr "ทำให้ภาพรายละเอียด"
+
+#: templates/profilesystem/documents.html:18
+msgid "Images"
+msgstr "อัพโหลดรูปภาพ"
+
+#: templates/profilesystem/documents.html:34
+#: templates/profilesystem/index.html:223
+msgid "Documents"
+msgstr "เอกสาร"
+
+#: templates/profilesystem/documents.html:50
+msgid "Legal"
+msgstr "ถูกกฎหมาย"
+
+#: templates/profilesystem/emailaddress.html:4
+msgid "Email address associated with your account"
+msgstr "ที่อยู่อีเมลที่เชื่อมโยงกับบัญชีของคุณ"
+
+#: templates/profilesystem/emailaddress.html:17
+msgid "(Primary)"
+msgstr "(ประถมศึกษา)"
+
+#: templates/profilesystem/emailaddress.html:30
+msgid "No email associated with your account"
+msgstr "อีเมลที่เกี่ยวข้องกับบัญชีของคุณ"
+
+#: templates/profilesystem/index.html:84 templates/profilesystem/index.html:307
+#: templates/publicusers/user.html:112
+msgid "Personal Information"
+msgstr "ข้อมูลส่วนบุคคล"
+
+#: templates/profilesystem/index.html:115
+#: templates/profilesystem/index.html:365
+msgid "Location"
+msgstr "ที่ตั้ง"
+
+#: templates/profilesystem/index.html:191 templates/publicusers/user.html:166
+msgid "Activities"
+msgstr "กิจกรรม"
+
+#: templates/profilesystem/index.html:198 templates/publicusers/user.html:170
+msgid "Activation date"
+msgstr "วันที่เปิดใช้งาน"
+
+#: templates/profilesystem/index.html:210
+msgid "More"
+msgstr "มากกว่า"
+
+#: templates/profilesystem/index.html:236
+#: templates/publicusers/connections.html:74
+msgid "Search..."
+msgstr "ค้นหา..."
+
+#: templates/profilesystem/index.html:253
+msgid "Upload Document"
+msgstr "เอกสารที่ใช้ร่วมกัน"
+
+#: templates/profilesystem/index.html:268
+msgid "Shared Documents"
+msgstr "เอกสารที่ใช้ร่วมกัน"
+
+#: templates/profilesystem/index.html:300
+msgid "Change Public Visibility"
+msgstr "เปลี่ยนการแสดงสาธารณะ"
+
+#: templates/profilesystem/index.html:318 templates/profilesystem/pinfo.html:42
+#: templates/publicusers/user.html:138
+msgid "Website"
+msgstr "เว็บไซต์"
+
+#: templates/profilesystem/index.html:325 templates/profilesystem/pinfo.html:23
+#: templates/publicusers/user.html:126
+msgid "Gender"
+msgstr "เพศ"
+
+#: templates/profilesystem/index.html:336
+msgid "Avatar"
+msgstr "เพิ่ม Avatar"
+
+#: templates/profilesystem/index.html:361 templates/publicusers/user.html:188
+msgid "Address"
+msgstr "ที่อยู่"
+
+#: templates/profilesystem/index.html:385
+msgid "Others"
+msgstr "คนอื่น ๆ"
+
+#: templates/profilesystem/index.html:389
+msgid "Profile completion"
+msgstr "รายละเอียดเสร็จสิ้น"
+
+#: templates/profilesystem/index.html:398
+msgid "Please edit profile information to change visibility"
+msgstr "กรุณาแก้ไขข้อมูลโปรไฟล์เพื่อเปลี่ยนการแสดงผล"
+
+#: templates/profilesystem/index.html:401
+msgid "Customize links of landing dropdown"
+msgstr "ปรับแต่งการเชื่อมโยงของการเชื่อมโยงแบบเลื่อนลง"
+
+#: templates/profilesystem/index.html:454
+msgid "Change password"
+msgstr "เปลี่ยนรหัสผ่าน"
+
+#: templates/profilesystem/index.html:458
+msgid "Set password"
+msgstr "ตั้งรหัสผ่าน"
+
+#: templates/profilesystem/index.html:462
+msgid "View As Public"
+msgstr "ดูแบบสาธารณะ"
+
+#: templates/profilesystem/index.html:473
+msgid "Linked social account"
+msgstr "เชื่อมโยงบัญชีสังคม"
+
+#: templates/profilesystem/index.html:525
+msgid "Manage"
+msgstr "จัดการ"
+
+#: templates/profilesystem/index.html:540
+msgid "Reference"
+msgstr "การอ้างอิง"
+
+#: templates/profilesystem/index.html:552
+msgid "Refresh"
+msgstr "รีเฟรช"
+
+#: templates/profilesystem/index.html:567
+msgid "My Groups"
+msgstr "กลุ่มของฉัน"
+
+#: templates/profilesystem/index.html:632
+msgid "Apps"
+msgstr "ปพลิเคชัน"
+
+#: templates/profilesystem/index.html:648
+msgid "Sites"
+msgstr "เว็บไซต์"
+
+#: templates/profilesystem/index.html:664
+msgid "Ads"
+msgstr "โฆษณา"
+
+#: templates/profilesystem/logdata.html:3
+msgid "Logs Details"
+msgstr "รายละเอียดท่อน"
+
+#: templates/profilesystem/logdata.html:6
+msgid "Last payment received"
+msgstr "การชำระเงินที่ได้รับล่าสุด"
+
+#: templates/profilesystem/logdata.html:16
+msgid "Advertisement post"
+msgstr "โพสต์โฆษณา"
+
+#: templates/profilesystem/logdata.html:20
+msgid "Last login "
+msgstr "เข้าสู่ระบบล่าสุด"
+
+#: templates/profilesystem/logdata.html:24
+msgid "Last payment sent"
+msgstr "ชำระเงินครั้งล่าสุดส่ง"
+
+#: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
+msgid "Username"
+msgstr "ชื่อผู้ใช้"
+
+#: templates/profilesystem/pinfo.html:38
+msgid "Community"
+msgstr "ชุมชน"
+
+#: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
+msgid "About me"
+msgstr "เกี่ยวกับฉัน"
+
+#: templates/profilesystem/profilecompletiontasks.html:5
+msgid "Add your website to complete your profile."
+msgstr "เพิ่มเว็บไซต์ของคุณเพื่อกรอกข้อมูลโปรไฟล์ของคุณ"
+
+#: templates/profilesystem/profilecompletiontasks.html:11
+msgid "Add your gender to complete your profile."
+msgstr "เพิ่มเพศของคุณจะเสร็จสมบูรณ์ในโปรไฟล์ของคุณ"
+
+#: templates/profilesystem/profilecompletiontasks.html:17
+msgid "Add your contact number to complete your profile."
+msgstr "เพิ่มหมายเลขติดต่อของคุณจะเสร็จสมบูรณ์ในโปรไฟล์ของคุณ"
+
+#: templates/profilesystem/profilecompletiontasks.html:23
+msgid "Add a profile image to complete your profile."
+msgstr "เพิ่มรายละเอียดของภาพเพื่อให้โปรไฟล์ของคุณ"
+
+#: templates/profilesystem/profilecompletiontasks.html:29
+msgid "Add your location to complete your profile."
+msgstr "เพิ่มสถานที่ของคุณไปยังโปรไฟล์ของคุณสมบูรณ์"
+
+#: templates/profilesystem/profilecompletiontasks.html:35
+msgid "Add a social account of yours to complete your profile."
+msgstr "เพิ่มบัญชีทางสังคมของคุณจะเสร็จสมบูรณ์ในโปรไฟล์ของคุณ"
+
+#: templates/profilesystem/profilecompletiontasks.html:41
+msgid "Add your email account to complete your profile."
+msgstr "เพิ่มบัญชีอีเมลของคุณที่จะเสร็จสมบูรณ์โปรไฟล์ของคุณ"
+
+#: templates/profilesystem/profilecompletiontasks.html:50
+msgid "Please verify your email address(resend verification)"
+msgstr "โปรดยืนยันที่อยู่อีเมลของคุณ (ยืนยันอีกครั้ง)"
+
+#: templates/profilesystem/reference.html:6
+msgid "Following user verified me"
+msgstr "ผู้ใช้ต่อไปการตรวจสอบผม"
+
+#: templates/profilesystem/reference.html:35
+msgid "Oops!! No Reference Yet"
+msgstr "โอ๊ะ !! แต่ไม่มีการอ้างอิง"
+
+#: templates/profilesystem/unlinksocial.html:69
+msgid "This is your last method to connect to this site."
+msgstr "นี้เป็นวิธีการสุดท้ายของคุณที่จะเชื่อมต่อไปยังเว็บไซต์นี้"
+
+#: templates/profilesystem/unlinksocial.html:70
+msgid "You will be asked for a password if you proceed"
+msgstr "คุณจะถูกถามให้ใส่รหัสผ่านถ้าคุณดำเนินการต่อไป"
+
+#: templates/publicusers/connections.html:50
+#: templates/publicusers/userlist_old.html:48
+#, fuzzy, python-format
+#| msgid "Hello, %(username_t)s!"
+msgid "Hello, %(username_t)s!"
+msgstr "สวัสดี% (username_t) s!"
+
+#: templates/publicusers/connusers.html:31
+msgid "No connections"
+msgstr "ไม่มีการเชื่อมต่อ"
+
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:46 templates/publicusers/users.html:27
+msgid "Staff"
+msgstr "บุคลากร"
+
+#: templates/publicusers/user.html:22
+#: templates/publicusers/userdetails.html:401
+#: templates/publicusers/userlist.html:132
+#: templates/publicusers/userlist_old.html:124
+#: templates/publicusers/users_old.html:23
+msgid "lastseen: "
+msgstr "ครั้งสุดท้ายที่เจอ:"
+
+#: templates/publicusers/user.html:26
+#: templates/publicusers/userdetails.html:397
+#: templates/publicusers/userlist.html:43
+#: templates/publicusers/userlist_old.html:122
+#: templates/publicusers/userlist_old.html:128
+#: templates/publicusers/users_old.html:27
+msgid "Offline"
+msgstr "ออฟไลน์"
+
+#: templates/publicusers/user.html:51 templates/timelines/timeline.html:147
+#: templates/timelines/timeline.html:154
+msgid "Disconnect"
+msgstr "ปลด"
+
+#: templates/publicusers/user.html:53
+msgid "Cancel connection request"
+msgstr "ยกเลิกการร้องขอการเชื่อมต่อ"
+
+#: templates/publicusers/user.html:55
+msgid "Reject connection request"
+msgstr "ปฏิเสธคำขอการเชื่อมต่อ"
+
+#: templates/publicusers/user.html:56
+msgid "Accept connection request"
+msgstr "ยอมรับการร้องขอการเชื่อมต่อ"
+
+#: templates/publicusers/user.html:58
+msgid "Connect"
+msgstr "ต่อ"
+
+#: templates/publicusers/user.html:61
+msgid "Connection type"
+msgstr "ประเภทการเชื่อมต่อ"
+
+#: templates/publicusers/user.html:64
+msgid "Family"
+msgstr "ครอบครัว"
+
+#: templates/publicusers/user.html:69
+msgid "Friend Type"
+msgstr "ประเภทเพื่อน"
+
+#: templates/publicusers/user.html:78
+msgid "Send request"
+msgstr "ส่งคำขอ"
+
+#: templates/publicusers/user.html:87
+msgid "Unverify"
+msgstr "ยกเลิกการยืนยัน"
+
+#: templates/publicusers/user.html:90
+msgid "I verify this user"
+msgstr "ผมตรวจสอบผู้ใช้นี้"
+
+#: templates/publicusers/user.html:92
+#: templates/publicusers/userdetails.html:100
+msgid "Send Unit"
+msgstr "ส่งหน่วย"
+
+#: templates/publicusers/user.html:93
+#: templates/publicusers/userdetails.html:117
+msgid "Request Unit"
+msgstr "คำร้องขอหน่วย"
+
+#: templates/publicusers/user.html:94
+msgid "Message"
+msgstr "ข่าวสาร"
+
+#: templates/publicusers/userdetails.html:67
+msgid "Others who verify"
+msgstr "คนอื่น ๆ ที่ตรวจสอบ"
+
+#: templates/publicusers/userlist.html:138
+#: templates/publicusers/userlist_old.html:130
+msgid "lastseen: unknown"
+msgstr "lastseen: ไม่ทราบ"
+
+#: templates/publicusers/userlist_old.html:72
+msgid " Search Users "
+msgstr "ผู้ใช้ค้นหา"
+
+#: templates/sidebar_apps.html:2
+msgid "Hashtag Campaign"
+msgstr "แคมเปญ hashtag"
+
+#: templates/sidebar_community.html:26
+msgid "About Our System"
+msgstr "เกี่ยวกับระบบของเรา"
+
+#: templates/sidebar_community.html:27
+msgid "Contact Details"
+msgstr "รายละเอียดการติดต่อ"
+
+#: templates/sidebar_community.html:42
+msgid "Email Lists"
+msgstr "รายชื่ออีเมล"
+
+#: templates/sidebar_group.html:5
+msgid "Homepage"
+msgstr "โฮมเพจ"
+
+#: templates/sidebar_group.html:25 templates/sidebar_group.html:60
+#: templates/sidebar_group_admin.html:30
+msgid "Group's Posts"
+msgstr "ของกลุ่ม บริษัท โพสต์"
+
+#: templates/sidebar_group.html:26 templates/sidebar_group.html:61
+#: templates/sidebar_group_admin.html:31
+msgid "Member's Posts"
+msgstr "โพสต์ของสมาชิก"
+
+#: templates/sidebar_group.html:31
+msgid "Group Admin Section"
+msgstr "ส่วนผู้ดูแลระบบกลุ่ม"
+
+#: templates/sidebar_group.html:77 templates/sidebar_group_admin.html:47
+msgid "Not Approved"
+msgstr "ไม่ได้รับอนุมัติ"
+
+#: templates/sidebar_group.html:95 templates/sidebar_group_admin.html:65
+msgid "Requests"
+msgstr "การร้องขอ"
+
+#: templates/sidebar_group.html:117 templates/sidebar_group_admin.html:87
+msgid "Roles"
+msgstr "บทบาท"
+
+#: templates/sidebar_group.html:124 templates/sidebar_group_admin.html:94
+msgid "Defaults"
+msgstr "ค่าเริ่มต้น"
+
+#: templates/sidebar_group.html:127 templates/sidebar_group_admin.html:97
+msgid "Custom"
+msgstr "กำหนดเอง"
+
+#: templates/sidebar_group.html:136 templates/sidebar_group_admin.html:106
+msgid "Account Signups"
+msgstr "สมัครบัญชี"
+
+#: templates/sidebar_group_admin.html:68
+msgid "Banned members"
+msgstr "ห้ามสมาชิก"
+
+#: templates/sidebar_home.html:10
+msgid "My Accounts"
+msgstr "บัญชีของฉัน"
+
+#: templates/sidebar_home.html:17 templates/timelines/index.html:52
+#: templates/timelines/index.html:54 templates/useraccount/transfer.html:7
+#: templates/useraccount/transfer.html:13
+msgid "Transfer"
+msgstr "โอน"
+
+#: templates/socialaccount/signup.html:9
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: templates/timelines/index.html:43
+msgid "Search: "
+msgstr "ค้นหา:"
+
+#: templates/timelines/index.html:49
+msgid "Filters: "
+msgstr "กรองข้อมูล:"
+
+#: templates/timelines/index.html:62 templates/timelines/index.html:64
+msgid "Release"
+msgstr "ปล่อย"
+
+#: templates/timelines/index.html:67 templates/timelines/index.html:69
+msgid "Verified"
+msgstr "ได้รับการยืนยัน"
+
+#: templates/timelines/index.html:72 templates/timelines/index.html:74
+msgid "Unverified"
+msgstr "ไม่สอบ"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "you sent"
+msgstr "คุณส่ง"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "units to"
+msgstr "หน่วย"
+
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+msgid "sent you"
+msgstr "ส่งคุณ"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "you requested"
+msgstr "คุณร้องขอ"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "units from"
+msgstr "หน่วยจาก"
+
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "requested you"
+msgstr "ขอคุณ"
+
+#: templates/timelines/timeline.html:52 templates/timelines/timeline.html:70
+msgid "send"
+msgstr "ส่ง"
+
+#: templates/timelines/timeline.html:103
+msgid " units basic income released"
+msgstr "หน่วยฐานรายได้รับการปล่อยตัว"
+
+#: templates/timelines/timeline.html:115
+msgid "you verified"
+msgstr "คุณได้ยืนยัน"
+
+#: templates/timelines/timeline.html:115 templates/timelines/timeline.html:130
+msgid "as real user"
+msgstr "เป็นผู้ใช้จริง"
+
+#: templates/timelines/timeline.html:117
+msgid "verified you as real user"
+msgstr "การตรวจสอบว่าคุณเป็นผู้ใช้จริง"
+
+#: templates/timelines/timeline.html:130
+msgid "you unverified"
+msgstr "คุณไม่ได้ยืนยัน"
+
+#: templates/timelines/timeline.html:132
+msgid "unverified you as real user"
+msgstr "ไม่ได้ยืนยันว่าคุณเป็นผู้ใช้จริง"
+
+#: templates/timelines/timeline.html:145
+msgid "Requested connection to "
+msgstr "การเชื่อมต่อการร้องขอให้"
+
+#: templates/timelines/timeline.html:152
+msgid "sent connection request"
+msgstr "ร้องขอการเชื่อมต่อส่ง"
+
+#: templates/timelines/timeline.html:156
+msgid "Reject"
+msgstr "ปฏิเสธ"
+
+#: templates/timelines/timeline.html:157
+msgid "Accept"
+msgstr "ยอมรับ"
+
+#: templates/timelines/timeline.html:162
+msgid "Connection type: "
+msgstr "ประเภทการเชื่อมต่อ:"
+
+#: templates/useraccount/index.html:83
+msgid "Pulse Points"
+msgstr "จุดชีพจร"
+
+#: templates/useraccount/index.html:108 templates/useraccount/transfer.html:40
+msgid "Quick Review"
+msgstr "ตรวจสอบด่วน"
+
+#: templates/useraccount/index.html:113 templates/useraccount/transfer.html:45
+msgid "Units"
+msgstr "หน่วย"
+
+#: templates/useraccount/index.html:165
+msgid "Transactions"
+msgstr "การทำธุรกรรม"
+
+#: templates/useraccount/index.html:171
+msgid "Id"
+msgstr "id"
+
+#: templates/useraccount/index.html:172 templates/useraccount/index.html:207
+msgid "From"
+msgstr "จาก"
+
+#: templates/useraccount/index.html:173 templates/useraccount/index.html:203
+msgid "To"
+msgstr "ไปยัง"
+
+#: templates/useraccount/index.html:174 templates/useraccount/index.html:211
+#: templates/useraccount/index.html:241
+msgid "Date"
+msgstr "วันที่:"
+
+#: templates/useraccount/index.html:196
+msgid "Details"
+msgstr "รายละเอียด"
+
+#: templates/useraccount/index.html:234
+msgid "Basic Income Release"
+msgstr "ที่วางจำหน่ายฐานรายได้"
+
+#: templates/useraccount/index.html:255
+msgid "No release yet"
+msgstr "รุ่นถัดไป"
+
+#: templates/useraccount/index.html:286
+msgid "Please contact a Grantcoin staff on your Account Status"
+msgstr "กรุณาติดต่อเจ้าหน้าที่ Grantcoin กับสถานะบัญชีของคุณ"
+
+#: templates/useraccount/index.html:296
+msgid "Contact to add your organization account"
+msgstr "ติดต่อเพื่อเพิ่มบัญชีองค์กรของคุณ"
+
+#: templates/useraccount/transfer.html:16
+msgid "transfer"
+msgstr "โอน"
+
+#: templates/useraccount/transfer.html:55
+msgid "Select User"
+msgstr "เลือกผู้ใช้"
+
+#: templates/useraccount/transfer.html:80
+msgid "Search user"
+msgstr "ผู้ใช้ค้นหา"
+
+#: templates/useraccount/transferunit.html:4
+msgid "Send Amount To"
+msgstr "ส่งเป็นจำนวนเงิน"
+
+#: useraccount/forms.py:7 useraccount/forms.py:26
+msgid "Instruction"
+msgstr "คำแนะนำ"
+
+#: useraccount/forms.py:17
+msgid "Amount can't exceed your balance"
+msgstr "จำนวนเงินไม่เกินยอดเงินของคุณ"
+
+#: useraccount/views.py:119
+msgid "Transfer completed!!"
+msgstr "การถ่ายโอนเสร็จ !!"
+
+#: useraccount/views.py:187
+msgid "Request Sent!!"
+msgstr "ส่งคำร้อง!!"

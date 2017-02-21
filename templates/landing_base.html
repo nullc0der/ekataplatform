@@ -71,13 +71,13 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav text-uppercase">
-						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}">Home</a></li>
-						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#feature">Features</a></li>
+						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}">{% trans "Home" %}</a></li>
+						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#feature">{% trans "Features" %}</a></li>
 						<!--<li><a href="#support">Support</a></li>-->
 						<!--<li><a href="#download">Download</a></li>-->
-						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#contact">Contact</a></li>
-						<li><a class="external" href="{% url 'landing:hashtag' %}">Hashtag</a></li>
-						<li><a class="external" href="{% url 'landing:newses' %}">News</a></li>
+						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#contact">{% trans "Contact" %}</a></li>
+						<li><a class="external" href="{% url 'landing:hashtag' %}">{% trans "Hashtag" %}</a></li>
+						<li><a class="external" href="{% url 'landing:newses' %}">{% trans "News" %}</a></li>
 						{% if request.user.is_authenticated %}
 						{% else %}
 							<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#betainvite">Beta</a></li>
@@ -246,7 +246,7 @@
 					<div class="col-md-6 sm-no-pull">
 						<div class="pull-right">
 							<small class="label bg-blue">
-								Powered by Ekata
+								{% trans "Powered by " %}Ekata
 							</small>
 						</div>
 					</div>

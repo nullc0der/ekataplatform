@@ -1,0 +1,3641 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-20 21:17+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: autosignup/forms.py:150
+msgid "Max attempt reached! try later"
+msgstr "Max mēģinājums sasniegts! mēģiniet vēlāk"
+
+#: autosignup/forms.py:155 autosignup/forms.py:162
+msgid "Provide a valid mobile number"
+msgstr "Sniedz derīgu mobilā tālruņa numuru"
+
+#: autosignup/forms.py:157 autosignup/forms.py:164
+msgid "Something went wrong! Try later"
+msgstr "Kaut kas nogāja greizi! Mēģiniet vēlāk"
+
+#: ekatadeveloper/settings/base.py:237
+msgid "German"
+msgstr "vācu"
+
+#: ekatadeveloper/settings/base.py:238
+msgid "English"
+msgstr "Angļu"
+
+#: ekatadeveloper/settings/base.py:239
+msgid "Hindi"
+msgstr "hindu valoda"
+
+#: ekatadeveloper/settings/base.py:240
+msgid "Spanish"
+msgstr "spāņu"
+
+#: ekatadeveloper/settings/base.py:241
+msgid "Bengali"
+msgstr "bengāļu"
+
+#: ekatadeveloper/settings/base.py:242
+msgid "Belarusian"
+msgstr "Baltkrievijas"
+
+#: ekatadeveloper/settings/base.py:243
+msgid "Portuguese"
+msgstr "portugālis"
+
+#: ekatadeveloper/settings/base.py:244
+msgid "Bulgarian"
+msgstr "Bulgārijas"
+
+#: ekatadeveloper/settings/base.py:245
+msgid "French"
+msgstr "franču"
+
+#: ekatadeveloper/settings/base.py:246
+msgid "Croatian"
+msgstr "Horvātijas"
+
+#: ekatadeveloper/settings/base.py:247
+msgid "Greek"
+msgstr "grieķu"
+
+#: ekatadeveloper/settings/base.py:248
+msgid "Czech"
+msgstr "čehu"
+
+#: ekatadeveloper/settings/base.py:249
+msgid "Danish"
+msgstr "dāņu"
+
+#: ekatadeveloper/settings/base.py:250
+msgid "Arabic"
+msgstr "arābu"
+
+#: ekatadeveloper/settings/base.py:251
+msgid "Finland"
+msgstr "Somija"
+
+#: ekatadeveloper/settings/base.py:252
+msgid "France"
+msgstr "Francija"
+
+#: ekatadeveloper/settings/base.py:253
+msgid "Hungarian"
+msgstr "ungāru"
+
+#: ekatadeveloper/settings/base.py:254
+msgid "Indonessian"
+msgstr "Indonessian"
+
+#: ekatadeveloper/settings/base.py:255
+msgid "Italian"
+msgstr "Itālijas"
+
+#: ekatadeveloper/settings/base.py:256
+msgid "Japanese"
+msgstr "Japānas"
+
+#: ekatadeveloper/settings/base.py:257
+msgid "Russian"
+msgstr "krievu"
+
+#: ekatadeveloper/settings/base.py:258
+msgid "Latvian"
+msgstr "Latvijas"
+
+#: ekatadeveloper/settings/base.py:259
+msgid "Lithunian"
+msgstr "Lithunian"
+
+#: ekatadeveloper/settings/base.py:260
+msgid "Nepali"
+msgstr "nepāliešu"
+
+#: ekatadeveloper/settings/base.py:261
+msgid "Norwegian"
+msgstr "norvēģu"
+
+#: ekatadeveloper/settings/base.py:262
+msgid "Urdu"
+msgstr "urdu"
+
+#: ekatadeveloper/settings/base.py:263
+msgid "Polish"
+msgstr "poļu"
+
+#: ekatadeveloper/settings/base.py:264
+msgid "Romanian"
+msgstr "rumāņu"
+
+#: ekatadeveloper/settings/base.py:265
+msgid "Tamil"
+msgstr "tamilu"
+
+#: ekatadeveloper/settings/base.py:266
+msgid "Korean"
+msgstr "korejiešu"
+
+#: ekatadeveloper/settings/base.py:267
+msgid "Sinhalese"
+msgstr "singalietis"
+
+#: ekatadeveloper/settings/base.py:268
+msgid "Thai"
+msgstr "Thai"
+
+#: groupsystem/forms.py:20
+msgid "Group Exist"
+msgstr "Group Exist"
+
+#: groupsystem/forms.py:32 groupsystem/forms.py:89
+msgid "You must specify other group type"
+msgstr "Jums jānorāda cita grupas veidu"
+
+#: groupsystem/forms.py:38 groupsystem/forms.py:95
+msgid "You can't fill this field with default group types"
+msgstr "Jūs nevarat aizpildīt šo lauku ar noklusējuma grupas tipiem"
+
+#: groupsystem/forms.py:186
+msgid "You can't choose a default role name"
+msgstr "Jūs nevarat izvēlēties noklusējuma lomu vārdu"
+
+#: groupsystem/forms.py:193
+msgid "Role exist"
+msgstr "loma pastāv"
+
+#: groupsystem/models.py:18
+msgid "Art"
+msgstr "māksla"
+
+#: groupsystem/models.py:19
+msgid "Activist"
+msgstr "Aktīvists"
+
+#: groupsystem/models.py:20
+msgid "Political"
+msgstr "politisks"
+
+#: groupsystem/models.py:21 templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:17
+#: templates/groupsystem/adminnews.html:22
+#: templates/groupsystem/adminnews.html:49
+#: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:80
+#: templates/landing_base.html:173 templates/sidebar_group.html:44
+#: templates/sidebar_group_admin.html:14
+msgid "News"
+msgstr "jaunumi"
+
+#: groupsystem/models.py:22 publicusers/views.py:328
+msgid "Business"
+msgstr "Bizness"
+
+#: groupsystem/models.py:23
+msgid "Government"
+msgstr "valdība"
+
+#: groupsystem/models.py:24
+msgid "Blog"
+msgstr "Blog"
+
+#: groupsystem/models.py:25
+msgid "Nonprofit Organization"
+msgstr "Bezpeļņas organizācija"
+
+#: groupsystem/models.py:26
+msgid "Other"
+msgstr "cits"
+
+#: groupsystem/models.py:28 templates/profilesystem/index.html:311
+#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
+msgid "Name"
+msgstr "nosaukums"
+
+#: groupsystem/models.py:30
+msgid "Short About"
+msgstr "Short Par"
+
+#: groupsystem/models.py:32
+msgid "Long About"
+msgstr "Long Par"
+
+#: groupsystem/models.py:34
+msgid "Group Type"
+msgstr "grupa"
+
+#: groupsystem/models.py:36
+msgid "Please Specify"
+msgstr "Lūdzu norādiet"
+
+#: groupsystem/models.py:84 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/views.py:110
+msgid "Can access admin"
+msgstr "Var piekļūt admin"
+
+#: groupsystem/models.py:85 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/views.py:111 groupsystem/views.py:128 groupsystem/views.py:139
+msgid "Can read news"
+msgstr "Var lasīt ziņas"
+
+#: groupsystem/models.py:86 groupsystem/views.py:40 groupsystem/views.py:79
+msgid "Can create news"
+msgstr "Var izveidot ziņas"
+
+#: groupsystem/models.py:87 groupsystem/views.py:41 groupsystem/views.py:80
+msgid "Can update news"
+msgstr "Var atjaunināt ziņas"
+
+#: groupsystem/models.py:88 groupsystem/views.py:42 groupsystem/views.py:81
+msgid "Can delete news"
+msgstr "Var izdzēst ziņas"
+
+#: groupsystem/models.py:89 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/views.py:112 groupsystem/views.py:129
+msgid "Can read post"
+msgstr "Var lasīt ziņu"
+
+#: groupsystem/models.py:90 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/views.py:113 groupsystem/views.py:130
+msgid "Can create post"
+msgstr "Var izveidot amatu"
+
+#: groupsystem/models.py:91 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/views.py:114
+msgid "Can update post"
+msgstr "Var atjaunināt amatu"
+
+#: groupsystem/models.py:92 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/views.py:115
+msgid "Can approve post"
+msgstr "Var apstiprināt amatā"
+
+#: groupsystem/models.py:93 groupsystem/views.py:47 groupsystem/views.py:86
+#: groupsystem/views.py:116
+msgid "Can delete post"
+msgstr "Var izdzēst ziņu"
+
+#: groupsystem/models.py:94 groupsystem/views.py:48 groupsystem/views.py:87
+#: groupsystem/views.py:117 groupsystem/views.py:131
+msgid "Can read comment"
+msgstr "Var lasīt komentāru"
+
+#: groupsystem/models.py:95 groupsystem/views.py:49 groupsystem/views.py:88
+#: groupsystem/views.py:118 groupsystem/views.py:132
+msgid "Can create comment"
+msgstr "Var izveidot komentāru"
+
+#: groupsystem/models.py:96 groupsystem/views.py:50 groupsystem/views.py:89
+#: groupsystem/views.py:119
+msgid "Can update comment"
+msgstr "Var atjaunināt komentāru"
+
+#: groupsystem/models.py:97 groupsystem/views.py:51 groupsystem/views.py:90
+#: groupsystem/views.py:120
+msgid "Can approve comment"
+msgstr "Var apstiprināt komentāru"
+
+#: groupsystem/models.py:98 groupsystem/views.py:52 groupsystem/views.py:91
+#: groupsystem/views.py:121
+msgid "Can delete comment"
+msgstr "Var izdzēst komentāru"
+
+#: groupsystem/models.py:99 groupsystem/views.py:53 groupsystem/views.py:92
+#: groupsystem/views.py:122 groupsystem/views.py:133
+msgid "Can like post"
+msgstr "Vai patīk pastu"
+
+#: groupsystem/models.py:100 groupsystem/views.py:54
+msgid "Can create notification"
+msgstr "Var izveidot paziņojumu"
+
+#: groupsystem/models.py:101 groupsystem/views.py:55 groupsystem/views.py:93
+#: groupsystem/views.py:123 groupsystem/views.py:134
+msgid "Can create invite"
+msgstr "Var izveidot uzaicināt"
+
+#: groupsystem/models.py:102 groupsystem/views.py:56 groupsystem/views.py:94
+msgid "Can add member"
+msgstr "Var pievienot locekli"
+
+#: groupsystem/models.py:103 groupsystem/views.py:57 groupsystem/views.py:95
+msgid "Can remove member"
+msgstr "Var noņemt loceklis"
+
+#: groupsystem/models.py:104 groupsystem/views.py:58 groupsystem/views.py:96
+msgid "Can ban member"
+msgstr "Var aizliegt loceklis"
+
+#: groupsystem/models.py:105 groupsystem/views.py:59 groupsystem/views.py:97
+msgid "Can lift member ban"
+msgstr "Var pacelt loceklis aizliegumu"
+
+#: groupsystem/models.py:106 groupsystem/views.py:60 groupsystem/views.py:98
+msgid "Can change member role"
+msgstr "Var mainīt loceklis lomu"
+
+#: groupsystem/models.py:107 groupsystem/views.py:61 groupsystem/views.py:99
+msgid "Can edit member permission"
+msgstr "Var rediģēt loceklis atļauju"
+
+#: groupsystem/models.py:108 groupsystem/views.py:62 groupsystem/views.py:100
+#: groupsystem/views.py:124 groupsystem/views.py:135
+msgid "Can read events"
+msgstr "Var lasīt notikumi"
+
+#: groupsystem/models.py:109 groupsystem/views.py:63 groupsystem/views.py:101
+msgid "Can create events"
+msgstr "Var izveidot notikumus"
+
+#: groupsystem/models.py:110 groupsystem/views.py:64 groupsystem/views.py:102
+msgid "Can update events"
+msgstr "Var atjaunināt notikumi"
+
+#: groupsystem/models.py:111 groupsystem/views.py:65 groupsystem/views.py:103
+msgid "Can delete events"
+msgstr "Var izdzēst notikumus"
+
+#: groupsystem/models.py:112 groupsystem/views.py:66 groupsystem/views.py:104
+msgid "Can read join requests"
+msgstr "Var lasīt pievienoties pieprasījumus"
+
+#: groupsystem/models.py:113 groupsystem/views.py:67 groupsystem/views.py:105
+msgid "Can approve join requests"
+msgstr "Var apstiprināt pievienošanās pieprasījumus"
+
+#: groupsystem/models.py:114 groupsystem/views.py:68 groupsystem/views.py:106
+msgid "Can deny joinrequest"
+msgstr "Nevar noliegt, joinrequest"
+
+#: groupsystem/models.py:115 groupsystem/views.py:69
+msgid "Can edit group profile"
+msgstr "Var rediģēt grupas profilu"
+
+#: groupsystem/models.py:116 groupsystem/views.py:70
+msgid "Can read role"
+msgstr "Var lasīt lomu"
+
+#: groupsystem/models.py:117 groupsystem/views.py:71
+msgid "Can read custom role"
+msgstr "Var lasīt pasūtījuma lomu"
+
+#: groupsystem/models.py:118 groupsystem/views.py:72
+msgid "Can update custom role"
+msgstr "Var atjaunināt pasūtījuma lomu"
+
+#: groupsystem/models.py:119 groupsystem/views.py:73
+msgid "Can create custom role"
+msgstr "Var izveidot pielāgotu lomu"
+
+#: groupsystem/views.py:358
+msgid "Already requested"
+msgstr "jau pieprasīts"
+
+#: groupsystem/views.py:360
+msgid "You're banned from this group"
+msgstr "Jūs aizliegta no šīs grupas"
+
+#: groupsystem/views.py:367 templates/autosignup/index.html:36
+#: templates/useraccount/index.html:50 templates/useraccount/index.html:65
+msgid "Subscribed"
+msgstr "parakstītais"
+
+#: groupsystem/views.py:374
+msgid "Unsubscribed"
+msgstr "neparakstītās"
+
+#: groupsystem/views.py:380
+msgid "Request Canceled"
+msgstr "pieprasījums Atcelts"
+
+#: groupsystem/views.py:411
+msgid "Leaved Group"
+msgstr "lapojums Group"
+
+#: groupsystem/views.py:567
+msgid "Post will be shown once admin/moderator approves"
+msgstr "Post tiks parādīta, kad admin / moderators apstiprinās"
+
+#: groupsystem/views.py:626
+#, fuzzy
+#| msgid "Post will be shown once admin/moderator approves"
+msgid ""
+"Thank you for commenting your comment will show once a admin/moderator "
+"approves"
+msgstr "Post tiks parādīta, kad admin / moderators apstiprinās"
+
+#: groupsystem/views.py:682
+msgid "You don't have permissions to edit settings"
+msgstr "Jums nav atļaujas rediģēt iestatījumus"
+
+#: groupsystem/views.py:702
+msgid "You don't have permission to create news"
+msgstr "Jums nav atļaujas veidot ziņas"
+
+#: groupsystem/views.py:810
+msgid "You dont have permissions to approve post"
+msgstr "Jums nav atļaujas, lai apstiprinātu amatā"
+
+#: groupsystem/views.py:830
+msgid "Post created"
+msgstr "Post izveidots"
+
+#: groupsystem/views.py:952
+msgid "You dont have permissions to approve comment"
+msgstr "Jums nav atļaujas, lai apstiprinātu komentāru"
+
+#: groupsystem/views.py:997
+msgid "You don't have permission to add memeber"
+msgstr "Jums nav atļaujas pievienot memeber"
+
+#: groupsystem/views.py:1035
+msgid "You dont have permission to remove member"
+msgstr "Jums nav atļauts noņemt locekli"
+
+#: groupsystem/views.py:1075
+msgid "You dont have permission to ban member"
+msgstr "Jums dont ir atļauja aizliegt locekli"
+
+#: groupsystem/views.py:1126
+msgid "You don't have permissions to change member role"
+msgstr "Jums nav atļaujas mainīt loceklis lomu"
+
+#: groupsystem/views.py:1236
+msgid "You don't have permission to approve request"
+msgstr "Jums nav atļaujas apstiprināt pieprasījumu"
+
+#: groupsystem/views.py:1249
+msgid "You don't have permission to deny request"
+msgstr "Jums nav atļaujas, lai liegtu pieprasījumu"
+
+#: groupsystem/views.py:1288
+msgid "Users invited"
+msgstr "Lietotāji uzaicināti"
+
+#: groupsystem/views.py:1506
+msgid "Role created, reload page to edit permissions"
+msgstr "Lomu izveidots, pārlādēt lapu rediģēt atļaujas"
+
+#: groupsystem/views.py:1519
+msgid "You don't have permission to create custom role"
+msgstr "Jums nav atļaujas, lai izveidotu pielāgotus lomu"
+
+#: groupsystem/views.py:1555
+msgid "Role permission changed"
+msgstr "Lomu atļauja mainīts"
+
+#: groupsystem/views.py:1598
+msgid "User permission changed"
+msgstr "Lietotāja atļauja mainīts"
+
+#: information/models.py:10
+msgid "First Name"
+msgstr "Vārds"
+
+#: information/models.py:11
+msgid "Last Name"
+msgstr "Pēdējais maksājums nosūtīts"
+
+#: information/models.py:13
+msgid "Company Name"
+msgstr "Kompānijas nosaukums"
+
+#: information/models.py:14 templates/eblast/emailcampaign_sent.html:2
+#: templates/profilesystem/index.html:515
+msgid "Email Address"
+msgstr "Epasta adrese"
+
+#: information/models.py:16
+msgid "Telephone Number"
+msgstr "Mājas numurs"
+
+#: information/models.py:19
+msgid "Comment"
+msgstr "komentāri"
+
+#: profilesystem/forms.py:22
+msgid "Usernames can only contain letters, digits and @/./+/-/_."
+msgstr "Lietotājvārdus var saturēt tikai burtus, ciparus un @ / / / -. / _."
+
+#: profilesystem/forms.py:31
+msgid "Username already taken"
+msgstr "Lietotājvārds jau pieņemts"
+
+#: profilesystem/models.py:20
+msgid "Male"
+msgstr "vīrietis"
+
+#: profilesystem/models.py:21
+msgid "Female"
+msgstr "sieviete"
+
+#: profilesystem/models.py:166 templates/profilesystem/address.html:5
+#: templates/publicusers/user.html:193
+msgid "House Number"
+msgstr "Mājas numurs"
+
+#: profilesystem/models.py:167 templates/profilesystem/address.html:11
+#: templates/publicusers/user.html:199
+msgid "Street"
+msgstr "iela"
+
+#: profilesystem/models.py:168 templates/profilesystem/address.html:17
+#: templates/publicusers/user.html:205
+msgid "Zip Code"
+msgstr "Pasta indekss"
+
+#: profilesystem/models.py:169 templates/profilesystem/address.html:23
+#: templates/publicusers/user.html:211
+msgid "City"
+msgstr "pilsēta"
+
+#: profilesystem/models.py:170 templates/profilesystem/address.html:29
+#: templates/publicusers/user.html:217
+msgid "State"
+msgstr "Valsts"
+
+#: profilesystem/models.py:171 templates/profilesystem/address.html:35
+#: templates/publicusers/user.html:223
+msgid "Country"
+msgstr "valsts"
+
+#: publicusers/views.py:183 templates/groupsystem/adminnews.html:113
+#: templates/groupsystem/adminsettings.html:165
+msgid "Success"
+msgstr "veiksme"
+
+#: publicusers/views.py:185
+msgid "You already thumb uped this user"
+msgstr "Jūs jau īkšķis uped šo lietotāju"
+
+#: publicusers/views.py:292
+msgid "Friend type"
+msgstr "Draugs tips"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:71
+msgid "Best"
+msgstr "vislabāk"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:63
+#: templates/publicusers/user.html:72
+msgid "Friend"
+msgstr "draugs"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:73
+msgid "Soulmate"
+msgstr "soulmate"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:74
+msgid "Acquaintance"
+msgstr "paziņa"
+
+#: publicusers/views.py:297
+msgid "Family type"
+msgstr "Ģimenes tips"
+
+#: publicusers/views.py:299
+msgid "Father"
+msgstr "tēvs"
+
+#: publicusers/views.py:300
+msgid "Son"
+msgstr "dēls"
+
+#: publicusers/views.py:301
+msgid "Husband"
+msgstr "Vīrs"
+
+#: publicusers/views.py:302
+msgid "Brother"
+msgstr "Brālis"
+
+#: publicusers/views.py:303
+msgid "Grandfather"
+msgstr "vectēvs"
+
+#: publicusers/views.py:304
+msgid "Grandson"
+msgstr "mazdēls"
+
+#: publicusers/views.py:305
+msgid "Uncle"
+msgstr "tēvocis"
+
+#: publicusers/views.py:306
+msgid "Nephew"
+msgstr "brāļadēls"
+
+#: publicusers/views.py:307 publicusers/views.py:316
+msgid "Cousin"
+msgstr "brālēns"
+
+#: publicusers/views.py:308
+msgid "Mother"
+msgstr "māte"
+
+#: publicusers/views.py:309
+msgid "Daughter"
+msgstr "meita"
+
+#: publicusers/views.py:310
+msgid "Wife"
+msgstr "sieva"
+
+#: publicusers/views.py:311
+msgid "Sister"
+msgstr "māsa"
+
+#: publicusers/views.py:312
+msgid "Grandmother"
+msgstr "vecmāmiņa"
+
+#: publicusers/views.py:313
+msgid "Granddaughter"
+msgstr "mazmeita"
+
+#: publicusers/views.py:314
+msgid "Aunt"
+msgstr "tante"
+
+#: publicusers/views.py:315
+msgid "Niece"
+msgstr "māsasmeita"
+
+#: publicusers/views.py:317
+msgid "Parent"
+msgstr "vecāks"
+
+#: publicusers/views.py:318
+msgid "Child"
+msgstr "Bērns"
+
+#: publicusers/views.py:319
+msgid "Spouse"
+msgstr "Laulātais"
+
+#: publicusers/views.py:320
+msgid "Sibling"
+msgstr "brālis"
+
+#: publicusers/views.py:321
+msgid "Grandparent"
+msgstr "vecvecāku"
+
+#: publicusers/views.py:322
+msgid "Grandchild"
+msgstr "mazbērns"
+
+#: publicusers/views.py:327
+msgid "Contact type"
+msgstr "Kontaktinformācija tips"
+
+#: publicusers/views.py:328
+msgid "Personal"
+msgstr "personisks"
+
+#: publicusers/views.py:343
+msgid "connection already sent by "
+msgstr "savienojums jau nosūtījusi"
+
+#: publicusers/views.py:382
+msgid "A request is sent to "
+msgstr "Pieprasījums tiek nosūtīts"
+
+#: publicusers/views.py:401
+msgid "Connection accepted"
+msgstr "savienojums pieņemts"
+
+#: publicusers/views.py:443
+msgid "Canceled connection request"
+msgstr "Atcelts savienojuma pieprasījums"
+
+#: publicusers/views.py:445
+msgid "Rejected connection"
+msgstr "noraidīts savienojums"
+
+#: publicusers/views.py:447
+msgid "Disconneted"
+msgstr "Disconneted"
+
+#: publicusers/views.py:449 templates/groupsystem/eventsadmin.html:111
+msgid "Success!!"
+msgstr "Veiksme !!"
+
+#: templates/403.html:4
+msgid "Permission denied"
+msgstr "atļauja liegta"
+
+#: templates/403.html:10
+msgid "Oops!! You don't have permissions to view this page"
+msgstr "Hmm !! Jums nav atļaujas, lai apskatītu šo lapu"
+
+#: templates/403.html:12 templates/404.html:12 templates/500.html:12
+msgid "Return to dashboard"
+msgstr "Atgriezties uz paneļa"
+
+#: templates/404.html:4
+msgid "Page Not Found"
+msgstr "Lapa nav atrasta"
+
+#: templates/404.html:10
+msgid "Oops!! The requested url can't be found in this server"
+msgstr "Hmm !! Pieprasītais URL nevar atrast šajā serverī"
+
+#: templates/500.html:4
+msgid "Server Error"
+msgstr "servera kļūda"
+
+#: templates/500.html:10
+msgid "Something is not working!! Try again later"
+msgstr "Kaut kas nedarbojas !! Pamēģini vēlreiz vēlāk"
+
+#: templates/account/disclaimer.html:4 templates/landing_base.html:172
+msgid "Disclaimer"
+msgstr "Atruna"
+
+#: templates/account/disclaimer.html:28
+msgid "WEBSITE DISCLAIMER"
+msgstr "MĀJAS LAPAS ATRUNA"
+
+#: templates/account/disclaimer.html:30
+msgid "No warranties"
+msgstr "Nav garantijas"
+
+#: templates/account/disclaimer.html:32
+msgid ""
+"This website is provided “as is” without any representations or warranties, "
+"express or implied. "
+msgstr ""
+
+#: templates/account/disclaimer.html:33
+msgid ""
+"makes no representations or warranties in relation to this website or the "
+"information and materials provided on this website. "
+msgstr ""
+
+#: templates/account/disclaimer.html:34
+msgid "Without prejudice to the generality of the foregoing paragraph, "
+msgstr "Neierobežojot vispārīgumu iepriekšējā punktā,"
+
+#: templates/account/disclaimer.html:34
+msgid "does not warrant that:"
+msgstr "negarantē, ka:"
+
+#: templates/account/disclaimer.html:36
+msgid "this website will be constantly available, or available at all; or"
+msgstr "Šī mājas lapa būs pastāvīgi pieejama vai pieejama visiem; vai"
+
+#: templates/account/disclaimer.html:37
+msgid ""
+"the information on this website is complete, true, accurate or non-"
+"misleading."
+msgstr ""
+
+#: templates/account/disclaimer.html:39
+msgid ""
+"Nothing on this website constitutes, or is meant to constitute, advice of "
+"any kind. "
+msgstr ""
+
+#: templates/account/disclaimer.html:40
+msgid "Limitations of liability"
+msgstr "Atbildības ierobežojumi"
+
+#: templates/account/disclaimer.html:42
+msgid ""
+"will not be liable to you (whether under the law of contact, the law of "
+"torts or otherwise) in relation to the contents of, or use of, or otherwise "
+"in connection with, this website:"
+msgstr ""
+
+#: templates/account/disclaimer.html:44
+msgid "for any indirect, special or consequential loss; or"
+msgstr "par jebkādiem netiešiem, īpašiem vai izrietošiem zaudējumiem; vai"
+
+#: templates/account/disclaimer.html:45
+msgid ""
+"for any business losses, loss of revenue, income, profits or anticipated "
+"savings, loss of contracts or business relationships, loss of reputation or "
+"goodwill, or loss or corruption of information or data."
+msgstr ""
+
+#: templates/account/disclaimer.html:47
+msgid "These limitations of liability apply even if "
+msgstr "Šīs atbildības ierobežojumi attiecas arī tad, ja"
+
+#: templates/account/disclaimer.html:47
+msgid " has been expressly advised of the potential loss."
+msgstr "ir skaidri jāinformē par iespējamo zaudējumu."
+
+#: templates/account/disclaimer.html:48
+msgid "Exceptions"
+msgstr "izņēmumi"
+
+#: templates/account/disclaimer.html:50
+msgid ""
+"Nothing in this website disclaimer will exclude or limit any warranty "
+"implied by law that it would be unlawful to exclude or limit; and nothing in "
+"this website disclaimer will exclude or limit "
+msgstr ""
+
+#: templates/account/disclaimer.html:50
+msgid "'s liability in respect of any:"
+msgstr "Atbildība attiecībā uz jebkuru:"
+
+#: templates/account/disclaimer.html:52
+msgid "death or personal injury caused by "
+msgstr "nāvi vai ko izraisa traumas"
+
+#: templates/account/disclaimer.html:52
+msgid "'s negligence;"
+msgstr "&#39;S nolaidība;"
+
+#: templates/account/disclaimer.html:53
+msgid "fraud or fraudulent misrepresentation on the part of "
+msgstr "krāpšana vai krāpniecisku sagrozījumu par daļu no"
+
+#: templates/account/disclaimer.html:53
+msgid " or"
+msgstr "vai"
+
+#: templates/account/disclaimer.html:54
+msgid "matter which it would be illegal or unlawful for "
+msgstr "jautājums, kas būtu nelikumīgs vai nelikumīgi,"
+
+#: templates/account/disclaimer.html:54
+msgid ""
+" to exclude or limit, or to attempt or purport to exclude or limit, its "
+"liability."
+msgstr ""
+
+#: templates/account/disclaimer.html:57
+msgid "Reasonableness"
+msgstr "saprātīgums"
+
+#: templates/account/disclaimer.html:59
+msgid ""
+"By using this website, you agree that the exclusions and limitations of "
+"liability set out in this website disclaimer are reasonable.If you do not "
+"think they are reasonable, you must not use this website."
+msgstr ""
+
+#: templates/account/disclaimer.html:60
+msgid "Other parties"
+msgstr "citas puses"
+
+#: templates/account/disclaimer.html:62
+msgid "You accept that, as a limited liability entity, "
+msgstr "Jūs pieņemat, ka atbildību vienību ierobežotā,"
+
+#: templates/account/disclaimer.html:62
+msgid ""
+" has an interest in limiting the personal liability of its officers and "
+"employees. You agree that you will not bring any claim personally against "
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid ""
+"'s officers or employees in respect of any losses you suffer in connection "
+"with the website."
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"[Without prejudice to the foregoing paragraph,] you agree that the "
+"limitations of warranties and liability set out in this website disclaimer "
+"will protect"
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"'s officers, employees, agents, subsidiaries, successors, assigns and sub-"
+"contractors as well as "
+msgstr ""
+
+#: templates/account/disclaimer.html:64
+msgid "Unenforceable provisions"
+msgstr "Neizpildāmi nosacījumi"
+
+#: templates/account/disclaimer.html:66
+msgid ""
+"If any provision of this website disclaimer is, or is found to be, "
+"unenforceable under applicable law, that will not affect the enforceability "
+"of the other provisions of this website disclaimer."
+msgstr ""
+
+#: templates/account/email.html:5 templates/account/email.html:8
+msgid "Manage Email"
+msgstr "pārvaldīt E-pasts"
+
+#: templates/account/email.html:10
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "Uz šādu e-pasta adreses ir saistīti ar jūsu kontu:"
+
+#: templates/account/email.html:26
+msgid "(P)"
+msgstr "(P)"
+
+#: templates/account/email.html:40
+msgid "Make Primary"
+msgstr "nodrošinās primārās"
+
+#: templates/account/email.html:41
+msgid "Re-send Verification"
+msgstr "Atkārtoti nosūtīt pārbaude"
+
+#: templates/account/email.html:42 templates/eblast/emailgroup.html:50
+#: templates/groupsystem/members.html:84
+msgid "Remove"
+msgstr "noņemt"
+
+#: templates/account/email.html:54
+msgid "Add E-mail"
+msgstr "Pievieno e-pastu"
+
+#: templates/account/email.html:59
+msgid "Back to profile"
+msgstr "Atpakaļ uz profilu"
+
+#: templates/account/email.html:64
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "Vai jūs tiešām vēlaties, lai izņemtu izvēlēto e-pasta adresi?"
+
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You have received this to confirm your email in the %(site_domain)s "
+"community platform.\n"
+"\n"
+"Please click this link to confirm your email %(activate_url)s\n"
+msgstr ""
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "Apstiprini e-pasta adresi"
+
+#: templates/account/email_confirm.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: templates/account/email_confirm.html:21
+msgid "Confirm"
+msgstr "Apstiprināt"
+
+#: templates/account/email_confirm.html:28
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: templates/account/login.html:6
+msgid "Login"
+msgstr "Pieslēgties"
+
+#: templates/account/login.html:9
+msgid "Sign in to start your session"
+msgstr "Pierakstieties, lai sāktu savu sesiju"
+
+#: templates/account/login.html:18
+msgid "Log In"
+msgstr "Pieslēgties"
+
+#: templates/account/login.html:34
+msgid "Forgot Password?"
+msgstr "Aizmirsi paroli?"
+
+#: templates/account/login.html:36 templates/account/signup.html:9
+#: templates/socialaccount/signup.html:8
+msgid "Register a new membership"
+msgstr "Reģistrēt jaunu dalībnieku"
+
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:17
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+#: templates/account/password_reset_from_key.html:21
+msgid "Change Password"
+msgstr "Paroles maiņa"
+
+#: templates/account/password_change.html:11
+msgid "Change your password"
+msgstr "Mainiet savu paroli"
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+msgid "Password Reset"
+msgstr "Password Reset"
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:22
+msgid "Reset My Password"
+msgstr "Reset savu paroli"
+
+#: templates/account/password_reset.html:26
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+"Lūdzu, sazinieties ar mums, ja jums ir kādas neizdodas atiestatīt savu "
+"paroli."
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr "Bad Token"
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:25
+msgid "Your password is now changed."
+msgstr "Jūsu parole tagad ir mainīta."
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "Set Password"
+
+#: templates/account/rform.html:10 templates/socialaccount/signup.html:17
+msgid "Register"
+msgstr "Reģistrēties"
+
+#: templates/account/rform.html:30 templates/account/rform.html:54
+#: templates/account/rform.html:78 templates/account/rform.html:102
+msgid ""
+"This project is a new social platform to simulate and promote  the basic "
+"income"
+msgstr ""
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid "Please read the"
+msgstr "Lūdzu, izlasiet"
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid " Disclaimer"
+msgstr "Atruna"
+
+#: templates/account/rform.html:36 templates/account/rform.html:60
+#: templates/account/rform.html:84 templates/account/rform.html:108
+#: templates/autosignup/community_signupedit.html:10
+#: templates/timelines/timeline.html:149
+msgid "Cancel"
+msgstr "atcelt"
+
+#: templates/account/rform.html:39 templates/account/rform.html:63
+#: templates/account/rform.html:87 templates/account/rform.html:111
+msgid "Agree"
+msgstr "piekrist"
+
+#: templates/account/signup.html:11
+msgid "I already have a membership"
+msgstr "Man jau ir dalība"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr "Reģistrēties Slēgts"
+
+#: templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed for beta site"
+msgstr "Diemžēl bet pierakstīšanās šobrīd slēgts beta vietā"
+
+#: templates/account/signup_closed.html:11
+msgid "Please signup to"
+msgstr "Lūdzu pierakstīšanās"
+
+#: templates/account/signup_closed.html:11
+msgid "main site"
+msgstr "galvenā vietne"
+
+#: templates/autosignup/additional_step.html:6
+#: templates/autosignup/complete_previous_step.html:6
+#: templates/autosignup/step_1_form.html:6
+#: templates/autosignup/step_2_form.html:6
+#: templates/autosignup/step_2_verification.html:6
+#: templates/autosignup/step_3_form.html:6
+#: templates/autosignup/step_3_verification.html:6
+msgid "Name and Address"
+msgstr "Nosaukums un adrese"
+
+#: templates/autosignup/additional_step.html:9
+#: templates/autosignup/complete_previous_step.html:9
+#: templates/autosignup/step_1_form.html:9
+#: templates/autosignup/step_2_form.html:9
+#: templates/autosignup/step_2_verification.html:9
+#: templates/autosignup/step_3_form.html:9
+#: templates/autosignup/step_3_verification.html:9
+msgid "Email"
+msgstr "E-pasts"
+
+#: templates/autosignup/additional_step.html:12
+#: templates/autosignup/complete_previous_step.html:12
+#: templates/autosignup/step_1_form.html:12
+#: templates/autosignup/step_2_form.html:12
+#: templates/autosignup/step_2_verification.html:12
+#: templates/autosignup/step_3_form.html:12
+#: templates/autosignup/step_3_verification.html:12
+#: templates/profilesystem/index.html:377
+msgid "Phone No"
+msgstr "tālruņa Nr"
+
+#: templates/autosignup/additional_step.html:15
+#: templates/autosignup/complete_previous_step.html:16
+#: templates/autosignup/step_1_form.html:16
+#: templates/autosignup/step_2_form.html:16
+#: templates/autosignup/step_2_verification.html:16
+#: templates/autosignup/step_3_form.html:16
+#: templates/autosignup/step_3_verification.html:16
+msgid "Docs"
+msgstr "Docs"
+
+#: templates/autosignup/community_signupedit.html:7
+#: templates/autosignup/settings.html:118
+msgid "Fetch Twilio Data"
+msgstr "Atnest Twilio datus"
+
+#: templates/autosignup/community_signupedit.html:8
+#: templates/autosignup/signupinfo.html:207
+#: templates/eblast/emailcampaign.html:13 templates/eblast/emailgroup.html:11
+#: templates/eblast/emailtemplate.html:9
+msgid "Delete"
+msgstr "izdzēst"
+
+#: templates/autosignup/community_signupedit.html:9
+msgid "Save"
+msgstr "Saglabāt"
+
+#: templates/autosignup/complete_previous_step.html:21
+msgid "Please complete previous steps"
+msgstr "Lūdzu, aizpildiet iepriekšējās darbības"
+
+#: templates/autosignup/index.html:4
+msgid "MyAccounts"
+msgstr "MyAccounts"
+
+#: templates/autosignup/index.html:8
+msgid "Myaccounts"
+msgstr "Myaccounts"
+
+#: templates/autosignup/index.html:26 templates/sidebar_home.html:16
+#: templates/useraccount/index.html:13 templates/useraccount/index.html:16
+#: templates/useraccount/index.html:40
+msgid "Accounts"
+msgstr "konti"
+
+#: templates/autosignup/index.html:33 templates/useraccount/index.html:47
+msgid "DummyDB"
+msgstr "DummyDB"
+
+#: templates/autosignup/index.html:45 templates/useraccount/index.html:59
+msgid "Grantcoin"
+msgstr "Grantcoin"
+
+#: templates/autosignup/index.html:48 templates/useraccount/index.html:73
+msgid "Signup"
+msgstr "Pierakstīties"
+
+#: templates/autosignup/index.html:57
+msgid "The pulse"
+msgstr "pulss"
+
+#: templates/autosignup/index.html:60 templates/useraccount/index.html:86
+msgid "Coming soon"
+msgstr "Drīzumā"
+
+#: templates/autosignup/index.html:81 templates/useraccount/index.html:266
+#: templates/useraccount/index.html:283
+msgid "Signup to Grantcoin"
+msgstr "Pierakstīšanās uz Grantcoin"
+
+#: templates/autosignup/index.html:87 templates/eblast/emailcampaign.html:44
+#: templates/eblast/emailcampaign.html:61 templates/eblast/emailgroup.html:69
+#: templates/eblast/emailgroup.html:86
+#: templates/groupsystem/groupdetails.html:186
+#: templates/profilesystem/index.html:96 templates/profilesystem/index.html:127
+#: templates/profilesystem/index.html:166 templates/useraccount/index.html:272
+#: templates/useraccount/index.html:302
+msgid "Close"
+msgstr "aizvērt"
+
+#: templates/autosignup/index.html:88 templates/autosignup/settings.html:48
+#: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:103
+#: templates/crowdfunding/update_crowdfund.html:9
+#: templates/eblast/emailcampaignform.html:11
+#: templates/eblast/emailgroupform.html:11
+#: templates/eblast/emailtemplateform.html:11
+#: templates/groupsystem/adminnews.html:83
+#: templates/groupsystem/adminsettings.html:108
+#: templates/groupsystem/editcommentpage.html:50
+#: templates/groupsystem/editcustomrole.html:6
+#: templates/groupsystem/editnews.html:6
+#: templates/groupsystem/editpostpage.html:52
+#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:110
+#: templates/groupsystem/postsadmin.html:113
+#: templates/information/contact.html:32
+#: templates/invitationsystem/checkinvitation.html:31
+#: templates/invitationsystem/index.html:20
+#: templates/landing/getinvitationform.html:4
+#: templates/profilesystem/index.html:102
+#: templates/profilesystem/index.html:139
+#: templates/profilesystem/index.html:178 templates/useraccount/index.html:273
+#: templates/useraccount/index.html:303
+msgid "Submit"
+msgstr "Iesniegt"
+
+#: templates/autosignup/settings.html:4 templates/autosignup/settings.html:10
+msgid "Signups settings"
+msgstr "Pierakstīšanās iestatījumi"
+
+#: templates/autosignup/settings.html:13 templates/autosignup/signups.html:4
+#: templates/autosignup/signups.html:10 templates/autosignup/signups.html:13
+#: templates/autosignup/signups.html:38
+msgid "Signups"
+msgstr "Pierakstīšanās"
+
+#: templates/autosignup/settings.html:14
+msgid "Signup Settings"
+msgstr "Pierakstīšanās iestatījumi"
+
+#: templates/autosignup/settings.html:24
+msgid "Autosignup settings"
+msgstr "Autosignup iestatījumi"
+
+#: templates/autosignup/settings.html:45
+msgid "KM"
+msgstr "KM"
+
+#: templates/autosignup/settings.html:54
+msgid "Approved Email Template"
+msgstr "Apstiprināts Email Template"
+
+#: templates/autosignup/settings.html:56
+msgid "Select from one"
+msgstr "Izvēlieties no viena"
+
+#: templates/autosignup/settings.html:57
+msgid "Default"
+msgstr "Default"
+
+#: templates/autosignup/settings.html:69
+msgid "Or"
+msgstr "vai"
+
+#: templates/autosignup/settings.html:75
+msgid "File must be html document"
+msgstr "File jābūt html dokuments"
+
+#: templates/autosignup/settings.html:82
+msgid "Invite Code"
+msgstr "Uzaicināt kodeksu"
+
+#: templates/autosignup/settings.html:88
+msgid "Status:"
+msgstr "Statuss:"
+
+#: templates/autosignup/settings.html:96
+msgid "Code:"
+msgstr "kods:"
+
+#: templates/autosignup/settings.html:109
+msgid "Upload and Download CSV"
+msgstr "Augšupielādēt un lejupielādēt CSV"
+
+#: templates/autosignup/settings.html:120
+msgid "Download example copy"
+msgstr "Lejupielādēt piemērs kopiju"
+
+#: templates/autosignup/settings.html:126
+msgid "Uploaded CSVs"
+msgstr "augšuplādētos CSV pārskatos"
+
+#: templates/autosignup/settings.html:167
+msgid "Select range"
+msgstr "Select diapazons"
+
+#: templates/autosignup/settings.html:169
+#: templates/autosignup/settings.html:235
+msgid "Download Member Data CSV"
+msgstr "Lejupielādēt dalībvalstīm Data CSV"
+
+#: templates/autosignup/sfilter.html:5 templates/autosignup/signups.html:57
+#: templates/groupsystem/admindashboard.html:40
+#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:17
+#: templates/groupsystem/members.html:22 templates/publicusers/userlist.html:4
+#: templates/publicusers/userlist.html:10
+#: templates/publicusers/userlist.html:14 templates/sidebar_community.html:2
+#: templates/sidebar_group.html:87 templates/sidebar_group.html:93
+#: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
+msgid "Members"
+msgstr "Biedri"
+
+#: templates/autosignup/sfilter.html:14 templates/autosignup/signups.html:66
+#: templates/crowdfunding/admin.html:76
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:10
+#: templates/groupsystem/adminsettings.html:15
+#: templates/profilesystem/index.html:292 templates/sidebar_group.html:144
+#: templates/sidebar_group_admin.html:114
+msgid "Settings"
+msgstr "Iestatījumi"
+
+#: templates/autosignup/sfilter.html:26 templates/autosignup/signups.html:78
+msgid "No signups yet!! "
+msgstr "Nav pierakstīšanos vēl !!"
+
+#: templates/autosignup/signupclosed.html:4
+msgid "Signup is closed! try later"
+msgstr "Pierakstīšanās ir slēgts! mēģiniet vēlāk"
+
+#: templates/autosignup/signuphistories.html:36
+msgid "This signup is not associated with any history"
+msgstr "Šī pieteikšanās nav saistīts ar kādu vēsturi"
+
+#: templates/autosignup/signupinfo.html:13
+#: templates/autosignup/signupinfo.html:42
+msgid "Validated"
+msgstr "apstiprinājis"
+
+#: templates/autosignup/signupinfo.html:19
+msgid "This email id was used for these previous signup "
+msgstr "Šī e-pasta id tika izmantots šīs iepriekšējās reģistrēšanās"
+
+#: templates/autosignup/signupinfo.html:36
+msgid "Mobile"
+msgstr "mobils"
+
+#: templates/autosignup/signupinfo.html:39
+msgid "Not a Verifiable No"
+msgstr "Nav pārbaudāms Nē"
+
+#: templates/autosignup/signupinfo.html:49
+msgid "This phone number was used for these previous signup "
+msgstr "Šis tālruņa numurs tika izmantots šīs iepriekšējās reģistrēšanās"
+
+#: templates/autosignup/signupinfo.html:137
+msgid "Distance from database address: "
+msgstr "Attālums no datubāzes adresi:"
+
+#: templates/autosignup/signupinfo.html:137
+msgid " KM"
+msgstr "KM"
+
+#: templates/autosignup/signupinfo.html:208
+#: templates/groupsystem/members.html:124 templates/profilesystem/index.html:99
+#: templates/profilesystem/index.html:131
+#: templates/profilesystem/index.html:170
+msgid "Edit"
+msgstr "rediģēt"
+
+#: templates/autosignup/signupinfo.html:209
+msgid "History"
+msgstr "Vēsture"
+
+#: templates/autosignup/signupinfo.html:211
+msgid "Resend Approval Email"
+msgstr "Vēlreiz apstiprinājuma e-pastu"
+
+#: templates/autosignup/signupinfo.html:214
+msgid "Send Invitation Email"
+msgstr "Nosūtīt ielūgumu E-pasts"
+
+#: templates/autosignup/signups.html:44 templates/useraccount/index.html:67
+msgid "Pending"
+msgstr "līdz"
+
+#: templates/autosignup/signups.html:45 templates/sidebar_group.html:78
+#: templates/sidebar_group_admin.html:48
+msgid "Approved"
+msgstr "apstiprināts"
+
+#: templates/autosignup/signups.html:46
+msgid "Declined"
+msgstr "Noraidīts"
+
+#: templates/autosignup/signups.html:47 templates/useraccount/index.html:70
+msgid "Incomplete"
+msgstr "nepilnīgs"
+
+#: templates/autosignup/signups.html:226
+msgid "Fetching..."
+msgstr "Ienes ..."
+
+#: templates/autosignup/step_2_form.html:22
+msgid "Verify Your Email"
+msgstr "Pārbaudiet savu e-pastu"
+
+#: templates/autosignup/step_2_verification.html:22
+msgid "Enter code sent to your email below"
+msgstr "Ievadiet kodu nosūtīts uz jūsu e-pastu zemāk"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "Didn't get code yet?"
+msgstr "Nesaņēma kodu vēl?"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "try again"
+msgstr "mēģini vēlreiz"
+
+#: templates/autosignup/step_3_form.html:22
+msgid "Verify Your Mobile Number"
+msgstr "Pārbaudiet savu mobilā tālruņa numuru"
+
+#: templates/autosignup/step_3_verification.html:22
+msgid "Enter code sent to your phone below"
+msgstr "Ievadiet kodu nosūtīts uz jūsu tālruni tālāk"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "I am not getting a verification code for my number"
+msgstr "Es nesaņemu verifikācijas kodu manu numuru"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "skip"
+msgstr "izlaist"
+
+#: templates/autosignup/step_3_verification.html:34
+msgid "This needs some time don't close/refresh browser"
+msgstr "Tas ir nepieciešams kādu laiku nav tuvu / atsvaidzināt pārlūkprogrammu"
+
+#: templates/autosignup/thankyou.html:4
+msgid "Thank you for signing up to Grantcoin and providing us your information"
+msgstr ""
+"Paldies par pierakstīšanos uz Grantcoin un sniegt mums savu informāciju"
+
+#: templates/autosignup/thankyou.html:5
+msgid ""
+"Your account will be processed soon, return to this page to check on your "
+"status."
+msgstr ""
+
+#: templates/base.html:125
+msgid "Toggle navigation"
+msgstr "Pārslēgt navigācija"
+
+#: templates/base.html:154 templates/base.html:173 templates/base.html:230
+msgid "Hello User"
+msgstr "Sveiki User"
+
+#: templates/base.html:170
+msgid "Member Since "
+msgstr "Biedrs kopš"
+
+#: templates/base.html:184 templates/useraccount/index.html:7
+msgid "Account"
+msgstr "Konts"
+
+#: templates/base.html:187
+msgid "Landing"
+msgstr "nolaišanās"
+
+#: templates/base.html:195 templates/landing_base.html:101
+#: templates/landing_base.html:165 templates/profilesystem/index.html:5
+#: templates/profilesystem/index.html:42 templates/profilesystem/index.html:45
+#: templates/sidebar_home.html:27
+msgid "Profile"
+msgstr "Profils"
+
+#: templates/base.html:198
+msgid "Sign out"
+msgstr "Izrakstīties"
+
+#: templates/base.html:234 templates/publicusers/user.html:24
+#: templates/publicusers/userdetails.html:393
+#: templates/publicusers/userlist.html:40
+#: templates/publicusers/userlist_old.html:116
+#: templates/publicusers/users_old.html:25
+msgid "Online"
+msgstr "Online"
+
+#: templates/base.html:306
+msgid "System notice: "
+msgstr "Sistēmas paziņojums:"
+
+#: templates/base.html:349
+msgid "Language Settings"
+msgstr "valodas iestatījumi"
+
+#: templates/base.html:366
+msgid "Set"
+msgstr "Uzlikt"
+
+#: templates/base.html:381
+msgid "Filter Options"
+msgstr "filtra opcijas"
+
+#: templates/base.html:391
+msgid "Apply"
+msgstr "pieteikties"
+
+#: templates/crowdfunding/admin.html:4 templates/crowdfunding/admin.html:37
+#: templates/crowdfunding/admin.html:40 templates/sidebar_community.html:32
+msgid "Crowdfund Admin"
+msgstr "Crowdfund Admin"
+
+#: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:60
+msgid "Stats"
+msgstr "stats"
+
+#: templates/crowdfunding/admin.html:62
+msgid "Status"
+msgstr "stāvoklis"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Active"
+msgstr "aktīvs"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Stopped"
+msgstr "apturēts"
+
+#: templates/crowdfunding/admin.html:67 templates/crowdfunding/admin.html:83
+#: templates/crowdfunding/admin.html:127
+msgid "No Crowdfund started"
+msgstr "Nav Crowdfund sākusies"
+
+#: templates/crowdfunding/admin.html:86
+msgid "Start new"
+msgstr "sākt jaunu"
+
+#: templates/crowdfunding/admin.html:97
+msgid "Payments"
+msgstr "Maksājumi"
+
+#: templates/crowdfunding/index.html:4
+msgid "Crowdfunding"
+msgstr "kopfinansējuma"
+
+#: templates/crowdfunding/index.html:17 templates/crowdfunding/index.html:20
+#: templates/sidebar_community.html:30
+msgid "Crowdfund"
+msgstr "Crowdfund"
+
+#: templates/crowdfunding/index.html:32
+msgid "Watch video"
+msgstr "Skatīties video"
+
+#: templates/crowdfunding/index.html:34
+msgid "FUND"
+msgstr "FONDS"
+
+#: templates/crowdfunding/index.html:46
+msgid "Product Features"
+msgstr "Produkta īpašības"
+
+#: templates/crowdfunding/index.html:55
+msgid "Introduction"
+msgstr "ievads"
+
+#: templates/crowdfunding/index.html:77
+msgid "Fund Now"
+msgstr "Fund Tagad"
+
+#: templates/crowdfunding/index.html:84
+msgid "Card"
+msgstr "karte"
+
+#: templates/crowdfunding/index.html:92 templates/useraccount/index.html:175
+#: templates/useraccount/index.html:215 templates/useraccount/index.html:242
+#: useraccount/forms.py:8 useraccount/forms.py:27
+msgid "Amount"
+msgstr "summa"
+
+#: templates/crowdfunding/index.html:98
+msgid "Feedback"
+msgstr "Atsauksmes"
+
+#: templates/crowdfunding/payment_details.html:2
+msgid "User: "
+msgstr "lietotājs:"
+
+#: templates/crowdfunding/payment_details.html:3
+msgid "Amount: "
+msgstr "summa:"
+
+#: templates/crowdfunding/payment_details.html:4
+msgid "Date: "
+msgstr "Datums:"
+
+#: templates/crowdfunding/payment_details.html:5
+msgid "Charge ID(Stripe): "
+msgstr "Charge ID (Stripe):"
+
+#: templates/crowdfunding/payment_details.html:7
+#: templates/eblast/emailcampaign_sent.html:5
+msgid "Message: "
+msgstr "ziņojums:"
+
+#: templates/crowdfunding/payment_details.html:10
+msgid "Fail Reason: "
+msgstr "Fail Iemesls:"
+
+#: templates/crowdfunding/thankyou.html:3
+msgid "Thank You"
+msgstr "Paldies"
+
+#: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:20
+#: templates/dashboard/dashboard.html:23
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:10
+#: templates/groupsystem/admindashboard.html:15 templates/landing_base.html:97
+#: templates/landing_base.html:163 templates/publicusers/userlist.html:13
+#: templates/sidebar_group.html:36 templates/sidebar_group_admin.html:6
+#: templates/sidebar_home.html:4
+msgid "Dashboard"
+msgstr "mērinstrumentu panelis"
+
+#: templates/dashboard/dashboard.html:35 templates/profilesystem/index.html:202
+#: templates/publicusers/user.html:174
+msgid "References"
+msgstr "Atsauces"
+
+#: templates/dashboard/dashboard.html:45 templates/dashboard/dashboard.html:172
+msgid "Connections"
+msgstr "savienojumi"
+
+#: templates/dashboard/dashboard.html:55 templates/landing_base.html:118
+#: templates/landing_base.html:169
+msgid "Messages"
+msgstr "ziņojumi"
+
+#: templates/dashboard/dashboard.html:65 templates/dashboard/dashboard.html:257
+#: templates/useraccount/index.html:111 templates/useraccount/transfer.html:43
+msgid "Account Balance"
+msgstr "Konta atlikums"
+
+#: templates/dashboard/dashboard.html:66
+#: templates/notification/notification.html:19
+#: templates/notification/notification.html:26
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "units"
+msgstr "vienības"
+
+#: templates/dashboard/dashboard.html:75 templates/dashboard/dashboard.html:258
+#: templates/useraccount/index.html:123
+msgid "Next Release"
+msgstr "Nākamais izlaidums"
+
+#: templates/dashboard/dashboard.html:96 templates/useraccount/index.html:140
+msgid "Day"
+msgstr "diena"
+
+#: templates/dashboard/dashboard.html:101 templates/useraccount/index.html:145
+msgid "Hour"
+msgstr "Stunda"
+
+#: templates/dashboard/dashboard.html:106 templates/useraccount/index.html:150
+msgid "Minute"
+msgstr "minūte"
+
+#: templates/dashboard/dashboard.html:113
+#: templates/groupsystem/admindashboard.html:46
+#: templates/groupsystem/admindashboard.html:60
+#: templates/groupsystem/admindashboard.html:74
+#: templates/groupsystem/admindashboard.html:88
+msgid "More info"
+msgstr "Vairāk informācijas"
+
+#: templates/dashboard/dashboard.html:121 templates/publicusers/user.html:277
+msgid "Profile Completed"
+msgstr "Profils Pabeigts"
+
+#: templates/dashboard/dashboard.html:138 templates/publicusers/user.html:290
+msgid "Completed"
+msgstr "pabeigts"
+
+#: templates/dashboard/dashboard.html:144 templates/publicusers/user.html:296
+msgid "Not completed"
+msgstr "nav pabeigta"
+
+#: templates/dashboard/dashboard.html:150 templates/publicusers/user.html:302
+msgid "Not verified"
+msgstr "Nav pārbaudīts"
+
+#: templates/dashboard/dashboard.html:156 templates/publicusers/user.html:308
+msgid "Skipped"
+msgstr "izlaista"
+
+#: templates/dashboard/dashboard.html:182
+msgid "You have no connection to display data"
+msgstr "Jums nav nekāda sakara, lai parādītu datus,"
+
+#: templates/dashboard/dashboard.html:195
+msgid " Friends"
+msgstr "draugi"
+
+#: templates/dashboard/dashboard.html:196
+msgid " Families"
+msgstr "Ģimenes"
+
+#: templates/dashboard/dashboard.html:197
+msgid " Contacts"
+msgstr "Kontakti"
+
+#: templates/dashboard/dashboard.html:214
+msgid "New Members"
+msgstr "Jauni locekļi"
+
+#: templates/dashboard/dashboard.html:227
+msgid "Total Ekata Members"
+msgstr "Kopā Ekata deputāti"
+
+#: templates/dashboard/dashboard.html:242
+msgid "Active Members"
+msgstr "Aktīvie locekļi"
+
+#: templates/dashboard/dashboard.html:256
+msgid "Add Widget"
+msgstr "Pievienot logrīku"
+
+#: templates/dashboard/dashboard.html:259 templates/timelines/index.html:77
+#: templates/timelines/index.html:79
+msgid "Connection"
+msgstr "saistība"
+
+#: templates/dashboard/dashboard.html:260
+msgid "Profile Completion Ring"
+msgstr "Profils Komplektācija Ring"
+
+#: templates/dashboard/dashboard.html:270
+msgid "Website added"
+msgstr "Mājas lapa pievienots"
+
+#: templates/dashboard/dashboard.html:277
+msgid "Gender added"
+msgstr "dzimums pievienots"
+
+#: templates/dashboard/dashboard.html:284
+msgid "Phone added"
+msgstr "Tālrunis pievienots"
+
+#: templates/dashboard/dashboard.html:291
+msgid "Avatar added"
+msgstr "avatar pievienots"
+
+#: templates/dashboard/dashboard.html:298
+msgid "Address added"
+msgstr "adrese pievienots"
+
+#: templates/dashboard/dashboard.html:305
+msgid "Socialaccount added"
+msgstr "Socialaccount pievienots"
+
+#: templates/dashboard/dashboard.html:312
+msgid "Email added"
+msgstr "Email pievienots"
+
+#: templates/dashboard/dashboard.html:319
+msgid "Email verified"
+msgstr "Email pārbaudīta"
+
+#: templates/dashboard/dashboard.html:331
+#: templates/dashboard/dashboard.html:403
+msgid "Add website"
+msgstr "Pievienot mājas lapu"
+
+#: templates/dashboard/dashboard.html:332
+#: templates/dashboard/dashboard.html:338
+#: templates/dashboard/dashboard.html:344
+#: templates/dashboard/dashboard.html:350
+#: templates/dashboard/dashboard.html:356
+#: templates/dashboard/dashboard.html:362
+#: templates/dashboard/dashboard.html:368
+#: templates/dashboard/dashboard.html:377
+msgid " (skip)"
+msgstr "(Izlaist)"
+
+#: templates/dashboard/dashboard.html:337
+#: templates/dashboard/dashboard.html:408
+msgid "Add gender"
+msgstr "Pievienot dzimumu"
+
+#: templates/dashboard/dashboard.html:343
+#: templates/dashboard/dashboard.html:413
+msgid "Add phone"
+msgstr "Pievienot tālruni"
+
+#: templates/dashboard/dashboard.html:349
+#: templates/dashboard/dashboard.html:418
+msgid "Add avatar"
+msgstr "Pievienot avataru"
+
+#: templates/dashboard/dashboard.html:355
+#: templates/dashboard/dashboard.html:423
+msgid "Add address"
+msgstr "Pievienot adresi"
+
+#: templates/dashboard/dashboard.html:361
+#: templates/dashboard/dashboard.html:428
+msgid "Add socialaccount"
+msgstr "Pievienot socialaccount"
+
+#: templates/dashboard/dashboard.html:367
+#: templates/dashboard/dashboard.html:433
+msgid "Add email"
+msgstr "Pievienot e-pasta adresi"
+
+#: templates/dashboard/dashboard.html:376
+#: templates/dashboard/dashboard.html:391
+#: templates/dashboard/dashboard.html:441
+msgid "Verify email"
+msgstr "Pārbaudiet e-pastu"
+
+#: templates/dashboard/dashboard.html:392
+msgid "(skip)"
+msgstr "(Izlaist)"
+
+#: templates/eblast/editemailcampaign.html:6
+#: templates/eblast/emailtemplateedit.html:6
+msgid "Update"
+msgstr "Update"
+
+#: templates/eblast/emailcampaign.html:15
+msgid "Test send"
+msgstr "Test sūtīt"
+
+#: templates/eblast/emailcampaign.html:16
+#: templates/eblast/emailcampaign.html:45
+#: templates/eblast/emailcampaign.html:62
+#: templates/messagingsystem/chats.html:76
+#: templates/publicusers/userdetails.html:106
+#: templates/timelines/index.html:102
+#: templates/useraccount/transferunit.html:22
+msgid "Send"
+msgstr "sūtīt"
+
+#: templates/eblast/emailcampaign.html:18
+msgid "Resend"
+msgstr "vēlreiz"
+
+#: templates/eblast/emailcampaign.html:19
+msgid "Show tracking data"
+msgstr "Rādīt uzskaites dati"
+
+#: templates/eblast/emailcampaign.html:38
+msgid "Send a test email"
+msgstr "Nosūtīt testa e-pastu"
+
+#: templates/eblast/emailcampaign.html:55
+msgid "Send email"
+msgstr "Sūtīt e-pastu"
+
+#: templates/eblast/emailcampaign_page.html:4
+msgid "EmailCampaigns | eBlast"
+msgstr "EmailCampaigns | eBlast"
+
+#: templates/eblast/emailcampaign_page.html:10
+#: templates/sidebar_community.html:44
+msgid "Email Campaigns"
+msgstr "E-pasta kampaņas"
+
+#: templates/eblast/emailcampaign_page.html:13
+#: templates/eblast/emailgroups_page.html:13
+#: templates/eblast/emailtemplates_page.html:13
+#: templates/sidebar_community.html:36
+msgid "eBlast"
+msgstr "eBlast"
+
+#: templates/eblast/emailcampaign_page.html:14
+msgid "emailcampaigns"
+msgstr "emailcampaigns"
+
+#: templates/eblast/emailcampaign_page.html:37
+msgid "Campaign Lists"
+msgstr "kampaņas saraksti"
+
+#: templates/eblast/emailcampaign_page.html:45
+#: templates/eblast/emailcampaignform.html:3
+msgid "Create Campaign"
+msgstr "Izveidot kampaņu"
+
+#: templates/eblast/emailcampaign_page.html:75
+msgid "Sent"
+msgstr "nosūtīts"
+
+#: templates/eblast/emailcampaign_page.html:78
+msgid "Draft"
+msgstr "projekts"
+
+#: templates/eblast/emailcampaign_sent.html:2
+msgid "Sent to: "
+msgstr "Nosūtīts uz:"
+
+#: templates/eblast/emailcampaign_sent.html:3
+msgid "Subject: "
+msgstr "Temats:"
+
+#: templates/eblast/emailgroup.html:9 templates/eblast/emailgroup.html:63
+msgid "Add Recipient"
+msgstr "Pievienot adresātu"
+
+#: templates/eblast/emailgroup.html:10
+msgid "Upload CSV"
+msgstr "augšupielāde CSV"
+
+#: templates/eblast/emailgroup.html:42
+#: templates/groupsystem/groupdetails.html:121
+msgid "Unsubscribe"
+msgstr "Atteikties"
+
+#: templates/eblast/emailgroup.html:46
+#: templates/groupsystem/groupdetails.html:127
+msgid "Subscribe"
+msgstr "abonēt"
+
+#: templates/eblast/emailgroup.html:70 templates/profilesystem/index.html:135
+#: templates/profilesystem/index.html:174
+msgid "Add"
+msgstr "pievienot"
+
+#: templates/eblast/emailgroup.html:80
+msgid "Upload a CSV"
+msgstr "Augšupielādēt CSV"
+
+#: templates/eblast/emailgroup.html:87 templates/profilesystem/index.html:280
+msgid "Upload"
+msgstr "Upload"
+
+#: templates/eblast/emailgroupform.html:3
+#: templates/eblast/emailgroups_page.html:48
+msgid "Create List"
+msgstr "Izveidojiet sarakstu"
+
+#: templates/eblast/emailgroups_page.html:4
+msgid "EmailGroups | eBlast"
+msgstr "EmailGroups | eBlast"
+
+#: templates/eblast/emailgroups_page.html:10
+msgid "Email Groups"
+msgstr "E-pasta Grupas"
+
+#: templates/eblast/emailgroups_page.html:14
+msgid "emailgroups"
+msgstr "emailgroups"
+
+#: templates/eblast/emailgroups_page.html:40
+msgid "Group Lists"
+msgstr "grupu saraksti"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "emails"
+msgstr "e-pastu"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "email"
+msgstr "e-pasts"
+
+#: templates/eblast/emailtemplate.html:11
+msgid "Preview"
+msgstr "Preview"
+
+#: templates/eblast/emailtemplateform.html:3
+msgid "Add a new template"
+msgstr "Pievienojiet jaunu veidni"
+
+#: templates/eblast/emailtemplates_page.html:4
+msgid "EmailTemplates | eBlast"
+msgstr "EmailTemplates | eBlast"
+
+#: templates/eblast/emailtemplates_page.html:10
+#: templates/sidebar_community.html:43
+msgid "Email Templates"
+msgstr "E-pasta veidnes"
+
+#: templates/eblast/emailtemplates_page.html:14
+msgid "emailtemplates"
+msgstr "emailtemplates"
+
+#: templates/eblast/emailtemplates_page.html:40
+msgid "Template Lists"
+msgstr "Veidņu saraksti"
+
+#: templates/eblast/emailtemplates_page.html:48
+msgid "Create Template"
+msgstr "Izveidot veidni"
+
+#: templates/eblast/tracking_data.html:4
+msgid "Tracking data for "
+msgstr "Sekošanas dati"
+
+#: templates/eblast/tracking_data.html:11
+msgid "Emails Sent"
+msgstr "E-pasti Sent"
+
+#: templates/eblast/tracking_data.html:18
+msgid "Emails Opened"
+msgstr "E-pasti Atvērts"
+
+#: templates/emailtosms/index.html:4 templates/emailtosms/requestcarrier.html:4
+msgid "Email to sms"
+msgstr "E-pasts uz sms"
+
+#: templates/emailtosms/index.html:10
+msgid "Email to SMS"
+msgstr "Nosūtīt SMS"
+
+#: templates/emailtosms/index.html:13
+msgid "email to sms"
+msgstr "rakstiet sms"
+
+#: templates/emailtosms/index.html:33
+msgid "Help us to find working email to sms providers for your mobile number"
+msgstr ""
+"Palīdziet mums atrast darba e-pastu uz sms pakalpojumu sniedzējiem, lai jūsu "
+"mobilā tālruņa numuru"
+
+#: templates/emailtosms/index.html:35
+msgid ""
+"Please provide your mobile carrier, and number then verify you've received a "
+"text or not"
+msgstr ""
+
+#: templates/emailtosms/index.html:39
+msgid "Did you get a code on your mobile?"
+msgstr "Vai jūs saņemsiet kodu savā mobilajā?"
+
+#: templates/emailtosms/index.html:40
+msgid "This may take some time..."
+msgstr "Tas var aizņemt kādu laiku ..."
+
+#: templates/emailtosms/index.html:41
+msgid "Yes"
+msgstr "jā"
+
+#: templates/emailtosms/index.html:42
+msgid "No"
+msgstr "Nē"
+
+#: templates/emailtosms/index.html:46
+msgid "Thank you for helping us verify"
+msgstr "Paldies, ka palīdzat mums pārbaudīt"
+
+#: templates/emailtosms/index.html:47
+msgid "verify another"
+msgstr "pārbauda cits"
+
+#: templates/emailtosms/requestcarrier.html:8
+msgid "Request Carrier"
+msgstr "pieprasījums Carrier"
+
+#: templates/emailtosms/requestcarrier.html:26
+msgid "Thank you, This carrier will be added soon"
+msgstr "Paldies, šo pārvadātāju tiks drīzumā pievienoti"
+
+#: templates/emailtosms/verifierform.html:9
+msgid "Request to add your carrier if not listed"
+msgstr "Pieprasījums, lai pievienotu jūsu pārvadātājs, ja nav uzskaitīti"
+
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:14
+#: templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:21
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:14
+#: templates/groupsystem/bannedmembers.html:14
+#: templates/groupsystem/commentadmin.html:21
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:21
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:21
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:14
+#: templates/groupsystem/joinrequests.html:14
+#: templates/groupsystem/members.html:21 templates/groupsystem/members.html:92
+#: templates/groupsystem/postsadmin.html:14
+msgid "Admin"
+msgstr "admin"
+
+#: templates/groupsystem/admindashboard.html:13
+#: templates/groupsystem/adminnews.html:20
+#: templates/groupsystem/adminsettings.html:13
+#: templates/groupsystem/bannedmembers.html:13
+#: templates/groupsystem/commentadmin.html:20
+#: templates/groupsystem/customroles.html:20
+#: templates/groupsystem/defaultroles.html:20
+#: templates/groupsystem/editcommentpage.html:13
+#: templates/groupsystem/editpostpage.html:13
+#: templates/groupsystem/events.html:13
+#: templates/groupsystem/eventsadmin.html:13
+#: templates/groupsystem/groupdetails.html:20
+#: templates/groupsystem/joined_group.html:15
+#: templates/groupsystem/joinrequests.html:13
+#: templates/groupsystem/members.html:20
+#: templates/groupsystem/postdetails.html:13
+#: templates/groupsystem/posts.html:13 templates/groupsystem/postsadmin.html:13
+#: templates/groupsystem/subscribed_group.html:15
+msgid "Group"
+msgstr "grupa"
+
+#: templates/groupsystem/admindashboard.html:54
+msgid "New Request"
+msgstr "jauns pieprasījums"
+
+#: templates/groupsystem/admindashboard.html:68
+msgid "Pending posts"
+msgstr "Līdz posts"
+
+#: templates/groupsystem/admindashboard.html:82
+msgid "Pending comment"
+msgstr "Līdz komentārs"
+
+#: templates/groupsystem/adminnews.html:68
+msgid "No news!!"
+msgstr "Nav ziņu !!"
+
+#: templates/groupsystem/adminnews.html:76
+msgid "Create News"
+msgstr "Izveidot Jaunumi"
+
+#: templates/groupsystem/adminnews.html:99
+msgid "Edit news"
+msgstr "rediģēt ziņas"
+
+#: templates/groupsystem/adminsettings.html:40
+msgid "Send notification to members"
+msgstr "Nosūta paziņojumu locekļiem"
+
+#: templates/groupsystem/adminsettings.html:73
+#: templates/groupsystem/groupdetails.html:78
+msgid "About Us"
+msgstr "Par mums"
+
+#: templates/groupsystem/adminsettings.html:81
+msgid "Auto approve post: "
+msgstr "Auto apstiprināt post:"
+
+#: templates/groupsystem/adminsettings.html:89
+msgid "Auto approve comment: "
+msgstr "Auto apstiprināt komentāru:"
+
+#: templates/groupsystem/adminsettings.html:101
+msgid "Edit Group"
+msgstr "rediģēt Group"
+
+#: templates/groupsystem/adminsettings.html:120
+msgid "Create Notification"
+msgstr "Izveidot Paziņojums"
+
+#: templates/groupsystem/adminsettings.html:126
+#: templates/groupsystem/all_group.html:108
+#: templates/groupsystem/customroles.html:97
+msgid "Create"
+msgstr "izveidot"
+
+#: templates/groupsystem/all_group.html:5
+#: templates/groupsystem/all_group.html:40 templates/sidebar_community.html:12
+msgid "All Groups"
+msgstr "Visas grupas"
+
+#: templates/groupsystem/all_group.html:43 templates/landing_base.html:108
+#: templates/landing_base.html:167 templates/profilesystem/index.html:413
+#: templates/sidebar_community.html:6
+msgid "Groups"
+msgstr "grupas"
+
+#: templates/groupsystem/all_group.html:44
+msgid "all groups"
+msgstr "Visas grupas"
+
+#: templates/groupsystem/all_group.html:69
+#: templates/groupsystem/all_group.html:102
+msgid "Create Group"
+msgstr "Izveidot grupu"
+
+#: templates/groupsystem/bannedmembers.html:4
+msgid "Bannedmembers"
+msgstr "Bannedmembers"
+
+#: templates/groupsystem/bannedmembers.html:10
+#: templates/groupsystem/bannedmembers.html:15 templates/sidebar_group.html:98
+msgid "Banned Members"
+msgstr "aizliegta locekļi"
+
+#: templates/groupsystem/bannedmembers.html:44
+#: templates/groupsystem/editextraperm.html:3
+#: templates/groupsystem/joinrequests.html:44
+#: templates/groupsystem/members.html:61
+msgid "User"
+msgstr "lietotājs"
+
+#: templates/groupsystem/bannedmembers.html:45
+#: templates/groupsystem/joinrequests.html:45
+#: templates/groupsystem/members.html:63
+#: templates/messagingsystem/chats.html:175
+#: templates/messagingsystem/index.html:252
+msgid "Actions"
+msgstr "Pasākumi"
+
+#: templates/groupsystem/bannedmembers.html:58
+msgid "Lift Ban"
+msgstr "lift Ban"
+
+#: templates/groupsystem/commentadmin.html:17
+#: templates/groupsystem/commentadmin.html:22 templates/sidebar_group.html:71
+#: templates/sidebar_group_admin.html:41
+msgid "Comments"
+msgstr "komentāri"
+
+#: templates/groupsystem/commentadmin.html:55
+#: templates/groupsystem/editcommentpage.html:39
+msgid "Post: "
+msgstr "Post:"
+
+#: templates/groupsystem/commentadmin.html:56
+#: templates/groupsystem/editcommentpage.html:42
+msgid "Commented By: "
+msgstr "Komentēja By:"
+
+#: templates/groupsystem/commentadmin.html:58
+msgid "Comment: "
+msgstr "Komentārs:"
+
+#: templates/groupsystem/commentadmin.html:60
+#: templates/groupsystem/postsadmin.html:89
+msgid "edit"
+msgstr "rediģēt"
+
+#: templates/groupsystem/commentadmin.html:62
+msgid "approve"
+msgstr "apstiprināt"
+
+#: templates/groupsystem/commentadmin.html:71
+msgid "No comments!!"
+msgstr "Bez komentāriem!!"
+
+#: templates/groupsystem/creategroupsuccess.html:3
+msgid "Your new group is created"
+msgstr "ir izveidojis jaunu grupu"
+
+#: templates/groupsystem/creategroupsuccess.html:4
+msgid "Group UUID: "
+msgstr "Grupa UUID:"
+
+#: templates/groupsystem/creategroupsuccess.html:5
+msgid "Url: "
+msgstr "url:"
+
+#: templates/groupsystem/creategroupsuccess.html:6
+msgid "More Settings: "
+msgstr "Vairāk iestatījumi:"
+
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:56
+msgid "Custom roles"
+msgstr "Custom lomas"
+
+#: templates/groupsystem/customroles.html:17
+#: templates/groupsystem/customroles.html:22
+msgid "Custom Roles"
+msgstr "Custom Lomas"
+
+#: templates/groupsystem/customroles.html:47
+msgid "Create custom role"
+msgstr "Izveidot pielāgotu lomu"
+
+#: templates/groupsystem/customroles.html:68
+msgid "You don't have any custom roles defined"
+msgstr "Jums nav nekādu pasūtījuma lomas definēti"
+
+#: templates/groupsystem/customroles.html:76
+#: templates/groupsystem/defaultroles.html:62
+msgid "Permissions"
+msgstr "atļaujas"
+
+#: templates/groupsystem/customroles.html:91
+msgid "Create Custom Role"
+msgstr "Izveidot pielāgoto loma"
+
+#: templates/groupsystem/customroles.html:113
+msgid "You dont have permission to edit role"
+msgstr "Jums nav atļauts rediģēt lomu"
+
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:46
+msgid "Default roles"
+msgstr "noklusējuma lomas"
+
+#: templates/groupsystem/defaultroles.html:17
+#: templates/groupsystem/defaultroles.html:22
+msgid "Default Roles"
+msgstr "noklusējuma Lomas"
+
+#: templates/groupsystem/editcommentpage.html:10
+#: templates/groupsystem/editcommentpage.html:14
+#: templates/groupsystem/editpostpage.html:10
+#: templates/groupsystem/editpostpage.html:14
+#: templates/groupsystem/joined_group.html:16
+#: templates/groupsystem/subscribed_group.html:16
+msgid "admin"
+msgstr "admin"
+
+#: templates/groupsystem/editcommentpage.html:40
+#: templates/groupsystem/editpostpage.html:42
+msgid "Approved: "
+msgstr "apstiprināts:"
+
+#: templates/groupsystem/editcommentpage.html:41
+#: templates/groupsystem/editpostpage.html:43
+msgid "Approved By: "
+msgstr "Apstiprināja:"
+
+#: templates/groupsystem/editcommentpage.html:43
+msgid "Commented on: "
+msgstr "Komentēja:"
+
+#: templates/groupsystem/editcustomrole.html:3
+msgid "User who assigned with this role"
+msgstr "Lietotājs, kas piešķirts ar šo lomu"
+
+#: templates/groupsystem/editpostpage.html:39
+msgid "Creator: "
+msgstr "Creator:"
+
+#: templates/groupsystem/editpostpage.html:45
+msgid "Post Created on: "
+msgstr "Post Izveidots:"
+
+#: templates/groupsystem/eventform.html:7
+msgid "Clear"
+msgstr "skaidrs"
+
+#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:10
+#: templates/groupsystem/events.html:14 templates/groupsystem/events.html:38
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:10
+#: templates/groupsystem/eventsadmin.html:15
+#: templates/groupsystem/eventsadmin.html:50 templates/sidebar_group.html:11
+#: templates/sidebar_group.html:107 templates/sidebar_group_admin.html:77
+msgid "Events"
+msgstr "Notikumi"
+
+#: templates/groupsystem/events.html:88
+msgid "Startdate: "
+msgstr "Sākuma datums:"
+
+#: templates/groupsystem/events.html:90
+msgid "Enddate: "
+msgstr "Beigu datums:"
+
+#: templates/groupsystem/eventsadmin.html:40
+msgid "Create Event"
+msgstr "Izveidot notikumu"
+
+#: templates/groupsystem/groupdetails.html:89
+msgid "Leave Group"
+msgstr "atstājiet Group"
+
+#: templates/groupsystem/groupdetails.html:97
+#: templates/groupsystem/groupdetails.html:113
+msgid "Cancel Request"
+msgstr "Atcelt pieprasījums"
+
+#: templates/groupsystem/groupdetails.html:102
+#: templates/groupsystem/groupdetails.html:108
+msgid "Join Group"
+msgstr "Pievienoties grupai"
+
+#: templates/groupsystem/groupdetails.html:135
+msgid "Invite User"
+msgstr "Uzaicināt lietotāju"
+
+#: templates/groupsystem/groupdetails.html:142
+msgid "Go to Group Admin"
+msgstr "Iet uz grupas Admin"
+
+#: templates/groupsystem/joined_group.html:5
+#: templates/groupsystem/joined_group.html:12
+#: templates/profilesystem/index.html:588 templates/sidebar_community.html:13
+msgid "Joined Groups"
+msgstr "Pievienojies Grupas"
+
+#: templates/groupsystem/joinrequests.html:10
+#: templates/groupsystem/joinrequests.html:15
+msgid "Join Requests"
+msgstr "Pievienojies pieprasījumi"
+
+#: templates/groupsystem/joinrequests.html:57
+#: templates/groupsystem/postsadmin.html:79
+msgid "Approve"
+msgstr "apstiprināt"
+
+#: templates/groupsystem/joinrequests.html:60
+msgid "Deny"
+msgstr "noliegt"
+
+#: templates/groupsystem/members.html:48
+msgid "Add member"
+msgstr "Pievienot dalībnieku"
+
+#: templates/groupsystem/members.html:62
+msgid "Role"
+msgstr "loma"
+
+#: templates/groupsystem/members.html:87
+msgid "Ban Member"
+msgstr "Ban loceklis"
+
+#: templates/groupsystem/members.html:91
+msgid "SuperAdmin"
+msgstr "līmeņa administrators"
+
+#: templates/groupsystem/members.html:93
+msgid "Moderator"
+msgstr "starpnieks"
+
+#: templates/groupsystem/members.html:94
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:49 templates/publicusers/users.html:27
+msgid "Member"
+msgstr "Biedrs"
+
+#: templates/groupsystem/members.html:101
+msgid "Extra permission"
+msgstr "Extra atļauja"
+
+#: templates/groupsystem/members.html:118
+msgid "Edit User Perm"
+msgstr "Edit User Perm"
+
+#: templates/groupsystem/members.html:141
+#: templates/groupsystem/members.html:153
+#: templates/groupsystem/members.html:169
+#: templates/groupsystem/members.html:181
+#: templates/groupsystem/members.html:202
+#: templates/groupsystem/members.html:214
+#: templates/groupsystem/members.html:268
+msgid "Change role"
+msgstr "Mainīt loma"
+
+#: templates/groupsystem/members.html:231
+msgid "You dont have permissions to edit extra permissions"
+msgstr "Jums nav atļaujas rediģēt papildu atļaujas"
+
+#: templates/groupsystem/postdetails.html:72
+msgid "Like"
+msgstr "tāpat"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " likes"
+msgstr "patīk"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " comments"
+msgstr "komentāri"
+
+#: templates/groupsystem/posts.html:10 templates/groupsystem/posts.html:14
+#: templates/groupsystem/postsadmin.html:10
+#: templates/groupsystem/postsadmin.html:15 templates/sidebar_group.html:19
+#: templates/sidebar_group.html:54 templates/sidebar_group_admin.html:24
+msgid "Posts"
+msgstr "Posts"
+
+#: templates/groupsystem/posts.html:40 templates/groupsystem/posts.html:104
+#: templates/groupsystem/postsadmin.html:41
+#: templates/groupsystem/postsadmin.html:107
+msgid "Create Post"
+msgstr "Izveidot Post"
+
+#: templates/groupsystem/posts.html:84 templates/groupsystem/singlepost.html:32
+msgid "more"
+msgstr "vairāk"
+
+#: templates/groupsystem/posts.html:95 templates/groupsystem/postsadmin.html:99
+msgid "No Posts Yet!!"
+msgstr "Vēl nav nevienas ziņas !!"
+
+#: templates/groupsystem/postsadmin.html:79
+msgid "Not approved"
+msgstr "nav apstiprināts"
+
+#: templates/groupsystem/roledetails.html:10
+msgid "No such default role"
+msgstr "Nav tāda noklusējuma loma"
+
+#: templates/groupsystem/subscribed_group.html:5
+#: templates/groupsystem/subscribed_group.html:12
+#: templates/profilesystem/index.html:609 templates/sidebar_community.html:14
+msgid "Subscribed Groups"
+msgstr "abonētās Grupas"
+
+#: templates/hashtag/images.html:14
+msgid "You have no images uploaded"
+msgstr "Jums nav nevienas bildes augšupielādēta"
+
+#: templates/hashtag/index.html:4
+msgid "Hashtag Banner"
+msgstr "Atsauce Banner"
+
+#: templates/hashtag/index.html:38 templates/hashtag/index.html:41
+#: templates/landing_base.html:79 templates/landing_base.html:131
+#: templates/profilesystem/index.html:441
+msgid "Hashtag"
+msgstr "Atsauce"
+
+#: templates/hashtag/index.html:52
+msgid "Basic Income Hashtag Banner Campaign"
+msgstr "Basic Income hashtag Banner Campaign"
+
+#: templates/hashtag/index.html:53
+msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgstr ""
+"Pievienot Basic Income banner uz jūsu Facebook / Twitter profila fotoattēlu."
+
+#: templates/hashtag/index.html:57
+msgid "Add hashtag banner to your facebook account"
+msgstr "Pievienot hashtag baneri savā Facebook kontā"
+
+#: templates/hashtag/index.html:62
+msgid "Add hashtag banner to your twitter account"
+msgstr "Pievienot hashtag banner uz jūsu čivināt kontu"
+
+#: templates/hashtag/index.html:68
+msgid "You've not added facebook yet! Click the button to add"
+msgstr ""
+"Jūs esat nav pievienojis facebook vēl! Noklikšķiniet uz pogas, lai pievienotu"
+
+#: templates/hashtag/index.html:70
+msgid "Add Facebook"
+msgstr "Pievienot Facebook"
+
+#: templates/hashtag/index.html:78
+msgid "You've not added twitter yet! Click the button to add"
+msgstr ""
+"Jūs esat nav pievienojis twitter vēl! Noklikšķiniet uz pogas, lai pievienotu"
+
+#: templates/hashtag/index.html:80
+msgid "Add Twitter"
+msgstr "Pievienot Twitter"
+
+#: templates/hashtag/index.html:87
+msgid "Select from uploaded"
+msgstr "Izvēlieties no augšupielādēts"
+
+#: templates/hashtag/index.html:93
+msgid "Upload New Images"
+msgstr "Augšupielādēt jaunus attēlus"
+
+#: templates/hashtag/index.html:98
+msgid "Change Banner Color"
+msgstr "Mainīt Banner Color"
+
+#: templates/hashtag/index.html:102
+msgid "Make profile image"
+msgstr "Padarīt profila attēlu"
+
+#: templates/hashtag/index.html:108
+msgid "Download image"
+msgstr "Download image"
+
+#: templates/hashtag/index.html:121
+msgid "Upload Images"
+msgstr "augšupielādēt attēlus"
+
+#: templates/hashtag/index.html:255 templates/hashtag/index.html:271
+msgid "Upload to facebook"
+msgstr "Augšupielādēt facebook"
+
+#: templates/hashtag/index.html:305 templates/hashtag/index.html:321
+msgid "Upload to twitter"
+msgstr "Augšupielādēt twitter"
+
+#: templates/hashtag/index.html:356
+msgid "Uploading....."
+msgstr "Augšupielāde ....."
+
+#: templates/hashtag/index.html:365
+msgid "Support #basicincome project"
+msgstr "atbalsts"
+
+#: templates/hashtag/index.html:407
+msgid "Uploaded"
+msgstr "augšupielādēta"
+
+#: templates/hashtag/index.html:419
+msgid "Cant upload now!! try later"
+msgstr "Aprunāt augšupielādēt tagad !! mēģiniet vēlāk"
+
+#: templates/information/contact.html:4 templates/information/contact.html:10
+#: templates/information/contact.html:13 templates/information/success.html:4
+#: templates/information/success.html:10 templates/landing_base.html:78
+#: templates/landing_base.html:198 templates/profilesystem/index.html:154
+#: templates/profilesystem/index.html:373 templates/publicusers/user.html:65
+#: templates/publicusers/user.html:236
+msgid "Contact"
+msgstr "kontakts"
+
+#: templates/information/contact.html:24
+msgid "Get in touch with us"
+msgstr "Sazinieties ar mums"
+
+#: templates/information/contact.html:25
+msgid ""
+"if you have any comments or questions, please get in touch. We’d love to "
+"hear fom you."
+msgstr ""
+
+#: templates/information/index.html:4 templates/information/index.html:13
+#: templates/information/index.html:24 templates/profilesystem/index.html:434
+#: templates/sidebar_community.html:20
+msgid "Information"
+msgstr "informācija"
+
+#: templates/information/index.html:10
+msgid "About our system"
+msgstr "Par mūsu sistēmā"
+
+#: templates/information/success.html:13
+msgid "contact"
+msgstr "kontakts"
+
+#: templates/information/success.html:24
+msgid "Thank you for your interest"
+msgstr "Paldies par jūsu interesi"
+
+#: templates/information/success.html:25
+msgid "We will contact you shortly"
+msgstr "Mēs sazināsimies ar Jums tuvākajā laikā"
+
+#: templates/invitationsystem/checkinvitation.html:16
+msgid "Get access to ekata beta"
+msgstr "Piekļūt ekata beta"
+
+#: templates/invitationsystem/index.html:16
+#: templates/invitationsystem/sent.html:13 templates/landing/index.html:238
+msgid "Get your invite access key to the ekata beta"
+msgstr "Iegūstiet savu uzaicināt piekļuves atslēga uz ekata beta"
+
+#: templates/invitationsystem/sent.html:15 templates/landing/index.html:407
+msgid ""
+"Your request is sent!! You will get an invitation email soon with a link and "
+"invite key."
+msgstr ""
+
+#: templates/landing/hashtag.html:35
+msgid "Show Support"
+msgstr "Rādīt Support"
+
+#: templates/landing/hashtag.html:36
+#, fuzzy
+#| msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgid ""
+"In adding the #basicincome hashtag banner to your facebook and twitter "
+"profile !!"
+msgstr ""
+"Pievienot Basic Income banner uz jūsu Facebook / Twitter profila fotoattēlu."
+
+#: templates/landing/hashtag.html:48
+msgid "World Supporters of Basic Income"
+msgstr "Pasaules Atbalstītāji pamata ienākumu"
+
+#: templates/landing/hashtag.html:71
+msgid "Create my banner"
+msgstr "Izveidot banner"
+
+#: templates/landing/hashtag.html:73
+msgid "Login/Signup to be here"
+msgstr "Login / Reģistrēties būt šeit"
+
+#: templates/landing/index.html:40
+msgid ""
+"Ekata is a social platform for individuals, communities, associations, and "
+"municipalities. Ekata empowers you with the best of today’s online "
+"technologies -- digital tools to help you stay managed, connected, and "
+"informed. Whether you want to build a web presence for yourself or your "
+"organization, or you simply want a place to connect with others who share "
+"your interests and goals, Ekata is the place for you. Welcome!"
+msgstr ""
+
+#: templates/landing/index.html:55
+msgid "Communities"
+msgstr "Communities"
+
+#: templates/landing/index.html:56
+msgid ""
+"You're a social group that shares something in common. Small or large. "
+"Local, national, or global. Virtual or geographically based. Your common "
+"purpose and identity give you a sense of community. Ekata was built to align "
+"with how you wish to relate."
+msgstr ""
+
+#: templates/landing/index.html:60
+msgid "Associations"
+msgstr "Biedrības"
+
+#: templates/landing/index.html:61
+msgid ""
+"You're a homeowners or condo association, property or land trust, or "
+"nonprofit organization. An organized body of people who live or work "
+"together to improve your lives or society. Ekata gives you the tools to "
+"manage your association’s business, membership, activities and interests."
+msgstr ""
+
+#: templates/landing/index.html:65
+msgid "Municipalities"
+msgstr "pašvaldības"
+
+#: templates/landing/index.html:66
+msgid ""
+"You're a town, municipality or county. A government institution with "
+"incorporated status in a jurisdiction. The Ekata platform has the "
+"administrative tools you need to function efficiently and connect with "
+"elected officials, staff, and constituents in the 21st century."
+msgstr ""
+
+#: templates/landing/index.html:78
+msgid "Platform Vision"
+msgstr "platforma Vision"
+
+#: templates/landing/index.html:86
+msgid ""
+"Mark Witham, social entrepreneur and founder of the Ekata platform (Formally "
+"known as Basic Income Project), is passionate about empowering others with "
+"options to bring about their own social change."
+msgstr ""
+
+#: templates/landing/index.html:91
+msgid ""
+"We combine technology, knowledge, and imagination to build better social "
+"systems for this planet and future generations. Now we need you! Use the "
+"Ekata platform to help create a network for fulfilling lives, communities, "
+"and positive social change."
+msgstr ""
+
+#: templates/landing/index.html:106
+msgid "Social Responsiblity"
+msgstr "sociālā uzņemas atbildību"
+
+#: templates/landing/index.html:112
+msgid "Ekata has partnered with "
+msgstr "Ekata sadarbojas ar"
+
+#: templates/landing/index.html:112
+msgid ", a socially responsible digital currency which is distributed as "
+msgstr ", Sociāli atbildīga digitālā valūta, kas tiek izplatīts kā"
+
+#: templates/landing/index.html:112
+msgid ""
+" to people around the world. Powered by blockchain technology, Grantcoin is "
+"the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization "
+"with a mission for social good. Join Ekata and receive Grantcoin on a "
+"regular basis, for free. Spend it or give it away to other Ekata users -- "
+"artists, musicians, bloggers, nonprofits, or businesses."
+msgstr ""
+
+#: templates/landing/index.html:162
+msgid "Many Key Features"
+msgstr "Daudzi Galvenās iezīmes"
+
+#: templates/landing/index.html:165
+msgid "Group sites for art, music, news, politics, activism, and business."
+msgstr "Grupa vietas mākslas, mūzikas, ziņu, politiku, aktīvisma un biznesā."
+
+#: templates/landing/index.html:169
+msgid "Social communication through instant messaging, posts, and comments."
+msgstr ""
+"Sociālā komunikācija caur tūlītējo ziņojumapmaiņu, ziņas un komentārus."
+
+#: templates/landing/index.html:173
+msgid "Governance of members, staff roles, social forums, and member voting."
+msgstr ""
+"Pārvaldība locekļu, darbinieku lomas, sociālās forumos, un loceklis "
+"balsošanā."
+
+#: templates/landing/index.html:177
+msgid "Web of trust and a socially responsible currency system."
+msgstr "Web uzticības un sociāli atbildīgi valūtas sistēma."
+
+#: templates/landing/index.html:196
+msgid "More Features"
+msgstr "Citas iespējas"
+
+#: templates/landing/index.html:198
+msgid "API for building in app and feature integrations."
+msgstr "API ēku lietotņu un mākslas integrāciju."
+
+#: templates/landing/index.html:199
+msgid "Open Source."
+msgstr "Atvērtais avots."
+
+#: templates/landing/index.html:211
+msgid "#BasicIncome Hashtag Banner Campaign"
+msgstr ""
+
+#: templates/landing/index.html:217
+msgid ""
+"Help Ekata in showing your support for basic income by adding a custom "
+"colored #basicincome hashtag banner to your Twitter and Facebook profile "
+"photo. Together let us raise awareness!"
+msgstr ""
+
+#: templates/landing/index.html:219
+msgid "Click here to create and upload the banner"
+msgstr "Klikšķiniet šeit, lai izveidotu un augšupielādēt banner"
+
+#: templates/landing/index.html:418
+msgid "Please correct the errors"
+msgstr "Lūdzu izlabo kļūdas"
+
+#: templates/landing/news.html:39
+msgid "News and Stories"
+msgstr "Ziņas un stāsti"
+
+#: templates/landing/news.html:46
+msgid "Trending"
+msgstr "trending"
+
+#: templates/landing/news.html:80 templates/landing/newsdetail.html:45
+#: templates/profilesystem/index.html:343
+msgid "About Me"
+msgstr "Par mani"
+
+#: templates/landing_base.html:74
+msgid "Home"
+msgstr "Mājaslapa"
+
+#: templates/landing_base.html:75
+msgid "Features"
+msgstr "Citas iespējas"
+
+#: templates/landing_base.html:99 templates/landing_base.html:164
+msgid "My Account"
+msgstr "Mans Konts"
+
+#: templates/landing_base.html:104 templates/landing_base.html:166
+#: templates/profilesystem/index.html:406
+#: templates/publicusers/userdetails.html:50
+#: templates/publicusers/userlist_old.html:4
+#: templates/publicusers/userlist_old.html:44
+#: templates/publicusers/userlist_old.html:60
+msgid "Users"
+msgstr "Lietotāji"
+
+#: templates/landing_base.html:112 templates/landing_base.html:168
+#: templates/profilesystem/index.html:420 templates/sidebar_home.html:50
+#: templates/timelines/index.html:4 templates/timelines/index.html:18
+#: templates/timelines/index.html:21
+msgid "Timeline"
+msgstr "Timeline"
+
+#: templates/landing_base.html:127 templates/landing_base.html:170
+msgid "information"
+msgstr "informācija"
+
+#: templates/landing_base.html:134
+msgid "Customize link"
+msgstr "pielāgot saiti"
+
+#: templates/landing_base.html:136
+msgid "Sign-out"
+msgstr "Izrakstīties"
+
+#: templates/landing_base.html:161
+msgid "Links"
+msgstr "saites"
+
+#: templates/landing_base.html:171
+msgid "Create Hashtag"
+msgstr "Izveidot hashtag"
+
+#: templates/landing_base.html:177
+msgid "Social"
+msgstr "sociāls"
+
+#: templates/landing_base.html:186
+msgid "Signup for the Newsletter"
+msgstr "Pierakstīšanās uz Newsletter"
+
+#: templates/landing_base.html:200
+msgid "Please feel free to inquire more about the EKATA platform."
+msgstr "Lūdzu, nekautrējieties noskaidrot vairāk par EKATA platformu."
+
+#: templates/landing_base.html:249
+msgid "Powered by "
+msgstr "Powered by"
+
+#: templates/messagingsystem/chats.html:70
+msgid "Send Unit to: "
+msgstr "Sūtīt struktūrvienību, lai:"
+
+#: templates/messagingsystem/chats.html:87
+msgid "Request Unit from: "
+msgstr "Pieprasīt Unit no:"
+
+#: templates/messagingsystem/chats.html:93
+#: templates/publicusers/userdetails.html:123 templates/timelines/index.html:57
+#: templates/timelines/index.html:59
+msgid "Request"
+msgstr "pieprasījums"
+
+#: templates/messagingsystem/index.html:4
+#: templates/profilesystem/index.html:427
+msgid "Messaging"
+msgstr "Messaging"
+
+#: templates/messagingsystem/index.html:58
+#: templates/messagingsystem/index.html:61 templates/sidebar_home.html:56
+msgid "Messenger"
+msgstr "vēstnesis"
+
+#: templates/messagingsystem/index.html:93
+#: templates/messagingsystem/index.html:106
+msgid "Sorry you have no chats yet!!!"
+msgstr "Atvainojiet jums nav tērzēšanas vēl !!!"
+
+#: templates/messagingsystem/index.html:121
+msgid "Send Units"
+msgstr "sūtīt vienības"
+
+#: templates/messagingsystem/index.html:126
+msgid "Request Request"
+msgstr "pieprasījums pieprasījums"
+
+#: templates/messagingsystem/navbarmessage.html:37
+msgid "All caught up"
+msgstr "Visi nokļuvuši"
+
+#: templates/notification/notification.html:19
+#: templates/timelines/index.html:278 templates/timelines/timeline.html:54
+#: templates/timelines/timeline.html:72
+msgid "sent"
+msgstr "nosūtīts"
+
+#: templates/notification/notification.html:26
+msgid "requested"
+msgstr "pieprasīts"
+
+#: templates/notification/notification.html:33
+msgid "units released"
+msgstr "vienības izlaists"
+
+#: templates/notification/notification.html:40
+msgid "verfied as real user"
+msgstr "verfied kā reālu lietotāju"
+
+#: templates/notification/notification.html:47
+msgid "unverfied you"
+msgstr "verificēts jums"
+
+#: templates/notification/notification.html:54
+msgid "sent a connection request"
+msgstr "nosūtīja savienojuma pieprasījumu"
+
+#: templates/notification/notification.html:61
+msgid "canceled connection request"
+msgstr "atcelts savienojuma pieprasījums"
+
+#: templates/notification/notification.html:68
+msgid "accepted connection request"
+msgstr "pieņemts savienojuma pieprasījums"
+
+#: templates/notification/notification.html:75
+msgid "rejected connection request"
+msgstr "noraidīja savienojuma pieprasījums"
+
+#: templates/notification/notification.html:82
+msgid "disconnected you"
+msgstr "atvienots jums"
+
+#: templates/notification/notification.html:89
+msgid "invited you to group"
+msgstr "uzaicināja jūs uz grupas"
+
+#: templates/notification/notification.html:96
+msgid "sent a join request to group"
+msgstr "Nosūtīja pievienoties pieprasījumu grupai"
+
+#: templates/notification/notification.html:128
+msgid "All caught up!!"
+msgstr "Visi nokļuvuši !!"
+
+#: templates/profilesystem/address.html:43
+msgid "Click add button to add your address"
+msgstr "Noklikšķiniet uz Pievienot pogu, lai pievienotu savu adresi"
+
+#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:241
+msgid "Phone Office"
+msgstr "Tālrunis Office"
+
+#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:247
+msgid "Phone Home"
+msgstr "Tālrunis Home"
+
+#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:253
+msgid "Phone Mobile"
+msgstr "Phone Mobile"
+
+#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:259
+msgid "Phone Emergency"
+msgstr "Tālrunis Avārijas"
+
+#: templates/profilesystem/contact.html:30
+msgid "Click add button to add your phone number"
+msgstr "Noklikšķiniet uz Pievienot pogu, lai pievienotu savu tālruņa numuru"
+
+#: templates/profilesystem/documents.html:4
+msgid "Profile Images"
+msgstr "Padarīt profila attēlu"
+
+#: templates/profilesystem/documents.html:18
+msgid "Images"
+msgstr "augšupielādēt attēlus"
+
+#: templates/profilesystem/documents.html:34
+#: templates/profilesystem/index.html:223
+msgid "Documents"
+msgstr "dokumenti"
+
+#: templates/profilesystem/documents.html:50
+msgid "Legal"
+msgstr "juridisks"
+
+#: templates/profilesystem/emailaddress.html:4
+msgid "Email address associated with your account"
+msgstr "E-pasta adrese ir saistīta ar jūsu kontu"
+
+#: templates/profilesystem/emailaddress.html:17
+msgid "(Primary)"
+msgstr "(Primārs)"
+
+#: templates/profilesystem/emailaddress.html:30
+msgid "No email associated with your account"
+msgstr "Nav e-pasta saistīta ar jūsu kontu"
+
+#: templates/profilesystem/index.html:84 templates/profilesystem/index.html:307
+#: templates/publicusers/user.html:112
+msgid "Personal Information"
+msgstr "Personīgā informācija"
+
+#: templates/profilesystem/index.html:115
+#: templates/profilesystem/index.html:365
+msgid "Location"
+msgstr "vieta"
+
+#: templates/profilesystem/index.html:191 templates/publicusers/user.html:166
+msgid "Activities"
+msgstr "darbības"
+
+#: templates/profilesystem/index.html:198 templates/publicusers/user.html:170
+msgid "Activation date"
+msgstr "aktivizēšana datums"
+
+#: templates/profilesystem/index.html:210
+msgid "More"
+msgstr "vairāk"
+
+#: templates/profilesystem/index.html:236
+#: templates/publicusers/connections.html:74
+msgid "Search..."
+msgstr "Meklēt..."
+
+#: templates/profilesystem/index.html:253
+msgid "Upload Document"
+msgstr "koplietošanas dokumenti"
+
+#: templates/profilesystem/index.html:268
+msgid "Shared Documents"
+msgstr "koplietošanas dokumenti"
+
+#: templates/profilesystem/index.html:300
+msgid "Change Public Visibility"
+msgstr "Mainīt Public Redzamība"
+
+#: templates/profilesystem/index.html:318 templates/profilesystem/pinfo.html:42
+#: templates/publicusers/user.html:138
+msgid "Website"
+msgstr "mājas lapa"
+
+#: templates/profilesystem/index.html:325 templates/profilesystem/pinfo.html:23
+#: templates/publicusers/user.html:126
+msgid "Gender"
+msgstr "dzimums"
+
+#: templates/profilesystem/index.html:336
+msgid "Avatar"
+msgstr "Pievienot avataru"
+
+#: templates/profilesystem/index.html:361 templates/publicusers/user.html:188
+msgid "Address"
+msgstr "Adrese"
+
+#: templates/profilesystem/index.html:385
+msgid "Others"
+msgstr "pārējie"
+
+#: templates/profilesystem/index.html:389
+msgid "Profile completion"
+msgstr "Profile pabeigšana"
+
+#: templates/profilesystem/index.html:398
+msgid "Please edit profile information to change visibility"
+msgstr "Lūdzu rediģēt profila informāciju mainīt redzamību"
+
+#: templates/profilesystem/index.html:401
+msgid "Customize links of landing dropdown"
+msgstr "Pielāgot saites nosēšanās nolaižamo"
+
+#: templates/profilesystem/index.html:454
+msgid "Change password"
+msgstr "Paroles maiņa"
+
+#: templates/profilesystem/index.html:458
+msgid "Set password"
+msgstr "Set Password"
+
+#: templates/profilesystem/index.html:462
+msgid "View As Public"
+msgstr "Skatīt kā valsts"
+
+#: templates/profilesystem/index.html:473
+msgid "Linked social account"
+msgstr "Saistīts sociālā konts"
+
+#: templates/profilesystem/index.html:525
+msgid "Manage"
+msgstr "pārvaldīt"
+
+#: templates/profilesystem/index.html:540
+msgid "Reference"
+msgstr "atsauces"
+
+#: templates/profilesystem/index.html:552
+msgid "Refresh"
+msgstr "atsvaidzināt"
+
+#: templates/profilesystem/index.html:567
+msgid "My Groups"
+msgstr "manas grupas"
+
+#: templates/profilesystem/index.html:632
+msgid "Apps"
+msgstr "Apps"
+
+#: templates/profilesystem/index.html:648
+msgid "Sites"
+msgstr "Sites"
+
+#: templates/profilesystem/index.html:664
+msgid "Ads"
+msgstr "Reklāmas"
+
+#: templates/profilesystem/logdata.html:3
+msgid "Logs Details"
+msgstr "Logs Details"
+
+#: templates/profilesystem/logdata.html:6
+msgid "Last payment received"
+msgstr "saņemts pēdējais maksājums"
+
+#: templates/profilesystem/logdata.html:16
+msgid "Advertisement post"
+msgstr "Reklāma post"
+
+#: templates/profilesystem/logdata.html:20
+msgid "Last login "
+msgstr "Last login"
+
+#: templates/profilesystem/logdata.html:24
+msgid "Last payment sent"
+msgstr "Pēdējais maksājums nosūtīts"
+
+#: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
+msgid "Username"
+msgstr "Lietotājvārds"
+
+#: templates/profilesystem/pinfo.html:38
+msgid "Community"
+msgstr "kopiena"
+
+#: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
+msgid "About me"
+msgstr "Par mani"
+
+#: templates/profilesystem/profilecompletiontasks.html:5
+msgid "Add your website to complete your profile."
+msgstr "Pievienot savu interneta lapu, lai pabeigtu savu profilu."
+
+#: templates/profilesystem/profilecompletiontasks.html:11
+msgid "Add your gender to complete your profile."
+msgstr "Pievienot savu dzimumu, lai pabeigtu savu profilu."
+
+#: templates/profilesystem/profilecompletiontasks.html:17
+msgid "Add your contact number to complete your profile."
+msgstr "Pievienot savu kontakta numuru, lai pabeigtu savu profilu."
+
+#: templates/profilesystem/profilecompletiontasks.html:23
+msgid "Add a profile image to complete your profile."
+msgstr "Pievienojiet profila attēlu, lai pabeigtu savu profilu."
+
+#: templates/profilesystem/profilecompletiontasks.html:29
+msgid "Add your location to complete your profile."
+msgstr "Pievienot savu atrašanās vietu, lai pabeigtu savu profilu."
+
+#: templates/profilesystem/profilecompletiontasks.html:35
+msgid "Add a social account of yours to complete your profile."
+msgstr "Pievienot sociālo vērā jums, lai pabeigtu savu profilu."
+
+#: templates/profilesystem/profilecompletiontasks.html:41
+msgid "Add your email account to complete your profile."
+msgstr "Pievienot savu e-pasta kontu, lai pabeigtu savu profilu."
+
+#: templates/profilesystem/profilecompletiontasks.html:50
+msgid "Please verify your email address(resend verification)"
+msgstr "Lūdzu, pārbaudiet savu e-pasta adresi (Resend pārbaudes)"
+
+#: templates/profilesystem/reference.html:6
+msgid "Following user verified me"
+msgstr "Pēc lietotāja pārbaudīt mani"
+
+#: templates/profilesystem/reference.html:35
+msgid "Oops!! No Reference Yet"
+msgstr "Hmm !! Nē Atsauce Tomēr"
+
+#: templates/profilesystem/unlinksocial.html:69
+msgid "This is your last method to connect to this site."
+msgstr "Šī ir jūsu pēdējā metode, lai izveidotu savienojumu ar šo vietni."
+
+#: templates/profilesystem/unlinksocial.html:70
+msgid "You will be asked for a password if you proceed"
+msgstr "Jums tiks lūgts ievadīt paroli, ja jūs turpināt"
+
+#: templates/publicusers/connections.html:50
+#: templates/publicusers/userlist_old.html:48
+#, fuzzy, python-format
+#| msgid "Hello, %(username_t)s!"
+msgid "Hello, %(username_t)s!"
+msgstr "Sveiki,% (username_t) s!"
+
+#: templates/publicusers/connusers.html:31
+msgid "No connections"
+msgstr "Nav savienojumi"
+
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:46 templates/publicusers/users.html:27
+msgid "Staff"
+msgstr "personāls"
+
+#: templates/publicusers/user.html:22
+#: templates/publicusers/userdetails.html:401
+#: templates/publicusers/userlist.html:132
+#: templates/publicusers/userlist_old.html:124
+#: templates/publicusers/users_old.html:23
+msgid "lastseen: "
+msgstr "pēdējo reizi redzēts:"
+
+#: templates/publicusers/user.html:26
+#: templates/publicusers/userdetails.html:397
+#: templates/publicusers/userlist.html:43
+#: templates/publicusers/userlist_old.html:122
+#: templates/publicusers/userlist_old.html:128
+#: templates/publicusers/users_old.html:27
+msgid "Offline"
+msgstr "Bezsaistē"
+
+#: templates/publicusers/user.html:51 templates/timelines/timeline.html:147
+#: templates/timelines/timeline.html:154
+msgid "Disconnect"
+msgstr "atvienot"
+
+#: templates/publicusers/user.html:53
+msgid "Cancel connection request"
+msgstr "Atcelt savienojuma pieprasījumu"
+
+#: templates/publicusers/user.html:55
+msgid "Reject connection request"
+msgstr "Noraidīt savienojuma pieprasījumu"
+
+#: templates/publicusers/user.html:56
+msgid "Accept connection request"
+msgstr "Pieņemt savienojuma pieprasījumu"
+
+#: templates/publicusers/user.html:58
+msgid "Connect"
+msgstr "savienot"
+
+#: templates/publicusers/user.html:61
+msgid "Connection type"
+msgstr "savienojuma veids"
+
+#: templates/publicusers/user.html:64
+msgid "Family"
+msgstr "ģimene"
+
+#: templates/publicusers/user.html:69
+msgid "Friend Type"
+msgstr "Draugs Type"
+
+#: templates/publicusers/user.html:78
+msgid "Send request"
+msgstr "Nosūtīt pieprasījumu"
+
+#: templates/publicusers/user.html:87
+msgid "Unverify"
+msgstr "nepārbaudīta"
+
+#: templates/publicusers/user.html:90
+msgid "I verify this user"
+msgstr "Es pārbaudīt šo lietotāju"
+
+#: templates/publicusers/user.html:92
+#: templates/publicusers/userdetails.html:100
+msgid "Send Unit"
+msgstr "Nosūtīt Unit"
+
+#: templates/publicusers/user.html:93
+#: templates/publicusers/userdetails.html:117
+msgid "Request Unit"
+msgstr "pieprasījums Unit"
+
+#: templates/publicusers/user.html:94
+msgid "Message"
+msgstr "ziņa"
+
+#: templates/publicusers/userdetails.html:67
+msgid "Others who verify"
+msgstr "Citi, kas pārbauda"
+
+#: templates/publicusers/userlist.html:138
+#: templates/publicusers/userlist_old.html:130
+msgid "lastseen: unknown"
+msgstr "lastseen: nezināms"
+
+#: templates/publicusers/userlist_old.html:72
+msgid " Search Users "
+msgstr "Meklēt Lietotāji"
+
+#: templates/sidebar_apps.html:2
+msgid "Hashtag Campaign"
+msgstr "Atsauce Kampaņas"
+
+#: templates/sidebar_community.html:26
+msgid "About Our System"
+msgstr "Par Mūsu sistēma"
+
+#: templates/sidebar_community.html:27
+msgid "Contact Details"
+msgstr "Kontakta detaļas"
+
+#: templates/sidebar_community.html:42
+msgid "Email Lists"
+msgstr "E-pasta saraksti"
+
+#: templates/sidebar_group.html:5
+msgid "Homepage"
+msgstr "Mājaslapa"
+
+#: templates/sidebar_group.html:25 templates/sidebar_group.html:60
+#: templates/sidebar_group_admin.html:30
+msgid "Group's Posts"
+msgstr "Grupas ieraksti"
+
+#: templates/sidebar_group.html:26 templates/sidebar_group.html:61
+#: templates/sidebar_group_admin.html:31
+msgid "Member's Posts"
+msgstr "Biedra rakstus"
+
+#: templates/sidebar_group.html:31
+msgid "Group Admin Section"
+msgstr "Grupa Admin nodaļa"
+
+#: templates/sidebar_group.html:77 templates/sidebar_group_admin.html:47
+msgid "Not Approved"
+msgstr "nav apstiprināta"
+
+#: templates/sidebar_group.html:95 templates/sidebar_group_admin.html:65
+msgid "Requests"
+msgstr "pieprasījumi"
+
+#: templates/sidebar_group.html:117 templates/sidebar_group_admin.html:87
+msgid "Roles"
+msgstr "lomas"
+
+#: templates/sidebar_group.html:124 templates/sidebar_group_admin.html:94
+msgid "Defaults"
+msgstr "noklusējumus"
+
+#: templates/sidebar_group.html:127 templates/sidebar_group_admin.html:97
+msgid "Custom"
+msgstr "paraža"
+
+#: templates/sidebar_group.html:136 templates/sidebar_group_admin.html:106
+msgid "Account Signups"
+msgstr "Konta Pierakstīšanās"
+
+#: templates/sidebar_group_admin.html:68
+msgid "Banned members"
+msgstr "aizliegta biedri"
+
+#: templates/sidebar_home.html:10
+msgid "My Accounts"
+msgstr "Mani konti"
+
+#: templates/sidebar_home.html:17 templates/timelines/index.html:52
+#: templates/timelines/index.html:54 templates/useraccount/transfer.html:7
+#: templates/useraccount/transfer.html:13
+msgid "Transfer"
+msgstr "nodošana"
+
+#: templates/socialaccount/signup.html:9
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: templates/timelines/index.html:43
+msgid "Search: "
+msgstr "Meklēt:"
+
+#: templates/timelines/index.html:49
+msgid "Filters: "
+msgstr "filtri:"
+
+#: templates/timelines/index.html:62 templates/timelines/index.html:64
+msgid "Release"
+msgstr "atbrīvošana"
+
+#: templates/timelines/index.html:67 templates/timelines/index.html:69
+msgid "Verified"
+msgstr "pārbaudīta"
+
+#: templates/timelines/index.html:72 templates/timelines/index.html:74
+msgid "Unverified"
+msgstr "nepārbaudītiem"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "you sent"
+msgstr "jums nosūtīts"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "units to"
+msgstr "vienības"
+
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+msgid "sent you"
+msgstr "nosūtīti jums"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "you requested"
+msgstr "jūs pieprasījāt"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "units from"
+msgstr "vienības no"
+
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "requested you"
+msgstr "lūdza jums"
+
+#: templates/timelines/timeline.html:52 templates/timelines/timeline.html:70
+msgid "send"
+msgstr "sūtīt"
+
+#: templates/timelines/timeline.html:103
+msgid " units basic income released"
+msgstr "vienības pamata ienākumu atbrīvo"
+
+#: templates/timelines/timeline.html:115
+msgid "you verified"
+msgstr "jūs pārbaudīt"
+
+#: templates/timelines/timeline.html:115 templates/timelines/timeline.html:130
+msgid "as real user"
+msgstr "kā reālu lietotājs"
+
+#: templates/timelines/timeline.html:117
+msgid "verified you as real user"
+msgstr "pārbaudīt jūs kā reālu lietotāju"
+
+#: templates/timelines/timeline.html:130
+msgid "you unverified"
+msgstr "jūs nepārbaudītas"
+
+#: templates/timelines/timeline.html:132
+msgid "unverified you as real user"
+msgstr "nepārbaudītas jūs kā reālu lietotāju"
+
+#: templates/timelines/timeline.html:145
+msgid "Requested connection to "
+msgstr "Pieprasīta pieslēgums"
+
+#: templates/timelines/timeline.html:152
+msgid "sent connection request"
+msgstr "nosūtīts savienojuma pieprasījums"
+
+#: templates/timelines/timeline.html:156
+msgid "Reject"
+msgstr "noraidīt"
+
+#: templates/timelines/timeline.html:157
+msgid "Accept"
+msgstr "akceptēt"
+
+#: templates/timelines/timeline.html:162
+msgid "Connection type: "
+msgstr "Savienojuma veids:"
+
+#: templates/useraccount/index.html:83
+msgid "Pulse Points"
+msgstr "Pulse punkti"
+
+#: templates/useraccount/index.html:108 templates/useraccount/transfer.html:40
+msgid "Quick Review"
+msgstr "Quick pārskatīšana"
+
+#: templates/useraccount/index.html:113 templates/useraccount/transfer.html:45
+msgid "Units"
+msgstr "vienības"
+
+#: templates/useraccount/index.html:165
+msgid "Transactions"
+msgstr "darījumi"
+
+#: templates/useraccount/index.html:171
+msgid "Id"
+msgstr "id"
+
+#: templates/useraccount/index.html:172 templates/useraccount/index.html:207
+msgid "From"
+msgstr "no"
+
+#: templates/useraccount/index.html:173 templates/useraccount/index.html:203
+msgid "To"
+msgstr "līdz"
+
+#: templates/useraccount/index.html:174 templates/useraccount/index.html:211
+#: templates/useraccount/index.html:241
+msgid "Date"
+msgstr "Datums:"
+
+#: templates/useraccount/index.html:196
+msgid "Details"
+msgstr "Sīkāka informācija"
+
+#: templates/useraccount/index.html:234
+msgid "Basic Income Release"
+msgstr "Basic Income Izdošanas"
+
+#: templates/useraccount/index.html:255
+msgid "No release yet"
+msgstr "Nākamais izlaidums"
+
+#: templates/useraccount/index.html:286
+msgid "Please contact a Grantcoin staff on your Account Status"
+msgstr "Lūdzu, sazinieties ar Grantcoin darbiniekus par savu konta stāvokli"
+
+#: templates/useraccount/index.html:296
+msgid "Contact to add your organization account"
+msgstr "Sazinieties pievienot jūsu organizācijas kontu"
+
+#: templates/useraccount/transfer.html:16
+msgid "transfer"
+msgstr "nodošana"
+
+#: templates/useraccount/transfer.html:55
+msgid "Select User"
+msgstr "izvēlieties Lietotāja"
+
+#: templates/useraccount/transfer.html:80
+msgid "Search user"
+msgstr "Meklēt Lietotāji"
+
+#: templates/useraccount/transferunit.html:4
+msgid "Send Amount To"
+msgstr "Nosūtīt summa"
+
+#: useraccount/forms.py:7 useraccount/forms.py:26
+msgid "Instruction"
+msgstr "Instrukcija"
+
+#: useraccount/forms.py:17
+msgid "Amount can't exceed your balance"
+msgstr "Summa nevar pārsniegt savu bilanci"
+
+#: useraccount/views.py:119
+msgid "Transfer completed!!"
+msgstr "Transfer pabeigts !!"
+
+#: useraccount/views.py:187
+msgid "Request Sent!!"
+msgstr "Pieprasījums nosūtīts!!"

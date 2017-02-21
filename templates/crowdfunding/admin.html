@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles compress bootstrap_tags %}
+{% load i18n staticfiles compress bootstrap_tags humanize %}
 {% block title %}
     {% trans "Crowdfund Admin" %}
 {% endblock %}
@@ -48,19 +48,19 @@
             <div class="box box-solid">
                 <div class="box-body">
                     {% if crowdfund %}
-                    {% if crowdfund.ongoing %}
+                    {% if crowdfund.active %}
                     <div class="widget-box">
                         <h4 class="widget-box-title">{% trans "Stats" %}</h4>
                         <div class="progress">
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
-                            <p>{{ crowdfund.raised }}$/{{ crowdfund.goal }}$</p>
+                            <p>${{ crowdfund.raised|intcomma }}/${{ crowdfund.goal|intcomma }}</p>
                         </div>
                     </div>
                     <hr class="widget-box-separator">
                     {% endif %}
                     <div class="widget-box">
                         <h4 class="widget-box-title">{% trans "Status" %}</h4>
-                        <h1>{% if crowdfund.ongoing %}{% trans "Ongoing" %}{% else %}{% trans "Stopped" %}{% endif %}</h1>
+                        <h1>{% if crowdfund.active %}{% trans "Active" %}{% else %}{% trans "Stopped" %}{% endif %}</h1>
                     </div>
                     {% else %}
                     <div class="widget-box" style="text-align: center">
@@ -115,7 +115,7 @@
                                     <td>{{ payment.id }}</td>
                                     <td>{{ payment.user.username }}</td>
                                     <td>{{ payment.date|date:"m/d/Y" }}</td>
-                                    <td>{{ payment.amount }}</td>
+                                    <td>${{ payment.amount|intcomma }}</td>
                                     <td>{% if payment.is_success %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times"></i>{% endif %}</td>
                                     <td>{{ payment.charge_id }}</td>
                                </tr>

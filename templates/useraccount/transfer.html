@@ -39,9 +39,9 @@
                     <h3 class="box-title">{% trans "Quick Review" %}</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body text-center">
-                    <h3>Account Balance</h3>
+                    <h3>{% trans "Account Balance" %}</h3>
                     <h1 class="color-blue">{{ request.user.useraccount.balance }}</h1>
-                    <p>Units</p>
+                    <p>{% trans "Units" %}</p>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
 
@@ -75,7 +75,7 @@
                                     <button class="btn btn-flat btn-primary" type="button" id="usersearch"><span class="fa fa-search"></span></button>
                                 </span>
                                 {% endcomment %}
-                                <input type="text" id="query" class="form-control" name="q" placeholder="Search user">
+                                <input type="text" id="query" class="form-control" name="q" placeholder="{% trans "Search user" %}">
                             </div>
                         </div>
                         <div class="row" style="margin-top:10px;">

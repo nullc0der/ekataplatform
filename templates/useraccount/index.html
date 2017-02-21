@@ -107,9 +107,9 @@
                     <h3 class="box-title">{% trans "Quick Review" %}</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body text-center">
-                    <h3>Account Balance</h3>
+                    <h3>{% trans "Account Balance" %}</h3>
                     <h1 class="color-blue">{{ request.user.useraccount.balance }}</h1>
-                    <p>Units</p>
+                    <p>{% trans "Units" %}</p>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
 
@@ -136,17 +136,17 @@
                     <div class="col-md-12 text-center">
                         <div class="countdowntext">
                             <h4>
-                                Day
+                                {% trans "Day" %}
                             </h4>
                         </div>
                         <div class="countdowntext">
                             <h4>
-                                Hour
+                                {% trans "Hour" %}
                             </h4>
                         </div>
                         <div class="countdowntext">
                             <h4>
-                                Minute
+                                {% trans "Minute" %}
                             </h4>
                         </div>
                     </div>
@@ -167,11 +167,11 @@
                     <table class="table" id="transactiontable">
                         <thead>
                             <tr>
-                                <th data-visible="false">Id</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th data-sortable="true">Date</th>
-                                <th data-sortable="true">Amount</th>
+                                <th data-visible="false">{% trans "Id" %}</th>
+                                <th>{% trans "From" %}</th>
+                                <th>{% trans "To" %}</th>
+                                <th data-sortable="true">{% trans "Date" %}</th>
+                                <th data-sortable="true">{% trans "Amount" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -199,19 +199,19 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>To</td>
+                                    <td>{% trans "To" %}</td>
                                     <td id="transto">{{ first.to_user.username }}</td>
                                 </tr>
                                 <tr>
-                                    <td>From</td>
+                                    <td>{% trans "From" %}</td>
                                     <td id="transfrom">{{ first.from_user.username }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Date</td>
+                                    <td>{% trans "Date" %}</td>
                                     <td id="transdate">{{ first.date|date:"Y/m/d" }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Amount</td>
+                                    <td>{% trans "Amount" %}</td>
                                     <td id="transamount">{{ first.units }}</td>
                                 </tr>
                             </tbody>
@@ -237,8 +237,8 @@
                         <table class="table" id="releasetable">
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Amount</th>
+                                    <th>{% trans "Date" %}</th>
+                                    <th>{% trans "Amount" %}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -251,7 +251,7 @@
                             </tbody>
                         </table>
                     {% else %}
-                        <p>No release yet</p>
+                        <p>{% trans "No release yet" %}</p>
                     {% endif %}
                 </div>
             </div>

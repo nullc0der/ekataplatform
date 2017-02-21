@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.humanize',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -93,7 +94,9 @@ INSTALLED_APPS = [
     'emailtosms',
     'autosignup',
     'stripepayment',
-    'crowdfunding'
+    'crowdfunding',
+    'translation',
+    'countrylogger'
 ]
 
 
@@ -110,7 +113,8 @@ MIDDLEWARE_CLASSES = [
     'easy_timezones.middleware.EasyTimezoneMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
     'profilesystem.middleware.RemoveSkippedMiddleware',
-    'profilesystem.middleware.EkataIDMiddleware'
+    'profilesystem.middleware.EkataIDMiddleware',
+    'countrylogger.middleware.CountryMiddleWare'
 ]
 
 
@@ -234,14 +238,44 @@ USE_TZ = True
 LANGUAGES = [
     ('de', _('German')),
     ('en', _('English')),
-    ('as', _('Assamese')),
+    ('hi', _('Hindi')),
+    ('es', _('Spanish')),
+    ('bn', _('Bengali')),
+    ('be', _('Belarusian')),
+    ('pt', _('Portuguese')),
+    ('bg', _('Bulgarian')),
+    ('fr', _('French')),
+    ('hr', _('Croatian')),
+    ('el', _('Greek')),
+    ('cs', _('Czech')),
+    ('da', _('Danish')),
+    ('ar', _('Arabic')),
+    ('fi', _('Finland')),
+    ('fr', _('France')),
+    ('hu', _('Hungarian')),
+    ('id', _('Indonessian')),
+    ('it', _('Italian')),
+    ('ja', _('Japanese')),
+    ('ru', _('Russian')),
+    ('lv', _('Latvian')),
+    ('lt', _('Lithunian')),
+    ('ne', _('Nepali')),
+    ('no', _('Norwegian')),
+    ('ur', _('Urdu')),
+    ('pl', _('Polish')),
+    ('ro', _('Romanian')),
+    ('ta', _('Tamil')),
+    ('ko', _('Korean')),
+    ('si', _('Sinhalese')),
+    ('th', _('Thai'))
 ]
 
+
 EXTRA_LANG_INFO = {
-    'as': {
-        'code': 'as',
-        'name': 'assamese',
-        'name_local': u'\u0985\u09b8\u09ae\u09c0\u09af\u09bc\u09be',
+    'si': {
+        'code': 'si',
+        'name': 'Sinhalese',
+        'name_local': u'Sinhalese',
     }
 }
 
@@ -439,3 +473,6 @@ CHANNEL_LAYERS = {
 # Stripe Keys
 STRIPE_SECRET_KEY = get_env_variable('STRIPE_SECRET_KEY')
 STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')
+
+# Translate API
+GOOGLE_TRANSLATE_API_KEY = get_env_variable('GOOGLE_TRANSLATE_API_KEY')

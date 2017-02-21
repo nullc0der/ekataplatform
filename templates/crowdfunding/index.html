@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n staticfiles compress %}
+{% load i18n staticfiles compress humanize %}
 {% block title %}
     {% trans "Crowdfunding" %}
 {% endblock %}
@@ -29,6 +29,10 @@
                 <div class="box-body">
                     <div class="widget-box" style="text-align: center; margin-top: 8%">
                         <i class="fa fa-play-circle" style="font-size: 80px; color: #FFFFFF"></i>
+                        <p style="color: #fff; font-weight: 600; font-size: 18px">{% trans "Watch video" %}</p>
+                        {% if crowdfund.active %}
+                        <button class="fund-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "FUND" %}</button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -51,20 +55,20 @@
                         <h3>{% trans "Introduction" %}</h3>
                         <p style="font-weight: 300; line-height: 18px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
-                    {% if crowdfund.ongoing %}
+                    {% if crowdfund.active %}
                     <div class="widget-box">
                         <h4 class="widget-box-title">{% trans "Stats" %}</h4>
                         <div class="progress">
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
-                            <p>{{ crowdfund.raised }}$/{{ crowdfund.goal }}$</p>
+                            <p>${{ crowdfund.raised|intcomma }}/${{ crowdfund.goal|intcomma }}</p>
                         </div>
-                        <button class="material-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "Fund Now" %}</button>
                     </div>
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
+    {% if crowdfund.active %}
     <div class="modal fade" id="paymentFormModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -86,7 +90,7 @@
                   <div class="form-group" id="div_id_amount">
                       <label>
                           <span>{% trans "Amount" %}</span>
-                          <input class="form-control" type="number" name="amount" placeholder="Enter amount" step="0.01" min="1" required="required" id="id_amount">
+                          <input class="form-control" type="number" name="amount" placeholder="Enter amount" min="1" required="required" id="id_amount">
                       </label>
                   </div>
                   <div class="form-group" style="margin-bottom: 50px" id="div_id_message">
@@ -103,6 +107,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
 {% endblock %}
 {% block extrascripts %}
     <script src="https://js.stripe.com/v3/"></script>

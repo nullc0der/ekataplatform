@@ -1,0 +1,3631 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-20 21:07+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: autosignup/forms.py:150
+msgid "Max attempt reached! try later"
+msgstr "मैक्स प्रयास पहुंच गया! बाद में कोशिश करें"
+
+#: autosignup/forms.py:155 autosignup/forms.py:162
+msgid "Provide a valid mobile number"
+msgstr "एक वैध मोबाइल नंबर प्रदान करें"
+
+#: autosignup/forms.py:157 autosignup/forms.py:164
+msgid "Something went wrong! Try later"
+msgstr "कुछ गलत हो गया! बाद में कोशिश करें"
+
+#: ekatadeveloper/settings/base.py:237
+msgid "German"
+msgstr "जर्मन"
+
+#: ekatadeveloper/settings/base.py:238
+msgid "English"
+msgstr "अंग्रेज़ी"
+
+#: ekatadeveloper/settings/base.py:239
+msgid "Hindi"
+msgstr "हिंदी"
+
+#: ekatadeveloper/settings/base.py:240
+msgid "Spanish"
+msgstr "स्पेनिश"
+
+#: ekatadeveloper/settings/base.py:241
+msgid "Bengali"
+msgstr "बंगाली"
+
+#: ekatadeveloper/settings/base.py:242
+msgid "Belarusian"
+msgstr "बेलारूसी"
+
+#: ekatadeveloper/settings/base.py:243
+msgid "Portuguese"
+msgstr "पुर्तगाली"
+
+#: ekatadeveloper/settings/base.py:244
+msgid "Bulgarian"
+msgstr "बल्गेरियाई"
+
+#: ekatadeveloper/settings/base.py:245
+msgid "French"
+msgstr "फ्रेंच"
+
+#: ekatadeveloper/settings/base.py:246
+msgid "Croatian"
+msgstr "क्रोएशियाई"
+
+#: ekatadeveloper/settings/base.py:247
+msgid "Greek"
+msgstr "यूनानी"
+
+#: ekatadeveloper/settings/base.py:248
+msgid "Czech"
+msgstr "चेक"
+
+#: ekatadeveloper/settings/base.py:249
+msgid "Danish"
+msgstr "डेनिश"
+
+#: ekatadeveloper/settings/base.py:250
+msgid "Arabic"
+msgstr "अरबी"
+
+#: ekatadeveloper/settings/base.py:251
+msgid "Finland"
+msgstr "फिनलैंड"
+
+#: ekatadeveloper/settings/base.py:252
+msgid "France"
+msgstr "रद्द करना"
+
+#: ekatadeveloper/settings/base.py:253
+msgid "Hungarian"
+msgstr "हंगरी"
+
+#: ekatadeveloper/settings/base.py:254
+msgid "Indonessian"
+msgstr "Indonessian"
+
+#: ekatadeveloper/settings/base.py:255
+msgid "Italian"
+msgstr "इतालवी"
+
+#: ekatadeveloper/settings/base.py:256
+msgid "Japanese"
+msgstr "जापानी"
+
+#: ekatadeveloper/settings/base.py:257
+msgid "Russian"
+msgstr "रूसी"
+
+#: ekatadeveloper/settings/base.py:258
+msgid "Latvian"
+msgstr "लात्वीयावासी"
+
+#: ekatadeveloper/settings/base.py:259
+msgid "Lithunian"
+msgstr "Lithunian"
+
+#: ekatadeveloper/settings/base.py:260
+msgid "Nepali"
+msgstr "नेपाली"
+
+#: ekatadeveloper/settings/base.py:261
+msgid "Norwegian"
+msgstr "नार्वेजियन"
+
+#: ekatadeveloper/settings/base.py:262
+msgid "Urdu"
+msgstr "उर्दू"
+
+#: ekatadeveloper/settings/base.py:263
+msgid "Polish"
+msgstr "अंग्रेज़ी"
+
+#: ekatadeveloper/settings/base.py:264
+msgid "Romanian"
+msgstr "रोमानियाई"
+
+#: ekatadeveloper/settings/base.py:265
+msgid "Tamil"
+msgstr "परिवार"
+
+#: ekatadeveloper/settings/base.py:266
+msgid "Korean"
+msgstr "कोरियाई"
+
+#: ekatadeveloper/settings/base.py:267
+msgid "Sinhalese"
+msgstr "लंका का"
+
+#: ekatadeveloper/settings/base.py:268
+msgid "Thai"
+msgstr "थाई"
+
+#: groupsystem/forms.py:20
+msgid "Group Exist"
+msgstr "समूह मौजूद"
+
+#: groupsystem/forms.py:32 groupsystem/forms.py:89
+msgid "You must specify other group type"
+msgstr "आप अन्य समूह प्रकार निर्दिष्ट करना होगा"
+
+#: groupsystem/forms.py:38 groupsystem/forms.py:95
+msgid "You can't fill this field with default group types"
+msgstr "आप डिफ़ॉल्ट समूह प्रकारों के साथ इस क्षेत्र को भरने नहीं कर सकते"
+
+#: groupsystem/forms.py:186
+msgid "You can't choose a default role name"
+msgstr "आप एक डिफ़ॉल्ट भूमिका नाम का चयन नहीं कर सकते"
+
+#: groupsystem/forms.py:193
+msgid "Role exist"
+msgstr "भूमिका का अस्तित्व"
+
+#: groupsystem/models.py:18
+msgid "Art"
+msgstr "कला"
+
+#: groupsystem/models.py:19
+msgid "Activist"
+msgstr "कार्यकर्ता"
+
+#: groupsystem/models.py:20
+msgid "Political"
+msgstr "राजनीतिक"
+
+#: groupsystem/models.py:21 templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:17
+#: templates/groupsystem/adminnews.html:22
+#: templates/groupsystem/adminnews.html:49
+#: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:80
+#: templates/landing_base.html:173 templates/sidebar_group.html:44
+#: templates/sidebar_group_admin.html:14
+msgid "News"
+msgstr "समाचार"
+
+#: groupsystem/models.py:22 publicusers/views.py:328
+msgid "Business"
+msgstr "व्यापार"
+
+#: groupsystem/models.py:23
+msgid "Government"
+msgstr "सरकार"
+
+#: groupsystem/models.py:24
+msgid "Blog"
+msgstr "ब्लॉग"
+
+#: groupsystem/models.py:25
+msgid "Nonprofit Organization"
+msgstr "गैर लाभकारी संगठन"
+
+#: groupsystem/models.py:26
+msgid "Other"
+msgstr "अन्य"
+
+#: groupsystem/models.py:28 templates/profilesystem/index.html:311
+#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
+msgid "Name"
+msgstr "नाम"
+
+#: groupsystem/models.py:30
+msgid "Short About"
+msgstr "कम बारे में"
+
+#: groupsystem/models.py:32
+msgid "Long About"
+msgstr "लंबे समय के बारे"
+
+#: groupsystem/models.py:34
+msgid "Group Type"
+msgstr "समूह"
+
+#: groupsystem/models.py:36
+msgid "Please Specify"
+msgstr "कृपया निर्दिष्ट करें"
+
+#: groupsystem/models.py:84 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/views.py:110
+msgid "Can access admin"
+msgstr "व्यवस्थापक उपयोग कर सकते हैं"
+
+#: groupsystem/models.py:85 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/views.py:111 groupsystem/views.py:128 groupsystem/views.py:139
+msgid "Can read news"
+msgstr "खबर पढ़ सकते हैं"
+
+#: groupsystem/models.py:86 groupsystem/views.py:40 groupsystem/views.py:79
+msgid "Can create news"
+msgstr "खबर बना सकते हैं"
+
+#: groupsystem/models.py:87 groupsystem/views.py:41 groupsystem/views.py:80
+msgid "Can update news"
+msgstr "खबर अद्यतन कर सकते हैं"
+
+#: groupsystem/models.py:88 groupsystem/views.py:42 groupsystem/views.py:81
+msgid "Can delete news"
+msgstr "खबर नष्ट कर सकते हैं"
+
+#: groupsystem/models.py:89 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/views.py:112 groupsystem/views.py:129
+msgid "Can read post"
+msgstr "पोस्ट पढ़ सकते हैं"
+
+#: groupsystem/models.py:90 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/views.py:113 groupsystem/views.py:130
+msgid "Can create post"
+msgstr "पोस्ट बना सकते हैं"
+
+#: groupsystem/models.py:91 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/views.py:114
+msgid "Can update post"
+msgstr "पोस्ट को अद्यतन कर सकते हैं"
+
+#: groupsystem/models.py:92 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/views.py:115
+msgid "Can approve post"
+msgstr "पद स्वीकृत कर सकते हैं"
+
+#: groupsystem/models.py:93 groupsystem/views.py:47 groupsystem/views.py:86
+#: groupsystem/views.py:116
+msgid "Can delete post"
+msgstr "पद से हटा सकते हैं"
+
+#: groupsystem/models.py:94 groupsystem/views.py:48 groupsystem/views.py:87
+#: groupsystem/views.py:117 groupsystem/views.py:131
+msgid "Can read comment"
+msgstr "टिप्पणी पढ़ सकते हैं"
+
+#: groupsystem/models.py:95 groupsystem/views.py:49 groupsystem/views.py:88
+#: groupsystem/views.py:118 groupsystem/views.py:132
+msgid "Can create comment"
+msgstr "टिप्पणी बना सकते हैं"
+
+#: groupsystem/models.py:96 groupsystem/views.py:50 groupsystem/views.py:89
+#: groupsystem/views.py:119
+msgid "Can update comment"
+msgstr "टिप्पणी अद्यतन कर सकते हैं"
+
+#: groupsystem/models.py:97 groupsystem/views.py:51 groupsystem/views.py:90
+#: groupsystem/views.py:120
+msgid "Can approve comment"
+msgstr "टिप्पणी अनुमोदन कर सकते हैं"
+
+#: groupsystem/models.py:98 groupsystem/views.py:52 groupsystem/views.py:91
+#: groupsystem/views.py:121
+msgid "Can delete comment"
+msgstr "टिप्पणी नष्ट कर सकते हैं"
+
+#: groupsystem/models.py:99 groupsystem/views.py:53 groupsystem/views.py:92
+#: groupsystem/views.py:122 groupsystem/views.py:133
+msgid "Can like post"
+msgstr "पोस्ट की तरह कर सकते हैं"
+
+#: groupsystem/models.py:100 groupsystem/views.py:54
+msgid "Can create notification"
+msgstr "अधिसूचना बना सकते हैं"
+
+#: groupsystem/models.py:101 groupsystem/views.py:55 groupsystem/views.py:93
+#: groupsystem/views.py:123 groupsystem/views.py:134
+msgid "Can create invite"
+msgstr "को आमंत्रित बना सकते हैं"
+
+#: groupsystem/models.py:102 groupsystem/views.py:56 groupsystem/views.py:94
+msgid "Can add member"
+msgstr "सदस्य जोड़ सकते हैं"
+
+#: groupsystem/models.py:103 groupsystem/views.py:57 groupsystem/views.py:95
+msgid "Can remove member"
+msgstr "सदस्य को हटा सकते हैं"
+
+#: groupsystem/models.py:104 groupsystem/views.py:58 groupsystem/views.py:96
+msgid "Can ban member"
+msgstr "सदस्य प्रतिबंध लगा सकते हैं"
+
+#: groupsystem/models.py:105 groupsystem/views.py:59 groupsystem/views.py:97
+msgid "Can lift member ban"
+msgstr "सदस्य प्रतिबंध उठा सकता है"
+
+#: groupsystem/models.py:106 groupsystem/views.py:60 groupsystem/views.py:98
+msgid "Can change member role"
+msgstr "सदस्य भूमिका को बदल सकते हैं"
+
+#: groupsystem/models.py:107 groupsystem/views.py:61 groupsystem/views.py:99
+msgid "Can edit member permission"
+msgstr "सदस्य अनुमति संपादित कर सकते हैं"
+
+#: groupsystem/models.py:108 groupsystem/views.py:62 groupsystem/views.py:100
+#: groupsystem/views.py:124 groupsystem/views.py:135
+msgid "Can read events"
+msgstr "घटनाओं को पढ़ सकता है"
+
+#: groupsystem/models.py:109 groupsystem/views.py:63 groupsystem/views.py:101
+msgid "Can create events"
+msgstr "घटनाओं बना सकते हैं"
+
+#: groupsystem/models.py:110 groupsystem/views.py:64 groupsystem/views.py:102
+msgid "Can update events"
+msgstr "घटनाओं को अपडेट कर सकते"
+
+#: groupsystem/models.py:111 groupsystem/views.py:65 groupsystem/views.py:103
+msgid "Can delete events"
+msgstr "घटनाओं नष्ट कर सकते हैं"
+
+#: groupsystem/models.py:112 groupsystem/views.py:66 groupsystem/views.py:104
+msgid "Can read join requests"
+msgstr "शामिल होने का अनुरोध पढ़ सकते हैं"
+
+#: groupsystem/models.py:113 groupsystem/views.py:67 groupsystem/views.py:105
+msgid "Can approve join requests"
+msgstr "शामिल होने का अनुरोध अनुमोदन कर सकते हैं"
+
+#: groupsystem/models.py:114 groupsystem/views.py:68 groupsystem/views.py:106
+msgid "Can deny joinrequest"
+msgstr "joinrequest इनकार नहीं कर सकता"
+
+#: groupsystem/models.py:115 groupsystem/views.py:69
+msgid "Can edit group profile"
+msgstr "समूह प्रोफ़ाइल संपादित कर सकते हैं"
+
+#: groupsystem/models.py:116 groupsystem/views.py:70
+msgid "Can read role"
+msgstr "भूमिका पढ़ सकते हैं"
+
+#: groupsystem/models.py:117 groupsystem/views.py:71
+msgid "Can read custom role"
+msgstr "कस्टम भूमिका पढ़ सकते हैं"
+
+#: groupsystem/models.py:118 groupsystem/views.py:72
+msgid "Can update custom role"
+msgstr "कस्टम भूमिका अद्यतन कर सकते हैं"
+
+#: groupsystem/models.py:119 groupsystem/views.py:73
+msgid "Can create custom role"
+msgstr "कस्टम भूमिका बना सकते हैं"
+
+#: groupsystem/views.py:358
+msgid "Already requested"
+msgstr "पहले से अनुरोध किया गया"
+
+#: groupsystem/views.py:360
+msgid "You're banned from this group"
+msgstr "आप इस समूह से प्रतिबंधित कर रहे हैं"
+
+#: groupsystem/views.py:367 templates/autosignup/index.html:36
+#: templates/useraccount/index.html:50 templates/useraccount/index.html:65
+msgid "Subscribed"
+msgstr "सदस्यता ली"
+
+#: groupsystem/views.py:374
+msgid "Unsubscribed"
+msgstr "सदस्यता रद्द"
+
+#: groupsystem/views.py:380
+msgid "Request Canceled"
+msgstr "अनुरोध रद्द"
+
+#: groupsystem/views.py:411
+msgid "Leaved Group"
+msgstr "त्यागा समूह"
+
+#: groupsystem/views.py:567
+msgid "Post will be shown once admin/moderator approves"
+msgstr "एक बार व्यवस्थापक / मॉडरेटर को मंजूरी पोस्ट दिखाया जाएगा"
+
+#: groupsystem/views.py:626
+#, fuzzy
+#| msgid "Post will be shown once admin/moderator approves"
+msgid ""
+"Thank you for commenting your comment will show once a admin/moderator "
+"approves"
+msgstr "एक बार व्यवस्थापक / मॉडरेटर को मंजूरी पोस्ट दिखाया जाएगा"
+
+#: groupsystem/views.py:682
+msgid "You don't have permissions to edit settings"
+msgstr "आप सेटिंग्स को संपादित करने की अनुमति नहीं है"
+
+#: groupsystem/views.py:702
+msgid "You don't have permission to create news"
+msgstr "आप खबर बनाने के लिए अनुमति नहीं है"
+
+#: groupsystem/views.py:810
+msgid "You dont have permissions to approve post"
+msgstr "तुम न पद को मंजूरी के लिए अनुमतियाँ"
+
+#: groupsystem/views.py:830
+msgid "Post created"
+msgstr "पोस्ट बनाया"
+
+#: groupsystem/views.py:952
+msgid "You dont have permissions to approve comment"
+msgstr "तुम न टिप्पणी को मंजूरी के लिए अनुमतियाँ"
+
+#: groupsystem/views.py:997
+msgid "You don't have permission to add memeber"
+msgstr "आप सदस्य जोड़ने की अनुमति नहीं है"
+
+#: groupsystem/views.py:1035
+msgid "You dont have permission to remove member"
+msgstr "तुम न सदस्य को दूर करने की अनुमति"
+
+#: groupsystem/views.py:1075
+msgid "You dont have permission to ban member"
+msgstr "तुम न सदस्य पर प्रतिबंध लगाने की अनुमति"
+
+#: groupsystem/views.py:1126
+msgid "You don't have permissions to change member role"
+msgstr "आप सदस्य भूमिका बदलने के लिए अनुमति नहीं है"
+
+#: groupsystem/views.py:1236
+msgid "You don't have permission to approve request"
+msgstr "आप अनुरोध को स्वीकार करने के लिए अनुमति नहीं है"
+
+#: groupsystem/views.py:1249
+msgid "You don't have permission to deny request"
+msgstr "आप अनुरोध से इनकार करने के लिए अनुमति नहीं है"
+
+#: groupsystem/views.py:1288
+msgid "Users invited"
+msgstr "उपयोगकर्ताओं को आमंत्रित किया"
+
+#: groupsystem/views.py:1506
+msgid "Role created, reload page to edit permissions"
+msgstr "भूमिका बनाया, फिर से लोड अनुमतियों को संपादित करने के लिए पेज"
+
+#: groupsystem/views.py:1519
+msgid "You don't have permission to create custom role"
+msgstr "आप कस्टम भूमिका बनाने के लिए अनुमति नहीं है"
+
+#: groupsystem/views.py:1555
+msgid "Role permission changed"
+msgstr "भूमिका अनुमति बदल"
+
+#: groupsystem/views.py:1598
+msgid "User permission changed"
+msgstr "उपयोगकर्ता की अनुमति बदल"
+
+#: information/models.py:10
+msgid "First Name"
+msgstr "पहला नाम"
+
+#: information/models.py:11
+msgid "Last Name"
+msgstr "भेजा अंतिम भुगतान"
+
+#: information/models.py:13
+msgid "Company Name"
+msgstr "कंपनी का नाम"
+
+#: information/models.py:14 templates/eblast/emailcampaign_sent.html:2
+#: templates/profilesystem/index.html:515
+msgid "Email Address"
+msgstr "ईमेल पता"
+
+#: information/models.py:16
+msgid "Telephone Number"
+msgstr "घर का नंबर"
+
+#: information/models.py:19
+msgid "Comment"
+msgstr "टिप्पणियाँ"
+
+#: profilesystem/forms.py:22
+msgid "Usernames can only contain letters, digits and @/./+/-/_."
+msgstr "उपयोगकर्ता नाम केवल अक्षर, अंक और @ / शामिल कर सकते हैं / / -। / _।"
+
+#: profilesystem/forms.py:31
+msgid "Username already taken"
+msgstr "उपयोगकर्ता नाम पहले ही लिया जा चुका है"
+
+#: profilesystem/models.py:20
+msgid "Male"
+msgstr "नर"
+
+#: profilesystem/models.py:21
+msgid "Female"
+msgstr "महिला"
+
+#: profilesystem/models.py:166 templates/profilesystem/address.html:5
+#: templates/publicusers/user.html:193
+msgid "House Number"
+msgstr "घर का नंबर"
+
+#: profilesystem/models.py:167 templates/profilesystem/address.html:11
+#: templates/publicusers/user.html:199
+msgid "Street"
+msgstr "सड़क"
+
+#: profilesystem/models.py:168 templates/profilesystem/address.html:17
+#: templates/publicusers/user.html:205
+msgid "Zip Code"
+msgstr "पिन कोड"
+
+#: profilesystem/models.py:169 templates/profilesystem/address.html:23
+#: templates/publicusers/user.html:211
+msgid "City"
+msgstr "शहर"
+
+#: profilesystem/models.py:170 templates/profilesystem/address.html:29
+#: templates/publicusers/user.html:217
+msgid "State"
+msgstr "राज्य"
+
+#: profilesystem/models.py:171 templates/profilesystem/address.html:35
+#: templates/publicusers/user.html:223
+msgid "Country"
+msgstr "देश"
+
+#: publicusers/views.py:183 templates/groupsystem/adminnews.html:113
+#: templates/groupsystem/adminsettings.html:165
+msgid "Success"
+msgstr "सफलता"
+
+#: publicusers/views.py:185
+msgid "You already thumb uped this user"
+msgstr "आप पहले से ही अंगूठे इस उपयोगकर्ता uped"
+
+#: publicusers/views.py:292
+msgid "Friend type"
+msgstr "मित्र के प्रकार"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:71
+msgid "Best"
+msgstr "श्रेष्ठ"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:63
+#: templates/publicusers/user.html:72
+msgid "Friend"
+msgstr "दोस्त"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:73
+msgid "Soulmate"
+msgstr "जान से प्यारा"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:74
+msgid "Acquaintance"
+msgstr "जान पहचान"
+
+#: publicusers/views.py:297
+msgid "Family type"
+msgstr "परिवार प्रकार"
+
+#: publicusers/views.py:299
+msgid "Father"
+msgstr "पिता"
+
+#: publicusers/views.py:300
+msgid "Son"
+msgstr "बेटा"
+
+#: publicusers/views.py:301
+msgid "Husband"
+msgstr "पति"
+
+#: publicusers/views.py:302
+msgid "Brother"
+msgstr "भाई"
+
+#: publicusers/views.py:303
+msgid "Grandfather"
+msgstr "दादा"
+
+#: publicusers/views.py:304
+msgid "Grandson"
+msgstr "पोता"
+
+#: publicusers/views.py:305
+msgid "Uncle"
+msgstr "चाचा"
+
+#: publicusers/views.py:306
+msgid "Nephew"
+msgstr "भतीजा"
+
+#: publicusers/views.py:307 publicusers/views.py:316
+msgid "Cousin"
+msgstr "चचेरा भाई"
+
+#: publicusers/views.py:308
+msgid "Mother"
+msgstr "मां"
+
+#: publicusers/views.py:309
+msgid "Daughter"
+msgstr "बेटी"
+
+#: publicusers/views.py:310
+msgid "Wife"
+msgstr "पत्नी"
+
+#: publicusers/views.py:311
+msgid "Sister"
+msgstr "बहन"
+
+#: publicusers/views.py:312
+msgid "Grandmother"
+msgstr "दादी मा"
+
+#: publicusers/views.py:313
+msgid "Granddaughter"
+msgstr "पोती"
+
+#: publicusers/views.py:314
+msgid "Aunt"
+msgstr "चाची"
+
+#: publicusers/views.py:315
+msgid "Niece"
+msgstr "भांजी"
+
+#: publicusers/views.py:317
+msgid "Parent"
+msgstr "माता-पिता"
+
+#: publicusers/views.py:318
+msgid "Child"
+msgstr "बच्चा"
+
+#: publicusers/views.py:319
+msgid "Spouse"
+msgstr "पति या पत्नी"
+
+#: publicusers/views.py:320
+msgid "Sibling"
+msgstr "भाई"
+
+#: publicusers/views.py:321
+msgid "Grandparent"
+msgstr "दादा-दादी"
+
+#: publicusers/views.py:322
+msgid "Grandchild"
+msgstr "पोता"
+
+#: publicusers/views.py:327
+msgid "Contact type"
+msgstr "संपर्क प्रकार"
+
+#: publicusers/views.py:328
+msgid "Personal"
+msgstr "निजी"
+
+#: publicusers/views.py:343
+msgid "connection already sent by "
+msgstr "कनेक्शन पहले से ही द्वारा भेजे गए"
+
+#: publicusers/views.py:382
+msgid "A request is sent to "
+msgstr "एक अनुरोध करने के लिए भेजा जाता है"
+
+#: publicusers/views.py:401
+msgid "Connection accepted"
+msgstr "कनेक्शन स्वीकार किए जाते हैं"
+
+#: publicusers/views.py:443
+msgid "Canceled connection request"
+msgstr "रद्द की गई कनेक्शन अनुरोध"
+
+#: publicusers/views.py:445
+msgid "Rejected connection"
+msgstr "अस्वीकृत कनेक्शन"
+
+#: publicusers/views.py:447
+msgid "Disconneted"
+msgstr "Disconneted"
+
+#: publicusers/views.py:449 templates/groupsystem/eventsadmin.html:111
+msgid "Success!!"
+msgstr "सफलता!!"
+
+#: templates/403.html:4
+msgid "Permission denied"
+msgstr "अनुमति नहीं मिली"
+
+#: templates/403.html:10
+msgid "Oops!! You don't have permissions to view this page"
+msgstr "उफ़ !! आप इस पेज को देखने के लिए अनुमति नहीं है"
+
+#: templates/403.html:12 templates/404.html:12 templates/500.html:12
+msgid "Return to dashboard"
+msgstr "डैशबोर्ड पर लौटें"
+
+#: templates/404.html:4
+msgid "Page Not Found"
+msgstr "पृष्ठ नहीं मिला"
+
+#: templates/404.html:10
+msgid "Oops!! The requested url can't be found in this server"
+msgstr "उफ़ !! अनुरोध किया गया URL इस सर्वर में पाया नहीं जा सकता"
+
+#: templates/500.html:4
+msgid "Server Error"
+msgstr "सर्वर त्रुटि"
+
+#: templates/500.html:10
+msgid "Something is not working!! Try again later"
+msgstr "कुछ काम नहीं कर रहा है !! बाद में पुन: प्रयास करें"
+
+#: templates/account/disclaimer.html:4 templates/landing_base.html:172
+msgid "Disclaimer"
+msgstr "अस्वीकरण"
+
+#: templates/account/disclaimer.html:28
+msgid "WEBSITE DISCLAIMER"
+msgstr "वेबसाइट अस्वीकरण"
+
+#: templates/account/disclaimer.html:30
+msgid "No warranties"
+msgstr "कोई वारंटी"
+
+#: templates/account/disclaimer.html:32
+msgid ""
+"This website is provided “as is” without any representations or warranties, "
+"express or implied. "
+msgstr ""
+
+#: templates/account/disclaimer.html:33
+msgid ""
+"makes no representations or warranties in relation to this website or the "
+"information and materials provided on this website. "
+msgstr ""
+
+#: templates/account/disclaimer.html:34
+msgid "Without prejudice to the generality of the foregoing paragraph, "
+msgstr "पूर्वगामी पैरा की व्यापकता पर प्रतिकूल प्रभाव डाले बिना,"
+
+#: templates/account/disclaimer.html:34
+msgid "does not warrant that:"
+msgstr "कि वारंट नहीं है:"
+
+#: templates/account/disclaimer.html:36
+msgid "this website will be constantly available, or available at all; or"
+msgstr "इस वेबसाइट पर सभी लगातार उपलब्ध है, या उपलब्ध हो जाएगा; या"
+
+#: templates/account/disclaimer.html:37
+msgid ""
+"the information on this website is complete, true, accurate or non-"
+"misleading."
+msgstr ""
+
+#: templates/account/disclaimer.html:39
+msgid ""
+"Nothing on this website constitutes, or is meant to constitute, advice of "
+"any kind. "
+msgstr ""
+
+#: templates/account/disclaimer.html:40
+msgid "Limitations of liability"
+msgstr "दायित्व की सीमाएं"
+
+#: templates/account/disclaimer.html:42
+msgid ""
+"will not be liable to you (whether under the law of contact, the law of "
+"torts or otherwise) in relation to the contents of, or use of, or otherwise "
+"in connection with, this website:"
+msgstr ""
+
+#: templates/account/disclaimer.html:44
+msgid "for any indirect, special or consequential loss; or"
+msgstr "किसी अप्रत्यक्ष, विशेष या परिणामी हानि के लिए; या"
+
+#: templates/account/disclaimer.html:45
+msgid ""
+"for any business losses, loss of revenue, income, profits or anticipated "
+"savings, loss of contracts or business relationships, loss of reputation or "
+"goodwill, or loss or corruption of information or data."
+msgstr ""
+
+#: templates/account/disclaimer.html:47
+msgid "These limitations of liability apply even if "
+msgstr "दायित्व की इन सीमाओं को भले ही लागू"
+
+#: templates/account/disclaimer.html:47
+msgid " has been expressly advised of the potential loss."
+msgstr "स्पष्ट रूप से संभावित नुकसान की सलाह दी गई है।"
+
+#: templates/account/disclaimer.html:48
+msgid "Exceptions"
+msgstr "अपवाद"
+
+#: templates/account/disclaimer.html:50
+msgid ""
+"Nothing in this website disclaimer will exclude or limit any warranty "
+"implied by law that it would be unlawful to exclude or limit; and nothing in "
+"this website disclaimer will exclude or limit "
+msgstr ""
+
+#: templates/account/disclaimer.html:50
+msgid "'s liability in respect of any:"
+msgstr "किसी के संबंध में एस &#39;दायित्व:"
+
+#: templates/account/disclaimer.html:52
+msgid "death or personal injury caused by "
+msgstr "मौत या चोट की वजह से व्यक्तिगत"
+
+#: templates/account/disclaimer.html:52
+msgid "'s negligence;"
+msgstr "की लापरवाही;"
+
+#: templates/account/disclaimer.html:53
+msgid "fraud or fraudulent misrepresentation on the part of "
+msgstr "धोखाधड़ी या गलत बयानी की ओर से धोखाधड़ी"
+
+#: templates/account/disclaimer.html:53
+msgid " or"
+msgstr "या"
+
+#: templates/account/disclaimer.html:54
+msgid "matter which it would be illegal or unlawful for "
+msgstr "बात यह गैर-कानूनी या गैर कानूनी के लिए होगा जो"
+
+#: templates/account/disclaimer.html:54
+msgid ""
+" to exclude or limit, or to attempt or purport to exclude or limit, its "
+"liability."
+msgstr ""
+
+#: templates/account/disclaimer.html:57
+msgid "Reasonableness"
+msgstr "reasonableness"
+
+#: templates/account/disclaimer.html:59
+msgid ""
+"By using this website, you agree that the exclusions and limitations of "
+"liability set out in this website disclaimer are reasonable.If you do not "
+"think they are reasonable, you must not use this website."
+msgstr ""
+
+#: templates/account/disclaimer.html:60
+msgid "Other parties"
+msgstr "अन्य पार्टियाँ"
+
+#: templates/account/disclaimer.html:62
+msgid "You accept that, as a limited liability entity, "
+msgstr "आप स्वीकार करते हैं कि, एक सीमित देयता इकाई के रूप में,"
+
+#: templates/account/disclaimer.html:62
+msgid ""
+" has an interest in limiting the personal liability of its officers and "
+"employees. You agree that you will not bring any claim personally against "
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid ""
+"'s officers or employees in respect of any losses you suffer in connection "
+"with the website."
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"[Without prejudice to the foregoing paragraph,] you agree that the "
+"limitations of warranties and liability set out in this website disclaimer "
+"will protect"
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"'s officers, employees, agents, subsidiaries, successors, assigns and sub-"
+"contractors as well as "
+msgstr ""
+
+#: templates/account/disclaimer.html:64
+msgid "Unenforceable provisions"
+msgstr "अप्रवर्तनीय प्रावधानों"
+
+#: templates/account/disclaimer.html:66
+msgid ""
+"If any provision of this website disclaimer is, or is found to be, "
+"unenforceable under applicable law, that will not affect the enforceability "
+"of the other provisions of this website disclaimer."
+msgstr ""
+
+#: templates/account/email.html:5 templates/account/email.html:8
+msgid "Manage Email"
+msgstr "ईमेल प्रबंधित"
+
+#: templates/account/email.html:10
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "निम्न ई-मेल पतों को अपने खाते के साथ जुड़े रहे हैं:"
+
+#: templates/account/email.html:26
+msgid "(P)"
+msgstr "(पी)"
+
+#: templates/account/email.html:40
+msgid "Make Primary"
+msgstr "प्राथमिक बनाएं"
+
+#: templates/account/email.html:41
+msgid "Re-send Verification"
+msgstr "सत्यापन पुनः भेजें"
+
+#: templates/account/email.html:42 templates/eblast/emailgroup.html:50
+#: templates/groupsystem/members.html:84
+msgid "Remove"
+msgstr "हटाना"
+
+#: templates/account/email.html:54
+msgid "Add E-mail"
+msgstr "ई-मेल जोड़े"
+
+#: templates/account/email.html:59
+msgid "Back to profile"
+msgstr "वापस प्रोफ़ाइल"
+
+#: templates/account/email.html:64
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "आप वास्तव में चयनित ई-मेल पते को दूर करना चाहते हैं?"
+
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You have received this to confirm your email in the %(site_domain)s "
+"community platform.\n"
+"\n"
+"Please click this link to confirm your email %(activate_url)s\n"
+msgstr ""
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "ईमेल पते की पुष्टि करें"
+
+#: templates/account/email_confirm.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: templates/account/email_confirm.html:21
+msgid "Confirm"
+msgstr "की पुष्टि करें"
+
+#: templates/account/email_confirm.html:28
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: templates/account/login.html:6
+msgid "Login"
+msgstr "लॉग इन करें"
+
+#: templates/account/login.html:9
+msgid "Sign in to start your session"
+msgstr "अपने सत्र शुरू करने के लिए साइन इन करें"
+
+#: templates/account/login.html:18
+msgid "Log In"
+msgstr "लॉग इन करें"
+
+#: templates/account/login.html:34
+msgid "Forgot Password?"
+msgstr "पासवर्ड भूल गए?"
+
+#: templates/account/login.html:36 templates/account/signup.html:9
+#: templates/socialaccount/signup.html:8
+msgid "Register a new membership"
+msgstr "एक नई सदस्यता रजिस्टर"
+
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:17
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+#: templates/account/password_reset_from_key.html:21
+msgid "Change Password"
+msgstr "पासवर्ड बदलें"
+
+#: templates/account/password_change.html:11
+msgid "Change your password"
+msgstr "अपना पासवर्ड बदलें"
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+msgid "Password Reset"
+msgstr "पासवर्ड दुबारा ठीक करें"
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:22
+msgid "Reset My Password"
+msgstr "अपना पासवर्ड रीसेट करें"
+
+#: templates/account/password_reset.html:26
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr "हमसे संपर्क करें यदि आप किसी भी मुसीबत अपने पासवर्ड को रीसेट है।"
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr "बुरा टोकन"
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:25
+msgid "Your password is now changed."
+msgstr "आपका पासवर्ड अब बदल गया है।"
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "पासवर्ड सेट करें"
+
+#: templates/account/rform.html:10 templates/socialaccount/signup.html:17
+msgid "Register"
+msgstr "रजिस्टर"
+
+#: templates/account/rform.html:30 templates/account/rform.html:54
+#: templates/account/rform.html:78 templates/account/rform.html:102
+msgid ""
+"This project is a new social platform to simulate and promote  the basic "
+"income"
+msgstr ""
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid "Please read the"
+msgstr "कृपया पढ़ें"
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid " Disclaimer"
+msgstr "अस्वीकरण"
+
+#: templates/account/rform.html:36 templates/account/rform.html:60
+#: templates/account/rform.html:84 templates/account/rform.html:108
+#: templates/autosignup/community_signupedit.html:10
+#: templates/timelines/timeline.html:149
+msgid "Cancel"
+msgstr "रद्द करना"
+
+#: templates/account/rform.html:39 templates/account/rform.html:63
+#: templates/account/rform.html:87 templates/account/rform.html:111
+msgid "Agree"
+msgstr "इस बात से सहमत"
+
+#: templates/account/signup.html:11
+msgid "I already have a membership"
+msgstr "मैं पहले से ही एक सदस्यता है"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr "पंजीकरण अब बंद"
+
+#: templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed for beta site"
+msgstr "हमें खेद है, लेकिन वर्तमान में साइन अप बीटा साइट के लिए बंद कर दिया है"
+
+#: templates/account/signup_closed.html:11
+msgid "Please signup to"
+msgstr "के लिए पंजीकरण करें"
+
+#: templates/account/signup_closed.html:11
+msgid "main site"
+msgstr "मुख्य साइट"
+
+#: templates/autosignup/additional_step.html:6
+#: templates/autosignup/complete_previous_step.html:6
+#: templates/autosignup/step_1_form.html:6
+#: templates/autosignup/step_2_form.html:6
+#: templates/autosignup/step_2_verification.html:6
+#: templates/autosignup/step_3_form.html:6
+#: templates/autosignup/step_3_verification.html:6
+msgid "Name and Address"
+msgstr "नाम और पता"
+
+#: templates/autosignup/additional_step.html:9
+#: templates/autosignup/complete_previous_step.html:9
+#: templates/autosignup/step_1_form.html:9
+#: templates/autosignup/step_2_form.html:9
+#: templates/autosignup/step_2_verification.html:9
+#: templates/autosignup/step_3_form.html:9
+#: templates/autosignup/step_3_verification.html:9
+msgid "Email"
+msgstr "ईमेल"
+
+#: templates/autosignup/additional_step.html:12
+#: templates/autosignup/complete_previous_step.html:12
+#: templates/autosignup/step_1_form.html:12
+#: templates/autosignup/step_2_form.html:12
+#: templates/autosignup/step_2_verification.html:12
+#: templates/autosignup/step_3_form.html:12
+#: templates/autosignup/step_3_verification.html:12
+#: templates/profilesystem/index.html:377
+msgid "Phone No"
+msgstr "फोन नंबर"
+
+#: templates/autosignup/additional_step.html:15
+#: templates/autosignup/complete_previous_step.html:16
+#: templates/autosignup/step_1_form.html:16
+#: templates/autosignup/step_2_form.html:16
+#: templates/autosignup/step_2_verification.html:16
+#: templates/autosignup/step_3_form.html:16
+#: templates/autosignup/step_3_verification.html:16
+msgid "Docs"
+msgstr "डॉक्स"
+
+#: templates/autosignup/community_signupedit.html:7
+#: templates/autosignup/settings.html:118
+msgid "Fetch Twilio Data"
+msgstr "Twilio डेटा लाने"
+
+#: templates/autosignup/community_signupedit.html:8
+#: templates/autosignup/signupinfo.html:207
+#: templates/eblast/emailcampaign.html:13 templates/eblast/emailgroup.html:11
+#: templates/eblast/emailtemplate.html:9
+msgid "Delete"
+msgstr "मिटाना"
+
+#: templates/autosignup/community_signupedit.html:9
+msgid "Save"
+msgstr "बचाना"
+
+#: templates/autosignup/complete_previous_step.html:21
+msgid "Please complete previous steps"
+msgstr "पिछले चरणों को पूरा करें"
+
+#: templates/autosignup/index.html:4
+msgid "MyAccounts"
+msgstr "मेरा खाता"
+
+#: templates/autosignup/index.html:8
+msgid "Myaccounts"
+msgstr "मेरा खाता"
+
+#: templates/autosignup/index.html:26 templates/sidebar_home.html:16
+#: templates/useraccount/index.html:13 templates/useraccount/index.html:16
+#: templates/useraccount/index.html:40
+msgid "Accounts"
+msgstr "हिसाब किताब"
+
+#: templates/autosignup/index.html:33 templates/useraccount/index.html:47
+msgid "DummyDB"
+msgstr "DummyDB"
+
+#: templates/autosignup/index.html:45 templates/useraccount/index.html:59
+msgid "Grantcoin"
+msgstr "Grantcoin"
+
+#: templates/autosignup/index.html:48 templates/useraccount/index.html:73
+msgid "Signup"
+msgstr "साइन अप करें"
+
+#: templates/autosignup/index.html:57
+msgid "The pulse"
+msgstr "नब्ज"
+
+#: templates/autosignup/index.html:60 templates/useraccount/index.html:86
+msgid "Coming soon"
+msgstr "जल्द आ रहा है"
+
+#: templates/autosignup/index.html:81 templates/useraccount/index.html:266
+#: templates/useraccount/index.html:283
+msgid "Signup to Grantcoin"
+msgstr "Grantcoin के लिए पंजीकरण"
+
+#: templates/autosignup/index.html:87 templates/eblast/emailcampaign.html:44
+#: templates/eblast/emailcampaign.html:61 templates/eblast/emailgroup.html:69
+#: templates/eblast/emailgroup.html:86
+#: templates/groupsystem/groupdetails.html:186
+#: templates/profilesystem/index.html:96 templates/profilesystem/index.html:127
+#: templates/profilesystem/index.html:166 templates/useraccount/index.html:272
+#: templates/useraccount/index.html:302
+msgid "Close"
+msgstr "बंद करे"
+
+#: templates/autosignup/index.html:88 templates/autosignup/settings.html:48
+#: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:103
+#: templates/crowdfunding/update_crowdfund.html:9
+#: templates/eblast/emailcampaignform.html:11
+#: templates/eblast/emailgroupform.html:11
+#: templates/eblast/emailtemplateform.html:11
+#: templates/groupsystem/adminnews.html:83
+#: templates/groupsystem/adminsettings.html:108
+#: templates/groupsystem/editcommentpage.html:50
+#: templates/groupsystem/editcustomrole.html:6
+#: templates/groupsystem/editnews.html:6
+#: templates/groupsystem/editpostpage.html:52
+#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:110
+#: templates/groupsystem/postsadmin.html:113
+#: templates/information/contact.html:32
+#: templates/invitationsystem/checkinvitation.html:31
+#: templates/invitationsystem/index.html:20
+#: templates/landing/getinvitationform.html:4
+#: templates/profilesystem/index.html:102
+#: templates/profilesystem/index.html:139
+#: templates/profilesystem/index.html:178 templates/useraccount/index.html:273
+#: templates/useraccount/index.html:303
+msgid "Submit"
+msgstr "जमा करें"
+
+#: templates/autosignup/settings.html:4 templates/autosignup/settings.html:10
+msgid "Signups settings"
+msgstr "पंजीकरण सेटिंग्स"
+
+#: templates/autosignup/settings.html:13 templates/autosignup/signups.html:4
+#: templates/autosignup/signups.html:10 templates/autosignup/signups.html:13
+#: templates/autosignup/signups.html:38
+msgid "Signups"
+msgstr "पंजीकरण"
+
+#: templates/autosignup/settings.html:14
+msgid "Signup Settings"
+msgstr "साइनअप सेटिंग"
+
+#: templates/autosignup/settings.html:24
+msgid "Autosignup settings"
+msgstr "Autosignup सेटिंग्स"
+
+#: templates/autosignup/settings.html:45
+msgid "KM"
+msgstr "केएम"
+
+#: templates/autosignup/settings.html:54
+msgid "Approved Email Template"
+msgstr "स्वीकृत ईमेल टेम्पलेट"
+
+#: templates/autosignup/settings.html:56
+msgid "Select from one"
+msgstr "एक से चयन"
+
+#: templates/autosignup/settings.html:57
+msgid "Default"
+msgstr "चूक"
+
+#: templates/autosignup/settings.html:69
+msgid "Or"
+msgstr "या"
+
+#: templates/autosignup/settings.html:75
+msgid "File must be html document"
+msgstr "फ़ाइल एचटीएमएल दस्तावेज़ होना चाहिए"
+
+#: templates/autosignup/settings.html:82
+msgid "Invite Code"
+msgstr "निमंत्रण कोड"
+
+#: templates/autosignup/settings.html:88
+msgid "Status:"
+msgstr "स्थिति:"
+
+#: templates/autosignup/settings.html:96
+msgid "Code:"
+msgstr "कोड:"
+
+#: templates/autosignup/settings.html:109
+msgid "Upload and Download CSV"
+msgstr "अपलोड और डाउनलोड सीएसवी"
+
+#: templates/autosignup/settings.html:120
+msgid "Download example copy"
+msgstr "डाउनलोड उदाहरण प्रतिलिपि"
+
+#: templates/autosignup/settings.html:126
+msgid "Uploaded CSVs"
+msgstr "अपलोड की CSVs"
+
+#: templates/autosignup/settings.html:167
+msgid "Select range"
+msgstr "श्रेणी का चयन करें"
+
+#: templates/autosignup/settings.html:169
+#: templates/autosignup/settings.html:235
+msgid "Download Member Data CSV"
+msgstr "डाउनलोड सदस्य डेटा सीएसवी"
+
+#: templates/autosignup/sfilter.html:5 templates/autosignup/signups.html:57
+#: templates/groupsystem/admindashboard.html:40
+#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:17
+#: templates/groupsystem/members.html:22 templates/publicusers/userlist.html:4
+#: templates/publicusers/userlist.html:10
+#: templates/publicusers/userlist.html:14 templates/sidebar_community.html:2
+#: templates/sidebar_group.html:87 templates/sidebar_group.html:93
+#: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
+msgid "Members"
+msgstr "सदस्यों"
+
+#: templates/autosignup/sfilter.html:14 templates/autosignup/signups.html:66
+#: templates/crowdfunding/admin.html:76
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:10
+#: templates/groupsystem/adminsettings.html:15
+#: templates/profilesystem/index.html:292 templates/sidebar_group.html:144
+#: templates/sidebar_group_admin.html:114
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+#: templates/autosignup/sfilter.html:26 templates/autosignup/signups.html:78
+msgid "No signups yet!! "
+msgstr "अभी तक कोई भी पंजीकरण !!"
+
+#: templates/autosignup/signupclosed.html:4
+msgid "Signup is closed! try later"
+msgstr "चुनाव पंजीकरण बंद कर दिया है! बाद में कोशिश करें"
+
+#: templates/autosignup/signuphistories.html:36
+msgid "This signup is not associated with any history"
+msgstr "इस साइनअप किसी भी इतिहास के साथ संबद्ध नहीं है"
+
+#: templates/autosignup/signupinfo.html:13
+#: templates/autosignup/signupinfo.html:42
+msgid "Validated"
+msgstr "मान्य"
+
+#: templates/autosignup/signupinfo.html:19
+msgid "This email id was used for these previous signup "
+msgstr "इस ईमेल आईडी इन पिछले पंजीकरण के लिए इस्तेमाल किया गया था"
+
+#: templates/autosignup/signupinfo.html:36
+msgid "Mobile"
+msgstr "मोबाइल"
+
+#: templates/autosignup/signupinfo.html:39
+msgid "Not a Verifiable No"
+msgstr "नहीं एक निरीक्षण नहीं"
+
+#: templates/autosignup/signupinfo.html:49
+msgid "This phone number was used for these previous signup "
+msgstr "इस फोन नंबर के इन पिछले पंजीकरण के लिए इस्तेमाल किया गया था"
+
+#: templates/autosignup/signupinfo.html:137
+msgid "Distance from database address: "
+msgstr "डेटाबेस पते से दूरी:"
+
+#: templates/autosignup/signupinfo.html:137
+msgid " KM"
+msgstr "केएम"
+
+#: templates/autosignup/signupinfo.html:208
+#: templates/groupsystem/members.html:124 templates/profilesystem/index.html:99
+#: templates/profilesystem/index.html:131
+#: templates/profilesystem/index.html:170
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: templates/autosignup/signupinfo.html:209
+msgid "History"
+msgstr "इतिहास"
+
+#: templates/autosignup/signupinfo.html:211
+msgid "Resend Approval Email"
+msgstr "पुन: भेजें स्वीकृति ईमेल"
+
+#: templates/autosignup/signupinfo.html:214
+msgid "Send Invitation Email"
+msgstr "आमंत्रण ईमेल भेजें"
+
+#: templates/autosignup/signups.html:44 templates/useraccount/index.html:67
+msgid "Pending"
+msgstr "अपूर्ण"
+
+#: templates/autosignup/signups.html:45 templates/sidebar_group.html:78
+#: templates/sidebar_group_admin.html:48
+msgid "Approved"
+msgstr "मंजूर की"
+
+#: templates/autosignup/signups.html:46
+msgid "Declined"
+msgstr "इंकार कर दिया"
+
+#: templates/autosignup/signups.html:47 templates/useraccount/index.html:70
+msgid "Incomplete"
+msgstr "अधूरा"
+
+#: templates/autosignup/signups.html:226
+msgid "Fetching..."
+msgstr "ला रहा है ..."
+
+#: templates/autosignup/step_2_form.html:22
+msgid "Verify Your Email"
+msgstr "अपना ई मेल सत्यापित करें"
+
+#: templates/autosignup/step_2_verification.html:22
+msgid "Enter code sent to your email below"
+msgstr "कोड के नीचे अपना ईमेल के लिए भेजा दर्ज"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "Didn't get code yet?"
+msgstr "अभी तक कोड नहीं मिला?"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "try again"
+msgstr "पुनः प्रयास करें"
+
+#: templates/autosignup/step_3_form.html:22
+msgid "Verify Your Mobile Number"
+msgstr "अपना मोबाइल नंबर सत्यापित"
+
+#: templates/autosignup/step_3_verification.html:22
+msgid "Enter code sent to your phone below"
+msgstr "नीचे दिए गए कोड अपने फोन के लिए भेजा दर्ज"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "I am not getting a verification code for my number"
+msgstr "मैं अपने नंबर के लिए एक सत्यापन कोड नहीं मिल रहा है"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "skip"
+msgstr "छोड़ें"
+
+#: templates/autosignup/step_3_verification.html:34
+msgid "This needs some time don't close/refresh browser"
+msgstr "यह कुछ समय के करीब नहीं है की जरूरत / ताज़ा ब्राउज़र"
+
+#: templates/autosignup/thankyou.html:4
+msgid "Thank you for signing up to Grantcoin and providing us your information"
+msgstr "Grantcoin के लिए साइन अप करने और हमें अपनी जानकारी प्रदान करने के लिए धन्यवाद"
+
+#: templates/autosignup/thankyou.html:5
+msgid ""
+"Your account will be processed soon, return to this page to check on your "
+"status."
+msgstr ""
+
+#: templates/base.html:125
+msgid "Toggle navigation"
+msgstr "टॉगल से संचालित करना"
+
+#: templates/base.html:154 templates/base.html:173 templates/base.html:230
+msgid "Hello User"
+msgstr "हैलो उपयोगकर्ता"
+
+#: templates/base.html:170
+msgid "Member Since "
+msgstr "से सदस्ये"
+
+#: templates/base.html:184 templates/useraccount/index.html:7
+msgid "Account"
+msgstr "लेखा"
+
+#: templates/base.html:187
+msgid "Landing"
+msgstr "अवतरण"
+
+#: templates/base.html:195 templates/landing_base.html:101
+#: templates/landing_base.html:165 templates/profilesystem/index.html:5
+#: templates/profilesystem/index.html:42 templates/profilesystem/index.html:45
+#: templates/sidebar_home.html:27
+msgid "Profile"
+msgstr "प्रोफाइल"
+
+#: templates/base.html:198
+msgid "Sign out"
+msgstr "साइन आउट"
+
+#: templates/base.html:234 templates/publicusers/user.html:24
+#: templates/publicusers/userdetails.html:393
+#: templates/publicusers/userlist.html:40
+#: templates/publicusers/userlist_old.html:116
+#: templates/publicusers/users_old.html:25
+msgid "Online"
+msgstr "ऑनलाइन"
+
+#: templates/base.html:306
+msgid "System notice: "
+msgstr "प्रणाली नोटिस:"
+
+#: templates/base.html:349
+msgid "Language Settings"
+msgstr "भाषा सेटिंग"
+
+#: templates/base.html:366
+msgid "Set"
+msgstr "सेट"
+
+#: templates/base.html:381
+msgid "Filter Options"
+msgstr "फ़िल्टर विकल्प"
+
+#: templates/base.html:391
+msgid "Apply"
+msgstr "लागू करें"
+
+#: templates/crowdfunding/admin.html:4 templates/crowdfunding/admin.html:37
+#: templates/crowdfunding/admin.html:40 templates/sidebar_community.html:32
+msgid "Crowdfund Admin"
+msgstr "crowdfund व्यवस्थापक"
+
+#: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:60
+msgid "Stats"
+msgstr "आँकड़े"
+
+#: templates/crowdfunding/admin.html:62
+msgid "Status"
+msgstr "स्थिति"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Active"
+msgstr "सक्रिय"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Stopped"
+msgstr "रोका हुआ"
+
+#: templates/crowdfunding/admin.html:67 templates/crowdfunding/admin.html:83
+#: templates/crowdfunding/admin.html:127
+msgid "No Crowdfund started"
+msgstr "कोई crowdfund शुरू कर दिया"
+
+#: templates/crowdfunding/admin.html:86
+msgid "Start new"
+msgstr "नया शुरू करें"
+
+#: templates/crowdfunding/admin.html:97
+msgid "Payments"
+msgstr "भुगतान"
+
+#: templates/crowdfunding/index.html:4
+msgid "Crowdfunding"
+msgstr "Crowdfunding"
+
+#: templates/crowdfunding/index.html:17 templates/crowdfunding/index.html:20
+#: templates/sidebar_community.html:30
+msgid "Crowdfund"
+msgstr "crowdfund"
+
+#: templates/crowdfunding/index.html:32
+msgid "Watch video"
+msgstr "वीडियो देखेंा"
+
+#: templates/crowdfunding/index.html:34
+msgid "FUND"
+msgstr "निधि"
+
+#: templates/crowdfunding/index.html:46
+msgid "Product Features"
+msgstr "उत्पाद की विशेषताएँ"
+
+#: templates/crowdfunding/index.html:55
+msgid "Introduction"
+msgstr "परिचय"
+
+#: templates/crowdfunding/index.html:77
+msgid "Fund Now"
+msgstr "फंड अब"
+
+#: templates/crowdfunding/index.html:84
+msgid "Card"
+msgstr "कार्ड"
+
+#: templates/crowdfunding/index.html:92 templates/useraccount/index.html:175
+#: templates/useraccount/index.html:215 templates/useraccount/index.html:242
+#: useraccount/forms.py:8 useraccount/forms.py:27
+msgid "Amount"
+msgstr "रकम"
+
+#: templates/crowdfunding/index.html:98
+msgid "Feedback"
+msgstr "प्रतिक्रिया"
+
+#: templates/crowdfunding/payment_details.html:2
+msgid "User: "
+msgstr "उपयोगकर्ता:"
+
+#: templates/crowdfunding/payment_details.html:3
+msgid "Amount: "
+msgstr "रकम:"
+
+#: templates/crowdfunding/payment_details.html:4
+msgid "Date: "
+msgstr "तारीख:"
+
+#: templates/crowdfunding/payment_details.html:5
+msgid "Charge ID(Stripe): "
+msgstr "प्रभारी आईडी (धारी):"
+
+#: templates/crowdfunding/payment_details.html:7
+#: templates/eblast/emailcampaign_sent.html:5
+msgid "Message: "
+msgstr "संदेश:"
+
+#: templates/crowdfunding/payment_details.html:10
+msgid "Fail Reason: "
+msgstr "विफल कारण:"
+
+#: templates/crowdfunding/thankyou.html:3
+msgid "Thank You"
+msgstr "धन्यवाद"
+
+#: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:20
+#: templates/dashboard/dashboard.html:23
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:10
+#: templates/groupsystem/admindashboard.html:15 templates/landing_base.html:97
+#: templates/landing_base.html:163 templates/publicusers/userlist.html:13
+#: templates/sidebar_group.html:36 templates/sidebar_group_admin.html:6
+#: templates/sidebar_home.html:4
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+#: templates/dashboard/dashboard.html:35 templates/profilesystem/index.html:202
+#: templates/publicusers/user.html:174
+msgid "References"
+msgstr "संदर्भ"
+
+#: templates/dashboard/dashboard.html:45 templates/dashboard/dashboard.html:172
+msgid "Connections"
+msgstr "कनेक्शन"
+
+#: templates/dashboard/dashboard.html:55 templates/landing_base.html:118
+#: templates/landing_base.html:169
+msgid "Messages"
+msgstr "संदेश"
+
+#: templates/dashboard/dashboard.html:65 templates/dashboard/dashboard.html:257
+#: templates/useraccount/index.html:111 templates/useraccount/transfer.html:43
+msgid "Account Balance"
+msgstr "खाते में शेष"
+
+#: templates/dashboard/dashboard.html:66
+#: templates/notification/notification.html:19
+#: templates/notification/notification.html:26
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "units"
+msgstr "इकाइयों"
+
+#: templates/dashboard/dashboard.html:75 templates/dashboard/dashboard.html:258
+#: templates/useraccount/index.html:123
+msgid "Next Release"
+msgstr "अगली रिलीज"
+
+#: templates/dashboard/dashboard.html:96 templates/useraccount/index.html:140
+msgid "Day"
+msgstr "दिन"
+
+#: templates/dashboard/dashboard.html:101 templates/useraccount/index.html:145
+msgid "Hour"
+msgstr "समय"
+
+#: templates/dashboard/dashboard.html:106 templates/useraccount/index.html:150
+msgid "Minute"
+msgstr "मिनट"
+
+#: templates/dashboard/dashboard.html:113
+#: templates/groupsystem/admindashboard.html:46
+#: templates/groupsystem/admindashboard.html:60
+#: templates/groupsystem/admindashboard.html:74
+#: templates/groupsystem/admindashboard.html:88
+msgid "More info"
+msgstr "और जानकारी"
+
+#: templates/dashboard/dashboard.html:121 templates/publicusers/user.html:277
+msgid "Profile Completed"
+msgstr "प्रोफ़ाइल पूरा"
+
+#: templates/dashboard/dashboard.html:138 templates/publicusers/user.html:290
+msgid "Completed"
+msgstr "पूरा कर लिया है"
+
+#: templates/dashboard/dashboard.html:144 templates/publicusers/user.html:296
+msgid "Not completed"
+msgstr "पूरा नहीं"
+
+#: templates/dashboard/dashboard.html:150 templates/publicusers/user.html:302
+msgid "Not verified"
+msgstr "प्रमाणित नहीं है"
+
+#: templates/dashboard/dashboard.html:156 templates/publicusers/user.html:308
+msgid "Skipped"
+msgstr "छोड़ा"
+
+#: templates/dashboard/dashboard.html:182
+msgid "You have no connection to display data"
+msgstr "आप डेटा प्रदर्शित करने के लिए कोई संबंध नहीं है"
+
+#: templates/dashboard/dashboard.html:195
+msgid " Friends"
+msgstr "दोस्तों"
+
+#: templates/dashboard/dashboard.html:196
+msgid " Families"
+msgstr "परिवार"
+
+#: templates/dashboard/dashboard.html:197
+msgid " Contacts"
+msgstr "संपर्क"
+
+#: templates/dashboard/dashboard.html:214
+msgid "New Members"
+msgstr "नए सदस्य"
+
+#: templates/dashboard/dashboard.html:227
+msgid "Total Ekata Members"
+msgstr "कुल Ekata सदस्यों"
+
+#: templates/dashboard/dashboard.html:242
+msgid "Active Members"
+msgstr "सक्रिय सदस्य"
+
+#: templates/dashboard/dashboard.html:256
+msgid "Add Widget"
+msgstr "विजेट जोड़ें"
+
+#: templates/dashboard/dashboard.html:259 templates/timelines/index.html:77
+#: templates/timelines/index.html:79
+msgid "Connection"
+msgstr "संबंध"
+
+#: templates/dashboard/dashboard.html:260
+msgid "Profile Completion Ring"
+msgstr "प्रोफाइल पूरा होने की अंगूठी"
+
+#: templates/dashboard/dashboard.html:270
+msgid "Website added"
+msgstr "वेबसाइट जोड़ा"
+
+#: templates/dashboard/dashboard.html:277
+msgid "Gender added"
+msgstr "लिंग जोड़ा"
+
+#: templates/dashboard/dashboard.html:284
+msgid "Phone added"
+msgstr "फ़ोन जोड़ा"
+
+#: templates/dashboard/dashboard.html:291
+msgid "Avatar added"
+msgstr "अवतार जोड़ा"
+
+#: templates/dashboard/dashboard.html:298
+msgid "Address added"
+msgstr "पता जोड़ा"
+
+#: templates/dashboard/dashboard.html:305
+msgid "Socialaccount added"
+msgstr "Socialaccount जोड़ा"
+
+#: templates/dashboard/dashboard.html:312
+msgid "Email added"
+msgstr "ईमेल जोड़ा"
+
+#: templates/dashboard/dashboard.html:319
+msgid "Email verified"
+msgstr "ईमेल सत्यापित हुआ"
+
+#: templates/dashboard/dashboard.html:331
+#: templates/dashboard/dashboard.html:403
+msgid "Add website"
+msgstr "वेबसाइट जोड़े"
+
+#: templates/dashboard/dashboard.html:332
+#: templates/dashboard/dashboard.html:338
+#: templates/dashboard/dashboard.html:344
+#: templates/dashboard/dashboard.html:350
+#: templates/dashboard/dashboard.html:356
+#: templates/dashboard/dashboard.html:362
+#: templates/dashboard/dashboard.html:368
+#: templates/dashboard/dashboard.html:377
+msgid " (skip)"
+msgstr "(छोड़ें)"
+
+#: templates/dashboard/dashboard.html:337
+#: templates/dashboard/dashboard.html:408
+msgid "Add gender"
+msgstr "लिंग जोड़ें"
+
+#: templates/dashboard/dashboard.html:343
+#: templates/dashboard/dashboard.html:413
+msgid "Add phone"
+msgstr "फोन जोड़े"
+
+#: templates/dashboard/dashboard.html:349
+#: templates/dashboard/dashboard.html:418
+msgid "Add avatar"
+msgstr "अवतार जोड़े"
+
+#: templates/dashboard/dashboard.html:355
+#: templates/dashboard/dashboard.html:423
+msgid "Add address"
+msgstr "पता जोड़ें"
+
+#: templates/dashboard/dashboard.html:361
+#: templates/dashboard/dashboard.html:428
+msgid "Add socialaccount"
+msgstr "socialaccount जोड़े"
+
+#: templates/dashboard/dashboard.html:367
+#: templates/dashboard/dashboard.html:433
+msgid "Add email"
+msgstr "ईमेल जोड़ें"
+
+#: templates/dashboard/dashboard.html:376
+#: templates/dashboard/dashboard.html:391
+#: templates/dashboard/dashboard.html:441
+msgid "Verify email"
+msgstr "ईमेल सत्यापित करें"
+
+#: templates/dashboard/dashboard.html:392
+msgid "(skip)"
+msgstr "(छोड़ें)"
+
+#: templates/eblast/editemailcampaign.html:6
+#: templates/eblast/emailtemplateedit.html:6
+msgid "Update"
+msgstr "अद्यतन"
+
+#: templates/eblast/emailcampaign.html:15
+msgid "Test send"
+msgstr "टेस्ट संदेश"
+
+#: templates/eblast/emailcampaign.html:16
+#: templates/eblast/emailcampaign.html:45
+#: templates/eblast/emailcampaign.html:62
+#: templates/messagingsystem/chats.html:76
+#: templates/publicusers/userdetails.html:106
+#: templates/timelines/index.html:102
+#: templates/useraccount/transferunit.html:22
+msgid "Send"
+msgstr "भेजना"
+
+#: templates/eblast/emailcampaign.html:18
+msgid "Resend"
+msgstr "पुन: भेजें"
+
+#: templates/eblast/emailcampaign.html:19
+msgid "Show tracking data"
+msgstr "शो ट्रैकिंग डेटा"
+
+#: templates/eblast/emailcampaign.html:38
+msgid "Send a test email"
+msgstr "एक परीक्षण ईमेल भेजें"
+
+#: templates/eblast/emailcampaign.html:55
+msgid "Send email"
+msgstr "ईमेल भेजें"
+
+#: templates/eblast/emailcampaign_page.html:4
+msgid "EmailCampaigns | eBlast"
+msgstr "EmailCampaigns | eBlast"
+
+#: templates/eblast/emailcampaign_page.html:10
+#: templates/sidebar_community.html:44
+msgid "Email Campaigns"
+msgstr "ईमेल अभियान"
+
+#: templates/eblast/emailcampaign_page.html:13
+#: templates/eblast/emailgroups_page.html:13
+#: templates/eblast/emailtemplates_page.html:13
+#: templates/sidebar_community.html:36
+msgid "eBlast"
+msgstr "eBlast"
+
+#: templates/eblast/emailcampaign_page.html:14
+msgid "emailcampaigns"
+msgstr "emailcampaigns"
+
+#: templates/eblast/emailcampaign_page.html:37
+msgid "Campaign Lists"
+msgstr "अभियान सूचियाँ"
+
+#: templates/eblast/emailcampaign_page.html:45
+#: templates/eblast/emailcampaignform.html:3
+msgid "Create Campaign"
+msgstr "अभियान बनाएं"
+
+#: templates/eblast/emailcampaign_page.html:75
+msgid "Sent"
+msgstr "भेज दिया"
+
+#: templates/eblast/emailcampaign_page.html:78
+msgid "Draft"
+msgstr "प्रारूप"
+
+#: templates/eblast/emailcampaign_sent.html:2
+msgid "Sent to: "
+msgstr "भेजा:"
+
+#: templates/eblast/emailcampaign_sent.html:3
+msgid "Subject: "
+msgstr "विषय:"
+
+#: templates/eblast/emailgroup.html:9 templates/eblast/emailgroup.html:63
+msgid "Add Recipient"
+msgstr "प्राप्तकर्ता को जोड़ें"
+
+#: templates/eblast/emailgroup.html:10
+msgid "Upload CSV"
+msgstr "शब्द सीएसवी"
+
+#: templates/eblast/emailgroup.html:42
+#: templates/groupsystem/groupdetails.html:121
+msgid "Unsubscribe"
+msgstr "सदस्यता रद्द"
+
+#: templates/eblast/emailgroup.html:46
+#: templates/groupsystem/groupdetails.html:127
+msgid "Subscribe"
+msgstr "सदस्यता लें"
+
+#: templates/eblast/emailgroup.html:70 templates/profilesystem/index.html:135
+#: templates/profilesystem/index.html:174
+msgid "Add"
+msgstr "जोड़ना"
+
+#: templates/eblast/emailgroup.html:80
+msgid "Upload a CSV"
+msgstr "एक सीएसवी शब्द"
+
+#: templates/eblast/emailgroup.html:87 templates/profilesystem/index.html:280
+msgid "Upload"
+msgstr "अपलोड"
+
+#: templates/eblast/emailgroupform.html:3
+#: templates/eblast/emailgroups_page.html:48
+msgid "Create List"
+msgstr "सूची बनाएं"
+
+#: templates/eblast/emailgroups_page.html:4
+msgid "EmailGroups | eBlast"
+msgstr "EmailGroups | eBlast"
+
+#: templates/eblast/emailgroups_page.html:10
+msgid "Email Groups"
+msgstr "ईमेल समूहों"
+
+#: templates/eblast/emailgroups_page.html:14
+msgid "emailgroups"
+msgstr "emailgroups"
+
+#: templates/eblast/emailgroups_page.html:40
+msgid "Group Lists"
+msgstr "समूह सूची"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "emails"
+msgstr "ईमेल"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "email"
+msgstr "ईमेल"
+
+#: templates/eblast/emailtemplate.html:11
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: templates/eblast/emailtemplateform.html:3
+msgid "Add a new template"
+msgstr "एक नया टेम्पलेट जोड़ें"
+
+#: templates/eblast/emailtemplates_page.html:4
+msgid "EmailTemplates | eBlast"
+msgstr "EmailTemplates | eBlast"
+
+#: templates/eblast/emailtemplates_page.html:10
+#: templates/sidebar_community.html:43
+msgid "Email Templates"
+msgstr "ईमेल टेम्पलेट्स"
+
+#: templates/eblast/emailtemplates_page.html:14
+msgid "emailtemplates"
+msgstr "emailtemplates"
+
+#: templates/eblast/emailtemplates_page.html:40
+msgid "Template Lists"
+msgstr "खाका सूचियाँ"
+
+#: templates/eblast/emailtemplates_page.html:48
+msgid "Create Template"
+msgstr "खाका बनाएं"
+
+#: templates/eblast/tracking_data.html:4
+msgid "Tracking data for "
+msgstr "के लिए ट्रैकिंग डेटा"
+
+#: templates/eblast/tracking_data.html:11
+msgid "Emails Sent"
+msgstr "ईमेल भेजा"
+
+#: templates/eblast/tracking_data.html:18
+msgid "Emails Opened"
+msgstr "ईमेल खोला"
+
+#: templates/emailtosms/index.html:4 templates/emailtosms/requestcarrier.html:4
+msgid "Email to sms"
+msgstr "एसएमएस को ईमेल"
+
+#: templates/emailtosms/index.html:10
+msgid "Email to SMS"
+msgstr "एसएमएस करने के लिए ईमेल"
+
+#: templates/emailtosms/index.html:13
+msgid "email to sms"
+msgstr "एसएमएस को ईमेल"
+
+#: templates/emailtosms/index.html:33
+msgid "Help us to find working email to sms providers for your mobile number"
+msgstr ""
+"अपना मोबाइल नंबर के लिए एसएमएस सेवा प्रदाताओं के लिए काम कर रहा है ईमेल पता लगाने के "
+"लिए मदद"
+
+#: templates/emailtosms/index.html:35
+msgid ""
+"Please provide your mobile carrier, and number then verify you've received a "
+"text or not"
+msgstr ""
+
+#: templates/emailtosms/index.html:39
+msgid "Did you get a code on your mobile?"
+msgstr "आप अपने मोबाइल पर एक कोड मिलता है?"
+
+#: templates/emailtosms/index.html:40
+msgid "This may take some time..."
+msgstr "इसमें कुछ समय लग सकता है..."
+
+#: templates/emailtosms/index.html:41
+msgid "Yes"
+msgstr "हाँ"
+
+#: templates/emailtosms/index.html:42
+msgid "No"
+msgstr "नहीं"
+
+#: templates/emailtosms/index.html:46
+msgid "Thank you for helping us verify"
+msgstr "हमें सत्यापित करने में मदद के लिए धन्यवाद"
+
+#: templates/emailtosms/index.html:47
+msgid "verify another"
+msgstr "एक और सत्यापित करें"
+
+#: templates/emailtosms/requestcarrier.html:8
+msgid "Request Carrier"
+msgstr "अनुरोध कैरियर"
+
+#: templates/emailtosms/requestcarrier.html:26
+msgid "Thank you, This carrier will be added soon"
+msgstr "धन्यवाद, यह वाहक जल्द ही जोड़ दिया जाएगा"
+
+#: templates/emailtosms/verifierform.html:9
+msgid "Request to add your carrier if not listed"
+msgstr "अपने कैरियर जोड़ने के लिए अनुरोध करता है, तो सूचीबद्ध नहीं"
+
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:14
+#: templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:21
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:14
+#: templates/groupsystem/bannedmembers.html:14
+#: templates/groupsystem/commentadmin.html:21
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:21
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:21
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:14
+#: templates/groupsystem/joinrequests.html:14
+#: templates/groupsystem/members.html:21 templates/groupsystem/members.html:92
+#: templates/groupsystem/postsadmin.html:14
+msgid "Admin"
+msgstr "व्यवस्थापक"
+
+#: templates/groupsystem/admindashboard.html:13
+#: templates/groupsystem/adminnews.html:20
+#: templates/groupsystem/adminsettings.html:13
+#: templates/groupsystem/bannedmembers.html:13
+#: templates/groupsystem/commentadmin.html:20
+#: templates/groupsystem/customroles.html:20
+#: templates/groupsystem/defaultroles.html:20
+#: templates/groupsystem/editcommentpage.html:13
+#: templates/groupsystem/editpostpage.html:13
+#: templates/groupsystem/events.html:13
+#: templates/groupsystem/eventsadmin.html:13
+#: templates/groupsystem/groupdetails.html:20
+#: templates/groupsystem/joined_group.html:15
+#: templates/groupsystem/joinrequests.html:13
+#: templates/groupsystem/members.html:20
+#: templates/groupsystem/postdetails.html:13
+#: templates/groupsystem/posts.html:13 templates/groupsystem/postsadmin.html:13
+#: templates/groupsystem/subscribed_group.html:15
+msgid "Group"
+msgstr "समूह"
+
+#: templates/groupsystem/admindashboard.html:54
+msgid "New Request"
+msgstr "नया अनुरोध"
+
+#: templates/groupsystem/admindashboard.html:68
+msgid "Pending posts"
+msgstr "विचाराधीन पोस्ट"
+
+#: templates/groupsystem/admindashboard.html:82
+msgid "Pending comment"
+msgstr "लंबित टिप्पणी"
+
+#: templates/groupsystem/adminnews.html:68
+msgid "No news!!"
+msgstr "कोई खबर नहीं!!"
+
+#: templates/groupsystem/adminnews.html:76
+msgid "Create News"
+msgstr "समाचार बनाएँ"
+
+#: templates/groupsystem/adminnews.html:99
+msgid "Edit news"
+msgstr "खबर संपादित करें"
+
+#: templates/groupsystem/adminsettings.html:40
+msgid "Send notification to members"
+msgstr "सदस्यों को सूचना भेजें"
+
+#: templates/groupsystem/adminsettings.html:73
+#: templates/groupsystem/groupdetails.html:78
+msgid "About Us"
+msgstr "हमारे बारे में"
+
+#: templates/groupsystem/adminsettings.html:81
+msgid "Auto approve post: "
+msgstr "ऑटो पोस्ट को मंजूरी:"
+
+#: templates/groupsystem/adminsettings.html:89
+msgid "Auto approve comment: "
+msgstr "ऑटो टिप्पणी को मंजूरी:"
+
+#: templates/groupsystem/adminsettings.html:101
+msgid "Edit Group"
+msgstr "समूह को संपादित"
+
+#: templates/groupsystem/adminsettings.html:120
+msgid "Create Notification"
+msgstr "अधिसूचना बनाएं"
+
+#: templates/groupsystem/adminsettings.html:126
+#: templates/groupsystem/all_group.html:108
+#: templates/groupsystem/customroles.html:97
+msgid "Create"
+msgstr "सर्जन करना"
+
+#: templates/groupsystem/all_group.html:5
+#: templates/groupsystem/all_group.html:40 templates/sidebar_community.html:12
+msgid "All Groups"
+msgstr "सभी समूह"
+
+#: templates/groupsystem/all_group.html:43 templates/landing_base.html:108
+#: templates/landing_base.html:167 templates/profilesystem/index.html:413
+#: templates/sidebar_community.html:6
+msgid "Groups"
+msgstr "समूह"
+
+#: templates/groupsystem/all_group.html:44
+msgid "all groups"
+msgstr "सभी समूहों"
+
+#: templates/groupsystem/all_group.html:69
+#: templates/groupsystem/all_group.html:102
+msgid "Create Group"
+msgstr "समूह बनाएँ"
+
+#: templates/groupsystem/bannedmembers.html:4
+msgid "Bannedmembers"
+msgstr "Bannedmembers"
+
+#: templates/groupsystem/bannedmembers.html:10
+#: templates/groupsystem/bannedmembers.html:15 templates/sidebar_group.html:98
+msgid "Banned Members"
+msgstr "प्रतिबंध लगा दिया सदस्यों"
+
+#: templates/groupsystem/bannedmembers.html:44
+#: templates/groupsystem/editextraperm.html:3
+#: templates/groupsystem/joinrequests.html:44
+#: templates/groupsystem/members.html:61
+msgid "User"
+msgstr "उपयोगकर्ता"
+
+#: templates/groupsystem/bannedmembers.html:45
+#: templates/groupsystem/joinrequests.html:45
+#: templates/groupsystem/members.html:63
+#: templates/messagingsystem/chats.html:175
+#: templates/messagingsystem/index.html:252
+msgid "Actions"
+msgstr "प्रक्रिया"
+
+#: templates/groupsystem/bannedmembers.html:58
+msgid "Lift Ban"
+msgstr "लिफ्ट प्रतिबंध"
+
+#: templates/groupsystem/commentadmin.html:17
+#: templates/groupsystem/commentadmin.html:22 templates/sidebar_group.html:71
+#: templates/sidebar_group_admin.html:41
+msgid "Comments"
+msgstr "टिप्पणियाँ"
+
+#: templates/groupsystem/commentadmin.html:55
+#: templates/groupsystem/editcommentpage.html:39
+msgid "Post: "
+msgstr "पद:"
+
+#: templates/groupsystem/commentadmin.html:56
+#: templates/groupsystem/editcommentpage.html:42
+msgid "Commented By: "
+msgstr "द्वारा टिप्पणी:"
+
+#: templates/groupsystem/commentadmin.html:58
+msgid "Comment: "
+msgstr "टिप्पणी:"
+
+#: templates/groupsystem/commentadmin.html:60
+#: templates/groupsystem/postsadmin.html:89
+msgid "edit"
+msgstr "संपादित"
+
+#: templates/groupsystem/commentadmin.html:62
+msgid "approve"
+msgstr "मंजूर"
+
+#: templates/groupsystem/commentadmin.html:71
+msgid "No comments!!"
+msgstr "कोई टिप्पणी नहीं!!"
+
+#: templates/groupsystem/creategroupsuccess.html:3
+msgid "Your new group is created"
+msgstr "आपका नया समूह बनाया है"
+
+#: templates/groupsystem/creategroupsuccess.html:4
+msgid "Group UUID: "
+msgstr "समूह UUID:"
+
+#: templates/groupsystem/creategroupsuccess.html:5
+msgid "Url: "
+msgstr "यूआरएल:"
+
+#: templates/groupsystem/creategroupsuccess.html:6
+msgid "More Settings: "
+msgstr "अधिक सेटिंग्स:"
+
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:56
+msgid "Custom roles"
+msgstr "कस्टम भूमिकाओं"
+
+#: templates/groupsystem/customroles.html:17
+#: templates/groupsystem/customroles.html:22
+msgid "Custom Roles"
+msgstr "कस्टम भूमिकाओं"
+
+#: templates/groupsystem/customroles.html:47
+msgid "Create custom role"
+msgstr "कस्टम भूमिका बनाएं"
+
+#: templates/groupsystem/customroles.html:68
+msgid "You don't have any custom roles defined"
+msgstr "आप किसी भी कस्टम भूमिकाओं में परिभाषित भी नहीं है"
+
+#: templates/groupsystem/customroles.html:76
+#: templates/groupsystem/defaultroles.html:62
+msgid "Permissions"
+msgstr "अनुमतियां"
+
+#: templates/groupsystem/customroles.html:91
+msgid "Create Custom Role"
+msgstr "कस्टम भूमिका बनाएं"
+
+#: templates/groupsystem/customroles.html:113
+msgid "You dont have permission to edit role"
+msgstr "तुम न भूमिका संपादित करने की अनुमति"
+
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:46
+msgid "Default roles"
+msgstr "डिफ़ॉल्ट भूमिकाओं"
+
+#: templates/groupsystem/defaultroles.html:17
+#: templates/groupsystem/defaultroles.html:22
+msgid "Default Roles"
+msgstr "डिफ़ॉल्ट भूमिकाओं"
+
+#: templates/groupsystem/editcommentpage.html:10
+#: templates/groupsystem/editcommentpage.html:14
+#: templates/groupsystem/editpostpage.html:10
+#: templates/groupsystem/editpostpage.html:14
+#: templates/groupsystem/joined_group.html:16
+#: templates/groupsystem/subscribed_group.html:16
+msgid "admin"
+msgstr "व्यवस्थापक"
+
+#: templates/groupsystem/editcommentpage.html:40
+#: templates/groupsystem/editpostpage.html:42
+msgid "Approved: "
+msgstr "मंजूर की:"
+
+#: templates/groupsystem/editcommentpage.html:41
+#: templates/groupsystem/editpostpage.html:43
+msgid "Approved By: "
+msgstr "के द्वारा अनुमोदित:"
+
+#: templates/groupsystem/editcommentpage.html:43
+msgid "Commented on: "
+msgstr "पर टिप्पणी की है:"
+
+#: templates/groupsystem/editcustomrole.html:3
+msgid "User who assigned with this role"
+msgstr "उपयोगकर्ता जो इस भूमिका के साथ सौंपा"
+
+#: templates/groupsystem/editpostpage.html:39
+msgid "Creator: "
+msgstr "बनाने वाला:"
+
+#: templates/groupsystem/editpostpage.html:45
+msgid "Post Created on: "
+msgstr "पोस्ट पर निर्मित:"
+
+#: templates/groupsystem/eventform.html:7
+msgid "Clear"
+msgstr "स्पष्ट"
+
+#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:10
+#: templates/groupsystem/events.html:14 templates/groupsystem/events.html:38
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:10
+#: templates/groupsystem/eventsadmin.html:15
+#: templates/groupsystem/eventsadmin.html:50 templates/sidebar_group.html:11
+#: templates/sidebar_group.html:107 templates/sidebar_group_admin.html:77
+msgid "Events"
+msgstr "आयोजन"
+
+#: templates/groupsystem/events.html:88
+msgid "Startdate: "
+msgstr "आरंभ करने की तिथि:"
+
+#: templates/groupsystem/events.html:90
+msgid "Enddate: "
+msgstr "अंतिम तिथि:"
+
+#: templates/groupsystem/eventsadmin.html:40
+msgid "Create Event"
+msgstr "कार्यक्रम बनाएँ"
+
+#: templates/groupsystem/groupdetails.html:89
+msgid "Leave Group"
+msgstr "समूह छोड़ दें"
+
+#: templates/groupsystem/groupdetails.html:97
+#: templates/groupsystem/groupdetails.html:113
+msgid "Cancel Request"
+msgstr "निवेदन अस्विकार"
+
+#: templates/groupsystem/groupdetails.html:102
+#: templates/groupsystem/groupdetails.html:108
+msgid "Join Group"
+msgstr "समूह में शामिल"
+
+#: templates/groupsystem/groupdetails.html:135
+msgid "Invite User"
+msgstr "प्रयोक्ता को आमंत्रित करें"
+
+#: templates/groupsystem/groupdetails.html:142
+msgid "Go to Group Admin"
+msgstr "समूह व्यवस्थापक करने के लिए जाओ"
+
+#: templates/groupsystem/joined_group.html:5
+#: templates/groupsystem/joined_group.html:12
+#: templates/profilesystem/index.html:588 templates/sidebar_community.html:13
+msgid "Joined Groups"
+msgstr "शामिल हुए समूह"
+
+#: templates/groupsystem/joinrequests.html:10
+#: templates/groupsystem/joinrequests.html:15
+msgid "Join Requests"
+msgstr "शामिल होने का अनुरोध"
+
+#: templates/groupsystem/joinrequests.html:57
+#: templates/groupsystem/postsadmin.html:79
+msgid "Approve"
+msgstr "मंजूर"
+
+#: templates/groupsystem/joinrequests.html:60
+msgid "Deny"
+msgstr "मना"
+
+#: templates/groupsystem/members.html:48
+msgid "Add member"
+msgstr "सदस्य जोड़ें"
+
+#: templates/groupsystem/members.html:62
+msgid "Role"
+msgstr "भूमिका"
+
+#: templates/groupsystem/members.html:87
+msgid "Ban Member"
+msgstr "बान सदस्य"
+
+#: templates/groupsystem/members.html:91
+msgid "SuperAdmin"
+msgstr "SuperAdmin"
+
+#: templates/groupsystem/members.html:93
+msgid "Moderator"
+msgstr "मध्यस्थ"
+
+#: templates/groupsystem/members.html:94
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:49 templates/publicusers/users.html:27
+msgid "Member"
+msgstr "सदस्य"
+
+#: templates/groupsystem/members.html:101
+msgid "Extra permission"
+msgstr "अतिरिक्त अनुमति"
+
+#: templates/groupsystem/members.html:118
+msgid "Edit User Perm"
+msgstr "उपयोगकर्ता पेर्म संपादित करें"
+
+#: templates/groupsystem/members.html:141
+#: templates/groupsystem/members.html:153
+#: templates/groupsystem/members.html:169
+#: templates/groupsystem/members.html:181
+#: templates/groupsystem/members.html:202
+#: templates/groupsystem/members.html:214
+#: templates/groupsystem/members.html:268
+msgid "Change role"
+msgstr "भूमिका बदलें"
+
+#: templates/groupsystem/members.html:231
+msgid "You dont have permissions to edit extra permissions"
+msgstr "तुम न अतिरिक्त अनुमतियों को संपादित करने की अनुमति"
+
+#: templates/groupsystem/postdetails.html:72
+msgid "Like"
+msgstr "पसंद"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " likes"
+msgstr "को यह पसंद है"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " comments"
+msgstr "टिप्पणियाँ"
+
+#: templates/groupsystem/posts.html:10 templates/groupsystem/posts.html:14
+#: templates/groupsystem/postsadmin.html:10
+#: templates/groupsystem/postsadmin.html:15 templates/sidebar_group.html:19
+#: templates/sidebar_group.html:54 templates/sidebar_group_admin.html:24
+msgid "Posts"
+msgstr "पोस्ट"
+
+#: templates/groupsystem/posts.html:40 templates/groupsystem/posts.html:104
+#: templates/groupsystem/postsadmin.html:41
+#: templates/groupsystem/postsadmin.html:107
+msgid "Create Post"
+msgstr "पोस्ट बनाएं"
+
+#: templates/groupsystem/posts.html:84 templates/groupsystem/singlepost.html:32
+msgid "more"
+msgstr "अधिक"
+
+#: templates/groupsystem/posts.html:95 templates/groupsystem/postsadmin.html:99
+msgid "No Posts Yet!!"
+msgstr "अब तक कोई पोस्ट नहीं!!"
+
+#: templates/groupsystem/postsadmin.html:79
+msgid "Not approved"
+msgstr "अस्वीकृत"
+
+#: templates/groupsystem/roledetails.html:10
+msgid "No such default role"
+msgstr "ऐसा कोई डिफ़ॉल्ट भूमिका"
+
+#: templates/groupsystem/subscribed_group.html:5
+#: templates/groupsystem/subscribed_group.html:12
+#: templates/profilesystem/index.html:609 templates/sidebar_community.html:14
+msgid "Subscribed Groups"
+msgstr "सदस्यता लिए समूह"
+
+#: templates/hashtag/images.html:14
+msgid "You have no images uploaded"
+msgstr "आप कोई चित्र अपलोड की गई है"
+
+#: templates/hashtag/index.html:4
+msgid "Hashtag Banner"
+msgstr "हैशटैग बैनर"
+
+#: templates/hashtag/index.html:38 templates/hashtag/index.html:41
+#: templates/landing_base.html:79 templates/landing_base.html:131
+#: templates/profilesystem/index.html:441
+msgid "Hashtag"
+msgstr "हैशटैग"
+
+#: templates/hashtag/index.html:52
+msgid "Basic Income Hashtag Banner Campaign"
+msgstr "बुनियादी आय हैशटैग बैनर अभियान"
+
+#: templates/hashtag/index.html:53
+msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgstr "अपने फेसबुक / ट्विटर प्रोफाइल फोटो के लिए एक बुनियादी आय बैनर जोड़ें।"
+
+#: templates/hashtag/index.html:57
+msgid "Add hashtag banner to your facebook account"
+msgstr "अपने फेसबुक अकाउंट में हैशटैग बैनर जोड़े"
+
+#: templates/hashtag/index.html:62
+msgid "Add hashtag banner to your twitter account"
+msgstr "अपने ट्विटर खाते के लिए हैशटैग बैनर जोड़े"
+
+#: templates/hashtag/index.html:68
+msgid "You've not added facebook yet! Click the button to add"
+msgstr "आप अभी तक नहीं जोड़ दिया है फेसबुक! जोड़ने के लिए बटन क्लिक करें"
+
+#: templates/hashtag/index.html:70
+msgid "Add Facebook"
+msgstr "फेसबुक जोड़े"
+
+#: templates/hashtag/index.html:78
+msgid "You've not added twitter yet! Click the button to add"
+msgstr "आप अभी तक नहीं जोड़ दिया है ट्विटर! जोड़ने के लिए बटन क्लिक करें"
+
+#: templates/hashtag/index.html:80
+msgid "Add Twitter"
+msgstr "ट्विटर जोड़े"
+
+#: templates/hashtag/index.html:87
+msgid "Select from uploaded"
+msgstr "अपलोड से चयन करें"
+
+#: templates/hashtag/index.html:93
+msgid "Upload New Images"
+msgstr "नए छवियों को अपलोड"
+
+#: templates/hashtag/index.html:98
+msgid "Change Banner Color"
+msgstr "बदलें बैनर का रंग"
+
+#: templates/hashtag/index.html:102
+msgid "Make profile image"
+msgstr "प्रोफ़ाइल छवि बनाओ"
+
+#: templates/hashtag/index.html:108
+msgid "Download image"
+msgstr "डाउनलोड की छवि"
+
+#: templates/hashtag/index.html:121
+msgid "Upload Images"
+msgstr "छवियों को अपलोड करें"
+
+#: templates/hashtag/index.html:255 templates/hashtag/index.html:271
+msgid "Upload to facebook"
+msgstr "फेसबुक पर अपलोड करें"
+
+#: templates/hashtag/index.html:305 templates/hashtag/index.html:321
+msgid "Upload to twitter"
+msgstr "चहचहाना पर अपलोड करें"
+
+#: templates/hashtag/index.html:356
+msgid "Uploading....."
+msgstr "अपलोड ....."
+
+#: templates/hashtag/index.html:365
+msgid "Support #basicincome project"
+msgstr "समर्थन"
+
+#: templates/hashtag/index.html:407
+msgid "Uploaded"
+msgstr "अपलोड की गई"
+
+#: templates/hashtag/index.html:419
+msgid "Cant upload now!! try later"
+msgstr "अब अपलोड नहीं कर सकते !! बाद में कोशिश करें"
+
+#: templates/information/contact.html:4 templates/information/contact.html:10
+#: templates/information/contact.html:13 templates/information/success.html:4
+#: templates/information/success.html:10 templates/landing_base.html:78
+#: templates/landing_base.html:198 templates/profilesystem/index.html:154
+#: templates/profilesystem/index.html:373 templates/publicusers/user.html:65
+#: templates/publicusers/user.html:236
+msgid "Contact"
+msgstr "संपर्क करें"
+
+#: templates/information/contact.html:24
+msgid "Get in touch with us"
+msgstr "हम से संपर्क में रहें"
+
+#: templates/information/contact.html:25
+msgid ""
+"if you have any comments or questions, please get in touch. We’d love to "
+"hear fom you."
+msgstr ""
+
+#: templates/information/index.html:4 templates/information/index.html:13
+#: templates/information/index.html:24 templates/profilesystem/index.html:434
+#: templates/sidebar_community.html:20
+msgid "Information"
+msgstr "जानकारी"
+
+#: templates/information/index.html:10
+msgid "About our system"
+msgstr "हमारी प्रणाली के बारे में"
+
+#: templates/information/success.html:13
+msgid "contact"
+msgstr "संपर्क करें"
+
+#: templates/information/success.html:24
+msgid "Thank you for your interest"
+msgstr "आपकी रूचि के लिए धन्यवाद"
+
+#: templates/information/success.html:25
+msgid "We will contact you shortly"
+msgstr "हम आपसे शीघ्र ही संपर्क करेंगे"
+
+#: templates/invitationsystem/checkinvitation.html:16
+msgid "Get access to ekata beta"
+msgstr "Ekata बीटा के लिए उपयोग हो"
+
+#: templates/invitationsystem/index.html:16
+#: templates/invitationsystem/sent.html:13 templates/landing/index.html:238
+msgid "Get your invite access key to the ekata beta"
+msgstr "अपने Ekata बीटा के लिए उपयोग कुंजी को आमंत्रित करने के लिए जाओ"
+
+#: templates/invitationsystem/sent.html:15 templates/landing/index.html:407
+msgid ""
+"Your request is sent!! You will get an invitation email soon with a link and "
+"invite key."
+msgstr ""
+
+#: templates/landing/hashtag.html:35
+msgid "Show Support"
+msgstr "शो समर्थन"
+
+#: templates/landing/hashtag.html:36
+#, fuzzy
+#| msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgid ""
+"In adding the #basicincome hashtag banner to your facebook and twitter "
+"profile !!"
+msgstr "अपने फेसबुक / ट्विटर प्रोफाइल फोटो के लिए एक बुनियादी आय बैनर जोड़ें।"
+
+#: templates/landing/hashtag.html:48
+msgid "World Supporters of Basic Income"
+msgstr "बुनियादी आय की दुनिया समर्थकों"
+
+#: templates/landing/hashtag.html:71
+msgid "Create my banner"
+msgstr "मेरे बैनर बनाएं"
+
+#: templates/landing/hashtag.html:73
+msgid "Login/Signup to be here"
+msgstr "लॉग इन / पंजीकरण यहाँ होना"
+
+#: templates/landing/index.html:40
+msgid ""
+"Ekata is a social platform for individuals, communities, associations, and "
+"municipalities. Ekata empowers you with the best of today’s online "
+"technologies -- digital tools to help you stay managed, connected, and "
+"informed. Whether you want to build a web presence for yourself or your "
+"organization, or you simply want a place to connect with others who share "
+"your interests and goals, Ekata is the place for you. Welcome!"
+msgstr ""
+
+#: templates/landing/index.html:55
+msgid "Communities"
+msgstr "समुदाय"
+
+#: templates/landing/index.html:56
+msgid ""
+"You're a social group that shares something in common. Small or large. "
+"Local, national, or global. Virtual or geographically based. Your common "
+"purpose and identity give you a sense of community. Ekata was built to align "
+"with how you wish to relate."
+msgstr ""
+
+#: templates/landing/index.html:60
+msgid "Associations"
+msgstr "संघों"
+
+#: templates/landing/index.html:61
+msgid ""
+"You're a homeowners or condo association, property or land trust, or "
+"nonprofit organization. An organized body of people who live or work "
+"together to improve your lives or society. Ekata gives you the tools to "
+"manage your association’s business, membership, activities and interests."
+msgstr ""
+
+#: templates/landing/index.html:65
+msgid "Municipalities"
+msgstr "नगर पालिकाओं"
+
+#: templates/landing/index.html:66
+msgid ""
+"You're a town, municipality or county. A government institution with "
+"incorporated status in a jurisdiction. The Ekata platform has the "
+"administrative tools you need to function efficiently and connect with "
+"elected officials, staff, and constituents in the 21st century."
+msgstr ""
+
+#: templates/landing/index.html:78
+msgid "Platform Vision"
+msgstr "प्लेटफार्म विजन"
+
+#: templates/landing/index.html:86
+msgid ""
+"Mark Witham, social entrepreneur and founder of the Ekata platform (Formally "
+"known as Basic Income Project), is passionate about empowering others with "
+"options to bring about their own social change."
+msgstr ""
+
+#: templates/landing/index.html:91
+msgid ""
+"We combine technology, knowledge, and imagination to build better social "
+"systems for this planet and future generations. Now we need you! Use the "
+"Ekata platform to help create a network for fulfilling lives, communities, "
+"and positive social change."
+msgstr ""
+
+#: templates/landing/index.html:106
+msgid "Social Responsiblity"
+msgstr "सामाजिक जिम्मेदारी"
+
+#: templates/landing/index.html:112
+msgid "Ekata has partnered with "
+msgstr "Ekata साथ भागीदारी की है"
+
+#: templates/landing/index.html:112
+msgid ", a socially responsible digital currency which is distributed as "
+msgstr ", एक सामाजिक रूप से जिम्मेदार डिजिटल मुद्रा के रूप में वितरित किया जाता है जो"
+
+#: templates/landing/index.html:112
+msgid ""
+" to people around the world. Powered by blockchain technology, Grantcoin is "
+"the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization "
+"with a mission for social good. Join Ekata and receive Grantcoin on a "
+"regular basis, for free. Spend it or give it away to other Ekata users -- "
+"artists, musicians, bloggers, nonprofits, or businesses."
+msgstr ""
+
+#: templates/landing/index.html:162
+msgid "Many Key Features"
+msgstr "कई प्रमुख विशेषताएं"
+
+#: templates/landing/index.html:165
+msgid "Group sites for art, music, news, politics, activism, and business."
+msgstr "कला, संगीत, समाचार, राजनीति, सक्रियता, और व्यापार के लिए समूह साइटों।"
+
+#: templates/landing/index.html:169
+msgid "Social communication through instant messaging, posts, and comments."
+msgstr "त्वरित संदेश, पदों, और टिप्पणियों के माध्यम से सामाजिक संचार।"
+
+#: templates/landing/index.html:173
+msgid "Governance of members, staff roles, social forums, and member voting."
+msgstr "सदस्यों, स्टाफ भूमिका, सामाजिक मंचों, और सदस्य मतदान के शासन।"
+
+#: templates/landing/index.html:177
+msgid "Web of trust and a socially responsible currency system."
+msgstr "ट्रस्ट के वेब और एक सामाजिक रूप से जिम्मेदार मुद्रा प्रणाली।"
+
+#: templates/landing/index.html:196
+msgid "More Features"
+msgstr "अधिक सुविधाएं"
+
+#: templates/landing/index.html:198
+msgid "API for building in app and feature integrations."
+msgstr "एप्लिकेशन और सुविधा एकीकरण में निर्माण के लिए एपीआई।"
+
+#: templates/landing/index.html:199
+msgid "Open Source."
+msgstr "खुला स्त्रोत।"
+
+#: templates/landing/index.html:211
+msgid "#BasicIncome Hashtag Banner Campaign"
+msgstr ""
+
+#: templates/landing/index.html:217
+msgid ""
+"Help Ekata in showing your support for basic income by adding a custom "
+"colored #basicincome hashtag banner to your Twitter and Facebook profile "
+"photo. Together let us raise awareness!"
+msgstr ""
+
+#: templates/landing/index.html:219
+msgid "Click here to create and upload the banner"
+msgstr "बनाने के लिए यहां क्लिक करें और बैनर अपलोड"
+
+#: templates/landing/index.html:418
+msgid "Please correct the errors"
+msgstr "कृपया त्रुटियों को सही"
+
+#: templates/landing/news.html:39
+msgid "News and Stories"
+msgstr "समाचार और कहानियां"
+
+#: templates/landing/news.html:46
+msgid "Trending"
+msgstr "रुझान"
+
+#: templates/landing/news.html:80 templates/landing/newsdetail.html:45
+#: templates/profilesystem/index.html:343
+msgid "About Me"
+msgstr "मेरे बारे में"
+
+#: templates/landing_base.html:74
+msgid "Home"
+msgstr "मुखपृष्ठ"
+
+#: templates/landing_base.html:75
+msgid "Features"
+msgstr "अधिक सुविधाएं"
+
+#: templates/landing_base.html:99 templates/landing_base.html:164
+msgid "My Account"
+msgstr "मेरा खाता"
+
+#: templates/landing_base.html:104 templates/landing_base.html:166
+#: templates/profilesystem/index.html:406
+#: templates/publicusers/userdetails.html:50
+#: templates/publicusers/userlist_old.html:4
+#: templates/publicusers/userlist_old.html:44
+#: templates/publicusers/userlist_old.html:60
+msgid "Users"
+msgstr "उपयोगकर्ता"
+
+#: templates/landing_base.html:112 templates/landing_base.html:168
+#: templates/profilesystem/index.html:420 templates/sidebar_home.html:50
+#: templates/timelines/index.html:4 templates/timelines/index.html:18
+#: templates/timelines/index.html:21
+msgid "Timeline"
+msgstr "टाइमलाइन"
+
+#: templates/landing_base.html:127 templates/landing_base.html:170
+msgid "information"
+msgstr "जानकारी"
+
+#: templates/landing_base.html:134
+msgid "Customize link"
+msgstr "लिंक अनुकूलित"
+
+#: templates/landing_base.html:136
+msgid "Sign-out"
+msgstr "साइन आउट"
+
+#: templates/landing_base.html:161
+msgid "Links"
+msgstr "लिंक"
+
+#: templates/landing_base.html:171
+msgid "Create Hashtag"
+msgstr "हैशटैग बनाएं"
+
+#: templates/landing_base.html:177
+msgid "Social"
+msgstr "सामाजिक"
+
+#: templates/landing_base.html:186
+msgid "Signup for the Newsletter"
+msgstr "न्यूज़लैटर के लिए साइन अप करें"
+
+#: templates/landing_base.html:200
+msgid "Please feel free to inquire more about the EKATA platform."
+msgstr "कृपया Ekata मंच के बारे में और अधिक पूछताछ करने के लिए स्वतंत्र लग रहा है।"
+
+#: templates/landing_base.html:249
+msgid "Powered by "
+msgstr "द्वारा संचालित"
+
+#: templates/messagingsystem/chats.html:70
+msgid "Send Unit to: "
+msgstr "यूनिट को भेजें:"
+
+#: templates/messagingsystem/chats.html:87
+msgid "Request Unit from: "
+msgstr "यूनिट से अनुरोध करें:"
+
+#: templates/messagingsystem/chats.html:93
+#: templates/publicusers/userdetails.html:123 templates/timelines/index.html:57
+#: templates/timelines/index.html:59
+msgid "Request"
+msgstr "निवेदन"
+
+#: templates/messagingsystem/index.html:4
+#: templates/profilesystem/index.html:427
+msgid "Messaging"
+msgstr "मैसेजिंग"
+
+#: templates/messagingsystem/index.html:58
+#: templates/messagingsystem/index.html:61 templates/sidebar_home.html:56
+msgid "Messenger"
+msgstr "मैसेंजर"
+
+#: templates/messagingsystem/index.html:93
+#: templates/messagingsystem/index.html:106
+msgid "Sorry you have no chats yet!!!"
+msgstr "क्षमा करें आप अभी तक कोई चैट है !!!"
+
+#: templates/messagingsystem/index.html:121
+msgid "Send Units"
+msgstr "इकाइयों भेजें"
+
+#: templates/messagingsystem/index.html:126
+msgid "Request Request"
+msgstr "अनुरोध का अनुरोध"
+
+#: templates/messagingsystem/navbarmessage.html:37
+msgid "All caught up"
+msgstr "सारी जानकारी प्राप्त"
+
+#: templates/notification/notification.html:19
+#: templates/timelines/index.html:278 templates/timelines/timeline.html:54
+#: templates/timelines/timeline.html:72
+msgid "sent"
+msgstr "भेज दिया"
+
+#: templates/notification/notification.html:26
+msgid "requested"
+msgstr "का अनुरोध किया"
+
+#: templates/notification/notification.html:33
+msgid "units released"
+msgstr "इकाइयों का विमोचन किया"
+
+#: templates/notification/notification.html:40
+msgid "verfied as real user"
+msgstr "वास्तविक उपयोगकर्ता के रूप में verfied"
+
+#: templates/notification/notification.html:47
+msgid "unverfied you"
+msgstr "आप पता असत्यापित"
+
+#: templates/notification/notification.html:54
+msgid "sent a connection request"
+msgstr "एक कनेक्शन अनुरोध भेजा"
+
+#: templates/notification/notification.html:61
+msgid "canceled connection request"
+msgstr "रद्द कनेक्शन अनुरोध"
+
+#: templates/notification/notification.html:68
+msgid "accepted connection request"
+msgstr "स्वीकृत कनेक्शन अनुरोध"
+
+#: templates/notification/notification.html:75
+msgid "rejected connection request"
+msgstr "अस्वीकार कर दिया कनेक्शन अनुरोध"
+
+#: templates/notification/notification.html:82
+msgid "disconnected you"
+msgstr "आप डिस्कनेक्ट"
+
+#: templates/notification/notification.html:89
+msgid "invited you to group"
+msgstr "समूह के लिए आमंत्रित किया"
+
+#: templates/notification/notification.html:96
+msgid "sent a join request to group"
+msgstr "एक समूह के लिए अनुरोध भेजा शामिल"
+
+#: templates/notification/notification.html:128
+msgid "All caught up!!"
+msgstr "सारी जानकारी प्राप्त!!"
+
+#: templates/profilesystem/address.html:43
+msgid "Click add button to add your address"
+msgstr "अपने पता जोड़ने के लिए जोड़ें बटन क्लिक करें"
+
+#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:241
+msgid "Phone Office"
+msgstr "फ़ोन कार्यालय"
+
+#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:247
+msgid "Phone Home"
+msgstr "फोन घर"
+
+#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:253
+msgid "Phone Mobile"
+msgstr "फोन मोबाइल"
+
+#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:259
+msgid "Phone Emergency"
+msgstr "फोन आपातकालीन"
+
+#: templates/profilesystem/contact.html:30
+msgid "Click add button to add your phone number"
+msgstr "अपने फोन नंबर से जोड़ने के लिए जोड़ें बटन क्लिक करें"
+
+#: templates/profilesystem/documents.html:4
+msgid "Profile Images"
+msgstr "प्रोफ़ाइल छवि बनाओ"
+
+#: templates/profilesystem/documents.html:18
+msgid "Images"
+msgstr "छवियों को अपलोड करें"
+
+#: templates/profilesystem/documents.html:34
+#: templates/profilesystem/index.html:223
+msgid "Documents"
+msgstr "दस्तावेज़"
+
+#: templates/profilesystem/documents.html:50
+msgid "Legal"
+msgstr "कानूनी"
+
+#: templates/profilesystem/emailaddress.html:4
+msgid "Email address associated with your account"
+msgstr "ईमेल पता आपके खाते से संबद्ध"
+
+#: templates/profilesystem/emailaddress.html:17
+msgid "(Primary)"
+msgstr "(प्राथमिक)"
+
+#: templates/profilesystem/emailaddress.html:30
+msgid "No email associated with your account"
+msgstr "कोई ईमेल आपके खाते से संबद्ध"
+
+#: templates/profilesystem/index.html:84 templates/profilesystem/index.html:307
+#: templates/publicusers/user.html:112
+msgid "Personal Information"
+msgstr "व्यक्तिगत जानकारी"
+
+#: templates/profilesystem/index.html:115
+#: templates/profilesystem/index.html:365
+msgid "Location"
+msgstr "स्थान"
+
+#: templates/profilesystem/index.html:191 templates/publicusers/user.html:166
+msgid "Activities"
+msgstr "क्रियाएँ"
+
+#: templates/profilesystem/index.html:198 templates/publicusers/user.html:170
+msgid "Activation date"
+msgstr "एक्टिवेशन की तारीख"
+
+#: templates/profilesystem/index.html:210
+msgid "More"
+msgstr "अधिक"
+
+#: templates/profilesystem/index.html:236
+#: templates/publicusers/connections.html:74
+msgid "Search..."
+msgstr "खोज..."
+
+#: templates/profilesystem/index.html:253
+msgid "Upload Document"
+msgstr "साझा दस्तावेज़"
+
+#: templates/profilesystem/index.html:268
+msgid "Shared Documents"
+msgstr "साझा दस्तावेज़"
+
+#: templates/profilesystem/index.html:300
+msgid "Change Public Visibility"
+msgstr "सार्वजनिक दृश्यता बदले"
+
+#: templates/profilesystem/index.html:318 templates/profilesystem/pinfo.html:42
+#: templates/publicusers/user.html:138
+msgid "Website"
+msgstr "वेबसाइट"
+
+#: templates/profilesystem/index.html:325 templates/profilesystem/pinfo.html:23
+#: templates/publicusers/user.html:126
+msgid "Gender"
+msgstr "लिंग"
+
+#: templates/profilesystem/index.html:336
+msgid "Avatar"
+msgstr "अवतार जोड़े"
+
+#: templates/profilesystem/index.html:361 templates/publicusers/user.html:188
+msgid "Address"
+msgstr "पता"
+
+#: templates/profilesystem/index.html:385
+msgid "Others"
+msgstr "अन्य लोग"
+
+#: templates/profilesystem/index.html:389
+msgid "Profile completion"
+msgstr "प्रोफ़ाइल पूरा होने"
+
+#: templates/profilesystem/index.html:398
+msgid "Please edit profile information to change visibility"
+msgstr "दृश्यता बदलने के लिए प्रोफ़ाइल जानकारी संपादित करें"
+
+#: templates/profilesystem/index.html:401
+msgid "Customize links of landing dropdown"
+msgstr "लैंडिंग लटकती का लिंक अनुकूलित"
+
+#: templates/profilesystem/index.html:454
+msgid "Change password"
+msgstr "पासवर्ड बदलें"
+
+#: templates/profilesystem/index.html:458
+msgid "Set password"
+msgstr "पासवर्ड सेट करें"
+
+#: templates/profilesystem/index.html:462
+msgid "View As Public"
+msgstr "देखें सार्वजनिक रूप"
+
+#: templates/profilesystem/index.html:473
+msgid "Linked social account"
+msgstr "लिंक्ड सामाजिक खाते"
+
+#: templates/profilesystem/index.html:525
+msgid "Manage"
+msgstr "प्रबंधित"
+
+#: templates/profilesystem/index.html:540
+msgid "Reference"
+msgstr "संदर्भ"
+
+#: templates/profilesystem/index.html:552
+msgid "Refresh"
+msgstr "ताज़ा करना"
+
+#: templates/profilesystem/index.html:567
+msgid "My Groups"
+msgstr "मेरे समूह"
+
+#: templates/profilesystem/index.html:632
+msgid "Apps"
+msgstr "Apps"
+
+#: templates/profilesystem/index.html:648
+msgid "Sites"
+msgstr "साइटें"
+
+#: templates/profilesystem/index.html:664
+msgid "Ads"
+msgstr "विज्ञापन"
+
+#: templates/profilesystem/logdata.html:3
+msgid "Logs Details"
+msgstr "Logs विवरण"
+
+#: templates/profilesystem/logdata.html:6
+msgid "Last payment received"
+msgstr "अंतिम भुगतान प्राप्त"
+
+#: templates/profilesystem/logdata.html:16
+msgid "Advertisement post"
+msgstr "विज्ञापन पोस्ट"
+
+#: templates/profilesystem/logdata.html:20
+msgid "Last login "
+msgstr "अंतिम लॉगइन"
+
+#: templates/profilesystem/logdata.html:24
+msgid "Last payment sent"
+msgstr "भेजा अंतिम भुगतान"
+
+#: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
+msgid "Username"
+msgstr "उपयोगकर्ता नाम"
+
+#: templates/profilesystem/pinfo.html:38
+msgid "Community"
+msgstr "समुदाय"
+
+#: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
+msgid "About me"
+msgstr "मेरे बारे में"
+
+#: templates/profilesystem/profilecompletiontasks.html:5
+msgid "Add your website to complete your profile."
+msgstr "अपनी वेबसाइट अपने प्रोफ़ाइल पूरा करने के लिए जोड़ें।"
+
+#: templates/profilesystem/profilecompletiontasks.html:11
+msgid "Add your gender to complete your profile."
+msgstr "अपने लिंग अपने प्रोफ़ाइल पूरा करने के लिए जोड़ें।"
+
+#: templates/profilesystem/profilecompletiontasks.html:17
+msgid "Add your contact number to complete your profile."
+msgstr "अपने संपर्क नंबर अपने प्रोफ़ाइल पूरा करने के लिए जोड़ें।"
+
+#: templates/profilesystem/profilecompletiontasks.html:23
+msgid "Add a profile image to complete your profile."
+msgstr "एक प्रोफ़ाइल छवि अपने प्रोफ़ाइल पूरा करने के लिए जोड़ें।"
+
+#: templates/profilesystem/profilecompletiontasks.html:29
+msgid "Add your location to complete your profile."
+msgstr "अपने प्रोफ़ाइल पूरा करने के लिए अपना स्थान जोड़ें।"
+
+#: templates/profilesystem/profilecompletiontasks.html:35
+msgid "Add a social account of yours to complete your profile."
+msgstr "अपने प्रोफ़ाइल पूरा करने के लिए अपनी एक सामाजिक खाते में जोड़े।"
+
+#: templates/profilesystem/profilecompletiontasks.html:41
+msgid "Add your email account to complete your profile."
+msgstr "अपने प्रोफ़ाइल पूरा करने के लिए अपने ईमेल खाते में जोड़े।"
+
+#: templates/profilesystem/profilecompletiontasks.html:50
+msgid "Please verify your email address(resend verification)"
+msgstr "अपना ईमेल पता (पुन: भेजें सत्यापन) की पुष्टि करें"
+
+#: templates/profilesystem/reference.html:6
+msgid "Following user verified me"
+msgstr "उपयोक्ता के बाद मेरे सत्यापित"
+
+#: templates/profilesystem/reference.html:35
+msgid "Oops!! No Reference Yet"
+msgstr "उफ़ !! फिर भी कोई संदर्भ"
+
+#: templates/profilesystem/unlinksocial.html:69
+msgid "This is your last method to connect to this site."
+msgstr "यह आपका अंतिम विधि इस साइट से कनेक्ट करने के लिए है।"
+
+#: templates/profilesystem/unlinksocial.html:70
+msgid "You will be asked for a password if you proceed"
+msgstr "आप एक पासवर्ड के लिए कहा जाएगा, तो आप आगे बढ़ना"
+
+#: templates/publicusers/connections.html:50
+#: templates/publicusers/userlist_old.html:48
+#, fuzzy, python-format
+#| msgid "Hello, %(username_t)s!"
+msgid "Hello, %(username_t)s!"
+msgstr "हैलो,% (username_t) है!"
+
+#: templates/publicusers/connusers.html:31
+msgid "No connections"
+msgstr "कोई कनेक्शन"
+
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:46 templates/publicusers/users.html:27
+msgid "Staff"
+msgstr "स्टाफ़"
+
+#: templates/publicusers/user.html:22
+#: templates/publicusers/userdetails.html:401
+#: templates/publicusers/userlist.html:132
+#: templates/publicusers/userlist_old.html:124
+#: templates/publicusers/users_old.html:23
+msgid "lastseen: "
+msgstr "अंतिम बार देखा गया:"
+
+#: templates/publicusers/user.html:26
+#: templates/publicusers/userdetails.html:397
+#: templates/publicusers/userlist.html:43
+#: templates/publicusers/userlist_old.html:122
+#: templates/publicusers/userlist_old.html:128
+#: templates/publicusers/users_old.html:27
+msgid "Offline"
+msgstr "ऑफलाइन"
+
+#: templates/publicusers/user.html:51 templates/timelines/timeline.html:147
+#: templates/timelines/timeline.html:154
+msgid "Disconnect"
+msgstr "डिस्कनेक्ट"
+
+#: templates/publicusers/user.html:53
+msgid "Cancel connection request"
+msgstr "रद्द कनेक्शन अनुरोध"
+
+#: templates/publicusers/user.html:55
+msgid "Reject connection request"
+msgstr "कनेक्शन अनुरोध अस्वीकार"
+
+#: templates/publicusers/user.html:56
+msgid "Accept connection request"
+msgstr "कनेक्शन अनुरोध स्वीकार करें"
+
+#: templates/publicusers/user.html:58
+msgid "Connect"
+msgstr "जुडिये"
+
+#: templates/publicusers/user.html:61
+msgid "Connection type"
+msgstr "संबंध प्रकार"
+
+#: templates/publicusers/user.html:64
+msgid "Family"
+msgstr "परिवार"
+
+#: templates/publicusers/user.html:69
+msgid "Friend Type"
+msgstr "मित्र के प्रकार"
+
+#: templates/publicusers/user.html:78
+msgid "Send request"
+msgstr "अनुरोध भेजा"
+
+#: templates/publicusers/user.html:87
+msgid "Unverify"
+msgstr "असत्यापित"
+
+#: templates/publicusers/user.html:90
+msgid "I verify this user"
+msgstr "मैं इस उपयोगकर्ता को सत्यापित"
+
+#: templates/publicusers/user.html:92
+#: templates/publicusers/userdetails.html:100
+msgid "Send Unit"
+msgstr "यूनिट भेजें"
+
+#: templates/publicusers/user.html:93
+#: templates/publicusers/userdetails.html:117
+msgid "Request Unit"
+msgstr "अनुरोध यूनिट"
+
+#: templates/publicusers/user.html:94
+msgid "Message"
+msgstr "संदेश"
+
+#: templates/publicusers/userdetails.html:67
+msgid "Others who verify"
+msgstr "जो दूसरों को सत्यापित"
+
+#: templates/publicusers/userlist.html:138
+#: templates/publicusers/userlist_old.html:130
+msgid "lastseen: unknown"
+msgstr "lastseen: अज्ञात"
+
+#: templates/publicusers/userlist_old.html:72
+msgid " Search Users "
+msgstr "खोजें उपयोगकर्ता"
+
+#: templates/sidebar_apps.html:2
+msgid "Hashtag Campaign"
+msgstr "हैशटैग अभियान"
+
+#: templates/sidebar_community.html:26
+msgid "About Our System"
+msgstr "के बारे में हमारी प्रणाली"
+
+#: templates/sidebar_community.html:27
+msgid "Contact Details"
+msgstr "संपर्क विवरण"
+
+#: templates/sidebar_community.html:42
+msgid "Email Lists"
+msgstr "ईमेल सूचियाँ"
+
+#: templates/sidebar_group.html:5
+msgid "Homepage"
+msgstr "मुखपृष्ठ"
+
+#: templates/sidebar_group.html:25 templates/sidebar_group.html:60
+#: templates/sidebar_group_admin.html:30
+msgid "Group's Posts"
+msgstr "समूह की पोस्ट"
+
+#: templates/sidebar_group.html:26 templates/sidebar_group.html:61
+#: templates/sidebar_group_admin.html:31
+msgid "Member's Posts"
+msgstr "सदस्य की डाक"
+
+#: templates/sidebar_group.html:31
+msgid "Group Admin Section"
+msgstr "समूह व्यवस्थापक अनुभाग"
+
+#: templates/sidebar_group.html:77 templates/sidebar_group_admin.html:47
+msgid "Not Approved"
+msgstr "अस्वीकृत"
+
+#: templates/sidebar_group.html:95 templates/sidebar_group_admin.html:65
+msgid "Requests"
+msgstr "अनुरोधों"
+
+#: templates/sidebar_group.html:117 templates/sidebar_group_admin.html:87
+msgid "Roles"
+msgstr "भूमिकाओं"
+
+#: templates/sidebar_group.html:124 templates/sidebar_group_admin.html:94
+msgid "Defaults"
+msgstr "चूक"
+
+#: templates/sidebar_group.html:127 templates/sidebar_group_admin.html:97
+msgid "Custom"
+msgstr "रिवाज"
+
+#: templates/sidebar_group.html:136 templates/sidebar_group_admin.html:106
+msgid "Account Signups"
+msgstr "खाते का पंजीकरण"
+
+#: templates/sidebar_group_admin.html:68
+msgid "Banned members"
+msgstr "प्रतिबंध लगा दिया सदस्यों"
+
+#: templates/sidebar_home.html:10
+msgid "My Accounts"
+msgstr "मेरा खाता"
+
+#: templates/sidebar_home.html:17 templates/timelines/index.html:52
+#: templates/timelines/index.html:54 templates/useraccount/transfer.html:7
+#: templates/useraccount/transfer.html:13
+msgid "Transfer"
+msgstr "हस्तांतरण"
+
+#: templates/socialaccount/signup.html:9
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: templates/timelines/index.html:43
+msgid "Search: "
+msgstr "खोज:"
+
+#: templates/timelines/index.html:49
+msgid "Filters: "
+msgstr "फिल्टर:"
+
+#: templates/timelines/index.html:62 templates/timelines/index.html:64
+msgid "Release"
+msgstr "रिहाई"
+
+#: templates/timelines/index.html:67 templates/timelines/index.html:69
+msgid "Verified"
+msgstr "सत्यापित"
+
+#: templates/timelines/index.html:72 templates/timelines/index.html:74
+msgid "Unverified"
+msgstr "असत्यापित"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "you sent"
+msgstr "आपने भेजा"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "units to"
+msgstr "इकाइयों"
+
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+msgid "sent you"
+msgstr "तुम्हें भेजा"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "you requested"
+msgstr "अपने अनुरोध किया था"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "units from"
+msgstr "से इकाइयों"
+
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "requested you"
+msgstr "आप का अनुरोध"
+
+#: templates/timelines/timeline.html:52 templates/timelines/timeline.html:70
+msgid "send"
+msgstr "भेजना"
+
+#: templates/timelines/timeline.html:103
+msgid " units basic income released"
+msgstr "इकाइयों बुनियादी आय का विमोचन किया"
+
+#: templates/timelines/timeline.html:115
+msgid "you verified"
+msgstr "आप सत्यापित"
+
+#: templates/timelines/timeline.html:115 templates/timelines/timeline.html:130
+msgid "as real user"
+msgstr "वास्तविक उपयोगकर्ता के रूप में"
+
+#: templates/timelines/timeline.html:117
+msgid "verified you as real user"
+msgstr "वास्तविक उपयोगकर्ता के रूप में सत्यापित"
+
+#: templates/timelines/timeline.html:130
+msgid "you unverified"
+msgstr "असत्यापित"
+
+#: templates/timelines/timeline.html:132
+msgid "unverified you as real user"
+msgstr "वास्तविक उपयोगकर्ता के रूप में आप असत्यापित"
+
+#: templates/timelines/timeline.html:145
+msgid "Requested connection to "
+msgstr "करने के लिए अनुरोध किया कनेक्शन"
+
+#: templates/timelines/timeline.html:152
+msgid "sent connection request"
+msgstr "भेजा कनेक्शन अनुरोध"
+
+#: templates/timelines/timeline.html:156
+msgid "Reject"
+msgstr "अस्वीकार"
+
+#: templates/timelines/timeline.html:157
+msgid "Accept"
+msgstr "स्वीकार करना"
+
+#: templates/timelines/timeline.html:162
+msgid "Connection type: "
+msgstr "संबंध प्रकार:"
+
+#: templates/useraccount/index.html:83
+msgid "Pulse Points"
+msgstr "पल्स अंक"
+
+#: templates/useraccount/index.html:108 templates/useraccount/transfer.html:40
+msgid "Quick Review"
+msgstr "त्वरित समीक्षा"
+
+#: templates/useraccount/index.html:113 templates/useraccount/transfer.html:45
+msgid "Units"
+msgstr "इकाइयों"
+
+#: templates/useraccount/index.html:165
+msgid "Transactions"
+msgstr "लेनदेन"
+
+#: templates/useraccount/index.html:171
+msgid "Id"
+msgstr "पहचान पत्र"
+
+#: templates/useraccount/index.html:172 templates/useraccount/index.html:207
+msgid "From"
+msgstr "से"
+
+#: templates/useraccount/index.html:173 templates/useraccount/index.html:203
+msgid "To"
+msgstr "सेवा मेरे"
+
+#: templates/useraccount/index.html:174 templates/useraccount/index.html:211
+#: templates/useraccount/index.html:241
+msgid "Date"
+msgstr "तारीख:"
+
+#: templates/useraccount/index.html:196
+msgid "Details"
+msgstr "विवरण"
+
+#: templates/useraccount/index.html:234
+msgid "Basic Income Release"
+msgstr "बुनियादी आय रिलीज"
+
+#: templates/useraccount/index.html:255
+msgid "No release yet"
+msgstr "अगली रिलीज"
+
+#: templates/useraccount/index.html:286
+msgid "Please contact a Grantcoin staff on your Account Status"
+msgstr "अपने खाते की स्थिति पर एक Grantcoin स्टाफ से संपर्क करें"
+
+#: templates/useraccount/index.html:296
+msgid "Contact to add your organization account"
+msgstr "अपने संगठन के खाते में जोड़ने के लिए संपर्क करें"
+
+#: templates/useraccount/transfer.html:16
+msgid "transfer"
+msgstr "हस्तांतरण"
+
+#: templates/useraccount/transfer.html:55
+msgid "Select User"
+msgstr "उपयोगकर्ता का चयन करें"
+
+#: templates/useraccount/transfer.html:80
+msgid "Search user"
+msgstr "खोजें उपयोगकर्ता"
+
+#: templates/useraccount/transferunit.html:4
+msgid "Send Amount To"
+msgstr "राशि भेजने के लिए"
+
+#: useraccount/forms.py:7 useraccount/forms.py:26
+msgid "Instruction"
+msgstr "अनुदेश"
+
+#: useraccount/forms.py:17
+msgid "Amount can't exceed your balance"
+msgstr "अपनी शेष राशि से अधिक नहीं हो सकता है"
+
+#: useraccount/views.py:119
+msgid "Transfer completed!!"
+msgstr "हस्तांतरण पूरा !!"
+
+#: useraccount/views.py:187
+msgid "Request Sent!!"
+msgstr "निमंत्रण भेजा गया!!"

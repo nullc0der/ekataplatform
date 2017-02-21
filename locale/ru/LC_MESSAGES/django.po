@@ -1,0 +1,3647 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-20 21:16+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: autosignup/forms.py:150
+msgid "Max attempt reached! try later"
+msgstr "Макс попытка достигнута! попробуй позже"
+
+#: autosignup/forms.py:155 autosignup/forms.py:162
+msgid "Provide a valid mobile number"
+msgstr "Укажите правильный номер мобильного телефона"
+
+#: autosignup/forms.py:157 autosignup/forms.py:164
+msgid "Something went wrong! Try later"
+msgstr "Что-то пошло не так! Попробуй позже"
+
+#: ekatadeveloper/settings/base.py:237
+msgid "German"
+msgstr "Немецкий"
+
+#: ekatadeveloper/settings/base.py:238
+msgid "English"
+msgstr "английский"
+
+#: ekatadeveloper/settings/base.py:239
+msgid "Hindi"
+msgstr "хинди"
+
+#: ekatadeveloper/settings/base.py:240
+msgid "Spanish"
+msgstr "испанский"
+
+#: ekatadeveloper/settings/base.py:241
+msgid "Bengali"
+msgstr "бенгальский"
+
+#: ekatadeveloper/settings/base.py:242
+msgid "Belarusian"
+msgstr "Белорусский"
+
+#: ekatadeveloper/settings/base.py:243
+msgid "Portuguese"
+msgstr "португальский"
+
+#: ekatadeveloper/settings/base.py:244
+msgid "Bulgarian"
+msgstr "болгарский"
+
+#: ekatadeveloper/settings/base.py:245
+msgid "French"
+msgstr "Французский"
+
+#: ekatadeveloper/settings/base.py:246
+msgid "Croatian"
+msgstr "хорватский"
+
+#: ekatadeveloper/settings/base.py:247
+msgid "Greek"
+msgstr "греческий"
+
+#: ekatadeveloper/settings/base.py:248
+msgid "Czech"
+msgstr "Чешский"
+
+#: ekatadeveloper/settings/base.py:249
+msgid "Danish"
+msgstr "датский"
+
+#: ekatadeveloper/settings/base.py:250
+msgid "Arabic"
+msgstr "арабский"
+
+#: ekatadeveloper/settings/base.py:251
+msgid "Finland"
+msgstr "Финляндия"
+
+#: ekatadeveloper/settings/base.py:252
+msgid "France"
+msgstr "Франция"
+
+#: ekatadeveloper/settings/base.py:253
+msgid "Hungarian"
+msgstr "Венгерский"
+
+#: ekatadeveloper/settings/base.py:254
+msgid "Indonessian"
+msgstr "Indonessian"
+
+#: ekatadeveloper/settings/base.py:255
+msgid "Italian"
+msgstr "итальянский"
+
+#: ekatadeveloper/settings/base.py:256
+msgid "Japanese"
+msgstr "Японский"
+
+#: ekatadeveloper/settings/base.py:257
+msgid "Russian"
+msgstr "русский"
+
+#: ekatadeveloper/settings/base.py:258
+msgid "Latvian"
+msgstr "Латышский"
+
+#: ekatadeveloper/settings/base.py:259
+msgid "Lithunian"
+msgstr "Lithunian"
+
+#: ekatadeveloper/settings/base.py:260
+msgid "Nepali"
+msgstr "непальский"
+
+#: ekatadeveloper/settings/base.py:261
+msgid "Norwegian"
+msgstr "Норвежский"
+
+#: ekatadeveloper/settings/base.py:262
+msgid "Urdu"
+msgstr "урду"
+
+#: ekatadeveloper/settings/base.py:263
+msgid "Polish"
+msgstr "полировать"
+
+#: ekatadeveloper/settings/base.py:264
+msgid "Romanian"
+msgstr "румынский"
+
+#: ekatadeveloper/settings/base.py:265
+msgid "Tamil"
+msgstr "тамильский"
+
+#: ekatadeveloper/settings/base.py:266
+msgid "Korean"
+msgstr "Корейский"
+
+#: ekatadeveloper/settings/base.py:267
+msgid "Sinhalese"
+msgstr "сингалец"
+
+#: ekatadeveloper/settings/base.py:268
+msgid "Thai"
+msgstr "тайский"
+
+#: groupsystem/forms.py:20
+msgid "Group Exist"
+msgstr "Группа Exist"
+
+#: groupsystem/forms.py:32 groupsystem/forms.py:89
+msgid "You must specify other group type"
+msgstr "Необходимо указать другой тип группы"
+
+#: groupsystem/forms.py:38 groupsystem/forms.py:95
+msgid "You can't fill this field with default group types"
+msgstr "Вы не можете заполнить это поле с типами групп по умолчанию"
+
+#: groupsystem/forms.py:186
+msgid "You can't choose a default role name"
+msgstr "Вы не можете выбрать имя роли по умолчанию"
+
+#: groupsystem/forms.py:193
+msgid "Role exist"
+msgstr "Роль существует"
+
+#: groupsystem/models.py:18
+msgid "Art"
+msgstr "Изобразительное искусство"
+
+#: groupsystem/models.py:19
+msgid "Activist"
+msgstr "активист"
+
+#: groupsystem/models.py:20
+msgid "Political"
+msgstr "политическая"
+
+#: groupsystem/models.py:21 templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:17
+#: templates/groupsystem/adminnews.html:22
+#: templates/groupsystem/adminnews.html:49
+#: templates/groupsystem/groupdetails.html:154 templates/landing_base.html:80
+#: templates/landing_base.html:173 templates/sidebar_group.html:44
+#: templates/sidebar_group_admin.html:14
+msgid "News"
+msgstr "Новости"
+
+#: groupsystem/models.py:22 publicusers/views.py:328
+msgid "Business"
+msgstr "Бизнес"
+
+#: groupsystem/models.py:23
+msgid "Government"
+msgstr "Правительство"
+
+#: groupsystem/models.py:24
+msgid "Blog"
+msgstr "Блог"
+
+#: groupsystem/models.py:25
+msgid "Nonprofit Organization"
+msgstr "Некоммерческая организация"
+
+#: groupsystem/models.py:26
+msgid "Other"
+msgstr "Другие"
+
+#: groupsystem/models.py:28 templates/profilesystem/index.html:311
+#: templates/profilesystem/pinfo.html:17 templates/publicusers/user.html:121
+msgid "Name"
+msgstr "имя"
+
+#: groupsystem/models.py:30
+msgid "Short About"
+msgstr "Короткие О"
+
+#: groupsystem/models.py:32
+msgid "Long About"
+msgstr "Длинные О"
+
+#: groupsystem/models.py:34
+msgid "Group Type"
+msgstr "группа"
+
+#: groupsystem/models.py:36
+msgid "Please Specify"
+msgstr "Пожалуйста уточни"
+
+#: groupsystem/models.py:84 groupsystem/views.py:38 groupsystem/views.py:77
+#: groupsystem/views.py:110
+msgid "Can access admin"
+msgstr "Можно получить доступ к администратору"
+
+#: groupsystem/models.py:85 groupsystem/views.py:39 groupsystem/views.py:78
+#: groupsystem/views.py:111 groupsystem/views.py:128 groupsystem/views.py:139
+msgid "Can read news"
+msgstr "Можно читать новости"
+
+#: groupsystem/models.py:86 groupsystem/views.py:40 groupsystem/views.py:79
+msgid "Can create news"
+msgstr "Можно создавать новости"
+
+#: groupsystem/models.py:87 groupsystem/views.py:41 groupsystem/views.py:80
+msgid "Can update news"
+msgstr "Можно обновлять новости"
+
+#: groupsystem/models.py:88 groupsystem/views.py:42 groupsystem/views.py:81
+msgid "Can delete news"
+msgstr "Можно удалить новости"
+
+#: groupsystem/models.py:89 groupsystem/views.py:43 groupsystem/views.py:82
+#: groupsystem/views.py:112 groupsystem/views.py:129
+msgid "Can read post"
+msgstr "Можно читать почту"
+
+#: groupsystem/models.py:90 groupsystem/views.py:44 groupsystem/views.py:83
+#: groupsystem/views.py:113 groupsystem/views.py:130
+msgid "Can create post"
+msgstr "Можно создать пост"
+
+#: groupsystem/models.py:91 groupsystem/views.py:45 groupsystem/views.py:84
+#: groupsystem/views.py:114
+msgid "Can update post"
+msgstr "Может обновить пост"
+
+#: groupsystem/models.py:92 groupsystem/views.py:46 groupsystem/views.py:85
+#: groupsystem/views.py:115
+msgid "Can approve post"
+msgstr "Может одобрить пост"
+
+#: groupsystem/models.py:93 groupsystem/views.py:47 groupsystem/views.py:86
+#: groupsystem/views.py:116
+msgid "Can delete post"
+msgstr "Можно удалить сообщение"
+
+#: groupsystem/models.py:94 groupsystem/views.py:48 groupsystem/views.py:87
+#: groupsystem/views.py:117 groupsystem/views.py:131
+msgid "Can read comment"
+msgstr "Можно читать комментарий"
+
+#: groupsystem/models.py:95 groupsystem/views.py:49 groupsystem/views.py:88
+#: groupsystem/views.py:118 groupsystem/views.py:132
+msgid "Can create comment"
+msgstr "Можно создать комментарий"
+
+#: groupsystem/models.py:96 groupsystem/views.py:50 groupsystem/views.py:89
+#: groupsystem/views.py:119
+msgid "Can update comment"
+msgstr "Можно обновить комментарий"
+
+#: groupsystem/models.py:97 groupsystem/views.py:51 groupsystem/views.py:90
+#: groupsystem/views.py:120
+msgid "Can approve comment"
+msgstr "Может одобрить комментарий"
+
+#: groupsystem/models.py:98 groupsystem/views.py:52 groupsystem/views.py:91
+#: groupsystem/views.py:121
+msgid "Can delete comment"
+msgstr "Можно стереть комментарий"
+
+#: groupsystem/models.py:99 groupsystem/views.py:53 groupsystem/views.py:92
+#: groupsystem/views.py:122 groupsystem/views.py:133
+msgid "Can like post"
+msgstr "Может нравится пост"
+
+#: groupsystem/models.py:100 groupsystem/views.py:54
+msgid "Can create notification"
+msgstr "Можно создать уведомление"
+
+#: groupsystem/models.py:101 groupsystem/views.py:55 groupsystem/views.py:93
+#: groupsystem/views.py:123 groupsystem/views.py:134
+msgid "Can create invite"
+msgstr "Можно создать пригласить"
+
+#: groupsystem/models.py:102 groupsystem/views.py:56 groupsystem/views.py:94
+msgid "Can add member"
+msgstr "Можно добавить элемент"
+
+#: groupsystem/models.py:103 groupsystem/views.py:57 groupsystem/views.py:95
+msgid "Can remove member"
+msgstr "Можно удалить элемент"
+
+#: groupsystem/models.py:104 groupsystem/views.py:58 groupsystem/views.py:96
+msgid "Can ban member"
+msgstr "Можно запретить члену"
+
+#: groupsystem/models.py:105 groupsystem/views.py:59 groupsystem/views.py:97
+msgid "Can lift member ban"
+msgstr "Можно отменить запрет участника"
+
+#: groupsystem/models.py:106 groupsystem/views.py:60 groupsystem/views.py:98
+msgid "Can change member role"
+msgstr "Может изменить роль участника"
+
+#: groupsystem/models.py:107 groupsystem/views.py:61 groupsystem/views.py:99
+msgid "Can edit member permission"
+msgstr "Может редактировать разрешение члена"
+
+#: groupsystem/models.py:108 groupsystem/views.py:62 groupsystem/views.py:100
+#: groupsystem/views.py:124 groupsystem/views.py:135
+msgid "Can read events"
+msgstr "Можно читать события"
+
+#: groupsystem/models.py:109 groupsystem/views.py:63 groupsystem/views.py:101
+msgid "Can create events"
+msgstr "Можно создавать события"
+
+#: groupsystem/models.py:110 groupsystem/views.py:64 groupsystem/views.py:102
+msgid "Can update events"
+msgstr "Можно обновить события"
+
+#: groupsystem/models.py:111 groupsystem/views.py:65 groupsystem/views.py:103
+msgid "Can delete events"
+msgstr "Можно удалять события"
+
+#: groupsystem/models.py:112 groupsystem/views.py:66 groupsystem/views.py:104
+msgid "Can read join requests"
+msgstr "Может запросы на чтение присоединиться"
+
+#: groupsystem/models.py:113 groupsystem/views.py:67 groupsystem/views.py:105
+msgid "Can approve join requests"
+msgstr "Может ли одобрить отправку запросов на присоединение"
+
+#: groupsystem/models.py:114 groupsystem/views.py:68 groupsystem/views.py:106
+msgid "Can deny joinrequest"
+msgstr "Можно отрицать joinrequest"
+
+#: groupsystem/models.py:115 groupsystem/views.py:69
+msgid "Can edit group profile"
+msgstr "Может редактировать группы профиля"
+
+#: groupsystem/models.py:116 groupsystem/views.py:70
+msgid "Can read role"
+msgstr "Можно читать роль"
+
+#: groupsystem/models.py:117 groupsystem/views.py:71
+msgid "Can read custom role"
+msgstr "Можно читать пользовательской роли"
+
+#: groupsystem/models.py:118 groupsystem/views.py:72
+msgid "Can update custom role"
+msgstr "Можно обновить пользовательской роли"
+
+#: groupsystem/models.py:119 groupsystem/views.py:73
+msgid "Can create custom role"
+msgstr "Можно создавать пользовательские роли"
+
+#: groupsystem/views.py:358
+msgid "Already requested"
+msgstr "Уже предложено"
+
+#: groupsystem/views.py:360
+msgid "You're banned from this group"
+msgstr "Вы запретили из этой группы"
+
+#: groupsystem/views.py:367 templates/autosignup/index.html:36
+#: templates/useraccount/index.html:50 templates/useraccount/index.html:65
+msgid "Subscribed"
+msgstr "подписной"
+
+#: groupsystem/views.py:374
+msgid "Unsubscribed"
+msgstr "Отписался"
+
+#: groupsystem/views.py:380
+msgid "Request Canceled"
+msgstr "Запрос Отменено"
+
+#: groupsystem/views.py:411
+msgid "Leaved Group"
+msgstr "лиственные Group"
+
+#: groupsystem/views.py:567
+msgid "Post will be shown once admin/moderator approves"
+msgstr "Сообщение будет показано, как только администратор / модератор одобрит"
+
+#: groupsystem/views.py:626
+#, fuzzy
+#| msgid "Post will be shown once admin/moderator approves"
+msgid ""
+"Thank you for commenting your comment will show once a admin/moderator "
+"approves"
+msgstr "Сообщение будет показано, как только администратор / модератор одобрит"
+
+#: groupsystem/views.py:682
+msgid "You don't have permissions to edit settings"
+msgstr "У вас нет прав для редактирования настроек"
+
+#: groupsystem/views.py:702
+msgid "You don't have permission to create news"
+msgstr "У вас нет разрешения на создание новости"
+
+#: groupsystem/views.py:810
+msgid "You dont have permissions to approve post"
+msgstr "Вы не имеете права доступа к одобряете пост"
+
+#: groupsystem/views.py:830
+msgid "Post created"
+msgstr "сообщение создано:"
+
+#: groupsystem/views.py:952
+msgid "You dont have permissions to approve comment"
+msgstr "Вы не имеете разрешения на комментарий одобряете"
+
+#: groupsystem/views.py:997
+msgid "You don't have permission to add memeber"
+msgstr "У вас нет разрешения на добавление memeber"
+
+#: groupsystem/views.py:1035
+msgid "You dont have permission to remove member"
+msgstr "Вы не можете удалять элемент"
+
+#: groupsystem/views.py:1075
+msgid "You dont have permission to ban member"
+msgstr "Вы не имеете разрешения запретить члену"
+
+#: groupsystem/views.py:1126
+msgid "You don't have permissions to change member role"
+msgstr "У вас нет разрешения на изменение роли члена"
+
+#: groupsystem/views.py:1236
+msgid "You don't have permission to approve request"
+msgstr "У вас нет разрешения на запрос об одобрении"
+
+#: groupsystem/views.py:1249
+msgid "You don't have permission to deny request"
+msgstr "У вас нет разрешения на отклонить запрос"
+
+#: groupsystem/views.py:1288
+msgid "Users invited"
+msgstr "Пользователи приглашены"
+
+#: groupsystem/views.py:1506
+msgid "Role created, reload page to edit permissions"
+msgstr "Роль создана, перезагрузите страницу, чтобы изменить права доступа"
+
+#: groupsystem/views.py:1519
+msgid "You don't have permission to create custom role"
+msgstr "У вас нет разрешения на создание пользовательской роли"
+
+#: groupsystem/views.py:1555
+msgid "Role permission changed"
+msgstr "разрешение Роль изменен"
+
+#: groupsystem/views.py:1598
+msgid "User permission changed"
+msgstr "Разрешение пользователя изменен"
+
+#: information/models.py:10
+msgid "First Name"
+msgstr "Имя"
+
+#: information/models.py:11
+msgid "Last Name"
+msgstr "Последний платеж отправлен"
+
+#: information/models.py:13
+msgid "Company Name"
+msgstr "название компании"
+
+#: information/models.py:14 templates/eblast/emailcampaign_sent.html:2
+#: templates/profilesystem/index.html:515
+msgid "Email Address"
+msgstr "Адрес электронной почты"
+
+#: information/models.py:16
+msgid "Telephone Number"
+msgstr "Номер дома"
+
+#: information/models.py:19
+msgid "Comment"
+msgstr "Комментарии"
+
+#: profilesystem/forms.py:22
+msgid "Usernames can only contain letters, digits and @/./+/-/_."
+msgstr "Usernames может содержать только буквы, цифры и @ / / / -. / _."
+
+#: profilesystem/forms.py:31
+msgid "Username already taken"
+msgstr "Данное имя пользователя уже занято"
+
+#: profilesystem/models.py:20
+msgid "Male"
+msgstr "мужчина"
+
+#: profilesystem/models.py:21
+msgid "Female"
+msgstr "женский"
+
+#: profilesystem/models.py:166 templates/profilesystem/address.html:5
+#: templates/publicusers/user.html:193
+msgid "House Number"
+msgstr "Номер дома"
+
+#: profilesystem/models.py:167 templates/profilesystem/address.html:11
+#: templates/publicusers/user.html:199
+msgid "Street"
+msgstr "улица"
+
+#: profilesystem/models.py:168 templates/profilesystem/address.html:17
+#: templates/publicusers/user.html:205
+msgid "Zip Code"
+msgstr "Почтовый Индекс"
+
+#: profilesystem/models.py:169 templates/profilesystem/address.html:23
+#: templates/publicusers/user.html:211
+msgid "City"
+msgstr "город"
+
+#: profilesystem/models.py:170 templates/profilesystem/address.html:29
+#: templates/publicusers/user.html:217
+msgid "State"
+msgstr "состояние"
+
+#: profilesystem/models.py:171 templates/profilesystem/address.html:35
+#: templates/publicusers/user.html:223
+msgid "Country"
+msgstr "Страна"
+
+#: publicusers/views.py:183 templates/groupsystem/adminnews.html:113
+#: templates/groupsystem/adminsettings.html:165
+msgid "Success"
+msgstr "успех"
+
+#: publicusers/views.py:185
+msgid "You already thumb uped this user"
+msgstr "Вы уже большой палец uped этот пользователь"
+
+#: publicusers/views.py:292
+msgid "Friend type"
+msgstr "Тип Друг"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:71
+msgid "Best"
+msgstr "Лучший"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:63
+#: templates/publicusers/user.html:72
+msgid "Friend"
+msgstr "Друг"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:73
+msgid "Soulmate"
+msgstr "Родственная душа"
+
+#: publicusers/views.py:293 templates/publicusers/user.html:74
+msgid "Acquaintance"
+msgstr "знакомство"
+
+#: publicusers/views.py:297
+msgid "Family type"
+msgstr "Семейный тип"
+
+#: publicusers/views.py:299
+msgid "Father"
+msgstr "Отец"
+
+#: publicusers/views.py:300
+msgid "Son"
+msgstr "Сын"
+
+#: publicusers/views.py:301
+msgid "Husband"
+msgstr "Муж"
+
+#: publicusers/views.py:302
+msgid "Brother"
+msgstr "Брат"
+
+#: publicusers/views.py:303
+msgid "Grandfather"
+msgstr "Дед"
+
+#: publicusers/views.py:304
+msgid "Grandson"
+msgstr "Внук"
+
+#: publicusers/views.py:305
+msgid "Uncle"
+msgstr "Дядя"
+
+#: publicusers/views.py:306
+msgid "Nephew"
+msgstr "Племянник"
+
+#: publicusers/views.py:307 publicusers/views.py:316
+msgid "Cousin"
+msgstr "Двоюродная сестра"
+
+#: publicusers/views.py:308
+msgid "Mother"
+msgstr "Мама"
+
+#: publicusers/views.py:309
+msgid "Daughter"
+msgstr "Дочь"
+
+#: publicusers/views.py:310
+msgid "Wife"
+msgstr "Жена"
+
+#: publicusers/views.py:311
+msgid "Sister"
+msgstr "Сестра"
+
+#: publicusers/views.py:312
+msgid "Grandmother"
+msgstr "Бабушка"
+
+#: publicusers/views.py:313
+msgid "Granddaughter"
+msgstr "Внучка"
+
+#: publicusers/views.py:314
+msgid "Aunt"
+msgstr "тетка"
+
+#: publicusers/views.py:315
+msgid "Niece"
+msgstr "Племянница"
+
+#: publicusers/views.py:317
+msgid "Parent"
+msgstr "родитель"
+
+#: publicusers/views.py:318
+msgid "Child"
+msgstr "ребенок"
+
+#: publicusers/views.py:319
+msgid "Spouse"
+msgstr "супруга"
+
+#: publicusers/views.py:320
+msgid "Sibling"
+msgstr "родной брат"
+
+#: publicusers/views.py:321
+msgid "Grandparent"
+msgstr "бабушка или дедушка"
+
+#: publicusers/views.py:322
+msgid "Grandchild"
+msgstr "внук"
+
+#: publicusers/views.py:327
+msgid "Contact type"
+msgstr "Тип контакта"
+
+#: publicusers/views.py:328
+msgid "Personal"
+msgstr "личный"
+
+#: publicusers/views.py:343
+msgid "connection already sent by "
+msgstr "соединение уже было отправлено по"
+
+#: publicusers/views.py:382
+msgid "A request is sent to "
+msgstr "Запрос отправляется"
+
+#: publicusers/views.py:401
+msgid "Connection accepted"
+msgstr "Подключение принято"
+
+#: publicusers/views.py:443
+msgid "Canceled connection request"
+msgstr "Запрос Отменено соединение"
+
+#: publicusers/views.py:445
+msgid "Rejected connection"
+msgstr "Отклонено соединение"
+
+#: publicusers/views.py:447
+msgid "Disconneted"
+msgstr "Disconneted"
+
+#: publicusers/views.py:449 templates/groupsystem/eventsadmin.html:111
+msgid "Success!!"
+msgstr "Успех !!"
+
+#: templates/403.html:4
+msgid "Permission denied"
+msgstr "Доступ запрещен"
+
+#: templates/403.html:10
+msgid "Oops!! You don't have permissions to view this page"
+msgstr "К сожалению !! У вас нет прав для просмотра этой страницы"
+
+#: templates/403.html:12 templates/404.html:12 templates/500.html:12
+msgid "Return to dashboard"
+msgstr "Вернуться к панели управления"
+
+#: templates/404.html:4
+msgid "Page Not Found"
+msgstr "Страница не найдена"
+
+#: templates/404.html:10
+msgid "Oops!! The requested url can't be found in this server"
+msgstr "К сожалению !! Запрошенный URL не может быть найдено в этом сервере"
+
+#: templates/500.html:4
+msgid "Server Error"
+msgstr "Ошибка сервера"
+
+#: templates/500.html:10
+msgid "Something is not working!! Try again later"
+msgstr "Что-то не работает !! Попробуйте позже"
+
+#: templates/account/disclaimer.html:4 templates/landing_base.html:172
+msgid "Disclaimer"
+msgstr "отказ"
+
+#: templates/account/disclaimer.html:28
+msgid "WEBSITE DISCLAIMER"
+msgstr "ОТКАЗ ОТ ВЕБ-САЙТ"
+
+#: templates/account/disclaimer.html:30
+msgid "No warranties"
+msgstr "Нет гарантии"
+
+#: templates/account/disclaimer.html:32
+msgid ""
+"This website is provided “as is” without any representations or warranties, "
+"express or implied. "
+msgstr ""
+
+#: templates/account/disclaimer.html:33
+msgid ""
+"makes no representations or warranties in relation to this website or the "
+"information and materials provided on this website. "
+msgstr ""
+
+#: templates/account/disclaimer.html:34
+msgid "Without prejudice to the generality of the foregoing paragraph, "
+msgstr "Без ущерба для общности предыдущего пункта,"
+
+#: templates/account/disclaimer.html:34
+msgid "does not warrant that:"
+msgstr "не гарантирует, что:"
+
+#: templates/account/disclaimer.html:36
+msgid "this website will be constantly available, or available at all; or"
+msgstr "этот сайт будет постоянно доступен, или доступны на всех; или"
+
+#: templates/account/disclaimer.html:37
+msgid ""
+"the information on this website is complete, true, accurate or non-"
+"misleading."
+msgstr ""
+
+#: templates/account/disclaimer.html:39
+msgid ""
+"Nothing on this website constitutes, or is meant to constitute, advice of "
+"any kind. "
+msgstr ""
+
+#: templates/account/disclaimer.html:40
+msgid "Limitations of liability"
+msgstr "Ограничения ответственности"
+
+#: templates/account/disclaimer.html:42
+msgid ""
+"will not be liable to you (whether under the law of contact, the law of "
+"torts or otherwise) in relation to the contents of, or use of, or otherwise "
+"in connection with, this website:"
+msgstr ""
+
+#: templates/account/disclaimer.html:44
+msgid "for any indirect, special or consequential loss; or"
+msgstr "за любые косвенные, специальные или косвенные убытки; или"
+
+#: templates/account/disclaimer.html:45
+msgid ""
+"for any business losses, loss of revenue, income, profits or anticipated "
+"savings, loss of contracts or business relationships, loss of reputation or "
+"goodwill, or loss or corruption of information or data."
+msgstr ""
+
+#: templates/account/disclaimer.html:47
+msgid "These limitations of liability apply even if "
+msgstr "Эти ограничения ответственности применяются, даже если"
+
+#: templates/account/disclaimer.html:47
+msgid " has been expressly advised of the potential loss."
+msgstr "было явно предупрежден о потенциальной потере."
+
+#: templates/account/disclaimer.html:48
+msgid "Exceptions"
+msgstr "Исключения"
+
+#: templates/account/disclaimer.html:50
+msgid ""
+"Nothing in this website disclaimer will exclude or limit any warranty "
+"implied by law that it would be unlawful to exclude or limit; and nothing in "
+"this website disclaimer will exclude or limit "
+msgstr ""
+
+#: templates/account/disclaimer.html:50
+msgid "'s liability in respect of any:"
+msgstr "&#39;S ответственности в отношении любого:"
+
+#: templates/account/disclaimer.html:52
+msgid "death or personal injury caused by "
+msgstr "смерть или телесные повреждения, вызванные"
+
+#: templates/account/disclaimer.html:52
+msgid "'s negligence;"
+msgstr "&#39;S небрежность;"
+
+#: templates/account/disclaimer.html:53
+msgid "fraud or fraudulent misrepresentation on the part of "
+msgstr "мошенничество или намеренное введение в заблуждение со стороны"
+
+#: templates/account/disclaimer.html:53
+msgid " or"
+msgstr "или"
+
+#: templates/account/disclaimer.html:54
+msgid "matter which it would be illegal or unlawful for "
+msgstr "вопрос, который было бы незаконным или незаконным"
+
+#: templates/account/disclaimer.html:54
+msgid ""
+" to exclude or limit, or to attempt or purport to exclude or limit, its "
+"liability."
+msgstr ""
+
+#: templates/account/disclaimer.html:57
+msgid "Reasonableness"
+msgstr "разумность"
+
+#: templates/account/disclaimer.html:59
+msgid ""
+"By using this website, you agree that the exclusions and limitations of "
+"liability set out in this website disclaimer are reasonable.If you do not "
+"think they are reasonable, you must not use this website."
+msgstr ""
+
+#: templates/account/disclaimer.html:60
+msgid "Other parties"
+msgstr "Другие партии"
+
+#: templates/account/disclaimer.html:62
+msgid "You accept that, as a limited liability entity, "
+msgstr "Вы признаете, что, как лица с ограниченной ответственностью,"
+
+#: templates/account/disclaimer.html:62
+msgid ""
+" has an interest in limiting the personal liability of its officers and "
+"employees. You agree that you will not bring any claim personally against "
+msgstr ""
+
+#: templates/account/disclaimer.html:62
+msgid ""
+"'s officers or employees in respect of any losses you suffer in connection "
+"with the website."
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"[Without prejudice to the foregoing paragraph,] you agree that the "
+"limitations of warranties and liability set out in this website disclaimer "
+"will protect"
+msgstr ""
+
+#: templates/account/disclaimer.html:63
+msgid ""
+"'s officers, employees, agents, subsidiaries, successors, assigns and sub-"
+"contractors as well as "
+msgstr ""
+
+#: templates/account/disclaimer.html:64
+msgid "Unenforceable provisions"
+msgstr "условия, выполнение которых"
+
+#: templates/account/disclaimer.html:66
+msgid ""
+"If any provision of this website disclaimer is, or is found to be, "
+"unenforceable under applicable law, that will not affect the enforceability "
+"of the other provisions of this website disclaimer."
+msgstr ""
+
+#: templates/account/email.html:5 templates/account/email.html:8
+msgid "Manage Email"
+msgstr "Управление e-mail"
+
+#: templates/account/email.html:10
+msgid "The following e-mail addresses are associated with your account:"
+msgstr ""
+"Адреса следующее сообщение электронной почты, связанный с вашей учетной "
+"записи:"
+
+#: templates/account/email.html:26
+msgid "(P)"
+msgstr "(П)"
+
+#: templates/account/email.html:40
+msgid "Make Primary"
+msgstr "Сделать начальное"
+
+#: templates/account/email.html:41
+msgid "Re-send Verification"
+msgstr "Отправить подтверждение"
+
+#: templates/account/email.html:42 templates/eblast/emailgroup.html:50
+#: templates/groupsystem/members.html:84
+msgid "Remove"
+msgstr "Удалить"
+
+#: templates/account/email.html:54
+msgid "Add E-mail"
+msgstr "Добавление адреса электронной почты"
+
+#: templates/account/email.html:59
+msgid "Back to profile"
+msgstr "Вернуться к профилю"
+
+#: templates/account/email.html:64
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "Вы действительно хотите удалить выбранный адрес электронной почты?"
+
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You have received this to confirm your email in the %(site_domain)s "
+"community platform.\n"
+"\n"
+"Please click this link to confirm your email %(activate_url)s\n"
+msgstr ""
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "Подтвердите адрес электронной почты"
+
+#: templates/account/email_confirm.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: templates/account/email_confirm.html:21
+msgid "Confirm"
+msgstr "подтвердить"
+
+#: templates/account/email_confirm.html:28
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: templates/account/login.html:6
+msgid "Login"
+msgstr "Авторизоваться"
+
+#: templates/account/login.html:9
+msgid "Sign in to start your session"
+msgstr "Войдите на сайт, чтобы начать сеанс"
+
+#: templates/account/login.html:18
+msgid "Log In"
+msgstr "Авторизоваться"
+
+#: templates/account/login.html:34
+msgid "Forgot Password?"
+msgstr "Забыли пароль?"
+
+#: templates/account/login.html:36 templates/account/signup.html:9
+#: templates/socialaccount/signup.html:8
+msgid "Register a new membership"
+msgstr "Регистрация нового членства"
+
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:17
+#: templates/account/password_reset_from_key.html:6
+#: templates/account/password_reset_from_key.html:9
+#: templates/account/password_reset_from_key.html:21
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+#: templates/account/password_change.html:11
+msgid "Change your password"
+msgstr "Измените свой пароль"
+
+#: templates/account/password_reset.html:7
+#: templates/account/password_reset.html:11
+msgid "Password Reset"
+msgstr "Восстановление пароля"
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:22
+msgid "Reset My Password"
+msgstr "Сбросить пароль"
+
+#: templates/account/password_reset.html:26
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+"Пожалуйста, свяжитесь с нами, если у вас есть какие-либо проблемы с "
+"изменением пароля."
+
+#: templates/account/password_reset_from_key.html:9
+msgid "Bad Token"
+msgstr "Bad Токен"
+
+#: templates/account/password_reset_from_key.html:13
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: templates/account/password_reset_from_key.html:25
+msgid "Your password is now changed."
+msgstr "Ваш пароль будет изменен."
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "Установка пароля"
+
+#: templates/account/rform.html:10 templates/socialaccount/signup.html:17
+msgid "Register"
+msgstr "регистр"
+
+#: templates/account/rform.html:30 templates/account/rform.html:54
+#: templates/account/rform.html:78 templates/account/rform.html:102
+msgid ""
+"This project is a new social platform to simulate and promote  the basic "
+"income"
+msgstr ""
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid "Please read the"
+msgstr "Пожалуйста, прочтите"
+
+#: templates/account/rform.html:32 templates/account/rform.html:56
+#: templates/account/rform.html:80 templates/account/rform.html:104
+msgid " Disclaimer"
+msgstr "отказ"
+
+#: templates/account/rform.html:36 templates/account/rform.html:60
+#: templates/account/rform.html:84 templates/account/rform.html:108
+#: templates/autosignup/community_signupedit.html:10
+#: templates/timelines/timeline.html:149
+msgid "Cancel"
+msgstr "Отмена"
+
+#: templates/account/rform.html:39 templates/account/rform.html:63
+#: templates/account/rform.html:87 templates/account/rform.html:111
+msgid "Agree"
+msgstr "Согласен"
+
+#: templates/account/signup.html:11
+msgid "I already have a membership"
+msgstr "У меня уже есть членство"
+
+#: templates/account/signup_closed.html:5
+#: templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr "Регистрация закрыта"
+
+#: templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed for beta site"
+msgstr "Извините, но регистрация в настоящее время закрыт для бета-сайта"
+
+#: templates/account/signup_closed.html:11
+msgid "Please signup to"
+msgstr "Пожалуйста, подписаться на"
+
+#: templates/account/signup_closed.html:11
+msgid "main site"
+msgstr "главный сайт"
+
+#: templates/autosignup/additional_step.html:6
+#: templates/autosignup/complete_previous_step.html:6
+#: templates/autosignup/step_1_form.html:6
+#: templates/autosignup/step_2_form.html:6
+#: templates/autosignup/step_2_verification.html:6
+#: templates/autosignup/step_3_form.html:6
+#: templates/autosignup/step_3_verification.html:6
+msgid "Name and Address"
+msgstr "Название и адрес"
+
+#: templates/autosignup/additional_step.html:9
+#: templates/autosignup/complete_previous_step.html:9
+#: templates/autosignup/step_1_form.html:9
+#: templates/autosignup/step_2_form.html:9
+#: templates/autosignup/step_2_verification.html:9
+#: templates/autosignup/step_3_form.html:9
+#: templates/autosignup/step_3_verification.html:9
+msgid "Email"
+msgstr "Эл. адрес"
+
+#: templates/autosignup/additional_step.html:12
+#: templates/autosignup/complete_previous_step.html:12
+#: templates/autosignup/step_1_form.html:12
+#: templates/autosignup/step_2_form.html:12
+#: templates/autosignup/step_2_verification.html:12
+#: templates/autosignup/step_3_form.html:12
+#: templates/autosignup/step_3_verification.html:12
+#: templates/profilesystem/index.html:377
+msgid "Phone No"
+msgstr "Номер телефона"
+
+#: templates/autosignup/additional_step.html:15
+#: templates/autosignup/complete_previous_step.html:16
+#: templates/autosignup/step_1_form.html:16
+#: templates/autosignup/step_2_form.html:16
+#: templates/autosignup/step_2_verification.html:16
+#: templates/autosignup/step_3_form.html:16
+#: templates/autosignup/step_3_verification.html:16
+msgid "Docs"
+msgstr "Документы"
+
+#: templates/autosignup/community_signupedit.html:7
+#: templates/autosignup/settings.html:118
+msgid "Fetch Twilio Data"
+msgstr "Выборка данных Twilio"
+
+#: templates/autosignup/community_signupedit.html:8
+#: templates/autosignup/signupinfo.html:207
+#: templates/eblast/emailcampaign.html:13 templates/eblast/emailgroup.html:11
+#: templates/eblast/emailtemplate.html:9
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/autosignup/community_signupedit.html:9
+msgid "Save"
+msgstr "Сохранить"
+
+#: templates/autosignup/complete_previous_step.html:21
+msgid "Please complete previous steps"
+msgstr "Заполните, пожалуйста, предыдущие шаги"
+
+#: templates/autosignup/index.html:4
+msgid "MyAccounts"
+msgstr "MyAccounts"
+
+#: templates/autosignup/index.html:8
+msgid "Myaccounts"
+msgstr "Myaccounts"
+
+#: templates/autosignup/index.html:26 templates/sidebar_home.html:16
+#: templates/useraccount/index.html:13 templates/useraccount/index.html:16
+#: templates/useraccount/index.html:40
+msgid "Accounts"
+msgstr "Счета"
+
+#: templates/autosignup/index.html:33 templates/useraccount/index.html:47
+msgid "DummyDB"
+msgstr "DummyDB"
+
+#: templates/autosignup/index.html:45 templates/useraccount/index.html:59
+msgid "Grantcoin"
+msgstr "Grantcoin"
+
+#: templates/autosignup/index.html:48 templates/useraccount/index.html:73
+msgid "Signup"
+msgstr "Зарегистрироваться"
+
+#: templates/autosignup/index.html:57
+msgid "The pulse"
+msgstr "импульс"
+
+#: templates/autosignup/index.html:60 templates/useraccount/index.html:86
+msgid "Coming soon"
+msgstr "Скоро"
+
+#: templates/autosignup/index.html:81 templates/useraccount/index.html:266
+#: templates/useraccount/index.html:283
+msgid "Signup to Grantcoin"
+msgstr "Регистрация в Grantcoin"
+
+#: templates/autosignup/index.html:87 templates/eblast/emailcampaign.html:44
+#: templates/eblast/emailcampaign.html:61 templates/eblast/emailgroup.html:69
+#: templates/eblast/emailgroup.html:86
+#: templates/groupsystem/groupdetails.html:186
+#: templates/profilesystem/index.html:96 templates/profilesystem/index.html:127
+#: templates/profilesystem/index.html:166 templates/useraccount/index.html:272
+#: templates/useraccount/index.html:302
+msgid "Close"
+msgstr "Закрыть"
+
+#: templates/autosignup/index.html:88 templates/autosignup/settings.html:48
+#: templates/autosignup/settings.html:100 templates/crowdfunding/index.html:103
+#: templates/crowdfunding/update_crowdfund.html:9
+#: templates/eblast/emailcampaignform.html:11
+#: templates/eblast/emailgroupform.html:11
+#: templates/eblast/emailtemplateform.html:11
+#: templates/groupsystem/adminnews.html:83
+#: templates/groupsystem/adminsettings.html:108
+#: templates/groupsystem/editcommentpage.html:50
+#: templates/groupsystem/editcustomrole.html:6
+#: templates/groupsystem/editnews.html:6
+#: templates/groupsystem/editpostpage.html:52
+#: templates/groupsystem/eventform.html:6 templates/groupsystem/posts.html:110
+#: templates/groupsystem/postsadmin.html:113
+#: templates/information/contact.html:32
+#: templates/invitationsystem/checkinvitation.html:31
+#: templates/invitationsystem/index.html:20
+#: templates/landing/getinvitationform.html:4
+#: templates/profilesystem/index.html:102
+#: templates/profilesystem/index.html:139
+#: templates/profilesystem/index.html:178 templates/useraccount/index.html:273
+#: templates/useraccount/index.html:303
+msgid "Submit"
+msgstr "Отправить"
+
+#: templates/autosignup/settings.html:4 templates/autosignup/settings.html:10
+msgid "Signups settings"
+msgstr "Signups настройки"
+
+#: templates/autosignup/settings.html:13 templates/autosignup/signups.html:4
+#: templates/autosignup/signups.html:10 templates/autosignup/signups.html:13
+#: templates/autosignup/signups.html:38
+msgid "Signups"
+msgstr "Signups"
+
+#: templates/autosignup/settings.html:14
+msgid "Signup Settings"
+msgstr "Signup Настройки"
+
+#: templates/autosignup/settings.html:24
+msgid "Autosignup settings"
+msgstr "настройки Autosignup"
+
+#: templates/autosignup/settings.html:45
+msgid "KM"
+msgstr "KM"
+
+#: templates/autosignup/settings.html:54
+msgid "Approved Email Template"
+msgstr "Подтвердили Шаблон сообщения электронной почты"
+
+#: templates/autosignup/settings.html:56
+msgid "Select from one"
+msgstr "Выберите из одного"
+
+#: templates/autosignup/settings.html:57
+msgid "Default"
+msgstr "По умолчанию"
+
+#: templates/autosignup/settings.html:69
+msgid "Or"
+msgstr "Или"
+
+#: templates/autosignup/settings.html:75
+msgid "File must be html document"
+msgstr "Файл должен быть документ HTML"
+
+#: templates/autosignup/settings.html:82
+msgid "Invite Code"
+msgstr "Код приглашения"
+
+#: templates/autosignup/settings.html:88
+msgid "Status:"
+msgstr "Положение дел:"
+
+#: templates/autosignup/settings.html:96
+msgid "Code:"
+msgstr "Код:"
+
+#: templates/autosignup/settings.html:109
+msgid "Upload and Download CSV"
+msgstr "Загрузить и Загрузить CSV"
+
+#: templates/autosignup/settings.html:120
+msgid "Download example copy"
+msgstr "Скачать пример копию"
+
+#: templates/autosignup/settings.html:126
+msgid "Uploaded CSVs"
+msgstr "Загруженные версии CSV"
+
+#: templates/autosignup/settings.html:167
+msgid "Select range"
+msgstr "Выбор диапазона"
+
+#: templates/autosignup/settings.html:169
+#: templates/autosignup/settings.html:235
+msgid "Download Member Data CSV"
+msgstr "Скачать Элемент данных CSV"
+
+#: templates/autosignup/sfilter.html:5 templates/autosignup/signups.html:57
+#: templates/groupsystem/admindashboard.html:40
+#: templates/groupsystem/members.html:4 templates/groupsystem/members.html:17
+#: templates/groupsystem/members.html:22 templates/publicusers/userlist.html:4
+#: templates/publicusers/userlist.html:10
+#: templates/publicusers/userlist.html:14 templates/sidebar_community.html:2
+#: templates/sidebar_group.html:87 templates/sidebar_group.html:93
+#: templates/sidebar_group_admin.html:57 templates/sidebar_group_admin.html:63
+msgid "Members"
+msgstr "члены"
+
+#: templates/autosignup/sfilter.html:14 templates/autosignup/signups.html:66
+#: templates/crowdfunding/admin.html:76
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:10
+#: templates/groupsystem/adminsettings.html:15
+#: templates/profilesystem/index.html:292 templates/sidebar_group.html:144
+#: templates/sidebar_group_admin.html:114
+msgid "Settings"
+msgstr "настройки"
+
+#: templates/autosignup/sfilter.html:26 templates/autosignup/signups.html:78
+msgid "No signups yet!! "
+msgstr "Нет регистрациям пока !!"
+
+#: templates/autosignup/signupclosed.html:4
+msgid "Signup is closed! try later"
+msgstr "Регистрация закрыта! попробуй позже"
+
+#: templates/autosignup/signuphistories.html:36
+msgid "This signup is not associated with any history"
+msgstr "Этот регистрацию не связан с какой-либо истории"
+
+#: templates/autosignup/signupinfo.html:13
+#: templates/autosignup/signupinfo.html:42
+msgid "Validated"
+msgstr "Удостоверенная"
+
+#: templates/autosignup/signupinfo.html:19
+msgid "This email id was used for these previous signup "
+msgstr ""
+"Этот электронный идентификатор был использован для этих предыдущих Signup"
+
+#: templates/autosignup/signupinfo.html:36
+msgid "Mobile"
+msgstr "мобильный"
+
+#: templates/autosignup/signupinfo.html:39
+msgid "Not a Verifiable No"
+msgstr "Не Проверяемость Нет"
+
+#: templates/autosignup/signupinfo.html:49
+msgid "This phone number was used for these previous signup "
+msgstr "Этот номер телефона был использован для этих предыдущих Signup"
+
+#: templates/autosignup/signupinfo.html:137
+msgid "Distance from database address: "
+msgstr "Расстояние от базы данных адреса:"
+
+#: templates/autosignup/signupinfo.html:137
+msgid " KM"
+msgstr "KM"
+
+#: templates/autosignup/signupinfo.html:208
+#: templates/groupsystem/members.html:124 templates/profilesystem/index.html:99
+#: templates/profilesystem/index.html:131
+#: templates/profilesystem/index.html:170
+msgid "Edit"
+msgstr "редактировать"
+
+#: templates/autosignup/signupinfo.html:209
+msgid "History"
+msgstr "история"
+
+#: templates/autosignup/signupinfo.html:211
+msgid "Resend Approval Email"
+msgstr "Resend утверждения Email"
+
+#: templates/autosignup/signupinfo.html:214
+msgid "Send Invitation Email"
+msgstr "Отправить приглашение по электронной почте"
+
+#: templates/autosignup/signups.html:44 templates/useraccount/index.html:67
+msgid "Pending"
+msgstr "в ожидании"
+
+#: templates/autosignup/signups.html:45 templates/sidebar_group.html:78
+#: templates/sidebar_group_admin.html:48
+msgid "Approved"
+msgstr "утвержденный"
+
+#: templates/autosignup/signups.html:46
+msgid "Declined"
+msgstr "Отклонено"
+
+#: templates/autosignup/signups.html:47 templates/useraccount/index.html:70
+msgid "Incomplete"
+msgstr "незавершенный"
+
+#: templates/autosignup/signups.html:226
+msgid "Fetching..."
+msgstr "Fetching ..."
+
+#: templates/autosignup/step_2_form.html:22
+msgid "Verify Your Email"
+msgstr "Подтвердите Ваш электронный адрес"
+
+#: templates/autosignup/step_2_verification.html:22
+msgid "Enter code sent to your email below"
+msgstr "Введите код отправлен на ваш адрес электронной почты ниже"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "Didn't get code yet?"
+msgstr "Не получить код еще?"
+
+#: templates/autosignup/step_2_verification.html:26
+#: templates/autosignup/step_3_verification.html:26
+msgid "try again"
+msgstr "попробуй еще раз"
+
+#: templates/autosignup/step_3_form.html:22
+msgid "Verify Your Mobile Number"
+msgstr "Проверьте Ваш номер мобильного телефона"
+
+#: templates/autosignup/step_3_verification.html:22
+msgid "Enter code sent to your phone below"
+msgstr "Введите код отправлен на ваш телефон ниже"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "I am not getting a verification code for my number"
+msgstr "Я не получаю код подтверждения моего номера"
+
+#: templates/autosignup/step_3_verification.html:29
+msgid "skip"
+msgstr "пропускать"
+
+#: templates/autosignup/step_3_verification.html:34
+msgid "This needs some time don't close/refresh browser"
+msgstr "Это необходимо какое-то время не закрываются / обновления браузера"
+
+#: templates/autosignup/thankyou.html:4
+msgid "Thank you for signing up to Grantcoin and providing us your information"
+msgstr ""
+"Благодарим Вас за подписание до Grantcoin и предоставления нам информацию"
+
+#: templates/autosignup/thankyou.html:5
+msgid ""
+"Your account will be processed soon, return to this page to check on your "
+"status."
+msgstr ""
+
+#: templates/base.html:125
+msgid "Toggle navigation"
+msgstr "Переключение навигации"
+
+#: templates/base.html:154 templates/base.html:173 templates/base.html:230
+msgid "Hello User"
+msgstr "Привет Пользователь"
+
+#: templates/base.html:170
+msgid "Member Since "
+msgstr "Член с"
+
+#: templates/base.html:184 templates/useraccount/index.html:7
+msgid "Account"
+msgstr "Счет"
+
+#: templates/base.html:187
+msgid "Landing"
+msgstr "приземление"
+
+#: templates/base.html:195 templates/landing_base.html:101
+#: templates/landing_base.html:165 templates/profilesystem/index.html:5
+#: templates/profilesystem/index.html:42 templates/profilesystem/index.html:45
+#: templates/sidebar_home.html:27
+msgid "Profile"
+msgstr "Профиль"
+
+#: templates/base.html:198
+msgid "Sign out"
+msgstr "выход"
+
+#: templates/base.html:234 templates/publicusers/user.html:24
+#: templates/publicusers/userdetails.html:393
+#: templates/publicusers/userlist.html:40
+#: templates/publicusers/userlist_old.html:116
+#: templates/publicusers/users_old.html:25
+msgid "Online"
+msgstr "В сети"
+
+#: templates/base.html:306
+msgid "System notice: "
+msgstr "Система уведомления:"
+
+#: templates/base.html:349
+msgid "Language Settings"
+msgstr "Языковые настройки"
+
+#: templates/base.html:366
+msgid "Set"
+msgstr "Задавать"
+
+#: templates/base.html:381
+msgid "Filter Options"
+msgstr "параметры фильтра"
+
+#: templates/base.html:391
+msgid "Apply"
+msgstr "Подать заявление"
+
+#: templates/crowdfunding/admin.html:4 templates/crowdfunding/admin.html:37
+#: templates/crowdfunding/admin.html:40 templates/sidebar_community.html:32
+msgid "Crowdfund Admin"
+msgstr "Crowdfund Администратор"
+
+#: templates/crowdfunding/admin.html:53 templates/crowdfunding/index.html:60
+msgid "Stats"
+msgstr "Статистика"
+
+#: templates/crowdfunding/admin.html:62
+msgid "Status"
+msgstr "Положение дел"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Active"
+msgstr "активный"
+
+#: templates/crowdfunding/admin.html:63
+msgid "Stopped"
+msgstr "Остановился"
+
+#: templates/crowdfunding/admin.html:67 templates/crowdfunding/admin.html:83
+#: templates/crowdfunding/admin.html:127
+msgid "No Crowdfund started"
+msgstr "Ни один Crowdfund не началась"
+
+#: templates/crowdfunding/admin.html:86
+msgid "Start new"
+msgstr "Начать новый"
+
+#: templates/crowdfunding/admin.html:97
+msgid "Payments"
+msgstr "платежи"
+
+#: templates/crowdfunding/index.html:4
+msgid "Crowdfunding"
+msgstr "Crowdfunding"
+
+#: templates/crowdfunding/index.html:17 templates/crowdfunding/index.html:20
+#: templates/sidebar_community.html:30
+msgid "Crowdfund"
+msgstr "Crowdfund"
+
+#: templates/crowdfunding/index.html:32
+msgid "Watch video"
+msgstr "Смотреть видео"
+
+#: templates/crowdfunding/index.html:34
+msgid "FUND"
+msgstr "ФОНД"
+
+#: templates/crowdfunding/index.html:46
+msgid "Product Features"
+msgstr "Характеристики продукта"
+
+#: templates/crowdfunding/index.html:55
+msgid "Introduction"
+msgstr "Введение"
+
+#: templates/crowdfunding/index.html:77
+msgid "Fund Now"
+msgstr "Фонд сейчас"
+
+#: templates/crowdfunding/index.html:84
+msgid "Card"
+msgstr "Карта"
+
+#: templates/crowdfunding/index.html:92 templates/useraccount/index.html:175
+#: templates/useraccount/index.html:215 templates/useraccount/index.html:242
+#: useraccount/forms.py:8 useraccount/forms.py:27
+msgid "Amount"
+msgstr "Количество"
+
+#: templates/crowdfunding/index.html:98
+msgid "Feedback"
+msgstr "Обратная связь"
+
+#: templates/crowdfunding/payment_details.html:2
+msgid "User: "
+msgstr "Пользователь:"
+
+#: templates/crowdfunding/payment_details.html:3
+msgid "Amount: "
+msgstr "Количество:"
+
+#: templates/crowdfunding/payment_details.html:4
+msgid "Date: "
+msgstr "Дата:"
+
+#: templates/crowdfunding/payment_details.html:5
+msgid "Charge ID(Stripe): "
+msgstr "Заряд ID (Stripe):"
+
+#: templates/crowdfunding/payment_details.html:7
+#: templates/eblast/emailcampaign_sent.html:5
+msgid "Message: "
+msgstr "Сообщение:"
+
+#: templates/crowdfunding/payment_details.html:10
+msgid "Fail Reason: "
+msgstr "Сбой Причина:"
+
+#: templates/crowdfunding/thankyou.html:3
+msgid "Thank You"
+msgstr "Спасибо"
+
+#: templates/dashboard/dashboard.html:4 templates/dashboard/dashboard.html:20
+#: templates/dashboard/dashboard.html:23
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:10
+#: templates/groupsystem/admindashboard.html:15 templates/landing_base.html:97
+#: templates/landing_base.html:163 templates/publicusers/userlist.html:13
+#: templates/sidebar_group.html:36 templates/sidebar_group_admin.html:6
+#: templates/sidebar_home.html:4
+msgid "Dashboard"
+msgstr "Панель приборов"
+
+#: templates/dashboard/dashboard.html:35 templates/profilesystem/index.html:202
+#: templates/publicusers/user.html:174
+msgid "References"
+msgstr "Рекомендации"
+
+#: templates/dashboard/dashboard.html:45 templates/dashboard/dashboard.html:172
+msgid "Connections"
+msgstr "связи"
+
+#: templates/dashboard/dashboard.html:55 templates/landing_base.html:118
+#: templates/landing_base.html:169
+msgid "Messages"
+msgstr "Сообщения"
+
+#: templates/dashboard/dashboard.html:65 templates/dashboard/dashboard.html:257
+#: templates/useraccount/index.html:111 templates/useraccount/transfer.html:43
+msgid "Account Balance"
+msgstr "Баланс"
+
+#: templates/dashboard/dashboard.html:66
+#: templates/notification/notification.html:19
+#: templates/notification/notification.html:26
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "units"
+msgstr "единицы"
+
+#: templates/dashboard/dashboard.html:75 templates/dashboard/dashboard.html:258
+#: templates/useraccount/index.html:123
+msgid "Next Release"
+msgstr "Следующий выпуск"
+
+#: templates/dashboard/dashboard.html:96 templates/useraccount/index.html:140
+msgid "Day"
+msgstr "День"
+
+#: templates/dashboard/dashboard.html:101 templates/useraccount/index.html:145
+msgid "Hour"
+msgstr "Час"
+
+#: templates/dashboard/dashboard.html:106 templates/useraccount/index.html:150
+msgid "Minute"
+msgstr "минут"
+
+#: templates/dashboard/dashboard.html:113
+#: templates/groupsystem/admindashboard.html:46
+#: templates/groupsystem/admindashboard.html:60
+#: templates/groupsystem/admindashboard.html:74
+#: templates/groupsystem/admindashboard.html:88
+msgid "More info"
+msgstr "Больше информации"
+
+#: templates/dashboard/dashboard.html:121 templates/publicusers/user.html:277
+msgid "Profile Completed"
+msgstr "Профиль Завершенный"
+
+#: templates/dashboard/dashboard.html:138 templates/publicusers/user.html:290
+msgid "Completed"
+msgstr "Завершенный"
+
+#: templates/dashboard/dashboard.html:144 templates/publicusers/user.html:296
+msgid "Not completed"
+msgstr "Не завершен"
+
+#: templates/dashboard/dashboard.html:150 templates/publicusers/user.html:302
+msgid "Not verified"
+msgstr "не подтверждено"
+
+#: templates/dashboard/dashboard.html:156 templates/publicusers/user.html:308
+msgid "Skipped"
+msgstr "Пропущенные"
+
+#: templates/dashboard/dashboard.html:182
+msgid "You have no connection to display data"
+msgstr "У вас нет подключения для отображения данных"
+
+#: templates/dashboard/dashboard.html:195
+msgid " Friends"
+msgstr "друзья"
+
+#: templates/dashboard/dashboard.html:196
+msgid " Families"
+msgstr "Семьи"
+
+#: templates/dashboard/dashboard.html:197
+msgid " Contacts"
+msgstr "контакты"
+
+#: templates/dashboard/dashboard.html:214
+msgid "New Members"
+msgstr "Новые участники"
+
+#: templates/dashboard/dashboard.html:227
+msgid "Total Ekata Members"
+msgstr "Всего Ekata Пользователи"
+
+#: templates/dashboard/dashboard.html:242
+msgid "Active Members"
+msgstr "Активные участники"
+
+#: templates/dashboard/dashboard.html:256
+msgid "Add Widget"
+msgstr "Добавить виджет"
+
+#: templates/dashboard/dashboard.html:259 templates/timelines/index.html:77
+#: templates/timelines/index.html:79
+msgid "Connection"
+msgstr "подключение"
+
+#: templates/dashboard/dashboard.html:260
+msgid "Profile Completion Ring"
+msgstr "Профиль Завершение Кольцо"
+
+#: templates/dashboard/dashboard.html:270
+msgid "Website added"
+msgstr "Сайт добавлен"
+
+#: templates/dashboard/dashboard.html:277
+msgid "Gender added"
+msgstr "Пол добавил"
+
+#: templates/dashboard/dashboard.html:284
+msgid "Phone added"
+msgstr "Телефон добавил"
+
+#: templates/dashboard/dashboard.html:291
+msgid "Avatar added"
+msgstr "Аватар добавлена"
+
+#: templates/dashboard/dashboard.html:298
+msgid "Address added"
+msgstr "Адрес добавлен"
+
+#: templates/dashboard/dashboard.html:305
+msgid "Socialaccount added"
+msgstr "Socialaccount добавил"
+
+#: templates/dashboard/dashboard.html:312
+msgid "Email added"
+msgstr "E-mail добавлен"
+
+#: templates/dashboard/dashboard.html:319
+msgid "Email verified"
+msgstr "Электронная почта проверяется"
+
+#: templates/dashboard/dashboard.html:331
+#: templates/dashboard/dashboard.html:403
+msgid "Add website"
+msgstr "Добавить сайт"
+
+#: templates/dashboard/dashboard.html:332
+#: templates/dashboard/dashboard.html:338
+#: templates/dashboard/dashboard.html:344
+#: templates/dashboard/dashboard.html:350
+#: templates/dashboard/dashboard.html:356
+#: templates/dashboard/dashboard.html:362
+#: templates/dashboard/dashboard.html:368
+#: templates/dashboard/dashboard.html:377
+msgid " (skip)"
+msgstr "(пропускать)"
+
+#: templates/dashboard/dashboard.html:337
+#: templates/dashboard/dashboard.html:408
+msgid "Add gender"
+msgstr "Добавить пол"
+
+#: templates/dashboard/dashboard.html:343
+#: templates/dashboard/dashboard.html:413
+msgid "Add phone"
+msgstr "Добавить телефон"
+
+#: templates/dashboard/dashboard.html:349
+#: templates/dashboard/dashboard.html:418
+msgid "Add avatar"
+msgstr "Добавить аватар"
+
+#: templates/dashboard/dashboard.html:355
+#: templates/dashboard/dashboard.html:423
+msgid "Add address"
+msgstr "Добавить адрес"
+
+#: templates/dashboard/dashboard.html:361
+#: templates/dashboard/dashboard.html:428
+msgid "Add socialaccount"
+msgstr "Добавить socialaccount"
+
+#: templates/dashboard/dashboard.html:367
+#: templates/dashboard/dashboard.html:433
+msgid "Add email"
+msgstr "Добавить электронную почту"
+
+#: templates/dashboard/dashboard.html:376
+#: templates/dashboard/dashboard.html:391
+#: templates/dashboard/dashboard.html:441
+msgid "Verify email"
+msgstr "Подтвердить Email"
+
+#: templates/dashboard/dashboard.html:392
+msgid "(skip)"
+msgstr "(пропускать)"
+
+#: templates/eblast/editemailcampaign.html:6
+#: templates/eblast/emailtemplateedit.html:6
+msgid "Update"
+msgstr "Обновить"
+
+#: templates/eblast/emailcampaign.html:15
+msgid "Test send"
+msgstr "Тест отправить"
+
+#: templates/eblast/emailcampaign.html:16
+#: templates/eblast/emailcampaign.html:45
+#: templates/eblast/emailcampaign.html:62
+#: templates/messagingsystem/chats.html:76
+#: templates/publicusers/userdetails.html:106
+#: templates/timelines/index.html:102
+#: templates/useraccount/transferunit.html:22
+msgid "Send"
+msgstr "послать"
+
+#: templates/eblast/emailcampaign.html:18
+msgid "Resend"
+msgstr "Отправить"
+
+#: templates/eblast/emailcampaign.html:19
+msgid "Show tracking data"
+msgstr "Показать данные отслеживания"
+
+#: templates/eblast/emailcampaign.html:38
+msgid "Send a test email"
+msgstr "Отправить тестовое письмо"
+
+#: templates/eblast/emailcampaign.html:55
+msgid "Send email"
+msgstr "Отправить по электронной почте"
+
+#: templates/eblast/emailcampaign_page.html:4
+msgid "EmailCampaigns | eBlast"
+msgstr "EmailCampaigns | eBlast"
+
+#: templates/eblast/emailcampaign_page.html:10
+#: templates/sidebar_community.html:44
+msgid "Email Campaigns"
+msgstr "кампании по электронной почте"
+
+#: templates/eblast/emailcampaign_page.html:13
+#: templates/eblast/emailgroups_page.html:13
+#: templates/eblast/emailtemplates_page.html:13
+#: templates/sidebar_community.html:36
+msgid "eBlast"
+msgstr "eBlast"
+
+#: templates/eblast/emailcampaign_page.html:14
+msgid "emailcampaigns"
+msgstr "emailcampaigns"
+
+#: templates/eblast/emailcampaign_page.html:37
+msgid "Campaign Lists"
+msgstr "Списки кампании"
+
+#: templates/eblast/emailcampaign_page.html:45
+#: templates/eblast/emailcampaignform.html:3
+msgid "Create Campaign"
+msgstr "Создать кампанию"
+
+#: templates/eblast/emailcampaign_page.html:75
+msgid "Sent"
+msgstr "Отправлено"
+
+#: templates/eblast/emailcampaign_page.html:78
+msgid "Draft"
+msgstr "Проект"
+
+#: templates/eblast/emailcampaign_sent.html:2
+msgid "Sent to: "
+msgstr "Отправлено:"
+
+#: templates/eblast/emailcampaign_sent.html:3
+msgid "Subject: "
+msgstr "Предмет:"
+
+#: templates/eblast/emailgroup.html:9 templates/eblast/emailgroup.html:63
+msgid "Add Recipient"
+msgstr "Добавить получателя"
+
+#: templates/eblast/emailgroup.html:10
+msgid "Upload CSV"
+msgstr "Загрузить CSV"
+
+#: templates/eblast/emailgroup.html:42
+#: templates/groupsystem/groupdetails.html:121
+msgid "Unsubscribe"
+msgstr "Отказаться от подписки"
+
+#: templates/eblast/emailgroup.html:46
+#: templates/groupsystem/groupdetails.html:127
+msgid "Subscribe"
+msgstr "Подписывайся"
+
+#: templates/eblast/emailgroup.html:70 templates/profilesystem/index.html:135
+#: templates/profilesystem/index.html:174
+msgid "Add"
+msgstr "Добавить"
+
+#: templates/eblast/emailgroup.html:80
+msgid "Upload a CSV"
+msgstr "Загрузить CSV"
+
+#: templates/eblast/emailgroup.html:87 templates/profilesystem/index.html:280
+msgid "Upload"
+msgstr "Загрузить"
+
+#: templates/eblast/emailgroupform.html:3
+#: templates/eblast/emailgroups_page.html:48
+msgid "Create List"
+msgstr "Создать список"
+
+#: templates/eblast/emailgroups_page.html:4
+msgid "EmailGroups | eBlast"
+msgstr "EmailGroups | eBlast"
+
+#: templates/eblast/emailgroups_page.html:10
+msgid "Email Groups"
+msgstr "Электронная почта Группы"
+
+#: templates/eblast/emailgroups_page.html:14
+msgid "emailgroups"
+msgstr "emailgroups"
+
+#: templates/eblast/emailgroups_page.html:40
+msgid "Group Lists"
+msgstr "Группа Списки"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "emails"
+msgstr "электронная почта"
+
+#: templates/eblast/emailgroupslist.html:5
+#: templates/eblast/emailgroupslist.html:7
+#: templates/eblast/singleemailgrouplist.html:2
+msgid "email"
+msgstr "Эл. адрес"
+
+#: templates/eblast/emailtemplate.html:11
+msgid "Preview"
+msgstr "предварительный просмотр"
+
+#: templates/eblast/emailtemplateform.html:3
+msgid "Add a new template"
+msgstr "Добавить новый шаблон"
+
+#: templates/eblast/emailtemplates_page.html:4
+msgid "EmailTemplates | eBlast"
+msgstr "EmailTemplates | eBlast"
+
+#: templates/eblast/emailtemplates_page.html:10
+#: templates/sidebar_community.html:43
+msgid "Email Templates"
+msgstr "Шаблоны электронных сообщений"
+
+#: templates/eblast/emailtemplates_page.html:14
+msgid "emailtemplates"
+msgstr "emailtemplates"
+
+#: templates/eblast/emailtemplates_page.html:40
+msgid "Template Lists"
+msgstr "Шаблон Списки"
+
+#: templates/eblast/emailtemplates_page.html:48
+msgid "Create Template"
+msgstr "Создать шаблон"
+
+#: templates/eblast/tracking_data.html:4
+msgid "Tracking data for "
+msgstr "Отслеживание данных для"
+
+#: templates/eblast/tracking_data.html:11
+msgid "Emails Sent"
+msgstr "Отправлено писем"
+
+#: templates/eblast/tracking_data.html:18
+msgid "Emails Opened"
+msgstr "Электронные письма Открыт"
+
+#: templates/emailtosms/index.html:4 templates/emailtosms/requestcarrier.html:4
+msgid "Email to sms"
+msgstr "Электронная почта смс"
+
+#: templates/emailtosms/index.html:10
+msgid "Email to SMS"
+msgstr "Отправить SMS"
+
+#: templates/emailtosms/index.html:13
+msgid "email to sms"
+msgstr "по электронной почте на смс"
+
+#: templates/emailtosms/index.html:33
+msgid "Help us to find working email to sms providers for your mobile number"
+msgstr ""
+"Помогите нам найти рабочую электронную почту для провайдеров смс для вашего "
+"мобильного телефона"
+
+#: templates/emailtosms/index.html:35
+msgid ""
+"Please provide your mobile carrier, and number then verify you've received a "
+"text or not"
+msgstr ""
+
+#: templates/emailtosms/index.html:39
+msgid "Did you get a code on your mobile?"
+msgstr "Получили ли вы код на свой мобильный?"
+
+#: templates/emailtosms/index.html:40
+msgid "This may take some time..."
+msgstr "Это может занять некоторое время..."
+
+#: templates/emailtosms/index.html:41
+msgid "Yes"
+msgstr "да"
+
+#: templates/emailtosms/index.html:42
+msgid "No"
+msgstr "Нет"
+
+#: templates/emailtosms/index.html:46
+msgid "Thank you for helping us verify"
+msgstr "Благодарим Вас за помощь нам проверить"
+
+#: templates/emailtosms/index.html:47
+msgid "verify another"
+msgstr "проверить другой"
+
+#: templates/emailtosms/requestcarrier.html:8
+msgid "Request Carrier"
+msgstr "Запрос Carrier"
+
+#: templates/emailtosms/requestcarrier.html:26
+msgid "Thank you, This carrier will be added soon"
+msgstr "Спасибо, этот носитель будет добавлена ​​в ближайшее время"
+
+#: templates/emailtosms/verifierform.html:9
+msgid "Request to add your carrier if not listed"
+msgstr "Просьба добавить к своему оператору, если нет в списке"
+
+#: templates/groupsystem/admindashboard.html:4
+#: templates/groupsystem/admindashboard.html:14
+#: templates/groupsystem/adminnews.html:4
+#: templates/groupsystem/adminnews.html:21
+#: templates/groupsystem/adminsettings.html:4
+#: templates/groupsystem/adminsettings.html:14
+#: templates/groupsystem/bannedmembers.html:14
+#: templates/groupsystem/commentadmin.html:21
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:21
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:21
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:14
+#: templates/groupsystem/joinrequests.html:14
+#: templates/groupsystem/members.html:21 templates/groupsystem/members.html:92
+#: templates/groupsystem/postsadmin.html:14
+msgid "Admin"
+msgstr "Администратор"
+
+#: templates/groupsystem/admindashboard.html:13
+#: templates/groupsystem/adminnews.html:20
+#: templates/groupsystem/adminsettings.html:13
+#: templates/groupsystem/bannedmembers.html:13
+#: templates/groupsystem/commentadmin.html:20
+#: templates/groupsystem/customroles.html:20
+#: templates/groupsystem/defaultroles.html:20
+#: templates/groupsystem/editcommentpage.html:13
+#: templates/groupsystem/editpostpage.html:13
+#: templates/groupsystem/events.html:13
+#: templates/groupsystem/eventsadmin.html:13
+#: templates/groupsystem/groupdetails.html:20
+#: templates/groupsystem/joined_group.html:15
+#: templates/groupsystem/joinrequests.html:13
+#: templates/groupsystem/members.html:20
+#: templates/groupsystem/postdetails.html:13
+#: templates/groupsystem/posts.html:13 templates/groupsystem/postsadmin.html:13
+#: templates/groupsystem/subscribed_group.html:15
+msgid "Group"
+msgstr "группа"
+
+#: templates/groupsystem/admindashboard.html:54
+msgid "New Request"
+msgstr "Новый запрос"
+
+#: templates/groupsystem/admindashboard.html:68
+msgid "Pending posts"
+msgstr "В ожидании сообщений"
+
+#: templates/groupsystem/admindashboard.html:82
+msgid "Pending comment"
+msgstr "В ожидании комментариев"
+
+#: templates/groupsystem/adminnews.html:68
+msgid "No news!!"
+msgstr "Нет новостей!!"
+
+#: templates/groupsystem/adminnews.html:76
+msgid "Create News"
+msgstr "Создать Новости"
+
+#: templates/groupsystem/adminnews.html:99
+msgid "Edit news"
+msgstr "Редактировать новость"
+
+#: templates/groupsystem/adminsettings.html:40
+msgid "Send notification to members"
+msgstr "Отправить уведомление членов"
+
+#: templates/groupsystem/adminsettings.html:73
+#: templates/groupsystem/groupdetails.html:78
+msgid "About Us"
+msgstr "О нас"
+
+#: templates/groupsystem/adminsettings.html:81
+msgid "Auto approve post: "
+msgstr "Авто утвердить пост:"
+
+#: templates/groupsystem/adminsettings.html:89
+msgid "Auto approve comment: "
+msgstr "Авто одобрить комментарий:"
+
+#: templates/groupsystem/adminsettings.html:101
+msgid "Edit Group"
+msgstr "Edit Group"
+
+#: templates/groupsystem/adminsettings.html:120
+msgid "Create Notification"
+msgstr "Создать уведомление"
+
+#: templates/groupsystem/adminsettings.html:126
+#: templates/groupsystem/all_group.html:108
+#: templates/groupsystem/customroles.html:97
+msgid "Create"
+msgstr "Создайте"
+
+#: templates/groupsystem/all_group.html:5
+#: templates/groupsystem/all_group.html:40 templates/sidebar_community.html:12
+msgid "All Groups"
+msgstr "Все группы"
+
+#: templates/groupsystem/all_group.html:43 templates/landing_base.html:108
+#: templates/landing_base.html:167 templates/profilesystem/index.html:413
+#: templates/sidebar_community.html:6
+msgid "Groups"
+msgstr "групп"
+
+#: templates/groupsystem/all_group.html:44
+msgid "all groups"
+msgstr "все группы"
+
+#: templates/groupsystem/all_group.html:69
+#: templates/groupsystem/all_group.html:102
+msgid "Create Group"
+msgstr "Создать группу"
+
+#: templates/groupsystem/bannedmembers.html:4
+msgid "Bannedmembers"
+msgstr "Bannedmembers"
+
+#: templates/groupsystem/bannedmembers.html:10
+#: templates/groupsystem/bannedmembers.html:15 templates/sidebar_group.html:98
+msgid "Banned Members"
+msgstr "Запрещенные Пользователи"
+
+#: templates/groupsystem/bannedmembers.html:44
+#: templates/groupsystem/editextraperm.html:3
+#: templates/groupsystem/joinrequests.html:44
+#: templates/groupsystem/members.html:61
+msgid "User"
+msgstr "пользователь"
+
+#: templates/groupsystem/bannedmembers.html:45
+#: templates/groupsystem/joinrequests.html:45
+#: templates/groupsystem/members.html:63
+#: templates/messagingsystem/chats.html:175
+#: templates/messagingsystem/index.html:252
+msgid "Actions"
+msgstr "действия"
+
+#: templates/groupsystem/bannedmembers.html:58
+msgid "Lift Ban"
+msgstr "Лифт Пан"
+
+#: templates/groupsystem/commentadmin.html:17
+#: templates/groupsystem/commentadmin.html:22 templates/sidebar_group.html:71
+#: templates/sidebar_group_admin.html:41
+msgid "Comments"
+msgstr "Комментарии"
+
+#: templates/groupsystem/commentadmin.html:55
+#: templates/groupsystem/editcommentpage.html:39
+msgid "Post: "
+msgstr "После:"
+
+#: templates/groupsystem/commentadmin.html:56
+#: templates/groupsystem/editcommentpage.html:42
+msgid "Commented By: "
+msgstr "Ответил:"
+
+#: templates/groupsystem/commentadmin.html:58
+msgid "Comment: "
+msgstr "Комментарий:"
+
+#: templates/groupsystem/commentadmin.html:60
+#: templates/groupsystem/postsadmin.html:89
+msgid "edit"
+msgstr "редактировать"
+
+#: templates/groupsystem/commentadmin.html:62
+msgid "approve"
+msgstr "одобрить"
+
+#: templates/groupsystem/commentadmin.html:71
+msgid "No comments!!"
+msgstr "Без комментариев!!"
+
+#: templates/groupsystem/creategroupsuccess.html:3
+msgid "Your new group is created"
+msgstr "Ваша новая группа создана"
+
+#: templates/groupsystem/creategroupsuccess.html:4
+msgid "Group UUID: "
+msgstr "Группа UUID:"
+
+#: templates/groupsystem/creategroupsuccess.html:5
+msgid "Url: "
+msgstr "Веб-сайт:"
+
+#: templates/groupsystem/creategroupsuccess.html:6
+msgid "More Settings: "
+msgstr "Больше настроек:"
+
+#: templates/groupsystem/customroles.html:4
+#: templates/groupsystem/customroles.html:56
+msgid "Custom roles"
+msgstr "Пользовательские роли"
+
+#: templates/groupsystem/customroles.html:17
+#: templates/groupsystem/customroles.html:22
+msgid "Custom Roles"
+msgstr "Пользовательские Роли"
+
+#: templates/groupsystem/customroles.html:47
+msgid "Create custom role"
+msgstr "Создание пользовательской роли"
+
+#: templates/groupsystem/customroles.html:68
+msgid "You don't have any custom roles defined"
+msgstr "У вас нет каких-либо пользовательских ролей, определенных"
+
+#: templates/groupsystem/customroles.html:76
+#: templates/groupsystem/defaultroles.html:62
+msgid "Permissions"
+msgstr "Разрешения"
+
+#: templates/groupsystem/customroles.html:91
+msgid "Create Custom Role"
+msgstr "Создание пользовательской роли"
+
+#: templates/groupsystem/customroles.html:113
+msgid "You dont have permission to edit role"
+msgstr "Вы не имеете разрешения на изменение роли"
+
+#: templates/groupsystem/defaultroles.html:4
+#: templates/groupsystem/defaultroles.html:46
+msgid "Default roles"
+msgstr "роли по умолчанию"
+
+#: templates/groupsystem/defaultroles.html:17
+#: templates/groupsystem/defaultroles.html:22
+msgid "Default Roles"
+msgstr "По умолчанию Роли"
+
+#: templates/groupsystem/editcommentpage.html:10
+#: templates/groupsystem/editcommentpage.html:14
+#: templates/groupsystem/editpostpage.html:10
+#: templates/groupsystem/editpostpage.html:14
+#: templates/groupsystem/joined_group.html:16
+#: templates/groupsystem/subscribed_group.html:16
+msgid "admin"
+msgstr "админ"
+
+#: templates/groupsystem/editcommentpage.html:40
+#: templates/groupsystem/editpostpage.html:42
+msgid "Approved: "
+msgstr "Утверждено:"
+
+#: templates/groupsystem/editcommentpage.html:41
+#: templates/groupsystem/editpostpage.html:43
+msgid "Approved By: "
+msgstr "Утверждено:"
+
+#: templates/groupsystem/editcommentpage.html:43
+msgid "Commented on: "
+msgstr "Прокомментировал:"
+
+#: templates/groupsystem/editcustomrole.html:3
+msgid "User who assigned with this role"
+msgstr "Пользователь, который назначен с этой ролью"
+
+#: templates/groupsystem/editpostpage.html:39
+msgid "Creator: "
+msgstr "Создатель:"
+
+#: templates/groupsystem/editpostpage.html:45
+msgid "Post Created on: "
+msgstr "Сообщение Создано:"
+
+#: templates/groupsystem/eventform.html:7
+msgid "Clear"
+msgstr "Очистить"
+
+#: templates/groupsystem/events.html:4 templates/groupsystem/events.html:10
+#: templates/groupsystem/events.html:14 templates/groupsystem/events.html:38
+#: templates/groupsystem/eventsadmin.html:4
+#: templates/groupsystem/eventsadmin.html:10
+#: templates/groupsystem/eventsadmin.html:15
+#: templates/groupsystem/eventsadmin.html:50 templates/sidebar_group.html:11
+#: templates/sidebar_group.html:107 templates/sidebar_group_admin.html:77
+msgid "Events"
+msgstr "Мероприятия"
+
+#: templates/groupsystem/events.html:88
+msgid "Startdate: "
+msgstr "Дата начала:"
+
+#: templates/groupsystem/events.html:90
+msgid "Enddate: "
+msgstr "Дата окончания:"
+
+#: templates/groupsystem/eventsadmin.html:40
+msgid "Create Event"
+msgstr "Создать событие"
+
+#: templates/groupsystem/groupdetails.html:89
+msgid "Leave Group"
+msgstr "Покинуть группу"
+
+#: templates/groupsystem/groupdetails.html:97
+#: templates/groupsystem/groupdetails.html:113
+msgid "Cancel Request"
+msgstr "Отменить запрос"
+
+#: templates/groupsystem/groupdetails.html:102
+#: templates/groupsystem/groupdetails.html:108
+msgid "Join Group"
+msgstr "Вступить в группу"
+
+#: templates/groupsystem/groupdetails.html:135
+msgid "Invite User"
+msgstr "Пригласить пользователя"
+
+#: templates/groupsystem/groupdetails.html:142
+msgid "Go to Group Admin"
+msgstr "Перейти к группе администратора"
+
+#: templates/groupsystem/joined_group.html:5
+#: templates/groupsystem/joined_group.html:12
+#: templates/profilesystem/index.html:588 templates/sidebar_community.html:13
+msgid "Joined Groups"
+msgstr "Группы Регистрация"
+
+#: templates/groupsystem/joinrequests.html:10
+#: templates/groupsystem/joinrequests.html:15
+msgid "Join Requests"
+msgstr "Регистрация запросов"
+
+#: templates/groupsystem/joinrequests.html:57
+#: templates/groupsystem/postsadmin.html:79
+msgid "Approve"
+msgstr "Одобрить"
+
+#: templates/groupsystem/joinrequests.html:60
+msgid "Deny"
+msgstr "Отрицать"
+
+#: templates/groupsystem/members.html:48
+msgid "Add member"
+msgstr "Добавить участников"
+
+#: templates/groupsystem/members.html:62
+msgid "Role"
+msgstr "Роль"
+
+#: templates/groupsystem/members.html:87
+msgid "Ban Member"
+msgstr "Ban Участник"
+
+#: templates/groupsystem/members.html:91
+msgid "SuperAdmin"
+msgstr "SuperAdmin"
+
+#: templates/groupsystem/members.html:93
+msgid "Moderator"
+msgstr "Модератор"
+
+#: templates/groupsystem/members.html:94
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:49 templates/publicusers/users.html:27
+msgid "Member"
+msgstr "член"
+
+#: templates/groupsystem/members.html:101
+msgid "Extra permission"
+msgstr "Дополнительное разрешение"
+
+#: templates/groupsystem/members.html:118
+msgid "Edit User Perm"
+msgstr "Редактировать Пермь Пользователь"
+
+#: templates/groupsystem/members.html:141
+#: templates/groupsystem/members.html:153
+#: templates/groupsystem/members.html:169
+#: templates/groupsystem/members.html:181
+#: templates/groupsystem/members.html:202
+#: templates/groupsystem/members.html:214
+#: templates/groupsystem/members.html:268
+msgid "Change role"
+msgstr "Изменение роли"
+
+#: templates/groupsystem/members.html:231
+msgid "You dont have permissions to edit extra permissions"
+msgstr "Вы не имеете прав для редактирования дополнительных разрешений"
+
+#: templates/groupsystem/postdetails.html:72
+msgid "Like"
+msgstr "подобно"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " likes"
+msgstr "нравится"
+
+#: templates/groupsystem/postdetails.html:124
+msgid " comments"
+msgstr "Комментарии"
+
+#: templates/groupsystem/posts.html:10 templates/groupsystem/posts.html:14
+#: templates/groupsystem/postsadmin.html:10
+#: templates/groupsystem/postsadmin.html:15 templates/sidebar_group.html:19
+#: templates/sidebar_group.html:54 templates/sidebar_group_admin.html:24
+msgid "Posts"
+msgstr "Сообщений"
+
+#: templates/groupsystem/posts.html:40 templates/groupsystem/posts.html:104
+#: templates/groupsystem/postsadmin.html:41
+#: templates/groupsystem/postsadmin.html:107
+msgid "Create Post"
+msgstr "Создать сообщение"
+
+#: templates/groupsystem/posts.html:84 templates/groupsystem/singlepost.html:32
+msgid "more"
+msgstr "Больше"
+
+#: templates/groupsystem/posts.html:95 templates/groupsystem/postsadmin.html:99
+msgid "No Posts Yet!!"
+msgstr "Нет записей !!"
+
+#: templates/groupsystem/postsadmin.html:79
+msgid "Not approved"
+msgstr "Не одобрено"
+
+#: templates/groupsystem/roledetails.html:10
+msgid "No such default role"
+msgstr "Нет такой роли по умолчанию"
+
+#: templates/groupsystem/subscribed_group.html:5
+#: templates/groupsystem/subscribed_group.html:12
+#: templates/profilesystem/index.html:609 templates/sidebar_community.html:14
+msgid "Subscribed Groups"
+msgstr "Группы с подпиской"
+
+#: templates/hashtag/images.html:14
+msgid "You have no images uploaded"
+msgstr "У вас нет загруженных изображений"
+
+#: templates/hashtag/index.html:4
+msgid "Hashtag Banner"
+msgstr "хэштегом Баннер"
+
+#: templates/hashtag/index.html:38 templates/hashtag/index.html:41
+#: templates/landing_base.html:79 templates/landing_base.html:131
+#: templates/profilesystem/index.html:441
+msgid "Hashtag"
+msgstr "Хэштег"
+
+#: templates/hashtag/index.html:52
+msgid "Basic Income Hashtag Banner Campaign"
+msgstr "Базовый доход хэштегом Баннер кампании"
+
+#: templates/hashtag/index.html:53
+msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgstr ""
+"Добавить баннер Основной доход на свой Facebook / Twitter фото профиля."
+
+#: templates/hashtag/index.html:57
+msgid "Add hashtag banner to your facebook account"
+msgstr "Добавить хэштегом баннер на свой счет facebook"
+
+#: templates/hashtag/index.html:62
+msgid "Add hashtag banner to your twitter account"
+msgstr "Добавить хэштегом баннер на свой счет щебетать"
+
+#: templates/hashtag/index.html:68
+msgid "You've not added facebook yet! Click the button to add"
+msgstr "Вы не добавил Facebook еще! Нажмите на кнопку, чтобы добавить"
+
+#: templates/hashtag/index.html:70
+msgid "Add Facebook"
+msgstr "Добавить Facebook"
+
+#: templates/hashtag/index.html:78
+msgid "You've not added twitter yet! Click the button to add"
+msgstr "Вы не добавили еще твиттер! Нажмите на кнопку, чтобы добавить"
+
+#: templates/hashtag/index.html:80
+msgid "Add Twitter"
+msgstr "Добавить в Twitter"
+
+#: templates/hashtag/index.html:87
+msgid "Select from uploaded"
+msgstr "Выберите одну из закачанный"
+
+#: templates/hashtag/index.html:93
+msgid "Upload New Images"
+msgstr "Загружать новые изображения"
+
+#: templates/hashtag/index.html:98
+msgid "Change Banner Color"
+msgstr "Изменение цвета Баннер"
+
+#: templates/hashtag/index.html:102
+msgid "Make profile image"
+msgstr "Сделать изображение профиля"
+
+#: templates/hashtag/index.html:108
+msgid "Download image"
+msgstr "Скачать картинку"
+
+#: templates/hashtag/index.html:121
+msgid "Upload Images"
+msgstr "загрузить изображения"
+
+#: templates/hashtag/index.html:255 templates/hashtag/index.html:271
+msgid "Upload to facebook"
+msgstr "Загрузка на Facebook"
+
+#: templates/hashtag/index.html:305 templates/hashtag/index.html:321
+msgid "Upload to twitter"
+msgstr "Загрузить щебетать"
+
+#: templates/hashtag/index.html:356
+msgid "Uploading....."
+msgstr "Загрузка ....."
+
+#: templates/hashtag/index.html:365
+msgid "Support #basicincome project"
+msgstr "Поддержка"
+
+#: templates/hashtag/index.html:407
+msgid "Uploaded"
+msgstr "Загружено"
+
+#: templates/hashtag/index.html:419
+msgid "Cant upload now!! try later"
+msgstr "Cant загрузить прямо сейчас !! попробуй позже"
+
+#: templates/information/contact.html:4 templates/information/contact.html:10
+#: templates/information/contact.html:13 templates/information/success.html:4
+#: templates/information/success.html:10 templates/landing_base.html:78
+#: templates/landing_base.html:198 templates/profilesystem/index.html:154
+#: templates/profilesystem/index.html:373 templates/publicusers/user.html:65
+#: templates/publicusers/user.html:236
+msgid "Contact"
+msgstr "контакт"
+
+#: templates/information/contact.html:24
+msgid "Get in touch with us"
+msgstr "Свяжись с нами"
+
+#: templates/information/contact.html:25
+msgid ""
+"if you have any comments or questions, please get in touch. We’d love to "
+"hear fom you."
+msgstr ""
+
+#: templates/information/index.html:4 templates/information/index.html:13
+#: templates/information/index.html:24 templates/profilesystem/index.html:434
+#: templates/sidebar_community.html:20
+msgid "Information"
+msgstr "Информация"
+
+#: templates/information/index.html:10
+msgid "About our system"
+msgstr "О нашей системе"
+
+#: templates/information/success.html:13
+msgid "contact"
+msgstr "контакт"
+
+#: templates/information/success.html:24
+msgid "Thank you for your interest"
+msgstr "Спасибо за Ваш интерес"
+
+#: templates/information/success.html:25
+msgid "We will contact you shortly"
+msgstr "Мы скоро с Вами свяжемся"
+
+#: templates/invitationsystem/checkinvitation.html:16
+msgid "Get access to ekata beta"
+msgstr "Получить доступ к бета-версии ekata"
+
+#: templates/invitationsystem/index.html:16
+#: templates/invitationsystem/sent.html:13 templates/landing/index.html:238
+msgid "Get your invite access key to the ekata beta"
+msgstr "Получите ваш пригласить ключ доступа к бета-версии ekata"
+
+#: templates/invitationsystem/sent.html:15 templates/landing/index.html:407
+msgid ""
+"Your request is sent!! You will get an invitation email soon with a link and "
+"invite key."
+msgstr ""
+
+#: templates/landing/hashtag.html:35
+msgid "Show Support"
+msgstr "Показать поддержки"
+
+#: templates/landing/hashtag.html:36
+#, fuzzy
+#| msgid "Add a Basic Income banner to your Facebook/Twitter profile photo. "
+msgid ""
+"In adding the #basicincome hashtag banner to your facebook and twitter "
+"profile !!"
+msgstr ""
+"Добавить баннер Основной доход на свой Facebook / Twitter фото профиля."
+
+#: templates/landing/hashtag.html:48
+msgid "World Supporters of Basic Income"
+msgstr "Мировые Сторонники основного дохода"
+
+#: templates/landing/hashtag.html:71
+msgid "Create my banner"
+msgstr "Создать мой баннер"
+
+#: templates/landing/hashtag.html:73
+msgid "Login/Signup to be here"
+msgstr "Войти / Регистрация, чтобы быть здесь"
+
+#: templates/landing/index.html:40
+msgid ""
+"Ekata is a social platform for individuals, communities, associations, and "
+"municipalities. Ekata empowers you with the best of today’s online "
+"technologies -- digital tools to help you stay managed, connected, and "
+"informed. Whether you want to build a web presence for yourself or your "
+"organization, or you simply want a place to connect with others who share "
+"your interests and goals, Ekata is the place for you. Welcome!"
+msgstr ""
+
+#: templates/landing/index.html:55
+msgid "Communities"
+msgstr "Сообщества"
+
+#: templates/landing/index.html:56
+msgid ""
+"You're a social group that shares something in common. Small or large. "
+"Local, national, or global. Virtual or geographically based. Your common "
+"purpose and identity give you a sense of community. Ekata was built to align "
+"with how you wish to relate."
+msgstr ""
+
+#: templates/landing/index.html:60
+msgid "Associations"
+msgstr "ассоциации"
+
+#: templates/landing/index.html:61
+msgid ""
+"You're a homeowners or condo association, property or land trust, or "
+"nonprofit organization. An organized body of people who live or work "
+"together to improve your lives or society. Ekata gives you the tools to "
+"manage your association’s business, membership, activities and interests."
+msgstr ""
+
+#: templates/landing/index.html:65
+msgid "Municipalities"
+msgstr "Муниципалитеты"
+
+#: templates/landing/index.html:66
+msgid ""
+"You're a town, municipality or county. A government institution with "
+"incorporated status in a jurisdiction. The Ekata platform has the "
+"administrative tools you need to function efficiently and connect with "
+"elected officials, staff, and constituents in the 21st century."
+msgstr ""
+
+#: templates/landing/index.html:78
+msgid "Platform Vision"
+msgstr "Платформа Видение"
+
+#: templates/landing/index.html:86
+msgid ""
+"Mark Witham, social entrepreneur and founder of the Ekata platform (Formally "
+"known as Basic Income Project), is passionate about empowering others with "
+"options to bring about their own social change."
+msgstr ""
+
+#: templates/landing/index.html:91
+msgid ""
+"We combine technology, knowledge, and imagination to build better social "
+"systems for this planet and future generations. Now we need you! Use the "
+"Ekata platform to help create a network for fulfilling lives, communities, "
+"and positive social change."
+msgstr ""
+
+#: templates/landing/index.html:106
+msgid "Social Responsiblity"
+msgstr "Общественные деятельности"
+
+#: templates/landing/index.html:112
+msgid "Ekata has partnered with "
+msgstr "Ekata имеет партнерские отношения с"
+
+#: templates/landing/index.html:112
+msgid ", a socially responsible digital currency which is distributed as "
+msgstr ", Социально ответственная цифровая валюта, которая распределяется"
+
+#: templates/landing/index.html:112
+msgid ""
+" to people around the world. Powered by blockchain technology, Grantcoin is "
+"the first cryptocurrency to be backed by a 501(c)(3) nonprofit organization "
+"with a mission for social good. Join Ekata and receive Grantcoin on a "
+"regular basis, for free. Spend it or give it away to other Ekata users -- "
+"artists, musicians, bloggers, nonprofits, or businesses."
+msgstr ""
+
+#: templates/landing/index.html:162
+msgid "Many Key Features"
+msgstr "Многие Основные характеристики"
+
+#: templates/landing/index.html:165
+msgid "Group sites for art, music, news, politics, activism, and business."
+msgstr ""
+"Группа сайтов для искусства, музыки, новости, политика, активности и бизнеса."
+
+#: templates/landing/index.html:169
+msgid "Social communication through instant messaging, posts, and comments."
+msgstr ""
+"Социальная коммуникация посредством обмена мгновенными сообщениями, "
+"сообщения и комментарии."
+
+#: templates/landing/index.html:173
+msgid "Governance of members, staff roles, social forums, and member voting."
+msgstr ""
+"Управление членов, ролей персонала, социальных форумах, и участвующих в "
+"голосовании членов."
+
+#: templates/landing/index.html:177
+msgid "Web of trust and a socially responsible currency system."
+msgstr "Веб доверия и систему социально ответственной валюты."
+
+#: templates/landing/index.html:196
+msgid "More Features"
+msgstr "Больше возможностей"
+
+#: templates/landing/index.html:198
+msgid "API for building in app and feature integrations."
+msgstr "API для встраивания в приложения и художественных интеграций."
+
+#: templates/landing/index.html:199
+msgid "Open Source."
+msgstr "Открытый исходный код."
+
+#: templates/landing/index.html:211
+msgid "#BasicIncome Hashtag Banner Campaign"
+msgstr ""
+
+#: templates/landing/index.html:217
+msgid ""
+"Help Ekata in showing your support for basic income by adding a custom "
+"colored #basicincome hashtag banner to your Twitter and Facebook profile "
+"photo. Together let us raise awareness!"
+msgstr ""
+
+#: templates/landing/index.html:219
+msgid "Click here to create and upload the banner"
+msgstr "Нажмите здесь, чтобы создать и загрузить баннер"
+
+#: templates/landing/index.html:418
+msgid "Please correct the errors"
+msgstr "Исправьте ошибки"
+
+#: templates/landing/news.html:39
+msgid "News and Stories"
+msgstr "Новости и Истории"
+
+#: templates/landing/news.html:46
+msgid "Trending"
+msgstr "Trending"
+
+#: templates/landing/news.html:80 templates/landing/newsdetail.html:45
+#: templates/profilesystem/index.html:343
+msgid "About Me"
+msgstr "Обо мне"
+
+#: templates/landing_base.html:74
+msgid "Home"
+msgstr "домашняя страница"
+
+#: templates/landing_base.html:75
+msgid "Features"
+msgstr "Больше возможностей"
+
+#: templates/landing_base.html:99 templates/landing_base.html:164
+msgid "My Account"
+msgstr "Мой аккаунт"
+
+#: templates/landing_base.html:104 templates/landing_base.html:166
+#: templates/profilesystem/index.html:406
+#: templates/publicusers/userdetails.html:50
+#: templates/publicusers/userlist_old.html:4
+#: templates/publicusers/userlist_old.html:44
+#: templates/publicusers/userlist_old.html:60
+msgid "Users"
+msgstr "пользователей"
+
+#: templates/landing_base.html:112 templates/landing_base.html:168
+#: templates/profilesystem/index.html:420 templates/sidebar_home.html:50
+#: templates/timelines/index.html:4 templates/timelines/index.html:18
+#: templates/timelines/index.html:21
+msgid "Timeline"
+msgstr "График"
+
+#: templates/landing_base.html:127 templates/landing_base.html:170
+msgid "information"
+msgstr "Информация"
+
+#: templates/landing_base.html:134
+msgid "Customize link"
+msgstr "Настроить ссылку"
+
+#: templates/landing_base.html:136
+msgid "Sign-out"
+msgstr "Выход"
+
+#: templates/landing_base.html:161
+msgid "Links"
+msgstr "связи"
+
+#: templates/landing_base.html:171
+msgid "Create Hashtag"
+msgstr "Создание хэштегом"
+
+#: templates/landing_base.html:177
+msgid "Social"
+msgstr "Социальное"
+
+#: templates/landing_base.html:186
+msgid "Signup for the Newsletter"
+msgstr "Подпишитесь на рассылку новостей"
+
+#: templates/landing_base.html:200
+msgid "Please feel free to inquire more about the EKATA platform."
+msgstr "Пожалуйста, не стесняйтесь, чтобы узнать больше о платформе EKATA."
+
+#: templates/landing_base.html:249
+msgid "Powered by "
+msgstr "Питаться от"
+
+#: templates/messagingsystem/chats.html:70
+msgid "Send Unit to: "
+msgstr "Отправить Группу:"
+
+#: templates/messagingsystem/chats.html:87
+msgid "Request Unit from: "
+msgstr "Запрос от блока:"
+
+#: templates/messagingsystem/chats.html:93
+#: templates/publicusers/userdetails.html:123 templates/timelines/index.html:57
+#: templates/timelines/index.html:59
+msgid "Request"
+msgstr "Запрос"
+
+#: templates/messagingsystem/index.html:4
+#: templates/profilesystem/index.html:427
+msgid "Messaging"
+msgstr "обмен сообщениями"
+
+#: templates/messagingsystem/index.html:58
+#: templates/messagingsystem/index.html:61 templates/sidebar_home.html:56
+msgid "Messenger"
+msgstr "гонец"
+
+#: templates/messagingsystem/index.html:93
+#: templates/messagingsystem/index.html:106
+msgid "Sorry you have no chats yet!!!"
+msgstr "К сожалению у вас нет чатов еще !!!"
+
+#: templates/messagingsystem/index.html:121
+msgid "Send Units"
+msgstr "Отправить Единицы измерения"
+
+#: templates/messagingsystem/index.html:126
+msgid "Request Request"
+msgstr "Запрос Запрос"
+
+#: templates/messagingsystem/navbarmessage.html:37
+msgid "All caught up"
+msgstr "Все догнали"
+
+#: templates/notification/notification.html:19
+#: templates/timelines/index.html:278 templates/timelines/timeline.html:54
+#: templates/timelines/timeline.html:72
+msgid "sent"
+msgstr "послал"
+
+#: templates/notification/notification.html:26
+msgid "requested"
+msgstr "запрошенный"
+
+#: templates/notification/notification.html:33
+msgid "units released"
+msgstr "блоки выпустили"
+
+#: templates/notification/notification.html:40
+msgid "verfied as real user"
+msgstr "verfied как реальный пользователь"
+
+#: templates/notification/notification.html:47
+msgid "unverfied you"
+msgstr "unverfied вас"
+
+#: templates/notification/notification.html:54
+msgid "sent a connection request"
+msgstr "послал запрос на соединение"
+
+#: templates/notification/notification.html:61
+msgid "canceled connection request"
+msgstr "запрос отменить соединение"
+
+#: templates/notification/notification.html:68
+msgid "accepted connection request"
+msgstr "Запрос принятого соединения"
+
+#: templates/notification/notification.html:75
+msgid "rejected connection request"
+msgstr "запрос отклонен соединение"
+
+#: templates/notification/notification.html:82
+msgid "disconnected you"
+msgstr "отсоединен вас"
+
+#: templates/notification/notification.html:89
+msgid "invited you to group"
+msgstr "приглашает вас в группе"
+
+#: templates/notification/notification.html:96
+msgid "sent a join request to group"
+msgstr "направил запрос на присоединение к группе"
+
+#: templates/notification/notification.html:128
+msgid "All caught up!!"
+msgstr "Все догнали !!"
+
+#: templates/profilesystem/address.html:43
+msgid "Click add button to add your address"
+msgstr "Нажмите кнопку Добавить, чтобы добавить свой адрес"
+
+#: templates/profilesystem/contact.html:5 templates/publicusers/user.html:241
+msgid "Phone Office"
+msgstr "Служебный телефон"
+
+#: templates/profilesystem/contact.html:11 templates/publicusers/user.html:247
+msgid "Phone Home"
+msgstr "Домашний телефон"
+
+#: templates/profilesystem/contact.html:17 templates/publicusers/user.html:253
+msgid "Phone Mobile"
+msgstr "Телефон мобильный"
+
+#: templates/profilesystem/contact.html:23 templates/publicusers/user.html:259
+msgid "Phone Emergency"
+msgstr "телефон чрезвычайным"
+
+#: templates/profilesystem/contact.html:30
+msgid "Click add button to add your phone number"
+msgstr "Нажмите кнопку Добавить, чтобы добавить свой номер телефона"
+
+#: templates/profilesystem/documents.html:4
+msgid "Profile Images"
+msgstr "Сделать изображение профиля"
+
+#: templates/profilesystem/documents.html:18
+msgid "Images"
+msgstr "загрузить изображения"
+
+#: templates/profilesystem/documents.html:34
+#: templates/profilesystem/index.html:223
+msgid "Documents"
+msgstr "документы"
+
+#: templates/profilesystem/documents.html:50
+msgid "Legal"
+msgstr "легальный"
+
+#: templates/profilesystem/emailaddress.html:4
+msgid "Email address associated with your account"
+msgstr "Адрес электронной почты, связанный с вашей учетной записью"
+
+#: templates/profilesystem/emailaddress.html:17
+msgid "(Primary)"
+msgstr "(Primary)"
+
+#: templates/profilesystem/emailaddress.html:30
+msgid "No email associated with your account"
+msgstr "Нет электронной почты не связан с вашим аккаунтом"
+
+#: templates/profilesystem/index.html:84 templates/profilesystem/index.html:307
+#: templates/publicusers/user.html:112
+msgid "Personal Information"
+msgstr "Личная информация"
+
+#: templates/profilesystem/index.html:115
+#: templates/profilesystem/index.html:365
+msgid "Location"
+msgstr "Место нахождения"
+
+#: templates/profilesystem/index.html:191 templates/publicusers/user.html:166
+msgid "Activities"
+msgstr "мероприятия"
+
+#: templates/profilesystem/index.html:198 templates/publicusers/user.html:170
+msgid "Activation date"
+msgstr "дата активации"
+
+#: templates/profilesystem/index.html:210
+msgid "More"
+msgstr "Больше"
+
+#: templates/profilesystem/index.html:236
+#: templates/publicusers/connections.html:74
+msgid "Search..."
+msgstr "Поиск..."
+
+#: templates/profilesystem/index.html:253
+msgid "Upload Document"
+msgstr "Общие документы"
+
+#: templates/profilesystem/index.html:268
+msgid "Shared Documents"
+msgstr "Общие документы"
+
+#: templates/profilesystem/index.html:300
+msgid "Change Public Visibility"
+msgstr "Изменение общественного Видимость"
+
+#: templates/profilesystem/index.html:318 templates/profilesystem/pinfo.html:42
+#: templates/publicusers/user.html:138
+msgid "Website"
+msgstr "Веб-сайт"
+
+#: templates/profilesystem/index.html:325 templates/profilesystem/pinfo.html:23
+#: templates/publicusers/user.html:126
+msgid "Gender"
+msgstr "Пол"
+
+#: templates/profilesystem/index.html:336
+msgid "Avatar"
+msgstr "Добавить аватар"
+
+#: templates/profilesystem/index.html:361 templates/publicusers/user.html:188
+msgid "Address"
+msgstr "Адрес"
+
+#: templates/profilesystem/index.html:385
+msgid "Others"
+msgstr "другие"
+
+#: templates/profilesystem/index.html:389
+msgid "Profile completion"
+msgstr "Профайл заполнен"
+
+#: templates/profilesystem/index.html:398
+msgid "Please edit profile information to change visibility"
+msgstr "Измените информацию о профиле, чтобы изменить видимость"
+
+#: templates/profilesystem/index.html:401
+msgid "Customize links of landing dropdown"
+msgstr "Настройка связей посадки выпадающего списка"
+
+#: templates/profilesystem/index.html:454
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: templates/profilesystem/index.html:458
+msgid "Set password"
+msgstr "Установка пароля"
+
+#: templates/profilesystem/index.html:462
+msgid "View As Public"
+msgstr "Посмотреть, как общественный"
+
+#: templates/profilesystem/index.html:473
+msgid "Linked social account"
+msgstr "Связанный социальный счет"
+
+#: templates/profilesystem/index.html:525
+msgid "Manage"
+msgstr "управлять"
+
+#: templates/profilesystem/index.html:540
+msgid "Reference"
+msgstr "Справка"
+
+#: templates/profilesystem/index.html:552
+msgid "Refresh"
+msgstr "обновление"
+
+#: templates/profilesystem/index.html:567
+msgid "My Groups"
+msgstr "Мои группы"
+
+#: templates/profilesystem/index.html:632
+msgid "Apps"
+msgstr "Программы"
+
+#: templates/profilesystem/index.html:648
+msgid "Sites"
+msgstr "Места"
+
+#: templates/profilesystem/index.html:664
+msgid "Ads"
+msgstr "Объявления"
+
+#: templates/profilesystem/logdata.html:3
+msgid "Logs Details"
+msgstr "Бревна подробности"
+
+#: templates/profilesystem/logdata.html:6
+msgid "Last payment received"
+msgstr "Последний платеж получен"
+
+#: templates/profilesystem/logdata.html:16
+msgid "Advertisement post"
+msgstr "Реклама сообщение"
+
+#: templates/profilesystem/logdata.html:20
+msgid "Last login "
+msgstr "Последний Войти"
+
+#: templates/profilesystem/logdata.html:24
+msgid "Last payment sent"
+msgstr "Последний платеж отправлен"
+
+#: templates/profilesystem/pinfo.html:9 templates/publicusers/user.html:116
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: templates/profilesystem/pinfo.html:38
+msgid "Community"
+msgstr "сообщество"
+
+#: templates/profilesystem/pinfo.html:46 templates/publicusers/user.html:147
+msgid "About me"
+msgstr "Обо мне"
+
+#: templates/profilesystem/profilecompletiontasks.html:5
+msgid "Add your website to complete your profile."
+msgstr "Добавьте ваш сайт, чтобы заполнить свой профиль."
+
+#: templates/profilesystem/profilecompletiontasks.html:11
+msgid "Add your gender to complete your profile."
+msgstr "Добавьте свой пол, чтобы заполнить свой профиль."
+
+#: templates/profilesystem/profilecompletiontasks.html:17
+msgid "Add your contact number to complete your profile."
+msgstr "Добавьте ваш контактный номер, чтобы заполнить свой профиль."
+
+#: templates/profilesystem/profilecompletiontasks.html:23
+msgid "Add a profile image to complete your profile."
+msgstr "Добавьте изображение профиля, чтобы заполнить свой профиль."
+
+#: templates/profilesystem/profilecompletiontasks.html:29
+msgid "Add your location to complete your profile."
+msgstr "Добавьте свое местоположение, чтобы завершить свой профиль."
+
+#: templates/profilesystem/profilecompletiontasks.html:35
+msgid "Add a social account of yours to complete your profile."
+msgstr "Добавить социальный аккаунт ваш, чтобы заполнить свой профиль."
+
+#: templates/profilesystem/profilecompletiontasks.html:41
+msgid "Add your email account to complete your profile."
+msgstr ""
+"Добавить учетную запись электронной почты, чтобы заполнить свой профиль."
+
+#: templates/profilesystem/profilecompletiontasks.html:50
+msgid "Please verify your email address(resend verification)"
+msgstr ""
+"Пожалуйста, подтвердите свой адрес электронной почты (Повторная отправка "
+"подтверждения)"
+
+#: templates/profilesystem/reference.html:6
+msgid "Following user verified me"
+msgstr "Следующий пользователь проверить меня"
+
+#: templates/profilesystem/reference.html:35
+msgid "Oops!! No Reference Yet"
+msgstr "К сожалению !! Нет Ссылка Еще"
+
+#: templates/profilesystem/unlinksocial.html:69
+msgid "This is your last method to connect to this site."
+msgstr "Это ваш последний метод, чтобы подключиться к этому сайту."
+
+#: templates/profilesystem/unlinksocial.html:70
+msgid "You will be asked for a password if you proceed"
+msgstr "Вам будет предложено ввести пароль, если вы продолжите"
+
+#: templates/publicusers/connections.html:50
+#: templates/publicusers/userlist_old.html:48
+#, fuzzy, python-format
+#| msgid "Hello, %(username_t)s!"
+msgid "Hello, %(username_t)s!"
+msgstr "Здравствуйте,% (username_t) s!"
+
+#: templates/publicusers/connusers.html:31
+msgid "No connections"
+msgstr "Нет соединения"
+
+#: templates/publicusers/missing_users.html:25
+#: templates/publicusers/userlist.html:46 templates/publicusers/users.html:27
+msgid "Staff"
+msgstr "Сотрудники"
+
+#: templates/publicusers/user.html:22
+#: templates/publicusers/userdetails.html:401
+#: templates/publicusers/userlist.html:132
+#: templates/publicusers/userlist_old.html:124
+#: templates/publicusers/users_old.html:23
+msgid "lastseen: "
+msgstr "lastseen:"
+
+#: templates/publicusers/user.html:26
+#: templates/publicusers/userdetails.html:397
+#: templates/publicusers/userlist.html:43
+#: templates/publicusers/userlist_old.html:122
+#: templates/publicusers/userlist_old.html:128
+#: templates/publicusers/users_old.html:27
+msgid "Offline"
+msgstr "Не в сети"
+
+#: templates/publicusers/user.html:51 templates/timelines/timeline.html:147
+#: templates/timelines/timeline.html:154
+msgid "Disconnect"
+msgstr "Отключить"
+
+#: templates/publicusers/user.html:53
+msgid "Cancel connection request"
+msgstr "Отменить запрос на подключение"
+
+#: templates/publicusers/user.html:55
+msgid "Reject connection request"
+msgstr "Отклонить запрос на подключение"
+
+#: templates/publicusers/user.html:56
+msgid "Accept connection request"
+msgstr "Принять запрос на соединение"
+
+#: templates/publicusers/user.html:58
+msgid "Connect"
+msgstr "подключать"
+
+#: templates/publicusers/user.html:61
+msgid "Connection type"
+msgstr "Тип соединения"
+
+#: templates/publicusers/user.html:64
+msgid "Family"
+msgstr "семья"
+
+#: templates/publicusers/user.html:69
+msgid "Friend Type"
+msgstr "Друг Тип"
+
+#: templates/publicusers/user.html:78
+msgid "Send request"
+msgstr "Послать запрос"
+
+#: templates/publicusers/user.html:87
+msgid "Unverify"
+msgstr "Отменить подтверждение"
+
+#: templates/publicusers/user.html:90
+msgid "I verify this user"
+msgstr "Я проверить этот пользователь"
+
+#: templates/publicusers/user.html:92
+#: templates/publicusers/userdetails.html:100
+msgid "Send Unit"
+msgstr "Отправить Unit"
+
+#: templates/publicusers/user.html:93
+#: templates/publicusers/userdetails.html:117
+msgid "Request Unit"
+msgstr "Запрос Unit"
+
+#: templates/publicusers/user.html:94
+msgid "Message"
+msgstr "Сообщение"
+
+#: templates/publicusers/userdetails.html:67
+msgid "Others who verify"
+msgstr "Другие, которые проверяют"
+
+#: templates/publicusers/userlist.html:138
+#: templates/publicusers/userlist_old.html:130
+msgid "lastseen: unknown"
+msgstr "lastseen: неизвестно"
+
+#: templates/publicusers/userlist_old.html:72
+msgid " Search Users "
+msgstr "Поиск пользователей"
+
+#: templates/sidebar_apps.html:2
+msgid "Hashtag Campaign"
+msgstr "кампания хэштегом"
+
+#: templates/sidebar_community.html:26
+msgid "About Our System"
+msgstr "О нашей системе"
+
+#: templates/sidebar_community.html:27
+msgid "Contact Details"
+msgstr "Контактная информация"
+
+#: templates/sidebar_community.html:42
+msgid "Email Lists"
+msgstr "списки адресов электронной почты"
+
+#: templates/sidebar_group.html:5
+msgid "Homepage"
+msgstr "домашняя страница"
+
+#: templates/sidebar_group.html:25 templates/sidebar_group.html:60
+#: templates/sidebar_group_admin.html:30
+msgid "Group's Posts"
+msgstr "Группы сообщений"
+
+#: templates/sidebar_group.html:26 templates/sidebar_group.html:61
+#: templates/sidebar_group_admin.html:31
+msgid "Member's Posts"
+msgstr "Сообщения пользователя"
+
+#: templates/sidebar_group.html:31
+msgid "Group Admin Section"
+msgstr "Раздел Группа администратора"
+
+#: templates/sidebar_group.html:77 templates/sidebar_group_admin.html:47
+msgid "Not Approved"
+msgstr "Не одобрено"
+
+#: templates/sidebar_group.html:95 templates/sidebar_group_admin.html:65
+msgid "Requests"
+msgstr "Запросы"
+
+#: templates/sidebar_group.html:117 templates/sidebar_group_admin.html:87
+msgid "Roles"
+msgstr "Роли"
+
+#: templates/sidebar_group.html:124 templates/sidebar_group_admin.html:94
+msgid "Defaults"
+msgstr "Значения по умолчанию"
+
+#: templates/sidebar_group.html:127 templates/sidebar_group_admin.html:97
+msgid "Custom"
+msgstr "изготовленный на заказ"
+
+#: templates/sidebar_group.html:136 templates/sidebar_group_admin.html:106
+msgid "Account Signups"
+msgstr "Signups данные"
+
+#: templates/sidebar_group_admin.html:68
+msgid "Banned members"
+msgstr "Заблокированные участники"
+
+#: templates/sidebar_home.html:10
+msgid "My Accounts"
+msgstr "Мои аккаунты"
+
+#: templates/sidebar_home.html:17 templates/timelines/index.html:52
+#: templates/timelines/index.html:54 templates/useraccount/transfer.html:7
+#: templates/useraccount/transfer.html:13
+msgid "Transfer"
+msgstr "Перевод"
+
+#: templates/socialaccount/signup.html:9
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: templates/timelines/index.html:43
+msgid "Search: "
+msgstr "Поиск:"
+
+#: templates/timelines/index.html:49
+msgid "Filters: "
+msgstr "Фильтры:"
+
+#: templates/timelines/index.html:62 templates/timelines/index.html:64
+msgid "Release"
+msgstr "Выпуск"
+
+#: templates/timelines/index.html:67 templates/timelines/index.html:69
+msgid "Verified"
+msgstr "проверенный"
+
+#: templates/timelines/index.html:72 templates/timelines/index.html:74
+msgid "Unverified"
+msgstr "непроверенный"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "you sent"
+msgstr "ты отправил"
+
+#: templates/timelines/timeline.html:20 templates/timelines/timeline.html:31
+msgid "units to"
+msgstr "единиц в"
+
+#: templates/timelines/timeline.html:22 templates/timelines/timeline.html:33
+msgid "sent you"
+msgstr "отправлено Вам"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "you requested"
+msgstr "вы запросили"
+
+#: templates/timelines/timeline.html:47 templates/timelines/timeline.html:65
+msgid "units from"
+msgstr "единицы из"
+
+#: templates/timelines/timeline.html:49 templates/timelines/timeline.html:67
+msgid "requested you"
+msgstr "просил вас"
+
+#: templates/timelines/timeline.html:52 templates/timelines/timeline.html:70
+msgid "send"
+msgstr "Отправить"
+
+#: templates/timelines/timeline.html:103
+msgid " units basic income released"
+msgstr "единицы выпустили основной доход"
+
+#: templates/timelines/timeline.html:115
+msgid "you verified"
+msgstr "вы проверили"
+
+#: templates/timelines/timeline.html:115 templates/timelines/timeline.html:130
+msgid "as real user"
+msgstr "как реальный пользователь"
+
+#: templates/timelines/timeline.html:117
+msgid "verified you as real user"
+msgstr "проверить вас как реального пользователя"
+
+#: templates/timelines/timeline.html:130
+msgid "you unverified"
+msgstr "вы непроверенные"
+
+#: templates/timelines/timeline.html:132
+msgid "unverified you as real user"
+msgstr "непроверенные вас как реального пользователя"
+
+#: templates/timelines/timeline.html:145
+msgid "Requested connection to "
+msgstr "Запрошенный подключение к"
+
+#: templates/timelines/timeline.html:152
+msgid "sent connection request"
+msgstr "запрос, отправленный соединение"
+
+#: templates/timelines/timeline.html:156
+msgid "Reject"
+msgstr "отклонять"
+
+#: templates/timelines/timeline.html:157
+msgid "Accept"
+msgstr "принимать"
+
+#: templates/timelines/timeline.html:162
+msgid "Connection type: "
+msgstr "Тип соединения:"
+
+#: templates/useraccount/index.html:83
+msgid "Pulse Points"
+msgstr "Импульсные очки"
+
+#: templates/useraccount/index.html:108 templates/useraccount/transfer.html:40
+msgid "Quick Review"
+msgstr "Быстрый обзор"
+
+#: templates/useraccount/index.html:113 templates/useraccount/transfer.html:45
+msgid "Units"
+msgstr "единицы"
+
+#: templates/useraccount/index.html:165
+msgid "Transactions"
+msgstr "операции"
+
+#: templates/useraccount/index.html:171
+msgid "Id"
+msgstr "Я бы"
+
+#: templates/useraccount/index.html:172 templates/useraccount/index.html:207
+msgid "From"
+msgstr "Из"
+
+#: templates/useraccount/index.html:173 templates/useraccount/index.html:203
+msgid "To"
+msgstr "к"
+
+#: templates/useraccount/index.html:174 templates/useraccount/index.html:211
+#: templates/useraccount/index.html:241
+msgid "Date"
+msgstr "Дата:"
+
+#: templates/useraccount/index.html:196
+msgid "Details"
+msgstr "Детали"
+
+#: templates/useraccount/index.html:234
+msgid "Basic Income Release"
+msgstr "Основной доход выпуска"
+
+#: templates/useraccount/index.html:255
+msgid "No release yet"
+msgstr "Следующий выпуск"
+
+#: templates/useraccount/index.html:286
+msgid "Please contact a Grantcoin staff on your Account Status"
+msgstr "Пожалуйста, обратитесь к персоналу Grantcoin на состоянии Вашего счета"
+
+#: templates/useraccount/index.html:296
+msgid "Contact to add your organization account"
+msgstr "Контакты, чтобы добавить свою учетную запись организации"
+
+#: templates/useraccount/transfer.html:16
+msgid "transfer"
+msgstr "перевод"
+
+#: templates/useraccount/transfer.html:55
+msgid "Select User"
+msgstr "Выбор пользователя"
+
+#: templates/useraccount/transfer.html:80
+msgid "Search user"
+msgstr "Поиск пользователей"
+
+#: templates/useraccount/transferunit.html:4
+msgid "Send Amount To"
+msgstr "Отправить Сумма к"
+
+#: useraccount/forms.py:7 useraccount/forms.py:26
+msgid "Instruction"
+msgstr "инструкция"
+
+#: useraccount/forms.py:17
+msgid "Amount can't exceed your balance"
+msgstr "Сумма не может превышать свой баланс"
+
+#: useraccount/views.py:119
+msgid "Transfer completed!!"
+msgstr "Передача завершена !!"
+
+#: useraccount/views.py:187
+msgid "Request Sent!!"
+msgstr "Запрос отправлен!!"

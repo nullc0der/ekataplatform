@@ -34,7 +34,7 @@
     {% if useraddress.country %}
         <strong><i class="fa fa-globe margin-r-5"></i>{% trans "Country" %}</strong>
         <p class="text-muted">
-            {{ useraddress.country }}
+            {{ useraddress.country.name }}
         </p>
     {% endif %}
 {% endwith %}
