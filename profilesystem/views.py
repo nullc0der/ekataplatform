@@ -209,7 +209,7 @@ def address_edit_page(request):
 
 @login_required
 def upload_avatar(request):
-    if request.POST and request.FILES:
+    if request.method == 'POST' and request.FILES:
         prof, created = UserProfile.objects.get_or_create(user=request.user)
         prof.avatar = request.FILES['avatarimage']
         prof.save()
