@@ -5976,16 +5976,19 @@ table.text-center th {
 
 .avatar_modal_header {
     text-align: center;
+    margin-top: 15px;
+    color: #4A4A4A;
 }
 
-.avatar_modal_header>h3 {
+.avatar_modal_header>p {
     font-weight: 600;
+    font-size: 20px;
 }
 
 .avatar_modal_header>hr {
-    border: 1px solid #000;
-    width: 50px;
-    margin: 0 45% 5%;
+    border: 1px solid #4A4A4A;
+    width: 38px;
+    margin: 2% 47% 5%;
 }
 
 .avatar_modal_body {
@@ -5994,13 +5997,13 @@ table.text-center th {
 
 .avatar_image {
     float: left;
-    margin-left: 60px;
+    margin-left: 35px;
     border: 2px solid #ccc;
 }
 
 .avatar_editor_options {
     float: left;
-    margin-left: 50px;
+    margin-left: 35px;
 }
 
 .editor_option_draw {
@@ -6094,7 +6097,11 @@ table.text-center th {
 
 .editor_info {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 16px;
+}
+
+.editor_info>i {
+    margin-right: 10px;
 }
 
 .editor_option_draw>ul {
@@ -6133,19 +6140,153 @@ table.text-center th {
     left: 23%;
 }
 
-.btn-rounded>.fa-image {
+.btn-rounded>i {
     color: #F6A623;
     font-size: 20px;
 }
 
 #imgModal .modal-dialog {
-    width: 800px;
+    width: 700px;
 }
 
 #imgModal .modal-content {
     border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+}
+
+#imgModal .modal-body {
+    padding: 10px;
 }
 
 .draw_pen_active {
     color: #4A4A4A !important;
+}
+
+.avatar_modal_close {
+    position: relative;
+    top: -20px;
+    color: #4A4A4A;
+    opacity: 0.70;
+}
+
+@media (max-width: 767px) {
+    #imgModal .modal-dialog {
+        width: auto;
+    }
+    .avatar_image {
+        float: none;
+        margin-left: 40px;
+    }
+    .avatar_image_actions {
+        position: absolute;
+        top: 30%;
+        left: 40%;
+    }
+    .avatar_editor_options {
+        float: none;
+        margin-left: 55px;
+        margin-top: 10px;
+    }
+    .avatar_modal_header>hr {
+        margin: 2% 42% 5%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 375px) {
+    .avatar_modal_header>hr {
+        margin: 2% 41% 5%;
+    }
+    .avatar_image {
+        margin-left: 15px;
+    }
+    .avatar_image_actions {
+        position: absolute;
+        top: 30%;
+        left: 35%;
+    }
+    .avatar_editor_options {
+        margin-left: 35px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .avatar_image {
+        width: 250px;
+        height: 250px;
+    }
+    .avatar_editor_options {
+        margin-left: 10px;
+    }
+}
+
+.upload_animated {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    outline: 0;
+    overflow: hidden;
+}
+
+.upload_animated .icon {
+    position: relative;
+    background: #4A4A4A;
+    line-height: 35px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.upload_animated .text {
+    position: relative;
+    width: 200px;
+    height: 35px;
+    background-color: #00c0ef;
+    text-align: center;
+    line-height: 35px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.upload_animated .loading-bar {
+    position: relative;
+    top: -35px;
+    left: 0;
+    background-color: #444;
+    opacity: 0.12;
+    width: 0;
+    height: 35px;
+    transition: width 0.5s;
+}
+
+.editor_option_upload {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.upload_done {
+    background-color: #00a65a !important;
+    animation-name: change_color_upload_success;
+    animation-duration: 4s;
+}
+
+@keyframes change_color_upload_success {
+    from {background-color: #00c0ef;}
+    to {background-color: #00a65a;}
+}
+
+.upload_error {
+    background-color: #ff1b44 !important;
+    animation-name: change_color_upload_error;
+    animation-duration: 4s;
+}
+
+@keyframes change_color_upload_error {
+    from {background-color: #00c0ef;}
+    to {background-color: #ff1b44;}
 }

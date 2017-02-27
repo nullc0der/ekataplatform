@@ -713,16 +713,20 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="avatar_modal_header">
-            <h3>{% trans "Edit Image" %}</h3>
+            <button type="button" class="close avatar_modal_close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p>{% trans "Edit Image" %}</p>
             <hr>
         </div>
         <div class="avatar_modal_body">
             <canvas id="avatarCanvas" width="300" height="300" class="avatar_image"></canvas>
-            <canvas id="painterCanvas" width="300" height="300" style="position: absolute;left: 10%;"></canvas>
+            {% comment %}
+                <canvas id="painterCanvas" width="300" height="300" style="position: absolute;left: 10%;"></canvas>
+            {% endcomment %}
             <div class="avatar_image_actions">
-                <button class="btn btn-rounded" id="loadImage"><i class="fa fa-image"></i></button>
+                <button class="btn btn-rounded" id="loadImage"><i class="fa fa-file-image-o"></i></button>
             </div>
             <div class="avatar_editor_options">
+                {% comment %}
                 <div class="editor_option_draw">
                     <p class="editor_info"><i class="fa fa-pencil"></i> {% trans "Draw" %}</p>
                     <ul>
@@ -742,6 +746,7 @@
                     </ul>
 
                 </div>
+                {% endcomment %}
                 <div class="editor_option_rotate">
                     <p class="editor_info"><i class="fa fa-refresh"></i> {% trans "Rotate" %}</p>
                     <p style="width: 300px; margin-left: -5%;">
@@ -766,12 +771,22 @@
                         <input class="mdl-slider mdl-js-slider hue-slider" type="range" min="0" max="100" value="0" tabindex="0" id="hueSlider">
                     </p>
                 </div>
+                <div class="editor_option_upload">
+                    <button class="upload_animated" id="uploadAvatar" data-url="{% url 'profilesystem:uploadavatar' %}">
+                        <div class='icon'>
+                            <i class="fa fa-arrow-up"></i>
+                        </div>
+                        <div class='text'>
+                            <span>{% trans "UPLOAD" %}</span>
+                            <div class="loading-bar">
+
+                            </div>
+                        </div>
+                    </button>
+                </div>
             </div>
         </div>
         <input type="file" name="avatarimage" id="avatarimage" style="visibility: hidden">
-        <div class="text-center">
-            <button class="btn btn-success" id="uploadAvatar" data-url="{% url 'profilesystem:uploadavatar' %}">{% trans "Upload" %}</button>
-        </div>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

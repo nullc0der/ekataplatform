@@ -11,7 +11,7 @@ ctx.drawImage(img, 0,0, img.width, img.height,
 */
 var avatarCanvas = document.getElementById('avatarCanvas');
 var ctx = avatarCanvas.getContext('2d');
-var painterCanvas = document.getElementById('painterCanvas');
+/*var painterCanvas = document.getElementById('painterCanvas');
 var painterctx = painterCanvas.getContext('2d');
 var clickX = new Array();
 var clickY = new Array();
@@ -22,12 +22,14 @@ var paint;
 var colorClicked = false;
 var choosenColor = "#000";
 var choosesRadius = 5;
+*/
 var brightness = 0;
 var hue = 0;
 var lastX = avatarCanvas.width/2, lastY = avatarCanvas.height/2;
 var dragStart;
 var dragged = false;
 
+/*
 function addClick(x, y, dragging)
 {
   clickX.push(x);
@@ -52,7 +54,7 @@ function redraw(choosenColor){
      painterctx.lineWidth = clickSize[i];
      painterctx.stroke();
   }
-}
+}*/
 function build_img_from_file(files) {
    if(files && files.length){
        var file = files[0];
@@ -103,14 +105,14 @@ function rotate(degrees, scale){
     ctx.restore();
 }
 function getFinalImage() {
-    var tempCanvas = document.createElement('canvas');
-    var tempctx = tempCanvas.getContext('2d');
-    tempCanvas.width = avatarCanvas.width;
-    tempCanvas.height = avatarCanvas.height;
-    tempctx.drawImage(avatarCanvas, 0, 0);
-    tempctx.drawImage(painterCanvas, 0, 0);
+    //var tempCanvas = document.createElement('canvas');
+    //var tempctx = tempCanvas.getContext('2d');
+    //tempCanvas.width = avatarCanvas.width;
+    //tempCanvas.height = avatarCanvas.height;
+    //tempctx.drawImage(avatarCanvas, 0, 0);
+    //tempctx.drawImage(painterCanvas, 0, 0);
     var mimeType = 'image/png';
-    var imageData = tempCanvas.toDataURL(mimeType);
+    var imageData = avatarCanvas.toDataURL(mimeType);
     var byteString = atob(imageData.split(',')[1]);
     var ab = new ArrayBuffer(byteString.length);
     var ia = new Uint8Array(ab);
@@ -122,6 +124,8 @@ function getFinalImage() {
 }
 $("#uploadAvatar").on('click', function () {
     if (!isCanvasBlank(avatarCanvas)) {
+        $(".upload_animated .text>span").text('UPLOADING....');
+        $('.loading-bar').css('display', 'all');
         var imgBlob = getFinalImage();
         var fd = new FormData();
         fd.append('avatarimage', imgBlob);
@@ -132,10 +136,36 @@ $("#uploadAvatar").on('click', function () {
             processData:false,
             contentType:false,
             cache:false,
+            xhr: function() {
+                var xhr = $.ajaxSettings.xhr();
+                if (xhr.upload) {
+                    xhr.upload.addEventListener('progress', function(evt) {
+                        var percent = (evt.loaded / evt.total) * 100;
+                        $('.loading-bar').width(percent + "%");
+                    }, false);
+                }
+            return xhr;
+            },
             success: function (data) {
                 var date = new Date();
                 $(".useravatar").attr('src', data + "?" + date.toString());
-                $("#imgModal").modal('hide');
+                $(".upload_animated .text>span").text('SUCCESS');
+                $(".upload_animated .text").addClass('upload_done');
+                $(".loading-bar").css('display', 'none');
+                $(".loading-bar").width("0");
+                $("#uploadAvatar").attr('disabled', true);
+                $(".upload_animated .icon>i").removeClass('fa-arrow-up');
+                $(".upload_animated .icon>i").addClass('fa-check');
+                fetchTask();
+            },
+            error: function () {
+                $(".upload_animated .text>span").text('ERROR');
+                $(".upload_animated .text").addClass('upload_error');
+                $(".loading-bar").css('display', 'none');
+                $(".loading-bar").width("0");
+                $("#uploadAvatar").attr('disabled', true);
+                $(".upload_animated .icon>i").removeClass('fa-arrow-up');
+                $(".upload_animated .icon>i").addClass('fa-times');
                 fetchTask();
             }
         });
@@ -147,6 +177,7 @@ $("#loadImage").on('click', function () {
 $("#avatarimage").on('change', function(){
     build_img_from_file(this.files);
 });
+/*
 $(".draw_color_picker").click(function(){
     if (!isCanvasBlank(avatarCanvas)) {
         colorClicked = true;
@@ -208,6 +239,7 @@ $('#painterCanvas').mouseleave(function(e){
     $("#loadImage").show();
     paint = false;
 });
+*/
 $("#brightnessSlider").on('input', function () {
     var value = parseInt($(this).val());
     if (value != 0 && !isCanvasBlank(avatarCanvas)) {
@@ -233,12 +265,12 @@ $("#zoomSlider").on('input', function () {
     if (!isCanvasBlank(avatarCanvas)) {
         if (value != 1) {
             zoom(value);
-            $("#painterCanvas").css('pointer-events', 'none');
+            //$("#painterCanvas").css('pointer-events', 'none');
         }
         else {
             var datasrc = img.src;
             updateCanvas(datasrc);
-            $("#painterCanvas").css('pointer-events', 'all');
+            //$("#painterCanvas").css('pointer-events', 'all');
         }
     }
 });
