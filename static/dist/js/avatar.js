@@ -82,13 +82,16 @@ function isCanvasBlank(canvas) {
 
     return canvas.toDataURL() == blank.toDataURL();
 }
-function zoom(scale, cx, cy){
+function zoom(scale, degrees, cx, cy){
     var cx = (typeof cx === 'undefined') ? avatarCanvas.width/2 : cx;
     var cy = (typeof cy === 'undefined') ? avatarCanvas.height/2 : cy;
 
     ctx.clearRect(0,0,avatarCanvas.width,avatarCanvas.height);
     ctx.save();
     ctx.translate(cx,cy);
+    if (degrees) {
+        ctx.rotate(degrees*Math.PI/180);
+    }
     ctx.scale(scale,scale);
     ctx.drawImage(img,-img.width/2,-img.height/2);
     ctx.restore();
@@ -240,7 +243,10 @@ $('#painterCanvas').mouseleave(function(e){
     paint = false;
 });
 */
-$("#brightnessSlider").on('input', function () {
+$("#brightnessSlider").on('mouseup', function (e) {
+    $(this).trigger('change');
+})
+$("#brightnessSlider").on('change', function () {
     var value = parseInt($(this).val());
     if (value != 0 && !isCanvasBlank(avatarCanvas)) {
         brightness = value;
@@ -250,7 +256,10 @@ $("#brightnessSlider").on('input', function () {
         });
     }
 });
-$("#hueSlider").on('input', function () {
+$("#hueSlider").on('mouseup', function (e) {
+    $(this).trigger('change');
+})
+$("#hueSlider").on('change', function () {
     var value = parseInt($(this).val());
     if (value != 0 && !isCanvasBlank(avatarCanvas)) {
         hue = value;
@@ -263,15 +272,15 @@ $("#hueSlider").on('input', function () {
 $("#zoomSlider").on('input', function () {
     var value = $(this).val();
     if (!isCanvasBlank(avatarCanvas)) {
-        if (value != 1) {
-            zoom(value);
+        zoom(value, -$("#rotateSlider").val());
+        /*if (value != 1) {
             //$("#painterCanvas").css('pointer-events', 'none');
         }
         else {
             var datasrc = img.src;
             updateCanvas(datasrc);
             //$("#painterCanvas").css('pointer-events', 'all');
-        }
+        }*/
     }
 });
 $("#rotateSlider").on('input', function () {
