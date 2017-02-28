@@ -6243,7 +6243,7 @@ table.text-center th {
 .upload_animated .text {
     float: left;
     position: relative;
-    width: 200px;
+    width: 220px;
     height: 35px;
     background-color: #00c0ef;
     text-align: center;
@@ -6265,7 +6265,6 @@ table.text-center th {
 
 .editor_option_upload {
     margin-top: 20px;
-    margin-left: 10px;
 }
 
 .upload_done {
