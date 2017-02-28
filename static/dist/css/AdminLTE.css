@@ -6221,9 +6221,6 @@ table.text-center th {
 }
 
 .upload_animated {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
     cursor: pointer;
     border: 0;
     background: transparent;
@@ -6232,6 +6229,7 @@ table.text-center th {
 }
 
 .upload_animated .icon {
+    float: left;
     position: relative;
     background: #4A4A4A;
     line-height: 35px;
@@ -6243,6 +6241,7 @@ table.text-center th {
 }
 
 .upload_animated .text {
+    float: left;
     position: relative;
     width: 200px;
     height: 35px;
