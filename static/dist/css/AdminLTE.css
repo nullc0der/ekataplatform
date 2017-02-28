@@ -6221,7 +6221,7 @@ table.text-center th {
 }
 
 .upload_animated {
-    display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     cursor: pointer;
