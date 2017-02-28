@@ -1,6 +1,9 @@
+import os
+import tempfile
 from random import randint
 
 from django.shortcuts import render
+from django.core.files import File
 from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -211,8 +214,16 @@ def address_edit_page(request):
 def upload_avatar(request):
     if request.method == 'POST' and request.FILES:
         prof, created = UserProfile.objects.get_or_create(user=request.user)
-        prof.avatar = request.FILES['avatarimage']
+        source = request.FILES.get('avatarimage')
+        f = tempfile.NamedTemporaryFile(
+            suffix='.png',
+            delete=False
+        )
+        f.writelines(source)
+        prof.avatar = File(f)
         prof.save()
+        f.close()
+        os.remove(f.name)
         avatar_url = prof.avatar.thumbnail['200x200'].url
     return HttpResponse(avatar_url)
 
