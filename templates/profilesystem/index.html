@@ -719,13 +719,19 @@
         </div>
         <div class="avatar_modal_body">
             <div class="avatar_image_wrapper">
+                <div class="avatar_video_actions">
+                    <button type="button" class="close close_video"><i class="fa fa-times-circle"></i></button>
+                    <button type="button" class="close take_photo"><i class="fa fa-check-circle"></i></button>
+                </div>
                 <button type="button" class="close avatar_reset"><i class="fa fa-times-circle"></i></button>
                 <canvas id="avatarCanvas" width="300" height="300" class="avatar_image"></canvas>
+                <video id="avatarVideo" width="300" height="300" class="avatar_video"></video>
                 {% comment %}
                     <canvas id="painterCanvas" width="300" height="300" style="position: absolute;left: 10%;"></canvas>
                 {% endcomment %}
                 <div class="avatar_image_actions">
                     <button class="btn btn-rounded" id="loadImage"><i class="fa fa-file-image-o"></i></button>
+                    <button class="btn btn-rounded" id="loadVideo"><i class="fa fa-camera-retro"></i></button>
                 </div>
             </div>
             <div class="avatar_editor_options">
@@ -941,7 +947,7 @@
         };
         {% if request.user.profile.avatar %}
             updateCanvas("{{ request.user.profile.avatar.url }}");
-            $("#loadImage").hide();
+            $(".avatar_image_actions").hide();
             $(".avatar_reset").show();
         {% endif %}
         boxoperation('#pshow', '#psubmit', '#pedit', '#pinfo', '#poverlay', '{% url 'profilesystem:personalinfo' %}', '{% url 'profilesystem:pedit' %}', '#pinfoform');

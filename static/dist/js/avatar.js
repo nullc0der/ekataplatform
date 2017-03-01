@@ -28,6 +28,7 @@ var hue = 0;
 var lastX = avatarCanvas.width/2, lastY = avatarCanvas.height/2;
 var dragStart;
 var dragged = false;
+var lstream;
 
 /*
 function addClick(x, y, dragging)
@@ -125,6 +126,41 @@ function getFinalImage() {
     var blob = new Blob([ab], {type: 'image/png'});
     return blob;
 }
+function initiateVideo() {
+    var getUserMedia;
+    var browserUserMedia = navigator.webkitGetUserMedia	||	// WebKit
+                             navigator.mozGetUserMedia	||	// Mozilla FireFox
+                             navigator.getUserMedia;			// 2013...
+    if (!browserUserMedia) {
+        $('.top-right').notify({
+            message: { text: "Sorry, your browser doesn't support WebRTC!"},
+            type: 'danger',
+        }).show();
+    };
+    getUserMedia = browserUserMedia.bind(navigator);
+    getUserMedia({
+            audio: false,
+            video: true
+        },
+        function(stream) {
+            var videoElement = $("#avatarVideo")[0];
+            videoElement.src = URL.createObjectURL(stream);
+            lstream = stream;
+        },
+        function(err) {
+            $('.top-right').notify({
+                message: { text: "No video source detected! Please allow camera access!"},
+                type: 'danger',
+            }).show();
+        }
+    );
+}
+function stopVideo() {
+    var videoElement = $("#avatarVideo")[0];
+    videoElement.pause();
+    videoElement.src = "";
+    lstream.getTracks()[0].stop();
+}
 function resetUploadButton() {
     if ($(".upload_animated .text").hasClass('upload_done') || $(".upload_animated .text").hasClass('upload_error')) {
         $(".upload_animated .text").removeClass('upload_done');
@@ -137,7 +173,15 @@ function resetUploadButton() {
         $(".upload_animated .icon>i").addClass('fa-arrow-up');
     }
 }
+function resetSliders() {
+    $("#rotateSlider")[0].MaterialSlider.change(0);
+    $("#zoomSlider")[0].MaterialSlider.change(1.00);
+    $("#brightnessSlider")[0].MaterialSlider.change(0);
+    $("#hueSlider")[0].MaterialSlider.change(0);
+}
 $(".avatar_reset").hide();
+$("#avatarVideo").hide();
+$(".avatar_video_actions").hide();
 $("#uploadAvatar").on('click', function () {
     if (!isCanvasBlank(avatarCanvas)) {
         $(".upload_animated .text>span").text('UPLOADING....');
@@ -192,9 +236,41 @@ $("#loadImage").on('click', function () {
 });
 $("#avatarimage").on('change', function(){
     build_img_from_file(this.files);
-    $("#loadImage").hide();
+    $(".avatar_image_actions").hide();
     $(".avatar_reset").show();
 });
+$("#loadVideo").on('click', function () {
+    $("#avatarCanvas").hide();
+    $("#avatarVideo").show();
+    $(".avatar_image_actions").hide();
+    $(".avatar_video_actions").show();
+    initiateVideo();
+})
+$(".take_photo").on('click', function () {
+    var live = $("#avatarVideo")[0];
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext("2d");
+    canvas.width = live.clientWidth;
+    canvas.height = live.clientHeight;
+    ctx.drawImage(live, 0, 0, canvas.width, canvas.height);
+    updateCanvas(canvas.toDataURL('image/png'));
+    $("#avatarVideo").hide();
+    $("#avatarCanvas").show();
+    $(".avatar_video_actions").hide();
+    $(".avatar_reset").show();
+    resetSliders();
+    resetUploadButton();
+    stopVideo();
+});
+$(".close_video").on('click', function () {
+    $("#avatarVideo").hide();
+    $("#avatarCanvas").show();
+    $(".avatar_video_actions").hide();
+    $(".avatar_image_actions").show();
+    resetSliders();
+    resetUploadButton();
+    stopVideo();
+})
 /*
 $(".draw_color_picker").click(function(){
     if (!isCanvasBlank(avatarCanvas)) {
@@ -331,12 +407,9 @@ $("#imgModal").on('hide.bs.modal', function (e) {
 });
 $(".avatar_reset").on('click', function (e) {
     $("#avatarCanvas").removeAttr('data-caman-id');
-    $("#loadImage").show();
+    $(".avatar_image_actions").show();
     $(this).hide();
     ctx.clearRect(0,0,avatarCanvas.width,avatarCanvas.height);
-    $("#rotateSlider")[0].MaterialSlider.change(0);
-    $("#zoomSlider")[0].MaterialSlider.change(1.00);
-    $("#brightnessSlider")[0].MaterialSlider.change(0);
-    $("#hueSlider")[0].MaterialSlider.change(0);
+    resetSliders();
     resetUploadButton();
 })

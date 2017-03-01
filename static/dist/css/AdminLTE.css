@@ -6000,8 +6000,16 @@ table.text-center th {
     margin-left: 35px;
 }
 
-.avatar_image {
+.avatar_image, .avatar_video {
     border: 2px solid #ccc;
+}
+
+.close_video {
+    float: left;
+}
+
+.take_photo {
+    float: right;
 }
 
 .avatar_reset {
@@ -6157,7 +6165,7 @@ table.text-center th {
 .avatar_image_actions {
     position: absolute;
     top: 49%;
-    left: 23%;
+    left: 17%;
 }
 
 .btn-rounded>i {
@@ -6200,7 +6208,7 @@ table.text-center th {
     .avatar_image_actions {
         position: absolute;
         top: 30%;
-        left: 40%;
+        left: 30%;
     }
     .avatar_editor_options {
         float: none;
@@ -6226,7 +6234,7 @@ table.text-center th {
     .avatar_image_actions {
         position: absolute;
         top: 30%;
-        left: 35%;
+        left: 24%;
     }
     .avatar_editor_options {
         margin-left: 35px;
