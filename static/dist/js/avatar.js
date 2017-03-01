@@ -125,6 +125,19 @@ function getFinalImage() {
     var blob = new Blob([ab], {type: 'image/png'});
     return blob;
 }
+function resetUploadButton() {
+    if ($(".upload_animated .text").hasClass('upload_done') || $(".upload_animated .text").hasClass('upload_error')) {
+        $(".upload_animated .text").removeClass('upload_done');
+        $(".upload_animated .text").removeClass('upload_error');
+        $(".upload_animated .text>span").text('UPLOAD');
+        $(".loading-bar").css('display', 'block');
+        $("#uploadAvatar").attr('disabled', false);
+        $(".upload_animated .icon>i").removeClass('fa-check');
+        $(".upload_animated .icon>i").removeClass('fa-times');
+        $(".upload_animated .icon>i").addClass('fa-arrow-up');
+    }
+}
+$(".avatar_reset").hide();
 $("#uploadAvatar").on('click', function () {
     if (!isCanvasBlank(avatarCanvas)) {
         $(".upload_animated .text>span").text('UPLOADING....');
@@ -179,6 +192,8 @@ $("#loadImage").on('click', function () {
 });
 $("#avatarimage").on('change', function(){
     build_img_from_file(this.files);
+    $("#loadImage").hide();
+    $(".avatar_reset").show();
 });
 /*
 $(".draw_color_picker").click(function(){
@@ -310,14 +325,15 @@ $("#avatarCanvas").mouseleave(function (e){
     dragged = false;
 });
 $("#imgModal").on('hide.bs.modal', function (e) {
-    if ($(".upload_animated .text").hasClass('upload_done') || $(".upload_animated .text").hasClass('upload_error')) {
-        $(".upload_animated .text").removeClass('upload_done');
-        $(".upload_animated .text").removeClass('upload_error');
-        $(".upload_animated .text>span").text('UPLOAD');
-        $(".loading-bar").css('display', 'block');
-        $("#uploadAvatar").attr('disabled', false);
-        $(".upload_animated .icon>i").removeClass('fa-check');
-        $(".upload_animated .icon>i").removeClass('fa-times');
-        $(".upload_animated .icon>i").addClass('fa-arrow-up');
-    }
+    resetUploadButton();
 });
+$(".avatar_reset").on('click', function (e) {
+    $("#loadImage").show();
+    $(this).hide();
+    ctx.clearRect(0,0,avatarCanvas.width,avatarCanvas.height);
+    $("#rotateSlider")[0].MaterialSlider.change(0);
+    $("#zoomSlider")[0].MaterialSlider.change(1.00);
+    $("#brightnessSlider")[0].MaterialSlider.change(0);
+    $("#hueSlider")[0].MaterialSlider.change(0);
+    resetUploadButton();
+})

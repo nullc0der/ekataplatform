@@ -6013,6 +6013,14 @@ table.text-center th {
     opacity: 1;
 }
 
+.avatar_reset:hover {
+    color: #F6A623;
+}
+
+.avatar_reset:active, .avatar_reset:focus {
+    outline: none;
+}
+
 .avatar_editor_options {
     float: left;
     margin-left: 35px;

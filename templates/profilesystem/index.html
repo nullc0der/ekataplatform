@@ -941,6 +941,8 @@
         };
         {% if request.user.profile.avatar %}
             updateCanvas("{{ request.user.profile.avatar.url }}");
+            $("#loadImage").hide();
+            $(".avatar_reset").show();
         {% endif %}
         boxoperation('#pshow', '#psubmit', '#pedit', '#pinfo', '#poverlay', '{% url 'profilesystem:personalinfo' %}', '{% url 'profilesystem:pedit' %}', '#pinfoform');
         boxoperation('#cshow', '#csubmit', '#cedit', '#contact', '#coverlay', '{% url 'profilesystem:contact' %}', '{% url 'profilesystem:cedit' %}', '#contactform');
