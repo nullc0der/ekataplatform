@@ -711,20 +711,91 @@
 <div tabindex="-1" class="modal fade" id="imgModal" role="dialog" aria-hidden="true" aria-labelledby="imgModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
-        <h4 class="modal-title" id="imgModalLabel">Change Avatar</h4>
-      </div>
       <div class="modal-body">
-        <form action="{% url 'profilesystem:uploadavatar' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="text-center">
-                <input type="file" name="avatarimage" id="avatarimage">
+        <div class="avatar_modal_header">
+            <button type="button" class="close avatar_modal_close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p>{% trans "Edit Image" %}</p>
+            <hr>
+        </div>
+        <div class="avatar_modal_body">
+            <div class="avatar_image_wrapper">
+                <div class="avatar_video_actions">
+                    <button type="button" class="close close_video"><i class="fa fa-times-circle"></i></button>
+                    <button type="button" class="close take_photo"><i class="fa fa-check-circle"></i></button>
+                </div>
+                <button type="button" class="close avatar_reset"><i class="fa fa-times-circle"></i></button>
+                <canvas id="avatarCanvas" width="300" height="300" class="avatar_image"></canvas>
+                <video id="avatarVideo" width="300" height="300" class="avatar_video"></video>
+                {% comment %}
+                    <canvas id="painterCanvas" width="300" height="300" style="position: absolute;left: 10%;"></canvas>
+                {% endcomment %}
+                <div class="avatar_image_actions">
+                    <button class="btn btn-rounded" id="loadImage"><i class="fa fa-file-image-o"></i></button>
+                    <button class="btn btn-rounded" id="loadVideo"><i class="fa fa-camera-retro"></i></button>
+                </div>
             </div>
-            <div class="text-center">
-                <button class="btn btn-success" type="submit">Upload</button>
+            <div class="avatar_editor_options">
+                {% comment %}
+                <div class="editor_option_draw">
+                    <p class="editor_info"><i class="fa fa-pencil"></i> {% trans "Draw" %}</p>
+                    <ul>
+                        <li style="font-size: 20px;" class="clear_drawing"><i class="fa fa-times"></i></li>
+                        <li style="font-size: 20px;" class="draw_eraser"><i class="fa fa-eraser"></i></li>
+                        <li style="font-size: 15px; border-left: 1px solid #eee"></li>
+                        <li style="font-size: 20px; margin-left: 10px" class="draw_pen_radius" data-radius="20"><i class="fa fa-circle"></i></li>
+                        <li style="font-size: 15px;" class="draw_pen_radius" data-radius="15"><i class="fa fa-circle"></i></li>
+                        <li style="font-size: 10px;" class="draw_pen_radius" data-radius="10"><i class="fa fa-circle"></i></li>
+                        <li style="font-size: 5px;" class="draw_pen_radius" data-radius="5"><i class="fa fa-circle"></i></li>
+                        <li style="font-size: 15px; border-left: 1px solid #eee"></li>
+                        <li style="color: #FF9700" class="draw_color_picker" data-color-value="#FF9700"><i class="fa fa-circle"></i></li>
+                        <li style="color: #4BAF4F" class="draw_color_picker" data-color-value="#4BAF4F"><i class="fa fa-circle"></i></li>
+                        <li style="color: #3E50B4" class="draw_color_picker" data-color-value="#3E50B4"><i class="fa fa-circle"></i></li>
+                        <li style="color: #363F46" class="draw_color_picker" data-color-value="#363F46"><i class="fa fa-circle"></i></li>
+                        <li style="color: #9D9D9D" class="draw_color_picker" data-color-value="#9D9D9D"><i class="fa fa-circle"></i></li>
+                    </ul>
+
+                </div>
+                {% endcomment %}
+                <div class="editor_option_rotate">
+                    <p class="editor_info"><i class="fa fa-refresh"></i> {% trans "Rotate" %}</p>
+                    <p style="width: 300px; margin-left: -5%;">
+                        <input class="mdl-slider mdl-js-slider rotate-slider" type="range" min="-180" max="180" value="0" tabindex="0" id="rotateSlider">
+                    </p>
+                </div>
+                <div class="editor_option_zoom">
+                    <p class="editor_info"><i class="fa fa-arrows-alt"></i> {% trans "Zoom" %}</p>
+                    <p style="width: 300px; margin-left: -5%;">
+                        <input class="mdl-slider mdl-js-slider zoom-slider" type="range" min="0.5" max="1.5" value="1.00" tabindex="0" step="0.10" id="zoomSlider">
+                    </p>
+                </div>
+                <div class="editor_option_brightness">
+                    <p class="editor_info"><i class="fa fa-certificate"></i> {% trans "Brightness" %}</p>
+                    <p style="width: 300px; margin-left: -5%;">
+                        <input class="mdl-slider mdl-js-slider brightness-slider" type="range" min="-100" max="100" value="0" tabindex="0" id="brightnessSlider">
+                    </p>
+                </div>
+                <div class="editor_option_hue">
+                    <p class="editor_info"><i class="fa fa-connectdevelop"></i> {% trans "Hue" %}</p>
+                    <p style="width: 300px; margin-left: -5%;">
+                        <input class="mdl-slider mdl-js-slider hue-slider" type="range" min="0" max="100" value="0" tabindex="0" id="hueSlider">
+                    </p>
+                </div>
+                <div class="editor_option_upload">
+                    <button class="upload_animated" id="uploadAvatar" data-url="{% url 'profilesystem:uploadavatar' %}">
+                        <div class='icon'>
+                            <i class="fa fa-arrow-up"></i>
+                        </div>
+                        <div class='text'>
+                            <span>{% trans "UPLOAD" %}</span>
+                            <div class="loading-bar">
+
+                            </div>
+                        </div>
+                    </button>
+                </div>
             </div>
-        </form>
+        </div>
+        <input type="file" name="avatarimage" id="avatarimage" style="visibility: hidden">
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -732,7 +803,9 @@
 {% endblock content %}
 
 {% block extrascripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
     {% compress js %}
+    <script type="text/javascript" src="{% static "dist/js/avatar.js" %}?v=1.0.0"></script>
     <script type="text/javascript">
         function getCookie(name) {
             var cookieValue = null;
@@ -813,56 +886,6 @@
                 });
             }
         };
-        {% comment %}
-        /*Dropzone.options.avatarDropzone = {
-            // Prevents Dropzone from uploading dropped files immediately
-            autoProcessQueue : false,
-
-            init : function() {
-                var submitButto = document.querySelector("#imageup")
-                myDropzone = this;
-
-                submitButto.addEventListener("click", function() {
-                    myDropzone.processQueue();
-                    // Tell Dropzone to process all queued files.
-                });
-
-                this.on("addedfile", function() {
-                    // allow to upload only one file
-                    if (this.files[1]!=null){
-                        this.removeFile(this.files[0]);
-                    }
-                    // Show submit button here and/or inform user to click it.
-                    $('#imageup').css('visibility', 'visible');
-                });
-                 this.on('complete', function () {
-                    $("#poverlay").show();
-                    $("#pinfo").load('{% url 'profilesystem:personalinfo' %}', function(){
-                        $("#poverlay").hide();
-                    });
-                    $.get('{% url 'profilesystem:queryavatar' %}', function(data) {
-                        var date = new Date();
-                        $(".useravatar").attr('src', data + "?" + date.toString());
-                    });
-                    this.removeAllFiles();
-                    $('#imageup').css('visibility', 'hidden');
-                    $("#imgModal").modal('hide');
-                });
-            }
-        };
-        */
-        {% endcomment %}
-        $('#avatarimage').picEdit({
-            {% if request.user.profile.avatar %}
-                defaultImage: "{{ request.user.profile.avatar.url }}",
-            {% endif %}
-            formSubmitted: function (data){
-                var date = new Date();
-                $(".useravatar").attr('src', data.responseText + "?" + date.toString());
-                $("#imgModal").modal('hide');
-                fetchTask();
-            }
-        });
         function boxoperation(close_b, submit_b, edit_b, creplace_div, overlay_div, content_url, form_url, form_id){
             $(close_b).hide();
             $(submit_b).hide();
@@ -922,6 +945,11 @@
                 });
             });
         };
+        {% if request.user.profile.avatar %}
+            updateCanvas("{{ request.user.profile.avatar.url }}");
+            $(".avatar_image_actions").hide();
+            $(".avatar_reset").show();
+        {% endif %}
         boxoperation('#pshow', '#psubmit', '#pedit', '#pinfo', '#poverlay', '{% url 'profilesystem:personalinfo' %}', '{% url 'profilesystem:pedit' %}', '#pinfoform');
         boxoperation('#cshow', '#csubmit', '#cedit', '#contact', '#coverlay', '{% url 'profilesystem:contact' %}', '{% url 'profilesystem:cedit' %}', '#contactform');
         boxoperation('#ashow', '#asubmit', '#aedit', '#address', '#aoverlay', '{% url 'profilesystem:address' %}', '{% url 'profilesystem:aedit' %}', '#addressform');
