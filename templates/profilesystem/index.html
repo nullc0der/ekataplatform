@@ -718,12 +718,15 @@
             <hr>
         </div>
         <div class="avatar_modal_body">
-            <canvas id="avatarCanvas" width="300" height="300" class="avatar_image"></canvas>
-            {% comment %}
-                <canvas id="painterCanvas" width="300" height="300" style="position: absolute;left: 10%;"></canvas>
-            {% endcomment %}
-            <div class="avatar_image_actions">
-                <button class="btn btn-rounded" id="loadImage"><i class="fa fa-file-image-o"></i></button>
+            <div class="avatar_image_wrapper">
+                <button type="button" class="close avatar_reset"><i class="fa fa-times-circle"></i></button>
+                <canvas id="avatarCanvas" width="300" height="300" class="avatar_image"></canvas>
+                {% comment %}
+                    <canvas id="painterCanvas" width="300" height="300" style="position: absolute;left: 10%;"></canvas>
+                {% endcomment %}
+                <div class="avatar_image_actions">
+                    <button class="btn btn-rounded" id="loadImage"><i class="fa fa-file-image-o"></i></button>
+                </div>
             </div>
             <div class="avatar_editor_options">
                 {% comment %}

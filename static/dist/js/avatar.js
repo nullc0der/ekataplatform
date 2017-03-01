@@ -309,3 +309,15 @@ $("#avatarCanvas").mouseup(function (e){
 $("#avatarCanvas").mouseleave(function (e){
     dragged = false;
 });
+$("#imgModal").on('hide.bs.modal', function (e) {
+    if ($(".upload_animated .text").hasClass('upload_done') || $(".upload_animated .text").hasClass('upload_error')) {
+        $(".upload_animated .text").removeClass('upload_done');
+        $(".upload_animated .text").removeClass('upload_error');
+        $(".upload_animated .text>span").text('UPLOAD');
+        $(".loading-bar").css('display', 'block');
+        $("#uploadAvatar").attr('disabled', false);
+        $(".upload_animated .icon>i").removeClass('fa-check');
+        $(".upload_animated .icon>i").removeClass('fa-times');
+        $(".upload_animated .icon>i").addClass('fa-arrow-up');
+    }
+});

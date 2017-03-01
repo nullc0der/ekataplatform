@@ -5995,10 +5995,22 @@ table.text-center th {
     width: 100%;
 }
 
-.avatar_image {
+.avatar_image_wrapper {
     float: left;
     margin-left: 35px;
+}
+
+.avatar_image {
     border: 2px solid #ccc;
+}
+
+.avatar_reset {
+    float: none;
+    position: absolute;
+    top: 23%;
+    left: 7%;
+    color: #F6A623;
+    opacity: 1;
 }
 
 .avatar_editor_options {
@@ -6173,7 +6185,7 @@ table.text-center th {
     #imgModal .modal-dialog {
         width: auto;
     }
-    .avatar_image {
+    .avatar_image_wrapper {
         float: none;
         margin-left: 40px;
     }
@@ -6190,13 +6202,17 @@ table.text-center th {
     .avatar_modal_header>hr {
         margin: 2% 42% 5%;
     }
+    .avatar_reset {
+        top: 12%;
+        left: 15%;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 375px) {
     .avatar_modal_header>hr {
         margin: 2% 41% 5%;
     }
-    .avatar_image {
+    .avatar_image_wrapper {
         margin-left: 15px;
     }
     .avatar_image_actions {
@@ -6208,6 +6224,10 @@ table.text-center th {
         margin-left: 35px;
         margin-top: 10px;
     }
+    .avatar_reset {
+        top: 12%;
+        left: 10%;
+    }
 }
 
 @media (max-width: 320px) {
@@ -6217,6 +6237,10 @@ table.text-center th {
     }
     .avatar_editor_options {
         margin-left: 10px;
+    }
+    .avatar_reset {
+        top: 12%;
+        left: 11%;
     }
 }
 
