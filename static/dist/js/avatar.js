@@ -287,6 +287,7 @@ $("#hueSlider").on('change', function () {
 $("#zoomSlider").on('input', function () {
     var value = $(this).val();
     if (!isCanvasBlank(avatarCanvas)) {
+        $("#avatarCanvas").removeAttr('data-caman-id');
         zoom(value, -$("#rotateSlider").val());
         /*if (value != 1) {
             //$("#painterCanvas").css('pointer-events', 'none');
@@ -301,6 +302,7 @@ $("#zoomSlider").on('input', function () {
 $("#rotateSlider").on('input', function () {
     var value = -$(this).val();
     if (!isCanvasBlank(avatarCanvas)) {
+        $("#avatarCanvas").removeAttr('data-caman-id');
         rotate(value, $("#zoomSlider").val());
     }
 })
@@ -328,6 +330,7 @@ $("#imgModal").on('hide.bs.modal', function (e) {
     resetUploadButton();
 });
 $(".avatar_reset").on('click', function (e) {
+    $("#avatarCanvas").removeAttr('data-caman-id');
     $("#loadImage").show();
     $(this).hide();
     ctx.clearRect(0,0,avatarCanvas.width,avatarCanvas.height);
