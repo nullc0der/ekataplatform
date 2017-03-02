@@ -76,6 +76,7 @@
     color: #878787;
     font-size: 19px;
     line-height: 19px;
+    cursor: pointer;
 }
 .skin-blue .sidebar-menu-tab>li:hover,
 .skin-blue .sidebar-menu-tab>li.active {
