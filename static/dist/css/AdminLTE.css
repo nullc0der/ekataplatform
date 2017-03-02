@@ -6006,10 +6006,13 @@ table.text-center th {
 
 .close_video {
     float: left;
+    margin-right: 10px;
+    color: #de5252;
 }
 
 .take_photo {
     float: right;
+    color: #278827;
 }
 
 .avatar_reset {
@@ -6027,6 +6030,11 @@ table.text-center th {
 
 .avatar_reset:active, .avatar_reset:focus {
     outline: none;
+}
+
+.close_video, .take_photo, .avatar_reset {
+    text-shadow: none;
+    opacity: 1;
 }
 
 .avatar_editor_options {
@@ -6168,6 +6176,13 @@ table.text-center th {
     left: 17%;
 }
 
+.avatar_video_actions {
+    position: absolute;
+    z-index: 1;
+    left: 25%;
+    top: 24%;
+}
+
 .btn-rounded>i {
     color: #F6A623;
     font-size: 20px;
@@ -6210,6 +6225,10 @@ table.text-center th {
         top: 30%;
         left: 30%;
     }
+    .avatar_video_actions {
+        left: 42%;
+        top: 12%;
+    }
     .avatar_editor_options {
         float: none;
         margin-left: 55px;
@@ -6247,7 +6266,7 @@ table.text-center th {
 }
 
 @media (max-width: 320px) {
-    .avatar_image {
+    .avatar_image, .avatar_video {
         width: 250px;
         height: 250px;
     }
