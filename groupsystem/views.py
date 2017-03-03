@@ -634,10 +634,11 @@ def comment_post(request, group_id, post_id):
 def group_admin_settings_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
     request.session['basicgroup'] = basicgroup.id
-    form = EditGroupForm(instance=basicgroup)
+    form = EditGroupForm(basicgroup=basicgroup, instance=basicgroup)
     notificationform = NotificationForm()
     if request.method == 'POST':
-        form = EditGroupForm(request.POST, request.FILES, instance=basicgroup)
+        form = EditGroupForm(request.POST, request.FILES,
+                             basicgroup=basicgroup, instance=basicgroup)
         if form.is_valid():
             form.save()
     return render(
