@@ -77,6 +77,23 @@ class EditGroupForm(forms.ModelForm):
         widget=forms.FileInput
     )
 
+    def __init__(self, *args, **kwargs):
+        self.basicgroup = kwargs.pop('basicgroup', None)
+        super(EditGroupForm, self).__init__(*args, **kwargs)
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name', None)
+        if self.basicgroup.name == name:
+            return name
+        else:
+            try:
+                BasicGroup.objects.get(name=name)
+            except ObjectDoesNotExist:
+                return name
+        raise forms.ValidationError(
+            _('Group name already taken')
+        )
+
     def clean_group_type_other(self):
         group_type = self.cleaned_data.get('group_type', None)
         group_type_other = self.cleaned_data.get('group_type_other', None)
@@ -98,6 +115,7 @@ class EditGroupForm(forms.ModelForm):
     class Meta:
         model = BasicGroup
         fields = [
+            'name',
             'header_image',
             'logo',
             'short_about',
