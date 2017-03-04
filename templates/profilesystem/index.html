@@ -923,8 +923,6 @@
                 });
             }
         };
-        */
-        {% endcomment %}
         $('#avatarimage').picEdit({
             {% if request.user.profile.avatar %}
                 defaultImage: "{{ request.user.profile.avatar.url }}",
@@ -938,6 +936,8 @@
                 fetchTask();
             }
         });
+        */
+        {% endcomment %}
         function boxoperation(close_b, submit_b, edit_b, creplace_div, overlay_div, content_url, form_url, form_id){
             $(close_b).hide();
             $(submit_b).hide();
