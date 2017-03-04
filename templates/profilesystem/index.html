@@ -856,6 +856,8 @@
             {% if request.user.profile.avatar %}
                 defaultImage: "{{ request.user.profile.avatar.url }}",
             {% endif %}
+            maxWidth: 250,
+            maxHeight: 250,
             formSubmitted: function (data){
                 var date = new Date();
                 $(".useravatar").attr('src', data.responseText + "?" + date.toString());
