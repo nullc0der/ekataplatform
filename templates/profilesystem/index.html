@@ -886,6 +886,58 @@
                 });
             }
         };
+        {% comment %}
+        /*Dropzone.options.avatarDropzone = {
+            // Prevents Dropzone from uploading dropped files immediately
+            autoProcessQueue : false,
+
+            init : function() {
+                var submitButto = document.querySelector("#imageup")
+                myDropzone = this;
+
+                submitButto.addEventListener("click", function() {
+                    myDropzone.processQueue();
+                    // Tell Dropzone to process all queued files.
+                });
+
+                this.on("addedfile", function() {
+                    // allow to upload only one file
+                    if (this.files[1]!=null){
+                        this.removeFile(this.files[0]);
+                    }
+                    // Show submit button here and/or inform user to click it.
+                    $('#imageup').css('visibility', 'visible');
+                });
+                 this.on('complete', function () {
+                    $("#poverlay").show();
+                    $("#pinfo").load('{% url 'profilesystem:personalinfo' %}', function(){
+                        $("#poverlay").hide();
+                    });
+                    $.get('{% url 'profilesystem:queryavatar' %}', function(data) {
+                        var date = new Date();
+                        $(".useravatar").attr('src', data + "?" + date.toString());
+                    });
+                    this.removeAllFiles();
+                    $('#imageup').css('visibility', 'hidden');
+                    $("#imgModal").modal('hide');
+                });
+            }
+        };
+        */
+        {% endcomment %}
+        $('#avatarimage').picEdit({
+            {% if request.user.profile.avatar %}
+                defaultImage: "{{ request.user.profile.avatar.url }}",
+            {% endif %}
+            maxWidth: 250,
+            maxHeight: 250,
+            formSubmitted: function (data){
+                var date = new Date();
+                $(".useravatar").attr('src', data.responseText + "?" + date.toString());
+                $("#imgModal").modal('hide');
+                fetchTask();
+            }
+        });
         function boxoperation(close_b, submit_b, edit_b, creplace_div, overlay_div, content_url, form_url, form_id){
             $(close_b).hide();
             $(submit_b).hide();
