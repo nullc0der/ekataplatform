@@ -5365,6 +5365,7 @@ table.text-center th {
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     text-align: center;
+    cursor: pointer;
 }
 
 .listcontent-addnewbtn p, .boxcontent-submitbtn p {

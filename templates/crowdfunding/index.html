@@ -95,8 +95,8 @@
                   </div>
                   <div class="form-group" style="margin-bottom: 50px" id="div_id_message">
                       <label>
-                          <span>{% trans "Feedback" %}</span>
-                          <input class="form-control" type="text" name="message" id="id_message">
+                          <span>{% trans "Note" %}</span>
+                          <input class="form-control" type="text" name="message" id="id_message" value="{{ crowdfund.default_note }}">
                       </label>
                   </div>
                   <div class="boxcontent-submitbtn newbtn" id="submitbtn" style="border-radius: 0">
