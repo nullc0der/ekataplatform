@@ -42,9 +42,23 @@
         <div class="col-md-4">
             <div class="box box-solid" style="min-height: 300px">
                 <div class="box-body">
-                    <div class="widget-box" style="text-align: center; margin-top: 25%">
-                        <h4>{% trans "Product Features" %}</h4>
+                    {% if crowdfund %}
+                    <div class="widget-box">
+                        {% if crowdfund.productfeature_set.all %}
+                            <ul>
+                                {% for feature in crowdfund.productfeature_set.all %}
+                                    <li><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}"></i>  {{ feature.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <h4>{% trans "No Product Feature Added" %}</h4>
+                        {% endif %}
                     </div>
+                    {% else %}
+                    <div class="widget-box" style="text-align: center; margin-top: 25%">
+                        <h4>{% trans "No Crowdfund started" %}</h4>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

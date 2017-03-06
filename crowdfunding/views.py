@@ -5,8 +5,9 @@ from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
-from crowdfunding.models import CrowdFund, PredefinedAmount
-from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm
+from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
+from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm,\
+    ProductFeatureForm
 from stripepayment.utils import StripePayment
 from stripepayment.models import Payment
 
@@ -83,6 +84,7 @@ def accept_payment(request):
 def crowdfund_admin(request):
     form = AdminForm()
     pform = PredefinedAmountForm()
+    fform = ProductFeatureForm()
     percent_raised = 0
     try:
         crowdfund = CrowdFund.objects.latest()
@@ -98,6 +100,7 @@ def crowdfund_admin(request):
         {
             'form': form,
             'pform': pform,
+            'fform': fform,
             'crowdfund': crowdfund,
             'percent_raised': percent_raised,
             'payments': payments
@@ -176,3 +179,38 @@ def add_predefined_amount(request):
             },
             status=500
         )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def add_product_feature(request):
+    form = ProductFeatureForm(request.POST)
+    if form.is_valid():
+        product_feature = form.save(commit=False)
+        crowdfund = CrowdFund.objects.latest()
+        product_feature.crowdfund = crowdfund
+        product_feature.save()
+        return render(
+            request,
+            'crowdfunding/singlefeature.html',
+            {
+                'feature': product_feature
+            }
+        )
+    else:
+        return render(
+            request,
+            'crowdfunding/productfeatureform.html',
+            {
+                'fform': form
+            },
+            status=500
+        )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def delete_product_feature(request):
+    product_feature = ProductFeature.objects.get(id=request.POST.get('id'))
+    product_feature.delete()
+    return HttpResponse(status=200)

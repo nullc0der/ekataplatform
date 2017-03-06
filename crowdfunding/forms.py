@@ -1,5 +1,5 @@
 from django import forms
-from crowdfunding.models import CrowdFund, PredefinedAmount
+from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
 
 
 class PaymentForm(forms.Form):
@@ -31,3 +31,9 @@ class PredefinedAmountForm(forms.ModelForm):
     class Meta:
         model = PredefinedAmount
         fields = ['amount', 'default']
+
+
+class ProductFeatureForm(forms.ModelForm):
+    class Meta:
+        model = ProductFeature
+        exclude = ['crowdfund']

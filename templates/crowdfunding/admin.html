@@ -57,24 +57,27 @@
     </div>
     <div class="row" style="margin-top: 15px">
         <div class="col-md-4">
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{% trans "Settings" %}</h3>
-                </div>
-                {% comment %}
-                <div class="box-body" id="settings">
+            <div class="box box-solid" style="min-height: 300px">
+                <div class="box-body">
                     {% if crowdfund %}
-                    {% include "crowdfunding/update_crowdfund.html" %}
-                    {% else %}
-                    <div class="widget-box" style="text-align: center; margin-bottom: 100px">
-                        <h4>{% trans "No Crowdfund started" %}</h4>
+                    <div class="widget-box">
+                        {% if crowdfund.productfeature_set.all %}
+                            <ul>
+                                {% for feature in crowdfund.productfeature_set.all %}
+                                    <li data-id={{ feature.id }} class="feature"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}"></i>  {{ feature.name }}</li>
+                                {% endfor %}
+                                <li style="text-align: center" data-toggle="modal" data-target="#productFeatureModal"><i class="fa fa-plus-circle"></i></li>
+                            </ul>
+                        {% else %}
+                            <h4><a href="#" data-toggle="modal" data-target='#productFeatureModal'>{% trans "Add Product Features" %}</a></h4>
+                        {% endif %}
                     </div>
-                    <div class="boxcontent-submitbtn newbtn" id="startnew">
-                        <p>{% trans "Start new" %}</p>
+                    {% else %}
+                    <div class="widget-box" style="text-align: center; margin-top: 25%">
+                        <h4>{% trans "No Crowdfund started" %}</h4>
                     </div>
                     {% endif %}
                 </div>
-                {% endcomment %}
             </div>
         </div>
         <div class="col-md-8">
@@ -210,6 +213,21 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="productFeatureModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Add product feature" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% if crowdfund %}
+            {% include "crowdfunding/productfeatureform.html" %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block extrascripts %}
     <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
@@ -225,6 +243,7 @@
                 format: 'YYYY-MM-DD',
                 showClear: true,
             });
+            $("#id_fa_icon_color").colorpicker();
             $(document).on('click', '#startnew', function() {
                 $("#settings").load('{% url 'crowdfunding:start_crowdfund' %}', function () {
                         $("#updateCrowdfundModalTitle").text('{% trans "Start a crowdfund" %}');
@@ -291,6 +310,32 @@
                     },
                     error: function (data) {
                         $("#paymentAmountModal .modal-body").html(data.responseText);
+                    }
+                });
+            });
+            $(document).on('click', "#addfeaturebtn", function () {
+                var form = $("#productFeatureForm");
+                $.ajax({
+                    url: form.attr('action'),
+                    method: 'POST',
+                    data: form.serialize(),
+                    success: function (data) {
+                        $(".widget-box>ul>li:last").before(data);
+                        $("#productFeatureModal").modal('hide');
+                    },
+                    error: function (data) {
+                        $("#productFeatureModal .modal-body").html(data.responseText);
+                    }
+                });
+            });
+            $(document).on('click', '.feature', function () {
+                var _this = $(this);
+                $.ajax({
+                    url: '{% url 'crowdfunding:delete_product_feature' %}',
+                    type: 'POST',
+                    data: {'id': _this.data('id')},
+                    success: function (data) {
+                        _this.remove();
                     }
                 });
             });
