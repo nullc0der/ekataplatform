@@ -23,6 +23,8 @@ def index(request):
         default_amount = crowdfund.predefinedamount_set.filter(default=True)
         if len(default_amount):
             default_amount = default_amount[0].amount
+        else:
+            default_amount = 20
         if crowdfund.raised:
             percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
     except ObjectDoesNotExist:
