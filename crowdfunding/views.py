@@ -62,7 +62,10 @@ def accept_payment(request):
                 pass
             return render(
                 request,
-                'crowdfunding/thankyou.html'
+                'crowdfunding/thankyou.html',
+                {
+                    'crowdfund': crowdfund
+                }
             )
         else:
             return HttpResponse(

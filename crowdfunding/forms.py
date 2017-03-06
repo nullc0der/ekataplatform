@@ -10,7 +10,7 @@ class PaymentForm(forms.Form):
 class AdminForm(forms.ModelForm):
     class Meta:
         model = CrowdFund
-        fields = ['goal', 'active', 'default_note']
+        fields = ['goal', 'active', 'default_note', 'thankyou_message']
 
 
 class PredefinedAmountForm(forms.ModelForm):

@@ -19,6 +19,10 @@ class CrowdFund(models.Model):
         default='', max_length=200, blank=True,
         help_text=_('set a default note for the payment form')
     )
+    thankyou_message = models.TextField(
+        default=_('Thank You'), blank=True,
+        help_text=_('Customize the payment form thank you message')
+    )
 
     class Meta:
         get_latest_by = 'id'
