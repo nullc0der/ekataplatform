@@ -48,42 +48,20 @@
             <div class="pull-right">
                 {% if crowdfund %}
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#paymentAmountModal">{% trans "Add payment amount" %}</button>
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#updateCrowdfundModal">{% trans "Update Crowdfund" %}</button>
+                {% else %}
+                    <button class="btn btn-rounded" id="startnew">{% trans "Start a crowdfund" %}</button>
                 {% endif %}
             </div>
         </div>
     </div>
     <div class="row" style="margin-top: 15px">
-        <div class="col-md-8">
-            <div class="box box-solid">
-                <div class="box-body">
-                    {% if crowdfund %}
-                    {% if crowdfund.active %}
-                    <div class="widget-box">
-                        <h4 class="widget-box-title">{% trans "Stats" %}</h4>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
-                            <p>${{ crowdfund.raised|intcomma }}/${{ crowdfund.goal|intcomma }}</p>
-                        </div>
-                    </div>
-                    <hr class="widget-box-separator">
-                    {% endif %}
-                    <div class="widget-box">
-                        <h4 class="widget-box-title">{% trans "Status" %}</h4>
-                        <h1>{% if crowdfund.active %}{% trans "Active" %}{% else %}{% trans "Stopped" %}{% endif %}</h1>
-                    </div>
-                    {% else %}
-                    <div class="widget-box" style="text-align: center">
-                        <h4>{% trans "No Crowdfund started" %}</h4>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
         <div class="col-md-4">
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{% trans "Settings" %}</h3>
                 </div>
+                {% comment %}
                 <div class="box-body" id="settings">
                     {% if crowdfund %}
                     {% include "crowdfunding/update_crowdfund.html" %}
@@ -94,6 +72,54 @@
                     <div class="boxcontent-submitbtn newbtn" id="startnew">
                         <p>{% trans "Start new" %}</p>
                     </div>
+                    {% endif %}
+                </div>
+                {% endcomment %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="box box-solid">
+                <div class="box-body">
+                    {% if crowdfund %}
+                        <div class="widget-box">
+                            <h4 class="widget-box-title">{% trans "Introduction" %}</h4>
+                            <div class="widget-box-text">
+                                {% if crowdfund.introduction %}
+                                    <p>
+                                        {{ crowdfund.introduction }}
+                                    </p>
+                                {% else %}
+                                    <p>
+                                        {% trans "No introduction added" %}
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="widget-box">
+                            <h4 class="widget-box-title">{% trans "Stats" %}</h4>
+                            <hr class="widget-box-separator">
+                            <div class="crowdfund-stat-info">
+                                <div class="progress-wrapper">
+                                    <p class="crowdfund-stat">{% trans "Goal   " %} <span>${{ crowdfund.goal|intcomma }}</span> <span style="margin: 0 10px">|</span> {% trans "Pledged   " %} <span>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}</span></p>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
+                                        <p>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}/${{ crowdfund.goal|intcomma }}</p>
+                                    </div>
+                                </div>
+                                <div class="countdown-wrapper">
+                                    <p class="crowdfund-stat" style="margin: 0">{% trans "Remaining Time" %}</p>
+                                    <div class="countdown" id="endcountdown">
+                                        <h1 id="day"></h1>
+                                        <h1 id="hour"></h1>
+                                        <h1 id="minute"></h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="widget-box" style="text-align: center">
+                            <h4>{% trans "No Crowdfund started" %}</h4>
+                        </div>
                     {% endif %}
                 </div>
             </div>
@@ -169,12 +195,45 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="updateCrowdfundModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="updateCrowdfundModalTitle">{% trans "Update Crowdfund" %}</h4>
+      </div>
+      <div class="modal-body" id="settings">
+        {% if crowdfund %}
+            {% include "crowdfunding/update_crowdfund.html" %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block extrascripts %}
+    <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
     {% compress js %}
         <script type="text/javascript">
+            var countdown_time = moment('{{ crowdfund.end_date|date:"Y/m/d" }}').format("YYYY/MM/DD HH:mm");
+            $("#endcountdown").countdown(countdown_time, function(event) {
+                $("#day").html(event.strftime('%D') + '<span>D</span>');
+                $("#hour").html(event.strftime('%H') + '<span>H</span>');
+                $("#minute").html(event.strftime('%M') + '<span>M</span>');
+            });
+            $(".datepicker").datetimepicker({
+                format: 'YYYY-MM-DD',
+                showClear: true,
+            });
             $(document).on('click', '#startnew', function() {
-                $("#settings").load('{% url 'crowdfunding:start_crowdfund' %}');
+                $("#settings").load('{% url 'crowdfunding:start_crowdfund' %}', function () {
+                        $("#updateCrowdfundModalTitle").text('{% trans "Start a crowdfund" %}');
+                        $(".datepicker").datetimepicker({
+                            format: 'YYYY-MM-DD',
+                            showClear: true,
+                        });
+                        $('#updateCrowdfundModal').modal('show');
+                });
             });
             $(document).on('click', '#submitbtn', function() {
                 var form = $("#adminform");
@@ -187,6 +246,10 @@
                     },
                     error: function (data) {
                         $("#settings").html(data.responseText);
+                        $(".datepicker").datetimepicker({
+                            format: 'YYYY-MM-DD',
+                            showClear: true,
+                        });
                     }
                 });
             });

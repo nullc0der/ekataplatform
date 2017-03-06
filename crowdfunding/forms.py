@@ -8,9 +8,23 @@ class PaymentForm(forms.Form):
 
 
 class AdminForm(forms.ModelForm):
+    end_date = forms.DateTimeField(
+        required=False,
+        label='End Date',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'datepicker'
+            }
+        )
+    )
+
     class Meta:
         model = CrowdFund
-        fields = ['goal', 'active', 'default_note', 'thankyou_message']
+        fields = [
+            'goal', 'default_note',
+            'thankyou_message', 'introduction',
+            'end_date', 'active'
+        ]
 
 
 class PredefinedAmountForm(forms.ModelForm):

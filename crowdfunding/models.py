@@ -14,7 +14,6 @@ class CrowdFund(models.Model):
     raised = models.PositiveIntegerField(
         null=True, blank=True
     )
-    active = models.BooleanField(default=False)
     default_note = models.CharField(
         default='', max_length=200, blank=True,
         help_text=_('set a default note for the payment form')
@@ -23,6 +22,12 @@ class CrowdFund(models.Model):
         default=_('Thank You'), blank=True,
         help_text=_('Customize the payment form thank you message')
     )
+    introduction = models.TextField(
+        default='', blank=True,
+        help_text=_('Write a introduction')
+    )
+    end_date = models.DateField(null=True, blank=True)
+    active = models.BooleanField(default=False)
 
     class Meta:
         get_latest_by = 'id'
