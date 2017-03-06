@@ -6164,11 +6164,18 @@ table.text-center th {
     background-color: transparent;
     border-color: #ccc;
     border-radius: 20px;
-    width: 80px;
+    color: #9F9F9F;
+    font-weight: bold;
 }
 
 .btn-rounded:active, .btn-rounded:focus {
     outline: none !important;
+    box-shadow: none;
+    color: #9F9F9F;
+}
+
+.btn-rounded:hover {
+    color: #9F9F9F;
 }
 
 .avatar_image_actions {

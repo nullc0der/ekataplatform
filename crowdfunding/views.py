@@ -5,8 +5,8 @@ from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
-from crowdfunding.models import CrowdFund
-from crowdfunding.forms import PaymentForm, AdminForm
+from crowdfunding.models import CrowdFund, PredefinedAmount
+from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm
 from stripepayment.utils import StripePayment
 from stripepayment.models import Payment
 
@@ -16,8 +16,11 @@ from stripepayment.models import Payment
 @login_required
 def index(request):
     percent_raised = 0
+    default_amount = 20
     try:
         crowdfund = CrowdFund.objects.latest()
+        default_amount = crowdfund.predefinedamount_set.filter(default=True)
+        default_amount = default_amount[0].amount
         if crowdfund.raised:
             percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
     except ObjectDoesNotExist:
@@ -27,7 +30,8 @@ def index(request):
         'crowdfunding/index.html',
         {
             'crowdfund': crowdfund,
-            'percent_raised': percent_raised
+            'percent_raised': percent_raised,
+            'default_amount': default_amount
         }
     )
 
@@ -74,6 +78,7 @@ def accept_payment(request):
 @user_passes_test(lambda u: u.is_staff)
 def crowdfund_admin(request):
     form = AdminForm()
+    pform = PredefinedAmountForm()
     percent_raised = 0
     try:
         crowdfund = CrowdFund.objects.latest()
@@ -88,6 +93,7 @@ def crowdfund_admin(request):
         'crowdfunding/admin.html',
         {
             'form': form,
+            'pform': pform,
             'crowdfund': crowdfund,
             'percent_raised': percent_raised,
             'payments': payments
@@ -141,3 +147,28 @@ def payment_details(request):
             'payment': payment
         }
     )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def add_predefined_amount(request):
+    form = PredefinedAmountForm(request.POST)
+    if form.is_valid():
+        predefined_amount = form.save(commit=False)
+        crowdfund = CrowdFund.objects.latest()
+        predefined_amount.crowdfund = crowdfund
+        if predefined_amount.default:
+            for i in PredefinedAmount.objects.filter(default=True):
+                i.default = False
+                i.save()
+        predefined_amount.save()
+        return HttpResponse(status=200)
+    else:
+        return render(
+            request,
+            'crowdfunding/paymentamountform.html',
+            {
+                'pform': form
+            },
+            status=500
+        )

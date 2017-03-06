@@ -1,5 +1,5 @@
 from django import forms
-from crowdfunding.models import CrowdFund
+from crowdfunding.models import CrowdFund, PredefinedAmount
 
 
 class PaymentForm(forms.Form):
@@ -11,3 +11,9 @@ class AdminForm(forms.ModelForm):
     class Meta:
         model = CrowdFund
         fields = ['goal', 'active', 'default_note']
+
+
+class PredefinedAmountForm(forms.ModelForm):
+    class Meta:
+        model = PredefinedAmount
+        fields = ['amount', 'default']

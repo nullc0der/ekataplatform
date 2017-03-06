@@ -44,6 +44,15 @@
 {% endblock content_header_new %}
 {% block content %}
     <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                {% if crowdfund %}
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#paymentAmountModal">{% trans "Add payment amount" %}</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 15px">
         <div class="col-md-8">
             <div class="box box-solid">
                 <div class="box-body">
@@ -136,13 +145,26 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Payment Details</h4>
+        <h4 class="modal-title">{% trans "Payment Details" %}</h4>
       </div>
       <div class="modal-body" id="paymentDetailsBody">
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="paymentAmountModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Add a amount to payment form dropdown" %}</h4>
+      </div>
+      <div class="modal-body">
+          {% include "crowdfunding/paymentamountform.html" %}
       </div>
     </div>
   </div>
@@ -190,6 +212,24 @@
                         }
                     })
                 }
+            });
+            $(document).on('click', "#addamountbtn", function () {
+                var form = $("#paymentAmountForm");
+                $.ajax({
+                    url: form.attr('action'),
+                    method: 'POST',
+                    data: form.serialize(),
+                    success: function () {
+                        $('.top-right').notify({
+                            message: { text: 'Added' },
+                            type: 'success'
+                        }).show();
+                        $("#paymentAmountModal").modal('hide');
+                    },
+                    error: function (data) {
+                        $("#paymentAmountModal .modal-body").html(data.responseText);
+                    }
+                });
             });
         </script>
     {% endcompress %}

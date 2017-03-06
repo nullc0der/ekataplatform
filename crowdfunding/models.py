@@ -22,3 +22,9 @@ class CrowdFund(models.Model):
 
     class Meta:
         get_latest_by = 'id'
+
+
+class PredefinedAmount(models.Model):
+    crowdfund = models.ForeignKey(CrowdFund)
+    amount = models.PositiveIntegerField()
+    default = models.BooleanField(default=False)
