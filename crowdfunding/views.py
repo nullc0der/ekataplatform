@@ -1,4 +1,5 @@
 import json
+from datetime import date, timedelta
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -18,6 +19,7 @@ from stripepayment.models import Payment
 def index(request):
     percent_raised = 0
     default_amount = 20
+    end_date_passed = False
     try:
         crowdfund = CrowdFund.objects.latest()
         default_amount = crowdfund.predefinedamount_set.filter(default=True)
@@ -27,6 +29,8 @@ def index(request):
             default_amount = 20
         if crowdfund.raised:
             percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
+        if date.today() + timedelta(days=1) >= crowdfund.end_date:
+            end_date_passed = True
     except ObjectDoesNotExist:
         crowdfund = None
     return render(
@@ -35,7 +39,8 @@ def index(request):
         {
             'crowdfund': crowdfund,
             'percent_raised': percent_raised,
-            'default_amount': default_amount
+            'default_amount': default_amount,
+            'end_date_passed': end_date_passed
         }
     )
 
@@ -128,7 +133,7 @@ def update_crowdfund(request):
     form = AdminForm(request.POST)
     try:
         crowdfund = CrowdFund.objects.latest()
-        form = AdminForm(request.POST, instance=crowdfund)
+        form = AdminForm(request.POST, instance=crowdfund, crowdfund=crowdfund)
     except ObjectDoesNotExist:
         pass
     if form.is_valid():

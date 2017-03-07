@@ -30,7 +30,7 @@
                     <div class="widget-box" style="text-align: center; margin-top: 8%">
                         <i class="fa fa-play-circle" style="font-size: 80px; color: #FFFFFF"></i>
                         <p style="color: #fff; font-weight: 600; font-size: 18px">{% trans "Watch video" %}</p>
-                        {% if crowdfund.active %}
+                        {% if crowdfund.active and not end_date_passed %}
                         <button class="fund-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "FUND" %}</button>
                         {% endif %}
                     </div>

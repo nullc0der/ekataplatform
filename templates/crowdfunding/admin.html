@@ -231,12 +231,14 @@
     <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
     {% compress js %}
         <script type="text/javascript">
+            {% if crowdfund.end_date %}
             var countdown_time = moment('{{ crowdfund.end_date|date:"Y/m/d" }}').format("YYYY/MM/DD HH:mm");
             $("#endcountdown").countdown(countdown_time, function(event) {
                 $("#day").html(event.strftime('%D') + '<span>D</span>');
                 $("#hour").html(event.strftime('%H') + '<span>H</span>');
                 $("#minute").html(event.strftime('%M') + '<span>M</span>');
             });
+            {% endif %}
             $(".datepicker").datetimepicker({
                 format: 'YYYY-MM-DD',
                 showClear: true,
