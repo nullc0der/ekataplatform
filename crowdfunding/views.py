@@ -194,9 +194,9 @@ def add_product_feature(request):
         product_feature.save()
         return render(
             request,
-            'crowdfunding/singlefeature.html',
+            'crowdfunding/product_features_admin.html',
             {
-                'feature': product_feature
+                'crowdfund': crowdfund
             }
         )
     else:

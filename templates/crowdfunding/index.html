@@ -44,15 +44,19 @@
                 <div class="box-body">
                     {% if crowdfund %}
                     <div class="widget-box">
-                        {% if crowdfund.productfeature_set.all %}
-                            <ul>
-                                {% for feature in crowdfund.productfeature_set.all %}
-                                    <li><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}"></i>  {{ feature.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <h4>{% trans "No Product Feature Added" %}</h4>
-                        {% endif %}
+                        <h4 class="widget-box-title">{% trans "Product features" %}</h4>
+                        <hr class="widget-box-separator" style="margin: 10px 0;">
+                        <div class="product_features">
+                            {% if crowdfund.productfeature_set.all %}
+                                <ul>
+                                    {% for feature in crowdfund.productfeature_set.all %}
+                                        <li><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}"></i>  {{ feature.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>{% trans "No product feature added" %}</p>
+                            {% endif %}
+                        </div>
                     </div>
                     {% else %}
                     <div class="widget-box" style="text-align: center; margin-top: 25%">
@@ -250,6 +254,11 @@
         });
         $('.pamount').click(function () {
             $("#id_amount").val($(this).data('value'));
+        });
+        $(".product_features").slimscroll({
+            height: '200px',
+            size: '3px',
+            alwaysVisible: false
         });
     </script>
     {% endcompress %}

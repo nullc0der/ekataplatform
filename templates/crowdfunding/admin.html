@@ -61,16 +61,14 @@
                 <div class="box-body">
                     {% if crowdfund %}
                     <div class="widget-box">
-                        {% if crowdfund.productfeature_set.all %}
-                            <ul>
-                                {% for feature in crowdfund.productfeature_set.all %}
-                                    <li data-id={{ feature.id }} class="feature"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}"></i>  {{ feature.name }}</li>
-                                {% endfor %}
-                                <li style="text-align: center" data-toggle="modal" data-target="#productFeatureModal"><i class="fa fa-plus-circle"></i></li>
-                            </ul>
-                        {% else %}
-                            <h4><a href="#" data-toggle="modal" data-target='#productFeatureModal'>{% trans "Add Product Features" %}</a></h4>
-                        {% endif %}
+                        <h4 class="widget-box-title">{% trans "Product features" %}</h4>
+                        <hr class="widget-box-separator" style="margin: 10px 0;">
+                        <div class="product_features">
+                            {% include "crowdfunding/product_features_admin.html" %}
+                        </div>
+                        <div class="boxcontent-submitbtn newbtn" data-toggle="modal" data-target="#productFeatureModal">
+                            <p>{% trans "Add" %}</p>
+                        </div>
                     </div>
                     {% else %}
                     <div class="widget-box" style="text-align: center; margin-top: 25%">
@@ -320,7 +318,13 @@
                     method: 'POST',
                     data: form.serialize(),
                     success: function (data) {
-                        $(".widget-box>ul>li:last").before(data);
+                        $(".product_features").html(data);
+                        $(".product_features").slimscroll({
+                            height: '150px',
+                            size: '3px',
+                            alwaysVisible: false,
+                            scrollTo: $('.product_features').innerHeight()
+                        });
                         $("#productFeatureModal").modal('hide');
                     },
                     error: function (data) {
@@ -338,6 +342,11 @@
                         _this.remove();
                     }
                 });
+            });
+            $(".product_features").slimscroll({
+                height: '150px',
+                size: '3px',
+                alwaysVisible: false
             });
         </script>
     {% endcompress %}

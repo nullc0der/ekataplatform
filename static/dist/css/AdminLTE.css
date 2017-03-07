@@ -5924,13 +5924,16 @@ table.text-center th {
     padding: 10px;
 }
 
-.widget-box>ul {
+.widget-box ul {
     padding: 0;
     list-style: none;
+    width: 100%;
 }
 
-.widget-box>ul>li {
+.widget-box ul>li {
     font-size: 20px;
+    float: left;
+    width: 50%;
 }
 
 .widget-box-separator {

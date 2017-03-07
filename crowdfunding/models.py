@@ -41,11 +41,11 @@ class PredefinedAmount(models.Model):
 
 class ProductFeature(models.Model):
     crowdfund = models.ForeignKey(CrowdFund)
-    name = models.CharField(max_length=100, default='', blank=True)
+    name = models.CharField(max_length=100, default='', blank=False)
     fa_icon_name = models.CharField(
         default='cog', max_length=40, blank=True,
         help_text=_('Add font Awesome icon name here')
     )
     fa_icon_color = models.CharField(
-        default='#f9f9f9', max_length=7, blank=True
+        default='#9F9F9F', max_length=7, blank=True
     )
