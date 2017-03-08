@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
 from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
 from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm,\
-    ProductFeatureForm
+    ProductFeatureForm, HeaderVideoForm
 from stripepayment.utils import StripePayment
 from stripepayment.models import Payment
 
@@ -20,13 +20,13 @@ def index(request):
     percent_raised = 0
     default_amount = 20
     end_date_passed = False
+    header_video = None
     try:
         crowdfund = CrowdFund.objects.latest()
-        default_amount = crowdfund.predefinedamount_set.filter(default=True)
-        if len(default_amount):
-            default_amount = default_amount[0].amount
-        else:
-            default_amount = 20
+        damount = crowdfund.predefinedamount_set.filter(default=True)
+        header_video = crowdfund.headervideo_set.latest()
+        if len(damount):
+            default_amount = damount[0].amount
         if crowdfund.raised:
             percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
         if date.today() + timedelta(days=1) >= crowdfund.end_date:
@@ -40,7 +40,8 @@ def index(request):
             'crowdfund': crowdfund,
             'percent_raised': percent_raised,
             'default_amount': default_amount,
-            'end_date_passed': end_date_passed
+            'end_date_passed': end_date_passed,
+            'header_video': header_video
         }
     )
 
@@ -92,6 +93,7 @@ def crowdfund_admin(request):
     form = AdminForm()
     pform = PredefinedAmountForm()
     fform = ProductFeatureForm()
+    vform = HeaderVideoForm()
     percent_raised = 0
     try:
         crowdfund = CrowdFund.objects.latest()
@@ -108,6 +110,7 @@ def crowdfund_admin(request):
             'form': form,
             'pform': pform,
             'fform': fform,
+            'vform': vform,
             'crowdfund': crowdfund,
             'percent_raised': percent_raised,
             'payments': payments
@@ -221,3 +224,24 @@ def delete_product_feature(request):
     product_feature = ProductFeature.objects.get(id=request.POST.get('id'))
     product_feature.delete()
     return HttpResponse(status=200)
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def upload_header_video(request):
+    crowdfund = CrowdFund.objects.latest()
+    form = HeaderVideoForm(request.POST, request.FILES)
+    if form.is_valid():
+        header_video = form.save(commit=False)
+        header_video.crowdfund = crowdfund
+        header_video.save()
+        return HttpResponse(status=200)
+    else:
+        return render(
+            request,
+            'crowdfunding/headervideoform.html',
+            {
+                'vform': form
+            },
+            status=500
+        )

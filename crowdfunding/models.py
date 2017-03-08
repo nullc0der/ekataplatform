@@ -49,3 +49,11 @@ class ProductFeature(models.Model):
     fa_icon_color = models.CharField(
         default='#9F9F9F', max_length=7, blank=True
     )
+
+
+class HeaderVideo(models.Model):
+    crowdfund = models.ForeignKey(CrowdFund)
+    video = models.FileField(upload_to='crowdfund_header_videos')
+
+    class Meta:
+        get_latest_by = 'id'

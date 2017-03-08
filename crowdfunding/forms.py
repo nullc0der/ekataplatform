@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
+from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature,\
+    HeaderVideo
 
 
 class PaymentForm(forms.Form):
@@ -50,3 +51,9 @@ class ProductFeatureForm(forms.ModelForm):
     class Meta:
         model = ProductFeature
         exclude = ['crowdfund']
+
+
+class HeaderVideoForm(forms.ModelForm):
+    class Meta:
+        model = HeaderVideo
+        fields = ['video']

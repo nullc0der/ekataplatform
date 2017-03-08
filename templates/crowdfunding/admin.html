@@ -49,6 +49,7 @@
                 {% if crowdfund %}
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#paymentAmountModal">{% trans "Add payment amount" %}</button>
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#updateCrowdfundModal">{% trans "Update Crowdfund" %}</button>
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#headerVideoModal">{% trans "Upload Header Video" %}</button>
                 {% else %}
                     <button class="btn btn-rounded" id="startnew">{% trans "Start a crowdfund" %}</button>
                 {% endif %}
@@ -226,6 +227,21 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="headerVideoModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Upload header video" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% if crowdfund %}
+            {% include "crowdfunding/headervideoform.html" %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block extrascripts %}
     <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
@@ -239,6 +255,8 @@
                 $("#minute").html(event.strftime('%M') + '<span>M</span>');
             });
             {% endif %}
+            $("#id_video").fileinput({showUpload: false});
+            $("#headerVideoProgress").hide();
             $(".datepicker").datetimepicker({
                 format: 'YYYY-MM-DD',
                 showClear: true,
@@ -349,6 +367,40 @@
                 height: '150px',
                 size: '3px',
                 alwaysVisible: false
+            });
+            $(document).on('click', '#addheadervideobtn', function () {
+                $('#headerVideoProgress').show();
+                var form = $("#headerVideoForm");
+                var fd = new FormData(form[0]);
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: fd,
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    xhr: function() {
+                        var xhr = $.ajaxSettings.xhr();
+                        if (xhr.upload) {
+                            xhr.upload.addEventListener('progress', function(evt) {
+                                var percent = (evt.loaded / evt.total) * 100;
+                                $('#upload_bar').width(percent + "%");
+                            }, false);
+                        }
+                    return xhr;
+                    },
+                    success: function () {
+                        $("#headerVideoModal").modal('hide');
+                        $('.top-right').notify({
+                            message: { text: 'Video upload done' },
+                            type: 'success'
+                        }).show();
+                    },
+                    error: function () {
+                        $("#headerVideoModal .modal-body").html(data.responseText);
+                        $('#headerVideoProgress').hide();
+                    }
+                });
             });
         </script>
     {% endcompress %}
