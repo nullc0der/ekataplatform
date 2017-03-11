@@ -245,3 +245,16 @@ def upload_header_video(request):
             },
             status=500
         )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def update_cards_html(request):
+    try:
+        crowdfund = CrowdFund.objects.latest()
+        crowdfund.cards_html = request.POST.get('html')
+        crowdfund.admin_cards_html = request.POST.get('admin_html')
+        crowdfund.save()
+        return HttpResponse(status=200)
+    except:
+        return HttpResponse(status=500)

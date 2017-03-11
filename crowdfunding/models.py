@@ -28,6 +28,8 @@ class CrowdFund(models.Model):
     )
     end_date = models.DateField(null=True, blank=True)
     active = models.BooleanField(default=False)
+    cards_html = models.TextField(default='', blank=True)
+    admin_cards_html = models.TextField(default='', blank=True)
 
     class Meta:
         get_latest_by = 'id'

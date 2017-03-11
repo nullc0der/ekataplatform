@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^admin/add_predefined_amount/$', views.add_predefined_amount, name='add_predefined_amount'),
     url(r'^admin/add_product_feature/$', views.add_product_feature, name='add_product_feature'),
     url(r'^admin/delete_product_feature/$', views.delete_product_feature, name='delete_product_feature'),
-    url(r'^admin/upload_header_video/$', views.upload_header_video, name='upload_header_video')
+    url(r'^admin/upload_header_video/$', views.upload_header_video, name='upload_header_video'),
+    url(r'^admin/update_cards_html/$', views.update_cards_html, name='update_cards_html')
 ]

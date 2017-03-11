@@ -118,6 +118,11 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ crowdfund.cards_html|safe }}
+        </div>
+    </div>
     {% if crowdfund.active %}
     <div class="modal fade" id="paymentFormModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
       <div class="modal-dialog">
