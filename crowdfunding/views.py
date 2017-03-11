@@ -24,7 +24,8 @@ def index(request):
     try:
         crowdfund = CrowdFund.objects.latest()
         damount = crowdfund.predefinedamount_set.filter(default=True)
-        header_video = crowdfund.headervideo_set.latest()
+        if crowdfund.headervideo_set.all():
+            header_video = crowdfund.headervideo_set.latest()
         if len(damount):
             default_amount = damount[0].amount
         if crowdfund.raised:
