@@ -5993,9 +5993,10 @@ table.text-center th {
     padding: 10px;
     border: 1px solid #fff;
     background-color: transparent;
-    width: 200px;
+    width: 150px;
     font-weight: 600;
     color: #fff;
+    margin: 5px;
 }
 
 .fund-btn:active, .fund-btn:focus {
@@ -6593,4 +6594,11 @@ table.text-center th {
     color: #F6A623;
     font-size: 18px;
     font-weight: bold;
+}
+
+.btn-social-share {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
 }

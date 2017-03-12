@@ -4,7 +4,7 @@
 	{% trans "Fund Ekata" %}
 {% endblock %}
 {% block extrastyles %}
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.5.0">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.5.1">
     <style media="screen">
         .content {
             min-height: inherit;
@@ -22,6 +22,9 @@
             background: transparent;
             box-shadow: none;
         }
+		.popovercontent {
+            display: none;
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -35,6 +38,7 @@
                         <p style="color: #fff; font-weight: 600; font-size: 18px; cursor: pointer" data-toggle="modal" data-target="#headerVideoModal">{% trans "Watch video" %}</p>
                         {% if crowdfund.active and not end_date_passed %}
                         <button class="fund-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "FUND" %}</button>
+						<button class="fund-btn" id="sharebtn">{% trans "SHARE" %}</button>
                         {% endif %}
                     </div>
                 </div>
@@ -195,6 +199,11 @@
         </div>
       </div>
     </div>
+	<div class="popovercontent">
+        <a class="btn btn-facebook btn-social-share" href="https://www.facebook.com/sharer/sharer.php?u=https://ekata.social{{ request.get_full_path }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-facebook"></i></a>
+        <a class="btn btn-google btn-social-share" href="https://plus.google.com/share?url=https://ekata.social{{ request.get_full_path }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-google-plus"></i></a>
+        <a class="btn btn-twitter btn-social-share" href="https://twitter.com/share?url=https://ekata.social{{ request.get_full_path }}"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;" target="_blank"><i class="fa fa-twitter"></i></a>
+    </div>
 </section>
 {% endblock %}
 {% block extrascripts %}
@@ -306,6 +315,15 @@
         size: '3px',
         alwaysVisible: false
     });
+	$("#sharebtn").popover({
+		html : true,
+		content: function() {
+		  return $(".popovercontent").html();
+		},
+		placement: "auto",
+		container: 'body',
+		trigger: 'focus'
+	});
 </script>
 {% endcompress %}
 {% endblock %}
