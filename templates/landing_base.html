@@ -78,10 +78,7 @@
 						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#contact">{% trans "Contact" %}</a></li>
 						<li><a class="external" href="{% url 'landing:hashtag' %}">{% trans "Hashtag" %}</a></li>
 						<li><a class="external" href="{% url 'landing:newses' %}">{% trans "News" %}</a></li>
-						{% if request.user.is_authenticated %}
-						{% else %}
-							<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#betainvite">Beta</a></li>
-						{% endif %}
+						<li><a class="external" href="{% url 'crowdfunding:index' %}">{% trans "Fund" %}</a></li>
 					</ul>
 					{% if request.user.is_authenticated %}
 						<ul class="nav navbar-nav navbar-right text-uppercase">

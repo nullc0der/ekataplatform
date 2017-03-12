@@ -7,7 +7,8 @@ from django.contrib.auth.models import User
 
 
 class Payment(models.Model):
-    user = models.ForeignKey(User, related_name='payments')
+    user = models.ForeignKey(User, related_name='payments', null=True)
+    name = models.CharField(default='', max_length=250)
     amount = models.PositiveIntegerField(
         null=True, blank=True
     )

@@ -15,7 +15,6 @@ from stripepayment.models import Payment
 # Create your views here.
 
 
-@login_required
 def index(request):
     percent_raised = 0
     default_amount = 20
@@ -34,25 +33,37 @@ def index(request):
             end_date_passed = True
     except ObjectDoesNotExist:
         crowdfund = None
+    context = {
+        'crowdfund': crowdfund,
+        'percent_raised': percent_raised,
+        'default_amount': default_amount,
+        'end_date_passed': end_date_passed,
+        'header_video': header_video
+    }
+    if request.user.is_authenticated():
+        return render(
+            request,
+            'crowdfunding/index.html',
+            context=context
+        )
     return render(
         request,
-        'crowdfunding/index.html',
-        {
-            'crowdfund': crowdfund,
-            'percent_raised': percent_raised,
-            'default_amount': default_amount,
-            'end_date_passed': end_date_passed,
-            'header_video': header_video
-        }
+        'crowdfunding/public_index.html',
+        context=context
     )
 
 
-@login_required
 @require_POST
 def accept_payment(request):
     form = PaymentForm(request.POST)
     if form.is_valid():
-        stripepayment = StripePayment(user=request.user)
+        if request.user.is_authenticated():
+            stripepayment = StripePayment(
+                user=request.user, fullname=request.user.get_full_name())
+        elif request.POST['fullname']:
+            stripepayment = StripePayment(fullname=request.POST['fullname'])
+        else:
+            stripepayment = StripePayment()
         payment_success = stripepayment.process_payment(
             token=request.POST['stripeToken'],
             payment_type='crowdfund',

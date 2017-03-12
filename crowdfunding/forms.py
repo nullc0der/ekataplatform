@@ -5,6 +5,7 @@ from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature,\
 
 
 class PaymentForm(forms.Form):
+    fullname = forms.CharField(max_length=250, required=False)
     amount = forms.IntegerField(min_value=1, required=True)
     message = forms.CharField(max_length=250, required=False)
 

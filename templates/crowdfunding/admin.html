@@ -145,6 +145,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>User</th>
+                                <th>Fullname</th>
                                 <th data-sortable="true">Date</th>
                                 <th data-sortable="true">Amount</th>
                                 <th>Success</th>
@@ -156,6 +157,7 @@
                                <tr>
                                     <td>{{ payment.id }}</td>
                                     <td>{{ payment.user.username }}</td>
+                                    <td>{{ payment.name }}</td>
                                     <td>{{ payment.date|date:"m/d/Y" }}</td>
                                     <td>${{ payment.amount|intcomma }}</td>
                                     <td>{% if payment.is_success %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times"></i>{% endif %}</td>
