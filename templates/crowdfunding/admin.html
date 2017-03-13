@@ -55,6 +55,7 @@
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#updateCrowdfundModal">{% trans "Update Crowdfund" %}</button>
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#headerVideoModal">{% trans "Upload Header Video" %}</button>
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#cardCreatorModal">{% trans "Add New Card" %}</button>
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#metaEditorModal">{% trans "Add Meta Tags" %}</button>
                 {% else %}
                     <button class="btn btn-rounded" id="startnew">{% trans "Start a crowdfund" %}</button>
                 {% endif %}
@@ -326,6 +327,19 @@
 <div id="finalEdit" style="display: none">
 
 </div>
+<div class="modal fade" id="metaEditorModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Edit meta tags" %}</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block extrascripts %}
     <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
@@ -342,6 +356,7 @@
             {% endif %}
             $("#id_video").fileinput({showUpload: false});
             $("#headerVideoProgress").hide();
+            $("#metaTagProgress").hide();
             $(".datepicker").datetimepicker({
                 format: 'YYYY-MM-DD',
                 showClear: true,
@@ -484,6 +499,47 @@
                     error: function () {
                         $("#headerVideoModal .modal-body").html(data.responseText);
                         $('#headerVideoProgress').hide();
+                    }
+                });
+            });
+            $("#metaEditorModal").on('show.bs.modal', function () {
+                $("#metaEditorModal .modal-body").load('{% url 'crowdfunding:add_meta_tags' %}', function () {
+                    $('#id_image').fileinput({
+                        showUpload: false
+                    });
+                });
+            });
+            $(document).on('click', '#addmetatagbtn', function () {
+                $('#metaTagProgress').show();
+                var form = $("#metaTagForm");
+                var fd = new FormData(form[0]);
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: fd,
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    xhr: function() {
+                        var xhr = $.ajaxSettings.xhr();
+                        if (xhr.upload) {
+                            xhr.upload.addEventListener('progress', function(evt) {
+                                var percent = (evt.loaded / evt.total) * 100;
+                                $('#meta_upload_bar').width(percent + "%");
+                            }, false);
+                        }
+                    return xhr;
+                    },
+                    success: function () {
+                        $("#metaEditorModal").modal('hide');
+                        $('.top-right').notify({
+                            message: { text: 'Meta tags updated' },
+                            type: 'success'
+                        }).show();
+                    },
+                    error: function () {
+                        $("#metaEditorModal .modal-body").html(data.responseText);
+                        $('#metaTagProgress').hide();
                     }
                 });
             });

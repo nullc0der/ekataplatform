@@ -193,9 +193,9 @@
       </div>
     </div>
     <div class="popovercontent">
-        <a class="btn btn-facebook btn-social-share" href="https://www.facebook.com/sharer/sharer.php?u=https://ekata.social{{ request.get_full_path }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-facebook"></i></a>
-        <a class="btn btn-google btn-social-share" href="https://plus.google.com/share?url=https://ekata.social{{ request.get_full_path }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-google-plus"></i></a>
-        <a class="btn btn-twitter btn-social-share" href="https://twitter.com/share?url=https://ekata.social{{ request.get_full_path }}"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a class="btn btn-facebook btn-social-share" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-facebook"></i></a>
+        <a class="btn btn-google btn-social-share" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-google-plus"></i></a>
+        <a class="btn btn-twitter btn-social-share" href="https://twitter.com/share?url={{ request.build_absolute_uri }}"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;" target="_blank"><i class="fa fa-twitter"></i></a>
     </div>
 {% endblock %}
 {% block extrascripts %}

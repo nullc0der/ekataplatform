@@ -43,10 +43,11 @@ class OgTagLink(models.Model):
     PAGE_CHOICES = (
         ('index', 'index'),
         ('hashtag', 'hashtag'),
-        ('news', 'news')
+        ('news', 'news'),
+        ('crowdfunding', 'crowdfunding')
     )
-    page = models.CharField(max_length=10, choices=PAGE_CHOICES)
-    globalogtag = models.ForeignKey(GlobalOgTag)
+    page = models.CharField(max_length=40, choices=PAGE_CHOICES)
+    globalogtag = models.ForeignKey(GlobalOgTag, null=True)
 
     def __unicode__(self):
         return self.page

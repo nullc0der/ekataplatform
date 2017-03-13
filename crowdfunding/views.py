@@ -7,6 +7,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
 from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
+from landing.models import OgTagLink
+from landing.forms import GlobalOgTagForm
 from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm,\
     ProductFeatureForm, HeaderVideoForm
 from stripepayment.utils import StripePayment
@@ -20,6 +22,11 @@ def index(request):
     default_amount = 20
     end_date_passed = False
     header_video = None
+    ogtag = None
+    crowdfund_ogtag = OgTagLink.objects.filter(
+        page='crowdfunding').order_by('-id')
+    if crowdfund_ogtag:
+        ogtag = crowdfund_ogtag[0].globalogtag
     try:
         crowdfund = CrowdFund.objects.latest()
         damount = crowdfund.predefinedamount_set.filter(default=True)
@@ -38,7 +45,8 @@ def index(request):
         'percent_raised': percent_raised,
         'default_amount': default_amount,
         'end_date_passed': end_date_passed,
-        'header_video': header_video
+        'header_video': header_video,
+        'ogtag': ogtag
     }
     if request.user.is_authenticated():
         return render(
@@ -270,3 +278,33 @@ def update_cards_html(request):
         return HttpResponse(status=200)
     except:
         return HttpResponse(status=500)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def add_meta_tags(request):
+    ogtaglink, created = OgTagLink.objects.get_or_create(page='crowdfunding')
+    form = GlobalOgTagForm(instance=ogtaglink.globalogtag)
+    if request.method == 'POST':
+        form = GlobalOgTagForm(request.POST, request.FILES,
+                               instance=ogtaglink.globalogtag)
+        if form.is_valid():
+            global_ogtag = form.save()
+            ogtaglink.globalogtag = global_ogtag
+            ogtaglink.save()
+            return HttpResponse(status=200)
+        else:
+            return render(
+                request,
+                'crowdfunding/ogtagform.html',
+                {
+                    'form': form
+                },
+                status=500
+            )
+    return render(
+        request,
+        'crowdfunding/ogtagform.html',
+        {
+            'form': form
+        }
+    )
