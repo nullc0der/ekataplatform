@@ -96,13 +96,13 @@
                             <div class="crowdfund-stat-info">
                                 <div class="progress-wrapper">
                                     <p class="crowdfund-stat">{% trans "Goal   " %} <span>${{ crowdfund.goal|intcomma }}</span> <span style="margin: 0 10px">|</span> {% trans "Pledged   " %} <span>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}</span></p>
-                                    <div class="progress">
+                                    <div class="progress" style="margin-top: 40px">
                                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
                                         <p>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}/${{ crowdfund.goal|intcomma }}</p>
                                     </div>
                                 </div>
                                 <div class="countdown-wrapper">
-                                    <p class="crowdfund-stat" style="margin: 0">{% trans "Remaining Time" %}</p>
+                                    <p class="crowdfund-stat">{% trans "Remaining Time" %}</p>
                                     <div class="countdown" id="endcountdown">
                                         <h1 id="day"></h1>
                                         <h1 id="hour"></h1>
@@ -299,7 +299,7 @@
             $("#id_amount").val($(this).data('value'));
         });
         $(".product_features").slimscroll({
-            height: '200px',
+            height: '250px',
             size: '3px',
             alwaysVisible: false
         });

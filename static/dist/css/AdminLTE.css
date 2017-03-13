@@ -5954,13 +5954,13 @@ table.text-center th {
 .crowdfund-stat {
     font-weight: bold;
     color: #00C269;
-    font-size: 18px;
-    margin: 20px 0;
+    font-size: 16px;
 }
 
 .crowdfund-stat>span {
-    font-size: 20px;
+    font-size: 22px;
     color: #9F9F9F;
+    font-weight: 300;
 }
 
 .crowdfund-stat-info {
