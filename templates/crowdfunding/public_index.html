@@ -65,16 +65,14 @@
     <div class="row">
         <div class="col-md-4">
             <div class="box box-solid" style="min-height: 300px">
-                <div class="box-body">
+				<div class="box-body">
                     {% if crowdfund %}
                     <div class="widget-box">
-                        <h4 class="widget-box-title">{% trans "Product features" %}</h4>
-                        <hr class="widget-box-separator" style="margin: 10px 0;">
                         <div class="product_features">
                             {% if crowdfund.productfeature_set.all %}
                                 <ul>
                                     {% for feature in crowdfund.productfeature_set.all %}
-                                        <li><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}"></i>  {{ feature.name }}</li>
+                                        <li><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}; margin-right: 5px"></i>  {{ feature.name }}</li>
                                     {% endfor %}
                                 </ul>
                             {% else %}
