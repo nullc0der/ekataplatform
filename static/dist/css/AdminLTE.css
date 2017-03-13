@@ -5980,6 +5980,25 @@ table.text-center th {
     padding-left: 10px;
 }
 
+@media (max-width: 767px) {
+    .crowdfund-stat-info>.progress-wrapper {
+        width: 100%;
+        float: left;
+        border-bottom: 1px solid #eee;
+        border-right: none;
+        padding-right: 0;
+    }
+    .crowdfund-stat-info>.countdown-wrapper {
+        margin-top: 10px;
+        width: 100%;
+        float: left;
+        padding-left: 0;
+    }
+    .crowdfund-stat {
+        float: none !important;
+    }
+}
+
 .countdown>h1 {
     float: left;
     font-size: 40px;

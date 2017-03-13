@@ -15,6 +15,17 @@
             padding-left: 50px;
             padding-right: 50px;
         }
+		@media (max-width: 767px) {
+			.content {
+    			min-height: inherit;
+    			padding: 10px;
+    			margin-right: auto;
+    			margin-left: auto;
+    			margin-top: 75px;
+    			padding-left: 10px;
+				padding-right: 10px;
+			}
+		}
         label {
             display: block;
         }
@@ -110,8 +121,9 @@
                             <h4 class="widget-box-title">{% trans "Stats" %}</h4>
                             <hr class="widget-box-separator">
 							<div class="crowdfund-stat-info">
-                                <div class="progress-wrapper">
-                                    <p class="crowdfund-stat">{% trans "Goal   " %} <span>${{ crowdfund.goal|intcomma }}</span> <span style="margin: 0 10px">|</span> {% trans "Pledged   " %} <span>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}</span></p>
+								<div class="progress-wrapper">
+                                    <p class="crowdfund-stat" style="float: left">{% trans "Goal" %} <span>${{ crowdfund.goal|intcomma }}</span> <span style="margin: 0 10px" class="hidden-xs">|</span></p>
+                                    <p class="crowdfund-stat">{% trans "Pledged" %} <span>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}</span></p>
                                     <div class="progress" style="margin-top: 40px">
                                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
                                         <p>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}/${{ crowdfund.goal|intcomma }}</p>
