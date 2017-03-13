@@ -64,6 +64,7 @@ function uploadCardHTML() {
     $('#finalEdit').append($('#cardsWrapper').html());
     $("#finalEdit .crowdfund-card>.settings-dropdown").remove();
     $("#finalEdit .card-tools-overlay").remove();
+    $("#finalEdit .card-col").removeAttr('contenteditable');
     console.log($('#finalEdit').html());
     $.ajax({
         url: '/en/crowdfunding/admin/update_cards_html/',
