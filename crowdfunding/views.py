@@ -218,7 +218,8 @@ def add_product_feature(request):
         product_feature = form.save(commit=False)
         crowdfund = CrowdFund.objects.latest()
         product_feature.crowdfund = crowdfund
-        product_feature.linked_card = form.cleaned_data.get('name')\
+        feature_name = form.cleaned_data.get('name').split()
+        product_feature.linked_card = '-'.join(feature_name)\
             + '-' + get_random_string(allowed_chars='0123456789', length=4)
         product_feature.save()
         return render(

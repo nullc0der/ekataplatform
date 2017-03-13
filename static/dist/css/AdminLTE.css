@@ -6564,7 +6564,7 @@ table.text-center th {
 }
 
 .card-col>img {
-    width: 100%;
+    width: auto;
     height: 100%;
     border-radius: 3px;
 }
