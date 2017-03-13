@@ -21,18 +21,6 @@ class AdminForm(forms.ModelForm):
         )
     )
 
-    def __init__(self, *args, **kwrags):
-        self.crowdfund = kwrags.pop('crowdfund', None)
-        super(AdminForm, self).__init__(*args, **kwrags)
-
-    def clean_active(self):
-        if self.cleaned_data['active'] and self.crowdfund:
-            if self.crowdfund.raised >= self.crowdfund.goal:
-                raise forms.ValidationError(
-                    _("You can't check active once goal is reached")
-                )
-        return self.cleaned_data['active']
-
     class Meta:
         model = CrowdFund
         fields = [

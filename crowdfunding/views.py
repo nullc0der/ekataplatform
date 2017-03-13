@@ -85,8 +85,6 @@ def accept_payment(request):
                     crowdfund.raised += int(request.POST['amount'])
                 else:
                     crowdfund.raised = int(request.POST['amount'])
-                if crowdfund.raised >= crowdfund.goal:
-                    crowdfund.active = False
                 crowdfund.save()
             except ObjectDoesNotExist:
                 pass
@@ -156,7 +154,7 @@ def update_crowdfund(request):
     form = AdminForm(request.POST)
     try:
         crowdfund = CrowdFund.objects.latest()
-        form = AdminForm(request.POST, instance=crowdfund, crowdfund=crowdfund)
+        form = AdminForm(request.POST, instance=crowdfund)
     except ObjectDoesNotExist:
         pass
     if form.is_valid():
