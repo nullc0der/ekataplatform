@@ -51,6 +51,7 @@ class ProductFeature(models.Model):
     fa_icon_color = models.CharField(
         default='#9F9F9F', max_length=7, blank=True
     )
+    linked_card = models.CharField(max_length=100, default='')
 
 
 class HeaderVideo(models.Model):

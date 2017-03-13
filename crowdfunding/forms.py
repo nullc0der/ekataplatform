@@ -39,7 +39,7 @@ class PredefinedAmountForm(forms.ModelForm):
 class ProductFeatureForm(forms.ModelForm):
     class Meta:
         model = ProductFeature
-        exclude = ['crowdfund']
+        exclude = ['crowdfund', 'linked_card']
 
 
 class HeaderVideoForm(forms.ModelForm):

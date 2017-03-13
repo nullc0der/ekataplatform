@@ -5936,6 +5936,11 @@ table.text-center th {
     width: 50%;
 }
 
+.widget-box ul>li>a {
+    font-size: 20px;
+    color: #9F9F9F;
+}
+
 .widget-box-separator {
     width: 95%;
 }

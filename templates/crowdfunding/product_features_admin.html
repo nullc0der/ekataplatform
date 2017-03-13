@@ -2,7 +2,7 @@
 {% if crowdfund.productfeature_set.all %}
     <ul>
         {% for feature in crowdfund.productfeature_set.all %}
-            <li data-id={{ feature.id }} class="feature"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}"></i>  {{ feature.name }}  <i class="fa fa-times-circle feature-delete" style="font-size: 14px; color: #dd4b39; opacity: 0.7"></i></li>
+            <li data-id={{ feature.id }} class="feature"><a href="#{{ feature.linked_card }}"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}; margin-right: 5px"></i>{{ feature.name }}</a><i class="fa fa-times-circle feature-delete" style="font-size: 14px; color: #dd4b39; opacity: 0.7; margin-left: 5px"></i></li>
         {% endfor %}
     </ul>
 {% else %}

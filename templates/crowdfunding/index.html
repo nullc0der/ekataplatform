@@ -56,7 +56,7 @@
                             {% if crowdfund.productfeature_set.all %}
                                 <ul>
                                     {% for feature in crowdfund.productfeature_set.all %}
-                                        <li><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}; margin-right: 5px"></i>  {{ feature.name }}</li>
+                                        <li class="feature"><a href="#{{ feature.linked_card }}"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}; margin-right: 5px"></i>{{ feature.name }}</a></li>
                                     {% endfor %}
                                 </ul>
                             {% else %}
@@ -312,6 +312,13 @@
             placement: "auto",
             container: 'body',
             trigger: 'focus'
+        });
+        $(".feature>a").click(function (e) {
+            e.preventDefault();
+            var id = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(id).offset().top
+            }, 1000);
         });
     </script>
     {% endcompress %}

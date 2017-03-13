@@ -2,6 +2,7 @@ import json
 from datetime import date, timedelta
 
 from django.http import HttpResponse
+from django.utils.crypto import get_random_string
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -217,6 +218,8 @@ def add_product_feature(request):
         product_feature = form.save(commit=False)
         crowdfund = CrowdFund.objects.latest()
         product_feature.crowdfund = crowdfund
+        product_feature.linked_card = form.cleaned_data.get('name')\
+            + '-' + get_random_string(allowed_chars='0123456789', length=4)
         product_feature.save()
         return render(
             request,

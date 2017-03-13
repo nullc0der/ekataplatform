@@ -71,9 +71,11 @@
                         <div class="product_features">
                             {% include "crowdfunding/product_features_admin.html" %}
                         </div>
+                        {% comment %}
                         <div class="boxcontent-submitbtn newbtn" data-toggle="modal" data-target="#productFeatureModal">
                             <p>{% trans "Add" %}</p>
                         </div>
+                        {% endcomment %}
                     </div>
                     {% else %}
                     <div class="widget-box" style="text-align: center; margin-top: 25%">
@@ -84,7 +86,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="box box-solid" style="300px">
+            <div class="box box-solid" style="min-height: 300px">
                 <div class="box-body">
                     {% if crowdfund %}
                         <div class="widget-box">
@@ -237,7 +239,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">{% trans "Add product feature" %}</h4>
+        <h4 class="modal-title" id="">{% trans "Add optional quick feature for this card" %}</h4>
       </div>
       <div class="modal-body">
         {% if crowdfund %}
@@ -441,24 +443,26 @@
                         $(".product_features").slimscroll({
                             height: '150px',
                             size: '3px',
-                            alwaysVisible: false,
-                            scrollTo: $('.product_features').innerHeight()
+                            alwaysVisible: false
                         });
                         $("#productFeatureModal").modal('hide');
+                        var last_feature_attr = $(".feature:last>a").attr('href');
+                        $("#cardsWrapper>.crowdfund-card:last").attr('id', last_feature_attr.slice(1));
                     },
                     error: function (data) {
                         $("#productFeatureModal .modal-body").html(data.responseText);
                     }
                 });
             });
-            $(document).on('click', '.feature', function () {
+            $(document).on('click', '.feature-delete', function () {
                 var _this = $(this);
+                var feature = _this.parent('.feature');
                 $.ajax({
                     url: '{% url 'crowdfunding:delete_product_feature' %}',
                     type: 'POST',
-                    data: {'id': _this.data('id')},
+                    data: {'id': feature.data('id')},
                     success: function (data) {
-                        _this.remove();
+                        feature.remove();
                     }
                 });
             });
@@ -541,6 +545,13 @@
                         $('#metaTagProgress').hide();
                     }
                 });
+            });
+            $(".feature>a").click(function (e) {
+                e.preventDefault();
+                var id = $(this).attr('href');
+                $('html, body').animate({
+                    scrollTop: $(id).offset().top
+                }, 1000);
             });
         </script>
     {% endcompress %}

@@ -139,6 +139,7 @@ $("#doneBtn").on('click', function () {
     $("#cardsWrapper>.crowdfund-card:last .card-col").append(tools_overlay);
     $("#cardsWrapper>.crowdfund-card:last").prepend(edit_buttons);
     $("#cardCreatorModal").modal('hide');
+    $("#productFeatureModal").modal('show');
 });
 $(document).on('click', '.crowdfund-card-settings', function () {
     $(this).siblings('.settings-container').toggleClass('show');
@@ -181,7 +182,7 @@ $("#imageLoader").on('change', function () {
         reader.readAsDataURL(file);
     }
 })
-$(document).on('hidden.bs.modal', '#cardCreatorModal' ,function () {
+$(document).on('hidden.bs.modal', '#productFeatureModal' ,function () {
     $('html, body').animate({
         scrollTop: $("#cardsWrapper>.crowdfund-card:last").offset().top
     }, 1000);
