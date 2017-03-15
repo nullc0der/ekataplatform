@@ -229,7 +229,7 @@
         },
         // Set the default Image
         set_default_image: function (path) {
-            this._create_image_with_datasrc(path, false, false, true);
+            this._create_image_with_datasrc(path, false, false, false);
             var m = path.match(/.*\/(.+?)[\?#]/);
             if (m && m.length > 1) {
                 this._filename = m[1];
