@@ -703,11 +703,12 @@ def edit_signup(request, id):
                     add_user_to_group(community_signup.user)
             community_signup.save()
             referral_code = rform.cleaned_data.get('referral_code')
-            rcode_obj, created = ReferralCode.objects.get_or_create(
-                user=community_signup.user
-            )
-            rcode_obj.code = referral_code
-            rcode_obj.save()
+            if referral_code:
+                rcode_obj, created = ReferralCode.objects.get_or_create(
+                    user=community_signup.user
+                )
+                rcode_obj.code = referral_code
+                rcode_obj.save()
             return HttpResponse(community_signup.id)
         else:
             return render(
