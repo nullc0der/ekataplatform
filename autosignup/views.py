@@ -701,6 +701,7 @@ def edit_signup(request, id):
                     template_path = get_selected_template_path()
                     task_send_approval_mail.delay(community_signup, template_path)
                     add_user_to_group(community_signup.user)
+                    community_signup.approval_mail_sent = True
             community_signup.save()
             referral_code = rform.cleaned_data.get('referral_code')
             if referral_code:
