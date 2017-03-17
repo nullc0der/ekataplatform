@@ -16,15 +16,17 @@ class CrowdFund(models.Model):
     )
     default_note = models.CharField(
         default='', max_length=200, blank=True,
-        help_text=_('set a default note for the payment form')
+        help_text=_('Set a default note for the payment form'),
+        verbose_name='Default Note'
     )
     thankyou_message = models.TextField(
         default=_('Thank You'), blank=True,
-        help_text=_('Customize the payment form thank you message')
+        help_text=_('Customize the payment form thank you message'),
+        verbose_name='Thank You Message'
     )
     introduction = models.TextField(
         default='', blank=True,
-        help_text=_('Write a introduction')
+        help_text=_('Write a crowdfund introduction')
     )
     end_date = models.DateField(null=True, blank=True)
     active = models.BooleanField(default=False)
