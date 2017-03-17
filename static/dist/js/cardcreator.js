@@ -11,9 +11,16 @@ var col_html = `
 var tools_overlay = `
 <div class="card-tools-overlay">
     <div class="text-center">
-        <button class="btn btn-rounded card-edit-text"><i class="fa fa-font"></i>Text</button>
+        <button class="btn btn-rounded card-edit-text"><i style="color: #4A90E2;" class="fa fa-font"></i>Text</button>
         <button class="btn btn-rounded card-edit-image"><i class="fa fa-file-image-o"></i> Image</button>
+        <button class="btn btn-rounded card-edit-video"><i style="color: #9013FE;" class="fa fa-video-camera"></i> Video</button>
     </div>
+</div>
+`
+var video_overlay = `
+<div class="widget-box" style="text-align: center; margin-top: 8%">
+    <i class="fa fa-play-circle play-video" style="font-size: 80px; color: #FFFFFF; cursor: pointer"></i>
+    <p class="play-video" style="color: #fff; font-weight: 600; font-size: 18px; cursor: pointer">Watch video</p>
 </div>
 `
 var card_div_settings = `
@@ -50,6 +57,7 @@ var edit_buttons = `
     <div class="settings-dropdown">
         <button class="btn btn-rounded-f btn-primary crowdfund-card-settings"><i class="fa fa-cog"></i></button>
         <div class="settings-container">
+            <button class="btn btn-rounded-f btn-default crowdfund-card-header"><i class="fa fa-star"></i></button>
             <button class="btn btn-rounded-f btn-danger crowdfund-card-remove"><i class="fa fa-trash"></i></button>
             <button class="btn btn-rounded-f btn-warning crowdfund-card-edit"><i class="fa fa-edit"></i></button>
             <button class="btn btn-rounded-f btn-success crowdfund-card-done"><i class="fa fa-check"></i></button>
@@ -59,17 +67,29 @@ var edit_buttons = `
 var card_div = $('.crowdfund-card-preview>.preview>.crowdfund-card');
 var cardDivSelector = '.crowdfund-card-preview>.preview>.crowdfund-card ';
 var last_card_col;
-function uploadCardHTML() {
+function doFinalEdit(html, header_card) {
     $('#finalEdit').empty();
-    $('#finalEdit').append($('#cardsWrapper').html());
+    $('#finalEdit').append(html);
+    if (!header_card) {
+        $("#finalEdit .header-card").remove();
+    }
     $("#finalEdit .crowdfund-card>.settings-dropdown").remove();
     $("#finalEdit .card-tools-overlay").remove();
     $("#finalEdit .card-col").removeAttr('contenteditable');
-    console.log($('#finalEdit').html());
+    return $("#finalEdit").html();
+}
+function uploadCardHTML() {
+    var header = $('<div>').append($('.header-card').clone()).html();
+    var header_html = doFinalEdit(header, header_card=true);
+    var cards_html = doFinalEdit($('#cardsWrapper').html(), header_card=false);
     $.ajax({
         url: '/en/crowdfunding/admin/update_cards_html/',
         type: 'POST',
-        data: {'html': $('#finalEdit').html(), 'admin_html': $('#cardsWrapper').html()},
+        data: {
+            'html': cards_html,
+            'header_html': header_html,
+            'admin_html': $('#cardsWrapper').html()
+        },
         success: function () {
             $('.top-right').notify({
                 message: {text: 'Cards synced with server'},
@@ -157,6 +177,16 @@ $(document).on('click', '.crowdfund-card-edit', function () {
     var crowdfund_card = $(this).closest('.crowdfund-card');
     crowdfund_card.find('.card-col').append(tools_overlay);
 });
+$(document).on('click', '.crowdfund-card-header', function () {
+    var crowdfund_card = $(this).closest('.crowdfund-card');
+    $('.crowdfund-card').removeClass('header-card');
+    $('.crowdfund-card-header').removeClass('btn-primary');
+    $('.crowdfund-card-header').addClass('btn-default');
+    crowdfund_card.addClass('header-card');
+    $(this).removeClass('btn-default');
+    $(this).addClass('btn-primary');
+    uploadCardHTML();
+});
 $(document).on('click', '.card-edit-text', function () {
     var card_col = $(this).closest('.card-col');
     card_col.text('Type here');
@@ -166,7 +196,11 @@ $(document).on('click', '.card-edit-text', function () {
 $(document).on('click', '.card-edit-image', function () {
     last_card_col = $(this).closest('.card-col');
     $("#imageLoader").click();
-})
+});
+$(document).on('click', '.card-edit-video', function () {
+    last_card_col = $(this).closest('.card-col');
+    $("#headerVideoModal").modal('show');
+});
 $("#imageLoader").on('change', function () {
     last_card_col.find('.card-tools-overlay').remove();
     if(this.files && this.files.length){
@@ -189,4 +223,46 @@ $(document).on('hidden.bs.modal', '#productFeatureModal' ,function () {
 });
 $(document).on('sortupdate', '#cardsWrapper', function( event, ui ) {
     uploadCardHTML();
+});
+$(document).on('click', '#addheadervideobtn', function () {
+    $('#headerVideoProgress').show();
+    var form = $("#headerVideoForm");
+    var fd = new FormData(form[0]);
+    $.ajax({
+        url: form.attr('action'),
+        type: 'POST',
+        data: fd,
+        processData:false,
+        contentType:false,
+        cache:false,
+        xhr: function() {
+            var xhr = $.ajaxSettings.xhr();
+            if (xhr.upload) {
+                xhr.upload.addEventListener('progress', function(evt) {
+                    var percent = (evt.loaded / evt.total) * 100;
+                    $('#upload_bar').width(percent + "%");
+                }, false);
+            }
+        return xhr;
+        },
+        success: function (data) {
+            var res = JSON.parse(data)
+            $("#headerVideoModal").modal('hide');
+            $('.top-right').notify({
+                message: { text: 'Video upload done' },
+                type: 'success'
+            }).show();
+            $('#headerVideoProgress').hide();
+            $('#upload_bar').width("0");
+            last_card_col.find('.card-tools-overlay').remove();
+            last_card_col.css('background', 'linear-gradient(rgba(74, 144, 226, 0.85),rgba(74, 144, 226, 0.85)),url(' + res.cover + ')');
+            last_card_col.append(video_overlay);
+            last_card_col.find('.play-video').attr('data-video-url', res.video);
+            last_card_col.find('.play-video').attr('data-cover-url', res.cover);
+        },
+        error: function () {
+            $("#headerVideoModal .modal-body").html(data.responseText);
+            $('#headerVideoProgress').hide();
+        }
+    });
 });

@@ -8,10 +8,6 @@
         label {
             display: block;
         }
-        #headerVideoModal .modal-content {
-            background: transparent;
-            box-shadow: none;
-        }
         .popovercontent {
             display: none;
         }
@@ -30,22 +26,21 @@
     </section>
 {% endblock content_header_new %}
 {% block content %}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-solid" style="min-height: 300px;background:linear-gradient(rgba(74, 144, 226, 0.85), rgba(74, 144, 226, 0.85)),url({% static "dist/img/photo1.png" %})">
-                <div class="box-body">
-                    <div class="widget-box" style="text-align: center; margin-top: 8%">
-                        <i class="fa fa-play-circle" style="font-size: 80px; color: #FFFFFF; cursor: pointer" data-toggle="modal" data-target="#headerVideoModal"></i>
-                        <p style="color: #fff; font-weight: 600; font-size: 18px; cursor: pointer" data-toggle="modal" data-target="#headerVideoModal">{% trans "Watch video" %}</p>
-                        {% if crowdfund.active and not end_date_passed %}
-                        <button class="fund-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "FUND" %}</button>
-                        <button class="fund-btn" id="sharebtn">{% trans "SHARE" %}</button>
-                        {% endif %}
-                    </div>
-                </div>
+{% if crowdfund.header_html %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="header-wrapper">
+            {{ crowdfund.header_html|safe }}
+            <div class="header-overlay">
+                {% if crowdfund.active and not end_date_passed %}
+                <button class="fund-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "FUND" %}</button>
+                <button class="fund-btn" id="sharebtn">{% trans "SHARE" %}</button>
+                {% endif %}
             </div>
         </div>
     </div>
+</div>
+{% endif %}
     <div class="row">
         <div class="col-md-4 no-right-padding">
             <div class="box box-solid" style="min-height: 300px">
@@ -176,17 +171,13 @@
       </div>
     </div>
     {% endif %}
-    <div class="modal fade" id="headerVideoModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-              {% if header_video %}
-                <video src="{{ header_video.video.url }}" controls id="headerVideo">
+              <video controls id="video">
 
-                </video>
-              {% else %}
-                <p>{% trans "Sorry, No video uploaded" %}</p>
-              {% endif %}
+              </video>
           </div>
         </div>
       </div>
@@ -208,16 +199,6 @@
             $("#day").html(event.strftime('%D') + '<span>D</span>');
             $("#hour").html(event.strftime('%H') + '<span>H</span>');
             $("#minute").html(event.strftime('%M') + '<span>M</span>');
-        });
-        {% endif %}
-        {% if header_video %}
-        var headerVideo = document.getElementById('headerVideo');
-        headerVideo.width = 700;
-        $("#headerVideoModal").on('shown.bs.modal', function () {
-            headerVideo.play();
-        });
-        $("#headerVideoModal").on('hide.bs.modal', function () {
-            headerVideo.pause();
         });
         {% endif %}
         $("#payment-errors").hide();
@@ -320,6 +301,20 @@
                 scrollTop: $(id).offset().top
             }, 1000);
         });
+        var video = document.getElementById('video');
+    	video.width = 700;
+    	$(document).on('click', '.play-video', function () {
+    		var vidurl = $(this).data('video-url');
+    		var posterurl = $(this).data('cover-url');
+            if (vidurl !== '/' + video.src.split('/').slice(3).join('/')) {
+                video.src = vidurl;
+                video.poster = posterurl;
+            }
+    		$("#videoModal").modal('show');
+    	});
+    	$("#videoModal").on('hidden.bs.modal', function () {
+    		video.pause();
+    	});
     </script>
     {% endcompress %}
 {% endblock %}

@@ -11,7 +11,7 @@ from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
 from landing.models import OgTagLink
 from landing.forms import GlobalOgTagForm
 from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm,\
-    ProductFeatureForm, HeaderVideoForm
+    ProductFeatureForm, CardsVideoForm
 from stripepayment.utils import StripePayment
 from stripepayment.models import Payment
 
@@ -22,7 +22,6 @@ def index(request):
     percent_raised = 0
     default_amount = 20
     end_date_passed = False
-    header_video = None
     ogtag = None
     crowdfund_ogtag = OgTagLink.objects.filter(
         page='crowdfunding').order_by('-id')
@@ -31,8 +30,6 @@ def index(request):
     try:
         crowdfund = CrowdFund.objects.latest()
         damount = crowdfund.predefinedamount_set.filter(default=True)
-        if crowdfund.headervideo_set.all():
-            header_video = crowdfund.headervideo_set.latest()
         if len(damount):
             default_amount = damount[0].amount
         if crowdfund.raised:
@@ -46,7 +43,6 @@ def index(request):
         'percent_raised': percent_raised,
         'default_amount': default_amount,
         'end_date_passed': end_date_passed,
-        'header_video': header_video,
         'ogtag': ogtag
     }
     if request.user.is_authenticated():
@@ -112,7 +108,7 @@ def crowdfund_admin(request):
     form = AdminForm()
     pform = PredefinedAmountForm()
     fform = ProductFeatureForm()
-    vform = HeaderVideoForm()
+    vform = CardsVideoForm()
     percent_raised = 0
     try:
         crowdfund = CrowdFund.objects.latest()
@@ -250,14 +246,18 @@ def delete_product_feature(request):
 
 @user_passes_test(lambda u: u.is_staff)
 @require_POST
-def upload_header_video(request):
+def upload_video(request):
     crowdfund = CrowdFund.objects.latest()
-    form = HeaderVideoForm(request.POST, request.FILES)
+    form = CardsVideoForm(request.POST, request.FILES)
     if form.is_valid():
-        header_video = form.save(commit=False)
-        header_video.crowdfund = crowdfund
-        header_video.save()
-        return HttpResponse(status=200)
+        cards_video = form.save(commit=False)
+        cards_video.crowdfund = crowdfund
+        cards_video.save()
+        res = {
+            'cover': cards_video.cover.url,
+            'video': cards_video.video.url
+        }
+        return HttpResponse(json.dumps(res))
     else:
         return render(
             request,
@@ -276,6 +276,7 @@ def update_cards_html(request):
         crowdfund = CrowdFund.objects.latest()
         crowdfund.cards_html = request.POST.get('html')
         crowdfund.admin_cards_html = request.POST.get('admin_html')
+        crowdfund.header_html = request.POST.get('header_html')
         crowdfund.save()
         return HttpResponse(status=200)
     except:

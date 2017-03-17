@@ -30,6 +30,7 @@ class CrowdFund(models.Model):
     active = models.BooleanField(default=False)
     cards_html = models.TextField(default='', blank=True)
     admin_cards_html = models.TextField(default='', blank=True)
+    header_html = models.TextField(default='', blank=True)
 
     class Meta:
         get_latest_by = 'id'
@@ -54,9 +55,10 @@ class ProductFeature(models.Model):
     linked_card = models.CharField(max_length=100, default='')
 
 
-class HeaderVideo(models.Model):
+class CardsVideo(models.Model):
     crowdfund = models.ForeignKey(CrowdFund)
-    video = models.FileField(upload_to='crowdfund_header_videos')
+    cover = models.ImageField(upload_to='crowdfund_videos')
+    video = models.FileField(upload_to='crowdfund_videos')
 
     class Meta:
         get_latest_by = 'id'

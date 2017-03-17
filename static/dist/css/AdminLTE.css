@@ -6569,6 +6569,12 @@ table.text-center th {
     border-radius: 3px;
 }
 
+.crowdfund-card.header-card .card-row,
+.crowdfund-card.header-card .card-col {
+    padding: 0;
+    border-radius: 3px;
+}
+
 .card-tools-overlay {
     width: 100%;
     height: 100%;
@@ -6582,7 +6588,7 @@ table.text-center th {
 
 .settings-dropdown {
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: -1%;
 }
 
@@ -6646,4 +6652,19 @@ table.text-center th {
     .no-right-padding {
         padding-right: 15px;
     }
+}
+
+#videoModal .modal-content {
+    background: transparent;
+    box-shadow: none;
+}
+
+.header-wrapper {
+    position: relative;
+}
+
+.header-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 35%;
 }

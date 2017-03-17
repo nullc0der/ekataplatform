@@ -51,9 +51,8 @@
         <div class="col-md-12">
             <div class="pull-right">
                 {% if crowdfund %}
-                    <button class="btn btn-rounded" data-toggle="modal" data-target="#paymentAmountModal">{% trans "Add payment amount" %}</button>
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#paymentAmountModal">{% trans "Add Payment Amount" %}</button>
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#updateCrowdfundModal">{% trans "Update Crowdfund" %}</button>
-                    <button class="btn btn-rounded" data-toggle="modal" data-target="#headerVideoModal">{% trans "Upload Header Video" %}</button>
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#cardCreatorModal">{% trans "Add New Card" %}</button>
                     <button class="btn btn-rounded" data-toggle="modal" data-target="#metaEditorModal">{% trans "Add Meta Tags" %}</button>
                 {% else %}
@@ -254,7 +253,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">{% trans "Upload header video" %}</h4>
+        <h4 class="modal-title" id="">{% trans "Upload Video" %}</h4>
       </div>
       <div class="modal-body">
         {% if crowdfund %}
@@ -341,6 +340,17 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+          <video controls id="video">
+
+          </video>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block extrascripts %}
     <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
@@ -356,6 +366,7 @@
             });
             {% endif %}
             $("#id_video").fileinput({showUpload: false});
+            $("#id_cover").fileinput({showUpload: false});
             $("#headerVideoProgress").hide();
             $("#metaTagProgress").hide();
             $(".datepicker").datetimepicker({
@@ -471,40 +482,6 @@
                 size: '3px',
                 alwaysVisible: false
             });
-            $(document).on('click', '#addheadervideobtn', function () {
-                $('#headerVideoProgress').show();
-                var form = $("#headerVideoForm");
-                var fd = new FormData(form[0]);
-                $.ajax({
-                    url: form.attr('action'),
-                    type: 'POST',
-                    data: fd,
-                    processData:false,
-                    contentType:false,
-                    cache:false,
-                    xhr: function() {
-                        var xhr = $.ajaxSettings.xhr();
-                        if (xhr.upload) {
-                            xhr.upload.addEventListener('progress', function(evt) {
-                                var percent = (evt.loaded / evt.total) * 100;
-                                $('#upload_bar').width(percent + "%");
-                            }, false);
-                        }
-                    return xhr;
-                    },
-                    success: function () {
-                        $("#headerVideoModal").modal('hide');
-                        $('.top-right').notify({
-                            message: { text: 'Video upload done' },
-                            type: 'success'
-                        }).show();
-                    },
-                    error: function () {
-                        $("#headerVideoModal .modal-body").html(data.responseText);
-                        $('#headerVideoProgress').hide();
-                    }
-                });
-            });
             $("#metaEditorModal").on('show.bs.modal', function () {
                 $("#metaEditorModal .modal-body").load('{% url 'crowdfunding:add_meta_tags' %}', function () {
                     $('#id_image').fileinput({
@@ -553,6 +530,20 @@
                     scrollTop: $(id).offset().top
                 }, 1000);
             });
+            var video = document.getElementById('video');
+        	video.width = 700;
+        	$(document).on('click', '.play-video', function () {
+        		var vidurl = $(this).data('video-url');
+        		var posterurl = $(this).data('cover-url');
+        		if (vidurl !== '/' + video.src.split('/').slice(3).join('/')) {
+        			video.src = vidurl;
+        			video.poster = posterurl;
+        		}
+        		$("#videoModal").modal('show');
+        	});
+        	$("#videoModal").on('hidden.bs.modal', function () {
+        		video.pause();
+        	});
         </script>
     {% endcompress %}
 {% endblock %}
