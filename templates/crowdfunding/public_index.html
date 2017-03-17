@@ -30,9 +30,9 @@
         label {
             display: block;
         }
-		.popovercontent {
-            display: none;
-        }
+		.header-overlay {
+			left: 37%;
+		}
     </style>
 {% endblock %}
 {% block extrameta %}
@@ -61,6 +61,12 @@
 	            {{ crowdfund.header_html|safe }}
 	            <div class="header-overlay">
 	                {% if crowdfund.active and not end_date_passed %}
+					<div class="share-div">
+						<a class="btn btn-facebook btn-social-share" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-facebook"></i></a>
+				        <a class="btn btn-google btn-social-share" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-google-plus"></i></a>
+				        <a class="btn btn-twitter btn-social-share" href="https://twitter.com/share?url={{ request.build_absolute_uri }}"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;" target="_blank"><i class="fa fa-twitter"></i></a>
+						<button class="btn btn-linkedin btn-social-share btn-copy"><i class="fa fa-clipboard"></i></button>
+					</div>
 	                <button class="fund-btn" data-toggle="modal" data-target="#paymentFormModal">{% trans "FUND" %}</button>
 	                <button class="fund-btn" id="sharebtn">{% trans "SHARE" %}</button>
 	                {% endif %}
@@ -218,11 +224,6 @@
         </div>
       </div>
     </div>
-	<div class="popovercontent">
-        <a class="btn btn-facebook btn-social-share" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-facebook"></i></a>
-        <a class="btn btn-google btn-social-share" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-google-plus"></i></a>
-        <a class="btn btn-twitter btn-social-share" href="https://twitter.com/share?url={{ request.build_absolute_uri }}"  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;" target="_blank"><i class="fa fa-twitter"></i></a>
-    </div>
 </section>
 {% endblock %}
 {% block extrascripts %}
@@ -240,6 +241,7 @@
         $("#minute").html(event.strftime('%M') + '<span>M</span>');
     });
     {% endif %}
+	$(".share-div").hide();
     $("#payment-errors").hide();
     var stripe = Stripe('{{ STRIPE_PUBLISHABLE_KEY }}');
     var elements = stripe.elements();
@@ -324,14 +326,8 @@
         size: '3px',
         alwaysVisible: false
     });
-	$("#sharebtn").popover({
-		html : true,
-		content: function() {
-		  return $(".popovercontent").html();
-		},
-		placement: "auto",
-		container: 'body',
-		trigger: 'focus'
+	$("#sharebtn").click(function () {
+		$(".share-div").fadeToggle();
 	});
 	$(".feature>a").click(function (e) {
 		e.preventDefault();
@@ -353,6 +349,33 @@
 	});
 	$("#videoModal").on('hidden.bs.modal', function () {
 		video.pause();
+	});
+	var clipboard = new Clipboard('.btn-copy', {
+    	text: function() {
+        	return "{{ request.build_absolute_uri }}";
+    	}
+	});
+	$('.btn-copy').tooltip({
+  		trigger: 'click',
+  		placement: 'bottom'
+	});
+	function setTooltip(message) {
+  		$('.btn-copy').tooltip('hide')
+    		.attr('data-original-title', message)
+    		.tooltip('show');
+		}
+	function hideTooltip() {
+  		setTimeout(function() {
+    		$('.btn-copy').tooltip('hide');
+  		}, 1000);
+	}
+	clipboard.on('success', function(e) {
+  		setTooltip('Copied!');
+  		hideTooltip();
+	});
+	clipboard.on('error', function(e) {
+  		setTooltip('Failed!');
+  		hideTooltip();
 	});
 </script>
 {% endcompress %}
