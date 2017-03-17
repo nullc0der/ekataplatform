@@ -6555,7 +6555,7 @@ table.text-center th {
 .card-col {
     float: left;
     height: 100%;
-    width: 98%;
+    width: 100%;
     margin-right: 2px;
     padding: 15px;
     color: #ccc;
@@ -6590,6 +6590,7 @@ table.text-center th {
     position: absolute;
     top: 40%;
     left: -1%;
+    z-index: 9999;
 }
 
 .settings-dropdown .btn-rounded-f {
