@@ -155,24 +155,25 @@ img
     {
         background: #fff;
         border: none;
-        box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
         margin: 0!important;
     }
 .navbar-default .navbar-brand
     {
         color: #28a7e9;
         font-size: 30px;
-        font-weight: bold;
-        height: 70px;
-        line-height: 35px;
+        font-weight: 600;
+        height: 60px;
+        line-height: 30px;
     }
 .navbar-default .nav li a
     {
-        color: #666;
+        font-family: "Source Sans Pro";
         font-size: 13px;
-        font-weight: bold;
-        height: 70px;
-        line-height: 40px;
+        font-weight: 600;
+        height: 60px;
+        line-height: 30px;
+        color: #9B9B9B;
     }
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus,
@@ -218,7 +219,7 @@ img
     background: url('../img/home-bg.jpg') no-repeat;
     background-size: cover;
     color: #fff;
-    margin-top: 70px;
+    margin-top: 60px;
     text-align: center;
     width: 100%;
     }
@@ -1004,8 +1005,8 @@ footer
 }
 
 .user-image {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 
