@@ -169,6 +169,12 @@
                 Longitude: {{ address.longitude }}
             </p>
         </blockquote>
+        {% if signup.distance_db_vs_geoip %}
+        <p>
+            <span class="fa fa-info-circle text-red"></span>
+            {% trans "Distance from database address: " %} {{ signup.distance_db_vs_geoip }} {% trans " KM" %}
+        </p>
+        {% endif %}
         <hr>
         {% endif %}
     {% endfor %}

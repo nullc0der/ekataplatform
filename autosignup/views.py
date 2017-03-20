@@ -82,6 +82,11 @@ def check_step(request):
                         'autosignup:additional_step',
                         args=[community_signup.id, ]
                     ))
+            if not community_signup.additional_step_done:
+                return HttpResponse(reverse(
+                        'autosignup:additional_step',
+                        args=[community_signup.id, ]
+                    ))
             if community_signup.additional_step_done:
                 return HttpResponse(reverse(
                         'autosignup:thankyou'
@@ -383,63 +388,21 @@ def verify_phone_code(request, id):
                     globalphone.signup.add(community_signup)
                 phoneverfication.delete()
                 twilio_data = collect_twilio_data(community_signup)
-                if twilio_data:
-                    location_finder_util(twilio_data)
-                    community_signup.step_3_done = True
-                    for address in community_signup.useraddresses.all():
-                        if address.address_type == 'db':
-                            dbaddress = address
-                        if address.address_type == 'twilio':
-                            twaddress = address
-                    globalphones = GlobalPhone.objects.filter(phone=community_signup.userphone)
-                    for globalphone in globalphones:
-                        if len(globalphone.signup.all()) >= 2:
-                            phone_used_before = True
-                    if phone_used_before:
-                        community_signup.failed_auto_signup = True
-                        community_signup.status = 'pending'
-                        community_signup.auto_signup_fail_reason = 'Phone number submitted was used for another account'
-                        community_signup.sent_to_community_staff = True
-                        community_signup.save()
-                    else:
-                        addresscompareutil = AddressCompareUtil(dbaddress, twaddress)
-                        distance = addresscompareutil.calculate_distance()
-                        if distance:
-                            community_signup.distance_db_vs_twilio = distance[1] * 0.001
-                            accountprovider, created = AccountProvider.objects.get_or_create(name='grantcoin')
-                            if int(accountprovider.allowed_distance) > distance[1] * 0.001:
-                                community_signup.status = 'approved'
-                                community_signup.sent_to_community_staff = True
-                                community_signup.verified_date = now()
-                                community_signup.save()
-                                referral_code = unique_referral_code_generator()
-                                rcode_obj, created = ReferralCode.objects.get_or_create(
-                                    user=community_signup.user
-                                )
-                                rcode_obj.code = referral_code
-                                rcode_obj.save()
-                                template_path = get_selected_template_path()
-                                task_send_approval_mail.delay(community_signup, template_path)
-                                add_user_to_group(community_signup.user)
-                            else:
-                                community_signup.failed_auto_signup = True
-                                community_signup.status = 'pending'
-                                community_signup.auto_signup_fail_reason = 'Distance not within allowed range'
-                                community_signup.sent_to_community_staff = True
-                                community_signup.save()
-                        else:
-                            community_signup.failed_auto_signup = True
-                            community_signup.status = 'pending'
-                            community_signup.auto_signup_fail_reason = 'No distance data'
-                            community_signup.sent_to_community_staff = True
-                            community_signup.save()
+                geoip_data = community_signup.useraddresses.filter(
+                    address_type='geoip')
+                if geoip_data:
+                    geoip_data = geoip_data[0]
                 else:
-                    community_signup.step_3_done = True
-                    community_signup.failed_auto_signup = True
-                    community_signup.status = 'pending'
-                    community_signup.auto_signup_fail_reason = 'No data from twilio'
-                    community_signup.sent_to_community_staff = True
-                    community_signup.save()
+                    geoip_data = None
+                if twilio_data:
+                    auto_approve_using_twilio(twilio_data, community_signup)
+                elif geoip_data:
+                    auto_approve_using_geoip(geoip_data, community_signup)
+                else:
+                    send_to_staff(
+                        community_signup,
+                        'No data from twilio and geoip'
+                    )
                 data = {
                     'action': 'next',
                     'url': reverse('autosignup:additional_step', args=[community_signup.id, ])
@@ -1089,3 +1052,108 @@ def refetch_twilio_data(request):
     community_signup = CommunitySignup.objects.get(id=request.POST.get('id'))
     collect_twilio_data(community_signup)
     return HttpResponse(status=200)
+
+
+def send_to_staff(community_signup, reason):
+    community_signup.failed_auto_signup = True
+    community_signup.status = 'pending'
+    community_signup.auto_signup_fail_reason = reason
+    community_signup.sent_to_community_staff = True
+    community_signup.save()
+
+
+def approve_user(community_signup):
+    community_signup.status = 'approved'
+    community_signup.sent_to_community_staff = True
+    community_signup.verified_date = now()
+    community_signup.save()
+    referral_code = unique_referral_code_generator()
+    rcode_obj, created = ReferralCode.objects.get_or_create(
+        user=community_signup.user
+    )
+    rcode_obj.code = referral_code
+    rcode_obj.save()
+    template_path = get_selected_template_path()
+    task_send_approval_mail.delay(community_signup, template_path)
+    add_user_to_group(community_signup.user)
+
+
+def auto_approve_using_twilio(twilio_data, community_signup):
+    phone_used_before = False
+    location_finder_util(twilio_data)
+    community_signup.step_3_done = True
+    for address in community_signup.useraddresses.all():
+        if address.address_type == 'db':
+            dbaddress = address
+        if address.address_type == 'twilio':
+            twaddress = address
+    globalphones = GlobalPhone.objects.filter(phone=community_signup.userphone)
+    for globalphone in globalphones:
+        if len(globalphone.signup.all()) >= 2:
+            phone_used_before = True
+    if phone_used_before:
+        send_to_staff(
+            community_signup,
+            'Phone number submitted was used for another account')
+    else:
+        addresscompareutil = AddressCompareUtil(dbaddress, twaddress)
+        distance = addresscompareutil.calculate_distance()
+        if distance:
+            community_signup.distance_db_vs_twilio = distance[1] * 0.001
+            accountprovider, created = AccountProvider.objects.get_or_create(
+                name='grantcoin')
+            if int(accountprovider.allowed_distance) > distance[1] * 0.001:
+                approve_user(community_signup)
+            else:
+                send_to_staff(
+                    community_signup,
+                    'Distance not within allowed range')
+        else:
+            send_to_staff(
+                community_signup,
+                'No distance data'
+            )
+
+
+def auto_approve_using_geoip(geoip_data, community_signup):
+    phone_used_before = False
+    community_signup.step_3_done = True
+    dbaddress = community_signup.useraddresses.filter(address_type='db')
+    gipaddress = community_signup.useraddresses.filter(
+        address_type='geoip')
+    if dbaddress:
+        dbaddress = dbaddress[0]
+    if gipaddress:
+        gipaddress = gipaddress[0]
+    globalphones = GlobalPhone.objects.filter(phone=community_signup.userphone)
+    for globalphone in globalphones:
+        if len(globalphone.signup.all()) >= 2:
+            phone_used_before = True
+    if phone_used_before:
+        send_to_staff(
+            community_signup,
+            'Phone number submitted was used for another account')
+    else:
+        if gipaddress.latitude and gipaddress.longitude:
+            addresscompareutil = AddressCompareUtil(dbaddress, gipaddress)
+            distance = addresscompareutil.calculate_distance()
+            if distance:
+                community_signup.distance_db_vs_geoip = distance[1] * 0.001
+                accountprovider, created = AccountProvider.objects.get_or_create(
+                    name='grantcoin')
+                if int(accountprovider.allowed_distance) > distance[1] * 0.001:
+                    approve_user(community_signup)
+                else:
+                    send_to_staff(
+                        community_signup,
+                        'Distance not within allowed range')
+            else:
+                send_to_staff(
+                    community_signup,
+                    'No distance data'
+                )
+        else:
+            send_to_staff(
+                community_signup,
+                'Incomplete GeoIP data'
+            )
