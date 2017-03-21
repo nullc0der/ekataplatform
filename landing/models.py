@@ -22,6 +22,9 @@ class GlobalOgTag(models.Model):
     description = models.CharField(max_length=255, default='', blank=False)
     app_id = models.CharField(max_length=40, default='', blank=True)
     image = models.ImageField(null=True, blank=True)
+    keywords = models.CharField(
+        max_length=200, default='', blank=True,
+        help_text='Enter keywords separated by a ","')
 
     def __unicode__(self):
         return self.name

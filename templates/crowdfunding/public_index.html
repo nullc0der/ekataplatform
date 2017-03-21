@@ -47,6 +47,7 @@
 				<meta property="og:image" content="https://ekata.social/static/dist/img/ekata-logo-bk-200.png" />
 			{% endif %}
 			<meta property="fb:app_id" content="{{ ogtag.app_id }}">
+			<meta name="keywords" content="{{ ogtag.keywords }}">
 		{% for extrameta in ogtag.extrametatag_set.all %}
 			<meta property="{{ extrameta.meta_tag }}" content="{{ extrameta.description }}">
 		{% endfor %}
