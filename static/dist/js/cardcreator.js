@@ -256,6 +256,8 @@ $(document).on('click', '#addheadervideobtn', function () {
             $('#upload_bar').width("0");
             last_card_col.find('.card-tools-overlay').remove();
             last_card_col.css('background', 'linear-gradient(rgba(74, 144, 226, 0.85),rgba(74, 144, 226, 0.85)),url(' + res.cover + ')');
+            last_card_col.css('background-repeat', 'no-repeat');
+            last_card_col.css('background-size', 'cover');
             last_card_col.append(video_overlay);
             last_card_col.find('.play-video').attr('data-video-url', res.video);
             last_card_col.find('.play-video').attr('data-cover-url', res.cover);
