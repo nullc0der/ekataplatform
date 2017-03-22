@@ -157,6 +157,7 @@ img
         border: none;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
         margin: 0!important;
+        z-index: 199;
     }
 .navbar-default .navbar-brand
     {
@@ -185,7 +186,7 @@ img
 .navbar-default .navbar-toggle
     {
         border: none;
-        padding-top: 20px;
+        padding-top: 15px;
     }
 .navbar-default .navbar-toggle .icon-bar
     {
@@ -194,6 +195,60 @@ img
     }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus { background-color: transparent }
+.ekata-nav {
+    margin-top: 60px !important;
+    min-height: 40px;
+    border: none;
+    background-color: #1ABC9C;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+    z-index: 99;
+}
+.ekata-nav .navbar-brand
+    {
+        color: #FFF;
+        font-size: 15px;
+        font-weight: normal;
+        height: 40px;
+        line-height: 20px;
+    }
+.ekata-nav .navbar-brand:hover {
+    color: #FFF;
+}
+.ekata-nav .nav li a
+    {
+        font-family: "Source Sans Pro";
+        font-size: 12px;
+        font-weight: normal;
+        height: 28px;
+        line-height: 28px;
+        margin: 8px 4px;
+        padding: 0 14px;
+        color: #FFF;
+        border-radius: 14px;
+        transition: all .2s ease-in-out;
+    }
+.ekata-nav .nav li a:hover,
+.ekata-nav .nav li a:focus
+    {
+        color: #FFF;
+        background-color: rgba(0,0,0,0.15);
+    }
+
+.ekata-nav .navbar-toggle
+    {
+        border: none;
+        padding-top: 5px;
+    }
+.ekata-nav .navbar-toggle .icon-bar
+    {
+        background: #FFF;
+        border-color: transparent;
+    }
+.ekata-nav .navbar-toggle:hover,
+.ekata-nav .navbar-toggle:focus { background-color: transparent }
+.navbar-collapse {
+    border-top: none;
+}
 /* end navigation */
 
 #invitation-content {
@@ -219,7 +274,7 @@ img
     background: url('../img/home-bg.jpg') no-repeat;
     background-size: cover;
     color: #fff;
-    margin-top: 60px;
+    margin-top: 100px;
     text-align: center;
     width: 100%;
     }
@@ -663,7 +718,7 @@ img
     background: #28a7e9;
     background-size: cover;
     color: #fff;
-    margin-top: 70px;
+    margin-top: 100px;
     text-align: center;
     width: 100%;
 }

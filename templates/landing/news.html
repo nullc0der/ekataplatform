@@ -11,6 +11,11 @@
         a:hover {
             text-decoration: none;
         }
+        {% if not request.user.is_authenticated %}
+		#newshome {
+			margin-top: 60px;
+		}
+		{% endif %}
     </style>
 {% endblock %}
 {% block extrameta %}

@@ -58,7 +58,7 @@
 	            </div>
 	            {% endifequal %}
 				<div class="navbar-header">
-					<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<button class="navbar-toggle" data-toggle="collapse" data-target="#mainnav">
 						<span class="icon icon-bar"></span>
 						<span class="icon icon-bar"></span>
 						<span class="icon icon-bar"></span>
@@ -67,75 +67,66 @@
 						<img alt="Brand" src="{% static "dist/img/ekata-logo-bk-200.png" %}?v=1" height="30" width="30">
 					</a>
 				</div>
-				<div class="collapse navbar-collapse">
+				<div class="collapse navbar-collapse" id="mainnav">
 					<ul class="nav navbar-nav navbar-right text-uppercase">
 						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}">{% trans "Home" %}</a></li>
 						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#feature">{% trans "Features" %}</a></li>
-						<!--<li><a href="#support">Support</a></li>-->
-						<!--<li><a href="#download">Download</a></li>-->
 						<li><a {% if request.path != '/' %}class="external"{% endif %} href="{% url 'landing:index' %}#contact">{% trans "Contact" %}</a></li>
 						<li><a class="external" href="{% url 'landing:hashtag' %}">{% trans "Hashtag" %}</a></li>
 						<li><a class="external" href="{% url 'landing:newses' %}">{% trans "News" %}</a></li>
 						<li><a class="external" href="{% url 'crowdfunding:index' %}">{% trans "Fund" %}</a></li>
-						{% if request.user.is_authenticated %}
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
-								{% if request.user.profile.avatar %}
-									<img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="user-image" alt="User Image">
-								{% else %}
-									<img src="{% static "dist/img/placeholder-user.png" %}" class="user-image" width="160" height="160">
-								{% endif %} {{ request.user.username }} <b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'dashboard:index' %}"><i class="fa fa-dashboard"></i> {% trans "Dashboard" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'myaccount:index' %}"><i class="fa fa-bank"></i> {% trans "My Account" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'profilesystem:index' %}"><i class="fa fa-cog"></i> {% trans "Profile" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								{% if request.user.profile.users_link_visible %}
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'publicusers:index' %}"><i class="fa fa-users"></i> {% trans "Users" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								{% endif %}
-								{% if request.user.profile.groups_link_visible %}
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'g:allgroups' %}"><i class="fa fa-cubes"></i> {% trans "Groups" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								{% endif %}
-								{% if request.user.profile.timeline_link_visible %}
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'usertimeline:index' %}"><i class="fa fa-clock-o"></i> {% trans "Timeline" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								{% endif %}
-								{% if request.user.profile.messaging_link_visible %}
-								<li>
-									<a class="external" style="height: 40px; line-height: 35px" href="{% url 'messaging:index' %}">
-										<i class="fa fa-comment"></i> {% trans "Messages" %}
-										{% if UNREAD_MESSAGE %}
-											<span class="badge badge-message" style="margin-left: 10%">{{ UNREAD_MESSAGE }}</span>
-										{% endif %}
-									</a>
-								</li>
-								<li class="divider" style="margin: 0;"></li>
-								{% endif %}
-								{% if request.user.profile.information_link_visible %}
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'information:index' %}"><i class="fa fa-info-circle"></i> {% trans "information" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								{% endif %}
-								{% if request.user.profile.hashtagcampaign_link_visible %}
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'hashtag:index' %}"><i class="fa fa-slack"></i> {% trans "Hashtag" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								{% endif %}
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'profilesystem:index' %}#customizelink"><i class="fa fa-plus-square-o"></i> {% trans "Customize link" %}</a></li>
-								<li class="divider" style="margin: 0;"></li>
-								<li><a class="external" style="height: 40px; line-height: 35px" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> {% trans "Sign-out" %}</a></li>
-							</ul>
-						</li>
-						{% else %}
+						{% if not request.user.is_authenticated %}
 						<li><a class="external" href="/accounts/login/">Login</a></li>
 						{% endif %}
 					</ul>
 				</div>
 			</div>
 		</nav>
+		{% if request.user.is_authenticated %}
+		<nav class="navbar navbar-default navbar-fixed-top ekata-nav" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button class="navbar-toggle" data-toggle="collapse" data-target="#ekatanav">
+						<span class="icon icon-bar"></span>
+						<span class="icon icon-bar"></span>
+						<span class="icon icon-bar"></span>
+					</button>
+					<a href="{% url 'dashboard:index' %}" class="navbar-brand text-uppercase">
+						{% trans "Ekata Social" %}
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="ekatanav">
+					<ul class="nav navbar-nav navbar-right text-uppercase">
+						<li><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
+						<li><a href="{% url 'myaccount:index' %}">{% trans "My Account" %}</a></li>
+						<li><a href="{% url 'profilesystem:index' %}">{% trans "Profile" %}</a></li>
+						{% if request.user.profile.users_link_visible %}
+						<li><a href="{% url 'publicusers:index' %}">{% trans "Users" %}</a></li>
+						{% endif %}
+						{% if request.user.profile.groups_link_visible %}
+						<li><a href="{% url 'g:allgroups' %}">{% trans "Groups" %}</a></li>
+						{% endif %}
+						{% if request.user.profile.timeline_link_visible %}
+						<li><a href="{% url 'usertimeline:index' %}">{% trans "Timeline" %}</a></li>
+						{% endif %}
+						{% if request.user.profile.messaging_link_visible %}
+						<li>
+							<a href="{% url 'messaging:index' %}">{% trans "Messages" %}</a>
+						</li>
+						{% endif %}
+						{% if request.user.profile.information_link_visible %}
+						<li><a href="{% url 'information:index' %}">{% trans "information" %}</a></li>
+						{% endif %}
+						{% if request.user.profile.hashtagcampaign_link_visible %}
+						<li><a href="{% url 'hashtag:index' %}">{% trans "Hashtag" %}</a></li>
+						{% endif %}
+						<li><a href="{% url 'profilesystem:index' %}#customizelink">{% trans "Customize link" %}</a></li>
+						<li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{% endif %}
 		<!-- end navigation -->
 		<div class="notifications top-right"></div>
 		{% block content %}

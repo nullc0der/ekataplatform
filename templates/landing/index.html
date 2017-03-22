@@ -8,6 +8,11 @@
 		#div_id_captcha {
 			margin-left: -30px;
 		}
+		{% if not request.user.is_authenticated %}
+		#home {
+			margin-top: 60px;
+		}
+		{% endif %}
 	</style>
     {% recaptcha_init %}
 {% endblock %}
