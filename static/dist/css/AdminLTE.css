@@ -543,6 +543,7 @@ a:focus {
   padding: 0;
   width: 189px;
   margin-left: 41px;
+  line-height: 20px;
 }
 .sidebar-menu > li {
   position: relative;
