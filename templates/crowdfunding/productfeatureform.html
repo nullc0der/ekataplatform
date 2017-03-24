@@ -1,0 +1,7 @@
+{% load i18n bootstrap_tags %}
+<form  id="productFeatureForm" action="{% url 'crowdfunding:add_product_feature' %}" style="margin-bottom: 50px">
+    {{ fform|as_bootstrap }}
+</form>
+<div class="boxcontent-submitbtn newbtn" id="addfeaturebtn" style="border-radius: 0">
+    <p>{% trans "Add" %}</p>
+</div>

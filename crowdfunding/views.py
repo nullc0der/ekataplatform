@@ -1,43 +1,74 @@
 import json
+from datetime import date, timedelta
 
 from django.http import HttpResponse
+from django.utils.crypto import get_random_string
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
-from crowdfunding.models import CrowdFund
-from crowdfunding.forms import PaymentForm, AdminForm
+from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
+from landing.models import OgTagLink
+from landing.forms import GlobalOgTagForm
+from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm,\
+    ProductFeatureForm, CardsVideoForm
 from stripepayment.utils import StripePayment
 from stripepayment.models import Payment
 
 # Create your views here.
 
 
-@login_required
 def index(request):
     percent_raised = 0
+    default_amount = 20
+    end_date_passed = False
+    ogtag = None
+    crowdfund_ogtag = OgTagLink.objects.filter(
+        page='crowdfunding').order_by('-id')
+    if crowdfund_ogtag:
+        ogtag = crowdfund_ogtag[0].globalogtag
     try:
         crowdfund = CrowdFund.objects.latest()
+        damount = crowdfund.predefinedamount_set.filter(default=True)
+        if len(damount):
+            default_amount = damount[0].amount
         if crowdfund.raised:
             percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
+        if date.today() + timedelta(days=1) >= crowdfund.end_date:
+            end_date_passed = True
     except ObjectDoesNotExist:
         crowdfund = None
+    context = {
+        'crowdfund': crowdfund,
+        'percent_raised': percent_raised,
+        'default_amount': default_amount,
+        'end_date_passed': end_date_passed,
+        'ogtag': ogtag
+    }
+    if request.user.is_authenticated():
+        return render(
+            request,
+            'crowdfunding/index.html',
+            context=context
+        )
     return render(
         request,
-        'crowdfunding/index.html',
-        {
-            'crowdfund': crowdfund,
-            'percent_raised': percent_raised
-        }
+        'crowdfunding/public_index.html',
+        context=context
     )
 
 
-@login_required
 @require_POST
 def accept_payment(request):
     form = PaymentForm(request.POST)
     if form.is_valid():
-        stripepayment = StripePayment(user=request.user)
+        if request.user.is_authenticated():
+            stripepayment = StripePayment(
+                user=request.user, fullname=request.user.get_full_name())
+        elif request.POST['fullname']:
+            stripepayment = StripePayment(fullname=request.POST['fullname'])
+        else:
+            stripepayment = StripePayment()
         payment_success = stripepayment.process_payment(
             token=request.POST['stripeToken'],
             payment_type='crowdfund',
@@ -51,14 +82,15 @@ def accept_payment(request):
                     crowdfund.raised += int(request.POST['amount'])
                 else:
                     crowdfund.raised = int(request.POST['amount'])
-                if crowdfund.raised >= crowdfund.goal:
-                    crowdfund.active = False
                 crowdfund.save()
             except ObjectDoesNotExist:
                 pass
             return render(
                 request,
-                'crowdfunding/thankyou.html'
+                'crowdfunding/thankyou.html',
+                {
+                    'crowdfund': crowdfund
+                }
             )
         else:
             return HttpResponse(
@@ -74,6 +106,9 @@ def accept_payment(request):
 @user_passes_test(lambda u: u.is_staff)
 def crowdfund_admin(request):
     form = AdminForm()
+    pform = PredefinedAmountForm()
+    fform = ProductFeatureForm()
+    vform = CardsVideoForm()
     percent_raised = 0
     try:
         crowdfund = CrowdFund.objects.latest()
@@ -88,6 +123,9 @@ def crowdfund_admin(request):
         'crowdfunding/admin.html',
         {
             'form': form,
+            'pform': pform,
+            'fform': fform,
+            'vform': vform,
             'crowdfund': crowdfund,
             'percent_raised': percent_raised,
             'payments': payments
@@ -139,5 +177,137 @@ def payment_details(request):
         'crowdfunding/payment_details.html',
         {
             'payment': payment
+        }
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def add_predefined_amount(request):
+    form = PredefinedAmountForm(request.POST)
+    if form.is_valid():
+        predefined_amount = form.save(commit=False)
+        crowdfund = CrowdFund.objects.latest()
+        predefined_amount.crowdfund = crowdfund
+        if predefined_amount.default:
+            for i in PredefinedAmount.objects.filter(default=True):
+                i.default = False
+                i.save()
+        predefined_amount.save()
+        return HttpResponse(status=200)
+    else:
+        return render(
+            request,
+            'crowdfunding/paymentamountform.html',
+            {
+                'pform': form
+            },
+            status=500
+        )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def add_product_feature(request):
+    form = ProductFeatureForm(request.POST)
+    if form.is_valid():
+        product_feature = form.save(commit=False)
+        crowdfund = CrowdFund.objects.latest()
+        product_feature.crowdfund = crowdfund
+        feature_name = form.cleaned_data.get('name').split()
+        product_feature.linked_card = '-'.join(feature_name)\
+            + '-' + get_random_string(allowed_chars='0123456789', length=4)
+        product_feature.save()
+        return render(
+            request,
+            'crowdfunding/product_features_admin.html',
+            {
+                'crowdfund': crowdfund
+            }
+        )
+    else:
+        return render(
+            request,
+            'crowdfunding/productfeatureform.html',
+            {
+                'fform': form
+            },
+            status=500
+        )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def delete_product_feature(request):
+    product_feature = ProductFeature.objects.get(id=request.POST.get('id'))
+    product_feature.delete()
+    return HttpResponse(status=200)
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def upload_video(request):
+    crowdfund = CrowdFund.objects.latest()
+    form = CardsVideoForm(request.POST, request.FILES)
+    if form.is_valid():
+        cards_video = form.save(commit=False)
+        cards_video.crowdfund = crowdfund
+        cards_video.save()
+        res = {
+            'cover': cards_video.cover.url,
+            'video': cards_video.video.url
+        }
+        return HttpResponse(json.dumps(res))
+    else:
+        return render(
+            request,
+            'crowdfunding/headervideoform.html',
+            {
+                'vform': form
+            },
+            status=500
+        )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def update_cards_html(request):
+    try:
+        crowdfund = CrowdFund.objects.latest()
+        crowdfund.cards_html = request.POST.get('html')
+        crowdfund.admin_cards_html = request.POST.get('admin_html')
+        crowdfund.header_html = request.POST.get('header_html')
+        crowdfund.save()
+        return HttpResponse(status=200)
+    except:
+        return HttpResponse(status=500)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def add_meta_tags(request):
+    ogtaglink, created = OgTagLink.objects.get_or_create(page='crowdfunding')
+    form = GlobalOgTagForm(instance=ogtaglink.globalogtag)
+    if request.method == 'POST':
+        form = GlobalOgTagForm(request.POST, request.FILES,
+                               instance=ogtaglink.globalogtag)
+        if form.is_valid():
+            global_ogtag = form.save()
+            ogtaglink.globalogtag = global_ogtag
+            ogtaglink.save()
+            return HttpResponse(status=200)
+        else:
+            return render(
+                request,
+                'crowdfunding/ogtagform.html',
+                {
+                    'form': form
+                },
+                status=500
+            )
+    return render(
+        request,
+        'crowdfunding/ogtagform.html',
+        {
+            'form': form
         }
     )

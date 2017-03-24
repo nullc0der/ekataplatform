@@ -7,21 +7,27 @@ from stripepayment.models import Payment
 
 
 class StripePayment(object):
-    def __init__(self, user):
+    def __init__(self, user=None, fullname=None):
         self.user = user
+        self.fullname = fullname
 
     def process_payment(self, token, payment_type='', amount=0, message=''):
         payment = Payment(
-            user=self.user,
             amount=amount,
             payment_type=payment_type,
             message=message
         )
+        if self.user:
+            payment.user = self.user
+        if self.fullname:
+            payment.name = self.fullname
         payment.save()
         if amount >= 1:
             amount = int(amount * 100)
-        if self.user.email:
+        if self.user and self.user.email:
             receipt_email = self.user.email
+        else:
+            receipt_email = None
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
             charge = stripe.Charge.create(

@@ -1596,7 +1596,7 @@ a:focus {
   border-radius: 3px;
   background: #ffffff;
   border-top: 3px solid #d2d6de;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
@@ -5365,6 +5365,7 @@ table.text-center th {
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     text-align: center;
+    cursor: pointer;
 }
 
 .listcontent-addnewbtn p, .boxcontent-submitbtn p {
@@ -5920,12 +5921,103 @@ table.text-center th {
 
 .widget-box {
     color: #9F9F9F;
-    padding: 15px;
+    padding: 10px;
+}
+
+.widget-box ul {
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.widget-box ul>li {
+    font-size: 20px;
+    float: left;
+    width: 50%;
+}
+
+.widget-box ul>li>a {
+    font-size: 20px;
+    color: #9F9F9F;
 }
 
 .widget-box-separator {
-    width: 10%;
-    margin: 0;
+    width: 95%;
+}
+
+.widget-box-title {
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.widget-box-text p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.crowdfund-stat {
+    font-weight: bold;
+    color: #00C269;
+    font-size: 16px;
+}
+
+.crowdfund-stat>span {
+    font-size: 22px;
+    color: #9F9F9F;
+    font-weight: 300;
+}
+
+.crowdfund-stat-info {
+    width: 100%;
+}
+
+.crowdfund-stat-info>.progress-wrapper {
+    width: 60%;
+    float: left;
+    border-right: 1px solid #eee;
+    padding-right: 10px;
+}
+
+.crowdfund-stat-info>.countdown-wrapper {
+    width: 40%;
+    float: left;
+    padding-left: 10px;
+}
+
+@media (max-width: 767px) {
+    .crowdfund-stat-info>.progress-wrapper {
+        width: 100%;
+        float: left;
+        border-bottom: 1px solid #eee;
+        border-right: none;
+        padding-right: 0;
+    }
+    .crowdfund-stat-info>.countdown-wrapper {
+        margin-top: 10px;
+        width: 100%;
+        float: left;
+        padding-left: 0;
+    }
+    .crowdfund-stat {
+        float: none !important;
+    }
+}
+
+.countdown>h1 {
+    float: left;
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 600;
+    color: #9F9F9F;
+    margin: 15px;
+}
+
+.countdown>h1>span {
+    font-size: 14px;
+    line-height: normal;
+    font-weight: normal;
+    vertical-align: super;
 }
 
 .progress > p {
@@ -5936,9 +6028,10 @@ table.text-center th {
     padding: 10px;
     border: 1px solid #fff;
     background-color: transparent;
-    width: 200px;
+    width: 150px;
     font-weight: 600;
     color: #fff;
+    margin: 5px;
 }
 
 .fund-btn:active, .fund-btn:focus {
@@ -6046,11 +6139,13 @@ table.text-center th {
     color: #4A4A4A;
 }
 
-.editor_option_brightness {
+.editor_option_brightness,
+.tools-padding {
     color: #F6A623;
 }
 
-.editor_option_brightness .mdl-slider__background-lower {
+.editor_option_brightness .mdl-slider__background-lower,
+.tools-padding .mdl-slider__background-lower {
     background: #F6A623 !important;
 }
 
@@ -6067,11 +6162,13 @@ table.text-center th {
   border: none !important;
 }
 
-.editor_option_hue {
+.editor_option_hue,
+.tools-margin {
     color: #F11363;
 }
 
-.editor_option_hue .mdl-slider__background-lower {
+.editor_option_hue .mdl-slider__background-lower,
+.tools-margin .mdl-slider__background-lower {
     background: #F11363 !important;
 }
 
@@ -6088,11 +6185,13 @@ table.text-center th {
   border: none !important;
 }
 
-.editor_option_rotate {
+.editor_option_rotate,
+.tools-columns {
     color: #50E3C2;
 }
 
-.editor_option_rotate .mdl-slider__background-lower {
+.editor_option_rotate .mdl-slider__background-lower,
+.tools-columns .mdl-slider__background-lower {
     background: #50E3C2 !important;
 }
 
@@ -6109,11 +6208,13 @@ table.text-center th {
   border: none !important;
 }
 
-.editor_option_zoom {
+.editor_option_zoom,
+.tools-row {
     color: #03A9F4;
 }
 
-.editor_option_zoom .mdl-slider__background-lower {
+.editor_option_zoom .mdl-slider__background-lower,
+.tools-row .mdl-slider__background-lower {
     background: #03A9F4 !important;
 }
 
@@ -6163,11 +6264,18 @@ table.text-center th {
     background-color: transparent;
     border-color: #ccc;
     border-radius: 20px;
-    width: 80px;
+    color: #9F9F9F;
+    font-weight: bold;
 }
 
 .btn-rounded:active, .btn-rounded:focus {
     outline: none !important;
+    box-shadow: none;
+    color: #9F9F9F;
+}
+
+.btn-rounded:hover {
+    color: #9F9F9F;
 }
 
 .avatar_image_actions {
@@ -6346,4 +6454,240 @@ table.text-center th {
 @keyframes change_color_upload_error {
     from {background-color: #00c0ef;}
     to {background-color: #ff1b44;}
+}
+
+#cardCreatorModal .modal-dialog {
+    width: 800px;
+}
+
+#cardCreatorModal .modal-content {
+    border-radius: 3px;
+}
+
+#cardCreatorModal .modal-body {
+    padding: 10px;
+}
+
+.crowdfund-card-creator {
+    width: 100%;
+    min-height: 300px;
+}
+
+.crowdfund-card-preview {
+    float: left;
+    width: 50%;
+    background: #03A9F4;
+    min-height: 300px;
+    border-radius: 2px;
+    box-shadow: inset -2px -2px 10px 0 rgba(0,0,0,0.1);
+}
+
+.crowdfund-card-preview>.preview {
+    background-color: #ffffff;
+    margin: 0 50px;
+    height: 230px;
+    border-radius: 2px;
+}
+
+.crowdfund-card-preview>.preview>.crowdfund-card {
+    height: 100%;
+    padding: 15px;
+}
+
+.crowdfund-card-preview>.preview .card-row {
+    height: 100%;
+    background-color: #E9E9E9;
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+.crowdfund-card-preview>.preview .active-area {
+    border: 1px solid #50e3c2;
+}
+
+.crowdfund-card-preview>.preview .card-col {
+    float: left;
+    height: 100%;
+    width: 98%;
+    margin-right: 1px;
+    background-color: #F6F6F6;
+}
+
+
+.crowdfund-card-tools {
+    float: left;
+    width: 50%;
+}
+
+.crowdfund-card-tools .text-center>p {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #4A90E2;
+    font-weight: bold;
+}
+
+.crowdfund-card-tools:after, .crowdfund-card-preview:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.tool-sliders>p{
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.crowdfund-card {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+    margin-bottom: 15px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.card-row {
+    height: 100%;
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+.card-col {
+    float: left;
+    height: 100%;
+    width: 100%;
+    margin-right: 2px;
+    padding: 15px;
+    color: #ccc;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-col.img-col {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.card-col>img {
+    display: block;
+    border-radius: 3px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.crowdfund-card.header-card .card-row,
+.crowdfund-card.header-card .card-col {
+    padding: 0;
+    border-radius: 3px;
+}
+
+.card-tools-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #F9F9F9;
+}
+
+.card-tools-overlay>.text-center {
+    position: relative;
+    top: 45%;
+}
+
+.settings-dropdown {
+    position: absolute;
+    top: 40%;
+    left: -1%;
+    z-index: 9999;
+}
+
+.settings-dropdown .btn-rounded-f {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color: transparent;
+}
+
+.settings-dropdown .btn-rounded-f:active, .settings-dropdown .btn-rounded-f:focus {
+    outline: none !important;
+}
+
+.settings-dropdown>.btn-rounded-f {
+    width: 50px;
+    height: 50px;
+}
+
+.settings-dropdown>.btn-rounded-f>i {
+    font-size: 20px;
+}
+
+.settings-dropdown .btn-rounded>i {
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+.settings-dropdown>.settings-container {
+    visibility: hidden;
+    display: none;
+    margin-top: 2px;
+}
+
+.settings-dropdown>.settings-container.show {
+    visibility: visible;
+    display: inline-block !important;
+}
+
+.settings-height>p,
+.settings-margin>p,
+.settings-padding>p,
+.settings-delete>p {
+    color: #F6A623;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn-social-share {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    border-color: transparent;
+}
+
+.share-div {
+    text-align: center;
+}
+
+.no-right-padding {
+    padding-right: 0;
+}
+
+@media (max-width: 768px) {
+    .no-right-padding {
+        padding-right: 15px;
+    }
+}
+
+#videoModal .modal-content {
+    background: transparent;
+    box-shadow: none;
+}
+
+.header-wrapper {
+    position: relative;
+}
+
+.header-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+}
+
+@media (max-width: 768px) {
+    .header-overlay {
+        left: 30%;
+    }
 }

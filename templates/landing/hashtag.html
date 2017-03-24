@@ -8,6 +8,13 @@
     {% compress css %}
         <link rel="stylesheet" href="{% static "dist/css/bootstrap-image-gallery.min.css" %}" charset="utf-8">
     {% endcompress %}
+    <style media="screen">
+    {% if not request.user.is_authenticated %}
+    #home {
+        margin-top: 60px;
+    }
+    {% endif %}
+    </style>
 {% endblock %}
 {% block extrameta %}
 {% if ogtag %}
