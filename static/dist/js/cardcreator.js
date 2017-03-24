@@ -191,6 +191,7 @@ $(document).on('click', '.card-edit-text', function () {
     var card_col = $(this).closest('.card-col');
     card_col.text('Type here');
     card_col.attr('contenteditable', true);
+    card_col.removeClass('img-col');
     $(this).closest('.card-tools-overlay').remove();
 });
 $(document).on('click', '.card-edit-image', function () {
@@ -211,7 +212,10 @@ $("#imageLoader").on('change', function () {
             img.src = e.target.result;
             img.onload = function () {
                 last_card_col.append(img);
-            }
+                last_card_col.addClass('img-col');
+            };
+            img.width = last_card_col.width();
+            img.height = last_card_col.width();
         };
         reader.readAsDataURL(file);
     }
@@ -246,7 +250,7 @@ $(document).on('click', '#addheadervideobtn', function () {
         return xhr;
         },
         success: function (data) {
-            var res = JSON.parse(data)
+            var res = JSON.parse(data);
             $("#headerVideoModal").modal('hide');
             $('.top-right').notify({
                 message: { text: 'Video upload done' },
@@ -258,6 +262,7 @@ $(document).on('click', '#addheadervideobtn', function () {
             last_card_col.css('background', 'linear-gradient(rgba(74, 144, 226, 0.85),rgba(74, 144, 226, 0.85)),url(' + res.cover + ')');
             last_card_col.css('background-repeat', 'no-repeat');
             last_card_col.css('background-size', 'cover');
+            last_card_col.css('background-position', 'center');
             last_card_col.append(video_overlay);
             last_card_col.find('.play-video').attr('data-video-url', res.video);
             last_card_col.find('.play-video').attr('data-cover-url', res.cover);
