@@ -3,11 +3,11 @@ var row_html = `
     <div class="card-col">
     </div>
 </div>
-`
+`;
 var col_html = `
 <div class="card-col">
 </div>
-`
+`;
 var tools_overlay = `
 <div class="card-tools-overlay">
     <div class="text-center">
@@ -16,13 +16,13 @@ var tools_overlay = `
         <button class="btn btn-rounded card-edit-video"><i style="color: #9013FE;" class="fa fa-video-camera"></i> Video</button>
     </div>
 </div>
-`
+`;
 var video_overlay = `
 <div class="widget-box" style="text-align: center; margin-top: 8%">
     <i class="fa fa-play-circle play-video" style="font-size: 80px; color: #FFFFFF; cursor: pointer"></i>
     <p class="play-video" style="color: #fff; font-weight: 600; font-size: 18px; cursor: pointer">Watch Video</p>
 </div>
-`
+`;
 var card_div_settings = `
 <div class="settings-dropdown">
     <button class="btn btn-rounded" id="cardDivSettings"><i class="fa fa-time"></i></button>
@@ -52,7 +52,7 @@ var card_div_settings = `
         </div>
     </div>
 </div>
-`
+`;
 var edit_buttons = `
     <div class="settings-dropdown">
         <button class="btn btn-rounded-f btn-primary crowdfund-card-settings"><i class="fa fa-cog"></i></button>
@@ -63,7 +63,7 @@ var edit_buttons = `
             <button class="btn btn-rounded-f btn-success crowdfund-card-done"><i class="fa fa-check"></i></button>
         </div>
     </div>
-`
+`;
 var card_div = $('.crowdfund-card-preview>.preview>.crowdfund-card');
 var cardDivSelector = '.crowdfund-card-preview>.preview>.crowdfund-card ';
 var last_card_col;
