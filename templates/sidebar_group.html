@@ -39,40 +39,6 @@
 {% endif %}
 {% endif %}
 {% if 'can_access_admin' in group_perms %}
-{% if 'can_create_post' in group_perms or 'can_update_post' in group_perms or 'can_approve_post' in group_perms %}
-<li class="treeview {% active request 'g:memberpostsadmin' group.id %} {% active request 'g:adminpostsadmin' group.id %}">
-    <a href="#">
-        <i class="fa fa-edit"></i>
-        <span>{% trans "Posts" %}</span>
-        <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-    <ul class="treeview-menu">
-        <li class="{% active request 'g:adminpostsadmin' group.id %}"><a href="{% url 'g:adminpostsadmin' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Group's Posts" %}</a></li>
-        <li class="{% active request 'g:memberpostsadmin' group.id %}"><a href="{% url 'g:memberpostsadmin' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Member's Posts" %}</a></li>
-    </ul>
-</li>
-{% endif %}
-{% endif %}
-{% if 'can_access_admin' in group_perms %}
-{% if 'can_update_comment' in group_perms or 'can_approve_comment' in group_perms %}
-<li class="treeview {% active request 'g:notapprovedcomments' group.id %} {% active request 'g:approvedcomments' group.id %}">
-    <a href="#">
-        <i class="fa fa-comments"></i>
-        <span>{% trans "Comments" %}</span>
-        <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-    <ul class="treeview-menu">
-        <li class="{% active request 'g:notapprovedcomments' group.id %}"><a href="{% url 'g:notapprovedcomments' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Not Approved" %}</a></li>
-        <li class="{% active request 'g:approvedcomments' group.id %}"><a href="{% url 'g:approvedcomments' group.id %}"><i class="fa fa-circle-o"></i>{% trans "Approved" %}</a></li>
-    </ul>
-</li>
-{% endif %}
-{% endif %}
-{% if 'can_access_admin' in group_perms %}
 <li class="treeview {% active request 'g:members' group.id %} {% active request 'g:joinrequest' group.id %} {% active request 'g:bannedmembers' group.id %}">
     <a href="#">
         <i class="fa fa-users"></i>
