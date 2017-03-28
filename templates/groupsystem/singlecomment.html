@@ -1,27 +1,13 @@
-{% load i18n staticfiles %}
+{% load i18n staticfiles guardian_tags %}
+{% get_obj_perms request.user for group as "group_perms" %}
 {% if comment.approved %}
-    <div class="box-comment">
-        {% if commentor.profile.avatar_public %}
-            {% if commentor.profile.avatar %}
-                <a href="#">
-                    <img src="{{ commentor.profile.avatar.thumbnail.128x128 }}" class="img-circle img-sm" alt="User Image">
-                </a>
-            {% else %}
-                <a href="#">
-                    <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle img-sm" width="128" height="128">
-                </a>
+    <div data-c-id="{{ comment.id }}" class="postcomment">
+        <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a> {% trans "commented" %}
+        <p>{{ comment.comment }}<span> - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span></p>
+        <div class="timeline-comment-options">
+            {% if 'can_delete_comment' in group_perms or request.user == comment.commentor %}
+                <i class="fa fa-trash-o deletecomment" data-comment={{ comment.id }}></i>
             {% endif %}
-        {% else %}
-            <a href="#">
-                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle img-sm" width="128" height="128">
-            </a>
-        {% endif %}
-        <div class="comment-text">
-            <span class="username">
-                {{ comment.commentor.username }}
-                <span class="text-muted pull-right">{{ comment.commented_on|date:"M j Y" }}</span>
-            </span>
-            {{ comment.comment }}
         </div>
     </div>
 {% endif %}

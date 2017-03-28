@@ -49,6 +49,15 @@ class CreateGroupForm(forms.ModelForm):
 
 
 class CreatePostForm(forms.ModelForm):
+    title = forms.CharField(required=True,
+                            widget=forms.TextInput(
+                             attrs={'placeholder': 'Post title'}
+                            ))
+    post = forms.CharField(required=True,
+                           widget=forms.Textarea(
+                            attrs={'placeholder': 'Add a post'}
+                           ))
+
     def clean_post(self):
         post = self.cleaned_data.get('post', '')
         cleaned_text = bleach.clean(

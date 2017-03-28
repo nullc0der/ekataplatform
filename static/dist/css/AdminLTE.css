@@ -6692,3 +6692,37 @@ table.text-center th {
         left: 30%;
     }
 }
+
+.timeline-post>.timeline-post-meta {
+    text-align: center;
+}
+.timeline-post-meta>h4 {
+    font-weight: 600;
+    color: #4A4A4A;
+    font-size: 17px;
+}
+.timeline-post-meta a, .timeline-post-footer a {
+    font-size: 13px;
+    color: #4A4A4A;
+}
+.timeline-post-options, .timeline-comment-options {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    display: none;
+}
+.timeline-post-options>i, .timeline-comment-options>i {
+    margin-left: 5px;
+}
+.timeline-post:hover .timeline-post-options {
+    display: block;
+}
+.postcomment {
+    position: relative;
+}
+.postcomment:hover .timeline-comment-options {
+    display: block;
+}
+.timeline-post-footer {
+    border-top: 1px solid #eee;
+}
