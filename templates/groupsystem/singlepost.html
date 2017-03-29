@@ -1,40 +1,61 @@
-{% load i18n staticfiles %}
+{% load i18n staticfiles guardian_tags %}
+{% get_obj_perms request.user for group as "group_perms" %}
 {% if post.approved %}
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <div class="box box-widget">
-            <div class="box-header with-border">
-                <div class="user-block">
-                    {% if creator.profile.avatar_public %}
-                        {% if creator.profile.avatar %}
-                            <a href="#">
-                                <img src="{{ creator.profile.avatar.thumbnail.128x128 }}" class="img-circle" alt="User Image">
-                            </a>
-                        {% else %}
-                            <a href="#">
-                                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="128" height="128">
-                            </a>
+{% if new_date %}
+<li class="time-label">
+    <span class="bg-red">
+        {{ post.created_on|date:"d/m/Y" }}
+    </span>
+</li>
+{% endif %}
+<li data-p-id={{ post.id }}>
+    <i class="fa fa-circle bg-green"></i>
+    <div class="timeline-item">
+        <div class="timeline-body">
+            <div class="timeline-post">
+                <div class="timeline-post-meta">
+                    <h4>{% if post.title %}{{ post.title }} - {% endif %}{% if post.admin_created %}<span class="label bg-green">{{ group.name }}</span>{% else %}<span><a href="{% url 'publicusers:user' post.creator.id %}">{{ post.creator.username }}</a></span>{% endif %}</h4>
+                    <div class="timeline-post-options">
+                        {% if 'can_approve_post' in group_perms %}
+                            <span class="label {% if post.approved %}bg-green{% else %}bg-red approvepost{% endif %}" {% if not post.approved %}data-post={{ item.id }}{% endif %} {% if not post.approved %}style="cursor: pointer"{% endif %}>{% if post.approved %}{% trans "Approved" %}{% else %}{% trans "Not Approved" %}{% endif %}</span>
                         {% endif %}
-                    {% else %}
-                        <a href="#">
-                            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="128" height="128">
-                        </a>
-                    {% endif %}
-                    <span class="username"><a href="{% url 'publicusers:user' post.creator.id %}">{{ post.creator.username }}</a></span>
-                    <span class="description">{{ post.created_on|date:"M j Y" }}</span>
+                        {% if 'can_delete_post' in group_perms or request.user == post.creator %}
+                            <i class="fa fa-trash-o deletepost" data-post={{ post.id }}></i>
+                        {% endif %}
+                        {% if 'can_update_post' in group_perms or request.user == post.creator %}
+                            <i class="fa fa-edit editpost" data-post={{ post.id }}></i>
+                        {% endif %}
+                    </div>
                 </div>
-                <!-- /.user-block -->
+                <div class="timeline-post-content">
+                    <p>{{ post.post|safe }}</p>
+                </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <!-- post text -->
-                <h1>{{ post.title }}</h1>
-                <p>{{ post.post|truncatewords_html:10|safe }}<span><a href="{% url 'g:postdetail' group.id post.id %}">{% trans "more" %}</a></span></p>
-                <!-- Social sharing buttons -->
-                <span class="pull-right text-muted" id="socialstatus">{{ post.likes.count }} likes - {{ post.comments.count }} comments</span>
+        </div>
+        <div class="timeline-footer timeline-post-footer">
+            <div class="timeline-post-comment">
+            {% for comment in post.comments.all  %}
+                {% if comment.approved %}
+                <div data-c-id="{{ comment.id }}" class="postcomment">
+                    <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a> {% trans "commented" %}
+                    <p>{{ comment.comment }}<span> - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span></p>
+                    <div class="edit-comment">
+                        <input type="text" name="editcomment" data-comment={{ comment.id }} class="form-control input-sm editcommentinput" value="{{ comment.comment }}">
+                    </div>
+                    <div class="timeline-comment-options">
+                        {% if 'can_delete_comment' in group_perms or request.user == comment.commentor %}
+                            <i class="fa fa-trash-o deletecomment" data-comment={{ comment.id }}></i>
+                        {% endif %}
+                        {% if 'can_update_comment' in group_perms or request.user == comment.commentor %}
+                            <i class="fa fa-edit editcomment" data-comment={{ comment.id }}></i>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
             </div>
-            <!-- /.box-body -->
+            <input type="text" name="comment" id="comment" data-post-id={{ post.id }} class="form-control input-sm commentinput" placeholder="Press enter to post comment">
         </div>
     </div>
-</div>
+</li>
 {% endif %}

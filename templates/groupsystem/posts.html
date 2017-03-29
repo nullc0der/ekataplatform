@@ -31,144 +31,365 @@
 {% endblock content_header_new %}
 {% block content %}
     {% get_obj_perms request.user for group as "group_perms" %}
-    {% if memberpost %}
-        {% if 'can_create_post' in group_perms %}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="pull-right">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#createPostModal">{% trans "Create Post" %}</button>
-                </div>
-            </div>
-        </div>
-        {% endif %}
-    {% endif %}
-    <div id="postwrapper">
-        {% if posts %}
-            {% for post in posts reversed %}
-                {% if post.approved %}
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="box box-widget">
-                            <div class="box-header with-border">
-                                <div class="user-block">
-                                    {% if memberpost %}
-                                        {% if creator.profile.avatar_public %}
-                                            {% if creator.profile.avatar %}
-                                                <a href="#">
-                                                    <img src="{{ creator.profile.avatar.thumbnail.128x128 }}" class="img-circle" alt="User Image">
-                                                </a>
-                                            {% else %}
-                                                <a href="#">
-                                                    <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="128" height="128">
-                                                </a>
-                                            {% endif %}
-                                        {% else %}
-                                            <a href="#">
-                                                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="128" height="128">
-                                            </a>
-                                        {% endif %}
-                                        <span class="username"><a href="{% url 'publicusers:user' post.creator.id %}">{{ post.creator.username }}</a></span>
-                                    {% else %}
-                                        <img class="img-circle" src="{{ group.logo.thumbnail.128x128 }}" alt="Group Image">
-                                        <span class="username"><a href="{% url 'g:groupdetails' group.id %}">{{ group.name }}</a></span>
-                                    {% endif %}
-                                    <span class="description">{{ post.created_on|date:"M j Y" }}</span>
-                                </div>
-                                <!-- /.user-block -->
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="timeline">
+                {% if 'can_create_post' in group_perms %}
+                <li>
+                    <i class="fa fa-pencil-square bg-green"></i>
+                    <div class="timeline-item">
+                        <div class="timeline-body">
+                            {% include "groupsystem/createpost.html" %}
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary btn-flat postsubmit" data-type="member">{% trans "Post" %}</button>
+                                {% if user_is_admin %}
+                                <button type="button" class="btn btn-primary btn-flat dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="javascript:void(0);" class="postsubmit" data-type="admin">{% trans "Post As Group" %}</a></li>
+                                </ul>
+                                {% endif %}
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <!-- post text -->
-                                <h1>{{ post.title }}</h1>
-                                <p>{{ post.post|truncatewords_html:10|safe }}<span><a href="{% url 'g:postdetail' group.id post.id %}">{% trans "more" %}</a></span></p>
-                                <!-- Social sharing buttons -->
-                                <span class="pull-right text-muted" id="socialstatus">{{ post.likes.count }} likes - {{ post.comments.count }} comments</span>
-                            </div>
-                            <!-- /.box-body -->
                         </div>
                     </div>
-                </div>
+                </li>
                 {% endif %}
-        {% endfor %}
-        {% else %}
-        <p>{% trans "No Posts Yet!!" %}</p>
-        {% endif %}
+                {% regroup posts by created_on|date:"d/m/Y" as posts_by_day %}
+                {% for post in posts_by_day %}
+                <li class="time-label">
+                    <span class="bg-red">
+                        {{ post.grouper }}
+                    </span>
+                </li>
+                {% for item in post.list %}
+                <li data-p-id={{ item.id }}>
+                    <i class="fa fa-circle bg-green"></i>
+                    <div class="timeline-item">
+                        <div class="timeline-body">
+                            <div class="timeline-post">
+                                <div class="timeline-post-meta">
+                                    <h4>{% if item.title %}{{ item.title }} - {% endif %}{% if item.admin_created %}<span class="label bg-green">{{ group.name }}</span>{% else %}<span><a href="{% url 'publicusers:user' item.creator.id %}">{{ item.creator.username }}</a></span>{% endif %}</h4>
+                                    <div class="timeline-post-options">
+                                        {% if 'can_approve_post' in group_perms %}
+                                            <span class="label {% if item.approved %}bg-green{% else %}bg-red approvepost{% endif %}" {% if not item.approved %}data-post={{ item.id }}{% endif %} {% if not item.approved %}style="cursor: pointer"{% endif %}>{% if item.approved %}{% trans "Approved" %}{% else %}{% trans "Not Approved" %}{% endif %}</span>
+                                        {% endif %}
+                                        {% if 'can_delete_post' in group_perms or request.user == item.creator %}
+                                            <i class="fa fa-trash-o deletepost" data-post={{ item.id }}></i>
+                                        {% endif %}
+                                        {% if 'can_update_post' in group_perms or request.user == item.creator %}
+                                            <i class="fa fa-edit editpost" data-post={{ item.id }}></i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="timeline-post-content">
+                                    <p>{{ item.post|safe }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-footer timeline-post-footer">
+                            <div class="timeline-post-comment {% if item.comments.all %}has-comment{% endif %}">
+                            {% for comment in item.comments.all  %}
+                                {% if comment.approved %}
+                                <div data-c-id="{{ comment.id }}" class="postcomment">
+                                    <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a> {% trans "commented" %}
+                                    <p>{{ comment.comment }}<span> - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span></p>
+                                    <div class="edit-comment">
+                                        <input type="text" name="editcomment" data-comment={{ comment.id }} class="form-control input-sm editcommentinput" value="{{ comment.comment }}">
+                                    </div>
+                                    <div class="timeline-comment-options">
+                                        {% if 'can_delete_comment' in group_perms or request.user == comment.commentor %}
+                                            <i class="fa fa-trash-o deletecomment" data-comment={{ comment.id }}></i>
+                                        {% endif %}
+                                        {% if 'can_update_comment' in group_perms or request.user == comment.commentor %}
+                                            <i class="fa fa-edit editcomment" data-comment={{ comment.id }}></i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                            </div>
+                            <input type="text" name="comment" data-post-id={{ item.id }} class="form-control input-sm commentinput" placeholder="Press enter to post comment">
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                {% endfor %}
+                <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                </li>
+            </ul>
+        </div>
     </div>
-    {% if memberpost %}
-        <div tabindex="-1" class="modal fade" id="createPostModal" role="dialog" aria-hidden="true" aria-labelledby="createPostModalLabel">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
-                        <h4 class="modal-title" id="createPostModalLabel">{% trans "Create Post" %}</h4>
-                    </div>
-                    <div class="modal-body">
-                        {% include "groupsystem/creatememberpost.html" %}
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" id="submitpost" type="button">{% trans "Submit" %}</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.Create Post Modal -->
-    {% endif %}
+    <div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">{% trans "Edit Post" %}</h4>
+          </div>
+          <div class="modal-body" id="editp">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-flat editpostsubmit">{% trans "Edit" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock content %}
 {% block extrascripts %}
+    <script type="text/javascript" src="{% static "dist/js/jquery.expander.min.js" %}"></script>
     {% compress js %}
     <script>
-        {% if memberpost %}
-            $("#id_post").wysihtml5({
+    $("#id_post").wysihtml5({
+        toolbar: {
+            "fa": true,
+            "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+            "emphasis": true, //Italics, bold, etc. Default true
+            "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+            "html": false, //Button which allows you to edit the generated HTML. Default false
+            "link": true, //Button to insert a link. Default true
+            "image": false, //Button to insert an image. Default true,
+            "color": true, //Button to change color of font
+            "blockquote": true, //Blockquote
+            "size": 'sm' //default: none, other options are xs, sm, lg
+        }
+    });
+    $(".timeline-post-comment.has-comment").slimscroll({
+        height: '150px',
+        size: '3px',
+        alwaysVisible: false,
+        start: 'bottom'
+    });
+    $(".timeline-post-content").expander({
+        slicePoint: 200,
+        expandText: 'more',
+        userCollapseText: 'less'
+    });
+    function createPost(url) {
+        var frm = $("#createpostform");
+        $.ajax({
+            url: url,
+            type: frm.attr('method'),
+            data: frm.serialize(),
+            success: function(data) {
+                if (data.response_type == 'html') {
+                    if ($('.time-label:first').length) {
+                        if (data.new_date) {
+                            $('.time-label:first').before(data.response);
+                        }
+                        else {
+                            $(".time-label:first").after(data.response);
+                        }
+                    }
+                    else {
+                        $(".timeline>li:last").before(data.response);
+                    }
+                    $('.top-right').notify({
+                        message: { text: 'Post created'},
+                        type: 'info',
+                    }).show();
+                    $(".timeline-post-content").expander({
+                        slicePoint: 200,
+                        expandText: 'more',
+                        userCollapseText: 'less'
+                    });
+                }
+                else {
+                    $('.top-right').notify({
+                        message: { text: data},
+                        type: 'info',
+                    }).show();
+                }
+                frm[0].reset();
+            },
+            error: function(data) {
+                frm.html(data.responseText);
+                $("#id_post").wysihtml5({
+                    toolbar: {
+                        "fa": true,
+                        "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                        "emphasis": true, //Italics, bold, etc. Default true
+                        "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                        "html": false, //Button which allows you to edit the generated HTML. Default false
+                        "link": true, //Button to insert a link. Default true
+                        "image": false, //Button to insert an image. Default true,
+                        "color": true, //Button to change color of font
+                        "blockquote": true, //Blockquote
+                        "size": 'sm' //default: none, other options are xs, sm, lg
+                    }
+                });
+            }
+        });
+    }
+    $(".postsubmit").click(function(){
+        if ($(this).data('type') == 'member') {
+            createPost('{% url 'g:creatememberpost' group.id %}');
+        }
+        else {
+            createPost('{% url 'g:createadminpost' group.id %}');
+        }
+    });
+    $(document).on('keyup', '.commentinput', function(event) {
+        if (event.which === 13 && $(this).val()) {
+            var _this = $(this);
+            $.ajax({
+                url: '/'+ location.href.split('/')[3] + '/type/group/c/{{ group.id }}/' + $(this).data('post-id') + '/',
+                type: 'POST',
+                data: {'comment': _this.val()},
+                success: function (data) {
+                    if (data.response_type == 'html') {
+                        _this.parent().find('.timeline-post-comment').append(data.response);
+                        _this.parent().find('.timeline-post-comment').slimscroll({
+                            height: '150px',
+                            size: '3px',
+                            alwaysVisible: false,
+                            scrollBy: _this.parent().find('.timeline-post-comment')[0].scrollHeight + 'px',
+                        });
+                    }
+                    else {
+                        $('.top-right').notify({
+                            message: { text: data},
+                            type: 'info',
+                        }).show();
+                    }
+                    _this.val("");
+                }
+            });
+        }
+    });
+    $(document).on('click', '.deletepost', function () {
+        var _this = $(this);
+        $.ajax({
+            url: '/'+ location.href.split('/')[3] + '/type/group/deletepost/{{ group.id }}/' + $(this).data('post') + '/',
+            type: 'POST',
+            success: function (data) {
+                $("li[data-p-id=" +  _this.data('post') + "]").remove();
+                $('.top-right').notify({
+                    message: { text: "Deleted post"},
+                    type: 'info',
+                }).show();
+            }
+        });
+    });
+    $(document).on('click', '.deletecomment', function () {
+        var _this = $(this);
+        $.ajax({
+            url: '/'+ location.href.split('/')[3] + '/type/group/deletecomment/{{ group.id }}/' + $(this).data('comment') + '/',
+            type: 'POST',
+            success: function (data) {
+                $(".postcomment[data-c-id=" +  _this.data('comment') + "]").remove();
+                $('.top-right').notify({
+                    message: { text: "Deleted comment"},
+                    type: 'info',
+                }).show();
+            }
+        });
+    });
+    $(document).on('click', '.editpost', function () {
+        var _this = $(this);
+        editing_post = _this.data('post');
+        $("#editp").load('/'+ location.href.split('/')[3] + '/type/editpost/{{ group.id }}/' + _this.data('post') + '/', function () {
+            $("#editPostModal").modal('show');
+            $('textarea').wysihtml5({
                 toolbar: {
                     "fa": true,
                     "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
                     "emphasis": true, //Italics, bold, etc. Default true
                     "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
                     "html": false, //Button which allows you to edit the generated HTML. Default false
-                    "link": false, //Button to insert a link. Default true
+                    "link": true, //Button to insert a link. Default true
                     "image": false, //Button to insert an image. Default true,
                     "color": true, //Button to change color of font
                     "blockquote": true, //Blockquote
                     "size": 'sm' //default: none, other options are xs, sm, lg
                 }
             });
-            $("#submitpost").click(function(){
-                var frm = $("#createpostform");
-                $.ajax({
-                    url: frm.attr('action'),
-                    type: frm.attr('method'),
-                    data: frm.serialize(),
-                    success: function(data) {
-                        $("#createPostModal").modal("hide");
-                        if (data.response_type == 'html') {
-                            $('#postwrapper').prepend(data.response);
-                        }
-                        else {
-                            $('.top-right').notify({
-                                message: { text: data},
-                                type: 'info',
-                            }).show();
-                        }
-                    },
-                    error: function(data) {
-                        frm.html(data.responseText);
-                        $("#id_post").wysihtml5({
-                            toolbar: {
-                                "fa": true,
-                                "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-                                "emphasis": true, //Italics, bold, etc. Default true
-                                "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-                                "html": false, //Button which allows you to edit the generated HTML. Default false
-                                "link": false, //Button to insert a link. Default true
-                                "image": false, //Button to insert an image. Default true,
-                                "color": true, //Button to change color of font
-                                "blockquote": true, //Blockquote
-                                "size": 'sm' //default: none, other options are xs, sm, lg
-                            }
-                        });
+        });
+    });
+    $(document).on('click', '.editpostsubmit', function () {
+        var form = $("#editpostform");
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: form.serialize(),
+            success: function (data) {
+                if (data.response_type=='html') {
+                    $("li[data-p-id=" + editing_post + "]").before(data.response);
+                    $("li[data-p-id=" + editing_post  + "]")[1].remove();
+                }
+                $("#editPostModal").modal('hide');
+            },
+            error: function (data) {
+                form.html(data.responseText);
+                $('textarea').wysihtml5({
+                    toolbar: {
+                        "fa": true,
+                        "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                        "emphasis": true, //Italics, bold, etc. Default true
+                        "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                        "html": false, //Button which allows you to edit the generated HTML. Default false
+                        "link": true, //Button to insert a link. Default true
+                        "image": false, //Button to insert an image. Default true,
+                        "color": true, //Button to change color of font
+                        "blockquote": true, //Blockquote
+                        "size": 'sm' //default: none, other options are xs, sm, lg
                     }
                 });
+            }
+        });
+    });
+    $(document).on('click', '.approvepost', function () {
+        var _this = $(this);
+        $.ajax({
+            url: '{% url 'g:approvepost' group.id %}',
+            type: 'POST',
+            data: {'post_id': _this.data('post')},
+            success: function (data) {
+                _this.removeClass('approvepost', 'bg-red');
+                _this.addClass('bg-green');
+                _this.text('Approved');
+            },
+            error: function (data) {
+                $('.top-right').notify({
+                    message: { text: data.responseText},
+                    type: 'warning',
+                }).show();
+            }
+        });
+    });
+    $(document).on('click', '.editcomment', function () {
+        var _this = $(this);
+        $(".postcomment[data-c-id=" + _this.data('comment') + "]>.edit-comment").slideToggle(function () {
+            _this.parent().parent().parent().slimscroll({
+                height: '150px',
+                size: '3px',
+                alwaysVisible: false,
+                scrollBy: _this.parent().parent().parent()[0].scrollHeight + 'px',
             });
-        {% endif %}
+        });
+    });
+    $(document).on('keyup', '.editcommentinput', function(event) {
+        if (event.which === 13 && $(this).val()) {
+            var _this = $(this);
+            $.ajax({
+                url: '/'+ location.href.split('/')[3] + '/type/group/editcomment/{{ group.id }}/' + $(this).data('comment') + '/',
+                type: 'POST',
+                data: {'comment': _this.val()},
+                success: function (data) {
+                    $(".postcomment[data-c-id=" +  _this.data('comment') + "]").before(data);
+                    $(".postcomment[data-c-id=" +  _this.data('comment') + "]")[1].remove();
+                },
+                error: function () {
+                    $('.top-right').notify({
+                        message: { text: 'You are not allowed to edit this comment'},
+                        type: 'warning',
+                    }).show();
+                }
+            });
+        }
+    });
     </script>
     {% endcompress %}
 {% endblock extrascripts %}
