@@ -94,9 +94,15 @@
                                 <div data-c-id="{{ comment.id }}" class="postcomment">
                                     <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a> {% trans "commented" %}
                                     <p>{{ comment.comment }}<span> - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span></p>
+                                    <div class="edit-comment">
+                                        <input type="text" name="editcomment" data-comment={{ comment.id }} class="form-control input-sm editcommentinput" value="{{ comment.comment }}">
+                                    </div>
                                     <div class="timeline-comment-options">
                                         {% if 'can_delete_comment' in group_perms or request.user == comment.commentor %}
                                             <i class="fa fa-trash-o deletecomment" data-comment={{ comment.id }}></i>
+                                        {% endif %}
+                                        {% if 'can_update_comment' in group_perms or request.user == comment.commentor %}
+                                            <i class="fa fa-edit editcomment" data-comment={{ comment.id }}></i>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -352,6 +358,37 @@
                 }).show();
             }
         });
+    });
+    $(document).on('click', '.editcomment', function () {
+        var _this = $(this);
+        $(".postcomment[data-c-id=" + _this.data('comment') + "]>.edit-comment").slideToggle(function () {
+            _this.parent().parent().parent().slimscroll({
+                height: '150px',
+                size: '3px',
+                alwaysVisible: false,
+                scrollBy: _this.parent().parent().parent()[0].scrollHeight + 'px',
+            });
+        });
+    });
+    $(document).on('keyup', '.editcommentinput', function(event) {
+        if (event.which === 13 && $(this).val()) {
+            var _this = $(this);
+            $.ajax({
+                url: '/'+ location.href.split('/')[3] + '/type/group/editcomment/{{ group.id }}/' + $(this).data('comment') + '/',
+                type: 'POST',
+                data: {'comment': _this.val()},
+                success: function (data) {
+                    $(".postcomment[data-c-id=" +  _this.data('comment') + "]").before(data);
+                    $(".postcomment[data-c-id=" +  _this.data('comment') + "]")[1].remove();
+                },
+                error: function () {
+                    $('.top-right').notify({
+                        message: { text: 'You are not allowed to edit this comment'},
+                        type: 'warning',
+                    }).show();
+                }
+            });
+        }
     });
     </script>
     {% endcompress %}

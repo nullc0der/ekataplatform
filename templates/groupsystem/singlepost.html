@@ -36,15 +36,21 @@
             <div class="timeline-post-comment">
             {% for comment in post.comments.all  %}
                 {% if comment.approved %}
-                    <div data-c-id="{{ comment.id }}" class="postcomment">
-                        <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a> {% trans "commented" %}
-                        <p>{{ comment.comment }}<span> - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span></p>
-                        <div class="timeline-comment-options">
-                            {% if 'can_delete_comment' in group_perms or request.user == comment.commentor %}
-                                <i class="fa fa-trash-o deletecomment" data-comment={{ comment.id }}></i>
-                            {% endif %}
-                        </div>
+                <div data-c-id="{{ comment.id }}" class="postcomment">
+                    <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a> {% trans "commented" %}
+                    <p>{{ comment.comment }}<span> - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span></p>
+                    <div class="edit-comment">
+                        <input type="text" name="editcomment" data-comment={{ comment.id }} class="form-control input-sm editcommentinput" value="{{ comment.comment }}">
                     </div>
+                    <div class="timeline-comment-options">
+                        {% if 'can_delete_comment' in group_perms or request.user == comment.commentor %}
+                            <i class="fa fa-trash-o deletecomment" data-comment={{ comment.id }}></i>
+                        {% endif %}
+                        {% if 'can_update_comment' in group_perms or request.user == comment.commentor %}
+                            <i class="fa fa-edit editcomment" data-comment={{ comment.id }}></i>
+                        {% endif %}
+                    </div>
+                </div>
                 {% endif %}
             {% endfor %}
             </div>

@@ -6710,9 +6710,18 @@ table.text-center th {
     top: 5px;
     right: 10px;
     display: none;
+    border: 1px solid #ccc;
+    padding: 3px;
+    border-radius: 2px;
 }
 .timeline-post-options>i, .timeline-comment-options>i {
     margin-left: 5px;
+    padding: 5px;
+    color: #ddd;
+}
+.timeline-post-options>i:hover, .timeline-comment-options>i:hover {
+    color: #6aacd2;
+    cursor: pointer;
 }
 .timeline-post:hover .timeline-post-options {
     display: block;
@@ -6725,4 +6734,8 @@ table.text-center th {
 }
 .timeline-post-footer {
     border-top: 1px solid #eee;
+}
+.edit-comment {
+    margin-bottom: 5px;
+    display: none;
 }

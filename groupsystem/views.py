@@ -957,31 +957,25 @@ def approved_comment_admin_page(request, group_id):
     )
 
 
+@require_POST
 @login_required
-@permission_required_or_403('can_update_comment', (BasicGroup, 'id', 'group_id'))
-def edit_comment_admin_page(request, group_id, comment_id):
+def edit_comment(request, group_id, comment_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
-    request.session['basicgroup'] = basicgroup.id
     comment = PostComment.objects.get(id=comment_id)
-    form = EditCommentForm(instance=comment)
-    if request.method == 'POST':
-        form = EditCommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            form.save()
-    return render(
-        request,
-        'groupsystem/editcommentpage.html',
-        {
-            'form': form,
-            'group': basicgroup,
-            'comment': comment,
-            'extended_sidebar': True,
-            'user_in_group_admin': True,
-            'user_has_admin_access': request.user.has_perm(
-                'can_access_admin', basicgroup
-            )
-        }
-    )
+    if request.user == comment.commentor or request.user.has_perm(
+        'can_update_comment', basicgroup):
+        comment.comment = request.POST.get('comment')
+        comment.save()
+        return render(
+            request,
+            'groupsystem/singlecomment.html',
+            {
+                'comment': comment,
+                'group': basicgroup
+            }
+        )
+    else:
+        return HttpResponseForbidden()
 
 
 @login_required

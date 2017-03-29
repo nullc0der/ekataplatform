@@ -125,7 +125,7 @@ urlpatterns = [
     ),
     url(
         r'^group/editcomment/(?P<group_id>\d+)/(?P<comment_id>\d+)/$',
-        views.edit_comment_admin_page,
+        views.edit_comment,
         name='editcomment'
     ),
     url(
