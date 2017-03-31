@@ -69,6 +69,25 @@
                         <div class="timeline-body">
                             <div class="timeline-post">
                                 <div class="timeline-post-meta">
+                                    {% if not item.admin_created %}
+                                        {% if item.creator.profile.avatar_public %}
+                                            {% if item.creator.profile.avatar %}
+                                                <a href="{% url 'publicusers:user' item.creator.id %}">
+                                                    <img src="{{ item.creator.profile.avatar.thumbnail.30x30 }}" class="img-circle" alt="User Image">
+                                                </a>
+                                            {% else %}
+                                                <a href="{% url 'publicusers:user' item.creator.id %}">
+                                                    <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="30" height="30">
+                                                </a>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="{% url 'publicusers:user' item.creator.id %}">
+                                                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="30" height="30">
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        <img class="img-circle" src="{{ group.logo.thumbnail.30x30 }}" alt="Group Image">
+                                    {% endif %}
                                     <h4>{% if item.title %}{{ item.title }} - {% endif %}{% if item.admin_created %}<span class="label bg-green">{{ group.name }}</span>{% else %}<span><a href="{% url 'publicusers:user' item.creator.id %}">{{ item.creator.username }}</a></span>{% endif %}</h4>
                                     <div class="timeline-post-options">
                                         {% if 'can_approve_post' in group_perms %}
@@ -92,6 +111,21 @@
                             {% for comment in item.comments.all  %}
                                 {% if comment.approved %}
                                 <div data-c-id="{{ comment.id }}" class="postcomment">
+                                    {% if comment.commentor.profile.avatar_public %}
+                                        {% if comment.commentor.profile.avatar %}
+                                            <a href="{% url 'publicusers:user' comment.commentor.id %}">
+                                                <img src="{{ comment.commentor.profile.avatar.thumbnail.30x30 }}" class="img-circle img-sm" alt="User Image">
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url 'publicusers:user' comment.commentor.id %}">
+                                                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle img-sm" width="30" height="30">
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="{% url 'publicusers:user' comment.commentor.id %}">
+                                            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle img-sm" width="30" height="30">
+                                        </a>
+                                    {% endif %}
                                     <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a> {% trans "commented" %}
                                     <p>{{ comment.comment }}<span> - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span></p>
                                     <div class="edit-comment">

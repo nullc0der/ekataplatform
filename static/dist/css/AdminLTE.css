@@ -6693,8 +6693,12 @@ table.text-center th {
     }
 }
 
-.timeline-post>.timeline-post-meta {
-    text-align: center;
+.timeline-post>.timeline-post-meta h4,
+.timeline-post>.timeline-post-meta img {
+    display: inline-block;
+}
+.timeline-post>.timeline-post-meta img {
+    margin-top: -10px;
 }
 .timeline-post-meta>h4 {
     font-weight: 600;
@@ -6728,6 +6732,9 @@ table.text-center th {
 }
 .postcomment {
     position: relative;
+}
+.postcomment img {
+    margin-right: 5px;
 }
 .postcomment:hover .timeline-comment-options {
     display: block;
