@@ -213,9 +213,9 @@ $("#imageLoader").on('change', function () {
             img.onload = function () {
                 last_card_col.append(img);
                 last_card_col.addClass('img-col');
+                img.style.width = last_card_col.width() + 'px';
+                img.style.height = last_card_col.height() + 'px';
             };
-            img.width = last_card_col.width();
-            img.height = last_card_col.width();
         };
         reader.readAsDataURL(file);
     }
