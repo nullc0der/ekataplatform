@@ -39,19 +39,14 @@ urlpatterns = [
         name='events'
     ),
     url(
-        r'^group/(?P<group_id>\d+)/groupposts/$',
-        views.group_admin_post_page,
-        name='adminposts'
+        r'^group/(?P<group_id>\d+)/posts/$',
+        views.group_posts,
+        name='posts'
     ),
     url(
-        r'^group/(?P<group_id>\d+)/groupposts/membercreated/$',
-        views.group_member_post_page,
-        name='memberposts'
-    ),
-    url(
-        r'^group/(?P<group_id>\d+)/groupposts/(?P<post_id>\d+)/$',
-        views.postdetails_page,
-        name='postdetail'
+        r'^group/deletepost/(?P<group_id>\d+)/(?P<post_id>\d+)/$',
+        views.delete_post,
+        name='deletepost'
     ),
     url(
         r'^group/(?P<group_id>\d+)/l/(?P<post_id>\d+)/$',
@@ -62,6 +57,11 @@ urlpatterns = [
         r'^group/c/(?P<group_id>\d+)/(?P<post_id>\d+)/$',
         views.comment_post,
         name='comment'
+    ),
+    url(
+        r'^group/deletecomment/(?P<group_id>\d+)/(?P<comment_id>\d+)/$',
+        views.delete_comment,
+        name='deletecomment'
     ),
     url(
         r'^group/creatememberpost/(?P<group_id>\d+)/$',
@@ -100,7 +100,7 @@ urlpatterns = [
     ),
     url(
         r'^editpost/(?P<group_id>\d+)/(?P<post_id>\d+)/$',
-        views.edit_post_admin_page,
+        views.edit_post,
         name='editpost'
     ),
     url(
@@ -125,7 +125,7 @@ urlpatterns = [
     ),
     url(
         r'^group/editcomment/(?P<group_id>\d+)/(?P<comment_id>\d+)/$',
-        views.edit_comment_admin_page,
+        views.edit_comment,
         name='editcomment'
     ),
     url(

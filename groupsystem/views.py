@@ -1,4 +1,5 @@
 import json
+from datetime import date
 
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.utils.translation import ugettext_lazy as _
@@ -469,65 +470,26 @@ def group_events_page(request, group_id):
 
 @login_required
 @permission_required_or_403('can_read_post', (BasicGroup, 'id', 'group_id'))
-def group_admin_post_page(request, group_id):
+def group_posts(request, group_id):
+    user_is_admin = False
     basicgroup = BasicGroup.objects.get(id=group_id)
     request.session['basicgroup'] = basicgroup.id
-    posts = basicgroup.posts.filter(admin_created=True)
-    return render(
-        request,
-        'groupsystem/posts.html',
-        {
-            'group': basicgroup,
-            'posts': posts,
-            'extended_sidebar': True,
-            'user_in_group': True,
-            'user_has_admin_access': request.user.has_perm(
-                'can_access_admin', basicgroup
-            )
-        }
-    )
-
-
-@login_required
-@permission_required_or_403('can_read_post', (BasicGroup, 'id', 'group_id'))
-def group_member_post_page(request, group_id):
-    basicgroup = BasicGroup.objects.get(id=group_id)
-    request.session['basicgroup'] = basicgroup.id
-    posts = basicgroup.posts.filter(admin_created=False)
-    return render(
-        request,
-        'groupsystem/posts.html',
-        {
-            'group': basicgroup,
-            'posts': posts,
-            'memberpost': True,
-            'form': CreatePostForm(),
-            'extended_sidebar': True,
-            'user_in_group': True,
-            'user_has_admin_access': request.user.has_perm(
-                'can_access_admin', basicgroup
-            )
-        }
-    )
-
-
-@login_required
-@permission_required_or_403('can_read_post', (BasicGroup, 'id', 'group_id'))
-def postdetails_page(request, group_id, post_id):
-    basicgroup = BasicGroup.objects.get(id=group_id)
-    request.session['basicgroup'] = basicgroup.id
-    post = GroupPost.objects.get(id=post_id)
-    if post.admin_created:
-        memberpost = False
+    if request.user in basicgroup.super_admins.all() or request.user in\
+            basicgroup.admins.all() or request.user in\
+            basicgroup.moderators.all():
+            user_is_admin = True
+    if user_is_admin:
+        posts = basicgroup.posts.all().order_by('-created_on')
     else:
-        memberpost = True
+        posts = basicgroup.posts.filter(approved=True).order_by('-created_on')
     return render(
         request,
-        'groupsystem/postdetails.html',
+        'groupsystem/posts.html',
         {
             'group': basicgroup,
-            'post': post,
-            'memberpost': memberpost,
+            'posts': posts,
+            'form': CreatePostForm(),
+            'user_is_admin': user_is_admin,
             'extended_sidebar': True,
             'user_in_group': True,
             'user_has_admin_access': request.user.has_perm(
@@ -552,11 +514,19 @@ def create_member_post(request, group_id):
                 post.approved = True
             post.save()
             if basicgroup.auto_approve_post:
+                new_date = False
                 template = loader.get_template('groupsystem/singlepost.html')
-                contexts = {'group': basicgroup, 'post': post}
+                posts = basicgroup.posts.filter(approved=True,
+                                                created_on__gte=date.today())
+                if not posts:
+                    new_date = True
+                contexts = {'group': basicgroup,
+                            'post': post, 'new_date': new_date,
+                            'request': request}
                 post_html = template.render(contexts)
                 response_data = {
                     'response_type': 'html',
+                    'new_date': new_date,
                     'response': post_html
                 }
                 data = json.dumps(response_data)
@@ -569,10 +539,78 @@ def create_member_post(request, group_id):
         else:
             return render(
                 request,
-                'groupsystem/creatememberpost.html',
+                'groupsystem/createpost.html',
                 {'form': form, 'group': basicgroup},
                 status=500
             )
+    else:
+        return HttpResponseForbidden()
+
+
+@login_required
+def edit_post(request, group_id, post_id):
+    basicgroup = BasicGroup.objects.get(id=group_id)
+    post = GroupPost.objects.get(id=post_id)
+    form = CreatePostForm(instance=post)
+    if request.user == post.creator or request.user.has_perm(
+        'can_update_post', basicgroup):
+        if request.method == 'POST':
+            form = CreatePostForm(request.POST, instance=post)
+            if form.is_valid():
+                post = form.save()
+                new_date = False
+                template = loader.get_template('groupsystem/singlepost.html')
+                posts = basicgroup.posts.filter(approved=True,
+                                                created_on__gte=date.today())
+                if not posts:
+                    new_date = True
+                contexts = {'group': basicgroup,
+                            'post': post, 'new_date': new_date,
+                            'request': request}
+                post_html = template.render(contexts)
+                response_data = {
+                    'response_type': 'html',
+                    'new_date': new_date,
+                    'response': post_html
+                }
+                data = json.dumps(response_data)
+                content_type = 'application/json'
+                return HttpResponse(data, content_type)
+            else:
+                return render(
+                    request,
+                    'groupsystem/editpost.html',
+                    {
+                        'form': form,
+                        'group': basicgroup,
+                        'post': post
+                    },
+                    status=500
+                )
+        return render(
+            request,
+            'groupsystem/editpost.html',
+            {
+                'form': form,
+                'group': basicgroup,
+                'post': post
+            }
+        )
+    else:
+        return HttpResponseForbidden()
+
+
+@require_POST
+@login_required
+def delete_post(request, group_id, post_id):
+    group = BasicGroup.objects.get(id=group_id)
+    post = GroupPost.objects.get(id=post_id)
+    if request.user == post.creator:
+        post.delete()
+        return HttpResponse(status=200)
+    elif request.user.has_perm('can_delete_post', group):
+        post.delete()
+        return HttpResponse(status=200)
     else:
         return HttpResponseForbidden()
 
@@ -612,7 +650,8 @@ def comment_post(request, group_id, post_id):
         postcomment.save()
         if group.auto_approve_comment:
             template = loader.get_template('groupsystem/singlecomment.html')
-            contexts = {'comment': postcomment}
+            contexts = {'comment': postcomment, 'group': group,
+                        'request': request}
             comment_html = template.render(contexts)
             response_data = {
                 'response_type': 'html',
@@ -625,6 +664,21 @@ def comment_post(request, group_id, post_id):
             return HttpResponse(
                 _("Thank you for commenting your comment will show once a admin/moderator approves")
             )
+    else:
+        return HttpResponseForbidden()
+
+
+@require_POST
+@login_required
+def delete_comment(request, group_id, comment_id):
+    group = BasicGroup.objects.get(id=group_id)
+    comment = PostComment.objects.get(id=comment_id)
+    if request.user == comment.commentor:
+        comment.delete()
+        return HttpResponse(status=200)
+    elif request.user.has_perm('can_delete_comment', group):
+        comment.delete()
+        return HttpResponse(status=200)
     else:
         return HttpResponseForbidden()
 
@@ -817,8 +871,13 @@ def approve_post(request, group_id):
 @login_required
 @permission_required_or_403('can_create_post', (BasicGroup, 'id', 'group_id'))
 def create_admin_post(request, group_id):
+    user_is_admin = False
     basicgroup = BasicGroup.objects.get(id=group_id)
-    if request.method == 'POST':
+    if request.user in basicgroup.super_admins.all() or request.user in\
+            basicgroup.admins.all() or request.user in\
+            basicgroup.moderators.all():
+            user_is_admin = True
+    if request.method == 'POST' and user_is_admin:
         form = CreatePostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
@@ -827,45 +886,33 @@ def create_admin_post(request, group_id):
             post.admin_created = True
             post.approved = True
             post.save()
-            return HttpResponse(
-                _("Post created")
-            )
+            new_date = False
+            template = loader.get_template('groupsystem/singlepost.html')
+            posts = basicgroup.posts.filter(approved=True,
+                                            created_on__gte=date.today())
+            if not posts:
+                new_date = True
+            contexts = {'group': basicgroup,
+                        'post': post, 'new_date': new_date,
+                        'request': request}
+            post_html = template.render(contexts)
+            response_data = {
+                'response_type': 'html',
+                'new_date': new_date,
+                'response': post_html
+            }
+            data = json.dumps(response_data)
+            content_type = 'application/json'
+            return HttpResponse(data, content_type)
         else:
             return render(
                 request,
-                'groupsystem/creatememberpost.html',
+                'groupsystem/createpost.html',
                 {'form': form, 'group': basicgroup},
                 status=500
             )
     else:
         return HttpResponseForbidden()
-
-
-@login_required
-@permission_required_or_403('can_update_post', (BasicGroup, 'id', 'group_id'))
-def edit_post_admin_page(request, group_id, post_id):
-    basicgroup = BasicGroup.objects.get(id=group_id)
-    request.session['basicgroup'] = basicgroup.id
-    post = GroupPost.objects.get(id=post_id)
-    form = EditPostForm(instance=post)
-    if request.method == 'POST':
-        form = EditPostForm(request.POST, instance=post)
-        if form.is_valid():
-            form.save()
-    return render(
-        request,
-        'groupsystem/editpostpage.html',
-        {
-            'form': form,
-            'group': basicgroup,
-            'post': post,
-            'extended_sidebar': True,
-            'user_in_group_admin': True,
-            'user_has_admin_access': request.user.has_perm(
-                'can_access_admin', basicgroup
-            )
-        }
-    )
 
 
 @login_required
@@ -910,31 +957,25 @@ def approved_comment_admin_page(request, group_id):
     )
 
 
+@require_POST
 @login_required
-@permission_required_or_403('can_update_comment', (BasicGroup, 'id', 'group_id'))
-def edit_comment_admin_page(request, group_id, comment_id):
+def edit_comment(request, group_id, comment_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
-    request.session['basicgroup'] = basicgroup.id
     comment = PostComment.objects.get(id=comment_id)
-    form = EditCommentForm(instance=comment)
-    if request.method == 'POST':
-        form = EditCommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            form.save()
-    return render(
-        request,
-        'groupsystem/editcommentpage.html',
-        {
-            'form': form,
-            'group': basicgroup,
-            'comment': comment,
-            'extended_sidebar': True,
-            'user_in_group_admin': True,
-            'user_has_admin_access': request.user.has_perm(
-                'can_access_admin', basicgroup
-            )
-        }
-    )
+    if request.user == comment.commentor or request.user.has_perm(
+        'can_update_comment', basicgroup):
+        comment.comment = request.POST.get('comment')
+        comment.save()
+        return render(
+            request,
+            'groupsystem/singlecomment.html',
+            {
+                'comment': comment,
+                'group': basicgroup
+            }
+        )
+    else:
+        return HttpResponseForbidden()
 
 
 @login_required

@@ -12,7 +12,7 @@ class Command(BaseCommand):
         parser.add_argument('version_color', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        git_version = subprocess.check_output(['git', 'describe']).split('\n')
+        git_version = subprocess.check_output(['git', 'describe']).split('-')
         print(git_version)
         git_version = git_version[0]
         print(git_version)

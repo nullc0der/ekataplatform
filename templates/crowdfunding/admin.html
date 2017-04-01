@@ -27,6 +27,10 @@
             .fixed-table-pagination .pagination-detail, .fixed-table-pagination div.pagination {
                 color: #9B9B9B;
             }
+            .ui-sortable-placeholder {
+                width: 100%;
+                height: 300px;
+            }
         </style>
     {% endcompress %}
 {% endblock %}
@@ -44,47 +48,86 @@
 {% endblock content_header_new %}
 {% block content %}
     <div class="row">
-        <div class="col-md-8">
-            <div class="box box-solid">
+        <div class="col-md-12">
+            <div class="pull-right">
+                {% if crowdfund %}
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#paymentAmountModal">{% trans "Add Payment Amount" %}</button>
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#updateCrowdfundModal">{% trans "Update Crowdfund" %}</button>
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#cardCreatorModal">{% trans "Add New Card" %}</button>
+                    <button class="btn btn-rounded" data-toggle="modal" data-target="#metaEditorModal">{% trans "Edit Meta Tags" %}</button>
+                {% else %}
+                    <button class="btn btn-rounded" id="startnew">{% trans "Start a crowdfund" %}</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md-4 no-right-padding">
+            <div class="box box-solid" style="min-height: 300px">
                 <div class="box-body">
                     {% if crowdfund %}
-                    {% if crowdfund.active %}
                     <div class="widget-box">
-                        <h4 class="widget-box-title">{% trans "Stats" %}</h4>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
-                            <p>${{ crowdfund.raised|intcomma }}/${{ crowdfund.goal|intcomma }}</p>
+                        <div class="product_features">
+                            {% include "crowdfunding/product_features_admin.html" %}
                         </div>
-                    </div>
-                    <hr class="widget-box-separator">
-                    {% endif %}
-                    <div class="widget-box">
-                        <h4 class="widget-box-title">{% trans "Status" %}</h4>
-                        <h1>{% if crowdfund.active %}{% trans "Active" %}{% else %}{% trans "Stopped" %}{% endif %}</h1>
+                        {% comment %}
+                        <div class="boxcontent-submitbtn newbtn" data-toggle="modal" data-target="#productFeatureModal">
+                            <p>{% trans "Add" %}</p>
+                        </div>
+                        {% endcomment %}
                     </div>
                     {% else %}
-                    <div class="widget-box" style="text-align: center">
+                    <div class="widget-box" style="text-align: center; margin-top: 25%">
                         <h4>{% trans "No Crowdfund started" %}</h4>
                     </div>
                     {% endif %}
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{% trans "Settings" %}</h3>
-                </div>
-                <div class="box-body" id="settings">
+        <div class="col-md-8">
+            <div class="box box-solid" style="min-height: 300px">
+                <div class="box-body">
                     {% if crowdfund %}
-                    {% include "crowdfunding/update_crowdfund.html" %}
+                        <div class="widget-box">
+                            <h4 class="widget-box-title">{% trans "Introduction" %}</h4>
+                            <div class="widget-box-text">
+                                {% if crowdfund.introduction %}
+                                    <p>
+                                        {{ crowdfund.introduction }}
+                                    </p>
+                                {% else %}
+                                    <p>
+                                        {% trans "No introduction added" %}
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="widget-box">
+                            <h4 class="widget-box-title">{% trans "Stats" %}</h4>
+                            <hr class="widget-box-separator">
+                            <div class="crowdfund-stat-info">
+                                <div class="progress-wrapper">
+                                    <p class="crowdfund-stat" style="float: left">{% trans "Goal" %} <span>${{ crowdfund.goal|intcomma }}</span> <span style="margin: 0 10px" class="hidden-xs">|</span></p>
+                                    <p class="crowdfund-stat">{% trans "Pledged" %} <span>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}</span></p>
+                                    <div class="progress" style="margin-top: 40px">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ percent_raised }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ percent_raised }}%"></div>
+                                        <p>{% if crowdfund.raised %}${{ crowdfund.raised|intcomma }}{% else %}$0{% endif %}/${{ crowdfund.goal|intcomma }}</p>
+                                    </div>
+                                </div>
+                                <div class="countdown-wrapper">
+                                    <p class="crowdfund-stat">{% trans "Remaining Time" %}</p>
+                                    <div class="countdown" id="endcountdown">
+                                        <h1 id="day"></h1>
+                                        <h1 id="hour"></h1>
+                                        <h1 id="minute"></h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% else %}
-                    <div class="widget-box" style="text-align: center; margin-bottom: 100px">
-                        <h4>{% trans "No Crowdfund started" %}</h4>
-                    </div>
-                    <div class="boxcontent-submitbtn newbtn" id="startnew">
-                        <p>{% trans "Start new" %}</p>
-                    </div>
+                        <div class="widget-box" style="text-align: center">
+                            <h4>{% trans "No Crowdfund started" %}</h4>
+                        </div>
                     {% endif %}
                 </div>
             </div>
@@ -103,6 +146,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>User</th>
+                                <th>Fullname</th>
                                 <th data-sortable="true">Date</th>
                                 <th data-sortable="true">Amount</th>
                                 <th>Success</th>
@@ -114,6 +158,7 @@
                                <tr>
                                     <td>{{ payment.id }}</td>
                                     <td>{{ payment.user.username }}</td>
+                                    <td>{{ payment.name }}</td>
                                     <td>{{ payment.date|date:"m/d/Y" }}</td>
                                     <td>${{ payment.amount|intcomma }}</td>
                                     <td>{% if payment.is_success %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times"></i>{% endif %}</td>
@@ -131,28 +176,213 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h4>{% trans "Cards" %}</h4>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" id="cardsWrapper">
+            {{ crowdfund.admin_cards_html|safe }}
+        </div>
+    </div>
 <div class="modal fade" id="paymentDetails" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Payment Details</h4>
+        <h4 class="modal-title">{% trans "Payment Details" %}</h4>
       </div>
       <div class="modal-body" id="paymentDetailsBody">
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="paymentAmountModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Set a default payment amount" %}</h4>
+      </div>
+      <div class="modal-body">
+          {% include "crowdfunding/paymentamountform.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="updateCrowdfundModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="updateCrowdfundModalTitle">{% trans "Update Crowdfund" %}</h4>
+      </div>
+      <div class="modal-body" id="settings">
+        {% if crowdfund %}
+            {% include "crowdfunding/update_crowdfund.html" %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="productFeatureModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Add optional quick feature for this card" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% if crowdfund %}
+            {% include "crowdfunding/productfeatureform.html" %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="headerVideoModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Upload Video" %}</h4>
+      </div>
+      <div class="modal-body">
+        {% if crowdfund %}
+            {% include "crowdfunding/headervideoform.html" %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cardCreatorModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+          <div class="crowdfund-card-creator">
+              <div class="crowdfund-card-preview">
+                  <div class="text-center">
+                      <p style="margin-top: 15px;font-size: 18px;color: #ffffff;font-weight: bold;">{% trans "Make Your Card" %}</p>
+                  </div>
+                  <div class="preview">
+                      <div class="crowdfund-card">
+                          <div class="card-row active-area">
+                              <div class="card-col">
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="crowdfund-card-tools">
+                  <div class="text-center">
+                      <p><i class="fa fa-columns" style="margin-right: 10px"></i> {% trans "Card Height" %} <span id="cardHeight" contenteditable="true" style="background-color: #F6F6F6;padding: 5px 25px;color: #9B9B9B">300</span> <span style="font-size: 14px;color: #9B9B9B">px</span></p>
+                  </div>
+                  <div class="tools-row tool-sliders">
+                      <p style="margin-left: 30px;"><i class="fa fa-arrows-alt"></i> {% trans "Row" %}</p>
+                      <p>
+                          <input class="mdl-slider mdl-js-slider zoom-slider" type="range" min="1" max="3" value="1" tabindex="0" id="rowSlider">
+                      </p>
+                  </div>
+                  <div class="tools-columns tool-sliders">
+                      <p style="margin-left: 30px;"><i class="fa fa-refresh"></i> {% trans "Columns" %}</p>
+                      <p>
+                          <input class="mdl-slider mdl-js-slider rotate-slider" type="range" min="1" max="4" value="1" tabindex="0" id="colSlider">
+                      </p>
+                  </div>
+                  <div class="tools-padding tool-sliders">
+                      <p style="margin-left: 30px;"><i class="fa fa-certificate"></i> {% trans "Padding" %}</p>
+                      <p>
+                          <input class="mdl-slider mdl-js-slider brightness-slider" type="range" min="1" max="15" value="15" tabindex="0" id="paddingSlider">
+                      </p>
+                  </div>
+                  <div class="tools-btn" style="width: 90%;margin: 30px;">
+                      <button type="button" class="btn btn-success btn-flat btn-block" style="padding: 10px;" id="doneBtn">
+                        {% trans "Done" %}
+                      </button>
+                  </div>
+                  {% comment %}
+                  <div class="tools-margin tool-sliders">
+                      <p style="margin-left: 30px;"><i class="fa fa-connectdevelop"></i> {% trans "Margin" %}</p>
+                      <p>
+                          <input class="mdl-slider mdl-js-slider hue-slider" type="range" min="1" max="5" value="5" tabindex="0" id="marginSlider">
+                      </p>
+                  </div>
+                  {% endcomment %}
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<input type="file" style="visibility: hidden" id="imageLoader">
+<div id="finalEdit" style="display: none">
+
+</div>
+<div class="modal fade" id="metaEditorModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="">{% trans "Edit meta tags" %}</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+          <video controls id="video">
+
+          </video>
       </div>
     </div>
   </div>
 </div>
 {% endblock %}
 {% block extrascripts %}
+    <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
     {% compress js %}
+        <script type="text/javascript" src="{% static "dist/js/cardcreator.js" %}?v=1.0.1"></script>
         <script type="text/javascript">
+            {% if crowdfund.end_date %}
+            var countdown_time = moment('{{ crowdfund.end_date|date:"Y/m/d" }}').format("YYYY/MM/DD HH:mm");
+            $("#endcountdown").countdown(countdown_time, function(event) {
+                $("#day").html(event.strftime('%D') + '<span>D</span>');
+                $("#hour").html(event.strftime('%H') + '<span>H</span>');
+                $("#minute").html(event.strftime('%M') + '<span>M</span>');
+            });
+            {% endif %}
+            $("#id_video").fileinput({showUpload: false});
+            $("#id_cover").fileinput({showUpload: false});
+            $("#headerVideoProgress").hide();
+            $("#metaTagProgress").hide();
+            $(".datepicker").datetimepicker({
+                format: 'YYYY-MM-DD',
+                showClear: true,
+            });
+            $("#id_fa_icon_color").colorpicker();
             $(document).on('click', '#startnew', function() {
-                $("#settings").load('{% url 'crowdfunding:start_crowdfund' %}');
+                $("#settings").load('{% url 'crowdfunding:start_crowdfund' %}', function () {
+                        $("#updateCrowdfundModalTitle").text('{% trans "Start a crowdfund" %}');
+                        $(".datepicker").datetimepicker({
+                            format: 'YYYY-MM-DD',
+                            showClear: true,
+                        });
+                        $('#updateCrowdfundModal').modal('show');
+                });
             });
             $(document).on('click', '#submitbtn', function() {
                 var form = $("#adminform");
@@ -165,6 +395,10 @@
                     },
                     error: function (data) {
                         $("#settings").html(data.responseText);
+                        $(".datepicker").datetimepicker({
+                            format: 'YYYY-MM-DD',
+                            showClear: true,
+                        });
                     }
                 });
             });
@@ -191,6 +425,125 @@
                     })
                 }
             });
+            $(document).on('click', "#addamountbtn", function () {
+                var form = $("#paymentAmountForm");
+                $.ajax({
+                    url: form.attr('action'),
+                    method: 'POST',
+                    data: form.serialize(),
+                    success: function () {
+                        $('.top-right').notify({
+                            message: { text: 'Added' },
+                            type: 'success'
+                        }).show();
+                        $("#paymentAmountModal").modal('hide');
+                    },
+                    error: function (data) {
+                        $("#paymentAmountModal .modal-body").html(data.responseText);
+                    }
+                });
+            });
+            $(document).on('click', "#addfeaturebtn", function () {
+                var form = $("#productFeatureForm");
+                $.ajax({
+                    url: form.attr('action'),
+                    method: 'POST',
+                    data: form.serialize(),
+                    success: function (data) {
+                        $(".product_features").html(data);
+                        $(".product_features").slimscroll({
+                            height: '150px',
+                            size: '3px',
+                            alwaysVisible: false
+                        });
+                        $("#productFeatureModal").modal('hide');
+                        var last_feature_attr = $(".feature:last>a").attr('href');
+                        $("#cardsWrapper>.crowdfund-card:last").attr('id', last_feature_attr.slice(1));
+                    },
+                    error: function (data) {
+                        $("#productFeatureModal .modal-body").html(data.responseText);
+                    }
+                });
+            });
+            $(document).on('click', '.feature-delete', function () {
+                var _this = $(this);
+                var feature = _this.parent('.feature');
+                $.ajax({
+                    url: '{% url 'crowdfunding:delete_product_feature' %}',
+                    type: 'POST',
+                    data: {'id': feature.data('id')},
+                    success: function (data) {
+                        feature.remove();
+                    }
+                });
+            });
+            $(".product_features").slimscroll({
+                height: '250px',
+                size: '3px',
+                alwaysVisible: false
+            });
+            $("#metaEditorModal").on('show.bs.modal', function () {
+                $("#metaEditorModal .modal-body").load('{% url 'crowdfunding:add_meta_tags' %}', function () {
+                    $('#id_image').fileinput({
+                        showUpload: false
+                    });
+                });
+            });
+            $(document).on('click', '#addmetatagbtn', function () {
+                $('#metaTagProgress').show();
+                var form = $("#metaTagForm");
+                var fd = new FormData(form[0]);
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: fd,
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    xhr: function() {
+                        var xhr = $.ajaxSettings.xhr();
+                        if (xhr.upload) {
+                            xhr.upload.addEventListener('progress', function(evt) {
+                                var percent = (evt.loaded / evt.total) * 100;
+                                $('#meta_upload_bar').width(percent + "%");
+                            }, false);
+                        }
+                    return xhr;
+                    },
+                    success: function () {
+                        $("#metaEditorModal").modal('hide');
+                        $('.top-right').notify({
+                            message: { text: 'Meta tags updated' },
+                            type: 'success'
+                        }).show();
+                    },
+                    error: function () {
+                        $("#metaEditorModal .modal-body").html(data.responseText);
+                        $('#metaTagProgress').hide();
+                    }
+                });
+            });
+            $(".feature>a").click(function (e) {
+                e.preventDefault();
+                var id = $(this).attr('href');
+                $('html, body').animate({
+                    scrollTop: $(id).offset().top
+                }, 1000);
+            });
+            var video = document.getElementById('video');
+        	video.width = 700;
+        	$(document).on('click', '.play-video', function () {
+        		var vidurl = $(this).data('video-url');
+        		var posterurl = $(this).data('cover-url');
+        		if (vidurl !== '/' + video.src.split('/').slice(3).join('/')) {
+        			video.src = vidurl;
+        			video.poster = posterurl;
+        		}
+        		$("#videoModal").modal('show');
+        	});
+        	$("#videoModal").on('hidden.bs.modal', function () {
+        		video.pause();
+        	});
         </script>
     {% endcompress %}
 {% endblock %}

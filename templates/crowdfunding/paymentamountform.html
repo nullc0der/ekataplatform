@@ -1,0 +1,7 @@
+{% load i18n bootstrap_tags %}
+<form  id="paymentAmountForm" action="{% url 'crowdfunding:add_predefined_amount' %}" style="margin-bottom: 50px">
+    {{ pform|as_bootstrap }}
+</form>
+<div class="boxcontent-submitbtn newbtn" id="addamountbtn" style="border-radius: 0">
+    <p>{% trans "Add" %}</p>
+</div>

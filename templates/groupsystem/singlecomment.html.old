@@ -1,0 +1,27 @@
+{% load i18n staticfiles %}
+{% if comment.approved %}
+    <div class="box-comment">
+        {% if commentor.profile.avatar_public %}
+            {% if commentor.profile.avatar %}
+                <a href="#">
+                    <img src="{{ commentor.profile.avatar.thumbnail.128x128 }}" class="img-circle img-sm" alt="User Image">
+                </a>
+            {% else %}
+                <a href="#">
+                    <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle img-sm" width="128" height="128">
+                </a>
+            {% endif %}
+        {% else %}
+            <a href="#">
+                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle img-sm" width="128" height="128">
+            </a>
+        {% endif %}
+        <div class="comment-text">
+            <span class="username">
+                {{ comment.commentor.username }}
+                <span class="text-muted pull-right">{{ comment.commented_on|date:"M j Y" }}</span>
+            </span>
+            {{ comment.comment }}
+        </div>
+    </div>
+{% endif %}
