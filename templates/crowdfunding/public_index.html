@@ -4,7 +4,7 @@
 	{% trans "Fund Ekata" %}
 {% endblock %}
 {% block extrastyles %}
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.5.2">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.5.3">
     <style media="screen">
         .content {
             min-height: inherit;
@@ -86,7 +86,7 @@
                             {% if crowdfund.productfeature_set.all %}
                                 <ul>
                                     {% for feature in crowdfund.productfeature_set.all %}
-                                        <li class="feature"><a href="#{{ feature.linked_card }}"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}; margin-right: 5px"></i>{{ feature.name }}</a></li>
+                                        <li class="feature"><a href="#{{ feature.linked_card }}"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}; margin-right: 10px"></i>{{ feature.name }}</a></li>
                                     {% endfor %}
                                 </ul>
                             {% else %}
