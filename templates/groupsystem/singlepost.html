@@ -71,8 +71,8 @@
                             <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle img-sm" width="30" height="30">
                         </a>
                     {% endif %}
-                    <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a> {% trans "commented" %}
-                    <p>{{ comment.comment }}<span> - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span></p>
+                    <a href="{% url 'publicusers:user' comment.commentor.id %}">{{ comment.commentor.username }}</a><span> {% trans "commented" %} - {% trans "On" %} {{ comment.commented_on|date:"M j Y" }}</span>
+                    <p>{{ comment.comment }}</p>
                     <div class="edit-comment">
                         <input type="text" name="editcomment" data-comment={{ comment.id }} class="form-control input-sm editcommentinput" value="{{ comment.comment }}">
                     </div>
