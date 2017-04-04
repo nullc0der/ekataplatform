@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from datetime import date
 
 from django.db import models
 from django.core.validators import MinValueValidator
@@ -33,6 +34,10 @@ class CrowdFund(models.Model):
     cards_html = models.TextField(default='', blank=True)
     admin_cards_html = models.TextField(default='', blank=True)
     header_html = models.TextField(default='', blank=True)
+
+    @property
+    def end_date_passed(self):
+        return date.today() > self.end_date
 
     class Meta:
         get_latest_by = 'id'

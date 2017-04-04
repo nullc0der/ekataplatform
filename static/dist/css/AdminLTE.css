@@ -6021,6 +6021,12 @@ table.text-center th {
     vertical-align: super;
 }
 
+.crowdfund-ended {
+    font-size: 40px;
+    margin-top: 25px;
+    font-weight: bold;
+}
+
 .progress > p {
     margin-right: 2%;
 }

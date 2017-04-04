@@ -116,11 +116,15 @@
                                 </div>
                                 <div class="countdown-wrapper">
                                     <p class="crowdfund-stat">{% trans "Remaining Time" %}</p>
+                                    {% if crowdfund.end_date and not crowdfund.end_date_passed %}
                                     <div class="countdown" id="endcountdown">
                                         <h1 id="day"></h1>
                                         <h1 id="hour"></h1>
                                         <h1 id="minute"></h1>
                                     </div>
+                                    {% else %}
+                                    <p class="crowdfund-ended">{% trans "Drive Ended" %}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -357,8 +361,8 @@
     {% compress js %}
         <script type="text/javascript" src="{% static "dist/js/cardcreator.js" %}?v=1.0.1"></script>
         <script type="text/javascript">
-            {% if crowdfund.end_date %}
-            var countdown_time = moment('{{ crowdfund.end_date|date:"Y/m/d" }}').format("YYYY/MM/DD HH:mm");
+            {% if crowdfund.end_date and not crowdfund.end_date_passed %}
+            var countdown_time = moment('{{ crowdfund.end_date|date:"Y/m/d" }}').format("YYYY/MM/DD") + " 23:59:59";
             $("#endcountdown").countdown(countdown_time, function(event) {
                 $("#day").html(event.strftime('%D') + '<span>D</span>');
                 $("#hour").html(event.strftime('%H') + '<span>H</span>');

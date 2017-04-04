@@ -21,7 +21,6 @@ from stripepayment.models import Payment
 def index(request):
     percent_raised = 0
     default_amount = 20
-    end_date_passed = False
     ogtag = None
     crowdfund_ogtag = OgTagLink.objects.filter(
         page='crowdfunding').order_by('-id')
@@ -34,15 +33,12 @@ def index(request):
             default_amount = damount[0].amount
         if crowdfund.raised:
             percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
-        if date.today() + timedelta(days=1) >= crowdfund.end_date:
-            end_date_passed = True
     except ObjectDoesNotExist:
         crowdfund = None
     context = {
         'crowdfund': crowdfund,
         'percent_raised': percent_raised,
         'default_amount': default_amount,
-        'end_date_passed': end_date_passed,
         'ogtag': ogtag
     }
     if request.user.is_authenticated():
