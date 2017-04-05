@@ -6702,7 +6702,7 @@ table.text-center th {
 
 .header-overlay {
     position: absolute;
-    bottom: 0;
+    bottom: 2%;
     left: 35%;
 }
 
