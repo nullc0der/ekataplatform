@@ -203,7 +203,7 @@ $(document).on('click', '.card-edit-video', function () {
     $("#headerVideoModal").modal('show');
 });
 $("#imageLoader").on('change', function () {
-    last_card_col.find('.card-tools-overlay').remove();
+    last_card_col.empty();
     if(this.files && this.files.length){
         var file = this.files[0];
         var reader = new FileReader();
