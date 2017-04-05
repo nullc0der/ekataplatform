@@ -6712,6 +6712,16 @@ table.text-center th {
     }
 }
 
+.stripe-logo {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.stripe-logo img {
+    height: 35px;
+    border-radius: 5px;
+}
+
 .timeline-post>.timeline-post-meta h4,
 .timeline-post>.timeline-post-meta img {
     display: inline-block;

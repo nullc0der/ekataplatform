@@ -4,7 +4,7 @@
 	{% trans "Fund Ekata" %}
 {% endblock %}
 {% block extrastyles %}
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.5.4">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.5.5">
     <style media="screen">
         .content {
             min-height: inherit;
@@ -203,11 +203,15 @@
                       </label>
                   </div>
                   {% endif %}
-                  <div class="form-group" style="margin-bottom: 50px" id="div_id_message">
+                  <div class="form-group" id="div_id_message">
                       <label>
                           <span>{% trans "Note" %}</span>
                           <input class="form-control" type="text" name="message" id="id_message" value="{{ crowdfund.default_note }}">
                       </label>
+                  </div>
+				  <div class="stripe-logo">
+                      <a target="_blank" href="https://stripe.com/"><img src="{% static "dist/img/powered_by_stripe@3x.png" %}" alt="Powered By Stripe"></a>
+					  <img src="{% static "dist/img/logo-ssl.png" %}" alt="Secured by SSL">
                   </div>
                   <div class="boxcontent-submitbtn newbtn" id="submitbtn" style="border-radius: 0">
                       <p>{% trans "Submit" %}</p>
