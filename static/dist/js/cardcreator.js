@@ -64,7 +64,7 @@ var edit_buttons = `
         </div>
     </div>
 `;
-var clear_div = `<div style="clear: both"></div>`
+var clear_div = `<div style="clear: both"></div>`;
 var card_div = $('.crowdfund-card-preview>.preview>.crowdfund-card');
 var cardDivSelector = '.crowdfund-card-preview>.preview>.crowdfund-card ';
 var last_card_col;
