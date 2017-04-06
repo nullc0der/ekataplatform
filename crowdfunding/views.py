@@ -11,7 +11,7 @@ from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
 from landing.models import OgTagLink
 from landing.forms import GlobalOgTagForm
 from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm,\
-    ProductFeatureForm, CardsVideoForm
+    ProductFeatureForm, CardsVideoForm, CardsImageForm
 from stripepayment.utils import StripePayment
 from stripepayment.models import Payment
 
@@ -263,6 +263,22 @@ def upload_video(request):
             },
             status=500
         )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def upload_image(request):
+    crowdfund = CrowdFund.objects.latest()
+    form = CardsImageForm(request.POST, request.FILES)
+    if form.is_valid():
+        cards_image = form.save(commit=False)
+        cards_image.crowdfund = crowdfund
+        cards_image.save()
+        res = {
+            'image': cards_image.image.url
+        }
+        return HttpResponse(json.dumps(res))
+    return HttpResponse()
 
 
 @user_passes_test(lambda u: u.is_staff)

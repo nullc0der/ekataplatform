@@ -327,7 +327,9 @@
     </div>
   </div>
 </div>
-<input type="file" style="visibility: hidden" id="imageLoader">
+<form action="{% url 'crowdfunding:upload_image' %}" method="post" id="uploadimageform">
+    <input type="file" name="image" style="visibility: hidden" id="imageLoader">
+</form>
 <div id="finalEdit" style="display: none">
 
 </div>

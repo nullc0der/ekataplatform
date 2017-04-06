@@ -69,3 +69,11 @@ class CardsVideo(models.Model):
 
     class Meta:
         get_latest_by = 'id'
+
+
+class CardsImage(models.Model):
+    crowdfund = models.ForeignKey(CrowdFund)
+    image = models.ImageField(upload_to='crowdfund_images')
+
+    class Meta:
+        get_latest_by = 'id'
