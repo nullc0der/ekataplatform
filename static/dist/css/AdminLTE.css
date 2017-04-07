@@ -6598,6 +6598,9 @@ table.text-center th {
         width: 100% !important;
         margin-right: 0;
     }
+    .card-col div {
+        padding: 0 !important;
+    }
 }
 
 .crowdfund-card.header-card .card-row,
@@ -6708,7 +6711,10 @@ table.text-center th {
 
 @media (max-width: 768px) {
     .header-overlay {
-        left: 30%;
+        left: 25% !important;
+    }
+    .header-card .widget-box {
+        padding-top: 20% !important;
     }
 }
 
