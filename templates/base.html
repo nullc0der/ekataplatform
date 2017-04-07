@@ -841,6 +841,7 @@
     {% endcompress %}
     {% block extrascripts %}
     {% endblock extrascripts %}
+    {% ifequal SITE_TYPE 'beta' %}
     <script type="text/javascript">
         (function() {
             var s = document.createElement("script");
@@ -852,6 +853,7 @@
             x.parentNode.insertBefore(s, x);
         })();
     </script>
+    {% endifequal %}
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
     <script>
     var OneSignal = window.OneSignal || [];
