@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from allauth.account.signals import user_signed_up, user_logged_in
 from dashboard.models import ActiveMemberCount, NewMemberCount,\
     TotalMemberCount
+from eblast.models import EmailGroup
 
 
 @receiver(user_signed_up)
@@ -28,3 +29,11 @@ def set_active_member(request, user, **kwargs):
         date=now().date()
     )
     activemember.users.add(user)
+
+
+@receiver(user_signed_up)
+def add_member_to_emailgroup(request, user, **kwargs):
+    emailgroup = EmailGroup.objects.filter(all_members_group=True)
+    if len(emailgroup):
+        emailgroup = emailgroup[0]
+        emailgroup.users.add(user)
