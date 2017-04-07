@@ -6699,6 +6699,11 @@ table.text-center th {
     box-shadow: none;
 }
 
+#videoModal video {
+    width: 100%;
+    height: auto;
+}
+
 .header-wrapper {
     position: relative;
 }
