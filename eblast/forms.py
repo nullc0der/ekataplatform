@@ -5,7 +5,11 @@ from eblast.models import EmailGroup, EmailTemplate, EmailCampaign
 class EmailGroupForm(forms.ModelForm):
     class Meta:
         model = EmailGroup
-        fields = '__all__'
+        fields = [
+            'name',
+            'users',
+            'csv_file'
+        ]
 
 
 class EmailGroupAddUserForm(forms.ModelForm):

@@ -18,6 +18,7 @@ def random_string():
 
 class EmailGroup(models.Model):
     name = models.CharField(max_length=200, verbose_name='List Name')
+    all_members_group = models.BooleanField(default=False)
     users = models.ManyToManyField(
         User,
         verbose_name='Select from List',
