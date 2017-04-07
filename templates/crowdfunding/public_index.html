@@ -4,7 +4,7 @@
 	{% trans "Fund Ekata" %}
 {% endblock %}
 {% block extrastyles %}
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.5.2">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.5.5">
     <style media="screen">
         .content {
             min-height: inherit;
@@ -31,7 +31,7 @@
             display: block;
         }
 		.header-overlay {
-			left: 36%;
+			left: 37%;
 		}
     </style>
 {% endblock %}
@@ -61,7 +61,7 @@
 	        <div class="header-wrapper">
 	            {{ crowdfund.header_html|safe }}
 	            <div class="header-overlay">
-	                {% if crowdfund.active and not end_date_passed %}
+	                {% if crowdfund.active and not crowdfund.end_date_passed %}
 					<div class="share-div">
 						<a class="btn btn-facebook btn-social-share" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-facebook"></i></a>
 				        <a class="btn btn-google btn-social-share" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"><i class="fa fa-google-plus"></i></a>
@@ -86,7 +86,7 @@
                             {% if crowdfund.productfeature_set.all %}
                                 <ul>
                                     {% for feature in crowdfund.productfeature_set.all %}
-                                        <li class="feature"><a href="#{{ feature.linked_card }}"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}; margin-right: 5px"></i>{{ feature.name }}</a></li>
+                                        <li class="feature"><a href="#{{ feature.linked_card }}"><i class="fa fa-{{ feature.fa_icon_name }}" style="color: {{ feature.fa_icon_color }}; margin-right: 10px"></i>{{ feature.name }}</a></li>
                                     {% endfor %}
                                 </ul>
                             {% else %}
@@ -133,12 +133,16 @@
                                     </div>
                                 </div>
                                 <div class="countdown-wrapper">
-                                    <p class="crowdfund-stat">{% trans "Remaining Time" %}</p>
+									<p class="crowdfund-stat">{% trans "Remaining Time" %}</p>
+                                    {% if crowdfund.end_date and not crowdfund.end_date_passed %}
                                     <div class="countdown" id="endcountdown">
                                         <h1 id="day"></h1>
                                         <h1 id="hour"></h1>
                                         <h1 id="minute"></h1>
                                     </div>
+                                    {% else %}
+                                    <p class="crowdfund-ended">{% trans "Drive Ended" %}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -162,7 +166,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">{% trans "Fund Now" %}</h4>
+            <h4 class="modal-title">{% trans "Contribute Now" %}</h4>
           </div>
           <div class="modal-body" id="paymentFormBody">
               <form action="{% url 'crowdfunding:accept_payment' %}" method="post" id="payment-form">
@@ -199,11 +203,15 @@
                       </label>
                   </div>
                   {% endif %}
-                  <div class="form-group" style="margin-bottom: 50px" id="div_id_message">
+                  <div class="form-group" id="div_id_message">
                       <label>
                           <span>{% trans "Note" %}</span>
                           <input class="form-control" type="text" name="message" id="id_message" value="{{ crowdfund.default_note }}">
                       </label>
+                  </div>
+				  <div class="stripe-logo">
+                      <a target="_blank" href="https://stripe.com/"><img src="{% static "dist/img/powered_by_stripe@3x.png" %}" alt="Powered By Stripe"></a>
+					  <img src="{% static "dist/img/logo-ssl.png" %}" alt="Secured by SSL">
                   </div>
                   <div class="boxcontent-submitbtn newbtn" id="submitbtn" style="border-radius: 0">
                       <p>{% trans "Submit" %}</p>
@@ -234,14 +242,14 @@
 <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
 {% compress js %}
 <script type="text/javascript">
-    {% if crowdfund.end_date %}
-    var countdown_time = moment('{{ crowdfund.end_date|date:"Y/m/d" }}').format("YYYY/MM/DD HH:mm");
-    $("#endcountdown").countdown(countdown_time, function(event) {
-        $("#day").html(event.strftime('%D') + '<span>D</span>');
-        $("#hour").html(event.strftime('%H') + '<span>H</span>');
-        $("#minute").html(event.strftime('%M') + '<span>M</span>');
-    });
-    {% endif %}
+	{% if crowdfund.end_date and not crowdfund.end_date_passed %}
+	var countdown_time = moment('{{ crowdfund.end_date|date:"Y/m/d" }}').format("YYYY/MM/DD") + " 23:59:59";
+	$("#endcountdown").countdown(countdown_time, function(event) {
+		$("#day").html(event.strftime('%D') + '<span>D</span>');
+		$("#hour").html(event.strftime('%H') + '<span>H</span>');
+		$("#minute").html(event.strftime('%M') + '<span>M</span>');
+	});
+	{% endif %}
 	$(".share-div").hide();
     $("#payment-errors").hide();
     var stripe = Stripe('{{ STRIPE_PUBLISHABLE_KEY }}');

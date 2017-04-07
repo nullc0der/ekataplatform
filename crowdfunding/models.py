@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from datetime import date
 
 from django.db import models
 from django.core.validators import MinValueValidator
@@ -34,6 +35,10 @@ class CrowdFund(models.Model):
     admin_cards_html = models.TextField(default='', blank=True)
     header_html = models.TextField(default='', blank=True)
 
+    @property
+    def end_date_passed(self):
+        return date.today() > self.end_date
+
     class Meta:
         get_latest_by = 'id'
 
@@ -61,6 +66,14 @@ class CardsVideo(models.Model):
     crowdfund = models.ForeignKey(CrowdFund)
     cover = models.ImageField(upload_to='crowdfund_videos')
     video = models.FileField(upload_to='crowdfund_videos')
+
+    class Meta:
+        get_latest_by = 'id'
+
+
+class CardsImage(models.Model):
+    crowdfund = models.ForeignKey(CrowdFund)
+    image = models.ImageField(upload_to='crowdfund_images')
 
     class Meta:
         get_latest_by = 'id'

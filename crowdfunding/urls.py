@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^admin/add_product_feature/$', views.add_product_feature, name='add_product_feature'),
     url(r'^admin/delete_product_feature/$', views.delete_product_feature, name='delete_product_feature'),
     url(r'^admin/upload_video/$', views.upload_video, name='upload_video'),
+    url(r'^admin/upload_image/$', views.upload_image, name='upload_image'),
     url(r'^admin/update_cards_html/$', views.update_cards_html, name='update_cards_html'),
     url(r'^admin/add_meta_tags/$', views.add_meta_tags, name='add_meta_tags')
 ]

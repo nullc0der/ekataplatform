@@ -11,7 +11,7 @@ from crowdfunding.models import CrowdFund, PredefinedAmount, ProductFeature
 from landing.models import OgTagLink
 from landing.forms import GlobalOgTagForm
 from crowdfunding.forms import PaymentForm, AdminForm, PredefinedAmountForm,\
-    ProductFeatureForm, CardsVideoForm
+    ProductFeatureForm, CardsVideoForm, CardsImageForm
 from stripepayment.utils import StripePayment
 from stripepayment.models import Payment
 
@@ -21,7 +21,6 @@ from stripepayment.models import Payment
 def index(request):
     percent_raised = 0
     default_amount = 20
-    end_date_passed = False
     ogtag = None
     crowdfund_ogtag = OgTagLink.objects.filter(
         page='crowdfunding').order_by('-id')
@@ -34,15 +33,12 @@ def index(request):
             default_amount = damount[0].amount
         if crowdfund.raised:
             percent_raised = int((crowdfund.raised * 100.0) / crowdfund.goal)
-        if date.today() + timedelta(days=1) >= crowdfund.end_date:
-            end_date_passed = True
     except ObjectDoesNotExist:
         crowdfund = None
     context = {
         'crowdfund': crowdfund,
         'percent_raised': percent_raised,
         'default_amount': default_amount,
-        'end_date_passed': end_date_passed,
         'ogtag': ogtag
     }
     if request.user.is_authenticated():
@@ -267,6 +263,22 @@ def upload_video(request):
             },
             status=500
         )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def upload_image(request):
+    crowdfund = CrowdFund.objects.latest()
+    form = CardsImageForm(request.POST, request.FILES)
+    if form.is_valid():
+        cards_image = form.save(commit=False)
+        cards_image.crowdfund = crowdfund
+        cards_image.save()
+        res = {
+            'image': cards_image.image.url
+        }
+        return HttpResponse(json.dumps(res))
+    return HttpResponse()
 
 
 @user_passes_test(lambda u: u.is_staff)

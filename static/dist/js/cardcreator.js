@@ -64,6 +64,7 @@ var edit_buttons = `
         </div>
     </div>
 `;
+var clear_div = `<div style="clear: both"></div>`;
 var card_div = $('.crowdfund-card-preview>.preview>.crowdfund-card');
 var cardDivSelector = '.crowdfund-card-preview>.preview>.crowdfund-card ';
 var last_card_col;
@@ -153,10 +154,11 @@ $("#paddingSlider").on('input', function () {
     active_area.css('padding', rowPadding);
 })
 $("#doneBtn").on('click', function () {
-    var cardHeight = $('#cardHeight').text();
+    var cardHeight = $('#cardHeight').text() + 'px';
     $("#cardsWrapper").append($('.preview').html());
-    $("#cardsWrapper>.crowdfund-card:last").css('height', cardHeight);
+    $("#cardsWrapper>.crowdfund-card:last").css('min-height', cardHeight);
     $("#cardsWrapper>.crowdfund-card:last .card-col").append(tools_overlay);
+    $("#cardsWrapper>.crowdfund-card:last .card-row").append(clear_div);
     $("#cardsWrapper>.crowdfund-card:last").prepend(edit_buttons);
     $("#cardCreatorModal").modal('hide');
     $("#productFeatureModal").modal('show');
@@ -203,23 +205,27 @@ $(document).on('click', '.card-edit-video', function () {
     $("#headerVideoModal").modal('show');
 });
 $("#imageLoader").on('change', function () {
-    last_card_col.find('.card-tools-overlay').remove();
-    if(this.files && this.files.length){
-        var file = this.files[0];
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            var img = new Image();
-            img.src = e.target.result;
-            img.onload = function () {
+    if (this.files && this.files.length) {
+        last_card_col.empty();
+        var form = $("#uploadimageform");
+        var fd = new FormData(form[0]);
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: fd,
+            processData:false,
+            contentType:false,
+            cache:false,
+            success: function (data) {
+                var res = JSON.parse(data);
+                var img = new Image();
+                img.src = res.image;
                 last_card_col.append(img);
                 last_card_col.addClass('img-col');
-            };
-            img.width = last_card_col.width();
-            img.height = last_card_col.width();
-        };
-        reader.readAsDataURL(file);
+            }
+        });
     }
-})
+});
 $(document).on('hidden.bs.modal', '#productFeatureModal' ,function () {
     $('html, body').animate({
         scrollTop: $("#cardsWrapper>.crowdfund-card:last").offset().top
