@@ -6702,6 +6702,7 @@ table.text-center th {
 #videoModal video {
     width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
 .header-wrapper {
