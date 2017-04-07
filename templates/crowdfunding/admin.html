@@ -361,7 +361,7 @@
 {% block extrascripts %}
     <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
     {% compress js %}
-        <script type="text/javascript" src="{% static "dist/js/cardcreator.js" %}?v=1.0.2"></script>
+        <script type="text/javascript" src="{% static "dist/js/cardcreator.js" %}?v=1.0.3"></script>
         <script type="text/javascript">
             {% if crowdfund.end_date and not crowdfund.end_date_passed %}
             var countdown_time = moment('{{ crowdfund.end_date|date:"Y/m/d" }}').format("YYYY/MM/DD") + " 23:59:59";

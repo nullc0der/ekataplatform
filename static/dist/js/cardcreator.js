@@ -18,7 +18,7 @@ var tools_overlay = `
 </div>
 `;
 var video_overlay = `
-<div class="widget-box" style="text-align: center; margin-top: 8%">
+<div class="widget-box" style="text-align: center; padding-top: 8%">
     <i class="fa fa-play-circle play-video" style="font-size: 80px; color: #FFFFFF; cursor: pointer"></i>
     <p class="play-video" style="color: #fff; font-weight: 600; font-size: 18px; cursor: pointer">Watch Video</p>
 </div>
