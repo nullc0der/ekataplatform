@@ -1,16 +1,14 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
 from useraccount.models import Transaction, IncomeRelease, UserAccount
 from autosignup.models import CommunitySignup
 from usertimeline.models import UserTimeline
 from useraccount.forms import TransactionForm, RequestForm
-from useraccount.utils import create_ekata_units_account, get_ekata_units_info
 from autosignup.forms import AccountAddContactForm
 from notification.utils import create_notification
 
@@ -19,52 +17,34 @@ from notification.utils import create_notification
 
 @login_required
 def account_page(request):
+    transactions = Transaction.objects.filter(
+        Q(to_user=request.user) | Q(from_user=request.user)
+    ).order_by('-date')
+    relaeses = IncomeRelease.objects.filter(user=request.user)
+    useraccount, created = UserAccount.objects.get_or_create(user=request.user)
+    next_release = useraccount.next_release
     try:
         communitysignup = CommunitySignup.objects.get(user=request.user)
     except ObjectDoesNotExist:
         communitysignup = None
-    variables = {
+    if transactions:
+        variables = {
+            'next_release': next_release,
+            'transactions': transactions,
+            'first': transactions[0],
+            'releases': relaeses,
+            'communitysignup': communitysignup,
+            'form': AccountAddContactForm()
+        }
+    else:
+        variables = {
+            'next_release': next_release,
+            'transactions': transactions,
+            'releases': relaeses,
             'communitysignup': communitysignup,
             'form': AccountAddContactForm()
         }
     return render(request, 'useraccount/index.html', context=variables)
-
-
-@login_required
-@require_POST
-def subscribe_ekata_units(request):
-    try:
-        useraccount = request.user.useraccount
-        message = "You've already subscribed to Ekata Units"
-    except ObjectDoesNotExist:
-        account_info = create_ekata_units_account(request.user)
-        if account_info:
-            message = "Subscribed"
-        else:
-            message = "Something is wrong!! Try again later"
-    return JsonResponse({'message': message})
-
-
-@login_required
-def ekata_units_info(request):
-    try:
-        useraccount = request.user.useraccount
-        units_info = get_ekata_units_info(request.user)
-        if not units_info:
-            variables = {
-                'message': "Something is wrong!! Try again later"
-            }
-        else:
-            variables = units_info
-    except ObjectDoesNotExist:
-        variables = {
-            'message': "You've not subscribed yet"
-        }
-    return render(
-        request,
-        'useraccount/ekataunitsinfo.html',
-        context=variables
-    )
 
 
 @login_required

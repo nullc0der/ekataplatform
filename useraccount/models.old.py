@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
 
+from datetime import timedelta
+
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.conf import settings
 
@@ -9,7 +12,16 @@ from django.conf import settings
 
 class UserAccount(models.Model):
     user = models.OneToOneField(User, related_name='useraccount')
-    wallet_accont_name = models.CharField(max_length=100, default='')
+    balance = models.PositiveIntegerField(default=1024)
+    next_release = models.DateTimeField()
+
+    def create_account(sender, **kwargs):
+        user = kwargs["instance"]
+        if kwargs["created"]:
+            user_account = UserAccount(user=user)
+            user_account.next_release = user.date_joined + timedelta(minutes=settings.NEXT_RELEASE)
+            user_account.save()
+    post_save.connect(create_account, sender=User)
 
     def __unicode__(self):
         return self.user.username

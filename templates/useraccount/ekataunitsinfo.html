@@ -1,0 +1,30 @@
+{% load i18n %}
+<div class="box box-solid" style="min-height: 300px">
+    <div class="box-body">
+        <div class="widget-box text-center">
+            <h4 class="widget-box-title">{% trans "Ekata Units" %}</h4>
+        </div>
+        {% if message %}
+        <div class="widget-box text-center">
+            <p>{{ message }}</p>
+        </div>
+        {% else %}
+        <div class="widget-box">
+            <h4 class="widget-box-title">{% trans "Addresses" %}</h4>
+            <hr class="widget-box-separator" style="width: 10%">
+            <div class="widget-box-text">
+                {% for address in addresses %}
+                    <p>{{ address }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="widget-box">
+            <h4 class="widget-box-title">{% trans "Balance" %}</h4>
+            <hr class="widget-box-separator" style="width: 10%">
+            <div class="widget-box-text">
+                <p>{{ balance }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static "dist/css/dashboard.css" %}?v=1">
 {% endblock extrastyle %}
 {% block title %}
-    {% trans "Accounts" %}
+    {% trans "Account" %}
 {% endblock title %}
 {% block content_header_new %}
     <section class="content-header-new no-search-bar">
@@ -43,14 +43,10 @@
                         <div class="community-wrapper">
                             <div class="community" style="background: url('{% static "dist/img/DummyDB.png" %}'); background-size: 100px 100px; background-repeat:no-repeat; background-position:center 40px;">
                                 <div class="community-name">
-                                    <h4>{% trans "Ekata Units" %}</h4>
+                                    <h4>{% trans "DummyDB" %}</h4>
                                 </div>
                                 <div class="community-actions">
-                                    {% if request.user.useraccount %}
-                                        <a href="javascript:getEkataUnitsInfo();" class="btn btn-block btn-flat btn-default">{% trans "View Info" %}</a>
-                                    {% else %}
-                                        <a href="javascript:void(0);" class="btn btn-block btn-flat btn-default" id="ekataUnitsSubscribe">{% trans "Subscribe" %}</a>
-                                    {% endif %}
+                                    <a href="{% url 'myaccount:index' %}" class="btn btn-block btn-flat btn-default">{% trans "Subscribed" %}</a>
                                 </div>
                             </div>
                         </div>
@@ -105,8 +101,160 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6" id="accountInfo">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Quick Review" %}</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body text-center">
+                    <h3>{% trans "Account Balance" %}</h3>
+                    <h1 class="color-blue">{{ request.user.useraccount.balance }}</h1>
+                    <p>{% trans "Units" %}</p>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
 
+                </div>
+            </div><!-- /.box -->
+        </div>
+        <div class="col-md-4">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Next Release" %}</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div class="col-md-12 text-center" id="releasecountdown">
+                        <div class="countdownbox">
+                            <h1 id="day"></h1>
+                        </div>
+                        <div class="countdownbox">
+                            <h1 id="hour"></h1>
+                        </div>
+                        <div class="countdownbox">
+                            <h1 id="minute"></h1>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <div class="countdowntext">
+                            <h4>
+                                {% trans "Day" %}
+                            </h4>
+                        </div>
+                        <div class="countdowntext">
+                            <h4>
+                                {% trans "Hour" %}
+                            </h4>
+                        </div>
+                        <div class="countdowntext">
+                            <h4>
+                                {% trans "Minute" %}
+                            </h4>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+
+                </div>
+            </div><!-- /.box -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Transactions" %}</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table" id="transactiontable">
+                        <thead>
+                            <tr>
+                                <th data-visible="false">{% trans "Id" %}</th>
+                                <th>{% trans "From" %}</th>
+                                <th>{% trans "To" %}</th>
+                                <th data-sortable="true">{% trans "Date" %}</th>
+                                <th data-sortable="true">{% trans "Amount" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for transaction in transactions %}
+                               <tr>
+                                    <td>{{ transaction.id }}</td>
+                                    <td>{{ transaction.from_user.username }}</td>
+                                    <td>{{ transaction.to_user.username }}</td>
+                                    <td>{{ transaction.date|date:"Y/m/d" }}</td>
+                                    <td>{{ transaction.units }}</td>
+                               </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Details" %}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive" id="transdetails">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>{% trans "To" %}</td>
+                                    <td id="transto">{{ first.to_user.username }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{% trans "From" %}</td>
+                                    <td id="transfrom">{{ first.from_user.username }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{% trans "Date" %}</td>
+                                    <td id="transdate">{{ first.date|date:"Y/m/d" }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{% trans "Amount" %}</td>
+                                    <td id="transamount">{{ first.units }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="button" onclick="PrintTrans()"><i class="fa fa-print"></i> Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Basic Income Release" %}</h3>
+                </div>
+                <div class="box-body">
+                    {% if releases %}
+                        <table class="table" id="releasetable">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Date" %}</th>
+                                    <th>{% trans "Amount" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for release in releases %}
+                                    <tr>
+                                        <td>{{ release.date|date:"Y/m/d" }}</td>
+                                        <td>{{ release.amount }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>{% trans "No release yet" %}</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
@@ -161,32 +309,55 @@
 <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
 {% compress js %}
 <script type="text/javascript">
-    function getEkataUnitsInfo() {
-        var url = '{% url 'myaccount:ekata_units_info' %}';
-        $("#accountInfo").load(url, function () {
-            $('html, body').animate({
-                scrollTop: $("#accountInfo").offset().top
-            }, 1000);
-        });
-    }
-    $("#ekataUnitsSubscribe").on('click', function(){
-        $(this).text("Subscribing...");
-        var url = '{% url 'myaccount:subscribe_ekata_units' %}';
-        $.ajax({
-            url: url,
-            type: 'POST',
-            success: function(data){
-                $('.top-right').notify({
-                    message: { text: data.message },
-                    type: 'info'
-                }).show();
-                if (data.message === 'Subscribed') {
-                    $("#ekataUnitsSubscribe").text("Subscribed");
-                    getEkataUnitsInfo();
-                }
-            }
-        });
+    //var next_release = moment.tz("{{ next_release|date:"Y-m-d H:i" }}", 'UTC');
+    //var next_release = moment.utc('{{ next_release|date:"Y-m-d H:i" }}').toDate();
+    var countdown_time = moment('{{ next_release|date:"Y/m/d H:i" }}').format("YYYY/MM/DD HH:mm");
+    $("#releasecountdown").countdown(countdown_time, function(event) {
+        $("#day").text(event.strftime('%D'));
+        $("#hour").text(event.strftime('%H'));
+        $("#minute").text(event.strftime('%M'));
     });
+    $("#transactiontable").bootstrapTable({
+        'pagination': true,
+        'pageNumber': 1,
+        'pageSize': 10,
+        'pageList': [5, 10, 15, 20, 25],
+        'search': true,
+        'showExport': true,
+        'exportDataType': 'all',
+        'exportTypes': ['json', 'csv', 'txt', 'excel'],
+        onClickRow: function (row) {
+            $("#transfrom").text(row[1]);
+            $("#transto").text(row[2]);
+            $("#transdate").text(row[3]);
+            $("#transamount").text(row[4]);
+        }
+    });
+    $("#releasetable").bootstrapTable({
+        'pagination': true,
+        'pageNumber': 1,
+        'pageSize': 10,
+        'pageList': [5, 10, 15, 20, 25],
+        'search': true,
+        'showExport': true,
+        'exportDataType': 'all',
+        'exportTypes': ['json', 'csv', 'txt', 'excel'],
+    });
+    function PrintTrans(){
+        var option="toolbar=yes,location=no,directories=yes,menubar=yes,scrollbars=yes,width=900,height=300,left=450,top=50";
+        var prtContent = document.getElementById("transdetails");
+        var WinPrint = window.open("", "", option);
+        WinPrint.document.write('<html><head><style type="text/css">');
+        WinPrint.document.write('body,td,th{font-family:Arial, Helvetica, sans-serif;font-size:15px;}');
+        WinPrint.document.write('</style></head><body>');
+        WinPrint.document.write('<table>');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.write('</table>');
+        WinPrint.document.write('</body></html>');
+        WinPrint.document.close();
+        WinPrint.print();
+        WinPrint.close();
+    }
     $("#signupmodal").on('show.bs.modal', function(e){
         var link = '{% url 'autosignup:getform' %}?community_name=' + $(e.relatedTarget).attr('data-community-name');
         var self = $(this);
@@ -280,7 +451,7 @@
             });
         }
         return false;
-    });
+    })
     $("#accountaddsubmit").click(function(){
         var frm = $("#addaccountform");
         $.ajax({
@@ -297,10 +468,7 @@
             error: function (data) {
                 $("#addaccountform").html(data.responseText);
             }
-        });
-    });
-    $(document).ready(function () {
-        getEkataUnitsInfo();
+        })
     });
 </script>
 {% endcompress %}
