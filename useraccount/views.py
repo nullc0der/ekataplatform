@@ -11,7 +11,7 @@ from autosignup.models import CommunitySignup
 from usertimeline.models import UserTimeline
 from useraccount.forms import TransactionForm, RequestForm
 from useraccount.utils import create_ekata_units_account, get_ekata_units_info, \
-    dist_ekata_units, send_ekata_units
+    dist_ekata_units, send_ekata_units, request_new_address
 from autosignup.forms import AccountAddContactForm
 from notification.utils import create_notification
 
@@ -67,6 +67,15 @@ def ekata_units_info(request):
         'useraccount/ekataunitsinfo.html',
         context=variables
     )
+
+
+@login_required
+@require_POST
+def get_account_new_address(request):
+    address = request_new_address(request.user.username)
+    if not address:
+        return HttpResponse(status=500)
+    return HttpResponse(status=200)
 
 
 @login_required

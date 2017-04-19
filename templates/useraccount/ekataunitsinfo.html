@@ -10,21 +10,26 @@
                 <p>{{ message }}</p>
             </div>
             {% else %}
-            <div class="widget-box">
-                <h4 class="widget-box-title">{% trans "Addresses" %}</h4>
-                <hr class="widget-box-separator" style="width: 10%">
-                <div class="widget-box-text">
-                    {% for address in addresses %}
-                        <p>{{ address }}</p>
-                    {% endfor %}
+            <div id="ekataUnitsInfo">
+                <div class="widget-box">
+                    <h4 class="widget-box-title">{% trans "Addresses" %}</h4>
+                    <hr class="widget-box-separator" style="width: 10%">
+                    <div class="widget-box-text addresses">
+                        {% for address in addresses %}
+                            <p>{{ address }} <i class="fa fa-qrcode getqrcode" data-address="{{ address }}"></i></p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="widget-box">
+                    <h4 class="widget-box-title">{% trans "Balance" %}</h4>
+                    <hr class="widget-box-separator" style="width: 10%">
+                    <div class="widget-box-text">
+                        <p>{{ balance }}</p>
+                    </div>
                 </div>
             </div>
-            <div class="widget-box">
-                <h4 class="widget-box-title">{% trans "Balance" %}</h4>
-                <hr class="widget-box-separator" style="width: 10%">
-                <div class="widget-box-text">
-                    <p>{{ balance }}</p>
-                </div>
+            <div class="boxcontent-submitbtn newbtn" id="getNewAddress">
+                <p>{% trans "Request New Address" %}</p>
             </div>
             {% endif %}
         </div>

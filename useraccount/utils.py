@@ -7,19 +7,22 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from useraccount.models import UserAccount, Transaction
 
-
-rpc_connect = AuthServiceProxy(
-    "http://{0}:{1}@{2}".format(
-        settings.BITCOIND_RPC_USERNAME,
-        settings.BITCOIND_RPC_PASSWORD,
-        settings.BITCOIND_RPC_URL
-    )
-)
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 log_file_base = os.path.join(settings.BASE_DIR, 'logs')
 
 
-def setup_logger(log_file, level=logging.DEBUG):
+def get_rpc_connect():
+    rpc_connect = AuthServiceProxy(
+        "http://{0}:{1}@{2}".format(
+            settings.BITCOIND_RPC_USERNAME,
+            settings.BITCOIND_RPC_PASSWORD,
+            settings.BITCOIND_RPC_URL
+        )
+    )
+    return rpc_connect
+
+
+def setup_logger(log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)
     handler.setFormatter(formatter)
 
@@ -31,6 +34,7 @@ def setup_logger(log_file, level=logging.DEBUG):
 
 
 def create_ekata_units_account(user):
+    rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/subscribe.log')
     try:
@@ -47,7 +51,19 @@ def create_ekata_units_account(user):
         return False
 
 
+def request_new_address(account_name):
+    rpc_connect = get_rpc_connect()
+    setup_logger(
+        os.path.join(log_file_base, 'ekata_units_logs') + '/newaddressreq.log')
+    try:
+        address = rpc_connect.getnewaddress(account_name)
+        return address
+    except JSONRPCException:
+        return False
+
+
 def get_ekata_units_info(account_name):
+    rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/getinfo.log')
     try:
@@ -61,6 +77,7 @@ def get_ekata_units_info(account_name):
 
 
 def send_ekata_units(from_user, to_user, amount, instruction):
+    rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/transfer.log')
     try:
@@ -79,6 +96,7 @@ def send_ekata_units(from_user, to_user, amount, instruction):
 
 
 def dist_ekata_units(amount):
+    rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
     for account in UserAccount.objects.all():

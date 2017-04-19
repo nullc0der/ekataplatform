@@ -2,6 +2,18 @@
 {% load i18n staticfiles compress %}
 {% block extrastyle %}
     <link rel="stylesheet" href="{% static "dist/css/dashboard.css" %}?v=1">
+    <style media="screen">
+        .addresses {
+            position: relative;
+        }
+        .getqrcode {
+            position: absolute;
+            right: 10px;
+            line-height: 20px;
+            color: green;
+            cursor: pointer;
+        }
+    </style>
 {% endblock extrastyle %}
 {% block title %}
     {% trans "Accounts" %}
@@ -155,10 +167,22 @@
           </div>
         </div>
       </div>
+  </div>
+  <div class="modal fade" id="qrCodeModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="text-center" id="qrcodecontent">
+                <p id="qrAddress"></p>
+            </div>
+        </div>
+      </div>
     </div>
+  </div>
 {% endblock content %}
 {% block extrascripts %}
 <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
+<script type="text/javascript" src="{% static "plugins/jquery-qrcode/jquery-qrcode.min.js" %}"></script>
 {% compress js %}
 <script type="text/javascript">
     function getEkataUnitsInfo() {
@@ -171,6 +195,10 @@
                 source: '{% url 'myaccount:get_ekata_units_users' %}',
                 minLength: 2
             });
+            $("#ekataUnitsInfo").slimscroll({
+                height: '200px',
+                size: '3px'
+            })
         });
     }
     $("#ekataUnitsSubscribe").on('click', function(){
@@ -345,6 +373,32 @@
                 });
             }
         });
+    });
+    $(document).on('click', '#getNewAddress', function () {
+        var url = '{% url 'myaccount:get_new_address' %}';
+        $.ajax({
+            url: url,
+            type: 'POST',
+            success: function () {
+                getEkataUnitsInfo();
+            },
+            error: function () {
+                $('.top-right').notify({
+                    message: { text: 'Error getting address!! try later' },
+                    type: 'danger'
+                }).show();
+            }
+        });
+    });
+    $(document).on('click', '.getqrcode', function () {
+        var address = $(this).data('address');
+        $("#qrcodecontent>img").remove();
+        $("#qrAddress").text(address);
+        $("#qrcodecontent").qrcode({
+            render: 'image',
+            text: address
+        });
+        $("#qrCodeModal").modal('show');
     });
     $(document).ready(function () {
         getEkataUnitsInfo();
