@@ -8,5 +8,9 @@ urlpatterns = [
     url(r'^transferunit/(?P<id>\d+)/$', views.transferunit, name='transferunit'),
     url(r'^requestunit/(?P<id>\d+)/$', views.requestunit, name='requestunit'),
     url(r'^subscribe_ekata_units/$', views.subscribe_ekata_units, name='subscribe_ekata_units'),
-    url(r'^ekata_units_info/$', views.ekata_units_info, name='ekata_units_info')
+    url(r'^ekata_units_info/$', views.ekata_units_info, name='ekata_units_info'),
+    url(r'^ekata_units_admin/$', views.ekata_units_admin, name='ekata_units_admin'),
+    url(r'^distribute_ekata_units/$', views.distribute_ekata_units, name='distribute_ekata_units'),
+    url(r'^get_ekata_units_users/$', views.get_ekata_units_users, name='get_ekata_units_users'),
+    url(r'^transfer_ekata_units/$', views.transfer_ekata_units, name='transfer_ekata_units')
 ]

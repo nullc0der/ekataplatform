@@ -3,14 +3,15 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
 from useraccount.models import Transaction, IncomeRelease, UserAccount
 from autosignup.models import CommunitySignup
 from usertimeline.models import UserTimeline
 from useraccount.forms import TransactionForm, RequestForm
-from useraccount.utils import create_ekata_units_account, get_ekata_units_info
+from useraccount.utils import create_ekata_units_account, get_ekata_units_info, \
+    dist_ekata_units, send_ekata_units
 from autosignup.forms import AccountAddContactForm
 from notification.utils import create_notification
 
@@ -49,13 +50,14 @@ def subscribe_ekata_units(request):
 def ekata_units_info(request):
     try:
         useraccount = request.user.useraccount
-        units_info = get_ekata_units_info(request.user)
+        units_info = get_ekata_units_info(request.user.username)
         if not units_info:
             variables = {
                 'message': "Something is wrong!! Try again later"
             }
         else:
             variables = units_info
+            variables['form'] = TransactionForm(request)
     except ObjectDoesNotExist:
         variables = {
             'message': "You've not subscribed yet"
@@ -65,6 +67,65 @@ def ekata_units_info(request):
         'useraccount/ekataunitsinfo.html',
         context=variables
     )
+
+
+@login_required
+def get_ekata_units_users(request):
+    res = []
+    query = request.GET.get('term', '')
+    users = User.objects.filter(
+        username__istartswith=query).exclude(username=request.user)[:5]
+    for user in users:
+        if hasattr(user, 'useraccount'):
+            res.append(user.username)
+    return JsonResponse(res, safe=False)
+
+
+@require_POST
+@login_required
+def transfer_ekata_units(request):
+    form = TransactionForm(request, request.POST)
+    if form.is_valid():
+        send_ekata_units(
+            from_user=request.user.username,
+            to_user=form.cleaned_data.get('reciever'),
+            amount=form.cleaned_data.get('units'),
+            instruction=form.cleaned_data.get('instruction')
+        )
+        return HttpResponse(_('Transferred {0} units to {1}'.format(
+            form.cleaned_data.get('units'),
+            form.cleaned_data.get('reciever')
+        )))
+    return render(
+        request,
+        'useraccount/transferform.html',
+        {'form': form},
+        status=500
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
+def ekata_units_admin(request):
+    units_info = get_ekata_units_info("")
+    if not units_info:
+        variables = {
+            'message': "Something is wrong!! Try again later"
+        }
+    else:
+        variables = units_info
+    return render(
+        request,
+        'useraccount/ekataunitsadmin.html',
+        context=variables
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def distribute_ekata_units(request):
+    amount = request.POST.get('amount')
+    dist_ekata_units(amount)
+    return HttpResponse(status=200)
 
 
 @login_required

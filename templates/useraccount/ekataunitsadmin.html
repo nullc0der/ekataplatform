@@ -1,17 +1,17 @@
-{% load i18n bootstrap_tags %}
+{% load i18n %}
 <div class="col-md-6">
     <div class="box box-solid" style="min-height: 300px">
-        <div class="box-header with-border">
-            <h3 class="box-title">{% trans "Ekata Units" %}</h3>
-        </div>
         <div class="box-body">
+            <div class="widget-box text-center">
+                <h4 class="widget-box-title">{% trans "Ekata Units Admin" %}</h4>
+            </div>
             {% if message %}
             <div class="widget-box text-center">
                 <p>{{ message }}</p>
             </div>
             {% else %}
             <div class="widget-box">
-                <h4 class="widget-box-title">{% trans "Addresses" %}</h4>
+                <h4 class="widget-box-title">{% trans "Address" %}</h4>
                 <hr class="widget-box-separator" style="width: 10%">
                 <div class="widget-box-text">
                     {% for address in addresses %}
@@ -30,17 +30,20 @@
         </div>
     </div>
 </div>
-{% if not message %}
 <div class="col-md-6">
     <div class="box box-solid" style="min-height: 300px">
-        <div class="box-header with-border">
-            <h3 class="box-title">{% trans "Transfer" %}</h3>
-        </div>
         <div class="box-body">
-            <div class="widget-box" id="transferformcontainer">
-                {% include "useraccount/transferform.html" %}
+            <div class="widget-box text-center">
+                <h4 class="widget-box-title">{% trans "Distribute" %}</h4>
+            </div>
+            <div class="widget-box">
+                <div class="widget-box-text">
+                    <p><input type="text" name="amount" value="" placeholder="Enter amount to distribute" class="form-control distributeamount"></p>
+                    <button type="button" class="btn btn-success btn-block" id="distributebtn">
+                      {% trans "Distribute" %}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-{% endif %}

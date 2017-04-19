@@ -43,7 +43,7 @@
                         <div class="community-wrapper">
                             <div class="community" style="background: url('{% static "dist/img/DummyDB.png" %}'); background-size: 100px 100px; background-repeat:no-repeat; background-position:center 40px;">
                                 <div class="community-name">
-                                    <h4>{% trans "Ekata Units" %}</h4>
+                                    <h4>{% trans "Ekata Units" %} {% if request.user.is_staff %}<i class="fa fa-wrench community-admin"></i>{% endif %}</h4>
                                 </div>
                                 <div class="community-actions">
                                     {% if request.user.useraccount %}
@@ -79,6 +79,7 @@
                             </div>
                         </div>
                     </div>
+                    {% comment %}
                     <div class="col-md-3">
                         <div class="community-wrapper">
                             <div class="community" style="background: url('{% static "dist/img/pulse-heart-red.png" %}'); background-size: 100px 100px; background-repeat:no-repeat; background-position:center 40px;">
@@ -91,6 +92,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endcomment %}
                     <div class="col-md-3">
                         <div class="community-wrapper">
                             <div class="community community-add">
@@ -104,10 +106,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6" id="accountInfo">
+    <div class="row" id="accountInfo">
 
-        </div>
     </div>
     <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
       <div class="modal-dialog">
@@ -167,6 +167,10 @@
             $('html, body').animate({
                 scrollTop: $("#accountInfo").offset().top
             }, 1000);
+            $("#id_reciever").autocomplete({
+                source: '{% url 'myaccount:get_ekata_units_users' %}',
+                minLength: 2
+            });
         });
     }
     $("#ekataUnitsSubscribe").on('click', function(){
@@ -296,6 +300,49 @@
             },
             error: function (data) {
                 $("#addaccountform").html(data.responseText);
+            }
+        });
+    });
+    $(".community-admin").click(function () {
+        var url = '{% url 'myaccount:ekata_units_admin' %}';
+        $("#accountInfo").load(url, function () {
+            $('html, body').animate({
+                scrollTop: $("#accountInfo").offset().top
+            }, 1000);
+        });
+    });
+    $(document).on('click', '#distributebtn', function () {
+        $.ajax({
+            url: '{% url 'myaccount:distribute_ekata_units' %}',
+            type: 'POST',
+            data: {'amount': $(".distributeamount").val()},
+            success: function (data) {
+                $('.top-right').notify({
+                    message: { text: 'Distribution started' },
+                    type: 'success'
+                }).show();
+            }
+        });
+    });
+    $(document).on('click', '#transfersubmit', function () {
+        var frm = $("#transferform");
+        $.ajax({
+            url: frm.attr('action'),
+            type: frm.attr('method'),
+            data: frm.serialize(),
+            success: function (data) {
+                $('.top-right').notify({
+                    message: { text: data },
+                    type: 'success'
+                }).show();
+                getEkataUnitsInfo();
+            },
+            error: function (data) {
+                $("#transferformcontainer").html(data.responseText);
+                $("#id_reciever").autocomplete({
+                    source: '{% url 'myaccount:get_ekata_units_users' %}',
+                    minLength: 2
+                });
             }
         });
     });
