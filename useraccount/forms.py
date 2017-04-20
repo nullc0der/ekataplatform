@@ -44,6 +44,7 @@ class TransactionForm(forms.Form):
             if not hasattr(user, 'useraccount'):
                 raise forms.ValidationError(
                     _("User is not subscribed to Ekata Units"))
+            return reciever
         except ObjectDoesNotExist:
             pass  # Fallback to address
         address_is_valid = validate_address(reciever)

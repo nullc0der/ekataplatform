@@ -85,8 +85,15 @@ def get_ekata_units_users(request):
     users = User.objects.filter(
         username__istartswith=query).exclude(username=request.user)[:5]
     for user in users:
+        res_dict = {}
         if hasattr(user, 'useraccount'):
-            res.append(user.username)
+            if user.profile.avatar:
+                avatar_url = user.profile.avatar.thumbnail['30x30'].url
+            else:
+                avatar_url = '/static/dist/img/placeholder-user.png'
+            res_dict['value'] = user.username
+            res_dict['image'] = avatar_url
+            res.append(res_dict)
     return JsonResponse(res, safe=False)
 
 

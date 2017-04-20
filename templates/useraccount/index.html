@@ -13,6 +13,12 @@
             color: green;
             cursor: pointer;
         }
+        .autocomplete-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
     </style>
 {% endblock extrastyle %}
 {% block title %}
@@ -195,6 +201,17 @@
                 source: '{% url 'myaccount:get_ekata_units_users' %}',
                 minLength: 2
             });
+            $("#id_reciever").data("ui-autocomplete")._renderItem = function( ul, item ) {
+                var li = $('<li>'), img = $('<img class="autocomplete-img">');
+                img.attr({
+                    src: item.image,
+                    alt: item.value
+                });
+                li.attr('data-value', item.value);
+                li.append('<p>');
+                li.find('p').append(img).append(item.value);
+                return li.appendTo(ul);
+            };
             $("#ekataUnitsInfo").slimscroll({
                 height: '200px',
                 size: '3px'
