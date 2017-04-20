@@ -95,16 +95,21 @@ def get_ekata_units_users(request):
 def transfer_ekata_units(request):
     form = TransactionForm(request, request.POST)
     if form.is_valid():
-        send_ekata_units(
+        res = send_ekata_units(
             from_user=request.user.username,
             to_user=form.cleaned_data.get('reciever'),
             amount=form.cleaned_data.get('units'),
             instruction=form.cleaned_data.get('instruction')
         )
-        return HttpResponse(_('Transferred {0} units to {1}'.format(
-            form.cleaned_data.get('units'),
-            form.cleaned_data.get('reciever')
-        )))
+        if res:
+            return HttpResponse(_('Transferred {0} units to {1}'.format(
+                form.cleaned_data.get('units'),
+                form.cleaned_data.get('reciever')
+            )))
+        else:
+            form.add_error(
+                field=None, error=_('Error processing!! Try later')
+            )
     return render(
         request,
         'useraccount/transferform.html',

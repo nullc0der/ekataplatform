@@ -16,8 +16,8 @@ class UserAccount(models.Model):
 
 
 class Transaction(models.Model):
-    from_user = models.ForeignKey(User, related_name='transaction_from')
-    to_user = models.ForeignKey(User, related_name='transaction_to')
+    from_user = models.CharField(max_length=200, default='', blank=True)
+    to_user = models.CharField(max_length=200, default='', blank=True)
     units = models.PositiveIntegerField()
     instruction = models.CharField(max_length=200, default='', blank=True)
     date = models.DateField(auto_now_add=True)

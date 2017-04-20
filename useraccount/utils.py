@@ -76,23 +76,34 @@ def get_ekata_units_info(account_name):
         return False
 
 
+def validate_address(address):
+    rpc_connect = get_rpc_connect()
+    try:
+        res = rpc_connect.validateaddress(address)
+        return res['isvalid']
+    except JSONRPCException:
+        return False
+
+
 def send_ekata_units(from_user, to_user, amount, instruction):
     rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/transfer.log')
+    address_is_valid = validate_address(to_user)
     try:
-        rpc_connect.move(from_user, to_user, amount)
-        from_u = User.objects.get(username=from_user)
-        to_u = User.objects.get(username=to_user)
+        if address_is_valid:
+            rpc_connect.sendfrom(from_user, to_user, amount)
+        else:
+            rpc_connect.move(from_user, to_user, amount)
         Transaction.objects.create(
-            from_user=from_u,
-            to_user=to_u,
+            from_user=from_user,
+            to_user=to_user,
             units=amount,
             instruction=instruction
         )
-        return False
     except JSONRPCException:
         return False
+    return True
 
 
 def dist_ekata_units(amount):
