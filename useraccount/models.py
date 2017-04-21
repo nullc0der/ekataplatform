@@ -51,7 +51,7 @@ class AdminDistribution(models.Model):
 
 class DistributeVerification(models.Model):
     user = models.ForeignKey(User)
-    code = models.CharField(max_length=6)
+    code = models.CharField(max_length=8)
     timestamp = models.DateTimeField(auto_now_add=True)
 
 
