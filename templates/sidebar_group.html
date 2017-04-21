@@ -91,7 +91,20 @@
 {% if 'can_access_admin' in group_perms %}
 {% if group.account_signups %}
 {% if request.user.is_superuser or request.user.profile.grantcoin_staff %}
-    <li class="treeview {% active request 'autosignup:signups' %}"><a href="{% url 'autosignup:signups' %}"><i class="fa fa-user-plus"></i>{% trans "Account Signups" %}</a></li>
+<li class="treeview {% active request 'autosignup:signups' %} {% active request 'autosignup:signups_settings' %} {% active request 'myaccount:ekata_units_admin' %}">
+    <a href="#">
+        <i class="fa fa-home"></i>
+        <span>{% trans "Grantcoin" %}</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{% active request 'autosignup:signups' %}"><a href="{% url 'autosignup:signups' %}"><i class="fa fa-user-plus"></i>{% trans "Signups" %}</a></li>
+        <li class="{% active request 'autosignup:signups_settings' %}"><a href="{% url 'autosignup:signups_settings' %}"><i class="fa fa-cog"></i>{% trans "Admin" %}</a></li>
+        <li class="{% active request 'myaccount:ekata_units_admin' %}"><a href="{% url 'myaccount:ekata_units_admin' %}"><i class="fa fa-plus-circle"></i>{% trans "Distribute" %}</a></li>
+    </ul>
+</li>
 {% endif %}
 {% endif %}
 {% endif %}
