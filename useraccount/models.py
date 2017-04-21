@@ -32,6 +32,36 @@ class IncomeRelease(models.Model):
         return self.user.username
 
 
+class UserDistribution(models.Model):
+    user = models.ForeignKey(User, related_name='distribution')
+    amount = models.FloatField()
+    date = models.DateField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.user.username
+
+
+class AdminDistribution(models.Model):
+    start_time = models.DateTimeField(auto_now_add=True)
+    end_time = models.DateTimeField()
+    no_of_accout = models.PositiveIntegerField()
+    total_amount = models.FloatField()
+    amount_per_user = models.FloatField()
+
+
+class DistributeVerification(models.Model):
+    user = models.ForeignKey(User)
+    code = models.CharField(max_length=6)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+class NextRelease(models.Model):
+    datetime = models.DateTimeField()
+
+    class Meta:
+        get_latest_by = 'id'
+
+
 class RequestUnits(models.Model):
     sender = models.ForeignKey(User, related_name='request_from')
     reciever = models.ForeignKey(User, related_name='request_to')

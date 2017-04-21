@@ -61,7 +61,7 @@
                         <div class="community-wrapper">
                             <div class="community" style="background: url('{% static "dist/img/DummyDB.png" %}'); background-size: 100px 100px; background-repeat:no-repeat; background-position:center 40px;">
                                 <div class="community-name">
-                                    <h4>{% trans "Ekata Units" %} {% if request.user.is_staff %}<i class="fa fa-wrench community-admin"></i>{% endif %}</h4>
+                                    <h4>{% trans "Ekata Units" %} {% if request.user.is_staff %}<a href="{% url 'myaccount:ekata_units_admin' %}"><i class="fa fa-wrench community-admin"></i></a>{% endif %}</h4>
                                 </div>
                                 <div class="community-actions">
                                     {% if request.user.useraccount %}
@@ -345,27 +345,6 @@
             },
             error: function (data) {
                 $("#addaccountform").html(data.responseText);
-            }
-        });
-    });
-    $(".community-admin").click(function () {
-        var url = '{% url 'myaccount:ekata_units_admin' %}';
-        $("#accountInfo").load(url, function () {
-            $('html, body').animate({
-                scrollTop: $("#accountInfo").offset().top
-            }, 1000);
-        });
-    });
-    $(document).on('click', '#distributebtn', function () {
-        $.ajax({
-            url: '{% url 'myaccount:distribute_ekata_units' %}',
-            type: 'POST',
-            data: {'amount': $(".distributeamount").val()},
-            success: function (data) {
-                $('.top-right').notify({
-                    message: { text: 'Distribution started' },
-                    type: 'success'
-                }).show();
             }
         });
     });

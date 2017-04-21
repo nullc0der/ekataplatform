@@ -2,10 +2,13 @@ import json
 import os
 import logging
 from bitcoinrpc.authproxy import AuthServiceProxy, JSONRPCException
+from twilio.rest import TwilioRestClient
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from useraccount.models import UserAccount, Transaction
+from django.utils.timezone import now
+from useraccount.models import UserAccount, Transaction, UserDistribution,\
+    AdminDistribution
 
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 log_file_base = os.path.join(settings.BASE_DIR, 'logs')
@@ -106,10 +109,39 @@ def send_ekata_units(from_user, to_user, amount, instruction):
     return True
 
 
+def send_sms(phone_no, body):
+    account_sid = settings.EKATA_TWILIO_ACCOUNT_SID
+    auth_token = settings.EKATA_TWILIO_AUTH_TOKEN
+    client = TwilioRestClient(account_sid, auth_token)
+    message = client.messages.create(
+        body=body,
+        to=phone_no,
+        from_=settings.EKATA_TWILIO_PHONE_NO
+    )
+
+
+def send_distribute_phone_verfication(phone_no, code):
+    send_sms(
+        phone_no=phone_no,
+        body='Use verification code to distribution: '
+        + code + '\nvalid for 120 sec'
+    )
+
+
 def dist_ekata_units(amount):
     rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
+    admindist = AdminDistribution()
     for account in UserAccount.objects.all():
         rpc_connect.move("", account.wallet_accont_name, amount)
+    admindist.end_time = now()
+    admindist.no_of_accout = UserAccount.objects.count()
+    admindist.total_amount = UserAccount.objects.count() * float(amount)
+    admindist.amount_per_user = float(amount)
+    admindist.save()
+    send_sms(
+        phone_no='+919954707983',
+        body='Distribution finished at: {}'.format(now())
+    )
     return True

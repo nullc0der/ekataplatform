@@ -6,12 +6,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
-from useraccount.models import Transaction, IncomeRelease, UserAccount
+from django.utils.crypto import get_random_string
+from useraccount.models import Transaction, IncomeRelease, UserAccount,\
+    DistributeVerification, AdminDistribution
 from autosignup.models import CommunitySignup
 from usertimeline.models import UserTimeline
-from useraccount.forms import TransactionForm, RequestForm
-from useraccount.utils import create_ekata_units_account, get_ekata_units_info, \
-    dist_ekata_units, send_ekata_units, request_new_address
+from useraccount.forms import TransactionForm, RequestForm, DistributionForm,\
+    CodeVerificationForm, NextReleaseForm
+from useraccount.utils import create_ekata_units_account,\
+    get_ekata_units_info, send_ekata_units, request_new_address
+from useraccount.tasks import task_send_distribute_phone_verfication, \
+    task_dist_ekata_units
 from autosignup.forms import AccountAddContactForm
 from notification.utils import create_notification
 
@@ -128,12 +133,18 @@ def transfer_ekata_units(request):
 @user_passes_test(lambda u: u.is_staff)
 def ekata_units_admin(request):
     units_info = get_ekata_units_info("")
+    total_account = UserAccount.objects.count()
+    lastdistributions = AdminDistribution.objects.all()
     if not units_info:
         variables = {
             'message': "Something is wrong!! Try again later"
         }
     else:
         variables = units_info
+        variables['total_account'] = total_account
+        variables['form'] = DistributionForm()
+        variables['nrform'] = NextReleaseForm()
+        variables['lastdistributions'] = lastdistributions
     return render(
         request,
         'useraccount/ekataunitsadmin.html',
@@ -144,9 +155,67 @@ def ekata_units_admin(request):
 @user_passes_test(lambda u: u.is_staff)
 @require_POST
 def distribute_ekata_units(request):
-    amount = request.POST.get('amount')
-    dist_ekata_units(amount)
-    return HttpResponse(status=200)
+    form = DistributionForm(request.POST)
+    if form.is_valid():
+        code = get_random_string(length=8, allowed_chars='0123456789')
+        distcode = DistributeVerification(
+            user=request.user,
+            code=code
+        )
+        distcode.save()
+        task_send_distribute_phone_verfication.delay(
+            '+919954707983', distcode.code)
+        vform = CodeVerificationForm(initial={'amount': form.cleaned_data['amount']})
+        return render(
+            request,
+            'useraccount/verificationform.html',
+            {
+                'form': vform,
+                'phone_no': '+919954707083'
+            }
+        )
+    return render(
+        request,
+        'useraccount/distributeform.html',
+        {
+            'form': form
+        },
+        status=500
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def verify_dist_code(request):
+    form = CodeVerificationForm(request.POST)
+    if form.is_valid():
+        task_dist_ekata_units.delay(form.cleaned_data['amount'])
+        return HttpResponse(status=200)
+    return render(
+        request,
+        'useraccount/verificationform.html',
+        {
+            'form': form
+        },
+        status=500
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def add_next_release(request):
+    form = NextReleaseForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return HttpResponse(status=200)
+    return render(
+        request,
+        'useraccount/nextreleaseform.html',
+        {
+            'nrform': form
+        },
+        status=500
+    )
 
 
 @login_required
