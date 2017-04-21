@@ -141,7 +141,7 @@ def dist_ekata_units(amount):
     admindist.amount_per_user = float(amount)
     admindist.save()
     send_sms(
-        phone_no='+919954707983',
+        phone_no='+14344222257',
         body='Distribution finished at: {}'.format(now())
     )
     return True

@@ -61,7 +61,7 @@ class DistributionForm(forms.Form):
     amount = forms.FloatField(
         label=_('Amount'), min_value=0.1, max_value=10000,
         widget=forms.NumberInput(
-            attrs={'placeholder': 'Enter Amount per user'}
+            attrs={'placeholder': 'Enter Amount(GRT) per Member'}
         )
     )
 

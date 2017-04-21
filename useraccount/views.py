@@ -8,7 +8,7 @@ from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
 from django.utils.crypto import get_random_string
 from useraccount.models import Transaction, IncomeRelease, UserAccount,\
-    DistributeVerification, AdminDistribution
+    DistributeVerification, AdminDistribution, NextRelease
 from autosignup.models import CommunitySignup
 from usertimeline.models import UserTimeline
 from useraccount.forms import TransactionForm, RequestForm, DistributionForm,\
@@ -143,7 +143,8 @@ def ekata_units_admin(request):
         variables = units_info
         variables['total_account'] = total_account
         variables['form'] = DistributionForm()
-        variables['nrform'] = NextReleaseForm()
+        variables['nrform'] = NextReleaseForm(
+            instance=NextRelease.objects.latest())
         variables['lastdistributions'] = lastdistributions
     return render(
         request,
@@ -164,14 +165,14 @@ def distribute_ekata_units(request):
         )
         distcode.save()
         task_send_distribute_phone_verfication.delay(
-            '+919954707983', distcode.code)
+            '+14344222257', distcode.code)
         vform = CodeVerificationForm(initial={'amount': form.cleaned_data['amount']})
         return render(
             request,
             'useraccount/verificationform.html',
             {
                 'form': vform,
-                'phone_no': '+919954707083'
+                'phone_no': '+14344222257'
             }
         )
     return render(
@@ -204,7 +205,7 @@ def verify_dist_code(request):
 @user_passes_test(lambda u: u.is_staff)
 @require_POST
 def add_next_release(request):
-    form = NextReleaseForm(request.POST)
+    form = NextReleaseForm(request.POST, instance=NextRelease.objects.latest())
     if form.is_valid():
         form.save()
         return HttpResponse(status=200)
