@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+{% load i18n staticfiles compress %}
+{% block extrastyle %}
+
+{% endblock extrastyle %}
+{% block title %}
+    {% trans "Ekata Units Admin" %}
+{% endblock title %}
+{% block content_header_new %}
+    <section class="content-header-new no-search-bar">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Ekata Units Admin" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Ekata Units Admin" %}</a></li>
+            </ol>
+        </div>
+        {% comment %}
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search..." id="liveSearch">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-content-header btn-content-search"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn filterbtn">
+                    <button type="submit" class="btn btn-content-header"><i class="fa fa-filter"></i></button>
+                </span>
+            </div>
+        </div>
+        {% endcomment %}
+    </section>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-solid" style="min-height: 300px">
+                <div class="box-body">
+                    <div class="widget-box text-center">
+                        <h4 class="widget-box-title">{% trans "Distribution Info" %}</h4>
+                    </div>
+                    {% if message %}
+                    <div class="widget-box text-center">
+                        <p>{{ message }}</p>
+                    </div>
+                    {% else %}
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Address" %}</h4>
+                        <hr class="widget-box-separator" style="width: 10%">
+                        <div class="widget-box-text">
+                            {% for address in addresses %}
+                                <p>{{ address }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Balance" %}</h4>
+                        <hr class="widget-box-separator" style="width: 10%">
+                        <div class="widget-box-text">
+                            <p>{{ balance }}</p>
+                        </div>
+                    </div>
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Total Accounts in Distribution" %}</h4>
+                        <hr class="widget-box-separator" style="width: 10%">
+                        <div class="widget-box-text">
+                            <p>{{ total_account }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="widget-box text-center">
+                        <h4 class="widget-box-title">{% trans "Distribute" %}</h4>
+                    </div>
+                    <div class="widget-box">
+                        <div class="widget-box-text" id="distributeformcontainer">
+                            {% include "useraccount/distributeform.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="widget-box text-center">
+                        <h4 class="widget-box-title">{% trans "GRT Dashboard Widget" %}</h4>
+                    </div>
+                    <div class="widget-box">
+                        <div class="widget-box-text" id="nextreleaseformcontainer">
+                            {% include "useraccount/nextreleaseform.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if lastdistributions %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Last Distributions" %}</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table" id="lastdisttable">
+                        <thead>
+                            <tr>
+                                <th data-visible="false">{% trans "Id" %}</th>
+                                <th data-sortable="true">{% trans "Start Time" %}</th>
+                                <th data-sortable="true">{% trans "End Time" %}</th>
+                                <th data-sortable="true">{% trans "Total Amount Distributed" %}</th>
+                                <th data-sortable="true">{% trans "Amount per Account" %}</th>
+                                <th data-sortable="true">{% trans "No of Account" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for lastdistribution in lastdistributions %}
+                               <tr>
+                                    <td>{{ lastdistribution.id }}</td>
+                                    <td>{{ lastdistribution.start_time|date:'Y/m/d h:i' }}</td>
+                                    <td>{{ lastdistribution.end_time|date:'Y/m/d h:i' }}</td>
+                                    <td>{{ lastdistribution.total_amount }}</td>
+                                    <td>{{ lastdistribution.amount_per_user }}</td>
+                                    <td>{{ lastdistribution.no_of_accout }}</td>
+                               </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+<div class="modal fade" id="codeVerificationModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="verificationformwrapper">
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extrascripts %}
+    {% compress js %}
+        <script type="text/javascript">
+        $("#id_datetime").datetimepicker({
+            format: 'YYYY-MM-DD HH:MM',
+            showClear: true,
+        });
+        $("#lastdisttable").bootstrapTable({
+            'pagination': true,
+            'pageNumber': 1,
+            'pageSize': 10,
+            'pageList': [5, 10, 15, 20, 25],
+            'search': true,
+            'showExport': true,
+            'exportDataType': 'all',
+            'exportTypes': ['json', 'csv', 'txt', 'excel'],
+        });
+        $(document).on('click', '#distributebtn', function () {
+            var form = $("#distributeform");
+            $.ajax({
+                url: '{% url 'myaccount:distribute_ekata_units' %}',
+                type: 'POST',
+                data: form.serialize(),
+                success: function (data) {
+                    $("#verificationformwrapper").html(data);
+                    $("#codeVerificationModal").modal('show');
+                },
+                error: function (data) {
+                    $("#distributeformcontainer").html(data.responseText);
+                }
+            });
+        });
+        $(document).on('click', '#verifycode', function () {
+            var form = $("#verificationform");
+            $.ajax({
+                url: '{% url 'myaccount:verify_dist_code' %}',
+                type: 'POST',
+                data: form.serialize(),
+                success: function () {
+                    $('.top-right').notify({
+                        message: { text: 'Distribution started, you will get sms when it ends' },
+                        type: 'success'
+                    }).show();
+                    $("#codeVerificationModal").modal('hide');
+                },
+                error: function (data) {
+                    $("#verificationformwrapper").html(data.responseText);
+                }
+            });
+        });
+        $(document).on('click', '#nextreleasebtn', function () {
+            var form = $("#nextreleaseform");
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: 'Success' },
+                        type: 'success'
+                    }).show();
+                },
+                error: function (data) {
+                    $("#nextreleaseformcontainer").html(data.responseText);
+                    $("#id_datetime").datetimepicker({
+                        format: 'YYYY-MM-DD HH:MM',
+                        showClear: true,
+                    });
+                }
+            });
+        });
+        $(".sidebar-menu-tab>li[data-name='group'").click();
+        </script>
+    {% endcompress %}
+{% endblock %}

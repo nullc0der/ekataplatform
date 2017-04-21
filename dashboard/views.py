@@ -13,6 +13,7 @@ from profilesystem.models import UserCompletionRing
 from publicusers.models import Connection
 from dashboard.models import ActiveMemberCount, NewMemberCount,\
     TotalMemberCount
+from useraccount.models import NextRelease
 # Create your views here.
 
 
@@ -81,7 +82,8 @@ def dashboard_page(request):
         'unread_messages_count': unread_messages_count,
         'activemembercounts': activemembercounts,
         'newmembercounts': newmembercounts,
-        'totalmembercounts': totalmembercounts
+        'totalmembercounts': totalmembercounts,
+        'next_release': NextRelease.objects.latest()
     }
     return render(request, 'dashboard/dashboard.html', context=variables)
 
