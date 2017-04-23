@@ -7,18 +7,17 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
 from django.utils.crypto import get_random_string
-from useraccount.models import Transaction, IncomeRelease, UserAccount,\
+from django.conf import settings
+from useraccount.models import Transaction, UserAccount,\
     DistributeVerification, AdminDistribution, NextRelease
 from autosignup.models import CommunitySignup
-from usertimeline.models import UserTimeline
-from useraccount.forms import TransactionForm, RequestForm, DistributionForm,\
+from useraccount.forms import TransactionForm, DistributionForm,\
     CodeVerificationForm, NextReleaseForm
 from useraccount.utils import create_ekata_units_account,\
     get_ekata_units_info, send_ekata_units, request_new_address
 from useraccount.tasks import task_send_distribute_phone_verfication, \
     task_dist_ekata_units
 from autosignup.forms import AccountAddContactForm
-from notification.utils import create_notification
 
 # Create your views here.
 
@@ -47,7 +46,7 @@ def subscribe_ekata_units(request):
         if account_info:
             message = "Subscribed"
         else:
-            message = "Something is wrong!! Try again later"
+            message = "Something went wrong!! Try again later"
     return JsonResponse({'message': message})
 
 
@@ -58,7 +57,7 @@ def ekata_units_info(request):
         units_info = get_ekata_units_info(request.user.username)
         if not units_info:
             variables = {
-                'message': "Something is wrong!! Try again later"
+                'message': "Something went wrong!! Try again later"
             }
         else:
             variables = units_info
@@ -165,14 +164,15 @@ def distribute_ekata_units(request):
         )
         distcode.save()
         task_send_distribute_phone_verfication.delay(
-            '+14344222257', distcode.code)
-        vform = CodeVerificationForm(initial={'amount': form.cleaned_data['amount']})
+            settings.EKATA_UNITS_VERIFY_NO, distcode.code)
+        vform = CodeVerificationForm(
+            initial={'amount': form.cleaned_data['amount']})
         return render(
             request,
             'useraccount/verificationform.html',
             {
                 'form': vform,
-                'phone_no': '+14344222257'
+                'phone_no': settings.EKATA_UNITS_VERIFY_NO
             }
         )
     return render(
@@ -217,150 +217,3 @@ def add_next_release(request):
         },
         status=500
     )
-
-
-@login_required
-def transfer_page(request):
-    transactions = Transaction.objects.filter(to_user=request.user)
-    dup = []
-    transactions_list = []
-    for transaction in transactions:
-        if transaction.from_user.username not in dup:
-            transactions_list.append(transaction)
-            dup.append(transaction.from_user.username)
-        if len(transactions_list) == 5:
-            break
-    if 'userquery' in request.GET:
-        userquery = request.GET.get('userquery')
-        if userquery:
-            users = User.objects.filter(username__istartswith=userquery).exclude(username=request.user)[:5]
-        return render(request, 'useraccount/users.html', {'users': users})
-    return render(request, 'useraccount/transfer.html', {'senders': transactions_list})
-
-
-@login_required
-def transferunit(request, id):
-    user = User.objects.get(id=id)
-    form = TransactionForm(request)
-    if request.method == 'POST' and request.is_ajax():
-        form = TransactionForm(request, request.POST)
-        if form.is_valid():
-            transaction = form.save(commit=False)
-            transaction.to_user = user
-            transaction.from_user = request.user
-            transaction.save()
-            calculate_balance(request.user, user, form.cleaned_data['units'])
-            sendertimeline = UserTimeline(
-                user=request.user,
-                timeline_type=1,
-                sender=request.user.username,
-                sender_id=request.user.id,
-                reciever=user.username,
-                reciever_id=user.id,
-                instruction=form.cleaned_data['instruction'],
-                amount=form.cleaned_data['units']
-            )
-            sendertimeline.save()
-            recievertimeline = UserTimeline(
-                user=user,
-                timeline_type=1,
-                sender=request.user.username,
-                sender_id=request.user.id,
-                reciever=user.username,
-                reciever_id=user.id,
-                instruction=form.cleaned_data['instruction'],
-                amount=form.cleaned_data['units']
-            )
-            recievertimeline.save()
-            create_notification(
-                user=user,
-                ntype=1,
-                sender=request.user.username,
-                sender_id=request.user.id,
-                amount=form.cleaned_data['units'],
-                timeline_id=recievertimeline.id
-            )
-            if 'timeline' in request.POST:
-                timeline_id = request.POST.get('timeline')
-                try:
-                    timeline = UserTimeline.objects.get(id=timeline_id)
-                    timeline.not_completed = False
-                    timeline.save()
-                except ObjectDoesNotExist:
-                    pass
-            return HttpResponse(_('Transfer completed!!'))
-        else:
-            return render(
-                request,
-                'useraccount/transferform.html',
-                {'form': form},
-                status=500
-            )
-    return render(
-        request,
-        'useraccount/transferunit.html',
-        {
-            'user': user,
-            'form': form
-        }
-    )
-
-
-def calculate_balance(from_user, to_user, amount):
-    from_user_account = from_user.useraccount
-    to_user_account = to_user.useraccount
-    to_user_account.balance += amount
-    from_user_account.balance -= amount
-    from_user_account.save()
-    to_user_account.save()
-
-
-@login_required
-def requestunit(request, id):
-    reciever = User.objects.get(id=id)
-    form = RequestForm()
-    if request.method == 'POST' and request.is_ajax():
-        form = RequestForm(request.POST)
-        if form.is_valid():
-            unitrequest = form.save(commit=False)
-            unitrequest.reciever = reciever
-            unitrequest.sender = request.user
-            unitrequest.save()
-            sendertimeline = UserTimeline(
-                user=request.user,
-                timeline_type=2,
-                sender=request.user.username,
-                sender_id=request.user.id,
-                reciever=reciever.username,
-                reciever_id=reciever.id,
-                instruction=form.cleaned_data['instruction'],
-                amount=form.cleaned_data['units']
-            )
-            sendertimeline.save()
-            recievertimeline = UserTimeline(
-                user=reciever,
-                timeline_type=2,
-                sender=request.user.username,
-                sender_id=request.user.id,
-                reciever=reciever.username,
-                reciever_id=reciever.id,
-                instruction=form.cleaned_data['instruction'],
-                amount=form.cleaned_data['units']
-            )
-            recievertimeline.save()
-            create_notification(
-                user=reciever,
-                ntype=2,
-                sender=request.user.username,
-                sender_id=request.user.id,
-                amount=form.cleaned_data['units'],
-                timeline_id=recievertimeline.id
-            )
-            return HttpResponse(_('Request Sent!!'))
-        else:
-            return render(
-                request,
-                'useraccount/requestform.html',
-                {'rform': form},
-                status=500
-            )

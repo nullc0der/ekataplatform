@@ -23,15 +23,6 @@ class Transaction(models.Model):
     date = models.DateField(auto_now_add=True)
 
 
-class IncomeRelease(models.Model):
-    user = models.ForeignKey(User, related_name='release')
-    amount = models.PositiveIntegerField()
-    date = models.DateField(auto_now_add=True)
-
-    def __unicode__(self):
-        return self.user.username
-
-
 class UserDistribution(models.Model):
     user = models.ForeignKey(User, related_name='distribution')
     amount = models.FloatField()
@@ -60,11 +51,3 @@ class NextRelease(models.Model):
 
     class Meta:
         get_latest_by = 'id'
-
-
-class RequestUnits(models.Model):
-    sender = models.ForeignKey(User, related_name='request_from')
-    reciever = models.ForeignKey(User, related_name='request_to')
-    units = models.PositiveIntegerField()
-    instruction = models.CharField(max_length=200, default='', blank=True)
-    date = models.DateField(auto_now_add=True)

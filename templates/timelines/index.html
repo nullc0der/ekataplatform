@@ -248,39 +248,6 @@
                 requestTimeline();
             }
         });
-        $('#sendUnitModal').on('show.bs.modal', function(e) {
-            var amount = $(e.relatedTarget).data('amount');
-            var touser = $(e.relatedTarget).data('touser');
-            var tousername = $(e.relatedTarget).data('tousername');
-            var timeline_id = $(e.relatedTarget).data('timelineid');
-            var units_input = $("#id_units");
-            var pathname = window.location.pathname.split('/');
-            var language = pathname[1];
-            $("#sendUnitModalLabel").text("Send unit to " + tousername);
-            units_input.attr('readonly', 'readonly');
-            units_input.val(amount);
-            $("#timeline_id").val(timeline_id);
-            $("#sendform").attr('action', '/' + language + '/myaccount/transferunit/' + touser +"/");
-        });
-        $("#sendunit").click(function(){
-            var frm = $("#sendform");
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    $('.top-right').notify({
-                        message: { text: data },
-                        type: 'info',
-                    }).show();
-                    $("#sendUnitModal").modal('hide');
-                    $(".togglemodal").html('<button class="btn btn-success btn-xs">{% trans "sent" %}</button>');
-                },
-                error: function(data) {
-                    frm.html(data.responseText);
-                }
-            });
-        });
         $("#searchtimeline").on('keyup', function(){
             requestTimeline();
         });

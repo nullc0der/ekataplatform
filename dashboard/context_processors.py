@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 HOME = [
     reverse('dashboard:index')[3:],
     reverse('myaccount:index')[3:],
-    reverse('myaccount:transfer')[3:],
     reverse('profilesystem:index')[3:],
     reverse('usertimeline:index')[3:],
     reverse('messaging:index')[3:]
