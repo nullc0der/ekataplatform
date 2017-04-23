@@ -109,8 +109,7 @@ def transfer_ekata_units(request):
         res = send_ekata_units(
             from_user=request.user.username,
             to_user=form.cleaned_data.get('reciever'),
-            amount=form.cleaned_data.get('units'),
-            instruction=form.cleaned_data.get('instruction')
+            amount=form.cleaned_data.get('units')
         )
         if res:
             return HttpResponse(_('Transferred {0} units to {1}'.format(

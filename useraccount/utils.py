@@ -90,7 +90,7 @@ def validate_address(address):
         return False
 
 
-def send_ekata_units(from_user, to_user, amount, instruction):
+def send_ekata_units(from_user, to_user, amount):
     rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/transfer.log')
@@ -103,8 +103,7 @@ def send_ekata_units(from_user, to_user, amount, instruction):
         Transaction.objects.create(
             from_user=from_user,
             to_user=to_user,
-            units=amount,
-            instruction=instruction
+            units=amount
         )
     except JSONRPCException:
         return False

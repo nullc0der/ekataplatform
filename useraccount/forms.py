@@ -23,12 +23,6 @@ class TransactionForm(forms.Form):
             attrs={'placeholder': 'Enter Amount'}
         )
     )
-    instruction = forms.CharField(
-        label=_('Instruction'), max_length=200, required=False,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Add a note/instruction'}
-        )
-    )
 
     def __init__(self, request, *args, **kwargs):
         self.request = request
