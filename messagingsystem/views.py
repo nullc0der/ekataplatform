@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 from channels import Group
 
 from messagingsystem.models import ChatRoom, Message
-from useraccount.forms import TransactionForm, RequestForm
 
 # Create your views here.
 
@@ -67,8 +66,6 @@ def messaging_index(request):
             'messages': messages,
             'modals': True,
             'otheruser': otheruser,
-            'form': TransactionForm(request),
-            'rform': RequestForm(),
         }
     )
 
@@ -106,8 +103,6 @@ def get_chat(request, chat_id):
             'floating': True,
             'modals': True,
             'otheruser': otheruser,
-            'form': TransactionForm(request),
-            'rform': RequestForm(),
         }
     )
 

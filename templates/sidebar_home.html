@@ -4,18 +4,11 @@
         <i class="fa fa-dashboard"></i> <span>{% trans "Dashboard" %}</span>
     </a>
 </li>
-<li class="treeview {% active request 'myaccount:index' %} {% active request 'myaccount:transfer' %} mainnavcontent">
-    <a href="#">
+<li class="treeview {% active request 'myaccount:index' %} mainnavcontent">
+    <a href="{% url 'myaccount:index' %}">
         <i class="fa fa-bank"></i>
         <span>{% trans "My Accounts" %}</span>
-        <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-        </span>
     </a>
-    <ul class="treeview-menu">
-        <li class="{% active request 'myaccount:index' %}"><a href="{% url 'myaccount:index' %}"><i class="fa fa-circle-o"></i>{% trans "Accounts" %}</a></li>
-        <li class="{% active request 'myaccount:transfer' %}"><a href="{% url 'myaccount:transfer' %}"><i class="fa fa-circle-o"></i>{% trans "Transfer" %}</a></li>
-    </ul>
 </li>
 {% comment %}
     <li><a href="market_place.html"><i class="fa fa-gift"></i> <span>{% trans "Market Place" %}</span></a></li>

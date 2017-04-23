@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now
-from useraccount.models import Transaction, RequestUnits, UserAccount, \
+from useraccount.models import Transaction, UserAccount, \
     DistributeVerification, NextRelease
 from useraccount.utils import get_ekata_units_info, validate_address
 
@@ -96,15 +96,6 @@ class CodeVerificationForm(forms.Form):
                 _("Invalid Code")
             )
         return code
-
-
-class RequestForm(forms.ModelForm):
-    instruction = forms.CharField(label=_('Instruction'), max_length=200, required=False)
-    units = forms.IntegerField(label=_('Amount'), min_value=1, max_value=10000)
-
-    class Meta:
-        model = RequestUnits
-        fields = ['instruction', 'units']
 
 
 class NextReleaseForm(forms.ModelForm):
