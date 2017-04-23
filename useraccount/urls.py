@@ -10,7 +10,7 @@ urlpatterns = [
         views.ekata_units_info, name='ekata_units_info'),
     url(r'^get_new_address/$',
         views.get_account_new_address, name='get_new_address'),
-    url(r'^ekata_units_admin/$',
+    url(r'^grantcoin/distribution/$',
         views.ekata_units_admin, name='ekata_units_admin'),
     url(r'^distribute_ekata_units/$',
         views.distribute_ekata_units, name='distribute_ekata_units'),
