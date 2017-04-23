@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext_lazy as _
 from django.utils.crypto import get_random_string
+from django.conf import settings
 from useraccount.models import Transaction, UserAccount,\
     DistributeVerification, AdminDistribution, NextRelease
 from autosignup.models import CommunitySignup
@@ -163,14 +164,15 @@ def distribute_ekata_units(request):
         )
         distcode.save()
         task_send_distribute_phone_verfication.delay(
-            '+14344222257', distcode.code)
-        vform = CodeVerificationForm(initial={'amount': form.cleaned_data['amount']})
+            settings.EKATA_UNITS_VERIFY_NO, distcode.code)
+        vform = CodeVerificationForm(
+            initial={'amount': form.cleaned_data['amount']})
         return render(
             request,
             'useraccount/verificationform.html',
             {
                 'form': vform,
-                'phone_no': '+14344222257'
+                'phone_no': settings.EKATA_UNITS_VERIFY_NO
             }
         )
     return render(

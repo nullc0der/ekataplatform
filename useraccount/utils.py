@@ -44,6 +44,8 @@ def create_ekata_units_account(user):
         account_info = {}
         account_info['wallet_account_address'] = rpc_connect.getaccountaddress(
             user.username)
+        rpc_connect.move("", user.username,
+                         settings.EKATA_UNITS_INITIAL_BALANCE)
         account_info['balance'] = rpc_connect.getbalance(user.username)
         account_info['message'] = 'Subscribed'
         useraccount, created = UserAccount.objects.get_or_create(user=user)
@@ -141,7 +143,7 @@ def dist_ekata_units(amount):
     admindist.amount_per_user = float(amount)
     admindist.save()
     send_sms(
-        phone_no='+14344222257',
+        phone_no=settings.EKATA_UNITS_VERIFY_NO,
         body='Distribution finished at: {}'.format(now())
     )
     return True
