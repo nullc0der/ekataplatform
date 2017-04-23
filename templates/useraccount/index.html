@@ -65,9 +65,9 @@
                                 </div>
                                 <div class="community-actions">
                                     {% if request.user.useraccount %}
-                                        <a href="javascript:getEkataUnitsInfo();" class="btn btn-block btn-flat btn-default">{% trans "View Info" %}</a>
+                                        <a href="javascript:getEkataUnitsInfo();" class="btn btn-block btn-flat btn-success">{% trans "View Info" %}</a>
                                     {% else %}
-                                        <a href="javascript:void(0);" class="btn btn-block btn-flat btn-default" id="ekataUnitsSubscribe">{% trans "Subscribe" %}</a>
+                                        <a href="javascript:void(0);" class="btn btn-block btn-flat btn-info" id="ekataUnitsSubscribe">{% trans "Subscribe" %}</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -80,6 +80,8 @@
                                     <h4>{% trans "Ekata Units" %}</h4>
                                 </div>
                                 <div class="community-actions">
+                                    <a href="#" class="btn btn-block btn-flat btn-default">{% trans "Subscribed" %}</a>
+                                    {% comment %}
                                     {% if communitysignup %}
                                         {% if communitysignup.data_collect_done %}
                                             {% if communitysignup.status == 'approved' %}
@@ -93,6 +95,7 @@
                                     {% else %}
                                         <a href="#" data-community-name='grantcoin' data-toggle="modal" data-target='#signupmodal' class="btn btn-block btn-flat btn-primary">{% trans "Signup" %}</a>
                                     {% endif %}
+                                    {% endcomment %}
                                 </div>
                             </div>
                         </div>
