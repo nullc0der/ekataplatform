@@ -51,3 +51,12 @@ class NextRelease(models.Model):
 
     class Meta:
         get_latest_by = 'id'
+
+
+class DistributionPhone(models.Model):
+    phone_number = models.CharField(
+        max_length=200, default='', blank=False,
+        help_text='please enter phone number with country code e.g +112345678')
+
+    class Meta:
+        get_latest_by = 'id'

@@ -64,6 +64,10 @@ def dashboard_page(request):
         date__lte=datetime.datetime.today(),
         date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
     ).order_by('date')
+    try:
+        next_release = NextRelease.objects.latest()
+    except:
+        next_release = None
     variables = {
         'completed': int(completed_percent),
         'completed_list': completed_list,
@@ -83,7 +87,7 @@ def dashboard_page(request):
         'activemembercounts': activemembercounts,
         'newmembercounts': newmembercounts,
         'totalmembercounts': totalmembercounts,
-        'next_release': NextRelease.objects.latest()
+        'next_release': next_release
     }
     return render(request, 'dashboard/dashboard.html', context=variables)
 

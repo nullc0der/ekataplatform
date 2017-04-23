@@ -79,6 +79,7 @@
                     </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                    {% if next_release %}
                     <div class="col-md-12 text-center" id="releasecountdown">
                         <div class="countdownbox">
                             <h1 id="day"></h1>
@@ -107,6 +108,9 @@
                             </h4>
                         </div>
                     </div>
+                    {% else %}
+                    <p>{% trans "No next release date" %}</p>
+                    {% endif %}
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     <div class="pull-right">
@@ -596,12 +600,14 @@
     profilePieChart.Doughnut(profilePieData, pieOptions);
     //var next_release = moment.tz("{{ request.user.useraccount.next_release|date:"Y/m/d H:i" }}", moment.tz.guess());
     //var next_release = moment.utc('{{ request.user.useraccount.next_release|date:"Y/m/d H:i" }}').toDate();
+    {% if next_release %}
     var countdown_time = moment('{{ next_release.datetime|date:"Y/m/d H:i" }}').format("YYYY/MM/DD HH:mm");
     $("#releasecountdown").countdown(countdown_time, function(event) {
         $("#day").text(event.strftime('%D'));
         $("#hour").text(event.strftime('%H'));
         $("#minute").text(event.strftime('%M'));
     });
+    {% endif %}
     var floatNav = $('.float-nav'),
     mainContent = $('.main-content');
     floatNav.on('click', function(e) {

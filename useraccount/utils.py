@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 from useraccount.models import UserAccount, Transaction, UserDistribution,\
-    AdminDistribution
+    AdminDistribution, DistributionPhone
 
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 log_file_base = os.path.join(settings.BASE_DIR, 'logs')
@@ -130,6 +130,10 @@ def send_distribute_phone_verfication(phone_no, code):
 
 
 def dist_ekata_units(amount):
+    try:
+        d_phone = DistributionPhone.objects.latest()
+    except:
+        d_phone = None
     rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
@@ -142,7 +146,7 @@ def dist_ekata_units(amount):
     admindist.amount_per_user = float(amount)
     admindist.save()
     send_sms(
-        phone_no=settings.EKATA_UNITS_VERIFY_NO,
+        phone_no=d_phone.phone_number,
         body='Distribution finished at: {}'.format(now())
     )
     return True

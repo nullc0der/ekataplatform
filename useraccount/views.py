@@ -9,10 +9,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.crypto import get_random_string
 from django.conf import settings
 from useraccount.models import Transaction, UserAccount,\
-    DistributeVerification, AdminDistribution, NextRelease
+    DistributeVerification, AdminDistribution, NextRelease, DistributionPhone
 from autosignup.models import CommunitySignup
 from useraccount.forms import TransactionForm, DistributionForm,\
-    CodeVerificationForm, NextReleaseForm
+    CodeVerificationForm, NextReleaseForm, DistributionPhoneForm
 from useraccount.utils import create_ekata_units_account,\
     get_ekata_units_info, send_ekata_units, request_new_address
 from useraccount.tasks import task_send_distribute_phone_verfication, \
@@ -133,6 +133,14 @@ def ekata_units_admin(request):
     units_info = get_ekata_units_info("")
     total_account = UserAccount.objects.count()
     lastdistributions = AdminDistribution.objects.all()
+    try:
+        next_release = NextRelease.objects.latest()
+    except:
+        next_release = None
+    try:
+        d_phone = DistributionPhone.objects.latest()
+    except:
+        d_phone = None
     if not units_info:
         variables = {
             'message': "Something is wrong!! Try again later"
@@ -141,9 +149,10 @@ def ekata_units_admin(request):
         variables = units_info
         variables['total_account'] = total_account
         variables['form'] = DistributionForm()
-        variables['nrform'] = NextReleaseForm(
-            instance=NextRelease.objects.latest())
+        variables['nrform'] = NextReleaseForm(instance=next_release)
         variables['lastdistributions'] = lastdistributions
+        variables['next_release'] = next_release
+        variables['dpform'] = DistributionPhoneForm(instance=d_phone)
     return render(
         request,
         'useraccount/ekataunitsadmin.html',
@@ -154,6 +163,10 @@ def ekata_units_admin(request):
 @user_passes_test(lambda u: u.is_staff)
 @require_POST
 def distribute_ekata_units(request):
+    try:
+        d_phone = DistributionPhone.objects.latest()
+    except:
+        d_phone = None
     form = DistributionForm(request.POST)
     if form.is_valid():
         code = get_random_string(length=8, allowed_chars='0123456789')
@@ -163,7 +176,7 @@ def distribute_ekata_units(request):
         )
         distcode.save()
         task_send_distribute_phone_verfication.delay(
-            settings.EKATA_UNITS_VERIFY_NO, distcode.code)
+            d_phone.phone_number, distcode.code)
         vform = CodeVerificationForm(
             initial={'amount': form.cleaned_data['amount']})
         return render(
@@ -171,7 +184,7 @@ def distribute_ekata_units(request):
             'useraccount/verificationform.html',
             {
                 'form': vform,
-                'phone_no': settings.EKATA_UNITS_VERIFY_NO
+                'phone_no': d_phone.phone_number
             }
         )
     return render(
@@ -204,13 +217,38 @@ def verify_dist_code(request):
 @user_passes_test(lambda u: u.is_staff)
 @require_POST
 def add_next_release(request):
-    form = NextReleaseForm(request.POST, instance=NextRelease.objects.latest())
+    try:
+        next_release = NextRelease.objects.latest()
+    except:
+        next_release = None
+    form = NextReleaseForm(request.POST, instance=next_release)
     if form.is_valid():
         form.save()
         return HttpResponse(status=200)
     return render(
         request,
         'useraccount/nextreleaseform.html',
+        {
+            'nrform': form
+        },
+        status=500
+    )
+
+
+@user_passes_test(lambda u: u.is_staff)
+@require_POST
+def set_distribution_phone(request):
+    try:
+        dphone = DistributionPhone.objects.latest()
+    except:
+        dphone = None
+    form = DistributionPhoneForm(request.POST, instance=dphone)
+    if form.is_valid():
+        form.save()
+        return HttpResponse(status=200)
+    return render(
+        request,
+        'useraccount/distributionphoneform.html',
         {
             'nrform': form
         },

@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now
 from useraccount.models import Transaction, UserAccount, \
-    DistributeVerification, NextRelease
+    DistributeVerification, NextRelease, DistributionPhone
 from useraccount.utils import get_ekata_units_info, validate_address
 
 
@@ -106,3 +106,9 @@ class NextReleaseForm(forms.ModelForm):
     class Meta:
         model = NextRelease
         fields = ['datetime']
+
+
+class DistributionPhoneForm(forms.ModelForm):
+    class Meta:
+        model = DistributionPhone
+        fields = ['phone_number']

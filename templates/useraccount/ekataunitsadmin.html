@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% load i18n staticfiles compress %}
 {% block extrastyle %}
-
+<link rel="stylesheet" href="{% static "dist/css/dashboard.css" %}?v=1">
+<style media="screen">
+    .next-release-wrapper {
+        margin-left: 20px;
+    }
+</style>
 {% endblock extrastyle %}
 {% block title %}
     {% trans "Grantcoin Distribution" %}
@@ -70,6 +75,18 @@
                     {% endif %}
                 </div>
             </div>
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="widget-box text-center">
+                        <h4 class="widget-box-title">{% trans "Set Distribution Confirm SMS Phone" %}</h4>
+                    </div>
+                    <div class="widget-box">
+                        <div class="widget-box-text" id="distributephoneformcontainer">
+                            {% include "useraccount/distributephoneform.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="box box-solid">
@@ -88,6 +105,40 @@
                 <div class="box-body">
                     <div class="widget-box text-center">
                         <h4 class="widget-box-title">{% trans "GRT Dashboard Widget" %}</h4>
+                        {% if next_release %}
+                        <div class="next-release-wrapper">
+                            <div id="releasecountdown">
+                                <div class="countdownbox">
+                                    <h1 id="day"></h1>
+                                </div>
+                                <div class="countdownbox">
+                                    <h1 id="hour"></h1>
+                                </div>
+                                <div class="countdownbox">
+                                    <h1 id="minute"></h1>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="countdowntext">
+                                    <h4>
+                                        {% trans "Day" %}
+                                    </h4>
+                                </div>
+                                <div class="countdowntext">
+                                    <h4>
+                                        {% trans "Hour" %}
+                                    </h4>
+                                </div>
+                                <div class="countdowntext">
+                                    <h4>
+                                        {% trans "Minute" %}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <p>{% trans "No next release date" %}</p>
+                        {% endif %}
                     </div>
                     <div class="widget-box">
                         <div class="widget-box-text" id="nextreleaseformcontainer">
@@ -144,6 +195,7 @@
 </div>
 {% endblock %}
 {% block extrascripts %}
+    <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
     {% compress js %}
         <script type="text/javascript">
         $("#id_datetime").datetimepicker({
@@ -204,6 +256,7 @@
                         message: { text: 'Success' },
                         type: 'success'
                     }).show();
+                    location.reload();
                 },
                 error: function (data) {
                     $("#nextreleaseformcontainer").html(data.responseText);
@@ -214,6 +267,31 @@
                 }
             });
         });
+        $(document).on('click', '#distributephonebtn', function () {
+            var form = $("#distributephoneform");
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: 'Success' },
+                        type: 'success'
+                    }).show();
+                },
+                error: function (data) {
+                    $("#distributephoneformcontainer").html(data.responseText);
+                }
+            });
+        });
+        {% if next_release %}
+        var countdown_time = moment('{{ next_release.datetime|date:"Y/m/d H:i" }}').format("YYYY/MM/DD HH:mm");
+        $("#releasecountdown").countdown(countdown_time, function(event) {
+            $("#day").text(event.strftime('%D'));
+            $("#hour").text(event.strftime('%H'));
+            $("#minute").text(event.strftime('%M'));
+        });
+        {% endif %}
         $(".sidebar-menu-tab>li[data-name='group'").click();
         </script>
     {% endcompress %}
