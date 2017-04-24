@@ -128,7 +128,7 @@ def transfer_ekata_units(request):
     )
 
 
-@user_passes_test(lambda u: u.is_staff)
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
 def ekata_units_admin(request):
     units_info = get_ekata_units_info("")
     total_account = UserAccount.objects.count()
@@ -160,7 +160,7 @@ def ekata_units_admin(request):
     )
 
 
-@user_passes_test(lambda u: u.is_staff)
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
 @require_POST
 def distribute_ekata_units(request):
     try:
@@ -197,7 +197,7 @@ def distribute_ekata_units(request):
     )
 
 
-@user_passes_test(lambda u: u.is_staff)
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
 @require_POST
 def verify_dist_code(request):
     form = CodeVerificationForm(request.POST)
@@ -214,7 +214,7 @@ def verify_dist_code(request):
     )
 
 
-@user_passes_test(lambda u: u.is_staff)
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
 @require_POST
 def add_next_release(request):
     try:
@@ -235,7 +235,7 @@ def add_next_release(request):
     )
 
 
-@user_passes_test(lambda u: u.is_staff)
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
 @require_POST
 def set_distribution_phone(request):
     try:
