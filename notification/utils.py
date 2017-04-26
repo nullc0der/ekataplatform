@@ -65,6 +65,8 @@ def create_notification(
         message = "%s sent a join request to group %s" % (sender, group_name)
     if ntype == 13:
         message = "New system notification published"
+    if ntype == 14:
+        message = "%s GRT distributed to your account" % amount
     Group('%s-notifications' % user.username).send({
         "text": message
     })

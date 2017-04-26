@@ -10,6 +10,8 @@ from django.utils.timezone import now
 from useraccount.models import UserAccount, Transaction, UserDistribution,\
     AdminDistribution, DistributionPhone
 from autosignup.utils import calculate_referral_and_referrers
+from notification.utils import create_notification
+from usertimeline.models import UserTimeline
 
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 log_file_base = os.path.join(settings.BASE_DIR, 'logs')
@@ -167,6 +169,18 @@ def dist_ekata_units(amount):
             rpc_connect.move("", account.wallet_accont_name, send_amount)
             f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distributed ' + str(send_amount) + ' to ' + account.user.username)
             total_amount_with_bonus += send_amount
+            usertimeline = UserTimeline(
+                user=account.user,
+                timeline_type=7,
+                amount=send_amount
+            )
+            usertimeline.save()
+            create_notification(
+                user=account.user,
+                ntype=14,
+                amount=send_amount,
+                timeline_id=usertimeline.id
+            )
         except JSONRPCException:
             f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for ' + account.user.username)
     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution')
