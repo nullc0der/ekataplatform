@@ -371,7 +371,7 @@
     $(document).on('click', '#transferconfirm', function(){
         var amount = $("#id_units").val();
         var to_user = $("#id_reciever").val();
-        $("#confirmText").text('Transfer ' + amount + ' to ' + to_user + '?');
+        $("#confirmText").text('Transfer ' + amount + ' GRT to ' + to_user + '?');
         $("#transferConfirmModal").modal('show');
     });
     $(document).on('click', '#transfersubmit', function () {

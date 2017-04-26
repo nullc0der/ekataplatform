@@ -38,6 +38,7 @@ class AdminDistribution(models.Model):
     no_of_accout = models.PositiveIntegerField()
     total_amount = models.FloatField()
     amount_per_user = models.FloatField()
+    log_file_path = models.CharField(default='', max_length=500)
 
 
 class DistributeVerification(models.Model):

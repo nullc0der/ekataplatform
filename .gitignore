@@ -55,6 +55,7 @@ statics/
 fabfile.py
 celerybeat-schedule
 *.pid
+gc_dist/
 
 # Sphinx documentation
 docs/_build/

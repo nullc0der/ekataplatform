@@ -9,6 +9,9 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 from useraccount.models import UserAccount, Transaction, UserDistribution,\
     AdminDistribution, DistributionPhone
+from autosignup.utils import calculate_referral_and_referrers
+from notification.utils import create_notification
+from usertimeline.models import UserTimeline
 
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 log_file_base = os.path.join(settings.BASE_DIR, 'logs')
@@ -130,6 +133,7 @@ def send_distribute_phone_verfication(phone_no, code):
 
 
 def dist_ekata_units(amount):
+    amount = float(amount)
     try:
         d_phone = DistributionPhone.objects.latest()
     except:
@@ -137,16 +141,74 @@ def dist_ekata_units(amount):
     rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
+    log_name = now().strftime("%Y-%m-%d") + '.log'
+    f = open(
+        settings.BASE_DIR + '/static/dist/gc_dist/' + log_name, 'w+'
+    )
+    f.write(now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distribution started')
     admindist = AdminDistribution()
+    admindist.amount_per_user = amount
+    no_of_accout = UserAccount.objects.count()
+    total_amount = amount * no_of_accout
+    total_amount_with_bonus = 0
+    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Account: ' + str(no_of_accout))
+    referrers, referrals = calculate_referral_and_referrers()
     for account in UserAccount.objects.all():
-        rpc_connect.move("", account.wallet_accont_name, amount)
+        send_amount = amount
+        if account.user in referrals:
+            referral_bonus_amount = 0.5 * (total_amount/no_of_accout)
+            send_amount += referral_bonus_amount
+            f.write(
+                '\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Added ' + str(referral_bonus_amount) + ' Referral Bonus to ' + account.user.username)
+        if account.user in referrers:
+            referrer_bonus_amount = referrers[account.user] * (total_amount/no_of_accout)
+            send_amount += referrer_bonus_amount
+            f.write(
+                '\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Added ' + str(referrer_bonus_amount) + ' Referrer Bonus to ' + account.user.username)
+        try:
+            rpc_connect.move("", account.wallet_accont_name, send_amount)
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distributed ' + str(send_amount) + ' to ' + account.user.username)
+            total_amount_with_bonus += send_amount
+            usertimeline = UserTimeline(
+                user=account.user,
+                timeline_type=7,
+                amount=send_amount
+            )
+            usertimeline.save()
+            create_notification(
+                user=account.user,
+                ntype=14,
+                amount=send_amount,
+                timeline_id=usertimeline.id
+            )
+        except JSONRPCException:
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for ' + account.user.username)
+    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution')
+    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Amount without bonus: ' + str(total_amount))
+    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Amount with bonus: ' + str(total_amount_with_bonus))
+    f.close()
     admindist.end_time = now()
-    admindist.no_of_accout = UserAccount.objects.count()
-    admindist.total_amount = UserAccount.objects.count() * float(amount)
-    admindist.amount_per_user = float(amount)
+    admindist.no_of_accout = no_of_accout
+    admindist.total_amount = total_amount
+    admindist.log_file_path = log_name
     admindist.save()
     send_sms(
         phone_no=d_phone.phone_number,
         body='Distribution finished at: {}'.format(now())
     )
+    return True
+
+
+def single_dist(to_user, amount):
+    rpc_connect = get_rpc_connect()
+    setup_logger(
+        os.path.join(log_file_base, 'ekata_units_logs') + '/transfer.log')
+    address_is_valid = validate_address(to_user)
+    try:
+        if address_is_valid:
+            rpc_connect.sendfrom("", to_user, amount)
+        else:
+            rpc_connect.move("", to_user, amount)
+    except JSONRPCException:
+        return False
     return True

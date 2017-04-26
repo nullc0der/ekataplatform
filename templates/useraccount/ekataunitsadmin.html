@@ -6,6 +6,12 @@
     .next-release-wrapper {
         margin-left: 20px;
     }
+    .autocomplete-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
 </style>
 {% endblock extrastyle %}
 {% block title %}
@@ -37,6 +43,13 @@
     </section>
 {% endblock %}
 {% block content %}
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-rounded" id="removeCode">{% trans "Remove Expired Referral Codes" %}</button>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
             <div class="box box-solid" style="min-height: 300px">
@@ -72,6 +85,24 @@
                             <p>{{ total_account }}</p>
                         </div>
                     </div>
+                    {% if referrers %}
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Total Referrers Recipients" %}</h4>
+                        <hr class="widget-box-separator" style="width: 10%">
+                        <div class="widget-box-text">
+                            <p>{{ referrers }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if referrals %}
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Total Referrals Recipients" %}</h4>
+                        <hr class="widget-box-separator" style="width: 10%">
+                        <div class="widget-box-text">
+                            <p>{{ referrals }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -97,6 +128,18 @@
                     <div class="widget-box">
                         <div class="widget-box-text" id="distributeformcontainer">
                             {% include "useraccount/distributeform.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="widget-box text-center">
+                        <h4 class="widget-box-title">{% trans "Single Distribution" %}</h4>
+                    </div>
+                    <div class="widget-box">
+                        <div class="widget-box-text" id="sdistributeformcontainer">
+                            {% include "useraccount/singledistributionform.html" %}
                         </div>
                     </div>
                 </div>
@@ -166,6 +209,7 @@
                                 <th data-sortable="true">{% trans "Total Amount Distributed" %}</th>
                                 <th data-sortable="true">{% trans "Amount per Account" %}</th>
                                 <th data-sortable="true">{% trans "No of Account" %}</th>
+                                <th>{% trans "Download Log" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -177,6 +221,13 @@
                                     <td>{{ lastdistribution.total_amount }}</td>
                                     <td>{{ lastdistribution.amount_per_user }}</td>
                                     <td>{{ lastdistribution.no_of_accout }}</td>
+                                    <td>
+                                        {% if lastdistribution.log_file_path %}
+                                        {% with "dist/gc_dist/"|add:lastdistribution.log_file_path as log_url %}
+                                            <a href="{% static log_url %}"><i class="fa fa-cloud-download"></i></a>
+                                        {% endwith %}
+                                        {% endif %}
+                                    </td>
                                </tr>
                            {% endfor %}
                         </tbody>
@@ -202,6 +253,21 @@
             format: 'YYYY-MM-DD HH:MM',
             showClear: true,
         });
+        $("#id_reciever").autocomplete({
+            source: '{% url 'myaccount:get_ekata_units_users' %}',
+            minLength: 2
+        });
+        $("#id_reciever").data("ui-autocomplete")._renderItem = function( ul, item ) {
+            var li = $('<li>'), img = $('<img class="autocomplete-img">');
+            img.attr({
+                src: item.image,
+                alt: item.value
+            });
+            li.attr('data-value', item.value);
+            li.append('<p>');
+            li.find('p').append(img).append(item.value);
+            return li.appendTo(ul);
+        };
         $("#lastdisttable").bootstrapTable({
             'pagination': true,
             'pageNumber': 1,
@@ -242,6 +308,54 @@
                 },
                 error: function (data) {
                     $("#verificationformwrapper").html(data.responseText);
+                }
+            });
+        });
+        $(document).on('click', '#sdistributebtn', function () {
+            var form = $("#sdistributeform");
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function (data) {
+                    $("#verificationformwrapper").html(data);
+                    $("#codeVerificationModal").modal('show');
+                },
+                error: function (data) {
+                    $("#sdistributeformcontainer").html(data.responseText);
+                    $("#id_reciever").autocomplete({
+                        source: '{% url 'myaccount:get_ekata_units_users' %}',
+                        minLength: 2
+                    });
+                    $("#id_reciever").data("ui-autocomplete")._renderItem = function( ul, item ) {
+                        var li = $('<li>'), img = $('<img class="autocomplete-img">');
+                        img.attr({
+                            src: item.image,
+                            alt: item.value
+                        });
+                        li.attr('data-value', item.value);
+                        li.append('<p>');
+                        li.find('p').append(img).append(item.value);
+                        return li.appendTo(ul);
+                    };
+                }
+            });
+        });
+        $(document).on('click', '#sverifycode', function () {
+            var form = $("#sverificationform");
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function () {
+                    $('.top-right').notify({
+                        message: { text: 'Success' },
+                        type: 'success'
+                    }).show();
+                    $("#codeVerificationModal").modal('hide');
+                },
+                error: function (data) {
+                    $("#sverificationformwrapper").html(data.responseText);
                 }
             });
         });
@@ -292,6 +406,25 @@
             $("#minute").text(event.strftime('%M'));
         });
         {% endif %}
+        $("#removeCode").click(function () {
+            var url = '{% url 'myaccount:remove_codes' %}';
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: 'Removed ' + data + ' code' },
+                        type: 'success'
+                    }).show();
+                },
+                error: function (data) {
+                    $('.top-right').notify({
+                        message: { text: 'Something went wrong!! Please try later' },
+                        type: 'danger'
+                    }).show();
+                }
+            });
+        });
         $(".sidebar-menu-tab>li[data-name='group']").click();
         </script>
     {% endcompress %}

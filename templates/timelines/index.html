@@ -77,12 +77,18 @@
                     {% else %}
                         <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.connection }}" name="connection">{% trans "Connection" %}</button>
                     {% endif %}
+                    {% if "7" in enabled_filters  %}
+                        <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.distribution }}" name="distribution">{% trans "Distribution" %}</button>
+                    {% else %}
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.distribution}}" name="distribution">{% trans "Distribution" %}</button>
+                    {% endif %}
             </div>
         </div>
     </div>
     <div class="row" id="timelinesection" style="margin-top:10px">
         {% include "timelines/timeline.html" %}
     </div>
+    {% comment %}
     <div tabindex="-1" class="modal fade" id="sendUnitModal" role="dialog" aria-hidden="true" aria-labelledby="sendUnitModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -103,6 +109,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    {% endcomment %}
 <select id="filtertimeline" multiple>
     {% if "1" in enabled_filters %}
         <option value="1" id="transfer" selected></option>
@@ -133,6 +140,11 @@
         <option value="6" id="connection" selected></option>
     {% else %}
         <option value="6" id="connection"></option>
+    {% endif %}
+    {% if "7" in enabled_filters %}
+        <option value="7" id="distribution" selected></option>
+    {% else %}
+        <option value="7" id="distribution"></option>
     {% endif %}
 </select>
 {% endblock content %}

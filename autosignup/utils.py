@@ -529,3 +529,28 @@ def location_finder_util(address):
             address.latitude = location['lat']
             address.longitude = location['lng']
             address.save()
+
+
+def remove_expired_referral_codes():
+    removed = 0
+    for code in ReferralCode.objects.all():
+        if now() > code.added_on + datetime.timedelta(days=365) and not code.expired:
+            code.expired = True
+            code.save()
+            removed += 1
+    return removed
+
+
+def calculate_referral_and_referrers():
+    referrals = set()
+    referrers = {}
+    for i in User.objects.all():
+        if hasattr(i, 'profile'):
+            if i.profile.referred_by:
+                referrer = i.profile.referred_by
+                if referrer in referrers:
+                    referrers[referrer] += 1
+                else:
+                    referrers[referrer] = 1
+                referrals.add(i)
+    return referrers, referrals
