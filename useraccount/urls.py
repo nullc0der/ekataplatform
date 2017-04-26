@@ -27,4 +27,9 @@ urlpatterns = [
     url(
         r'remove_codes/$',
         views.remove_codes, name='remove_codes'),
+    url(
+        r'single_dist/$',
+        views.single_distribution, name='single_dist'),
+    url(r'^verify_sdist_code/$',
+        views.verify_sdist_code, name='verify_sdist_code'),
 ]

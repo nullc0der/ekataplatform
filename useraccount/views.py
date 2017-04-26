@@ -11,9 +11,10 @@ from django.conf import settings
 from useraccount.models import Transaction, UserAccount,\
     DistributeVerification, AdminDistribution, NextRelease, DistributionPhone
 from useraccount.forms import TransactionForm, DistributionForm,\
-    CodeVerificationForm, NextReleaseForm, DistributionPhoneForm
+    CodeVerificationForm, NextReleaseForm, DistributionPhoneForm,\
+    SingleDistributionForm, SCodeVerificationForm
 from useraccount.utils import create_ekata_units_account,\
-    get_ekata_units_info, send_ekata_units, request_new_address
+    get_ekata_units_info, send_ekata_units, request_new_address, single_dist
 from useraccount.tasks import task_send_distribute_phone_verfication, \
     task_dist_ekata_units
 from autosignup.forms import AccountAddContactForm
@@ -158,6 +159,7 @@ def ekata_units_admin(request):
         variables['dpform'] = DistributionPhoneForm(instance=d_phone)
         variables['referrals'] = len(referrals)
         variables['referrers'] = len(referrers)
+        variables['sform'] = SingleDistributionForm()
     return render(
         request,
         'useraccount/ekataunitsadmin.html',
@@ -266,3 +268,59 @@ def set_distribution_phone(request):
 def remove_codes(request):
     total_removed = remove_expired_referral_codes()
     return HttpResponse(total_removed)
+
+
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
+@require_POST
+def single_distribution(request):
+    try:
+        d_phone = DistributionPhone.objects.latest()
+    except:
+        d_phone = None
+    form = SingleDistributionForm(request.POST)
+    if form.is_valid():
+        code = get_random_string(length=8, allowed_chars='0123456789')
+        distcode = DistributeVerification(
+            user=request.user,
+            code=code
+        )
+        distcode.save()
+        task_send_distribute_phone_verfication.delay(
+            d_phone.phone_number, distcode.code)
+        vform = SCodeVerificationForm(
+            initial={
+                'amount': form.cleaned_data['units'],
+                'user': form.cleaned_data['reciever']
+            })
+        return render(
+            request,
+            'useraccount/sverificationform.html',
+            {
+                'form': vform,
+                'phone_no': d_phone.phone_number
+            }
+        )
+    else:
+        return render(
+            request,
+            'useraccount/singledistributionform.html',
+            {'sform': form},
+            status=500
+        )
+
+
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
+@require_POST
+def verify_sdist_code(request):
+    form = SCodeVerificationForm(request.POST)
+    if form.is_valid():
+        single_dist(form.cleaned_data['user'], form.cleaned_data['amount'])
+        return HttpResponse(status=200)
+    return render(
+        request,
+        'useraccount/sverificationform.html',
+        {
+            'form': form
+        },
+        status=500
+    )

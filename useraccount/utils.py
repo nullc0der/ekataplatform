@@ -197,3 +197,18 @@ def dist_ekata_units(amount):
         body='Distribution finished at: {}'.format(now())
     )
     return True
+
+
+def single_dist(to_user, amount):
+    rpc_connect = get_rpc_connect()
+    setup_logger(
+        os.path.join(log_file_base, 'ekata_units_logs') + '/transfer.log')
+    address_is_valid = validate_address(to_user)
+    try:
+        if address_is_valid:
+            rpc_connect.sendfrom("", to_user, amount)
+        else:
+            rpc_connect.move("", to_user, amount)
+    except JSONRPCException:
+        return False
+    return True

@@ -6,6 +6,12 @@
     .next-release-wrapper {
         margin-left: 20px;
     }
+    .autocomplete-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
 </style>
 {% endblock extrastyle %}
 {% block title %}
@@ -129,6 +135,18 @@
             <div class="box box-solid">
                 <div class="box-body">
                     <div class="widget-box text-center">
+                        <h4 class="widget-box-title">{% trans "Single Distribution" %}</h4>
+                    </div>
+                    <div class="widget-box">
+                        <div class="widget-box-text" id="sdistributeformcontainer">
+                            {% include "useraccount/singledistributionform.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="widget-box text-center">
                         <h4 class="widget-box-title">{% trans "GRT Dashboard Widget" %}</h4>
                         {% if next_release %}
                         <div class="next-release-wrapper">
@@ -235,6 +253,21 @@
             format: 'YYYY-MM-DD HH:MM',
             showClear: true,
         });
+        $("#id_reciever").autocomplete({
+            source: '{% url 'myaccount:get_ekata_units_users' %}',
+            minLength: 2
+        });
+        $("#id_reciever").data("ui-autocomplete")._renderItem = function( ul, item ) {
+            var li = $('<li>'), img = $('<img class="autocomplete-img">');
+            img.attr({
+                src: item.image,
+                alt: item.value
+            });
+            li.attr('data-value', item.value);
+            li.append('<p>');
+            li.find('p').append(img).append(item.value);
+            return li.appendTo(ul);
+        };
         $("#lastdisttable").bootstrapTable({
             'pagination': true,
             'pageNumber': 1,
@@ -275,6 +308,54 @@
                 },
                 error: function (data) {
                     $("#verificationformwrapper").html(data.responseText);
+                }
+            });
+        });
+        $(document).on('click', '#sdistributebtn', function () {
+            var form = $("#sdistributeform");
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function (data) {
+                    $("#verificationformwrapper").html(data);
+                    $("#codeVerificationModal").modal('show');
+                },
+                error: function (data) {
+                    $("#sdistributeformcontainer").html(data.responseText);
+                    $("#id_reciever").autocomplete({
+                        source: '{% url 'myaccount:get_ekata_units_users' %}',
+                        minLength: 2
+                    });
+                    $("#id_reciever").data("ui-autocomplete")._renderItem = function( ul, item ) {
+                        var li = $('<li>'), img = $('<img class="autocomplete-img">');
+                        img.attr({
+                            src: item.image,
+                            alt: item.value
+                        });
+                        li.attr('data-value', item.value);
+                        li.append('<p>');
+                        li.find('p').append(img).append(item.value);
+                        return li.appendTo(ul);
+                    };
+                }
+            });
+        });
+        $(document).on('click', '#sverifycode', function () {
+            var form = $("#sverificationform");
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                success: function () {
+                    $('.top-right').notify({
+                        message: { text: 'Success' },
+                        type: 'success'
+                    }).show();
+                    $("#codeVerificationModal").modal('hide');
+                },
+                error: function (data) {
+                    $("#sverificationformwrapper").html(data.responseText);
                 }
             });
         });

@@ -41,7 +41,7 @@ class TransactionForm(forms.Form):
             user = User.objects.get(username=reciever)
             if not hasattr(user, 'useraccount'):
                 raise forms.ValidationError(
-                    _("User is not subscribed to Ekata Units"))
+                    _("User is not subscribed to GRT"))
             return reciever
         except ObjectDoesNotExist:
             pass  # Fallback to address
@@ -112,3 +112,60 @@ class DistributionPhoneForm(forms.ModelForm):
     class Meta:
         model = DistributionPhone
         fields = ['phone_number']
+
+
+class SingleDistributionForm(forms.Form):
+    reciever = forms.CharField(
+        label=_('Send To'), max_length=200, required=True,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Input addess or username'}
+        )
+    )
+    units = forms.FloatField(
+        label=_('Amount'), min_value=0.1, max_value=10000,
+        widget=forms.NumberInput(
+            attrs={'placeholder': 'Enter Amount'}
+        )
+    )
+
+    def clean_units(self):
+        units = self.cleaned_data['units']
+        account_info = get_ekata_units_info("")
+        if units > account_info['balance']:
+            raise forms.ValidationError(_("Amount can't exceed balance"))
+        return units
+
+    def clean_reciever(self):
+        reciever = self.cleaned_data['reciever']
+        try:
+            user = User.objects.get(username=reciever)
+            if not hasattr(user, 'useraccount'):
+                raise forms.ValidationError(
+                    _("User is not subscribed to GRT"))
+            return reciever
+        except ObjectDoesNotExist:
+            pass  # Fallback to address
+        address_is_valid = validate_address(reciever)
+        if not address_is_valid:
+            raise forms.ValidationError(_("User/Address doesn't exist"))
+        return reciever
+
+
+class SCodeVerificationForm(forms.Form):
+    code = forms.CharField(required=True, max_length=8)
+    amount = forms.CharField(required=True, widget=forms.HiddenInput())
+    user = forms.CharField(required=True, widget=forms.HiddenInput())
+
+    def clean_code(self):
+        code = self.cleaned_data['code']
+        try:
+            distcodeobj = DistributeVerification.objects.get(code=code)
+            if now() > distcodeobj.timestamp + timedelta(minutes=2):
+                raise forms.ValidationError(
+                    _("Code is expired")
+                )
+        except ObjectDoesNotExist:
+            raise forms.ValidationError(
+                _("Invalid Code")
+            )
+        return code
