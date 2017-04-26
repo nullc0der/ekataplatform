@@ -37,6 +37,13 @@
     </section>
 {% endblock %}
 {% block content %}
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-rounded" id="removeCode">{% trans "Remove Expired Referral Codes" %}</button>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
             <div class="box box-solid" style="min-height: 300px">
@@ -72,6 +79,24 @@
                             <p>{{ total_account }}</p>
                         </div>
                     </div>
+                    {% if referrers %}
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Total Referrers Recipients" %}</h4>
+                        <hr class="widget-box-separator" style="width: 10%">
+                        <div class="widget-box-text">
+                            <p>{{ referrers }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if referrals %}
+                    <div class="widget-box">
+                        <h4 class="widget-box-title">{% trans "Total Referrals Recipients" %}</h4>
+                        <hr class="widget-box-separator" style="width: 10%">
+                        <div class="widget-box-text">
+                            <p>{{ referrals }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -166,6 +191,7 @@
                                 <th data-sortable="true">{% trans "Total Amount Distributed" %}</th>
                                 <th data-sortable="true">{% trans "Amount per Account" %}</th>
                                 <th data-sortable="true">{% trans "No of Account" %}</th>
+                                <th>{% trans "Download Log" %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -177,6 +203,13 @@
                                     <td>{{ lastdistribution.total_amount }}</td>
                                     <td>{{ lastdistribution.amount_per_user }}</td>
                                     <td>{{ lastdistribution.no_of_accout }}</td>
+                                    <td>
+                                        {% if lastdistribution.log_file_path %}
+                                        {% with "dist/gc_dist/"|add:lastdistribution.log_file_path as log_url %}
+                                            <a href="{% static log_url %}"><i class="fa fa-cloud-download"></i></a>
+                                        {% endwith %}
+                                        {% endif %}
+                                    </td>
                                </tr>
                            {% endfor %}
                         </tbody>
@@ -292,6 +325,25 @@
             $("#minute").text(event.strftime('%M'));
         });
         {% endif %}
+        $("#removeCode").click(function () {
+            var url = '{% url 'myaccount:remove_codes' %}';
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: function (data) {
+                    $('.top-right').notify({
+                        message: { text: 'Removed ' + data + ' code' },
+                        type: 'success'
+                    }).show();
+                },
+                error: function (data) {
+                    $('.top-right').notify({
+                        message: { text: 'Something went wrong!! Please try later' },
+                        type: 'danger'
+                    }).show();
+                }
+            });
+        });
         $(".sidebar-menu-tab>li[data-name='group']").click();
         </script>
     {% endcompress %}

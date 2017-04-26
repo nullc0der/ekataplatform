@@ -10,7 +10,6 @@ from django.utils.crypto import get_random_string
 from django.conf import settings
 from useraccount.models import Transaction, UserAccount,\
     DistributeVerification, AdminDistribution, NextRelease, DistributionPhone
-from autosignup.models import CommunitySignup
 from useraccount.forms import TransactionForm, DistributionForm,\
     CodeVerificationForm, NextReleaseForm, DistributionPhoneForm
 from useraccount.utils import create_ekata_units_account,\
@@ -18,6 +17,9 @@ from useraccount.utils import create_ekata_units_account,\
 from useraccount.tasks import task_send_distribute_phone_verfication, \
     task_dist_ekata_units
 from autosignup.forms import AccountAddContactForm
+from autosignup.models import CommunitySignup
+from autosignup.utils import remove_expired_referral_codes,\
+    calculate_referral_and_referrers
 
 # Create your views here.
 
@@ -112,7 +114,7 @@ def transfer_ekata_units(request):
             amount=form.cleaned_data.get('units')
         )
         if res:
-            return HttpResponse(_('Transferred {0} units to {1}'.format(
+            return HttpResponse(_('Transferred {0} GRT to {1}'.format(
                 form.cleaned_data.get('units'),
                 form.cleaned_data.get('reciever')
             )))
@@ -133,6 +135,7 @@ def ekata_units_admin(request):
     units_info = get_ekata_units_info("")
     total_account = UserAccount.objects.count()
     lastdistributions = AdminDistribution.objects.all()
+    referrers, referrals = calculate_referral_and_referrers()
     try:
         next_release = NextRelease.objects.latest()
     except:
@@ -153,6 +156,8 @@ def ekata_units_admin(request):
         variables['lastdistributions'] = lastdistributions
         variables['next_release'] = next_release
         variables['dpform'] = DistributionPhoneForm(instance=d_phone)
+        variables['referrals'] = len(referrals)
+        variables['referrers'] = len(referrers)
     return render(
         request,
         'useraccount/ekataunitsadmin.html',
@@ -254,3 +259,10 @@ def set_distribution_phone(request):
         },
         status=500
     )
+
+
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
+@require_POST
+def remove_codes(request):
+    total_removed = remove_expired_referral_codes()
+    return HttpResponse(total_removed)
