@@ -159,15 +159,23 @@ def dist_ekata_units(amount):
             referral_bonus_amount = 0.5 * (total_amount/no_of_accout)
             send_amount += referral_bonus_amount
             f.write(
-                '\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Added ' + str(referral_bonus_amount) + ' Referral Bonus to ' + account.user.username)
+                '\n{}: Added {:.8f} Referral Bonus to {}'.format(
+                    now().strftime("%Y-%m-%d %H:%I"), referral_bonus_amount, account.user.username
+                )
+            )
         if account.user in referrers:
             referrer_bonus_amount = referrers[account.user] * (total_amount/no_of_accout)
             send_amount += referrer_bonus_amount
             f.write(
-                '\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Added ' + str(referrer_bonus_amount) + ' Referrer Bonus to ' + account.user.username)
+                '\n{}: Added {:.8f} Referrer Bonus to {}'.format(
+                    now().strftime("%Y-%m-%d %H:%I"), referrer_bonus_amount, account.user.username
+                )
+            )
         try:
             rpc_connect.move("", account.wallet_accont_name, send_amount)
-            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distributed ' + str(send_amount) + ' to ' + ' Ekata ID: ' + account.user.profile.ekata_id + ' Username: ' + account.user.username)
+            f.write('\n{}: Distributed {:.8f} to Ekata ID {} Username {}'.format(
+                now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username
+            ))
             total_amount_with_bonus += send_amount
             usertimeline = UserTimeline(
                 user=account.user,
@@ -184,8 +192,8 @@ def dist_ekata_units(amount):
         except JSONRPCException:
             f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for ' + account.user.username)
     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution')
-    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Amount without bonus: ' + str(total_amount))
-    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Amount with bonus: ' + str(total_amount_with_bonus))
+    f.write('\n{}: Total Amount Without Bonus: {:.8f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount))
+    f.write('\n{}: Total Amount With Bonus: {:.8f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
     f.close()
     admindist.end_time = now()
     admindist.no_of_accout = no_of_accout
