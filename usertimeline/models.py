@@ -24,7 +24,7 @@ class UserTimeline(models.Model):
     reciever = models.CharField(max_length=200, default='')
     reciever_id = models.CharField(max_length=200, default='')
     instruction = models.CharField(max_length=200, default='')
-    amount = models.FloatField()
+    amount = models.FloatField(null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     not_completed = models.BooleanField(default=True)  # for request units
     conn_main = models.CharField(max_length=100, default='')
