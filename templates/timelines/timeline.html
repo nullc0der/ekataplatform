@@ -180,7 +180,7 @@
                  <i class="fa fa-arrow-down bg-orange"></i>
                  <div class="timeline-item">
                      <span class="time"><i class="fa fa-clock-o"></i> {{ item.timestamp|date:"H:i" }}</span>
-                     <h3 class="timeline-header no-border">{{ item.amount:floatformat:8 }}{% trans " GRT distributed to your account" %}</h3>
+                     <h3 class="timeline-header no-border">{{ item.amount|floatformat:8 }}{% trans " GRT distributed to your account" %}</h3>
                  </div>
              </li>
              {% endifequal %}
