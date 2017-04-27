@@ -67,9 +67,12 @@ def create_notification(
         message = "New system notification published"
     if ntype == 14:
         message = "%s GRT distributed to your account" % amount
-    Group('%s-notifications' % user.username).send({
-        "text": message
-    })
+    try:
+        Group('%s-notifications' % user.username).send({
+            "text": message
+        })
+    except:
+        pass
     onesignals = user.onesignals.all()
     if onesignals:
         player_ids = []
