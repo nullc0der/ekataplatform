@@ -141,7 +141,7 @@ def dist_ekata_units(amount):
     rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
-    log_name = now().strftime("%Y-%m-%d") + '.log'
+    log_name = now().strftime("%Y-%m-%d-%H:%I") + '.log'
     f = open(
         settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
     )
