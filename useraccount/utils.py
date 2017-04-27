@@ -167,7 +167,7 @@ def dist_ekata_units(amount):
                 '\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Added ' + str(referrer_bonus_amount) + ' Referrer Bonus to ' + account.user.username)
         try:
             rpc_connect.move("", account.wallet_accont_name, send_amount)
-            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distributed ' + str(send_amount) + ' to ' + account.user.username)
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distributed ' + str(send_amount) + ' to ' + account.user.username + ' Ekata ID: ' + account.user.profile.ekata_id)
             total_amount_with_bonus += send_amount
             usertimeline = UserTimeline(
                 user=account.user,
@@ -189,7 +189,7 @@ def dist_ekata_units(amount):
     f.close()
     admindist.end_time = now()
     admindist.no_of_accout = no_of_accout
-    admindist.total_amount = total_amount
+    admindist.total_amount = total_amount_with_bonus
     admindist.log_file_path = log_name
     admindist.save()
     send_sms(
