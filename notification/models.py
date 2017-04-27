@@ -31,7 +31,7 @@ class UserNotification(models.Model):
     group_name = models.CharField(max_length=200, default='')
     group_id = models.CharField(max_length=200, default='')
     timeline_id = models.CharField(max_length=200, default='')
-    amount = models.CharField(max_length=200, default='')
+    amount = models.FloatField()
     sysupdate_type = models.CharField(max_length=10, default='')
     sysupdate_message = models.CharField(max_length=300, default='')
     sysupdate_timestamp = models.DateTimeField(null=True)

@@ -30,7 +30,7 @@
         {% ifequal notification.notification_type 3 %}
             <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
-                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount }} {% trans "units released" %}
+                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount|floatformat:8 }} {% trans "units released" %}
                 </a>
             </li>
         {% endifequal %}
