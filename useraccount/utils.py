@@ -143,7 +143,7 @@ def dist_ekata_units(amount):
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
     log_name = now().strftime("%Y-%m-%d") + '.log'
     f = open(
-        settings.BASE_DIR + '/static/dist/gc_dist/' + log_name, 'w+'
+        settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
     )
     f.write(now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distribution started')
     admindist = AdminDistribution()

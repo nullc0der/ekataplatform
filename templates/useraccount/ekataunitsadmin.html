@@ -223,9 +223,7 @@
                                     <td>{{ lastdistribution.no_of_accout }}</td>
                                     <td>
                                         {% if lastdistribution.log_file_path %}
-                                        {% with "dist/gc_dist/"|add:lastdistribution.log_file_path as log_url %}
-                                            <a href="{% static log_url %}"><i class="fa fa-cloud-download"></i></a>
-                                        {% endwith %}
+                                        <a href="/media/gc_dist/{{ lastdistribution.log_file_path }}"><i class="fa fa-cloud-download"></i></a>
                                         {% endif %}
                                     </td>
                                </tr>
