@@ -176,26 +176,30 @@ def dist_ekata_units(amount):
                     now().strftime("%Y-%m-%d %H:%I"), referrer_bonus_amount, account.user.username
                 )
             )
-        try:
-            rpc_connect.move("", account.user.username, send_amount)
-            f.write('\n{}: Distributed {:.6f} to Ekata ID {} Username {}'.format(
-                now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username
-            ))
-            total_amount_with_bonus += send_amount
-            usertimeline = UserTimeline(
-                user=account.user,
-                timeline_type=7,
-                amount=send_amount
-            )
-            usertimeline.save()
-            create_notification(
-                user=account.user,
-                ntype=14,
-                amount=send_amount,
-                timeline_id=usertimeline.id
-            )
-        except JSONRPCException:
-            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for ' + account.user.username)
+        if account.wallet_address:
+            try:
+                rpc_connect.sendfrom("", account.wallet_address, send_amount)
+                # rpc_connect.move("", account.user.username, send_amount)
+                f.write('\n{}: Distributed {:.6f} to Ekata ID {} Username {}'.format(
+                    now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username
+                ))
+                total_amount_with_bonus += send_amount
+                usertimeline = UserTimeline(
+                    user=account.user,
+                    timeline_type=7,
+                    amount=send_amount
+                )
+                usertimeline.save()
+                create_notification(
+                    user=account.user,
+                    ntype=14,
+                    amount=send_amount,
+                    timeline_id=usertimeline.id
+                )
+            except JSONRPCException:
+                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for ' + account.user.username)
+        else:
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username + "Doesn't have wallet address")
     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution')
     f.write('\n{}: Total Amount Without Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount))
     f.write('\n{}: Total Amount With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
