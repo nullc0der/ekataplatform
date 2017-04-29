@@ -64,11 +64,26 @@
                                     <h4>{% trans "Grantcoin" %}</h4>
                                 </div>
                                 <div class="community-actions">
+                                    {% if communitysignup %}
+                                        {% if communitysignup.data_collect_done %}
+                                            {% if communitysignup.status == 'approved' %}
+                                                <a href="javascript:getEkataUnitsInfo();" class="btn btn-block btn-flat btn-default">{% trans "View Info" %}</a>
+                                            {% else %}
+                                                <a href="#" data-toggle="modal" data-target='#pendingmodal' class="btn btn-block btn-flat btn-success">{% trans "Pending" %}</a>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="#" data-community-name='grantcoin' data-toggle="modal" data-target='#signupmodal' class="btn btn-block btn-flat btn-primary">{% trans "Incomplete" %}</a>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="#" data-community-name='grantcoin' data-toggle="modal" data-target='#signupmodal' class="btn btn-block btn-flat btn-primary">{% trans "Signup" %}</a>
+                                    {% endif %}
+                                    {% comment %}
                                     {% if request.user.useraccount %}
                                         <a href="javascript:getEkataUnitsInfo();" class="btn btn-block btn-flat btn-success">{% trans "View Info" %}</a>
                                     {% else %}
                                         <a href="javascript:void(0);" class="btn btn-block btn-flat btn-info" id="ekataUnitsSubscribe">{% trans "Subscribe" %}</a>
                                     {% endif %}
+                                    {% endcomment %}
                                 </div>
                             </div>
                         </div>
@@ -213,6 +228,11 @@
 <script type="text/javascript">
     function getEkataUnitsInfo() {
         var url = '{% url 'myaccount:ekata_units_info' %}';
+        $("#accountInfo").load(url);
+    }
+    {% comment %}
+    function getEkataUnitsInfo() {
+        var url = '{% url 'myaccount:ekata_units_info' %}';
         $("#accountInfo").load(url, function () {
             $('html, body').animate({
                 scrollTop: $("#accountInfo").offset().top
@@ -256,6 +276,7 @@
             }
         });
     });
+    {% endcomment %}
     $("#signupmodal").on('show.bs.modal', function(e){
         var link = '{% url 'autosignup:getform' %}?community_name=' + $(e.relatedTarget).attr('data-community-name');
         var self = $(this);
@@ -368,6 +389,7 @@
             }
         });
     });
+    {% comment %}
     $(document).on('click', '#transferconfirm', function(){
         var amount = $("#id_units").val();
         var to_user = $("#id_reciever").val();
@@ -423,9 +445,16 @@
         });
         $("#qrCodeModal").modal('show');
     });
-    $(document).ready(function () {
-        getEkataUnitsInfo();
-    });
+    {% endcomment %}
+    {% if communitysignup %}
+        {% if communitysignup.data_collect_done %}
+            {% if communitysignup.status == 'approved' %}
+            $(document).ready(function () {
+                getEkataUnitsInfo();
+            });
+            {% endif %}
+        {% endif %}
+    {% endif %}
 </script>
 {% endcompress %}
 {% endblock %}

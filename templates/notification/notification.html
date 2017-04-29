@@ -117,7 +117,7 @@
         {% ifequal notification.notification_type 14 %}
             <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
-                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount|floatformat:8 }} {% trans "GRT distributed to your account" %}
+                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount|floatformat:6 }} {% trans "GRT distributed to your account" %}
                 </a>
             </li>
         {% endifequal %}

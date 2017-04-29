@@ -132,6 +132,7 @@
                     </div>
                 </div>
             </div>
+            {% comment %}
             <div class="box box-solid">
                 <div class="box-body">
                     <div class="widget-box text-center">
@@ -144,6 +145,7 @@
                     </div>
                 </div>
             </div>
+            {% endcomment %}
             <div class="box box-solid">
                 <div class="box-body">
                     <div class="widget-box text-center">
@@ -218,8 +220,8 @@
                                     <td>{{ lastdistribution.id }}</td>
                                     <td>{{ lastdistribution.start_time|date:'Y/m/d h:i' }}</td>
                                     <td>{{ lastdistribution.end_time|date:'Y/m/d h:i' }}</td>
-                                    <td>{{ lastdistribution.total_amount|floatformat:8 }}</td>
-                                    <td>{{ lastdistribution.amount_per_user|floatformat:8 }}</td>
+                                    <td>{{ lastdistribution.total_amount|floatformat:6 }}</td>
+                                    <td>{{ lastdistribution.amount_per_user|floatformat:6 }}</td>
                                     <td>{{ lastdistribution.no_of_accout }}</td>
                                     <td>
                                         {% if lastdistribution.log_file_path %}
@@ -251,6 +253,7 @@
             format: 'YYYY-MM-DD HH:MM',
             showClear: true,
         });
+        {% comment %}
         $("#id_reciever").autocomplete({
             source: '{% url 'myaccount:get_ekata_units_users' %}',
             minLength: 2
@@ -266,6 +269,7 @@
             li.find('p').append(img).append(item.value);
             return li.appendTo(ul);
         };
+        {% endcomment %}
         $("#lastdisttable").bootstrapTable({
             'pagination': true,
             'pageNumber': 1,
@@ -309,6 +313,7 @@
                 }
             });
         });
+        {% comment %}
         $(document).on('click', '#sdistributebtn', function () {
             var form = $("#sdistributeform");
             $.ajax({
@@ -339,6 +344,7 @@
                 }
             });
         });
+        {% endcomment %}
         $(document).on('click', '#sverifycode', function () {
             var form = $("#sverificationform");
             $.ajax({

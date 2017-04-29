@@ -56,7 +56,7 @@ def subscribe_ekata_units(request):
 @login_required
 def ekata_units_info(request):
     try:
-        useraccount = request.user.useraccount
+        community_signup = CommunitySignup.objects.get(user=request.user)
         units_info = get_ekata_units_info(request.user.username)
         if not units_info:
             variables = {
@@ -64,7 +64,7 @@ def ekata_units_info(request):
             }
         else:
             variables = units_info
-            variables['form'] = TransactionForm(request)
+            variables['signup'] = community_signup
     except ObjectDoesNotExist:
         variables = {
             'message': "You've not subscribed yet"
@@ -134,7 +134,10 @@ def transfer_ekata_units(request):
 @user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
 def ekata_units_admin(request):
     units_info = get_ekata_units_info("")
-    total_account = UserAccount.objects.count()
+    total_account = CommunitySignup.objects.filter(
+        is_on_distribution=True,
+        status='approved'
+    )
     lastdistributions = AdminDistribution.objects.all()
     referrers, referrals = calculate_referral_and_referrers()
     try:
@@ -151,7 +154,7 @@ def ekata_units_admin(request):
         }
     else:
         variables = units_info
-        variables['total_account'] = total_account
+        variables['total_account'] = total_account.count()
         variables['form'] = DistributionForm()
         variables['nrform'] = NextReleaseForm(instance=next_release)
         variables['lastdistributions'] = lastdistributions

@@ -66,7 +66,7 @@ def create_notification(
     if ntype == 13:
         message = "New system notification published"
     if ntype == 14:
-        message = "{:.8f} GRT distributed to your account".format(amount)
+        message = "{:.6f} GRT distributed to your account".format(amount)
     try:
         Group('%s-notifications' % user.username).send({
             "text": message

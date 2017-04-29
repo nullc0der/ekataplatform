@@ -12,6 +12,7 @@ from useraccount.models import UserAccount, Transaction, UserDistribution,\
 from autosignup.utils import calculate_referral_and_referrers
 from notification.utils import create_notification
 from usertimeline.models import UserTimeline
+from autosignup.models import CommunitySignup
 
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 log_file_base = os.path.join(settings.BASE_DIR, 'logs')
@@ -47,8 +48,8 @@ def create_ekata_units_account(user):
         account_info = {}
         account_info['wallet_account_address'] = rpc_connect.getaccountaddress(
             user.username)
-        rpc_connect.move("", user.username,
-                         settings.EKATA_UNITS_INITIAL_BALANCE)
+        # rpc_connect.move("", user.username,
+        #                  settings.EKATA_UNITS_INITIAL_BALANCE)
         account_info['balance'] = rpc_connect.getbalance(user.username)
         account_info['message'] = 'Subscribed'
         useraccount, created = UserAccount.objects.get_or_create(user=user)
@@ -141,6 +142,10 @@ def dist_ekata_units(amount):
     rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
+    dist_accounts = CommunitySignup.objects.filter(
+        is_on_distribution=True,
+        status='approved'
+    )
     log_name = now().strftime("%Y-%m-%d-%H:%I") + '.log'
     f = open(
         settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
@@ -148,18 +153,18 @@ def dist_ekata_units(amount):
     f.write(now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distribution started')
     admindist = AdminDistribution()
     admindist.amount_per_user = amount
-    no_of_accout = UserAccount.objects.count()
+    no_of_accout = dist_accounts.count()
     total_amount = amount * no_of_accout
     total_amount_with_bonus = 0
     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Account: ' + str(no_of_accout))
     referrers, referrals = calculate_referral_and_referrers()
-    for account in UserAccount.objects.all():
+    for account in dist_accounts:
         send_amount = amount
         if account.user in referrals:
             referral_bonus_amount = 0.5 * (total_amount/no_of_accout)
             send_amount += referral_bonus_amount
             f.write(
-                '\n{}: Added {:.8f} Referral Bonus to {}'.format(
+                '\n{}: Added {:.6f} Referral Bonus to {}'.format(
                     now().strftime("%Y-%m-%d %H:%I"), referral_bonus_amount, account.user.username
                 )
             )
@@ -167,13 +172,13 @@ def dist_ekata_units(amount):
             referrer_bonus_amount = referrers[account.user] * (total_amount/no_of_accout)
             send_amount += referrer_bonus_amount
             f.write(
-                '\n{}: Added {:.8f} Referrer Bonus to {}'.format(
+                '\n{}: Added {:.6f} Referrer Bonus to {}'.format(
                     now().strftime("%Y-%m-%d %H:%I"), referrer_bonus_amount, account.user.username
                 )
             )
         try:
-            rpc_connect.move("", account.wallet_accont_name, send_amount)
-            f.write('\n{}: Distributed {:.8f} to Ekata ID {} Username {}'.format(
+            rpc_connect.move("", account.user.username, send_amount)
+            f.write('\n{}: Distributed {:.6f} to Ekata ID {} Username {}'.format(
                 now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username
             ))
             total_amount_with_bonus += send_amount
@@ -192,8 +197,8 @@ def dist_ekata_units(amount):
         except JSONRPCException:
             f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for ' + account.user.username)
     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution')
-    f.write('\n{}: Total Amount Without Bonus: {:.8f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount))
-    f.write('\n{}: Total Amount With Bonus: {:.8f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
+    f.write('\n{}: Total Amount Without Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount))
+    f.write('\n{}: Total Amount With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
     f.close()
     admindist.end_time = now()
     admindist.no_of_accout = no_of_accout

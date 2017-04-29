@@ -19,22 +19,61 @@
                     </div>
                 </div>
                 <div class="widget-box">
-                    <h4 class="widget-box-title">{% trans "Addresses" %}</h4>
+                    <h4 class="widget-box-title">{% trans "Address" %}</h4>
                     <hr class="widget-box-separator" style="width: 10%">
-                    <div class="widget-box-text addresses">
-                        {% for address in addresses %}
-                            <p>{{ address }} <i class="fa fa-qrcode getqrcode" data-address="{{ address }}"></i></p>
-                        {% endfor %}
+                    <div class="widget-box-text">
+                        <p>{{ signup.wallet_address }}</p>
                     </div>
                 </div>
-            </div>
-            <div class="boxcontent-submitbtn newbtn" id="getNewAddress">
-                <p>{% trans "Request New Address" %}</p>
+                <div class="widget-box">
+                    <h4 class="widget-box-title">{% trans "Signup Date" %}</h4>
+                    <hr class="widget-box-separator" style="width: 10%">
+                    <div class="widget-box-text">
+                        <p>{{ signup.signup_date }}</p>
+                    </div>
+                </div>
             </div>
             {% endif %}
         </div>
     </div>
 </div>
+<div class="col-md-6">
+    <div class="box box-solid" style="min-height: 300px">
+        <div class="box-header with-border">
+            <h3 class="box-title">Grantcoin</h3>
+        </div>
+        <div class="box-body">
+            {% if message %}
+            <div class="widget-box text-center">
+                <p>{{ message }}</p>
+            </div>
+            {% else %}
+            <div class="widget-box">
+                <h4 class="widget-box-title">{% trans "Verified Date" %}</h4>
+                <hr class="widget-box-separator" style="width: 10%">
+                <div class="widget-box-text">
+                    <p>{{ signup.verified_date }}</p>
+                </div>
+            </div>
+            <div class="widget-box">
+                <h4 class="widget-box-title">{% trans "Referral Code" %}</h4>
+                <hr class="widget-box-separator" style="width: 10%">
+                <div class="widget-box-text">
+                    <p>{{ request.user.referral_code.code }}</p>
+                </div>
+            </div>
+            <div class="widget-box">
+                <h4 class="widget-box-title">{% trans "On Distribution" %}</h4>
+                <hr class="widget-box-separator" style="width: 10%">
+                <div class="widget-box-text">
+                    <p>{{ signup.is_on_distribution }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% comment %}
 {% if not message %}
 <div class="col-md-6">
     <div class="box box-solid" style="min-height: 300px">
@@ -49,3 +88,4 @@
     </div>
 </div>
 {% endif %}
+{% endcomment %}
