@@ -7,7 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now
 from useraccount.models import Transaction, UserAccount, \
     DistributeVerification, NextRelease, DistributionPhone
-from useraccount.utils import get_ekata_units_info, validate_address
+from useraccount.utils import get_ekata_units_info, validate_address,\
+    calculate_dist_amount
 
 
 class TransactionForm(forms.Form):
@@ -62,7 +63,8 @@ class DistributionForm(forms.Form):
     def clean_amount(self):
         amount = self.cleaned_data['amount']
         account_info = get_ekata_units_info("")
-        total_amount_needed = UserAccount.objects.count() * amount
+        total_amount = calculate_dist_amount(amount)
+        total_amount_needed = total_amount['total']
         if total_amount_needed > account_info['balance']:
             raise forms.ValidationError(
                 _(

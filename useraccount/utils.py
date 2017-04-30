@@ -201,7 +201,6 @@ def dist_ekata_units(amount):
         else:
             f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username + "Doesn't have wallet address")
     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution')
-    f.write('\n{}: Total Amount Without Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount))
     f.write('\n{}: Total Amount With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
     f.close()
     admindist.end_time = now()
@@ -229,3 +228,29 @@ def single_dist(to_user, amount):
     except JSONRPCException:
         return False
     return True
+
+
+def calculate_dist_amount(amount):
+    total_amount = {}
+    referrers, referrals = calculate_referral_and_referrers()
+    dist_accounts = CommunitySignup.objects.filter(
+        is_on_distribution=True,
+        status='approved'
+    )
+    rpc_connect = get_rpc_connect()
+    info = rpc_connect.getinfo()
+    total_amount['coin_fees'] = dist_accounts.count() * info['paytxfee']
+    total_amount['basic_income'] = dist_accounts.count() * amount
+    total_bonus = 0
+    for account in dist_accounts:
+        if account.user in referrals:
+            referral_bonus_amount = 0.5 * (amount * dist_accounts.count()/dist_accounts.count())
+            total_bonus += referral_bonus_amount
+        if account.user in referrers:
+            referrer_bonus_amount =\
+                referrers[account.user] * (amount * dist_accounts.count()/dist_accounts.count())
+            total_bonus += referrer_bonus_amount
+    total_amount['total_bonus'] = total_bonus
+    total_amount['total'] = float(total_amount['coin_fees']) +\
+        float(total_amount['basic_income']) + float(total_amount['total_bonus'])
+    return total_amount

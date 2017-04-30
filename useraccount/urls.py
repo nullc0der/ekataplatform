@@ -32,4 +32,6 @@ urlpatterns = [
         views.single_distribution, name='single_dist'),
     url(r'^verify_sdist_code/$',
         views.verify_sdist_code, name='verify_sdist_code'),
+    url(r'^get_total_amount/$',
+        views.get_total_amount, name='get_total_amount')
 ]

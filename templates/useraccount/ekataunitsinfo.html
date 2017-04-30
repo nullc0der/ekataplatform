@@ -15,7 +15,7 @@
                     <h4 class="widget-box-title">{% trans "Balance" %}</h4>
                     <hr class="widget-box-separator" style="width: 10%">
                     <div class="widget-box-text">
-                        <p>{{ balance }}</p>
+                        <p>{{ balance|floatformat:6 }}</p>
                     </div>
                 </div>
                 <div class="widget-box">
@@ -68,6 +68,26 @@
                 <div class="widget-box-text">
                     <p>{{ signup.is_on_distribution }}</p>
                 </div>
+                <button type="button" class="btn btn-success btn-block" data-target="#disclaimersModal" data-toggle="modal">
+                  {% trans "Disclaimers" %}
+                </button>
+            </div>
+            <div class="modal fade" id="disclaimersModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="">Grantcoin Disclaimers</h4>
+                  </div>
+                  <div class="modal-body">
+                    <a href="http://www.grantcoin.org/foundation/disclaimer/">www.grantcoin.org/foundation/disclaimer/</a><br>
+                    <a href="http://www.grantcoin.org/get-grantcoin/basic-income/#TAC">www.grantcoin.org/get-grantcoin/basic-income/#TAC</a>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                  </div>
+                </div>
+              </div>
             </div>
             {% endif %}
         </div>

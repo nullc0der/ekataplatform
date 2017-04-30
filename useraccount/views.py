@@ -1,3 +1,5 @@
+import os
+
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
@@ -14,7 +16,8 @@ from useraccount.forms import TransactionForm, DistributionForm,\
     CodeVerificationForm, NextReleaseForm, DistributionPhoneForm,\
     SingleDistributionForm, SCodeVerificationForm
 from useraccount.utils import create_ekata_units_account,\
-    get_ekata_units_info, send_ekata_units, request_new_address, single_dist
+    get_ekata_units_info, send_ekata_units, request_new_address, single_dist,\
+    calculate_dist_amount
 from useraccount.tasks import task_send_distribute_phone_verfication, \
     task_dist_ekata_units
 from autosignup.forms import AccountAddContactForm
@@ -327,3 +330,27 @@ def verify_sdist_code(request):
         },
         status=500
     )
+
+
+@user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
+@require_POST
+def get_total_amount(request):
+    amount = float(request.POST['amount'])
+    total_amount = calculate_dist_amount(amount)
+    filename = '/tmp/%s.txt' % get_random_string()
+    f = open(filename, 'w+')
+    f.write('Coin Fees: {:.6f}'.format(total_amount['coin_fees']))
+    f.write('\nBasic Income: {:.6f}'.format(total_amount['basic_income']))
+    f.write('\nTotal Bonus: {:.6f}'.format(total_amount['total_bonus']))
+    f.write('\nTotal: {:.6f}'.format(total_amount['total']))
+    f.close()
+    f = open(filename)
+    res = f.read()
+    f.close()
+    os.remove(f.name)
+    response = HttpResponse(
+        res,
+        content_type='text/plain'
+    )
+    response['Content-Disposition'] = 'attachment; filename="amounts.txt"'
+    return response
