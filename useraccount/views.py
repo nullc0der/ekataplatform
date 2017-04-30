@@ -261,7 +261,7 @@ def set_distribution_phone(request):
         return HttpResponse(status=200)
     return render(
         request,
-        'useraccount/distributionphoneform.html',
+        'useraccount/distributephoneform.html',
         {
             'nrform': form
         },
