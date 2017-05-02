@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now
+from django.conf import settings
 from useraccount.models import Transaction, UserAccount, \
     DistributeVerification, NextRelease, DistributionPhone
 from useraccount.utils import get_ekata_units_info, validate_address,\
-    calculate_dist_amount
+    calculate_dist_amount, get_connection_data
 
 
 class TransactionForm(forms.Form):
@@ -59,6 +60,13 @@ class DistributionForm(forms.Form):
             attrs={'placeholder': 'Enter Amount(GRT) per Member'}
         )
     )
+
+    def clean(self):
+        if get_connection_data() < settings.MINIMUM_CONN_NEEDED:
+            raise forms.ValidationError(
+                _('To start distribution minimum connections must be {}'.
+                    format(settings.MINIMUM_CONN_NEEDED))
+            )
 
     def clean_amount(self):
         amount = self.cleaned_data['amount']

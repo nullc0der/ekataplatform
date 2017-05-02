@@ -51,6 +51,48 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-3">
+            <div class="info-box">
+                <!-- Apply any bg-* class to to the icon to color it -->
+                <span class="info-box-icon bg-green"><i class="fa fa-exchange"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{% trans "Connections" %}</span>
+                    <span class="info-box-number">{{ connections }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="info-box">
+                <!-- Apply any bg-* class to to the icon to color it -->
+                <span class="info-box-icon bg-red"><i class="fa fa-user-plus"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{% trans "Total Account" %}</span>
+                    <span class="info-box-number">{{ total_account }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="info-box">
+                <!-- Apply any bg-* class to to the icon to color it -->
+                <span class="info-box-icon bg-magenta"><i class="fa fa-star"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{% trans "Total Referrer" %}</span>
+                    <span class="info-box-number">{{ referrers }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="info-box">
+                <!-- Apply any bg-* class to to the icon to color it -->
+                <span class="info-box-icon bg-yellow"><i class="fa fa-star"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{% trans "Total Referrals" %}</span>
+                    <span class="info-box-number">{{ referrals }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <div class="box box-solid" style="min-height: 300px">
                 <div class="box-body">
@@ -78,6 +120,7 @@
                             <p>{{ balance|floatformat:6 }}</p>
                         </div>
                     </div>
+                    {% comment %}
                     <div class="widget-box">
                         <h4 class="widget-box-title">{% trans "Total Accounts in Distribution" %}</h4>
                         <hr class="widget-box-separator" style="width: 10%">
@@ -103,6 +146,7 @@
                         </div>
                     </div>
                     {% endif %}
+                    {% endcomment %}
                     {% endif %}
                 </div>
             </div>

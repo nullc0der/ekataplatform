@@ -254,3 +254,9 @@ def calculate_dist_amount(amount):
     total_amount['total'] = float(total_amount['coin_fees']) +\
         float(total_amount['basic_income']) + float(total_amount['total_bonus'])
     return total_amount
+
+
+def get_connection_data():
+    rpc_connect = get_rpc_connect()
+    info = rpc_connect.getinfo()
+    return info['connections']

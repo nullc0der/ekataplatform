@@ -17,7 +17,7 @@ from useraccount.forms import TransactionForm, DistributionForm,\
     SingleDistributionForm, SCodeVerificationForm
 from useraccount.utils import create_ekata_units_account,\
     get_ekata_units_info, send_ekata_units, request_new_address, single_dist,\
-    calculate_dist_amount
+    calculate_dist_amount, get_connection_data
 from useraccount.tasks import task_send_distribute_phone_verfication, \
     task_dist_ekata_units
 from autosignup.forms import AccountAddContactForm
@@ -166,6 +166,7 @@ def ekata_units_admin(request):
         variables['referrals'] = len(referrals)
         variables['referrers'] = len(referrers)
         variables['sform'] = SingleDistributionForm()
+        variables['connections'] = get_connection_data()
     return render(
         request,
         'useraccount/ekataunitsadmin.html',
