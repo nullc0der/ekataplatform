@@ -483,4 +483,4 @@ BITCOIND_RPC_URL = get_env_variable('BITCOIND_RPC_URL')
 EKATA_UNITS_INITIAL_BALANCE = 10.0
 EKATA_UNITS_VERIFY_NO = get_env_variable('EKATA_UNITS_VERIFY_NO')
 # If connection is lesser than this value than transaction will not happen
-MINIMUM_CONN_NEEDED = 3
+MINIMUM_CONN_NEEDED = 2

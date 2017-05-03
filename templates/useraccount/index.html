@@ -228,11 +228,6 @@
 <script type="text/javascript">
     function getEkataUnitsInfo() {
         var url = '{% url 'myaccount:ekata_units_info' %}';
-        $("#accountInfo").load(url);
-    }
-    {% comment %}
-    function getEkataUnitsInfo() {
-        var url = '{% url 'myaccount:ekata_units_info' %}';
         $("#accountInfo").load(url, function () {
             $('html, body').animate({
                 scrollTop: $("#accountInfo").offset().top
@@ -257,6 +252,11 @@
                 size: '3px'
             })
         });
+    }
+    {% comment %}
+    function getEkataUnitsInfo() {
+        var url = '{% url 'myaccount:ekata_units_info' %}';
+        $("#accountInfo").load(url);
     }
     $("#ekataUnitsSubscribe").on('click', function(){
         $(this).text("Subscribing...");
@@ -389,7 +389,6 @@
             }
         });
     });
-    {% comment %}
     $(document).on('click', '#transferconfirm', function(){
         var amount = $("#id_units").val();
         var to_user = $("#id_reciever").val();
@@ -419,6 +418,7 @@
             }
         });
     });
+    {% comment %}
     $(document).on('click', '#getNewAddress', function () {
         var url = '{% url 'myaccount:get_new_address' %}';
         $.ajax({

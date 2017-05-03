@@ -20,7 +20,7 @@ class TransactionForm(forms.Form):
         )
     )
     units = forms.FloatField(
-        label=_('Amount'), min_value=0.1, max_value=10000,
+        label=_('Amount'), min_value=0.01, max_value=10000,
         widget=forms.NumberInput(
             attrs={'placeholder': 'Enter Amount'}
         )
@@ -105,12 +105,7 @@ class CodeVerificationForm(forms.Form):
 class NextReleaseForm(forms.ModelForm):
     datetime = forms.DateTimeField(
         required=True,
-        label='Next Release',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'datepicker'
-            }
-        )
+        label='Next Release'
     )
 
     class Meta:

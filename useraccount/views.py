@@ -68,6 +68,7 @@ def ekata_units_info(request):
         else:
             variables = units_info
             variables['signup'] = community_signup
+            variables['form'] = TransactionForm(request)
     except ObjectDoesNotExist:
         variables = {
             'message': "You've not subscribed yet"

@@ -309,8 +309,8 @@
     {% compress js %}
         <script type="text/javascript">
         $("#id_datetime").datetimepicker({
-            format: 'YYYY-MM-DD HH:MM',
-            showClear: true,
+            format: 'YYYY-MM-DD HH:mm',
+            sideBySide: true
         });
         {% comment %}
         $("#id_reciever").autocomplete({
@@ -338,6 +338,10 @@
             'showExport': true,
             'exportDataType': 'all',
             'exportTypes': ['json', 'csv', 'txt', 'excel'],
+        });
+        $(document).on('submit', '#distributeform', function(e){
+            e.preventDefault();
+            $("#distributebtn").click();
         });
         $(document).on('click', '#distributebtn', function () {
             var form = $("#distributeform");
