@@ -67,7 +67,7 @@
                                     {% if communitysignup %}
                                         {% if communitysignup.data_collect_done %}
                                             {% if communitysignup.status == 'approved' %}
-                                                <a href="javascript:getEkataUnitsInfo();" class="btn btn-block btn-flat btn-default">{% trans "View Info" %}</a>
+                                                <a href="#" class="btn btn-block btn-flat btn-default">{% trans "Subscribed" %}</a>
                                             {% else %}
                                                 <a href="#" data-toggle="modal" data-target='#pendingmodal' class="btn btn-block btn-flat btn-success">{% trans "Pending" %}</a>
                                             {% endif %}
@@ -226,6 +226,7 @@
 <script type="text/javascript" src="{% static "plugins/jquery-qrcode/jquery-qrcode.min.js" %}"></script>
 {% compress js %}
 <script type="text/javascript">
+    {% comment %}
     function getEkataUnitsInfo() {
         var url = '{% url 'myaccount:ekata_units_info' %}';
         $("#accountInfo").load(url, function () {
@@ -253,7 +254,6 @@
             })
         });
     }
-    {% comment %}
     function getEkataUnitsInfo() {
         var url = '{% url 'myaccount:ekata_units_info' %}';
         $("#accountInfo").load(url);
@@ -389,6 +389,7 @@
             }
         });
     });
+    {% comment %}
     $(document).on('click', '#transferconfirm', function(){
         var amount = $("#id_units").val();
         var to_user = $("#id_reciever").val();
@@ -418,7 +419,6 @@
             }
         });
     });
-    {% comment %}
     $(document).on('click', '#getNewAddress', function () {
         var url = '{% url 'myaccount:get_new_address' %}';
         $.ajax({
@@ -445,7 +445,6 @@
         });
         $("#qrCodeModal").modal('show');
     });
-    {% endcomment %}
     {% if communitysignup %}
         {% if communitysignup.data_collect_done %}
             {% if communitysignup.status == 'approved' %}
@@ -455,6 +454,7 @@
             {% endif %}
         {% endif %}
     {% endif %}
+    {% endcomment %}
 </script>
 {% endcompress %}
 {% endblock %}

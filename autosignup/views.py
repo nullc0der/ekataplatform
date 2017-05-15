@@ -33,7 +33,7 @@ from hashtag.views import get_client_ip
 from invitationsystem.models import Invitation
 from invitationsystem.tasks import send_invitation,\
     task_send_csv_member_invitation_email
-from useraccount.utils import create_ekata_units_account
+# from useraccount.utils import create_ekata_units_account
 # Create your views here.
 
 
@@ -657,10 +657,10 @@ def edit_signup(request, id):
             if community_signup.status == 'approved' and not community_signup.approval_mail_sent:
                     community_signup.verified_date = now()
                     community_signup.is_on_distribution = True
-                    account_info = create_ekata_units_account(
-                        community_signup.user)
-                    community_signup.wallet_address = account_info[
-                        'wallet_account_address']
+                    # account_info = create_ekata_units_account(
+                    #    community_signup.user)
+                    # community_signup.wallet_address = account_info[
+                    #    'wallet_account_address']
                     referral_code = unique_referral_code_generator()
                     rcode_obj, created = ReferralCode.objects.get_or_create(
                         user=community_signup.user
@@ -1073,8 +1073,8 @@ def approve_user(community_signup):
     community_signup.sent_to_community_staff = True
     community_signup.verified_date = now()
     community_signup.is_on_distribution = True
-    account_info = create_ekata_units_account(community_signup.user)
-    community_signup.wallet_address = account_info['wallet_account_address']
+    # account_info = create_ekata_units_account(community_signup.user)
+    # community_signup.wallet_address = account_info['wallet_account_address']
     community_signup.save()
     referral_code = unique_referral_code_generator()
     rcode_obj, created = ReferralCode.objects.get_or_create(
