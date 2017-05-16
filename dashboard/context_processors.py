@@ -23,7 +23,8 @@ COMMUNITY = [
     reverse('crowdfunding:crowdfund_admin')[3:],
     reverse('eblast:emailtemplates')[3:],
     reverse('eblast:emailgroups')[3:],
-    reverse('eblast:emailcampaign_page')[3:]
+    reverse('eblast:emailcampaign_page')[3:],
+    reverse('backupsystem:index')[3:],
 ]
 
 APPS = [

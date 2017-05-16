@@ -45,3 +45,6 @@
     </ul>
 </li>
 {% endif %}
+{% if request.user.is_superuser %}
+    <li class="{% active request 'backupsystem:index' %} mainnavcontent"><a href="{% url 'backupsystem:index' %}"><i class="fa fa-cloud"></i> <span>{% trans "Backups" %}</span></a></li>
+{% endif %}

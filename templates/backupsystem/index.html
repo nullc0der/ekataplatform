@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+{% load i18n staticfiles compress %}
+{% block title %}
+    Ekata Backups
+{% endblock %}
+{% block extrastyle %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static "dist/css/dashboard.css" %}?v=1">
+    <style media="screen">
+        .fixed-table-container {
+            border: none;
+        }
+        .bootstrap-table .table {
+            border-bottom: none;
+        }
+        .bootstrap-table .table>thead>tr>th, .table>thead>tr>th {
+            border-bottom: none;
+        }
+        .fixed-table-container tbody td, .fixed-table-container thead th  {
+            border-left: none;
+        }
+        .fixed-table-container table {
+            width: 75%;
+            margin-left: 10%;
+            font-size: 12px;
+            color: #9B9B9B;
+        }
+        .fixed-table-pagination .pagination-detail, .fixed-table-pagination div.pagination {
+            color: #9B9B9B;
+        }
+        .ui-sortable-placeholder {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+    {% endcompress %}
+{% endblock %}
+{% block content_header_new %}
+    <section class="content-header-new no-search-bar">
+        <div class="col-md-4">
+            <h1>
+                {% trans "Ekata Backups" %}<br>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#">{% trans "Ekata Backups" %}</a></li>
+            </ol>
+        </div>
+    </section>
+{% endblock content_header_new %}
+{% block content %}
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-rounded mbackup">{% trans "Initiate Manual Backup" %}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Next Scheduled Backup" %}</h3>
+                </div>
+                <div class="box-body">
+                    {% if nextbackup %}
+                    <div class="col-md-12 text-center" id="releasecountdown">
+                        <div class="countdownbox">
+                            <h1 id="day"></h1>
+                        </div>
+                        <div class="countdownbox">
+                            <h1 id="hour"></h1>
+                        </div>
+                        <div class="countdownbox">
+                            <h1 id="minute"></h1>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <div class="countdowntext">
+                            <h4>
+                                {% trans "Day" %}
+                            </h4>
+                        </div>
+                        <div class="countdowntext">
+                            <h4>
+                                {% trans "Hour" %}
+                            </h4>
+                        </div>
+                        <div class="countdowntext">
+                            <h4>
+                                {% trans "Minute" %}
+                            </h4>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p>{% trans "No next backup date" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Total Backups" %}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="col-md-12">
+                        <div class="col-md-6 text-center">
+                            <h4>DB</h4>
+                            <p>{{ dbbackups.count }}</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h4>Media</h4>
+                            <p>{{ mediabackups.count }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "DB Backups" %}</h3>
+                </div>
+                <div class="box-body">
+                    {% if dbbackups %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Created On</th>
+                                {% comment %}
+                                    <th>Actions</th>
+                                {% endcomment %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for dbbackup in dbbackups %}
+                               <tr>
+                                    <td>{{ dbbackup.id }}</td>
+                                    <td>{{ dbbackup.name }}</td>
+                                    <td>{{ dbbackup.created_on }}</td>
+                                    {% comment %}
+                                        <td><i data-id={{ dbbackup.id }} data-filename={{ dbbackup.name }} data-type='db' class="fa fa-download downloadback"></i></td>
+                                    {% endcomment %}
+                               </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="widget-box" style="text-align: center">
+                        <h4>{% trans "No Backups Yet!!" %}</h4>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Media Backups" %}</h3>
+                </div>
+                <div class="box-body">
+                    {% if mediabackups %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Created On</th>
+                                {% comment %}
+                                    <th>Actions</th>
+                                {% endcomment %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for mediabackup in mediabackups %}
+                               <tr>
+                                    <td>{{ mediabackup.id }}</td>
+                                    <td>{{ mediabackup.name }}</td>
+                                    <td>{{ mediabackup.created_on }}</td>
+                                    {% comment %}
+                                    <td><i data-id={{ mediabackup.id }} data-filename={{ mediabackup.name }} data-type='media' class="fa fa-download downloadback"></i></td>
+                                    {% endcomment %}
+                               </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="widget-box" style="text-align: center">
+                        <h4>{% trans "No Backups Yet!!" %}</h4>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static "dist/js/jquery.countdown.min.js" %}"></script>
+    {% compress js %}
+    <script type="text/javascript">
+    {% if nextbackup %}
+    var countdown_time = moment('{{ nextbackup.next_on|date:"Y/m/d H:i" }}').format("YYYY/MM/DD HH:mm");
+    $("#releasecountdown").countdown(countdown_time, function(event) {
+        $("#day").text(event.strftime('%D'));
+        $("#hour").text(event.strftime('%H'));
+        $("#minute").text(event.strftime('%M'));
+    });
+    {% endif %}
+    $(".table").bootstrapTable({
+        'pagination': true,
+        'pageNumber': 1,
+        'pageSize': 5,
+        'pageList': [5, 10, 15, 20, 25],
+        'search': true
+    });
+    {% comment %}
+    $(".downloadback").click(function () {
+        var name = $(this).data('filename');
+        var id = $(this).data('id');
+        var b_type = $(this).data('type');
+        var ext = '.tar'
+        var f_type = 'application/tar'
+        if (b_type == 'db') {
+            ext = '.dump.gz'
+            f_type = 'application/gzip'
+        }
+        $('.top-right').notify({
+            message: { text: 'Getting File...' },
+            type: 'success'
+        }).show();
+        $.ajax({
+            url: '{% url 'backupsystem:download' %}',
+            type: 'POST',
+            data: {'id': id},
+            success: function (data) {
+                var blob=new Blob([data], {type: f_type});
+                saveAs(blob, name + ext);
+            },
+            error: function (data) {
+                $('.top-right').notify({
+                    message: { text: 'Error getting file' },
+                    type: 'danger'
+                }).show();
+            }
+        });
+    });
+    {% endcomment %}
+    $('.mbackup').click(function functionName() {
+        $.ajax({
+            url: '{% url 'backupsystem:mbackup' %}',
+            type: 'POST',
+            success: function () {
+                $('.top-right').notify({
+                    message: { text: 'Generating Backup.... Please return later to confirm' },
+                    type: 'success'
+                }).show();
+            }
+        });
+    });
+    </script>
+    {% endcompress %}
+{% endblock %}
