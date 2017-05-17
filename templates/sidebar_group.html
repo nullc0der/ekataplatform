@@ -91,7 +91,7 @@
 {% if 'can_access_admin' in group_perms %}
 {% if group.account_signups %}
 {% if request.user.is_superuser or request.user.profile.grantcoin_staff %}
-<li class="treeview {% active request 'autosignup:signups' %} {% active request 'autosignup:signups_settings' %} {% active request 'myaccount:ekata_units_admin' %}">
+<li class="treeview {% active request 'autosignup:signups' %} {% active request 'autosignup:signups_settings' %}">
     <a href="#">
         <i class="fa fa-home"></i>
         <span>{% trans "Grantcoin" %}</span>
