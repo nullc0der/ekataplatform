@@ -6787,3 +6787,27 @@ table.text-center th {
     margin-bottom: 5px;
     display: none;
 }
+.default-avatar {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    top: 0;
+    background: #ddd;
+    -moz-border-radius: 50%;
+	  -webkit-border-radius: 50%;
+	  border-radius: 50%;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+}
+.default-avatar-text-wrapper {
+      display: table;
+      width: 100%;
+      height: 100%;
+}
+.default-avatar-text {
+      display: table-cell;
+      vertical-align: middle;
+      color: #FFF;
+      text-transform: uppercase;
+}

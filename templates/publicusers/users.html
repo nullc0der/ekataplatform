@@ -1,4 +1,4 @@
-{% load staticfiles el_pagination_tags i18n %}
+{% load staticfiles el_pagination_tags i18n bip_extras %}
 {% paginate 12 users %}
 <div class="member-wrapper">
     {% for user in users %}
@@ -9,10 +9,22 @@
                         {% if user.profile.avatar %}
                             <img src="{{ user.profile.avatar.thumbnail.128x128 }}" alt="User Image">
                         {% else %}
-                            <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image">
+                            <div class="default-avatar" style="background: {{ user.profile.default_avatar_color }}; width: 95px; height: 95px; left: 5%">
+                                <div class="default-avatar-text-wrapper">
+                                    <div class="default-avatar-text">
+                                        {% user_initial user %}
+                                    </div>
+                                </div>
+                            </div>
                         {% endif %}
-                        {% else %}
-                            <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image">
+                    {% else %}
+                    <div class="default-avatar" style="background: {{ user.profile.default_avatar_color }}; width: 95px; height: 95px; left: 5%">
+                        <div class="default-avatar-text-wrapper">
+                            <div class="default-avatar-text">
+                                {% user_initial user %}
+                            </div>
+                        </div>
+                    </div>
                     {% endif %}
                     <p class="users-list-date userstatus" data-user-id='{{ user.id }}'>
                         {% if user.profile.online %}

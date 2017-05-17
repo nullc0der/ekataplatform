@@ -1,8 +1,14 @@
-{% load staticfiles i18n %}
+{% load staticfiles i18n bip_extras %}
 {% if request.user.profile.avatar %}
     <img src="{{ request.user.profile.avatar.thumbnail.128x128 }}" class="profile-user-img img-responsive img-circle useravatar" alt="User Image" data-target="#imgModal" data-toggle="modal">
 {% else %}
-    <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" class="profile-user-img img-responsive img-circle useravatar" alt="User Image" data-target="#imgModal" data-toggle="modal" id="avatar">
+    <div class="default-avatar" data-target="#imgModal" data-toggle="modal" id="avatar" style="left: 30%; margin-bottom: 10px; background: {{ request.user.profile.default_avatar_color }}">
+        <div class="default-avatar-text-wrapper">
+            <div class="default-avatar-text">
+                {% user_initial request.user %}
+            </div>
+        </div>
+    </div>
 {% endif %}
 <strong><i class="fa fa-user margin-r-5"></i>{% trans "Username" %}</strong>
 

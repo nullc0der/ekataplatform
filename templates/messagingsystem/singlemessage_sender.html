@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles bip_extras %}
 {% if message %}
      <div class="direct-chat-msg right">
         <div class="direct-chat-info clearfix">
@@ -6,10 +6,26 @@
             <span class="direct-chat-timestamp pull-left">{{ message.timestamp|date:"H:i" }}</span>
         </div>
         <!-- /.direct-chat-info -->
-        {% if message.user.profile.avatar %}
-            <img src="{{ message.user.profile.avatar.thumbnail.128x128 }}" class="direct-chat-img">
+        {% if message.user.profile.avatar_public %}
+            {% if message.user.profile.avatar %}
+                <img src="{{ message.user.profile.avatar.thumbnail.128x128 }}" class="direct-chat-img">
+            {% else %}
+                <div class="default-avatar" style="background: {{ message.user.profile.default_avatar_color }}; width: 40px; height: 40px; {% ifequal message.user request.user %}float: right {% else %} float:left {% endifequal %}">
+                    <div class="default-avatar-text-wrapper">
+                        <div class="default-avatar-text">
+                            {% user_initial message.user %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% else %}
-            <img src="{% static "dist/img/placeholder-user.png" %}" class="direct-chat-img" width="50" height="50">
+        <div class="default-avatar" style="background: {{ message.user.profile.default_avatar_color }}; width: 40px; height: 40px {% ifequal message.user request.user %}float: right {% else %} float:left {% endifequal %}">
+            <div class="default-avatar-text-wrapper">
+                <div class="default-avatar-text">
+                    {% user_initial message.user %}
+                </div>
+            </div>
+        </div>
         {% endif %}
         <!-- /.direct-chat-img -->
         <div class="direct-chat-text">

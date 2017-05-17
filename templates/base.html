@@ -36,7 +36,7 @@
     <link rel="manifest" href="/manifest.json">
     {% compress css %}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.6.0">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.7.0">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}?v=1.0.12">
@@ -146,7 +146,13 @@
                                 {% if request.user.profile.avatar %}
                                     <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="user-image useravatar" alt="User Image">
                                 {% else %}
-                                    <img src="{% static "dist/img/placeholder-user.png" %}" class="user-image useravatar" width="160" height="160">
+                                    <div class="user-image default-avatar" style="background: {{ request.user.profile.default_avatar_color }}; width: 40px; height: 40px; top: -5px">
+                                        <div class="default-avatar-text-wrapper">
+                                            <div class="default-avatar-text">
+                                                {% user_initial request.user %}
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endif %}
                                 <span class="hidden-xs">
                                     {% if request.user.username %}
@@ -162,7 +168,13 @@
                                     {% if request.user.profile.avatar %}
                                         <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle" alt="User Image">
                                     {% else %}
-                                        <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="160" height="160">
+                                        <div class="user-image default-avatar" style="background: {{ request.user.profile.default_avatar_color }}; width: 80px; height: 80px">
+                                            <div class="default-avatar-text-wrapper">
+                                                <div class="default-avatar-text">
+                                                    {% user_initial request.user %}
+                                                </div>
+                                            </div>
+                                        </div>
                                     {% endif %}
                                     <p>
                                         {% if request.user.username %}
@@ -218,9 +230,15 @@
                     <div class="user-panel">
                         <div class="pull-left image">
                             {% if request.user.profile.avatar %}
-                                <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle useravatar" alt="User Image" id="userimage">
+                                <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle useravatar" alt="User Image">
                             {% else %}
-                                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle useravatar" width="160" height="160" id="userimage">
+                                <div class="user-image default-avatar" style="background: {{ request.user.profile.default_avatar_color }}; width: 50px; height: 50px; top: 5px">
+                                    <div class="default-avatar-text-wrapper">
+                                        <div class="default-avatar-text">
+                                            {% user_initial request.user %}
+                                        </div>
+                                    </div>
+                                </div>
                             {% endif %}
                         </div>
                         <div class="pull-left info">

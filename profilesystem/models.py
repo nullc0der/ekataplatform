@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import os
+import random
 
 from django.db import models
 from django.dispatch import receiver
@@ -84,6 +85,8 @@ class UserProfile(models.Model):
         null=True,
         blank=True
     )
+    default_avatar_color = models.CharField(
+        max_length=8, default='#7b1fa2', blank=True)
     title = models.CharField(max_length=100, default='user')
     website = models.URLField(default='', blank=True)
     gender = models.CharField(
@@ -129,9 +132,14 @@ class UserProfile(models.Model):
             return False
 
     def create_profile(sender, **kwargs):
+        colors = [
+            '#c62828', '#7b1fa2', '#00838f',
+            '#2e7d32', '#fbc02d', '#d84315'
+        ]
         user = kwargs["instance"]
         if kwargs["created"]:
             user_profile = UserProfile(user=user)
+            user_profile.default_avatar_color = random.choice(colors)
             user_profile.save()
     post_save.connect(create_profile, sender=User)
 
