@@ -19,11 +19,14 @@ def active(request, url, args=None):
 
 @register.simple_tag
 def user_initial(user):
-    initials = []
-    if user.get_full_name():
-        name = user.get_full_name().split()
-        for n in name:
-            initials.append(n[0])
+    if hasattr(user, 'get_full_name'):
+        initials = []
+        if user.get_full_name():
+            name = user.get_full_name().split()
+            for n in name:
+                initials.append(n[0])
+        else:
+            initials.append(user.username[0])
+        return ''.join(initials)
     else:
-        initials.append(user.username[0])
-    return ''.join(initials)
+        return 'AN'
