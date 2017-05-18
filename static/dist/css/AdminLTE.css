@@ -5774,22 +5774,16 @@ table.text-center th {
     padding: 15px;
     border-radius: 3px;
     background-color: #fff;
+    height: 122px;
+    position: relative;
 }
 
 .member-image>img {
     border-radius: 50%;
     width: 82px;
     height: 82px;
-    margin-top: 10px;
 }
 
-.member-image>p {
-    margin: 0px;
-    font-size: 10px;
-    position: relative;
-    left: -50%;
-    bottom: -7px;
-}
 
 .member-info {
     text-align: center;
@@ -5802,10 +5796,10 @@ table.text-center th {
     100% { transform: translate(-100%, 0); }
 }
 
-.init-chat {
+.member-image .init-chat {
     position: absolute;
     top: 10px;
-    left: 10px;
+    right: 10px;
     font-size: 20px;
     color: #4A4A4A;
 }
@@ -5843,10 +5837,6 @@ table.text-center th {
 }
 
 .member-staff .member-status {
-    color: #fff;
-}
-
-.member-staff .init-chat {
     color: #fff;
 }
 
@@ -6867,7 +6857,7 @@ table.text-center th {
 .default-avatar-memberl {
      width: 82px;
      height: 82px;
-     left: 10%;
+     left: 15%;
      font-size: 25px;
 }
 @media (max-width: 1024px) and (min-width: 768px) {
