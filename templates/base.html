@@ -36,7 +36,7 @@
     <link rel="manifest" href="/manifest.json">
     {% compress css %}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.7.0">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.7.1">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}?v=1.0.12">
@@ -146,7 +146,7 @@
                                 {% if request.user.profile.avatar %}
                                     <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="user-image useravatar" alt="User Image">
                                 {% else %}
-                                    <div class="user-image default-avatar" style="background: {{ request.user.profile.default_avatar_color }}; width: 40px; height: 40px; top: -5px">
+                                    <div class="default-avatar default-avatar-topbar" style="background: {{ request.user.profile.default_avatar_color }};">
                                         <div class="default-avatar-text-wrapper">
                                             <div class="default-avatar-text">
                                                 {% user_initial request.user %}
@@ -168,7 +168,7 @@
                                     {% if request.user.profile.avatar %}
                                         <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle" alt="User Image">
                                     {% else %}
-                                        <div class="user-image default-avatar" style="background: {{ request.user.profile.default_avatar_color }}; width: 80px; height: 80px">
+                                        <div class="default-avatar default-avatar-topbar-drop" style="background: {{ request.user.profile.default_avatar_color }};">
                                             <div class="default-avatar-text-wrapper">
                                                 <div class="default-avatar-text">
                                                     {% user_initial request.user %}

@@ -9,7 +9,7 @@
                         <img src="{{ user.profile.avatar.thumbnail.128x128 }}" class="profile-user-img img-responsive img-circle" alt="User Image">
                     </a>
                 {% else %}
-                    <div class="default-avatar" style="background: {{ user.profile.default_avatar_color }}; width: 95px; height: 95px; left: 35%; margin-bottom: 10px">
+                    <div class="default-avatar default-avatar-public-profile" style="background: {{ user.profile.default_avatar_color }};">
                         <div class="default-avatar-text-wrapper">
                             <div class="default-avatar-text">
                                 {% user_initial user %}
@@ -18,7 +18,7 @@
                     </div>
                 {% endif %}
             {% else %}
-            <div class="default-avatar" style="background: {{ user.profile.default_avatar_color }}; width: 95px; height: 95px; left: 35%; margin-bottom: 10px">
+            <div class="default-avatar default-avatar-public-profile" style="background: {{ user.profile.default_avatar_color }};">
                 <div class="default-avatar-text-wrapper">
                     <div class="default-avatar-text">
                         {% user_initial user %}

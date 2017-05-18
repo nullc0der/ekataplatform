@@ -5761,8 +5761,12 @@ table.text-center th {
     border-radius: 3px;
     margin-top: 10px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
+    border-top: 5px solid #ddd;
 }
 
+.member-online {
+    border-top: 5px solid #00a65a;
+}
 
 .member-image {
     text-align: center;
@@ -5790,6 +5794,7 @@ table.text-center th {
 .member-info {
     text-align: center;
     overflow: hidden;
+    position: relative;
 }
 
 @keyframes marquee {
@@ -5797,6 +5802,13 @@ table.text-center th {
     100% { transform: translate(-100%, 0); }
 }
 
+.init-chat {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #4A4A4A;
+}
 
 .member-username {
     font-family: "Source Sans Pro";
@@ -5831,6 +5843,10 @@ table.text-center th {
 }
 
 .member-staff .member-status {
+    color: #fff;
+}
+
+.member-staff .init-chat {
     color: #fff;
 }
 
@@ -6797,7 +6813,7 @@ table.text-center th {
 	  -webkit-border-radius: 50%;
 	  border-radius: 50%;
     text-align: center;
-    font-size: 25px;
+    font-size: 15px;
     font-weight: 600;
 }
 .default-avatar-text-wrapper {
@@ -6810,4 +6826,57 @@ table.text-center th {
       vertical-align: middle;
       color: #FFF;
       text-transform: uppercase;
+}
+.default-avatar-topbar {
+    width: 40px;
+    height: 40px;
+    top: -6px;
+    float: left;
+    margin-right: 10px;
+    margin-top: -4px;
+}
+@media (max-width: 767px) {
+    .default-avatar-topbar {
+        margin-right: 0;
+    }
+}
+.default-avatar-topbar-drop {
+    width: 80px;
+    height: 80px;
+    left: 34%;
+}
+.default-avatar-profile-info {
+    left: 32%;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+@media (max-width: 768px) {
+    .default-avatar-profile-info {
+        left: 40%;
+    }
+}
+.default-avatar-public-profile {
+    left: 38%;
+    font-size: 25px;
+}
+@media (width: 768px) {
+    .default-avatar-public-profile {
+        left: 40%;
+    }
+}
+.default-avatar-memberl {
+     width: 82px;
+     height: 82px;
+     left: 10%;
+     font-size: 25px;
+}
+@media (max-width: 1024px) and (min-width: 768px) {
+    .default-avatar-memberl {
+        left: 0;
+    }
+}
+@media (max-width: 320px) {
+    .default-avatar-memberl {
+        left: 5%;
+    }
 }
