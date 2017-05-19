@@ -253,50 +253,6 @@
             container: 'body',
             trigger: 'focus'
         });
-        $("#sendbutton").click(function(){
-            var frm = $("#transactionform");
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    $('.top-right').notify({
-                        message: { text: data },
-                        type: 'info',
-                    }).show();
-                    $("#sendUnitModal").modal('hide');
-                },
-                error: function(data) {
-                    frm.html(data.responseText);
-                }
-            });
-        });
-        $("#sendUnitModal").on('hidden.bs.modal', function(){
-            $("#transactionform")[0].reset();
-            clear_form_field_errors("#transactionform");
-        });
-        $("#requestbutton").click(function(){
-            var frm = $("#requestform");
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    $('.top-right').notify({
-                        message: { text: data },
-                        type: 'info',
-                    }).show();
-                    $("#requestUnitModal").modal('hide');
-                },
-                error: function(data) {
-                    frm.html(data.responseText);
-                }
-            });
-        });
-        $("#requestUnitModal").on('hidden.bs.modal', function(){
-            $("#requestform")[0].reset();
-            clear_form_field_errors("#requestform");
-        });
     </script>
     {% endcompress %}
 {% endblock extrascripts %}

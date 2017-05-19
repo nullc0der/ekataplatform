@@ -84,7 +84,13 @@ class ReferralCodeForm(forms.Form):
     def clean_referral_code(self):
         if self.cleaned_data.get('referral_code'):
             try:
-                referral_code = ReferralCode.objects.get(code=self.cleaned_data.get('referral_code'))
+                referral_code = ReferralCode.objects.get(
+                    code=self.cleaned_data.get('referral_code'))
+                if now() > referral_code.added_on + timedelta(days=365):
+                    raise forms.ValidationError(
+                        'This code is expired, either use a new code or '
+                        'leave this field blank'
+                    )
             except ObjectDoesNotExist:
                 raise forms.ValidationError('Code is invalid')
         return self.cleaned_data.get('referral_code')

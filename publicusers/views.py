@@ -11,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from publicusers.models import Thumbs, Connection
 from usertimeline.models import UserTimeline
-from useraccount.forms import TransactionForm, RequestForm
 from profilesystem.models import UserCompletionRing
 from notification.utils import create_notification
 
@@ -237,8 +236,6 @@ def user_details_page(request, id):
                 {
                     'user': user,
                     'public': public,
-                    'form': TransactionForm(request),
-                    'rform': RequestForm()
                 }
             )
     if request.is_ajax():
@@ -265,8 +262,6 @@ def user_details_page(request, id):
             'public': public,
             'thumb_uped': thumb_uped,
             'thumb_id': thumb_id,
-            'form': TransactionForm(request),
-            'rform': RequestForm(),
             'completed': int(completed_percent),
             'not_completed': int(not_completed_percent),
             'skipped': int(skipped_percent),

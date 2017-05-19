@@ -77,12 +77,18 @@
                     {% else %}
                         <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.connection }}" name="connection">{% trans "Connection" %}</button>
                     {% endif %}
+                    {% if "7" in enabled_filters  %}
+                        <button class="btn btn-success btn-sm filterbtn" data-click="{{ click_counts.distribution }}" name="distribution">{% trans "Distribution" %}</button>
+                    {% else %}
+                        <button class="btn btn-default btn-sm filterbtn" data-click="{{ click_counts.distribution}}" name="distribution">{% trans "Distribution" %}</button>
+                    {% endif %}
             </div>
         </div>
     </div>
     <div class="row" id="timelinesection" style="margin-top:10px">
         {% include "timelines/timeline.html" %}
     </div>
+    {% comment %}
     <div tabindex="-1" class="modal fade" id="sendUnitModal" role="dialog" aria-hidden="true" aria-labelledby="sendUnitModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -103,6 +109,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+    {% endcomment %}
 <select id="filtertimeline" multiple>
     {% if "1" in enabled_filters %}
         <option value="1" id="transfer" selected></option>
@@ -133,6 +140,11 @@
         <option value="6" id="connection" selected></option>
     {% else %}
         <option value="6" id="connection"></option>
+    {% endif %}
+    {% if "7" in enabled_filters %}
+        <option value="7" id="distribution" selected></option>
+    {% else %}
+        <option value="7" id="distribution"></option>
     {% endif %}
 </select>
 {% endblock content %}
@@ -247,39 +259,6 @@
                 set_filters();
                 requestTimeline();
             }
-        });
-        $('#sendUnitModal').on('show.bs.modal', function(e) {
-            var amount = $(e.relatedTarget).data('amount');
-            var touser = $(e.relatedTarget).data('touser');
-            var tousername = $(e.relatedTarget).data('tousername');
-            var timeline_id = $(e.relatedTarget).data('timelineid');
-            var units_input = $("#id_units");
-            var pathname = window.location.pathname.split('/');
-            var language = pathname[1];
-            $("#sendUnitModalLabel").text("Send unit to " + tousername);
-            units_input.attr('readonly', 'readonly');
-            units_input.val(amount);
-            $("#timeline_id").val(timeline_id);
-            $("#sendform").attr('action', '/' + language + '/myaccount/transferunit/' + touser +"/");
-        });
-        $("#sendunit").click(function(){
-            var frm = $("#sendform");
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    $('.top-right').notify({
-                        message: { text: data },
-                        type: 'info',
-                    }).show();
-                    $("#sendUnitModal").modal('hide');
-                    $(".togglemodal").html('<button class="btn btn-success btn-xs">{% trans "sent" %}</button>');
-                },
-                error: function(data) {
-                    frm.html(data.responseText);
-                }
-            });
         });
         $("#searchtimeline").on('keyup', function(){
             requestTimeline();

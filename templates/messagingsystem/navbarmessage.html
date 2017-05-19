@@ -1,4 +1,4 @@
-{% load staticfiles i18n %}
+{% load staticfiles i18n bip_extras %}
 {% if chats %}
     <ul class="dropdown-menu">
         <li>
@@ -7,13 +7,29 @@
                     <li data-name={{ chat.name }}>
                         <a href="javascript:void(0)" onclick="openChat({{ chat.id }}, '{{ chat.name }}')">
                             {% for subscriber in chat.subscribers.all %}
-                                {% ifequal subscriber ruser %} 
+                                {% ifequal subscriber ruser %}
                                 {% else %}
                                     <div class="pull-left">
-                                        {% if subscriber.profile.avatar %}
-                                            <img src="{{ subscriber.profile.avatar.thumbnail.128x128 }}" class="img-circle"> 
+                                        {% if subscriber.profile.avatar_public %}
+                                            {% if subscriber.profile.avatar %}
+                                                <img src="{{ subscriber.profile.avatar.thumbnail.128x128 }}" class="img-circle">
+                                            {% else %}
+                                                <div class="default-avatar" style="background: {{ subscriber.profile.default_avatar_color }}; width: 50px; height: 50px; margin-right: 5px;">
+                                                    <div class="default-avatar-text-wrapper">
+                                                        <div class="default-avatar-text">
+                                                            {% user_initial subscriber %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
                                         {% else %}
-                                            <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="128" height="128">   
+                                            <div class="default-avatar" style="background: {{ subscriber.profile.default_avatar_color }}; width: 50px; height: 50px; margin-right: 5px;">
+                                                <div class="default-avatar-text-wrapper">
+                                                    <div class="default-avatar-text">
+                                                        {% user_initial subscriber %}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         {% endif %}
                                     </div>
                                     <h4>

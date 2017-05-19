@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from usertimeline.models import UserTimeline, TimelineSetting
-from useraccount.forms import TransactionForm
 
 # Create your views here.
 
@@ -15,7 +14,6 @@ def timeline_page(request):
     timelines = UserTimeline.objects.filter(
         user=request.user
     ).order_by('-timestamp')
-    form = TransactionForm(request)
     enabled_filters = timelinesetting.enabled_filters['enabled']
     click_counts = timelinesetting.click_counts
     if enabled_filters:
@@ -30,7 +28,6 @@ def timeline_page(request):
         'timelines/index.html',
         {
             'timelines': timelines,
-            'form': form,
             'enabled_filters': enabled_filters,
             'click_counts': click_counts
         }
@@ -62,7 +59,6 @@ def search_timeline(request):
     timelines = UserTimeline.objects.filter(
         user=request.user
     ).order_by('-timestamp')
-    form = TransactionForm(request)
     username = request.GET.get('username')
     filters = request.GET.getlist('filter')
     q_obj = Q()
@@ -82,6 +78,5 @@ def search_timeline(request):
         'timelines/timeline.html',
         {
             'timelines': timelines,
-            'form': form,
         }
     )

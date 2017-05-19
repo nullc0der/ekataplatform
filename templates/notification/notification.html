@@ -30,7 +30,7 @@
         {% ifequal notification.notification_type 3 %}
             <li class="notification" data-id="{{ notification.id }}">
                 <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
-                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount }} {% trans "units released" %}
+                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount|floatformat:8 }} {% trans "units released" %}
                 </a>
             </li>
         {% endifequal %}
@@ -111,6 +111,13 @@
                     {% endifequal %}
                     {{ notification.sysupdate_timestamp|date:"d/m/Y h:i a" }}
                     - {{ notification.sysupdate_message }}
+                </a>
+            </li>
+        {% endifequal %}
+        {% ifequal notification.notification_type 14 %}
+            <li class="notification" data-id="{{ notification.id }}">
+                <a href="{% url 'usertimeline:index' %}#{{notification.timeline_id}}">
+                    <i class="fa fa-arrow-down text-orange"></i> {{ notification.amount|floatformat:6 }} {% trans "GRT distributed to your account" %}
                 </a>
             </li>
         {% endifequal %}

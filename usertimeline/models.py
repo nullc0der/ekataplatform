@@ -15,6 +15,7 @@ class UserTimeline(models.Model):
         (4, 'verified'),
         (5, 'unverified'),
         (6, 'connection'),
+        (7, 'gcdistribute')
     )
     user = models.ForeignKey(User, related_name='timelines')
     timeline_type = models.IntegerField(choices=TIMELINE_TYPES)
@@ -23,7 +24,7 @@ class UserTimeline(models.Model):
     reciever = models.CharField(max_length=200, default='')
     reciever_id = models.CharField(max_length=200, default='')
     instruction = models.CharField(max_length=200, default='')
-    amount = models.IntegerField(null=True)
+    amount = models.FloatField(null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     not_completed = models.BooleanField(default=True)  # for request units
     conn_main = models.CharField(max_length=100, default='')
@@ -42,10 +43,10 @@ class UserTimeline(models.Model):
 class TimelineSetting(models.Model):
     user = models.OneToOneField(User, related_name='timelinesetting')
     enabled_filters = JSONField(
-        default={'enabled': ["1", "2", "3", "4", "5", "6"]}
+        default={'enabled': ["1", "2", "3", "4", "5", "6", "7"]}
     )
     click_counts = JSONField(
-        default={'transfer': 0, 'request': 0, 'release': 0, 'verified': 0, 'unverified': 0, 'connection': 0}
+        default={'transfer': 0, 'request': 0, 'release': 0, 'verified': 0, 'unverified': 0, 'connection': 0, 'distribution': 0}
     )
 
     def __unicode__(self):

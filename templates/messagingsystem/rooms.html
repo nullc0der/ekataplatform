@@ -1,14 +1,30 @@
-{% load staticfiles %}
+{% load staticfiles bip_extras %}
 {% for chat in chats %}
 <div class="chatuser {% ifequal forloop.counter 1 %} activechat {% endifequal %}" id="room-{{ chat.id }}" data-id="{{ chat.id }}" data-name="{{ chat.name }}">
     <a href="javascript:void(0)">
         {% for subscriber in chat.subscribers.all %}
-            {% ifequal request.user subscriber %} 
+            {% ifequal request.user subscriber %}
             {% else %}
-                {% if subscriber.profile.avatar %}
-                    <img src="{{ subscriber.profile.avatar.thumbnail.128x128 }}" class="direct-chat-img bigger-img"> 
+                {% if subscriber.profile.avatar_public %}
+                    {% if subscriber.profile.avatar %}
+                        <img src="{{ subscriber.profile.avatar.thumbnail.128x128 }}" class="direct-chat-img bigger-img">
+                    {% else %}
+                        <div class="default-avatar" style="background: {{ subscriber.profile.default_avatar_color }}; width: 50px; height: 50px; float: left">
+                            <div class="default-avatar-text-wrapper">
+                                <div class="default-avatar-text">
+                                    {% user_initial subscriber %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 {% else %}
-                    <img src="{% static "dist/img/placeholder-user.png" %}" class="direct-chat-img bigger-img" width="128" height="128">   
+                    <div class="default-avatar" style="background: {{ subscriber.profile.default_avatar_color }}; width: 50px; height: 50px; float: left">
+                        <div class="default-avatar-text-wrapper">
+                            <div class="default-avatar-text">
+                                {% user_initial subscriber %}
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
             <p>&nbsp;{{ subscriber.username }}</p>
             {% endifequal %}

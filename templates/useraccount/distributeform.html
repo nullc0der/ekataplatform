@@ -1,0 +1,7 @@
+{% load i18n bootstrap_tags %}
+<form action="{% url 'myaccount:distribute_ekata_units' %}" method="post" id="distributeform">
+    {{ form|as_bootstrap }}
+</form>
+<button type="button" class="btn btn-success btn-block" id="distributebtn">
+  {% trans "Distribute" %}
+</button>

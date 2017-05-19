@@ -1,0 +1,109 @@
+{% load i18n bootstrap_tags %}
+<div class="col-md-6">
+    <div class="box box-solid" style="min-height: 300px">
+        <div class="box-header with-border">
+            <h3 class="box-title">Grantcoin</h3>
+        </div>
+        <div class="box-body">
+            {% if message %}
+            <div class="widget-box text-center">
+                <p>{{ message }}</p>
+            </div>
+            {% else %}
+            <div id="ekataUnitsInfo">
+                <div class="widget-box">
+                    <h4 class="widget-box-title">{% trans "Balance" %}</h4>
+                    <hr class="widget-box-separator" style="width: 10%">
+                    <div class="widget-box-text">
+                        <p>{{ balance|floatformat:6 }}</p>
+                    </div>
+                </div>
+                <div class="widget-box">
+                    <h4 class="widget-box-title">{% trans "Address" %}</h4>
+                    <hr class="widget-box-separator" style="width: 10%">
+                    <div class="widget-box-text">
+                        <p>{{ signup.wallet_address }}</p>
+                    </div>
+                </div>
+                <div class="widget-box">
+                    <h4 class="widget-box-title">{% trans "Signup Date" %}</h4>
+                    <hr class="widget-box-separator" style="width: 10%">
+                    <div class="widget-box-text">
+                        <p>{{ signup.signup_date }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="box box-solid" style="min-height: 300px">
+        <div class="box-header with-border">
+            <h3 class="box-title">Grantcoin</h3>
+        </div>
+        <div class="box-body">
+            {% if message %}
+            <div class="widget-box text-center">
+                <p>{{ message }}</p>
+            </div>
+            {% else %}
+            <div class="widget-box">
+                <h4 class="widget-box-title">{% trans "Verified Date" %}</h4>
+                <hr class="widget-box-separator" style="width: 10%">
+                <div class="widget-box-text">
+                    <p>{{ signup.verified_date }}</p>
+                </div>
+            </div>
+            <div class="widget-box">
+                <h4 class="widget-box-title">{% trans "Referral Code" %}</h4>
+                <hr class="widget-box-separator" style="width: 10%">
+                <div class="widget-box-text">
+                    <p>{{ request.user.referral_code.code }}</p>
+                </div>
+            </div>
+            <div class="widget-box">
+                <h4 class="widget-box-title">{% trans "On Distribution" %}</h4>
+                <hr class="widget-box-separator" style="width: 10%">
+                <div class="widget-box-text">
+                    <p>{{ signup.is_on_distribution }}</p>
+                </div>
+                <button type="button" class="btn btn-success btn-block" data-target="#disclaimersModal" data-toggle="modal">
+                  {% trans "Disclaimers" %}
+                </button>
+            </div>
+            <div class="modal fade" id="disclaimersModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="">Grantcoin Disclaimers</h4>
+                  </div>
+                  <div class="modal-body">
+                    <a href="http://www.grantcoin.org/foundation/disclaimer/">www.grantcoin.org/foundation/disclaimer/</a><br>
+                    <a href="http://www.grantcoin.org/get-grantcoin/basic-income/#TAC">www.grantcoin.org/get-grantcoin/basic-income/#TAC</a>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if not message %}
+<div class="col-md-6">
+    <div class="box box-solid" style="min-height: 300px">
+        <div class="box-header with-border">
+            <h3 class="box-title">{% trans "Transfer" %}</h3>
+        </div>
+        <div class="box-body">
+            <div class="widget-box" id="transferformcontainer">
+                {% include "useraccount/transferform.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

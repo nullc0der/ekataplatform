@@ -112,31 +112,16 @@
                     }
                 }
                 else {
-                    $('.userstatus').each(function(){
-                        var user_id = $(this).data('user-id');
-                        var userstatus = $(this);
+                    $('.member').each(function(){
+                        var _this = $(this);
+                        var user_id = _this.data('id');
                         $.each(data, function(k, v){
                             if (k == user_id) {
                                 if (data[k] === 'online') {
-                                    $(userstatus).empty();
-                                    $(userstatus).removeAttr('data-toggle');
-                                    $(userstatus).removeAttr('title');
-                                    $(userstatus).append('<i class="fa fa-circle text-success onlinestatus"></i>');
+                                    _this.addClass('member-online');
                                 }
                                 else {
-                                    if (data[k]) {
-                                        var lastseen = moment(data[k]).format('MMMM Do YYYY, hh:mm a')
-                                        $(userstatus).empty();
-                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i>');
-                                        $(userstatus).attr('data-toggle', 'tooltip');
-                                        $(userstatus).attr('title', '{% trans "lastseen: " %}' + lastseen);
-                                    }
-                                    else {
-                                        $(userstatus).empty();
-                                        $(userstatus).append('<i class="fa fa-circle onlinestatus"></i>')
-                                        $(userstatus).attr('data-toggle', 'tooltip');
-                                        $(userstatus).attr('title', '{% trans "lastseen: unknown" %}');
-                                    }
+                                    _this.removeClass('member-online');
                                 }
                             }
                         })
@@ -221,6 +206,23 @@
         if ($(this).hasClass('marquee')) {
             $(this).removeClass('marquee');
         }
+    });
+    $(document).on('click', '.init-chat', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).data('url'),
+            type: 'POST',
+            success: function(data) {
+                $("#msgbox").remove();
+                $(".content").append(data);
+                $(".direct-chat-messages").slimscroll({
+                    height: '350px',
+                    size: '3px',
+                    alwaysVisible: false,
+                    start: 'bottom'
+                });
+            }
+        });
     });
     </script>
     {% endcompress %}

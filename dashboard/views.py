@@ -13,6 +13,7 @@ from profilesystem.models import UserCompletionRing
 from publicusers.models import Connection
 from dashboard.models import ActiveMemberCount, NewMemberCount,\
     TotalMemberCount
+from useraccount.models import NextRelease
 # Create your views here.
 
 
@@ -63,6 +64,10 @@ def dashboard_page(request):
         date__lte=datetime.datetime.today(),
         date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
     ).order_by('date')
+    try:
+        next_release = NextRelease.objects.latest()
+    except:
+        next_release = None
     variables = {
         'completed': int(completed_percent),
         'completed_list': completed_list,
@@ -81,7 +86,8 @@ def dashboard_page(request):
         'unread_messages_count': unread_messages_count,
         'activemembercounts': activemembercounts,
         'newmembercounts': newmembercounts,
-        'totalmembercounts': totalmembercounts
+        'totalmembercounts': totalmembercounts,
+        'next_release': next_release
     }
     return render(request, 'dashboard/dashboard.html', context=variables)
 

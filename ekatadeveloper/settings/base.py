@@ -46,8 +46,8 @@ EKATA_SITE_TYPE = get_env_variable('EKATA_SITE_TYPE')
 
 # Application definition
 
-INSTALLED_APPS = [
-    'flat_responsive',
+DJANGO_APPS = [
+    'flat_responsive', # Admin flat theme will not work without this app here
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +55,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django.contrib.humanize',
+    'django.contrib.humanize'
+]
+
+THIRD_PARTIES_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -77,6 +80,10 @@ INSTALLED_APPS = [
     'simple_history',
     'el_pagination',
     'compressor',
+    'dbbackup'
+]
+
+EKATA_APPS = [
     'landing',
     'profilesystem',
     'publicusers',
@@ -96,9 +103,11 @@ INSTALLED_APPS = [
     'stripepayment',
     'crowdfunding',
     'translation',
-    'countrylogger'
+    'countrylogger',
+    'backupsystem'
 ]
 
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTIES_APPS + EKATA_APPS
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -391,10 +400,6 @@ LOGGING = {
 DJANGO_ONESIGNAL_KEY = get_env_variable('DJANGO_ONESIGNAL_KEY')
 DJANGO_ONESIGNAL_APP_ID = get_env_variable('DJANGO_ONESIGNAL_APP_ID')
 
-# Next Release(In Minutes)
-# Time difference between each release
-NEXT_RELEASE = 60 * 24
-
 # Recaptcha Keys
 RECAPTCHA_PRIVATE_KEY = get_env_variable('DJANGO_RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_PUBLIC_KEY = get_env_variable('DJANGO_RECAPTCHA_PUBLIC_KEY')
@@ -476,3 +481,19 @@ STRIPE_PUBLISHABLE_KEY = get_env_variable('STRIPE_PUBLISHABLE_KEY')
 
 # Translate API
 GOOGLE_TRANSLATE_API_KEY = get_env_variable('GOOGLE_TRANSLATE_API_KEY')
+
+# Bitcoind
+BITCOIND_RPC_USERNAME = get_env_variable('BITCOIND_RPC_USERNAME')
+BITCOIND_RPC_PASSWORD = get_env_variable('BITCOIND_RPC_PASSWORD')
+BITCOIND_RPC_URL = get_env_variable('BITCOIND_RPC_URL')
+
+
+# Ekata units
+EKATA_UNITS_INITIAL_BALANCE = 10.0
+EKATA_UNITS_VERIFY_NO = get_env_variable('EKATA_UNITS_VERIFY_NO')
+# If connection is lesser than this value than transaction will not happen
+MINIMUM_CONN_NEEDED = 2
+
+# DBBackup Settings
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/opt/ekatabackups'}

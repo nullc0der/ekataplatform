@@ -1,0 +1,7 @@
+{% load i18n bootstrap_tags %}
+<form action="{% url 'myaccount:single_dist' %}" method="post" id="sdistributeform">
+    {{ sform|as_bootstrap }}
+</form>
+<button type="button" class="btn btn-success btn-block" id="sdistributebtn">
+  {% trans "Distribute" %}
+</button>

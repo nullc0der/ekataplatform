@@ -54,6 +54,8 @@ class AccountProviderCSV(models.Model):
 class ReferralCode(models.Model):
     user = models.OneToOneField(User, related_name='referral_code')
     code = models.CharField(max_length=10, default='', blank=True)
+    added_on = models.DateTimeField(auto_now_add=True)
+    expired = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.code

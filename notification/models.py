@@ -20,7 +20,8 @@ class UserNotification(models.Model):
         (10, 'disconnect'),
         (11, 'groupinvite'),
         (12, 'groupjoinrequest'),
-        (13, 'systemupdate')
+        (13, 'systemupdate'),
+        (14, 'gcdistribute')
     )
     user = models.ForeignKey(User, related_name='notifications')
     notification_type = models.IntegerField(choices=NOTIFICATION_TYPES)
@@ -30,7 +31,7 @@ class UserNotification(models.Model):
     group_name = models.CharField(max_length=200, default='')
     group_id = models.CharField(max_length=200, default='')
     timeline_id = models.CharField(max_length=200, default='')
-    amount = models.IntegerField(null=True)
+    amount = models.FloatField(null=True)
     sysupdate_type = models.CharField(max_length=10, default='')
     sysupdate_message = models.CharField(max_length=300, default='')
     sysupdate_timestamp = models.DateTimeField(null=True)

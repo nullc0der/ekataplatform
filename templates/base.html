@@ -21,7 +21,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!--Jquery UI-->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!--Bootstrap toggle -->
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <!-- Emojione -->
@@ -36,7 +36,7 @@
     <link rel="manifest" href="/manifest.json">
     {% compress css %}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.6.0">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.7.4">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}?v=1.0.12">
@@ -146,7 +146,13 @@
                                 {% if request.user.profile.avatar %}
                                     <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="user-image useravatar" alt="User Image">
                                 {% else %}
-                                    <img src="{% static "dist/img/placeholder-user.png" %}" class="user-image useravatar" width="160" height="160">
+                                    <div class="default-avatar default-avatar-topbar" style="background: {{ request.user.profile.default_avatar_color }};">
+                                        <div class="default-avatar-text-wrapper">
+                                            <div class="default-avatar-text">
+                                                {% user_initial request.user %}
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endif %}
                                 <span class="hidden-xs">
                                     {% if request.user.username %}
@@ -162,7 +168,13 @@
                                     {% if request.user.profile.avatar %}
                                         <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle" alt="User Image">
                                     {% else %}
-                                        <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle" width="160" height="160">
+                                        <div class="default-avatar default-avatar-topbar-drop" style="background: {{ request.user.profile.default_avatar_color }};">
+                                            <div class="default-avatar-text-wrapper">
+                                                <div class="default-avatar-text">
+                                                    {% user_initial request.user %}
+                                                </div>
+                                            </div>
+                                        </div>
                                     {% endif %}
                                     <p>
                                         {% if request.user.username %}
@@ -218,9 +230,15 @@
                     <div class="user-panel">
                         <div class="pull-left image">
                             {% if request.user.profile.avatar %}
-                                <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle useravatar" alt="User Image" id="userimage">
+                                <img src="{{ request.user.profile.avatar.thumbnail.160x160 }}" class="img-circle useravatar" alt="User Image">
                             {% else %}
-                                <img src="{% static "dist/img/placeholder-user.png" %}" class="img-circle useravatar" width="160" height="160" id="userimage">
+                                <div class="user-image default-avatar" style="background: {{ request.user.profile.default_avatar_color }}; width: 50px; height: 50px; top: 5px">
+                                    <div class="default-avatar-text-wrapper">
+                                        <div class="default-avatar-text">
+                                            {% user_initial request.user %}
+                                        </div>
+                                    </div>
+                                </div>
                             {% endif %}
                         </div>
                         <div class="pull-left info">
@@ -405,8 +423,8 @@
     <!-- Raven -->
     <script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
     <script>Raven.config('{% sentry_public_dsn %}').install()</script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button);
@@ -617,7 +635,7 @@
                 if ($("#sidebarchat").text() === '0') {
                     $("#sidebarchat").hide();
                 }
-            })
+            });
         });
         $('.langselect').selectpicker();
         $(window).load(function() {
@@ -841,6 +859,7 @@
     {% endcompress %}
     {% block extrascripts %}
     {% endblock extrascripts %}
+    {% comment %}
     {% ifequal SITE_TYPE 'beta' %}
     <script type="text/javascript">
         (function() {
@@ -854,6 +873,7 @@
         })();
     </script>
     {% endifequal %}
+    {% endcomment %}
     <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
     <script>
     var OneSignal = window.OneSignal || [];

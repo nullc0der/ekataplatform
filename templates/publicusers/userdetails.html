@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n staticfiles compress %}
 {% block title %}
-    {{ user.username }} | Basic Income Project
+    {{ user.username }} | Ekata Social
 {% endblock title %}
 
 
@@ -91,40 +91,6 @@
         </div>
     </div>
     {% endif %}
-    <!-- Send Unit Modal -->
-    <div tabindex="-1" class="modal fade" id="sendUnitModal" role="dialog" aria-hidden="true" aria-labelledby="sendUnitModalLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
-                    <h4 class="modal-title" id="sendUnitModalLabel">{% trans "Send Unit" %}</h4>
-                </div>
-                <div class="modal-body">
-                    {% include "useraccount/transferform.html" %}
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" id="sendbutton">{% trans "Send" %}</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.Send Unit Modal -->
-    <!-- Request Unit Modal -->
-    <div tabindex="-1" class="modal fade" id="requestUnitModal" role="dialog" aria-hidden="true" aria-labelledby="requestUnitModalLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
-                    <h4 class="modal-title" id="requestUnitModalLabel">{% trans "Request Unit" %}</h4>
-                </div>
-                <div class="modal-body">
-                    {% include "useraccount/requestform.html" %}
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" id="requestbutton">{% trans "Request" %}</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.Request Unit Modal -->
     {% endifequal %}
 
 {% endblock content %}
@@ -268,50 +234,6 @@
         $(document).click(function(){
             $(".visibilty").hide();
         });
-        $("#sendbutton").click(function(){
-            var frm = $("#transactionform");
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    $('.top-right').notify({
-                        message: { text: data },
-                        type: 'info',
-                    }).show();
-                    $("#sendUnitModal").modal('hide');
-                },
-                error: function(data) {
-                    frm.html(data.responseText);
-                }
-            });
-        });
-        $("#sendUnitModal").on('hidden.bs.modal', function(){
-            $("#transactionform")[0].reset();
-            clear_form_field_errors("#transactionform");
-        });
-        $("#requestbutton").click(function(){
-            var frm = $("#requestform");
-            $.ajax({
-                type: frm.attr('method'),
-                url: frm.attr('action'),
-                data: frm.serialize(),
-                success: function (data) {
-                    $('.top-right').notify({
-                        message: { text: data },
-                        type: 'info',
-                    }).show();
-                    $("#requestUnitModal").modal('hide');
-                },
-                error: function(data) {
-                    frm.html(data.responseText);
-                }
-            });
-        });
-        $("#requestUnitModal").on('hidden.bs.modal', function(){
-            $("#requestform")[0].reset();
-            clear_form_field_errors("#requestform");
-        });
         $('#sendconn').click(function(){
               if ( $( "#conntype" ).is( ":hidden" ) ) {
                 $( "#conntype" ).slideDown( "slow" );
@@ -407,6 +329,7 @@
                 }
             });
         })();
+        $(".sidebar-menu-tab>li[data-name='community']").click();
     </script>
     {% endcompress %}
 {% endblock extrascripts %}

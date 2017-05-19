@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 HOME = [
     reverse('dashboard:index')[3:],
     reverse('myaccount:index')[3:],
-    reverse('myaccount:transfer')[3:],
     reverse('profilesystem:index')[3:],
     reverse('usertimeline:index')[3:],
     reverse('messaging:index')[3:]
@@ -24,7 +23,8 @@ COMMUNITY = [
     reverse('crowdfunding:crowdfund_admin')[3:],
     reverse('eblast:emailtemplates')[3:],
     reverse('eblast:emailgroups')[3:],
-    reverse('eblast:emailcampaign_page')[3:]
+    reverse('eblast:emailcampaign_page')[3:],
+    reverse('backupsystem:index')[3:],
 ]
 
 APPS = [
