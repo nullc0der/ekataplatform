@@ -1,24 +1,30 @@
-{% load i18n static %}
+{% load i18n static bip_extras %}
 {% for user in users %}
-    <div class="member {% if user.is_staff %}member-staff{% endif %}" data-id="{{ user.id }}">
+    <div class="member {% if user.is_staff %}member-staff{% endif %} {% if user.profile.online %}member-online{% endif %}" data-id="{{ user.id }}">
         <a href="{% url 'publicusers:user' user.id %}">
             <div class="member-image">
+                <p class="init-chat" data-url='{% url 'messaging:create' user.id %}'><i class="fa fa-comments-o"></i></p>
                 {% if user.profile.avatar_public %}
                     {% if user.profile.avatar %}
                         <img src="{{ user.profile.avatar.thumbnail.128x128 }}" alt="User Image">
                     {% else %}
-                        <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128"  alt="User Image">
+                        <div class="default-avatar default-avatar-memberl" style="background: {{ user.profile.default_avatar_color }};">
+                            <div class="default-avatar-text-wrapper">
+                                <div class="default-avatar-text">
+                                    {% user_initial user %}
+                                </div>
+                            </div>
+                        </div>
                     {% endif %}
-                    {% else %}
-                        <img src="{% static "dist/img/placeholder-user.png" %}" width="128" height="128" alt="User Image">
+                {% else %}
+                <div class="default-avatar default-avatar-memberl" style="background: {{ user.profile.default_avatar_color }};">
+                    <div class="default-avatar-text-wrapper">
+                        <div class="default-avatar-text">
+                            {% user_initial user %}
+                        </div>
+                    </div>
+                </div>
                 {% endif %}
-                <p class="users-list-date userstatus" data-user-id='{{ user.id }}'>
-                    {% if user.profile.online %}
-                        <i class="fa fa-circle text-success onlinestatus"></i>
-                    {% else %}
-                        <i class="fa fa-circle onlinestatus"></i>
-                    {% endif %}
-                </p>
             </div>
             <div class="member-info">
                 <p class="member-username">{{ user.username }}</p>

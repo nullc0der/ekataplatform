@@ -5758,7 +5758,7 @@ table.text-center th {
     float: left;
     margin-left: 2%;
     background-color: #fff;
-    border-radius: 3px;
+    border-radius: 8px;
     margin-top: 10px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
     border-top: 5px solid #ddd;
@@ -5798,7 +5798,7 @@ table.text-center th {
 
 .member-image .init-chat {
     position: absolute;
-    top: 10px;
+    top: 0;
     right: 10px;
     font-size: 20px;
     color: #4A4A4A;
@@ -6833,40 +6833,52 @@ table.text-center th {
 .default-avatar-topbar-drop {
     width: 80px;
     height: 80px;
-    left: 34%;
+    /*left: 34%;*/
+    margin: 0 auto;
 }
 .default-avatar-profile-info {
-    left: 32%;
+    /*left: 32%;*/
+    margin: 0 auto;
     margin-bottom: 10px;
     font-size: 25px;
-}
+}/*
 @media (max-width: 768px) {
     .default-avatar-profile-info {
         left: 40%;
     }
-}
+}*/
 .default-avatar-public-profile {
-    left: 38%;
+    /*left: 38%;*/
+    margin: 0 auto;
     font-size: 25px;
 }
+/*
 @media (width: 768px) {
     .default-avatar-public-profile {
         left: 40%;
     }
-}
+}*/
 .default-avatar-memberl {
      width: 82px;
      height: 82px;
-     left: 15%;
+     /*left: 15%;*/
      font-size: 25px;
+     margin: 0 auto;
 }
+/*
 @media (max-width: 1024px) and (min-width: 768px) {
     .default-avatar-memberl {
         left: 0;
     }
 }
-@media (max-width: 320px) {
+@media (max-width: 375px) {
     .default-avatar-memberl {
-        left: 5%;
+        left: 4%;
     }
 }
+@media (min-width: 376px) and (max-width: 425px) {
+    .default-avatar-memberl {
+        left: 10%;
+    }
+}
+*/
