@@ -5759,6 +5759,8 @@ table.text-center th {
     margin-left: 2%;
     background-color: #fff;
     border-radius: 8px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
     margin-top: 10px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.09);
     border-top: 5px solid #ddd;
