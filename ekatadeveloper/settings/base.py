@@ -47,7 +47,7 @@ EKATA_SITE_TYPE = get_env_variable('EKATA_SITE_TYPE')
 # Application definition
 
 DJANGO_APPS = [
-    'flat_responsive', # Admin flat theme will not work without this app here
+    'flat_responsive',  # Admin flat theme will not work without this app here
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
