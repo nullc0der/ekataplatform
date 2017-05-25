@@ -66,3 +66,5 @@ CHANNEL_LAYERS = {
         "ROUTING": "ekatadeveloper.routing.channel_routing",
     },
 }
+
+DBBACKUP_STORAGE_OPTIONS = {'location': '/code/ekatabackups'}
