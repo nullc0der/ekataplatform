@@ -46,7 +46,6 @@ coverage.xml
 .ropeproject
 
 # Django stuff:
-geoip/
 *.log
 *.pot
 *.sqlite3
@@ -64,5 +63,4 @@ docs/_build/
 project.cson
 .vscode
 
-# Docker
-.env*
+# Circus config
