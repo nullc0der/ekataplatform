@@ -1,11 +1,12 @@
 import json
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
 from django.contrib.auth.models import User
+from django.views.decorators.http import require_POST
 
 from channels import Group
 
@@ -190,3 +191,17 @@ def set_message_status(request):
             message.save()
         return HttpResponse("OK")
     return HttpResponse("forbidden")
+
+
+@require_POST
+@login_required
+def delete_message(request):
+    try:
+        message = Message.objects.get(id=request.POST.get('id'))
+        if message.user == request.user:
+            message.delete()
+            return HttpResponse(status=200)
+        else:
+            return HttpResponseForbidden()
+    except ObjectDoesNotExist:
+        return HttpResponse(status=500)

@@ -2,7 +2,7 @@
     <div class="box-body" id="chatbody">
         <div class="direct-chat-messages">
             {% for message in messages %}
-                <div class="direct-chat-msg {% ifequal message.user request.user %}right{% endifequal %}">
+                <div class="direct-chat-msg {% ifequal message.user request.user %}right{% endifequal %}" data-message-id="{{ message.id }}">
                     <div class="direct-chat-info clearfix">
                         <span class="direct-chat-name {% ifequal message.user request.user %}pull-right{% else %}pull-left{% endifequal %}">{{ message.user.username }}</span>
                         <span class="direct-chat-timestamp {% ifequal message.user request.user %}pull-left{% else %}pull-right{% endifequal %}">{{ message.timestamp|date:"H:i" }}</span>
@@ -40,6 +40,12 @@
                         </div>
                     {% else %}
                         <div class="direct-chat-text">
+                            <div class="message-options">
+                                <i class="fa fa-ellipsis-h options"></i>
+                                <div class="optioncontent">
+                                    <a href="javascript:void(0);" class="deletemessage" data-message-id={{ message.id }}>{% trans "Delete" %}</a>
+                                </div>
+                            </div>
                             <p>{{ message.content }}</p>
                         </div>
                     {% endif %}
@@ -74,7 +80,7 @@
                             <h4 class="modal-title" id="sendUnitModalLabel">{% trans "Send Unit to: " %} {{ user.username }}</h4>
                         </div>
                         <div class="modal-body">
-                            
+
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" type="button" id="sendbutton">{% trans "Send" %}</button>
@@ -169,6 +175,16 @@
                 }
             });
         }
+    });
+    $('body').popover({
+        html: true,
+        content: function () {
+            return $(this).siblings('.optioncontent').html();
+        },
+        placement: 'bottom',
+        container: 'body',
+        selector: '.options',
+        trigger: 'click'
     });
     {% if modals %}
         $('.actions').popover({

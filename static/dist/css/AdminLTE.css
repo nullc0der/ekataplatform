@@ -6852,3 +6852,11 @@ table.text-center th {
      font-size: 25px;
      margin: 0 auto;
 }
+.message-options {
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+.message-options .optioncontent {
+    display: none;
+}

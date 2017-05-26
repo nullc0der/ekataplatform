@@ -36,7 +36,7 @@
     <link rel="manifest" href="/manifest.json">
     {% compress css %}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.7.4">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.7.5">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}?v=1.0.12">
@@ -832,6 +832,24 @@
         // Helpful debugging
         message_socket.onopen = function() { console.log("Connected to messaging socket"); }
         message_socket.onclose = function() { console.log("Disconnected to messaging socket"); }
+        $(document).on('click', '.deletemessage', function () {
+            var id = $(this).data('message-id');
+            $.ajax({
+                url: '{% url 'messaging:deletemessage' %}',
+                type: 'POST',
+                data: {'id': id},
+                success: function () {
+                    $('.direct-chat-msg[data-message-id=' + id + ']').fadeOut();
+                    $('*').popover('hide');
+                },
+                error: function () {
+                    $('.top-right').notify({
+                        message: { text: "Message can't be deleted"},
+                        type: 'danger',
+                    }).show();
+                }
+            });
+        });
         $(".ackupdate").click(function(){
             var sysupdate_id = $(this).attr('data-id');
             $.ajax({

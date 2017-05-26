@@ -253,6 +253,16 @@
             container: 'body',
             trigger: 'focus'
         });
+        $('body').popover({
+            html: true,
+            content: function () {
+                return $(this).siblings('.optioncontent').html();
+            },
+            placement: 'bottom',
+            container: 'body',
+            selector: '.options',
+            trigger: 'click'
+        });
     </script>
     {% endcompress %}
 {% endblock extrascripts %}
