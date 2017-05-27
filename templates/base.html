@@ -804,7 +804,6 @@
         {% else %}
         message_socket.onmessage = function (message) {
             var data = JSON.parse(message.data);
-            console.log(data);
             var chatroom = data.chatroom;
             var activediv = $("#msgbox").data('name');
             if (data.add_message) {
