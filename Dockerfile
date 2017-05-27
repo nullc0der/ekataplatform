@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y build-essential postgresql-client libpq-dev
 RUN mkdir /code
 WORKDIR /code
-ADD requirements.txt /code/
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-ADD . /code/
+COPY . /code/
 RUN mkdir /code/ekatabackups
