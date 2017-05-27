@@ -1,6 +1,7 @@
 {% load staticfiles bip_extras %}
 {% for chat in chats %}
 <div class="chatuser {% ifequal forloop.counter 1 %} activechat {% endifequal %}" id="room-{{ chat.id }}" data-id="{{ chat.id }}" data-name="{{ chat.name }}">
+    <p class="deleteconv pull-right" data-room-id={{ chat.id }}><i class="fa fa-trash"></i></p>
     <a href="javascript:void(0)">
         {% for subscriber in chat.subscribers.all %}
             {% ifequal request.user subscriber %}

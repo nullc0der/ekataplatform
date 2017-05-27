@@ -221,3 +221,17 @@ def delete_message(request):
             return HttpResponseForbidden()
     except ObjectDoesNotExist:
         return HttpResponse(status=500)
+
+
+@require_POST
+@login_required
+def delete_chatroom(request):
+    try:
+        room = ChatRoom.objects.get(id=request.POST.get('id'))
+        if request.user in room.subscribers.all():
+            room.delete()
+            return HttpResponse(status=200)
+        else:
+            return HttpResponseForbidden()
+    except ObjectDoesNotExist:
+        return HttpResponse(status=500)

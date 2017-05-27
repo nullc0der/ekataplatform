@@ -30,7 +30,8 @@
                 {% endfor %}
             </h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" id="msgclose"><i class="fa fa-times"></i></button>
+                <button type="button" class="btn btn-box-tool deleteconv" data-toggle="tooltip" title="{% trans "Delete Conversation" %}" data-room-id={{ chat.id }}><i class="fa fa-trash-o"></i></button>
+                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="{% trans "Close Conversation" %}" id="msgclose"><i class="fa fa-times"></i></button>
             </div>
         </div>
         {% include "messagingsystem/chats.html" %}
@@ -40,5 +41,17 @@
     $("#msgclose").click(function(event) {
         $('#msgbox').fadeOut(300, function(){ $('#msgbox').remove();});
         $('*').popover('hide');
+    });
+    $('.deleteconv').click(function () {
+        var room_id = $(this).data('room-id');
+        $.ajax({
+            url: '{% url 'messaging:deleteroom' %}',
+            type: 'POST',
+            data: {'id': room_id},
+            success: function () {
+                $('#msgbox').fadeOut(300, function(){ $('#msgbox').remove();});
+                $('*').popover('hide');
+            }
+        }); 
     });
 </script>

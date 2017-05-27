@@ -48,6 +48,10 @@
         .tableactions:hover a {
             color: #fff;
         }
+        .deleteconv {
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
     {% endcompress %}
 {% endblock extrastyle %}
@@ -264,6 +268,28 @@
             container: 'body',
             selector: '.options',
             trigger: 'click'
+        });
+        $('.deleteconv').click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var room_id = $(this).data('room-id');
+            var _this = $(this);
+            $.ajax({
+                url: '{% url 'messaging:deleteroom' %}',
+                type: 'POST',
+                data: {'id': room_id},
+                success: function () {
+                    if ($(_this).parent().prop('active')) {
+                        $(_this).parent().fadeOut();
+                        $('*').popover('hide');
+                        $("#chatbody").empty();
+                        $("#chatfooter").remove();
+                    }
+                    else {
+                        $(_this).parent().fadeOut();
+                    }
+                }
+            }); 
         });
     </script>
     {% endcompress %}
