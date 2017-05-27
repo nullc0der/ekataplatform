@@ -39,5 +39,6 @@
 <script type="text/javascript">
     $("#msgclose").click(function(event) {
         $('#msgbox').fadeOut(300, function(){ $('#msgbox').remove();});
+        $('*').popover('hide');
     });
 </script>

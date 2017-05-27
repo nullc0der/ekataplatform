@@ -165,7 +165,8 @@ def send_message(request, chat_id):
         message_dict = {
             'chatroom': chatroom.name,
             'message': m,
-            'message_id': message.id
+            'message_id': message.id,
+            'add_message': True
         }
         message_json = json.dumps(message_dict)
         for otheruser in otherusers:
@@ -199,6 +200,21 @@ def delete_message(request):
     try:
         message = Message.objects.get(id=request.POST.get('id'))
         if message.user == request.user:
+            chatroom = message.room
+            otherusers = []
+            for user in chatroom.subscribers.all():
+                if user != request.user:
+                    otherusers.append(user)
+            message_dict = {
+                'chatroom': chatroom.name,
+                'message_id': message.id,
+                'add_message': False
+            }
+            message_json = json.dumps(message_dict)
+            for otheruser in otherusers:
+                Group('%s-messages' % otheruser.username).send({
+                    'text': message_json
+                })
             message.delete()
             return HttpResponse(status=200)
         else:

@@ -131,6 +131,7 @@
                                     scrollTo: $('.direct-chat-messages')[0].scrollHeight,
                                 });
                                 $(".emojionearea-editor").text('');
+                                $('.emojionearea-editor').focus();
                                 convertEmojis(true);
                             }
                         });
@@ -171,6 +172,7 @@
                         scrollTo: $('.direct-chat-messages')[0].scrollHeight,
                     });
                     $('.emojionearea-editor').text('');
+                    $(".emojionearea-editor").focus();
                     convertEmojis(true);
                 }
             });
@@ -181,7 +183,7 @@
         content: function () {
             return $(this).siblings('.optioncontent').html();
         },
-        placement: 'bottom',
+        placement: 'left',
         container: 'body',
         selector: '.options',
         trigger: 'click'

@@ -6860,3 +6860,12 @@ table.text-center th {
 .message-options .optioncontent {
     display: none;
 }
+.deletemessage {
+    padding: 5px 30px;
+    color: #777;
+    border-radius: 3px;
+}
+.deletemessage:hover {
+    background-color: #d2d6de;
+    color: #fff;
+}

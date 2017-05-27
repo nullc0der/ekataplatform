@@ -36,7 +36,7 @@
     <link rel="manifest" href="/manifest.json">
     {% compress css %}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.7.5">
+    <link rel="stylesheet" href="{% static "dist/css/AdminLTE.css" %}?v=8.7.6">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static "dist/css/skins/skin-blue.css" %}?v=1.0.12">
@@ -778,54 +778,73 @@
             var data = JSON.parse(message.data);
             var chatroom = data.chatroom;
             var chatdiv = $("div[data-name='" + chatroom + "']");
-            if (chatdiv.prop('active')){
-                $('.direct-chat-messages').append(data.message);
-                $(".direct-chat-messages").slimscroll({
-                    scrollTo: $('.direct-chat-messages')[0].scrollHeight,
-                });
-                convertEmojis(true);
-                setMessageRead(true, data.message_id);
+            if (data.add_message) {
+                if (chatdiv.prop('active')){
+                    $('.direct-chat-messages').append(data.message);
+                    $(".direct-chat-messages").slimscroll({
+                        scrollTo: $('.direct-chat-messages')[0].scrollHeight,
+                    });
+                    convertEmojis(true);
+                    setMessageRead(true, data.message_id);
+                }
+                else {
+                    chatdiv.addClass("blink");
+                    var messageaudio = document.getElementById('messagingaudio');
+                    messageaudio.play();
+                }
             }
             else {
-                chatdiv.addClass("blink");
-                var messageaudio = document.getElementById('messagingaudio');
-                messageaudio.play();
+                if (chatdiv.prop('active')){
+                    $('.direct-chat-msg[data-message-id=' + data.message_id + ']').fadeOut(300, function () {
+                        $(this).remove();
+                    });
+                }
             }
         }
         {% else %}
         message_socket.onmessage = function (message) {
             var data = JSON.parse(message.data);
+            console.log(data);
             var chatroom = data.chatroom;
             var activediv = $("#msgbox").data('name');
-            if (chatroom === activediv){
-                $('.direct-chat-messages').append(data.message);
-                $(".direct-chat-messages").slimscroll({
-                    scrollBy: '100px',
-                });
-                convertEmojis(true);
-                setMessageRead(true, data.message_id);
+            if (data.add_message) {
+                if (chatroom === activediv){
+                    $('.direct-chat-messages').append(data.message);
+                    $(".direct-chat-messages").slimscroll({
+                        scrollBy: '100px',
+                    });
+                    convertEmojis(true);
+                    setMessageRead(true, data.message_id);
+                }
+                else {
+                    $.ajax({
+                        url: '{% url 'messaging:index' %}?navbar',
+                        success: function(data){
+                            $("#navmessages").append(data.html);
+                            $(".menu").slimscroll({
+                                height: '200px',
+                                size: '3px',
+                                alwaysVisible: false
+                            });
+                            $("li[data-name='" + chatroom + "']").addClass("blink");
+                            var messageaudio = document.getElementById('messagingaudio');
+                            messageaudio.play();
+                            if (data.has_unread) {
+                                $("#chatindicator").text(data.has_unread);
+                                $("#chatindicator").show();
+                                $("#sidebarchat").text(data.has_unread);
+                                $("#sidebarchat").show();
+                            }
+                        }
+                    });
+                }
             }
             else {
-                $.ajax({
-                    url: '{% url 'messaging:index' %}?navbar',
-                    success: function(data){
-                        $("#navmessages").append(data.html);
-                        $(".menu").slimscroll({
-                            height: '200px',
-                            size: '3px',
-                            alwaysVisible: false
-                        });
-                        $("li[data-name='" + chatroom + "']").addClass("blink");
-                        var messageaudio = document.getElementById('messagingaudio');
-                        messageaudio.play();
-                        if (data.has_unread) {
-                            $("#chatindicator").text(data.has_unread);
-                            $("#chatindicator").show();
-                            $("#sidebarchat").text(data.has_unread);
-                            $("#sidebarchat").show();
-                        }
-                    }
-                });
+                if (chatroom === activediv){
+                    $('.direct-chat-msg[data-message-id=' + data.message_id + ']').fadeOut(300, function () {
+                        $(this).remove();
+                    });
+                }
             }
         }
         {% endifequal %}
@@ -839,7 +858,9 @@
                 type: 'POST',
                 data: {'id': id},
                 success: function () {
-                    $('.direct-chat-msg[data-message-id=' + id + ']').fadeOut();
+                    $('.direct-chat-msg[data-message-id=' + id + ']').fadeOut(300, function () {
+                        $(this).remove();
+                    });
                     $('*').popover('hide');
                 },
                 error: function () {
