@@ -1,11 +1,12 @@
 import json
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
 from django.contrib.auth.models import User
+from django.views.decorators.http import require_POST
 
 from channels import Group
 
@@ -28,17 +29,26 @@ def messaging_index(request):
     if chats:
         messages = chats[0].messages.all().order_by('timestamp')
         chat_id = chats[0].id
-        for subscriber in chats[0].subscribers.all():
-            if subscriber != request.user:
-                otheruser = subscriber
+        if chats[0].subscribers.all().count() > 1:
+            for subscriber in chats[0].subscribers.all():
+                if subscriber != request.user:
+                    otheruser = subscriber
+        else:
+            for unsubscriber in chats[0].unsubscribers.all():
+                if unsubscriber != request.user:
+                    otheruser = unsubscriber
     else:
         messages = None
         chat_id = None
         otheruser = None
     if 'navbar' in request.GET:
-        has_unread = request.user.recieved_messages.filter(
+        has_unread = 0
+        unread_messages = request.user.recieved_messages.filter(
             read=False
-        ).count()
+        )
+        for unread_message in unread_messages:
+            if request.user in unread_message.room.subscribers.all():
+                has_unread += 1
         template = loader.get_template('messagingsystem/navbarmessage.html')
         context = {'chats': chats, 'ruser': request.user}
         m = template.render(context)
@@ -76,9 +86,14 @@ def get_chat(request, chat_id):
     otheruser = None
     try:
         chat = ChatRoom.objects.get(id=chat_id)
-        for subscriber in chat.subscribers.all():
-            if subscriber != request.user:
-                otheruser = subscriber
+        if chat.subscribers.all() > 1:
+            for subscriber in chat.subscribers.all():
+                if subscriber != request.user:
+                    otheruser = subscriber
+        else:
+            for unsubscriber in chat.unsubscribers.all():
+                if unsubscriber != request.user:
+                    otheruser = unsubscriber
         messages = chat.messages.all().order_by('timestamp')
     except ObjectDoesNotExist:
         messages = None
@@ -125,6 +140,9 @@ def create_chat(request, to_user):
             chat = room1
         else:
             chat = room2
+        if request.user in chat.unsubscribers.all():
+            chat.unsubscribers.remove(request.user)
+            chat.subscribers.add(request.user)
     else:
         chat, created = ChatRoom.objects.get_or_create(name=label)
         if created:
@@ -154,23 +172,30 @@ def send_message(request, chat_id):
         for user in chatroom.subscribers.all():
             if user != request.user:
                 otherusers.append(user)
-        message.to_user = otherusers[0]
+        if otherusers:
+            message.to_user = otherusers[0]
+        else:
+            for user in chatroom.unsubscribers.all():
+                if user != request.user:
+                    message.to_user = user
         message.save()
-        template = loader.get_template(
-            'messagingsystem/singlemessage_reciever.html'
-        )
-        context = {'message': message}
-        m = template.render(context)
-        message_dict = {
-            'chatroom': chatroom.name,
-            'message': m,
-            'message_id': message.id
-        }
-        message_json = json.dumps(message_dict)
-        for otheruser in otherusers:
-            Group('%s-messages' % otheruser.username).send({
-                'text': message_json
-            })
+        if otherusers:
+            template = loader.get_template(
+                'messagingsystem/singlemessage_reciever.html'
+            )
+            context = {'message': message}
+            m = template.render(context)
+            message_dict = {
+                'chatroom': chatroom.name,
+                'message': m,
+                'message_id': message.id,
+                'add_message': True
+            }
+            message_json = json.dumps(message_dict)
+            for otheruser in otherusers:
+                Group('%s-messages' % otheruser.username).send({
+                    'text': message_json
+                })
     return render(
         request,
         'messagingsystem/singlemessage_sender.html',
@@ -190,3 +215,48 @@ def set_message_status(request):
             message.save()
         return HttpResponse("OK")
     return HttpResponse("forbidden")
+
+
+@require_POST
+@login_required
+def delete_message(request):
+    try:
+        message = Message.objects.get(id=request.POST.get('id'))
+        if message.user == request.user:
+            chatroom = message.room
+            otherusers = []
+            for user in chatroom.subscribers.all():
+                if user != request.user:
+                    otherusers.append(user)
+            if otherusers:
+                message_dict = {
+                    'chatroom': chatroom.name,
+                    'message_id': message.id,
+                    'add_message': False
+                }
+                message_json = json.dumps(message_dict)
+                for otheruser in otherusers:
+                    Group('%s-messages' % otheruser.username).send({
+                        'text': message_json
+                    })
+                message.delete()
+            return HttpResponse(status=200)
+        else:
+            return HttpResponseForbidden()
+    except ObjectDoesNotExist:
+        return HttpResponse(status=500)
+
+
+@require_POST
+@login_required
+def delete_chatroom(request):
+    try:
+        room = ChatRoom.objects.get(id=request.POST.get('id'))
+        if request.user in room.subscribers.all():
+            room.subscribers.remove(request.user)
+            room.unsubscribers.add(request.user)
+            return HttpResponse(status=200)
+        else:
+            return HttpResponseForbidden()
+    except ObjectDoesNotExist:
+        return HttpResponse(status=500)

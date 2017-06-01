@@ -93,8 +93,7 @@ img
 /* end page container */
 
 /* start preloader */
-.preloader
-    {
+.preloader {
         position: fixed;
         top: 0;
         left: 0;

@@ -10,10 +10,11 @@ from backupsystem.models import Backup, NextBackup
 
 
 def create_backup(manual=False):
+    location = settings.DBBACKUP_STORAGE_OPTIONS['location']
     db_name = 'db-' + now().strftime("%Y-%m-%d-%H:%I")
-    db_path = '/opt/ekatabackups/' + db_name + '.dump.gz'
+    db_path = location + '/' + db_name + '.dump.gz'
     media_name = 'media-' + now().strftime("%Y-%m-%d-%H:%I")
-    media_path = '/opt/ekatabackups/' + media_name + '.tar'
+    media_path = location + '/' + media_name + '.tar'
     management.call_command(
         'dbbackup',
         compress=True,

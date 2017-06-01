@@ -1,6 +1,6 @@
 {% load staticfiles bip_extras %}
 {% if message %}
-     <div class="direct-chat-msg">
+     <div class="direct-chat-msg" data-message-id={{ message.id }}>
         <div class="direct-chat-info clearfix">
             <span class="direct-chat-name pull-left">{{ message.user.username }}</span>
             <span class="direct-chat-timestamp pull-right">{{ message.timestamp|date:"H:i" }}</span>

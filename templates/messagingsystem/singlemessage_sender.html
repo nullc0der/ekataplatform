@@ -1,6 +1,6 @@
-{% load staticfiles bip_extras %}
+{% load staticfiles bip_extras i18n %}
 {% if message %}
-     <div class="direct-chat-msg right">
+     <div class="direct-chat-msg right" data-message-id={{ message.id }}>
         <div class="direct-chat-info clearfix">
             <span class="direct-chat-name pull-right">{{ message.user.username }}</span>
             <span class="direct-chat-timestamp pull-left">{{ message.timestamp|date:"H:i" }}</span>
@@ -29,6 +29,12 @@
         {% endif %}
         <!-- /.direct-chat-img -->
         <div class="direct-chat-text">
+            <div class="message-options">
+                <i class="fa fa-ellipsis-h options"></i>
+                <div class="optioncontent">
+                    <a href="javascript:void(0);" class="deletemessage" data-message-id={{ message.id }}>{% trans "Delete" %}</a>
+                </div>
+            </div>
             <p>{{ message.content }}</p>
         </div>
         <!-- /.direct-chat-text -->

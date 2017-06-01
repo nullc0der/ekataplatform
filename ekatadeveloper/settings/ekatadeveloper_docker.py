@@ -1,11 +1,6 @@
 from .base import *
 
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DEBUG = False
-
-ALLOWED_HOSTS = ['*']
+DEBUG = True
 
 DATABASES = {
     'default': {
@@ -36,16 +31,6 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = get_env_variable('DJANGO_EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = get_env_variable('DJANGO_EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-
-SECURE_BROWSER_XSS_FILTER = True
-
-SESSION_COOKIE_SECURE = True
-
-CSRF_TOKEN_SECURE = True
-
-X_FRAME_OPTIONS = 'DENY'
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CACHES = {
     'default': {

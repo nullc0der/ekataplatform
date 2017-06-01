@@ -101,7 +101,7 @@
 						<li><a href="{% url 'myaccount:index' %}">{% trans "My Account" %}</a></li>
 						<li><a href="{% url 'profilesystem:index' %}">{% trans "Profile" %}</a></li>
 						{% if request.user.profile.users_link_visible %}
-						<li><a href="{% url 'publicusers:index' %}">{% trans "Users" %}</a></li>
+						<li><a href="{% url 'publicusers:index' %}">{% trans "Members" %}</a></li>
 						{% endif %}
 						{% if request.user.profile.groups_link_visible %}
 						<li><a href="{% url 'g:allgroups' %}">{% trans "Groups" %}</a></li>
@@ -306,19 +306,21 @@
 				});
 			});
 		</script>
+		{% comment %}
 		{% ifequal SITE_TYPE 'beta' %}
-	    <script type="text/javascript">
-	        (function() {
-	            var s = document.createElement("script");
-	            s.type = "text/javascript";
-	            s.async = true;
-	            s.src = '//api.usersnap.com/load/'+
-	                '41f43a68-14ce-4085-b6ef-58aa08f57ee0.js';
-	            var x = document.getElementsByTagName('script')[0];
-	            x.parentNode.insertBefore(s, x);
-	        })();
-	    </script>
-	    {% endifequal %}
+		<script type="text/javascript">
+			(function() {
+				var s = document.createElement("script");
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = '//api.usersnap.com/load/'+
+					'41f43a68-14ce-4085-b6ef-58aa08f57ee0.js';
+				var x = document.getElementsByTagName('script')[0];
+				x.parentNode.insertBefore(s, x);
+			})();
+		</script>
+		{% endifequal %}
+		{% endcomment %}
 		{% endcompress %}
 		{% block extrascripts %}
 

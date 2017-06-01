@@ -18,7 +18,7 @@ chaussette==1.3.0
 circus==0.14.0
 circus-web==1.0.0
 configparser==3.5.0
-contextlib2==0.5.4
+contextlib2==0.5.5
 coverage==4.0.2
 daphne==0.15.0
 decorator==4.0.10
@@ -32,7 +32,6 @@ django-countries==4.0
 django-dbbackup==3.1.3
 django-easy-timezones==0.7.0
 django-el-pagination==3.0.1
-django-extensions==1.7.6
 django-filebrowser==3.7.2
 django-flat-responsive==1.0.0
 django-forms-bootstrap==3.0.1
@@ -88,14 +87,13 @@ psycopg2==2.6.2
 ptyprocess==0.5.1
 pygeoip==0.3.2
 Pygments==2.1.3
-pygraphviz==1.3.1
 PyJWT==1.4.0
 python-bitcoinrpc==1.0
 python-http-client==1.2.3
 python-openid==2.2.5
 pytz==2015.7
 pyzmq==16.0.2
-raven==5.27.1
+raven==6.0.0
 rcssmin==1.0.6
 redis==2.10.5
 requests==2.10.0

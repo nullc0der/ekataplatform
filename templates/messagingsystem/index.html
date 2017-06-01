@@ -48,6 +48,10 @@
         .tableactions:hover a {
             color: #fff;
         }
+        .deleteconv {
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
     {% endcompress %}
 {% endblock extrastyle %}
@@ -177,6 +181,7 @@
                                         scrollTo: $('.direct-chat-messages')[0].scrollHeight,
                                     });
                                     $(".emojionearea-editor").text('');
+                                    $(".emojionearea-editor").focus();
                                     convertEmojis(true);
                                 }
                             });
@@ -238,6 +243,7 @@
                             scrollTo: $('.direct-chat-messages')[0].scrollHeight,
                         });
                         $('.emojionearea-editor').text('');
+                        $(".emojionearea-editor").focus();
                         convertEmojis(true);
                     }
                 });
@@ -252,6 +258,38 @@
             placement: "left",
             container: 'body',
             trigger: 'focus'
+        });
+        $('body').popover({
+            html: true,
+            content: function () {
+                return $(this).siblings('.optioncontent').html();
+            },
+            placement: 'left',
+            container: 'body',
+            selector: '.options',
+            trigger: 'click'
+        });
+        $('.deleteconv').click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var room_id = $(this).data('room-id');
+            var _this = $(this);
+            $.ajax({
+                url: '{% url 'messaging:deleteroom' %}',
+                type: 'POST',
+                data: {'id': room_id},
+                success: function () {
+                    if ($(_this).parent().prop('active')) {
+                        $(_this).parent().fadeOut();
+                        $('*').popover('hide');
+                        $("#chatbody").empty();
+                        $("#chatfooter").remove();
+                    }
+                    else {
+                        $(_this).parent().fadeOut();
+                    }
+                }
+            }); 
         });
     </script>
     {% endcompress %}

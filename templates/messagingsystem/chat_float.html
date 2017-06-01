@@ -1,28 +1,27 @@
 {% load staticfiles i18n %}
 <div class="col-md-3" id="msgbox" data-name="{{ chat.name }}">
-    <div class="box box-primary direct-chat direct-chat-primary">
+    <div class="box direct-chat direct-chat-primary">
         <div class="box-header with-border" id="loadmsg">
             <h3 class="box-title">
                 {% for subscriber in chat.subscribers.all %}
                     {% ifequal request.user subscriber %}
                     {% else %}
                         {{ subscriber.username }}
-                        <i class="fa fa-circle onlinestatus" id="status"></i>
                         <script>
                             (function getOnline(){
                                 $.ajax({
                                     url: '{% url 'publicusers:getonline' subscriber.id %}',
                                     success: function(data) {
-                                        var userstatus = $('#status');
+                                        var userstatus = $('.direct-chat-primary');
                                         if (data.is_online) {
-                                            $(userstatus).addClass('text-success');
+                                            $(userstatus).addClass('box-success');
                                         }
                                         else {
-                                            $(userstatus).removeClass('text-success');
+                                            $(userstatus).removeClass('box-success');
                                         }
                                     },
                                     complete: function() {
-                                        setTimeout(getOnline, 15000);   
+                                        setTimeout(getOnline, 15000);
                                     }
                                 });
                             })();
@@ -31,7 +30,8 @@
                 {% endfor %}
             </h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" id="msgclose"><i class="fa fa-times"></i></button>
+                <button type="button" class="btn btn-box-tool deleteconv" data-toggle="tooltip" title="{% trans "Unsubscribe From This Conversation" %}" data-room-id={{ chat.id }}><i class="fa fa-archive"></i></button>
+                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="{% trans "Close Conversation" %}" id="msgclose"><i class="fa fa-times"></i></button>
             </div>
         </div>
         {% include "messagingsystem/chats.html" %}
@@ -40,5 +40,18 @@
 <script type="text/javascript">
     $("#msgclose").click(function(event) {
         $('#msgbox').fadeOut(300, function(){ $('#msgbox').remove();});
+        $('*').popover('hide');
+    });
+    $('.deleteconv').click(function () {
+        var room_id = $(this).data('room-id');
+        $.ajax({
+            url: '{% url 'messaging:deleteroom' %}',
+            type: 'POST',
+            data: {'id': room_id},
+            success: function () {
+                $('#msgbox').fadeOut(300, function(){ $('#msgbox').remove();});
+                $('*').popover('hide');
+            }
+        }); 
     });
 </script>
