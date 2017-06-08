@@ -462,7 +462,7 @@ EKATA_TWILIO_AUTH_TOKEN = get_env_variable('EKATA_TWILIO_AUTH_TOKEN')
 EKATA_TWILIO_PHONE_NO = get_env_variable('EKATA_TWILIO_PHONE_NO')
 
 # EMAIL
-DEFAULT_FROM_EMAIL = "email.verify@ekata.social"
+DEFAULT_FROM_EMAIL = "Ekata Social <email.verify@ekata.social>"
 
 # Channel's Config
 CHANNEL_LAYERS = {
