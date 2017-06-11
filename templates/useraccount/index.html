@@ -226,7 +226,6 @@
 <script type="text/javascript" src="{% static "plugins/jquery-qrcode/jquery-qrcode.min.js" %}"></script>
 {% compress js %}
 <script type="text/javascript">
-    {% comment %}
     function getEkataUnitsInfo() {
         var url = '{% url 'myaccount:ekata_units_info' %}';
         $("#accountInfo").load(url, function () {
@@ -276,7 +275,6 @@
             }
         });
     });
-    {% endcomment %}
     $("#signupmodal").on('show.bs.modal', function(e){
         var link = '{% url 'autosignup:getform' %}?community_name=' + $(e.relatedTarget).attr('data-community-name');
         var self = $(this);
@@ -389,7 +387,6 @@
             }
         });
     });
-    {% comment %}
     $(document).on('click', '#transferconfirm', function(){
         var amount = $("#id_units").val();
         var to_user = $("#id_reciever").val();
@@ -454,7 +451,6 @@
             {% endif %}
         {% endif %}
     {% endif %}
-    {% endcomment %}
 </script>
 {% endcompress %}
 {% endblock %}
