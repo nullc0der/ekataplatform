@@ -264,3 +264,9 @@ def get_connection_data():
     rpc_connect = get_rpc_connect()
     info = rpc_connect.getinfo()
     return info['connections']
+
+
+def get_transaction_fee():
+    rpc_connect = get_rpc_connect()
+    info = rpc_connect.getinfo()
+    return info['paytxfee']

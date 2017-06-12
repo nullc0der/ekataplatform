@@ -253,10 +253,12 @@
             })
         });
     }
+    {% comment %}
     function getEkataUnitsInfo() {
         var url = '{% url 'myaccount:ekata_units_info' %}';
         $("#accountInfo").load(url);
     }
+    {% endcomment %}
     $("#ekataUnitsSubscribe").on('click', function(){
         $(this).text("Subscribing...");
         var url = '{% url 'myaccount:subscribe_ekata_units' %}';

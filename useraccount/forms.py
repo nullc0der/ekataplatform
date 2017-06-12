@@ -9,7 +9,7 @@ from django.conf import settings
 from useraccount.models import Transaction, UserAccount, \
     DistributeVerification, NextRelease, DistributionPhone
 from useraccount.utils import get_ekata_units_info, validate_address,\
-    calculate_dist_amount, get_connection_data
+    calculate_dist_amount, get_connection_data, get_transaction_fee
 
 
 class TransactionForm(forms.Form):
@@ -32,9 +32,11 @@ class TransactionForm(forms.Form):
 
     def clean_units(self):
         units = self.cleaned_data['units']
+        units += get_transaction_fee()
         account_info = get_ekata_units_info(self.request.user.username)
         if units > account_info['balance']:
-            raise forms.ValidationError(_("Amount can't exceed your balance"))
+            raise forms.ValidationError(_(
+                "Insufficient funds in account balance"))
         return units
 
     def clean_reciever(self):
