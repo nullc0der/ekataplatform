@@ -101,7 +101,7 @@ def get_ekata_units_users(request):
             if user.profile.avatar:
                 avatar_url = user.profile.avatar.thumbnail['30x30'].url
             else:
-                avatar_url = '/static/dist/img/placeholder-user.png'
+                avatar_url = '/statics/dist/img/placeholder-user.png'
             res_dict['value'] = user.username
             res_dict['image'] = avatar_url
             res.append(res_dict)
