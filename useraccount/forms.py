@@ -32,7 +32,7 @@ class TransactionForm(forms.Form):
 
     def clean_units(self):
         units = self.cleaned_data['units']
-        units += get_transaction_fee()
+        units += float(get_transaction_fee())
         account_info = get_ekata_units_info(self.request.user.username)
         if units > account_info['balance']:
             raise forms.ValidationError(_(
