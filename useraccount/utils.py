@@ -24,7 +24,7 @@ def get_rpc_connect():
             settings.BITCOIND_RPC_USERNAME,
             settings.BITCOIND_RPC_PASSWORD,
             settings.BITCOIND_RPC_URL
-        )
+        ), timeout=100
     )
     return rpc_connect
 
