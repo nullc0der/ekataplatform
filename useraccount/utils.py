@@ -24,7 +24,7 @@ def get_rpc_connect():
             settings.BITCOIND_RPC_USERNAME,
             settings.BITCOIND_RPC_PASSWORD,
             settings.BITCOIND_RPC_URL
-        ), timeout=100
+        )
     )
     return rpc_connect
 
@@ -132,7 +132,7 @@ def send_distribute_phone_verfication(phone_no, code):
         + code + '\nvalid for 120 sec'
     )
 
-
+"""
 def dist_ekata_units(amount):
     amount = float(amount)
     try:
@@ -146,7 +146,7 @@ def dist_ekata_units(amount):
         is_on_distribution=True,
         status='approved'
     )
-    log_name = now().strftime("%Y-%m-%d-%H:%I") + '.log'
+    log_name = now().strftime("%Y-%m-%d-%H-%I") + '.log'
     f = open(
         settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
     )
@@ -206,6 +206,78 @@ def dist_ekata_units(amount):
             f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username + " Reason: Total amount is lower than 0.01")
     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution')
     f.write('\n{}: Total Amount Distributed With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
+    f.close()
+    admindist.end_time = now()
+    admindist.no_of_accout = no_of_accout
+    admindist.total_amount = total_amount_with_bonus
+    admindist.log_file_path = log_name
+    admindist.save()
+    send_sms(
+        phone_no=d_phone.phone_number,
+        body='Distribution finished at: {}'.format(now())
+    )
+    return True
+"""
+
+def dist_ekata_units(amount):
+    send_amount_and_addresses = {}
+    amount = float(amount)
+    try:
+        d_phone = DistributionPhone.objects.latest()
+    except:
+        d_phone = None
+    rpc_connect = get_rpc_connect()
+    setup_logger(
+        os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
+    dist_accounts = CommunitySignup.objects.filter(
+        is_on_distribution=True,
+        status='approved'
+    )
+    log_name = now().strftime("%Y-%m-%d-%H-%I") + '.log'
+    f = open(
+        settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
+    )
+    f.write(now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distribution task started')
+    admindist = AdminDistribution()
+    admindist.amount_per_user = amount
+    no_of_accout = dist_accounts.count()
+    total_amount = amount * no_of_accout
+    total_amount_with_bonus = 0
+    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Account: ' + str(no_of_accout))
+    referrers, referrals = calculate_referral_and_referrers()
+    for account in dist_accounts:
+        send_amount = amount
+        if account.user in referrals:
+            referral_bonus_amount = 0.5 * (total_amount/no_of_accout)
+            send_amount += referral_bonus_amount
+            f.write(
+                '\n{}: Added {:.6f} Referral Bonus to {}'.format(
+                    now().strftime("%Y-%m-%d %H:%I"), referral_bonus_amount, account.user.username
+                )
+            )
+        if account.user in referrers:
+            referrer_bonus_amount = referrers[account.user] * (total_amount/no_of_accout)
+            send_amount += referrer_bonus_amount
+            f.write(
+                '\n{}: Added {:.6f} Referrer Bonus to {}'.format(
+                    now().strftime("%Y-%m-%d %H:%I"), referrer_bonus_amount, account.user.username
+                )
+            )
+        if send_amount > 0.01:
+            if account.wallet_address:
+                send_amount_and_addresses[account.wallet_address] = send_amount
+                # total_amount_with_bonus += send_amount
+            else:
+                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username + "Doesn't have wallet address")
+        else:
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username + " Reason: Total amount is lower than 0.01")
+    try:
+        rpc_connect.sendmany("", send_amount_and_addresses)
+    except JSONRPCException as e:
+        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution')
+        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ":" + ' Original error message:' + e.message)
+    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution Task')
+    # f.write('\n{}: Total Amount Distributed With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
     f.close()
     admindist.end_time = now()
     admindist.no_of_accout = no_of_accout
