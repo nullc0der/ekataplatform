@@ -266,7 +266,10 @@ def dist_ekata_units(amount):
         if send_amount > 0.01:
             if account.wallet_address:
                 send_amount_and_addresses[account.wallet_address] = send_amount
-                # total_amount_with_bonus += send_amount
+                total_amount_with_bonus += send_amount
+                f.write('\n{}: {:.6f} Added to distribute for Ekata ID {} Username {}'.format(
+                    now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username
+                ))
             else:
                 f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username + "Doesn't have wallet address")
         else:
