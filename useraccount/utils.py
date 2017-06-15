@@ -252,7 +252,7 @@ def dist_ekata_units(amount):
             send_amount += referral_bonus_amount
             f.write(
                 '\n{}: Added {:.6f} Referral Bonus to {}'.format(
-                    now().strftime("%Y-%m-%d %H:%I"), referral_bonus_amount, account.user.username
+                    now().strftime("%Y-%m-%d %H:%I"), referral_bonus_amount, account.user.username.encode('utf-8')
                 )
             )
         if account.user in referrers:
@@ -260,7 +260,7 @@ def dist_ekata_units(amount):
             send_amount += referrer_bonus_amount
             f.write(
                 '\n{}: Added {:.6f} Referrer Bonus to {}'.format(
-                    now().strftime("%Y-%m-%d %H:%I"), referrer_bonus_amount, account.user.username
+                    now().strftime("%Y-%m-%d %H:%I"), referrer_bonus_amount, account.user.username.encode('utf-8')
                 )
             )
         if send_amount > 0.01:
@@ -268,12 +268,12 @@ def dist_ekata_units(amount):
                 send_amount_and_addresses[account.wallet_address] = send_amount
                 total_amount_with_bonus += send_amount
                 f.write('\n{}: {:.6f} Added to distribute for Ekata ID {} Username {}'.format(
-                    now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username
+                    now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username.encode('utf-8')
                 ))
             else:
-                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username + "Doesn't have wallet address")
+                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username.encode('utf-8') + "Doesn't have wallet address")
         else:
-            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username + " Reason: Total amount is lower than 0.01")
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
     try:
         rpc_connect.sendmany("", send_amount_and_addresses)
     except JSONRPCException as e:
