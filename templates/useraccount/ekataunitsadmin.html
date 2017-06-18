@@ -150,6 +150,7 @@
                     {% endif %}
                 </div>
             </div>
+            {% comment %}
             <div class="box box-solid">
                 <div class="box-body">
                     <div class="widget-box text-center">
@@ -158,6 +159,22 @@
                     <div class="widget-box">
                         <div class="widget-box-text" id="distributephoneformcontainer">
                             {% include "useraccount/distributephoneform.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endcomment %}
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="widget-box text-center">
+                        <h4 class="widget-box-title">{% trans "Calculate Distribution" %}</h4>
+                    </div>
+                    <div class="widget-box">
+                        <div class="widget-box-text">
+                            <input class="form-control" type="text" name="amount" value="" placeholder="Enter distribution amount" id="distamount" style="margin-bottom: 10px">
+                            <button type="button" class="btn btn-success btn-block" id="calculatebtn">
+                              {% trans "Calculate" %}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -172,21 +189,6 @@
                     <div class="widget-box">
                         <div class="widget-box-text" id="distributeformcontainer">
                             {% include "useraccount/distributeform.html" %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box box-solid">
-                <div class="box-body">
-                    <div class="widget-box text-center">
-                        <h4 class="widget-box-title">{% trans "Calculate Distribution" %}</h4>
-                    </div>
-                    <div class="widget-box">
-                        <div class="widget-box-text">
-                            <input class="form-control" type="text" name="amount" value="" placeholder="Enter distribution amount" id="distamount" style="margin-bottom: 10px">
-                            <button type="button" class="btn btn-success btn-block" id="calculatebtn">
-                              {% trans "Calculate" %}
-                            </button>
                         </div>
                     </div>
                 </div>

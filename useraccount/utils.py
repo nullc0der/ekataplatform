@@ -222,10 +222,12 @@ def dist_ekata_units(amount):
 def dist_ekata_units(amount):
     send_amount_and_addresses = {}
     amount = float(amount)
+    """
     try:
         d_phone = DistributionPhone.objects.latest()
     except:
         d_phone = None
+    """
     rpc_connect = get_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
@@ -288,7 +290,7 @@ def dist_ekata_units(amount):
     admindist.log_file_path = log_name
     admindist.save()
     send_sms(
-        phone_no=d_phone.phone_number,
+        phone_no=settings.EKATA_UNITS_VERIFY_NO,
         body='Distribution finished at: {}'.format(now())
     )
     return True
