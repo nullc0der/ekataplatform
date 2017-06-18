@@ -148,10 +148,12 @@ def ekata_units_admin(request):
         next_release = NextRelease.objects.latest()
     except:
         next_release = None
+    """
     try:
         d_phone = DistributionPhone.objects.latest()
     except:
         d_phone = None
+    """
     if not units_info:
         variables = {
             'message': "Something is wrong!! Try again later"
@@ -163,7 +165,7 @@ def ekata_units_admin(request):
         variables['nrform'] = NextReleaseForm(instance=next_release)
         variables['lastdistributions'] = lastdistributions
         variables['next_release'] = next_release
-        variables['dpform'] = DistributionPhoneForm(instance=d_phone)
+        # variables['dpform'] = DistributionPhoneForm(instance=d_phone)
         variables['referrals'] = len(referrals)
         variables['referrers'] = len(referrers)
         variables['sform'] = SingleDistributionForm()
@@ -178,10 +180,12 @@ def ekata_units_admin(request):
 @user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
 @require_POST
 def distribute_ekata_units(request):
+    """
     try:
         d_phone = DistributionPhone.objects.latest()
     except:
         d_phone = None
+    """
     form = DistributionForm(request.POST)
     if form.is_valid():
         code = get_random_string(length=8, allowed_chars='0123456789')
@@ -191,7 +195,7 @@ def distribute_ekata_units(request):
         )
         distcode.save()
         task_send_distribute_phone_verfication.delay(
-            d_phone.phone_number, distcode.code)
+            settings.EKATA_UNITS_VERIFY_NO, distcode.code)
         vform = CodeVerificationForm(
             initial={'amount': form.cleaned_data['amount']})
         return render(
@@ -199,7 +203,7 @@ def distribute_ekata_units(request):
             'useraccount/verificationform.html',
             {
                 'form': vform,
-                'phone_no': d_phone.phone_number
+                'phone_no': settings.EKATA_UNITS_VERIFY_NO
             }
         )
     return render(
