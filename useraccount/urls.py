@@ -22,8 +22,8 @@ urlpatterns = [
         views.get_ekata_units_users, name='get_ekata_units_users'),
     url(r'^transfer_ekata_units/$',
         views.transfer_ekata_units, name='transfer_ekata_units'),
-    url(r'set_distribution_phone/$',
-        views.set_distribution_phone, name='set_distribution_phone'),
+#    url(r'set_distribution_phone/$',
+#        views.set_distribution_phone, name='set_distribution_phone'),
     url(
         r'remove_codes/$',
         views.remove_codes, name='remove_codes'),
