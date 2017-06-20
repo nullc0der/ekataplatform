@@ -1,9 +1,20 @@
 {% extends "account/base.html" %}
 {% load i18n %}
-{% load bootstrap_tags %}
+{% load bootstrap_tags recaptcha2 %}
 {% load socialaccount %}
 {% block head_title %}
     Signup
+{% endblock %}
+{% block extra_head %}
+  {% recaptcha_init %}
+  <style media="screen">
+    #div_id_captcha div:first-of-type {
+      text-align: center;
+    }
+    .g-recaptcha {
+        display: inline-block;
+    }
+  </style>
 {% endblock %}
 {% block content %}
 <p class="login-box-msg">{% trans "Register a new membership" %}</p>
@@ -39,7 +50,7 @@
                 location.href = $('input[name="next"]').val();
             }
             else {
-                location.href = '/';
+                location.href = '/dashboard/';
             }
         },
         error: function(data, textStatus, jqXHR) {
