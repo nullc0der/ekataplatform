@@ -68,3 +68,5 @@ CHANNEL_LAYERS = {
 }
 
 DBBACKUP_STORAGE_OPTIONS = {'location': '/code/ekatabackups'}
+
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'

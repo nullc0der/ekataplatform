@@ -187,9 +187,10 @@ LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = "/dashboard/"
 SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+ACCOUNT_SIGNUP_FORM_CLASS = 'profilesystem.forms.SignupExtensionForm'
 if EKATA_SITE_TYPE == 'beta':
     ACCOUNT_ADAPTER = 'profilesystem.adapter.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'profilesystem.adapter.SocialAccountAdapter'
