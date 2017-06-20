@@ -4,6 +4,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from snowpenguin.django.recaptcha2.fields import ReCaptchaField
+from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 from .models import UserProfile, UserAddress, UserPhone
 
 
@@ -72,3 +74,11 @@ class AddressForm(forms.ModelForm):
             'state',
             'country',
         ]
+
+
+class SignupExtensionForm(forms.Form):
+    captcha = ReCaptchaField(widget=ReCaptchaWidget())
+    field_order = ['username', 'email', 'password1', 'password2', 'captcha']
+
+    def signup(self, request, user):
+        user.save()
