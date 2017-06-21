@@ -190,6 +190,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'profilesystem.forms.SignupExtensionForm'
 if EKATA_SITE_TYPE == 'beta':
     ACCOUNT_ADAPTER = 'profilesystem.adapter.AccountAdapter'
