@@ -684,7 +684,7 @@ def delete_comment(request, group_id, comment_id):
 
 
 @login_required
-@permission_required_or_403('can_edit_group_profile', (BasicGroup, 'id', 'group_id'))
+# @permission_required_or_403('can_edit_group_profile', (BasicGroup, 'id', 'group_id'))
 def group_admin_settings_page(request, group_id):
     basicgroup = BasicGroup.objects.get(id=group_id)
     request.session['basicgroup'] = basicgroup.id
