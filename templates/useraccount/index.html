@@ -95,7 +95,7 @@
                                     <h4>{% trans "Ekata Units" %}</h4>
                                 </div>
                                 <div class="community-actions">
-                                    <a href="#" class="btn btn-block btn-flat btn-default">{% trans "Subscribed" %}</a>
+                                    <a href="#" data-toggle="modal" data-target="#ekataUnits" class="btn btn-block btn-flat btn-default">{% trans "Subscribed" %}</a>
                                     {% comment %}
                                     {% if communitysignup %}
                                         {% if communitysignup.data_collect_done %}
@@ -216,6 +216,19 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "No" %}</button>
           <button type="button" class="btn btn-primary" id="transfersubmit">{% trans "Yes" %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ekataUnits" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">{% trans "Ekata Units" %}</h4>
+        </div>
+        <div class="modal-body">
+          <h4>{% trans "Ekata Units coming soon, account under maintenance" %}</h4>
         </div>
       </div>
     </div>
