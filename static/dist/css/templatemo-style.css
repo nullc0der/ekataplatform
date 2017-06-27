@@ -644,7 +644,7 @@ img
     text-decoration: none;
 }
 
-#contact .link-wrapper a:hover {
+#contact .link-wrapper:not(.socials) a:hover {
     color: #828688;
     text-decoration: underline;
 }
