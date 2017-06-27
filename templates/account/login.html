@@ -34,4 +34,6 @@
 <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 <br />
 <a href="{{ signup_url }}" class="text-center">{% trans "Register a new membership" %}</a>
+<br />
+<a href="{% url 'landing:index' %}#contactrequest">{% trans "Difficulty with login, please send us a message" %}</a>
 {% endblock %}
