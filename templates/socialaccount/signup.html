@@ -1,8 +1,19 @@
 {% extends "account/base.html" %}
 {% load i18n %}
-{% load bootstrap_tags %}
+{% load bootstrap_tags recaptcha2 %}
 {% block head_title %}
     Signup
+{% endblock %}
+{% block extra_head %}
+  {% recaptcha_init %}
+  <style media="screen">
+    #div_id_captcha div:first-of-type {
+      text-align: center;
+    }
+    .g-recaptcha {
+        display: inline-block;
+    }
+  </style>
 {% endblock %}
 {% block content %}
 <h1 class="login-box-msg">{% trans "Register a new membership" %}</h1>
