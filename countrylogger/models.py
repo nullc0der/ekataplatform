@@ -11,4 +11,4 @@ class UserCountry(models.Model):
     users = models.ManyToManyField(User)
 
     def __unicode__(self):
-        return self.name
+        return self.name or ''
