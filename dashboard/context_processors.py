@@ -17,7 +17,6 @@ COMMUNITY = [
     reverse('g:allgroups')[3:],
     reverse('g:joinedgroups')[3:],
     reverse('g:subscribedgroups')[3:],
-    reverse('information:index')[3:],
     reverse('information:contact')[3:],
     reverse('crowdfunding:index')[3:],
     reverse('crowdfunding:crowdfund_admin')[3:],
@@ -26,6 +25,11 @@ COMMUNITY = [
     reverse('eblast:emailcampaign_page')[3:],
     reverse('backupsystem:index')[3:],
 ]
+
+if settings.EKATA_SITE_TYPE == 'beta':
+    COMMUNITY += [
+        reverse('information:index')[3:],
+    ]
 
 APPS = [
     reverse('hashtag:index')[3:],
