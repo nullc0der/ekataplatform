@@ -114,7 +114,7 @@
 							<a href="{% url 'messaging:index' %}">{% trans "Messages" %}</a>
 						</li>
 						{% endif %}
-						{% ifequal 'SITE_TYPE' 'beta' %}
+						{% ifequal SITE_TYPE 'beta' %}
 						{% if request.user.profile.information_link_visible %}
 						<li><a href="{% url 'information:index' %}">{% trans "information" %}</a></li>
 						{% endif %}
