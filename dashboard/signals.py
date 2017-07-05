@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 
 from allauth.account.signals import user_signed_up, user_logged_in
 from dashboard.models import ActiveMemberCount, NewMemberCount,\
-    TotalMemberCount, TotalMessageCount
+    TotalMemberCount
 from eblast.models import EmailGroup
 from messagingsystem.models import Message
 
@@ -39,12 +39,3 @@ def add_member_to_emailgroup(request, user, **kwargs):
     if len(emailgroup):
         emailgroup = emailgroup[0]
         emailgroup.users.add(user)
-
-
-@receiver(post_save, sender=Message)
-def add_total_message(sender, instance, **kwargs):
-    totalmessagecount, created = TotalMessageCount.objects.get_or_create(
-        date=now().date()
-    )
-    totalmessagecount.count += 1
-    totalmessagecount.save()
