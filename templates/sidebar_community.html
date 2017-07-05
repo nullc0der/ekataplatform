@@ -14,7 +14,11 @@
         <li class="{% active request 'g:subscribedgroups' %}"><a href="{% url 'g:subscribedgroups' %}"><i class="fa fa-circle-o"></i>{% trans "Subscribed Groups" %}</a></li>
     </ul>
 </li>
-<li class="treeview mainnavcontent {% active request 'information:index' %} {% active request 'information:contact' %}">
+{% ifequal SITE_TYPE 'beta' %}
+  <li class="treeview mainnavcontent {% active request 'information:index' %} {% active request 'information:contact' %}">
+{% else %}
+  <li class="treeview mainnavcontent {% active request 'information:contact' %}">
+{% endifequal %}
     <a href="#">
         <i class="fa fa-info-circle"></i>
         <span>{% trans "Information" %}</span>
@@ -23,7 +27,9 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li class="{% active request 'information:index' %}"><a href="{% url 'information:index' %}"><i class="fa fa-circle-o"></i>{% trans "About Our System" %}</a></li>
+        {% ifequal SITE_TYPE 'beta' %}
+          <li class="{% active request 'information:index' %}"><a href="{% url 'information:index' %}"><i class="fa fa-circle-o"></i>{% trans "About Our System" %}</a></li>
+        {% endifequal %}
         <li class="{% active request 'information:contact' %}"><a href="{% url 'information:contact' %}"><i class="fa fa-circle-o"></i>{% trans "Contact Details" %}</a></li>
     </ul>
 </li>
