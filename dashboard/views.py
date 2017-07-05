@@ -12,7 +12,7 @@ from django.utils.crypto import get_random_string
 from profilesystem.models import UserCompletionRing
 from publicusers.models import Connection
 from dashboard.models import ActiveMemberCount, NewMemberCount,\
-    TotalMemberCount
+    TotalMemberCount, TotalMessageCount
 from useraccount.models import NextRelease
 # Create your views here.
 
@@ -52,22 +52,27 @@ def dashboard_page(request):
     unread_messages_count = request.user.recieved_messages.filter(
         read=False
     ).count()
-    activemembercounts = ActiveMemberCount.objects.filter(
-        date__lte=datetime.datetime.today(),
-        date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
-    ).order_by('date')
-    newmembercounts = NewMemberCount.objects.filter(
-        date__lte=datetime.datetime.today(),
-        date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
-    ).order_by('date')
-    totalmembercounts = TotalMemberCount.objects.filter(
-        date__lte=datetime.datetime.today(),
-        date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
-    ).order_by('date')
     try:
         next_release = NextRelease.objects.latest()
     except:
         next_release = None
+    if request.user.is_staff:
+        activemembercounts = ActiveMemberCount.objects.filter(
+            date__lte=datetime.datetime.today(),
+            date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
+        ).order_by('date')
+        newmembercounts = NewMemberCount.objects.filter(
+            date__lte=datetime.datetime.today(),
+            date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
+        ).order_by('date')
+        totalmembercounts = TotalMemberCount.objects.filter(
+            date__lte=datetime.datetime.today(),
+            date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
+        ).order_by('date')
+        totalmessagecounts = TotalMessageCount.objects.filter(
+            date__lte=datetime.datetime.today(),
+            date__gt=datetime.datetime.today() - datetime.timedelta(days=30)
+        ).order_by('date')
     variables = {
         'completed': int(completed_percent),
         'completed_list': completed_list,
@@ -84,11 +89,15 @@ def dashboard_page(request):
         'total_conn': total_conn,
         'no_connection': no_connection,
         'unread_messages_count': unread_messages_count,
-        'activemembercounts': activemembercounts,
-        'newmembercounts': newmembercounts,
-        'totalmembercounts': totalmembercounts,
         'next_release': next_release
     }
+    if request.user.is_staff:
+        variables.update({
+            'activemembercounts': activemembercounts,
+            'newmembercounts': newmembercounts,
+            'totalmembercounts': totalmembercounts,
+            'totalmessagecounts': totalmessagecounts
+        })
     return render(request, 'dashboard/dashboard.html', context=variables)
 
 
@@ -161,6 +170,18 @@ def download_member_stats(request):
             row['count'] = totalmembercount.count
             writer.writerow(row)
         download_filename = 'total_member_stats'
+    if stat_type == 'total_message':
+        totalmessagecounts = TotalMessageCount.objects.all().order_by('date')
+        for totalmessagecount in totalmessagecounts:
+            row = {}
+            row['date'] = "{0}/{1}/{2}".format(
+                totalmessagecount.date.month,
+                totalmessagecount.date.day,
+                totalmessagecount.date.year
+            )
+            row['count'] = totalmessagecount.count
+            writer.writerow(row)
+        download_filename = 'messenger_activity'
     f.close()
     f = open(filename)
     csv_data = f.read()

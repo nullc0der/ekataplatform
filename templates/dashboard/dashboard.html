@@ -253,6 +253,19 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans "Messenger Activity" %}</h3>
+                    <div class="box-tools pull-right">
+                        <a href="{% url 'dashboard:download_member_stats' %}?stat=total_message" class="btn btn-box-tool"><i class="fa fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <canvas id="totalMessageChart" style="height:230px"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
     {% endif %}
     <nav class="float-nav closed">
@@ -721,6 +734,24 @@
       datasetFill: false
     };
     totalMemberChart.Line(totalMemberChartData, totalMemberChartOptions);
+    var totalMessageChartCanvas = $("#totalMessageChart").get(0).getContext("2d");
+    var totalMessageChart = new Chart(totalMessageChartCanvas);
+    var totalMessageChartData = {
+      labels: [{% for totalmessagecount in totalmessagecounts %} "{{ totalmessagecount.date | date:"m/d/Y" }}", {% endfor %}],
+      datasets: [
+        {
+          label: "Messenger Activity",
+          fillColor: "rgba(0, 166, 90, 1)",
+          strokeColor: "rgba(0, 166, 90, 1)",
+          pointColor: "rgba(0, 166, 90, 1)",
+          pointStrokeColor: "#c1c7d1",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: [{% for totalmessagecount in totalmessagecounts %} {{ totalmessagecount.count }}, {% endfor %}]
+        }
+      ]
+    };
+    totalMessageChart.Bar(totalMessageChartData, newMemberChartOptions);
     {% endif %}
 </script>
 {% endcompress %}
