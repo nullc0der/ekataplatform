@@ -7,10 +7,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
+from django.utils.timezone import now
 
 from channels import Group
 
 from messagingsystem.models import ChatRoom, Message
+from dashboard.models import TotalMessageCount
 
 # Create your views here.
 
@@ -179,6 +181,11 @@ def send_message(request, chat_id):
                 if user != request.user:
                     message.to_user = user
         message.save()
+        totalmessagecount, created = TotalMessageCount.objects.get_or_create(
+            date=now().date()
+        )
+        totalmessagecount.count += 1
+        totalmessagecount.save()
         if otherusers:
             template = loader.get_template(
                 'messagingsystem/singlemessage_reciever.html'
