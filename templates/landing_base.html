@@ -151,7 +151,9 @@
 										<li><a href="{% url 'g:allgroups' %}">{% trans "Groups" %}</a></li>
 										<li><a href="{% url 'usertimeline:index' %}">{% trans "Timeline" %}</a></li>
 										<li><a href="{% url 'messaging:index' %}">{% trans "Messages" %}</a></li>
+										{% ifequal SITE_TYPE 'beta' %}
 										<li><a href="{% url 'information:index' %}">{% trans "information" %}</a></li>
+										{% endifequal %}
 										<li><a href="{% url 'hashtag:index' %}">{% trans "Create Hashtag" %}</a></li>
 										<li><a href="{% url 'disclaimer' %}">{% trans "Disclaimer" %}</a></li>
 										<li><a href="{% url 'landing:newses' %}">{% trans "News" %}</a></li>
