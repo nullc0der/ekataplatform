@@ -38,3 +38,11 @@ class TotalMemberCount(models.Model):
 
     def __unicode__(self):
         return "%s/%s/%s" % (self.date.day, self.date.month, self.date.year)
+
+
+class TotalMessageCount(models.Model):
+    count = models.IntegerField(default=0)
+    date = models.DateField()
+
+    def __unicode__(self):
+        return "%s/%s/%s" % (self.date.day, self.date.month, self.date.year)
