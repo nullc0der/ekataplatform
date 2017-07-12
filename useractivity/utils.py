@@ -81,7 +81,7 @@ def check_users():
         for user in active_users:
             if not user.communitysignups.all():
                 if user.last_login:
-                    if user.last_login + timedelta(seconds=60 * 10) <= now() and not hasattr(user, 'flaggedaccount'):
+                    if user.last_login + timedelta(days=120) <= now() and not hasattr(user, 'flaggedaccount'):
                         create_flaggedaccount(user)
                         send_email(user, 1)
                         total_flagged_accounts += 1
@@ -98,13 +98,13 @@ def check_users():
 def check_flagged_accounts():
     for flaggedaccount in FlaggedAccount.objects.all():
         if flaggedaccount.second_notice_sent_on:
-            if flaggedaccount.second_notice_sent_on + timedelta(seconds=60 * 2) <= now() and not flaggedaccount.third_notice_sent_on:
+            if flaggedaccount.second_notice_sent_on + timedelta(days=3) <= now() and not flaggedaccount.third_notice_sent_on:
                 send_email(flaggedaccount.user, 3)
                 flaggedaccount.third_notice_sent_on = now()
                 flaggedaccount.user_inactive = True
                 flaggedaccount.save()
         if flaggedaccount.first_notice_sent_on:
-            if flaggedaccount.first_notice_sent_on + timedelta(seconds=60 * 3) <= now() and not flaggedaccount.second_notice_sent_on:
+            if flaggedaccount.first_notice_sent_on + timedelta(days=27) <= now() and not flaggedaccount.second_notice_sent_on:
                 send_email(flaggedaccount.user, 2)
                 flaggedaccount.second_notice_sent_on = now()
                 flaggedaccount.save()
