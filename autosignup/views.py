@@ -3,6 +3,7 @@ import json
 import csv
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.shortcuts import render
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import User
@@ -723,12 +724,11 @@ def filter_signup(request):
 @login_required
 def search_signup(request):
     sfilter = request.GET.get('sfilter')
-    username = request.GET.get('username')
-    signups = CommunitySignup.objects.filter(
-        community='grantcoin',
-        status=sfilter,
-        user__username__icontains=username
-    )
+    query = request.GET.get('query')
+    q = Q(community='grantcoin') \
+        & Q(status=sfilter) & Q(user__username__icontains=query) \
+        | Q(user__email__iexact=query)
+    signups = CommunitySignup.objects.filter(q)
     return render(
         request,
         'autosignup/sfilter.html',
