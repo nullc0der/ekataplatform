@@ -104,7 +104,8 @@ EKATA_APPS = [
     'crowdfunding',
     'translation',
     'countrylogger',
-    'backupsystem'
+    'backupsystem',
+    'useractivity'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTIES_APPS + EKATA_APPS
@@ -499,3 +500,7 @@ MINIMUM_CONN_NEEDED = 2
 # DBBackup Settings
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': '/opt/ekatabackups'}
+
+# Useractivity Settings
+# This value is used to turn on or off entire service
+USERACTIVITY_SERVICE_ACTIVE = True
