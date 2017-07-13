@@ -724,11 +724,12 @@ def filter_signup(request):
 @login_required
 def search_signup(request):
     sfilter = request.GET.get('sfilter')
+    signups = CommunitySignup.objects.filter(
+        community='grantcoin', status=sfilter)
     query = request.GET.get('query')
-    q = Q(community='grantcoin') \
-        & Q(status=sfilter) & Q(user__username__icontains=query) \
-        | Q(user__email__iexact=query)
-    signups = CommunitySignup.objects.filter(q)
+    q = Q(user__username__icontains=query) | Q(useremail__iexact=query) \
+        | Q(userphone__iexact=query)
+    signups = signups.filter(q)
     return render(
         request,
         'autosignup/sfilter.html',
