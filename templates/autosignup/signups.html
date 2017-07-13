@@ -252,7 +252,7 @@
             var query = $(this).val();
             var sfilter = $('#sfilter').val();
             if (query.length > 1) {
-                $("#signupboxbody").load('{% url 'autosignup:search_signup' %}?sfilter=' + sfilter + '&query=' + query);
+                $("#signupboxbody").load('{% url 'autosignup:search_signup' %}?sfilter=' + sfilter + '&query=' + encodeURIComponent(query));
             }
             else {
                 $("#signupboxbody").load('{% url 'autosignup:filter_signup' %}?sfilter=' + sfilter);
