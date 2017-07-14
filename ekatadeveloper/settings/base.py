@@ -503,4 +503,4 @@ DBBACKUP_STORAGE_OPTIONS = {'location': '/opt/ekatabackups'}
 
 # Useractivity Settings
 # This value is used to turn on or off entire service
-USERACTIVITY_SERVICE_ACTIVE = True
+USERACTIVITY_SERVICE_ACTIVE = True if not EKATA_SITE_TYPE == 'beta' else False
