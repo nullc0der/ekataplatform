@@ -60,7 +60,8 @@ def subscribe_ekata_units(request):
 def ekata_units_info(request):
     try:
         community_signup = CommunitySignup.objects.get(user=request.user)
-        units_info = get_ekata_units_info(request.user.username)
+        units_info = get_ekata_units_info(
+            community_signup.user.useraccount.wallet_accont_name)
         if not units_info:
             variables = {
                 'message': "Something went wrong!! Try again later"
