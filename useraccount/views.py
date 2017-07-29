@@ -113,10 +113,12 @@ def get_ekata_units_users(request):
 @login_required
 def transfer_ekata_units(request):
     form = TransactionForm(request, request.POST)
+    sender = request.user
+    reciever = User.objects.get(username=form.cleaned_data.get('reciever'))
     if form.is_valid():
         res = send_ekata_units(
-            from_user=request.user.username,
-            to_user=form.cleaned_data.get('reciever'),
+            from_user=sender.useraccount.wallet_accont_name,
+            to_user=reciever.useraccount.wallet_accont_name,
             amount=form.cleaned_data.get('units')
         )
         if res:
