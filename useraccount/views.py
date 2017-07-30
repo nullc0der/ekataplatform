@@ -60,7 +60,8 @@ def subscribe_ekata_units(request):
 def ekata_units_info(request):
     try:
         community_signup = CommunitySignup.objects.get(user=request.user)
-        units_info = get_ekata_units_info(request.user.username)
+        units_info = get_ekata_units_info(
+            community_signup.user.useraccount.wallet_accont_name)
         if not units_info:
             variables = {
                 'message': "Something went wrong!! Try again later"
@@ -113,9 +114,16 @@ def get_ekata_units_users(request):
 def transfer_ekata_units(request):
     form = TransactionForm(request, request.POST)
     if form.is_valid():
+        sender = request.user
+        try:
+            reciever = User.objects.get(
+                username=form.cleaned_data.get('reciever'))
+            reciever = reciever.useraccount.wallet_accont_name
+        except ObjectDoesNotExist:
+            reciever = form.cleaned_data.get('reciever')
         res = send_ekata_units(
-            from_user=request.user.username,
-            to_user=form.cleaned_data.get('reciever'),
+            from_user=sender.useraccount.wallet_accont_name,
+            to_user=reciever,
             amount=form.cleaned_data.get('units')
         )
         if res:

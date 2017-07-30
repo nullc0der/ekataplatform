@@ -92,20 +92,23 @@ def check_users():
                         total_flagged_accounts += 1
         return "Processed total flagged accounts %s" % total_flagged_accounts
     else:
-        return "Service is not active, exiting.."
+        return "Service is not active"
 
 
 def check_flagged_accounts():
-    for flaggedaccount in FlaggedAccount.objects.all():
-        if flaggedaccount.second_notice_sent_on:
-            if flaggedaccount.second_notice_sent_on + timedelta(days=3) <= now() and not flaggedaccount.third_notice_sent_on:
-                send_email(flaggedaccount.user, 3)
-                flaggedaccount.third_notice_sent_on = now()
-                flaggedaccount.user_inactive = True
-                flaggedaccount.save()
-        if flaggedaccount.first_notice_sent_on:
-            if flaggedaccount.first_notice_sent_on + timedelta(days=27) <= now() and not flaggedaccount.second_notice_sent_on:
-                send_email(flaggedaccount.user, 2)
-                flaggedaccount.second_notice_sent_on = now()
-                flaggedaccount.save()
-    return True
+    if settings.USERACTIVITY_SERVICE_ACTIVE:
+        for flaggedaccount in FlaggedAccount.objects.all():
+            if flaggedaccount.second_notice_sent_on:
+                if flaggedaccount.second_notice_sent_on + timedelta(days=3) <= now() and not flaggedaccount.third_notice_sent_on:
+                    send_email(flaggedaccount.user, 3)
+                    flaggedaccount.third_notice_sent_on = now()
+                    flaggedaccount.user_inactive = True
+                    flaggedaccount.save()
+            if flaggedaccount.first_notice_sent_on:
+                if flaggedaccount.first_notice_sent_on + timedelta(days=27) <= now() and not flaggedaccount.second_notice_sent_on:
+                    send_email(flaggedaccount.user, 2)
+                    flaggedaccount.second_notice_sent_on = now()
+                    flaggedaccount.save()
+        return True
+    else:
+        return "Service is not active"

@@ -33,7 +33,8 @@ class TransactionForm(forms.Form):
     def clean_units(self):
         units = self.cleaned_data['units']
         units += float(get_transaction_fee())
-        account_info = get_ekata_units_info(self.request.user.username)
+        account_info = get_ekata_units_info(
+            self.request.user.useraccount.wallet_accont_name)
         if units > account_info['balance']:
             raise forms.ValidationError(_(
                 "Insufficient funds in account balance"))

@@ -410,6 +410,7 @@ def add_member_from_csv(accountprovidercsv, fetch_twilio=False):
                     signup.is_on_distribution = True
                 if invitation:
                     signup.invitation = invitation
+                signup.data_collect_done = True  # Test: Upload a csv
                 signup.save()
                 add_user_to_group(signup.user)
                 if membercsv['referral_code']:
