@@ -86,7 +86,7 @@ def get_ekata_units_info(account_name, daemon='main'):
     if daemon == 'main':
         rpc_connect = get_rpc_connect()
     if daemon == 'distribution':
-        distribution_rpc_connect = get_distribution_rpc_connect()
+        rpc_connect = get_distribution_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/getinfo.log')
     try:
