@@ -29,6 +29,17 @@ def get_rpc_connect():
     return rpc_connect
 
 
+def get_distribution_rpc_connect():
+    distribution_rpc_connect = AuthServiceProxy(
+        "http://{0}:{1}@{2}".format(
+            settings.BITCOIND_DISTRIBUTION_RPC_USERNAME,
+            settings.BITCOIND_DISTRIBUTION_RPC_PASSWORD,
+            settings.BITCOIND_DISTRIBUTION_RPC_URL
+        )
+    )
+    return distribution_rpc_connect
+
+
 def setup_logger(log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)
     handler.setFormatter(formatter)
@@ -71,8 +82,11 @@ def request_new_address(account_name):
         return False
 
 
-def get_ekata_units_info(account_name):
-    rpc_connect = get_rpc_connect()
+def get_ekata_units_info(account_name, daemon='main'):
+    if daemon == 'main':
+        rpc_connect = get_rpc_connect()
+    if daemon == 'distribution':
+        distribution_rpc_connect = get_distribution_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/getinfo.log')
     try:
@@ -219,6 +233,7 @@ def dist_ekata_units(amount):
     return True
 """
 
+
 def dist_ekata_units(amount):
     send_amount_and_addresses = {}
     amount = float(amount)
@@ -228,7 +243,7 @@ def dist_ekata_units(amount):
     except:
         d_phone = None
     """
-    rpc_connect = get_rpc_connect()
+    distribution_rpc_connect = get_distribution_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
     dist_accounts = CommunitySignup.objects.filter(
@@ -277,7 +292,7 @@ def dist_ekata_units(amount):
         else:
             f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
     try:
-        rpc_connect.sendmany("", send_amount_and_addresses)
+        distribution_rpc_connect.sendmany("", send_amount_and_addresses)
     except JSONRPCException as e:
         f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution')
         f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ":" + ' Original error message:' + e.message)
@@ -338,8 +353,8 @@ def calculate_dist_amount(amount):
 
 
 def get_connection_data():
-    rpc_connect = get_rpc_connect()
-    info = rpc_connect.getinfo()
+    distribution_rpc_connect = get_distribution_rpc_connect()
+    info = distribution_rpc_connect.getinfo()
     return info['connections']
 
 

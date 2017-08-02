@@ -145,7 +145,7 @@ def transfer_ekata_units(request):
 
 @user_passes_test(lambda u: u.is_staff or u.profile.grantcoin_staff)
 def ekata_units_admin(request):
-    units_info = get_ekata_units_info("")
+    units_info = get_ekata_units_info("", daemon='distribution')
     total_account = CommunitySignup.objects.filter(
         is_on_distribution=True,
         status='approved'
