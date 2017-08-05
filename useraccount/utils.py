@@ -261,7 +261,7 @@ def dist_ekata_units(amount):
     for batch in batches:
         batch_number += 1
         send_amount_and_addresses = {}
-        log_name = now().strftime("%Y-%m-%d-%H-%I") + '-#' + str(batch_number) + '.log'
+        log_name = now().strftime("%Y-%m-%d-%H-%I") + '-batch' + str(batch_number) + '.log'
         f = open(
             settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
         )
