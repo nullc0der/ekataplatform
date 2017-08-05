@@ -4,6 +4,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 
+
+from autosignup.models import CommunitySignup
+
 # Create your models here.
 
 
@@ -39,6 +42,12 @@ class AdminDistribution(models.Model):
     total_amount = models.FloatField()
     amount_per_user = models.FloatField()
     log_file_path = models.CharField(default='', max_length=500)
+
+
+class FailedDistributionBatch(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
+    batch_number = models.IntegerField(null=True)
+    signups = models.ManyToManyField(CommunitySignup)
 
 
 class DistributeVerification(models.Model):

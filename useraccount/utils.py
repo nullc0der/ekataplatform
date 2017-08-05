@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 from useraccount.models import UserAccount, Transaction, UserDistribution,\
-    AdminDistribution, DistributionPhone
+    AdminDistribution, DistributionPhone, FailedDistributionBatch
 from autosignup.utils import calculate_referral_and_referrers
 from notification.utils import create_notification
 from usertimeline.models import UserTimeline
@@ -219,80 +219,112 @@ def dist_ekata_units(amount):
     return True
 """
 
+
+def split_distribution():
+    batches = []
+    count = 0
+    dist_accounts = CommunitySignup.objects.filter(
+        is_on_distribution=True,
+        status='approved'
+    )
+    while count != dist_accounts.count():
+        batch = []
+        if dist_accounts.count() > count + 500:
+            for i in range(count, count + 500):
+                batch.append(dist_accounts[i])
+            batches.append(batch)
+            count += 500
+        else:
+            for i in range(count, dist_accounts.count()):
+                batch.append(dist_accounts[i])
+            batches.append(batch)
+            count = dist_accounts.count()
+    return batches
+
+
 def dist_ekata_units(amount):
-    send_amount_and_addresses = {}
-    amount = float(amount)
     """
     try:
         d_phone = DistributionPhone.objects.latest()
     except:
         d_phone = None
     """
-    rpc_connect = get_rpc_connect()
-    setup_logger(
-        os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
-    dist_accounts = CommunitySignup.objects.filter(
+    total_account = CommunitySignup.objects.filter(
         is_on_distribution=True,
         status='approved'
-    )
-    log_name = now().strftime("%Y-%m-%d-%H-%I") + '.log'
-    f = open(
-        settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
-    )
-    f.write(now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distribution task started')
-    admindist = AdminDistribution()
-    admindist.amount_per_user = amount
-    no_of_accout = dist_accounts.count()
-    total_amount = amount * no_of_accout
-    total_amount_with_bonus = 0
-    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Account: ' + str(no_of_accout))
-    referrers, referrals = calculate_referral_and_referrers()
-    for account in dist_accounts:
-        send_amount = amount
-        if account.user in referrals:
-            referral_bonus_amount = 0.5 * (total_amount/no_of_accout)
-            send_amount += referral_bonus_amount
-            f.write(
-                '\n{}: Added {:.6f} Referral Bonus to {}'.format(
-                    now().strftime("%Y-%m-%d %H:%I"), referral_bonus_amount, account.user.username.encode('utf-8')
+    ).count()
+    amount = float(amount)
+    setup_logger(
+        os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
+    batch_number = 0
+    batches = split_distribution()
+    for batch in batches:
+        batch_number += 1
+        send_amount_and_addresses = {}
+        log_name = now().strftime("%Y-%m-%d-%H-%I") + '-#' + str(batch_number) + '.log'
+        f = open(
+            settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
+        )
+        f.write(now().strftime("%Y-%m-%d %H:%I") + ':' + ' Distribution task started for batch #' + str(batch_number))
+        admindist = AdminDistribution()
+        admindist.amount_per_user = amount
+        no_of_accout = len(batch)
+        total_amount = amount * no_of_accout
+        total_amount_with_bonus = 0
+        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Account: ' + str(no_of_accout))
+        referrers, referrals = calculate_referral_and_referrers()
+        for account in batch:
+            send_amount = amount
+            if account.user in referrals:
+                referral_bonus_amount = 0.5 * (total_amount/total_account)
+                send_amount += referral_bonus_amount
+                f.write(
+                    '\n{}: Added {:.6f} Referral Bonus to {}'.format(
+                        now().strftime("%Y-%m-%d %H:%I"), referral_bonus_amount, account.user.username.encode('utf-8')
+                    )
                 )
-            )
-        if account.user in referrers:
-            referrer_bonus_amount = referrers[account.user] * (total_amount/no_of_accout)
-            send_amount += referrer_bonus_amount
-            f.write(
-                '\n{}: Added {:.6f} Referrer Bonus to {}'.format(
-                    now().strftime("%Y-%m-%d %H:%I"), referrer_bonus_amount, account.user.username.encode('utf-8')
+            if account.user in referrers:
+                referrer_bonus_amount = referrers[account.user] * (total_amount/total_account)
+                send_amount += referrer_bonus_amount
+                f.write(
+                    '\n{}: Added {:.6f} Referrer Bonus to {}'.format(
+                        now().strftime("%Y-%m-%d %H:%I"), referrer_bonus_amount, account.user.username.encode('utf-8')
+                    )
                 )
-            )
-        if send_amount > 0.01:
-            if account.wallet_address:
-                send_amount_and_addresses[account.wallet_address] = send_amount
-                total_amount_with_bonus += send_amount
-                f.write('\n{}: {:.6f} Added to distribute for Ekata ID {} Username {}'.format(
-                    now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username.encode('utf-8')
-                ))
+            if send_amount > 0.01:
+                if account.wallet_address:
+                    send_amount_and_addresses[account.wallet_address] = send_amount
+                    total_amount_with_bonus += send_amount
+                    f.write('\n{}: {:.6f} Added to distribute for Ekata ID {} Username {}'.format(
+                        now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username.encode('utf-8')
+                    ))
+                else:
+                    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username.encode('utf-8') + "Doesn't have wallet address")
             else:
-                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username.encode('utf-8') + "Doesn't have wallet address")
-        else:
-            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
-    try:
-        rpc_connect.sendmany("", send_amount_and_addresses)
-    except JSONRPCException as e:
-        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution')
-        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ":" + ' Original error message:' + e.message)
-    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution Task')
-    # f.write('\n{}: Total Amount Distributed With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
-    f.close()
-    admindist.end_time = now()
-    admindist.no_of_accout = no_of_accout
-    admindist.total_amount = total_amount_with_bonus
-    admindist.log_file_path = log_name
-    admindist.save()
-    send_sms(
-        phone_no=settings.EKATA_UNITS_VERIFY_NO,
-        body='Distribution finished at: {}'.format(now())
-    )
+                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
+        rpc_connect = get_rpc_connect()
+        try:
+            rpc_connect.sendmany("", send_amount_and_addresses)
+        except JSONRPCException as e:
+            failedbatch = FailedDistributionBatch()
+            failedbatch.batch_number = batch_number
+            failedbatch.save()
+            for account in batch:
+                failedbatch.signups.add(account)
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for batch #' + str(batch_number))
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ":" + ' Original error message:' + e.message)
+        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution Task for batch #' + str(batch_number))
+        # f.write('\n{}: Total Amount Distributed With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
+        f.close()
+        admindist.end_time = now()
+        admindist.no_of_accout = no_of_accout
+        admindist.total_amount = total_amount_with_bonus
+        admindist.log_file_path = log_name
+        admindist.save()
+        send_sms(
+            phone_no=settings.EKATA_UNITS_VERIFY_NO,
+            body=' Batch Distribution {} Finished at: {}'.format(batch_number, now())
+        )
     return True
 
 
