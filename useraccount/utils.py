@@ -323,7 +323,8 @@ def dist_ekata_units(amount):
         admindist.save()
         send_sms(
             phone_no=settings.EKATA_UNITS_VERIFY_NO,
-            body=' Batch Distribution {} Finished at: {}'.format(batch_number, now())
+            body=' Batch Distribution {}/{} Finished at: {}'.format(
+                batch_number, len(batches),  now())
         )
     return True
 
