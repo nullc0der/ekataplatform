@@ -29,6 +29,17 @@ def get_rpc_connect():
     return rpc_connect
 
 
+def get_distribution_rpc_connect():
+    distribution_rpc_connect = AuthServiceProxy(
+        "http://{0}:{1}@{2}".format(
+            settings.BITCOIND_DISTRIBUTION_RPC_USERNAME,
+            settings.BITCOIND_DISTRIBUTION_RPC_PASSWORD,
+            settings.BITCOIND_DISTRIBUTION_RPC_URL
+        )
+    )
+    return distribution_rpc_connect
+
+
 def setup_logger(log_file, level=logging.INFO):
     handler = logging.FileHandler(log_file)
     handler.setFormatter(formatter)
@@ -71,8 +82,11 @@ def request_new_address(account_name):
         return False
 
 
-def get_ekata_units_info(account_name):
-    rpc_connect = get_rpc_connect()
+def get_ekata_units_info(account_name, daemon='main'):
+    if daemon == 'main':
+        rpc_connect = get_rpc_connect()
+    if daemon == 'distribution':
+        rpc_connect = get_distribution_rpc_connect()
     setup_logger(
         os.path.join(log_file_base, 'ekata_units_logs') + '/getinfo.log')
     try:
@@ -220,6 +234,7 @@ def dist_ekata_units(amount):
 """
 
 
+<<<<<<< HEAD
 def split_distribution():
     batches = []
     count = 0
@@ -242,6 +257,8 @@ def split_distribution():
     return batches
 
 
+=======
+>>>>>>> distributedameonseparate
 def dist_ekata_units(amount):
     """
     try:
@@ -249,7 +266,14 @@ def dist_ekata_units(amount):
     except:
         d_phone = None
     """
+<<<<<<< HEAD
     total_account = CommunitySignup.objects.filter(
+=======
+    distribution_rpc_connect = get_distribution_rpc_connect()
+    setup_logger(
+        os.path.join(log_file_base, 'ekata_units_logs') + '/dist.log')
+    dist_accounts = CommunitySignup.objects.filter(
+>>>>>>> distributedameonseparate
         is_on_distribution=True,
         status='approved'
     ).count()
@@ -301,6 +325,7 @@ def dist_ekata_units(amount):
                 else:
                     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username.encode('utf-8') + "Doesn't have wallet address")
             else:
+<<<<<<< HEAD
                 f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
         rpc_connect = get_rpc_connect()
         try:
@@ -326,6 +351,28 @@ def dist_ekata_units(amount):
             body=' Batch Distribution {}/{} Finished at: {}'.format(
                 batch_number, len(batches),  now())
         )
+=======
+                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username.encode('utf-8') + "Doesn't have wallet address")
+        else:
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
+    try:
+        distribution_rpc_connect.sendmany("", send_amount_and_addresses)
+    except JSONRPCException as e:
+        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution')
+        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ":" + ' Original error message:' + e.message)
+    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution Task')
+    # f.write('\n{}: Total Amount Distributed With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
+    f.close()
+    admindist.end_time = now()
+    admindist.no_of_accout = no_of_accout
+    admindist.total_amount = total_amount_with_bonus
+    admindist.log_file_path = log_name
+    admindist.save()
+    send_sms(
+        phone_no=settings.EKATA_UNITS_VERIFY_NO,
+        body='Distribution finished at: {}'.format(now())
+    )
+>>>>>>> distributedameonseparate
     return True
 
 
@@ -371,8 +418,8 @@ def calculate_dist_amount(amount):
 
 
 def get_connection_data():
-    rpc_connect = get_rpc_connect()
-    info = rpc_connect.getinfo()
+    distribution_rpc_connect = get_distribution_rpc_connect()
+    info = distribution_rpc_connect.getinfo()
     return info['connections']
 
 
