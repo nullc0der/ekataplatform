@@ -30,9 +30,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         amount = float(options['amount'][0])
         if options['calcamount']:
-            calculate_total_amount_needed(amount)
+            self.calculate_total_amount_needed(amount)
         if options['sendbonus']:
-            send_bonus(amount)
+            self.send_bonus(amount)
 
     def calculate_total_amount_needed(self, amount):
         dist_ammount = calculate_dist_amount(amount)
