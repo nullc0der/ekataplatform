@@ -28,7 +28,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        amount = float(options['amount'])
+        amount = float(options['amount'][0])
         if options['calcamount']:
             calculate_total_amount_needed(amount)
         if options['sendbonus']:
