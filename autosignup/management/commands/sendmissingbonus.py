@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.timezone import now
+from django.conf import settings
 
 from autosignup.models import CommunitySignup
 from autosignup.utils import calculate_referral_and_referrers
