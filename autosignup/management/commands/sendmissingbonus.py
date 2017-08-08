@@ -10,11 +10,28 @@ from useraccount.utils import get_distribution_rpc_connect,\
 class Command(BaseCommand):
     help_text = 'This script is for calculating missing bonus and send out'
 
+    def add_arguments(self, parser):
+        parser.add_argument('amount', nargs='+', type=float)
+        parser.add_argument(
+            '--calcamount',
+            action='store_true',
+            dest='calcamount',
+            default=False,
+            help='Calc amount needed in main account',
+        )
+        parser.add_argument(
+            '--sendbonus',
+            action='store_true',
+            dest='sendbonus',
+            default=False,
+            help='Send bonus from main account',
+        )
+
     def handle(self, *args, **options):
-        amount = float(options.pop('amount'))
-        if 'calcbonus' in args:
+        amount = float(options['amount'])
+        if options['calcamount']:
             calculate_total_amount_needed(amount)
-        if 'sendbonus' in args:
+        if options['sendbonus']:
             send_bonus(amount)
 
     def calculate_total_amount_needed(self, amount):
