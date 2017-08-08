@@ -65,113 +65,113 @@ class Command(BaseCommand):
         ))
         return amount_needed
 
-        def send_bonus(self, amount):
-            total_account = CommunitySignup.objects.filter(
-                is_on_distribution=True,
-                status='approved'
-            ).count()
-            amount = float(amount)
-            batch_number = 0
-            batches = split_distribution()
-            for batch in batches:
-                batch_number += 1
-                send_amount_and_addresses = {}
-                log_name = now().strftime("%Y-%m-%d-%H-%I") + '-batch' + str(batch_number) + '.log'
-                f = open(
-                    settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
-                )
-                no_of_accout = len(batch)
-                total_amount = amount * no_of_accout
-                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Account: ' + str(no_of_accout))
-                referrers, referrals = calculate_referral_and_referrers()
-                for account in batch:
-                    send_amount = 0
-                    if account.user in referrals:
-                        already_sent = 0.5 * (total_amount/total_account)
-                        actual_bonus = 0.5 * amount
-                        referral_bonus_amount = actual_bonus - already_sent
-                        send_amount += referral_bonus_amount
-                        f.write(
-                            '\n{}: Actual Referral Bonus for {} was {:.6f}'.format(
-                                now().strftime("%Y-%m-%d %H:%I"),
-                                account.user.username.encode('utf-8'),
-                                actual_bonus
-                            )
+    def send_bonus(self, amount):
+        total_account = CommunitySignup.objects.filter(
+            is_on_distribution=True,
+            status='approved'
+        ).count()
+        amount = float(amount)
+        batch_number = 0
+        batches = split_distribution()
+        for batch in batches:
+            batch_number += 1
+            send_amount_and_addresses = {}
+            log_name = now().strftime("%Y-%m-%d-%H-%I") + '-batch' + str(batch_number) + '.log'
+            f = open(
+                settings.BASE_DIR + '/media/gc_dist/' + log_name, 'w+'
+            )
+            no_of_accout = len(batch)
+            total_amount = amount * no_of_accout
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Total Account: ' + str(no_of_accout))
+            referrers, referrals = calculate_referral_and_referrers()
+            for account in batch:
+                send_amount = 0
+                if account.user in referrals:
+                    already_sent = 0.5 * (total_amount/total_account)
+                    actual_bonus = 0.5 * amount
+                    referral_bonus_amount = actual_bonus - already_sent
+                    send_amount += referral_bonus_amount
+                    f.write(
+                        '\n{}: Actual Referral Bonus for {} was {:.6f}'.format(
+                            now().strftime("%Y-%m-%d %H:%I"),
+                            account.user.username.encode('utf-8'),
+                            actual_bonus
                         )
-                        f.write(
-                            '\n{}: Sent Referral Bonus for {} was {:.6f}'.format(
-                                now().strftime("%Y-%m-%d %H:%I"),
-                                account.user.username.encode('utf-8'),
-                                already_sent
-                            )
+                    )
+                    f.write(
+                        '\n{}: Sent Referral Bonus for {} was {:.6f}'.format(
+                            now().strftime("%Y-%m-%d %H:%I"),
+                            account.user.username.encode('utf-8'),
+                            already_sent
                         )
-                        f.write(
-                            '\n{}: Added {:.6f} Referral Bonus to {}'.format(
-                                now().strftime("%Y-%m-%d %H:%I"),
-                                referral_bonus_amount,
-                                account.user.username.encode('utf-8')
-                            )
+                    )
+                    f.write(
+                        '\n{}: Added {:.6f} Referral Bonus to {}'.format(
+                            now().strftime("%Y-%m-%d %H:%I"),
+                            referral_bonus_amount,
+                            account.user.username.encode('utf-8')
                         )
-                    if account.user in referrers:
-                        already_sent = referrers[account.user] * (total_amount/total_account)
-                        actual_bonus = referrers[account.user] * amount
-                        referrer_bonus_amount = actual_bonus - already_sent
-                        send_amount += referrer_bonus_amount
-                        f.write(
-                            '\n{}: Actual Referrer Bonus for {} was {:.6f}'.format(
-                                now().strftime("%Y-%m-%d %H:%I"),
-                                account.user.username.encode('utf-8'),
-                                actual_bonus
-                            )
+                    )
+                if account.user in referrers:
+                    already_sent = referrers[account.user] * (total_amount/total_account)
+                    actual_bonus = referrers[account.user] * amount
+                    referrer_bonus_amount = actual_bonus - already_sent
+                    send_amount += referrer_bonus_amount
+                    f.write(
+                        '\n{}: Actual Referrer Bonus for {} was {:.6f}'.format(
+                            now().strftime("%Y-%m-%d %H:%I"),
+                            account.user.username.encode('utf-8'),
+                            actual_bonus
                         )
-                        f.write(
-                            '\n{}: Sent Referrer Bonus for {} was {:.6f}'.format(
-                                now().strftime("%Y-%m-%d %H:%I"),
-                                account.user.username.encode('utf-8'),
-                                already_sent
-                            )
+                    )
+                    f.write(
+                        '\n{}: Sent Referrer Bonus for {} was {:.6f}'.format(
+                            now().strftime("%Y-%m-%d %H:%I"),
+                            account.user.username.encode('utf-8'),
+                            already_sent
                         )
-                        f.write(
-                            '\n{}: Added {:.6f} Referrer Bonus to {}'.format(
-                                now().strftime("%Y-%m-%d %H:%I"),
-                                referrer_bonus_amount,
-                                account.user.username.encode('utf-8')
-                            )
+                    )
+                    f.write(
+                        '\n{}: Added {:.6f} Referrer Bonus to {}'.format(
+                            now().strftime("%Y-%m-%d %H:%I"),
+                            referrer_bonus_amount,
+                            account.user.username.encode('utf-8')
                         )
-                    if send_amount > 0.01:
-                        if account.wallet_address:
-                            send_amount_and_addresses[account.wallet_address] = send_amount
-                            f.write('\n{}: {:.6f} Added to distribute for Ekata ID {} Username {}'.format(
-                                now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username.encode('utf-8')
-                            ))
-                        else:
-                            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username.encode('utf-8') + "Doesn't have wallet address")
+                    )
+                if send_amount > 0.01:
+                    if account.wallet_address:
+                        send_amount_and_addresses[account.wallet_address] = send_amount
+                        f.write('\n{}: {:.6f} Added to distribute for Ekata ID {} Username {}'.format(
+                            now().strftime("%Y-%m-%d %H:%I"), send_amount, account.user.profile.ekata_id, account.user.username.encode('utf-8')
+                        ))
                     else:
-                        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
-                f.close()
-                """distribution_rpc_connect = get_distribution_rpc_connect()
-                try:
-                    distribution_rpc_connect.sendmany("", send_amount_and_addresses)
-                except JSONRPCException as e:
-                    failedbatch = FailedDistributionBatch()
-                    failedbatch.batch_number = batch_number
-                    failedbatch.save()
-                    for account in batch:
-                        failedbatch.signups.add(account)
-                    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for batch #' + str(batch_number))
-                    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ":" + ' Original error message:' + e.message)
-                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution Task for batch #' + str(batch_number))
-                # f.write('\n{}: Total Amount Distributed With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
-                """
-                """admindist.end_time = now()
-                admindist.no_of_accout = no_of_accout
-                admindist.total_amount = total_amount_with_bonus
-                admindist.log_file_path = log_name
-                admindist.save()
-                send_sms(
-                    phone_no=settings.EKATA_UNITS_VERIFY_NO,
-                    body=' Batch Distribution {}/{} Finished at: {}'.format(
-                        batch_number, len(batches),  now())
-                )
-            return True
+                        f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username.encode('utf-8') + "Doesn't have wallet address")
+                else:
+                    f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
+            f.close()
+            """distribution_rpc_connect = get_distribution_rpc_connect()
+            try:
+                distribution_rpc_connect.sendmany("", send_amount_and_addresses)
+            except JSONRPCException as e:
+                failedbatch = FailedDistributionBatch()
+                failedbatch.batch_number = batch_number
+                failedbatch.save()
+                for account in batch:
+                    failedbatch.signups.add(account)
+                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for batch #' + str(batch_number))
+                f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ":" + ' Original error message:' + e.message)
+            f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution Task for batch #' + str(batch_number))
+            # f.write('\n{}: Total Amount Distributed With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
             """
+            """admindist.end_time = now()
+            admindist.no_of_accout = no_of_accout
+            admindist.total_amount = total_amount_with_bonus
+            admindist.log_file_path = log_name
+            admindist.save()
+            send_sms(
+                phone_no=settings.EKATA_UNITS_VERIFY_NO,
+                body=' Batch Distribution {}/{} Finished at: {}'.format(
+                    batch_number, len(batches),  now())
+            )
+        return True
+        """
