@@ -73,7 +73,7 @@ class DistributionForm(forms.Form):
 
     def clean_amount(self):
         amount = self.cleaned_data['amount']
-        account_info = get_ekata_units_info("")
+        account_info = get_ekata_units_info("", daemon='distribution')
         total_amount = calculate_dist_amount(amount)
         total_amount_needed = total_amount['total']
         if total_amount_needed > account_info['balance']:
