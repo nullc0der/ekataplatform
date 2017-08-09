@@ -149,8 +149,7 @@ class Command(BaseCommand):
                         f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + account.user.username.encode('utf-8') + "Doesn't have wallet address")
                 else:
                     f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + " Dropped distribution for " + account.user.username.encode('utf-8') + " Reason: Total amount is lower than 0.01")
-            f.close()
-            """distribution_rpc_connect = get_distribution_rpc_connect()
+            distribution_rpc_connect = get_distribution_rpc_connect()
             try:
                 distribution_rpc_connect.sendmany("", send_amount_and_addresses)
             except JSONRPCException as e:
@@ -162,17 +161,5 @@ class Command(BaseCommand):
                 f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Failed Distribution for batch #' + str(batch_number))
                 f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ":" + ' Original error message:' + e.message)
             f.write('\n' + now().strftime("%Y-%m-%d %H:%I") + ':' + ' Finished  Distribution Task for batch #' + str(batch_number))
-            # f.write('\n{}: Total Amount Distributed With Bonus: {:.6f}'.format(now().strftime("%Y-%m-%d %H:%I"), total_amount_with_bonus))
-            """
-            """admindist.end_time = now()
-            admindist.no_of_accout = no_of_accout
-            admindist.total_amount = total_amount_with_bonus
-            admindist.log_file_path = log_name
-            admindist.save()
-            send_sms(
-                phone_no=settings.EKATA_UNITS_VERIFY_NO,
-                body=' Batch Distribution {}/{} Finished at: {}'.format(
-                    batch_number, len(batches),  now())
-            )
-        return True
-        """
+            f.close()
+            self.stdout.write(self.style.SUCCESS('Finished one batch'))
