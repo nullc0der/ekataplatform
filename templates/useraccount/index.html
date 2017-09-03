@@ -64,6 +64,8 @@
                                     <h4>{% trans "Grantcoin" %}</h4>
                                 </div>
                                 <div class="community-actions">
+                                    <a href="#" data-toggle="modal" data-target='#signupmodal' class="btn btn-block btn-flat btn-default">{% trans "Signup" %}</a>
+                                    {% comment %}
                                     {% if communitysignup %}
                                         {% if communitysignup.data_collect_done %}
                                             {% if communitysignup.status == 'approved' %}
@@ -77,6 +79,7 @@
                                     {% else %}
                                         <a href="#" data-community-name='grantcoin' data-toggle="modal" data-target='#signupmodal' class="btn btn-block btn-flat btn-primary">{% trans "Signup" %}</a>
                                     {% endif %}
+                                    {% endcomment %}
                                     {% comment %}
                                     {% if request.user.useraccount %}
                                         <a href="javascript:getEkataUnitsInfo();" class="btn btn-block btn-flat btn-success">{% trans "View Info" %}</a>
@@ -145,6 +148,7 @@
     <div class="row" id="accountInfo">
 
     </div>
+    {% comment %}
     <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -175,6 +179,59 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="qrCodeModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+              <div class="text-center" id="qrcodecontent">
+                  <p id="qrAddress"></p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="transferConfirmModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{% trans "Confirm Transfer" %}</h4>
+          </div>
+          <div class="modal-body">
+            <p id="confirmText"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "No" %}</button>
+            <button type="button" class="btn btn-primary" id="transfersubmit">{% trans "Yes" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+    <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">{% trans "Grantcoin Account" %}</h4>
+          </div>
+          <div class="modal-body" id="signupbody">
+            <p>
+              Starting Sept 1st, your Grantcoin wallet will no longer be accessible from the Ekata Social site. <br />
+              It is in the process of being migrated to a new site by the Grantcoin Foundation per agreement.
+              <a href="http://grantcoin.org/2017/08/30/manna-relaunch-progress-report">grantcoin.org/2017/08/30/manna-relaunch-progress-report</a> <br />
+              Please contact jon@grantcoin.org for all related questions.
+            </p>
+          </div>
+          {% comment %}
+          <div class="modal-footer" id="signupfooter">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+            <button type="button" class="btn btn-primary" id="signupsubmit">{% trans "Submit" %}</button>
+          </div>
+          {% endcomment %}
+        </div>
+      </div>
+    </div>
     <div class="modal fade" id="accountaddmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -191,34 +248,6 @@
           </div>
         </div>
       </div>
-  </div>
-  <div class="modal fade" id="qrCodeModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-            <div class="text-center" id="qrcodecontent">
-                <p id="qrAddress"></p>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="transferConfirmModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">{% trans "Confirm Transfer" %}</h4>
-        </div>
-        <div class="modal-body">
-          <p id="confirmText"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "No" %}</button>
-          <button type="button" class="btn btn-primary" id="transfersubmit">{% trans "Yes" %}</button>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="modal fade" id="ekataUnits" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
@@ -239,151 +268,6 @@
 <script type="text/javascript" src="{% static "plugins/jquery-qrcode/jquery-qrcode.min.js" %}"></script>
 {% compress js %}
 <script type="text/javascript">
-    function getEkataUnitsInfo() {
-        var url = '{% url 'myaccount:ekata_units_info' %}';
-        $("#accountInfo").load(url, function () {
-            $('html, body').animate({
-                scrollTop: $("#accountInfo").offset().top
-            }, 1000);
-            $("#id_reciever").autocomplete({
-                source: '{% url 'myaccount:get_ekata_units_users' %}',
-                minLength: 2
-            });
-            $("#id_reciever").data("ui-autocomplete")._renderItem = function( ul, item ) {
-                var li = $('<li>'), img = $('<img class="autocomplete-img">');
-                img.attr({
-                    src: item.image,
-                    alt: item.value
-                });
-                li.attr('data-value', item.value);
-                li.append('<p>');
-                li.find('p').append(img).append(item.value);
-                return li.appendTo(ul);
-            };
-            /*$("#ekataUnitsInfo").slimscroll({
-                height: '200px',
-                size: '3px'
-            })*/
-        });
-    }
-    {% comment %}
-    function getEkataUnitsInfo() {
-        var url = '{% url 'myaccount:ekata_units_info' %}';
-        $("#accountInfo").load(url);
-    }
-    {% endcomment %}
-    $("#ekataUnitsSubscribe").on('click', function(){
-        $(this).text("Subscribing...");
-        var url = '{% url 'myaccount:subscribe_ekata_units' %}';
-        $.ajax({
-            url: url,
-            type: 'POST',
-            success: function(data){
-                $('.top-right').notify({
-                    message: { text: data.message },
-                    type: 'info'
-                }).show();
-                if (data.message === 'Subscribed') {
-                    $("#ekataUnitsSubscribe").text("Subscribed");
-                    getEkataUnitsInfo();
-                }
-            }
-        });
-    });
-    $("#signupmodal").on('show.bs.modal', function(e){
-        var link = '{% url 'autosignup:getform' %}?community_name=' + $(e.relatedTarget).attr('data-community-name');
-        var self = $(this);
-        $.ajax({
-            url: link,
-            success: function(data){
-                $("#signupbody").load(data, function(){
-                    $("#gears").hide();
-                    $("#id_userimage").fileinput({'showUpload':false,});
-                });
-            }
-        })
-    });
-    $("#signupsubmit").click(function(){
-        var frm = $("#signupform");
-        frm.hide();
-        $("#gears").show();
-        $("#signupfooter").hide();
-        var data = new FormData(frm[0]);
-        $.ajax({
-            url: frm.attr('action'),
-            type: frm.attr('method'),
-            data: data,
-            contentType: false,
-            processData: false,
-            success: function(data){
-                if (data.action === 'next') {
-                    $("#signupbody").load(data.url, function(){
-                        $("#gears").hide();
-                        $("#signupfooter").show();
-                        $("#id_userimage").fileinput({'showUpload':false,});
-                    });
-                }
-                else if (data.action === 'thankyou') {
-                    $("#signupbody").load(data.url, function(){
-                        $("#gears").hide();
-                    });
-                }
-            },
-            error: function(data) {
-                $("#signupbody").html(data.responseText);
-                $("#gears").hide();
-                $("#signupfooter").show();
-                $("#id_userimage").fileinput({'showUpload':false,});
-            }
-        });
-    });
-    $(document).on('click', '.signuplink', function(){
-        var link = $(this).attr('href');
-        var frm = $("#signupform");
-        frm.hide();
-        $("#gears").show();
-        $("#signupfooter").hide();
-        var data = new FormData(frm[0]);
-        if (frm.attr('data-submit')) {
-            if (frm.length) {
-                $.ajax({
-                    url: frm.attr('action'),
-                    type: frm.attr('method'),
-                    data: data,
-                    contentType: false,
-                    processData: false,
-                    success: function(data){
-                        if (data.action === 'next') {
-                            $("#signupbody").load(data.url, function(){
-                                $("#gears").hide();
-                                $("#signupfooter").show();
-                                $("#id_userimage").fileinput({'showUpload':false,});
-                            });
-                        }
-                        else if (data.action === 'thankyou') {
-                            $("#signupbody").load(data.url, function(){
-                                $("#gears").hide();
-                            });
-                        }
-                    },
-                    error: function(data) {
-                        $("#signupbody").html(data.responseText);
-                        $("#gears").hide();
-                        $("#signupfooter").show();
-                        $("#id_userimage").fileinput({'showUpload':false,});
-                    }
-                });
-            }
-        }
-        else {
-            $("#signupbody").load(link, function () {
-                $("#gears").hide();
-                $("#signupfooter").show();
-                $("#id_userimage").fileinput({'showUpload':false,});
-            });
-        }
-        return false;
-    });
     $("#accountaddsubmit").click(function(){
         var frm = $("#addaccountform");
         $.ajax({
@@ -402,70 +286,6 @@
             }
         });
     });
-    $(document).on('click', '#transferconfirm', function(){
-        var amount = $("#id_units").val();
-        var to_user = $("#id_reciever").val();
-        $("#confirmText").text('Transfer ' + amount + ' GRT to ' + to_user + '?');
-        $("#transferConfirmModal").modal('show');
-    });
-    $(document).on('click', '#transfersubmit', function () {
-        $("#transferConfirmModal").modal('hide');
-        var frm = $("#transferform");
-        $.ajax({
-            url: frm.attr('action'),
-            type: frm.attr('method'),
-            data: frm.serialize(),
-            success: function (data) {
-                $('.top-right').notify({
-                    message: { text: data },
-                    type: 'success'
-                }).show();
-                getEkataUnitsInfo();
-            },
-            error: function (data) {
-                $("#transferformcontainer").html(data.responseText);
-                $("#id_reciever").autocomplete({
-                    source: '{% url 'myaccount:get_ekata_units_users' %}',
-                    minLength: 2
-                });
-            }
-        });
-    });
-    $(document).on('click', '#getNewAddress', function () {
-        var url = '{% url 'myaccount:get_new_address' %}';
-        $.ajax({
-            url: url,
-            type: 'POST',
-            success: function () {
-                getEkataUnitsInfo();
-            },
-            error: function () {
-                $('.top-right').notify({
-                    message: { text: 'Error getting address!! try later' },
-                    type: 'danger'
-                }).show();
-            }
-        });
-    });
-    $(document).on('click', '.getqrcode', function () {
-        var address = $(this).data('address');
-        $("#qrcodecontent>img").remove();
-        $("#qrAddress").text(address);
-        $("#qrcodecontent").qrcode({
-            render: 'image',
-            text: address
-        });
-        $("#qrCodeModal").modal('show');
-    });
-    {% if communitysignup %}
-        {% if communitysignup.data_collect_done %}
-            {% if communitysignup.status == 'approved' %}
-            $(document).ready(function () {
-                getEkataUnitsInfo();
-            });
-            {% endif %}
-        {% endif %}
-    {% endif %}
 </script>
 {% endcompress %}
 {% endblock %}
