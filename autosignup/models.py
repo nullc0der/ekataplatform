@@ -28,6 +28,7 @@ class AccountProvider(models.Model):
         return self.name
 
 
+# This model is used to save admin uploaded approval mails
 class ApprovedMailTemplate(models.Model):
     accountprovider = models.ForeignKey(
         AccountProvider,
@@ -40,6 +41,7 @@ class ApprovedMailTemplate(models.Model):
         return os.path.basename(self.template.name)
 
 
+# This is used to store csv uploaded by admin
 class AccountProviderCSV(models.Model):
     accountprovider = models.ForeignKey(AccountProvider, related_name='membercsvs')
     csv = models.FileField(upload_to='membercsv', null=True)
@@ -151,6 +153,8 @@ class PhoneVerification(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 
+# Use globalemail and globalphone to compare a signups email or phone to
+# check if it is used before
 class GlobalEmail(models.Model):
     email = models.EmailField(null=True)
     signup = models.ManyToManyField(CommunitySignup, related_name='globalemail')
