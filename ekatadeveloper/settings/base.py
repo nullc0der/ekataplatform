@@ -80,7 +80,8 @@ THIRD_PARTIES_APPS = [
     'simple_history',
     'el_pagination',
     'compressor',
-    'dbbackup'
+    'dbbackup',
+    'rest_framework'
 ]
 
 EKATA_APPS = [

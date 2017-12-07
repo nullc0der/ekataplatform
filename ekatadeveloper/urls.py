@@ -78,4 +78,5 @@ urlpatterns += i18n_patterns(
 
 urlpatterns += [
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^api/messaging/', include('messagingsystem.api_urls', namespace='messaging_urls')),
 ]
