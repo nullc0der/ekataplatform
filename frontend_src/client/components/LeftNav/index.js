@@ -42,9 +42,10 @@ class LeftNav extends Component {
 				<div className='sidebar-sub-header'>
 					<div className='user-block flex-horizontal'>
 						<div className='user-image'>
+							<img className='img-responsive' src={ window.django.user.profile_image }></img>
 						</div>
 						<div className='user-details flex-1'>
-							<div className='name'> Sharad Kant </div>
+							<div className='name'> { window.django.user.username } </div>
 							<div className='status is-online'> Online </div>
 						</div>
 					</div>

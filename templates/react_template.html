@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Ekata Social</title>
     <style id="server-css" type="text/css" rel="stylesheet"></style>
     <style>
         #nprogress .bar {
@@ -13,7 +13,15 @@
 		}
     </style>
     <script>
-        window.webpackManifest = {{ manifest_data|safe }}
+        window.webpackManifest = {{ manifest_data|safe }};
+        window.django = {
+            csrf: "{{ csrf_token }}",
+            user: {
+                username: "{{ request.user.username }}",
+                profile_image: "{{ request.user.profile.avatar.url }}",
+                date_joined: "{{ request.user.date_joined|date:"M Y" }}"
+            }
+        };
     </script>
 </head>
 <body>

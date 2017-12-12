@@ -1,6 +1,7 @@
 import os
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.conf import settings
 from groupsystem.models import BasicGroup
@@ -29,7 +30,7 @@ def send_menus(request):
     )
 
 
-class ReactIndexView(TemplateView):
+class ReactIndexView(LoginRequiredMixin, TemplateView):
     template_name = 'react_template.html'
 
     def get_context_data(self, **kwargs):
