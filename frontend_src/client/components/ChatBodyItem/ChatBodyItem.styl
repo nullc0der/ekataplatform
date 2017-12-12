@@ -1,0 +1,35 @@
+:local(.container)
+	color inherit
+	display flex
+	align-items center
+	position relative
+	justify-content flex-end
+
+	margin 24px 12px
+
+	&.in-left
+		justify-content flex-start
+		.stamp
+			left 0
+			right initial
+		.msg
+			order 2
+		.ui-avatar
+			order 1
+			margin-left 0
+
+	.msg
+		margin-left 4px
+		background-color #fff
+		shadow()
+		padding 3px 8px
+		order 1
+	.ui-avatar
+		order 2
+		margin-left 4px
+
+	.stamp
+		font-size 10px
+		font-weight 600
+		opacity 0.6
+		absolute bottom -20px right

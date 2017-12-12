@@ -1,0 +1,37 @@
+:local(.container)
+    position relative
+    display inline-block
+
+    .notification-label
+        padding 13px 8px 12px 8px
+    .ui-dropdown-toggle
+        padding 8px 4px
+
+    .notification-item
+        padding 13px
+        border-bottom 1px rgba(#000, 0.07) solid
+        color #999
+        line-height 16px
+        &:hover
+            background-color rgba(#000, 0.07)
+
+    .notification-icon
+        width 48px
+        height 48px
+        margin-right 12px
+        border-radius 50%
+        overflow hidden
+    .notification-title
+        color #777
+        font-weight font_bold
+
+    .mark-read-btn
+        cursor pointer
+        transform-origin center center
+        transform scale(1)
+        transition transform 0.16s ease
+        &:hover, &:active
+            color theme_primary
+        &:active
+            color darken(theme_primary, 8%)
+            transform scale(0.9)

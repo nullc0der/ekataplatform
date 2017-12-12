@@ -1,0 +1,47 @@
+
+:local(.container)
+	fixed top left right bottom
+	z-index 2000
+
+	&:not(.is-open)
+		z-index -1
+		visibility hidden
+
+	:local(.backdrop)
+		absolute top left right bottom
+		z-index 900
+
+	:local(.content)
+		position relative
+		max-width 70vw
+		width 450px
+		z-index 1000
+	&.is-open :local(.content)
+		animation fadeInUp 0.2s
+
+:local(.backdrop)
+	background-color rgba(#000, 0.5)
+
+:local(.content)
+	background-color #fff
+	border 1px rgba(#000, 0.12) solid
+	border-radius 2px 2px 0 0
+	box-shadow 0 4px 12px 0 rgba(#000, 0.2)
+
+:local(.header)
+	height 50px
+	border-bottom 1px rgba(#000, 0.08) solid
+	position relative
+	.title
+		text-align center
+		font-weight font_bold
+		flex 1
+		font-size 20px
+
+
+:local(.header), :local(.body), :local(.footer)
+	padding 20px
+
+:local(.footer)
+	&:not(.is-visible)
+		display none

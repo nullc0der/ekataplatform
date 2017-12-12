@@ -1,0 +1,81 @@
+:local(.container)
+	color inherit
+	height 60px
+	background-color #f2f2f2
+	// border-top 1px rgba(#000, 0.12) solid
+	padding 8px 0px
+
+	.ui-button
+		background-color transparent
+		border none
+		border-radius 50%
+		overflow hidden
+		width 42px
+		height 42px
+		padding 4px 6px
+
+	&.is-small
+		height 40px
+		padding 4px 0px
+		font-size 14px
+		margin 0
+
+		.ui-button
+			padding 3px 4px
+			font-size 16px
+			width 32px
+			height 40px
+			border none
+
+		.chat-input-box:focus
+			position absolute
+			left -66px
+			right 0px
+			width calc(100% + 68px)
+
+
+		.chat-input-wrap .chat-input-btn,
+		.chat-input-box,
+		.ui-button
+			height 30px
+		.chat-input-box
+			font-size 12px
+
+		.chat-input-wrap .chat-input-btn
+			padding 0px 3px
+			width 32px
+
+
+	.btn
+		color rgba(#000, 0.5)
+
+	.chat-input-wrap
+		margin 0 10px
+		position relative
+		.chat-input-btn
+			background none
+			border none
+			width 50px
+			color #878787
+			height 40px
+			padding 2px 6px
+			overflow hidden
+			absolute top 1px right
+
+	.chat-input-box
+		width 100%
+		// border 1px rgba(#000, 0.12) solid
+		border none
+		box-shadow none
+		background-color #fff
+		border-radius 21px
+		height 42px
+		outline none
+		font-weight font_light
+		padding 0 20px
+		transition all 0.16s ease
+		absolute left right
+		&:hover, &:focus
+			outline none
+			border-color theme_primary
+			box-shadow 0 2px 6px 0 rgba(#000, 0.23)

@@ -1,0 +1,118 @@
+// Flexbox
+.flex-vertical
+	display flex
+	flex-direction column
+.flex-vertical-reverse
+	display flex
+	flex-direction column-reverse
+.flex-horizontal
+	display flex
+	flex-direction row
+.flex-horizontal-reverse
+	display flex
+	flex-direction row-reverse
+.a-center
+	align-items center
+.a-stretch
+	align-items stretch
+.j-center
+	justify-content center
+.j-around
+	justify-content space-around
+.j-between
+	justify-content space-between
+
+.flex-center
+	@extends .a-center
+	@extends .j-center
+
+for x in 1 2 3 4 5 6 7
+	.flex-{x}
+		flex x
+
+.black-bg
+	background-color rgba(#000, 0.24)
+
+.fa-fw
+	width 1.28571429em
+	text-align center
+
+// Layers
+.fixed-layer
+	fixed top left right bottom
+.relative-layer
+	position relative
+.absolute-layer
+	absolute top left right bottom
+.page-container
+	overflow hidden
+	@extends .absolute-layer
+	@extends .flex-vertical
+	@extends .flex-1
+.in-absolute-center
+	@extends .page-container
+	@extends .flex-center
+
+
+// Z Indexes
+for x in 1 2 3 4 5 6 7 8
+	.z-{x}
+		z-index x*200
+
+.z-top-overlay
+	@extends .z-8
+
+// Other utils
+.no-overflow
+	overflow hidden
+.no-overflow-x
+	overflow-x hidden
+.no-overflow-y
+	overflow-y hidden
+.scroll-x
+	overflow-x auto
+.scroll-y
+	overflow-y auto
+.no-outline
+	outline none
+	&:hover, &:active, &:focus, &:focus:active
+		outline none
+
+.rounded
+	border-radius 50%
+
+.ui-background-image
+	background-repeat no-repeat
+	background-position center center
+	background-size cover
+
+html, body
+	width 100%
+	height 100%
+
+body
+	background-color theme_body_bg
+	color theme_text
+	font-size 14px
+	font-weight font_regular
+	font-family "Source Sans Pro", Helvetica Neue, Helvetica, Arial, sans-serif
+
+// body, #root, .root-inner
+// 	@extends .absolute-layer
+// 	@extends .no-overflow
+
+
+.ui-button
+	box-shadow none
+	border 1px rgba(#000, 0.12) solid
+	border-radius 0
+	font-size 20px
+	padding-top 4px
+	position relative
+	& + .btn-chat
+		margin-left -1px
+	&:hover
+		border-color theme_primary
+		color theme_primary
+		z-index 100
+		background-color #fff

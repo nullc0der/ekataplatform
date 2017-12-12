@@ -1,0 +1,30 @@
+:local(.container)
+    background-color #fff
+    padding 12px
+    font-size 13px
+    fixed bottom right
+    left sidebar_width
+    transition left 0.16s ease
+    z-index 2000
+    // border-top 1px rgba(#000, 0.12) solid
+    +mobile()
+        font-size 12px
+        display none
+
+    .pill
+        padding 2px 8px
+        border-radius 3px
+        color #fff
+        margin 0 4px
+        font-weight 600
+        text-align center
+        flex-shrink 0
+    .pill-red
+        background-color color_red700
+    .pill-blue
+        background-color color_blue700
+
+    .pill-beta
+        width 40px
+    .pill-powered
+        width 118px

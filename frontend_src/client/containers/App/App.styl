@@ -1,0 +1,66 @@
+@import './bootstrap-paper.css'
+@import 'base'
+
+:local(.container)
+	@extends .fixed-layer
+	overflow hidden
+
+:local(.content)
+	@extends .absolute-layer
+	left sidebar_width
+
+	overflow-x hidden
+	flex 1
+	display flex
+	flex-direction column
+	background-color theme_body_bg
+	transition all 0.16s ease
+	z-index 100
+
+	.content-inner
+		flex 1
+		position relative
+
+:local(.header)
+	height header_height
+	z-index 1900
+:local(.subHeader)
+	color theme_text
+
+:local(.leftNav)
+	fixed top left bottom
+	width sidebar_width
+	overflow hidden
+	transition all 0.16s ease
+	z-index 2000
+
+	+above(rupture.mobile-cutoff)
+		&.is-open
+			width 80px
+			& ~ :local(.content)
+				left 80px
+				.ui-footer
+					left 80px
+
+	+mobile()
+		left (-1*sidebar_width) !important
+		z-index 800
+		& ~ :local(.content)
+			left 0px
+			.ui-footer
+				left 0
+		&.is-open
+			width sidebar_width
+			left 0px !important
+
+			.leftnav-backdrop
+				display block
+
+
+
+:local(.rightNav)
+	absolute right bottom
+	top header_height
+	overflow hidden
+	width sidebar_width
+	z-index 2000

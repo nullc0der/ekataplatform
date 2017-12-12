@@ -1,0 +1,290 @@
+subheader_padding = 12px
+profile_pic_size  = 48px
+circle_size = 12px
+icon_size   = 16px
+inactive_search_color = rgba(#fff, 0.6)
+active_search_color   = #fff
+
+icon_color = #878787
+
+
+:local(.container)
+	color inherit
+	background-color #fff
+	absolute top left bottom
+
+	.leftnav-backdrop
+		display none
+		fixed top left right bottom
+		z-index -1
+		background-color rgba(#000, 0.42)
+
+	.fa
+		display inline
+
+	.user-details
+		.name, .status
+			white-space nowrap
+
+	.secondary-menu
+		+mobile()
+			width (sidebar_width - 40px)
+
+
+	&.is-open
+		overflow visible
+		.sidebar-header
+			font-size 20px
+
+
+		.secondary-menu
+			position absolute
+			left 40px
+
+		+above(rupture.mobile-cutoff)
+			.user-block
+				.user-image
+					margin-left 4px
+				.user-details
+					display none
+			.menu-search .search-input
+				color rgba(#fff, 0)
+				+placeholder()
+					opacity 0
+			.search-icon
+				right 28px
+
+			.sidebar-menu
+				width 80px
+				.secondary-menu-item .menu-inner
+					width 40px
+					overflow hidden
+
+		.sidebar-menu
+			overflow visible
+			position relative
+			+mobile()
+				overflow-y auto
+			.secondary-menu-item
+				width 40px
+				overflow visible
+				white-space nowrap
+				+mobile()
+					width auto
+
+				.menu-inner
+					height 46px
+					+mobile()
+						position relative
+				.menu-icon
+					display flex
+				.menu-dropdown
+					visibility hidden
+					&.is-open
+						max-height 0px
+
+				.menu-dropdown-toggle
+					+mobile()
+						absolute right 8px
+				.sub-submenu-item
+					padding-left 52px
+					background-color #fff
+					&:hover
+						background-color #fff
+						color theme_primary
+					+mobile()
+						padding-left 44px
+				&:hover
+					width auto
+					background-color theme_primary
+					color #fff
+					+mobile()
+						width (sidebar_width - 40px)
+					.menu-dropdown
+						width 177px
+						max-height 999px
+						overflow visible
+						color #878787
+						visibility  visible
+						+mobile()
+							width 200px
+
+					.menu-dropdown-toggle
+						absolute top 8px right 2px
+						+mobile()
+							right 8px
+					.menu-name
+						overflow visible
+						absolute top left 40px bottom
+						padding 8px 40px 8px 12px
+						font-size 16px
+						height 46px
+						z-index 200
+						background-color theme_primary
+						color #fff
+						border 1px rgba(#000, 0.12) solid
+						border-width 1px 1px 1px 0
+						+mobile()
+							border none
+							padding-left 4px
+							right 0
+
+	.sidebar-header
+		height header_height
+		background-color theme_sidebar_header_bg
+		color #fff
+		font-weight font_regular
+		font-size 24px
+
+	.sidebar-sub-header
+		height 2*subheader_height
+		// ui-border bottom
+		color #fff
+		background-color theme_primary
+
+
+:local(.container) .user-block
+	circle_size = 12px
+	padding subheader_padding
+
+	.user-image
+		dimensions profile_pic_size
+		border-radius 50%
+		background-color rgba(#000, 0.4)
+		margin-right 12px
+		flex-shrink 0
+
+	.status
+		padding-left 18px
+		position relative
+		&:after
+			absolute left
+			top (circle_size/2)
+			dimensions circle_size
+			background-color rgba(#000, 0.12)
+			content ''
+			border-radius 50%
+		&.is-online:after
+			background-color color_lime500
+
+:local(.container) .menu-search
+	padding 0 subheader_padding
+	position relative
+	.search-input
+		width 100%
+		background-color rgba(#000, 0.12)
+		border none
+		border-radius 3px
+		// border 1px rgba(#000, 0.12) solid
+		color #fff
+		height 36px
+		padding 4px 12px
+		box-shadow none
+		transition()
+		+placeholder()
+			color inactive_search_color
+        &:focus
+			background-color rgba(#000, 0.24)
+			& + .search-icon
+				color active_search_color
+
+
+	.search-icon
+		absolute top 8px
+		right subheader_padding + 8px
+		color inactive_search_color
+		transition()
+
+
+:local(.container) .sidebar-menu
+	flex 1
+	min-height 200px
+	color #878787
+	overflow-y auto
+	background-color #F1F1F1
+	background-image linear-gradient(90deg, #F1F1F1 40px, #fff, 40px, #fff)
+
+
+	.primary-menu
+		width primary_sidebar_menu_width
+		flex-shrink 0
+
+	.secondary-menu
+		background-color #fff
+		flex 1
+		overflow visible
+
+	.primary-menu-item
+		width 100%
+		display block
+		cursor pointer
+		padding 12px 2px 9px 2px
+		height 46px
+		text-align center
+		text-decoration none
+		color icon_color
+		.fa
+			font-size icon_size
+		&:hover
+			background-color rgba(#000, 0.12)
+
+		&.is-active
+			background-color #3D3D3D
+			color #fff
+
+	.secondary-menu-item
+		display block
+		width 100%
+		color icon_color
+		text-decoration none
+		outline none
+		// height 46px
+		position relative
+		transition all 0.16s ease
+		.menu-dropdown
+			overflow hidden
+			max-height 0px
+			transition all 0.2s ease
+			background-color #fff
+			&.is-open
+				max-height 999px
+
+		.menu-dropdown-toggle
+			padding 4px 8px
+			font-size 12px
+			// background-color rgba(#000, 0.12)
+		.menu-inner
+			display flex
+			align-items center
+			padding 5px 10px
+			height 46px
+			cursor pointer
+			transition all 0.1s ease
+
+		.menu-icon, .sub-submenu-icon
+			transition none
+			font-size icon_size
+			margin-right 14px
+			.fa
+				width 20px
+				text-align center
+
+		.menu-name, .sub-submenu-name
+			flex 1
+			transition none
+			white-space nowrap
+
+		.menu-inner
+			&:hover, &.is-active, &:focus
+				background-color theme_primary
+				color #fff
+
+
+	.sub-submenu-item
+		display flex
+		align-items center
+		padding 5px 12px 5px 32px
+		cursor pointer
+		&:hover
+			background-color theme_primary
+			color #fff

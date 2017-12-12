@@ -1,0 +1,66 @@
+
+dd_list_inner_height = 260px
+dd_footer_height = 40px
+dd_list_height   = dd_list_inner_height + dd_footer_height
+
+:local(.container)
+    position relative
+
+    &:not(.has-footer)
+        :local(.footer)
+            display none
+
+
+:local(.toggle)
+    display block
+    font-size 18px
+    padding 3px 8px
+    &.is-active
+        background-color rgba(#000, 0.12)
+
+:local(.list)
+    overflow hidden
+    max-height 0px
+    opacity 0
+    transition all 0.16s ease
+
+    absolute top 50px right
+    background-color #fff
+    border 1px rgba(#000, 0.12) solid
+    border-width 0 1px 1px 1px
+    width 250px
+    will-change transform
+    transform-origin top right
+    transform scale(0.4)
+    shadow()
+
+    .list-inner
+        height dd_list_inner_height
+        overflow-y auto
+
+    &.is-active
+        max-height dd_list_height
+        opacity 1
+        transform scale(1)
+
+
+    +mobile()
+        width 100vw
+        position fixed
+        transform-origin center top
+        left 0
+
+:local(.footer)
+    height dd_footer_height
+    border-top 1px rgba(#000, 0.16) solid
+    color #888
+    display flex
+    align-items center
+
+:local(.listItem)
+    display block
+    color #777
+    opacity 0.8
+    &:hover
+        background-color rgba(#000, 0.12)
+        opacity 1

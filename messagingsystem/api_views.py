@@ -36,6 +36,13 @@ class ChatRoomDetailsView(APIView):
     View to return all messages in a Chat Room
 
     * Required logged in User
+
+    get:
+    Return list of message in the room
+
+    post:
+    Create a new message in specified room if the user is a subscriber
+
     """
     permission_classes = (IsAuthenticatedLegacy, IsChatRoomSubscriber, )
 
@@ -48,3 +55,15 @@ class ChatRoomDetailsView(APIView):
         messages = chatroom.messages.all().order_by('timestamp')
         serializer = MessageSerializer(messages, many=True)
         return Response(serializer.data)
+
+    def post(self, request, chat_id, format=None):
+        try:
+            chatroom = ChatRoom.objects.get(id=chat_id)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        self.check_object_permissions(request, chatroom)
+        serializer = MessageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

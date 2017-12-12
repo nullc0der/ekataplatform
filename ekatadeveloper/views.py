@@ -1,5 +1,8 @@
+import os
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+from django.conf import settings
 from groupsystem.models import BasicGroup
 
 
@@ -24,3 +27,17 @@ def send_menus(request):
             'group': group
         }
     )
+
+
+class ReactIndexView(TemplateView):
+    template_name = 'react_template.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ReactIndexView, self).get_context_data(**kwargs)
+        manifest_file = open(
+            os.path.join(settings.BASE_DIR,
+                         'static/bundles/chunk-manifest.json'))
+        manifest_data = manifest_file.read()
+        manifest_file.close()
+        context['manifest_data'] = manifest_data
+        return context

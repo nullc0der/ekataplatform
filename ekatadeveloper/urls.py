@@ -22,7 +22,9 @@ from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView
 from allauth.socialaccount.views import ConnectionsView
 from allauth.account.views import PasswordSetView, PasswordChangeView
-from ekatadeveloper.views import send_menus
+from ekatadeveloper.views import send_menus, ReactIndexView
+from rest_framework.documentation import include_docs_urls
+from rest_framework.schemas import get_schema_view
 
 admin.site.site_title = 'Ekata administration'
 admin.site.site_header = 'Ekata administration'
@@ -38,13 +40,19 @@ sdkworker = TemplateView.as_view(
     template_name='OneSignalSDKWorker.js',
     content_type='application/javascript'
 )
+service_worker = TemplateView.as_view(
+    template_name='sw.js',
+    content_type='text/javascript'
+)
 
 urlpatterns = [
     url(r'manifest\.json', manifest),
     url(r'OneSignalSDKUpdaterWorker\.js', updateworker),
     url(r'OneSignalSDKWorker\.js', sdkworker),
+    url(r'^sw\.js', service_worker),
     url(r'^markdownx/', include('markdownx.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^messenger/', ReactIndexView.as_view()),
 ]
 
 
@@ -79,4 +87,6 @@ urlpatterns += i18n_patterns(
 urlpatterns += [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^api/messaging/', include('messagingsystem.api_urls', namespace='messaging_urls')),
+    url(r'^schema/$', get_schema_view(title='Ekata Messaging API')),
+    url(r'^docs/', include_docs_urls(title='Ekata Messaging API'))
 ]

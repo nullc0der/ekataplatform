@@ -81,7 +81,8 @@ THIRD_PARTIES_APPS = [
     'el_pagination',
     'compressor',
     'dbbackup',
-    'rest_framework'
+    'rest_framework',
+    'webpack_loader'
 ]
 
 EKATA_APPS = [
@@ -510,3 +511,12 @@ DBBACKUP_STORAGE_OPTIONS = {'location': '/opt/ekatabackups'}
 # Useractivity Settings
 # This value is used to turn on or off entire service
 USERACTIVITY_SERVICE_ACTIVE = True if not EKATA_SITE_TYPE == 'beta' else False
+
+
+# Django Webpack Loader
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'static/webpack-stats.json'),
+    }
+}
