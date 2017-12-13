@@ -51,6 +51,7 @@ class SidebarMenu extends Component {
 		e.preventDefault();
 		let $el = $(e.currentTarget)
 		let url = $el.attr('data-href')
+		let external = $el.attr('data-external')
 
 		if (!url){
 			$el = $el.parents('.is-clickable')
@@ -61,7 +62,11 @@ class SidebarMenu extends Component {
 
 		if (!url)
 			return
-		this.props.router.push(url)
+		if (external) {
+			window.location = url
+		} else {
+			this.props.router.push(url)	
+		}
 	}
 
 
@@ -113,6 +118,7 @@ class SidebarMenu extends Component {
 								key={i}
 								data-href={x.href}
 								onClick={x.href ? this.navigate : this.toggleSubMenu}
+								data-external={x.external}
 								className={
 									this.withActiveClass(x.href, 'secondary-menu-item no-outline is-clickable')
 								}>

@@ -42,7 +42,7 @@ class SubHeader extends Component {
 								return <Link
 									to={x.href}
 									className='bread-link'
-									key={i}> {x.text} / </Link>
+									key={i}> {x.text} {(crumbs.length - 1) !== i && '/'} </Link>
 							})
 						}
 					</div>
