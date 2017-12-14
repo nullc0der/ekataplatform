@@ -5,11 +5,13 @@ import Chat from './Chat'
 import Common from './Common'
 import Groups from './Groups'
 import Members from './Members'
+import ChatRooms from './Chatrooms'
 
 export default combineReducers({
 	router,
 	Chat,
 	Common,
 	Groups,
-	Members
+	Members,
+	ChatRooms
 });

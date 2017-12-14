@@ -13,6 +13,7 @@ import RightNav  from 'components/RightNav'
 import SubHeader from 'components/SubHeader'
 import Footer    from 'components/Footer'
 import MiniChat  from 'components/HeaderMiniChat/MiniChat'
+import OnlineSetter from 'components/OnlineSetter'
 
 var debug = require('debug')('ekata:client:app')
 
@@ -36,6 +37,7 @@ class App extends Component {
 					titleTemplate='%s | Ekata'
 					defaultTitle='Ekata Social'/>
 				<MiniChat/>
+				<OnlineSetter/>
 				<LeftNav
 					className={c.leftNav}
 					open={this.state.isLeftNavOpen}

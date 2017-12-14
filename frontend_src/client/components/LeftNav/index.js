@@ -3,6 +3,7 @@ import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import {connect}   from 'react-redux'
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
+import Avatar from 'components/Avatar'
 import c from './LeftNav.styl'
 
 import SidebarMenu from './SidebarMenu'
@@ -42,7 +43,11 @@ class LeftNav extends Component {
 				<div className='sidebar-sub-header'>
 					<div className='user-block flex-horizontal'>
 						<div className='user-image'>
-							<img className='img-responsive' src={ window.django.user.profile_image }></img>
+							{
+                        		window.django.user.profile_image ?
+                        		<img className='img-responsive' src={window.django.user.profile_image}/> :
+                        		<Avatar name={window.django.user.fullname ? window.django.user.fullname : window.django.user.username} bgcolor={window.django.user.profile_avatar_color} fontsize="2em"/>
+                    		}
 						</div>
 						<div className='user-details flex-1'>
 							<div className='name'> { window.django.user.username } </div>

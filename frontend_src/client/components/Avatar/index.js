@@ -7,11 +7,11 @@ import c from './Avatar.styl'
 class Avatar extends Component {
 
 	render(){
-		const {className, name = ''} = this.props;
+		const {className, name = '', bgcolor='#666', fontsize="1em"} = this.props;
 		const initials = name.split(' ').slice(0, 2).map(x => x[0]).join('')
 		const cx = classnames(c.container, 'ui-avatar', className)
 		return (
-			<div className={cx}>
+			<div className={cx} style={{backgroundColor: bgcolor, fontSize: fontsize}}>
 				{ !!name && <div className='avatar-name'> {initials} </div> }
 			</div>
 		)

@@ -130,10 +130,10 @@ MIDDLEWARE_CLASSES = [
 ]
 
 
-if EKATA_SITE_TYPE == 'beta':
-    MIDDLEWARE_CLASSES += [
-        'profilesystem.middleware.CheckInvitationMiddleware'
-    ]
+# if EKATA_SITE_TYPE == 'beta':
+#    MIDDLEWARE_CLASSES += [
+#        'profilesystem.middleware.CheckInvitationMiddleware'
+#    ]
 
 
 ROOT_URLCONF = 'ekatadeveloper.urls'

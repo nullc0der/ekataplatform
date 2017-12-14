@@ -44,7 +44,11 @@
     </a>
 </li>
 <li class="{% active request 'messaging:index' %} mainnavcontent">
-    <a href="{% url 'messaging:index' %}">
+    {% ifequal SITE_TYPE 'beta' %}
+        <a href="/messenger/">
+    {% else %}
+        <a href="{% url 'messaging:index' %}">
+    {% endifequal %}
         <i class="fa fa-comment"></i>
         <span>{% trans "Messenger" %}</span>
         <span class="pull-right-container">

@@ -26,7 +26,21 @@ class ChatRoomsView(APIView):
             subscribers=request.user
         ).order_by('-date_created')
         if chats:
-            serializer = ChatRoomSerializer(chats, many=True)
+            datas = []
+            for chat in chats:
+                data = {}
+                otheruser = [user for user in chat.subscribers.all() if user != request.user]
+                data["id"] = chat.id
+                data["username"] = otheruser[0].username
+                data["is_online"] = otheruser[0].profile.online()
+                data["unread_count"] = chat.messages.filter(read=False).count()
+                if otheruser[0].profile.avatar:
+                    data["user_image_url"] = otheruser[0].profile.avatar.url
+                else:
+                    data["user_image_url"] = ""
+                data["user_avatar_color"] = otheruser[0].profile.default_avatar_color
+                datas.append(data)
+            serializer = ChatRoomSerializer(datas, many=True)
             return Response(serializer.data)
         return Response(data=None, status=status.HTTP_204_NO_CONTENT)
 

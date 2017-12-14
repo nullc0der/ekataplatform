@@ -18,9 +18,16 @@
             csrf: "{{ csrf_token }}",
             user: {
                 username: "{{ request.user.username }}",
+                fullname: "{{ request.user.get_full_name }}",
+                {% if request.user.profile.avatar %}
                 profile_image: "{{ request.user.profile.avatar.url }}",
+                {% else %}
+                profile_image: "",
+                {% endif %}
+                profile_avatar_color: "{{ request.user.profile.default_avatar_color }}",
                 date_joined: "{{ request.user.date_joined|date:"M Y" }}"
-            }
+            },
+            setonline_url: "{% url 'profilesystem:setonline' %}"
         };
     </script>
 </head>

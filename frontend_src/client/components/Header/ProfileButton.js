@@ -2,11 +2,14 @@ import {Component} from 'react'
 import classnames  from 'classnames'
 
 import Dropdown from 'components/ui/Dropdown'
+import Avatar from 'components/Avatar'
 
-const SAMPLE_USER = [{
+const USER = [{
     image: window.django.user.profile_image,
     username: window.django.user.username,
-    created_at_text: 'Member since: ' + window.django.user.date_joined ,
+    fullname: window.django.user.fullname,
+    profile_avatar_color: window.django.user.profile_avatar_color,
+    created_at_text: `Member since: ${window.django.user.date_joined}` ,
 }]
 
 export default class HeaderProfileButton extends Component {
@@ -19,10 +22,10 @@ export default class HeaderProfileButton extends Component {
     }
 
     componentDidMount = ()=> {
-        // $(document).on('blur' , '.header-profile-button', this.onBlur)
+      // $(document).on('blur' , '.header-profile-button', this.onBlur)
     }
     componentWillUnmount = ()=> {
-        // $(document).off('blur', '.header-profile-button', this.onBlur)
+      // $(document).off('blur', '.header-profile-button', this.onBlur)
     }
 
     onBlur = (e)=> {
@@ -33,7 +36,11 @@ export default class HeaderProfileButton extends Component {
         return <div className='profile-menu'>
             <div className='flex-vertical a-center j-center blue-container'>
                 <div className='profile-icon big rounded no-overflow'>
-                    <img className='img-responsive' src={user.image}/>
+                    {
+                        user.image ?
+                        <img className='img-responsive' src={user.image}/> :
+                        <Avatar name={user.fullname ? user.fullname : user.username} bgcolor={user.profile_avatar_color} fontsize="3em"/>
+                    }
                 </div>
                 <div className='text-center'> {user.created_at_text} </div>
             </div>
@@ -58,7 +65,7 @@ export default class HeaderProfileButton extends Component {
     render(){
         const {
             className,
-            user = SAMPLE_USER
+            user = USER
         } = this.props;
 
         const cx = classnames('header-profile-button', className)
@@ -70,7 +77,11 @@ export default class HeaderProfileButton extends Component {
             <div
                 className='profile-button flex-horizontal a-center'>
                 <div className='profile-icon rounded no-overflow'>
-                    <img className='img-responsive' src={user[0].image}/>
+                    {
+                        user[0].image ?
+                        <img className='img-responsive' src={user[0].image}/> :
+                        <Avatar name={user[0].fullname ? user[0].fullname : user[0].username} bgcolor={user[0].profile_avatar_color} fontsize="0.5em"/>
+                    }
                 </div>
                 <div className='profile-username'> {user[0].username} </div>
             </div>
@@ -83,7 +94,7 @@ export default class HeaderProfileButton extends Component {
                 id='id-header-profile-dropdown'
                 className={cx}
                 label={label}
-                items={SAMPLE_USER}
+                items={USER}
                 itemRenderer={this.renderProfile}/>
         )
     }
