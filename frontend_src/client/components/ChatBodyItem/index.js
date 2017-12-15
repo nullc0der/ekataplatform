@@ -13,7 +13,7 @@ class ChatBodyItem extends Component {
 	render(){
 		const {
 			className,
-			user = '',
+			user = {},
 			message = '',
 			stamp = new Date(),
 			left = false
@@ -25,7 +25,11 @@ class ChatBodyItem extends Component {
 
 		return (
 			<div className={cx}>
-				<Avatar name={user}/>
+				{	
+					user.user_image_url ?
+                    <img className='img-responsive img-chat-avatar' src={user.user_image_url}/> :
+                    <Avatar name={user.username} bgcolor={user.profile_avatar_color} />
+                }
 				<div className='msg'>
 					{message}
 					<div className='stamp'>

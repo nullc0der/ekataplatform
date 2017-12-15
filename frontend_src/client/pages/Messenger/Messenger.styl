@@ -75,7 +75,7 @@ sidebar_width = 250px
 	.chat-body-item
 		// border 1px rgba(#000, 0.1) solid
 		border-radius 2px
-		background-color #fff
+		// background-color #fff
 		width auto
 		float right
 		clear both
@@ -87,9 +87,13 @@ sidebar_width = 250px
 		&.in-left
 			float left
 		&:hover
-			border-color theme_primary
-			box-shadow 0 2px 6px 0 rgba(#000, 0.12)
+			// border-color theme_primary
+			// box-shadow 0 2px 6px 0 rgba(#000, 0.12)
 			transform scale(1.05)
+	
+	.img-chat-avatar
+		width 24px
+		height 24px
 
 :local(.sidebar)
 	position relative
@@ -137,18 +141,6 @@ sidebar_width = 250px
 		transition all 0.16s ease
 		will-change transform, box-shadow
 		color rgba(#000, 0.24)
-		&:nth-child(n)
-			.item-image
-				background-color #00bff2
-		&:nth-child(2n)
-			.item-image
-				background-color #87509f
-		&:nth-child(3n)
-			.item-image
-				background-color #ffd700
-		&:nth-child(4n)
-			.item-image
-				background-color #bbd531
 		&:hover, &.is-active
 			transform scale(1.05)
 			border-width 0

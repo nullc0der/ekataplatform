@@ -10,6 +10,7 @@ class Sidebar extends Component {
 	render(){
 		const {
 			selected = null,
+			hasErrored=false,
 			className,
 			items = []
 		} = this.props;
@@ -30,9 +31,13 @@ class Sidebar extends Component {
 					<input
 						type='search'
 						className='search-control'
-						placeholder='Search Users/Groups'/>
+						placeholder='Search Users/Groups'
+						onChange={this.props.onSearchChange}/>
 				</div>
 				<div className='items-list scroll-y flex-1'>
+					{
+						hasErrored && <p>Error loading chats</p>
+					}
 					{
 						items.map((x, i)=>
 							<ChatSidebarItem
@@ -40,9 +45,10 @@ class Sidebar extends Component {
 								selected={selected_chat === i}
 								onClick={(e)=> this.props.onItemClick(x.id)}
 								username={x.username}
-								image={x.image}
-								status={x.status}
-								num_unread={x.num_unread}/>
+								image={x.user_image_url}
+								avatar_color={x.user_avatar_color}
+								is_online={x.is_online}
+								num_unread={x.unread_count}/>
 						)
 					}
 				</div>

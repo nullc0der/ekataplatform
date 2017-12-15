@@ -8,8 +8,26 @@ import c from './Messenger.styl'
 import ChatBodyItem from 'components/ChatBodyItem'
 import ChatFooter from 'components/ChatFooter'
 
+import { chatsFetchData } from 'store/Chat'
+
 
 class ChatView extends Component {
+	componentDidUpdate = (prevProps, prevState) => {
+		if (prevProps.selected !== this.props.selected) {
+			const url = `/api/messaging/chat/${this.props.selected}/`
+			this.props.fetchData(url)	
+		}
+		this.scrollToBottom()
+	}
+
+	componentDidMount() {
+		this.scrollToBottom()
+	}
+
+	scrollToBottom = () => {
+		this.messagesEnd.scrollIntoView({ behavior: "smooth" })
+	}
+
 	closeChatView = ()=> {
 		$('.' + c.chatView).toggleClass('is-open')
 	}
@@ -30,7 +48,8 @@ class ChatView extends Component {
 	render(){
 		const {
 			className,
-			chats
+			chats,
+			title
 		} = this.props;
 
 		const cx = classnames(c.chatView, className, 'flex-vertical')
@@ -38,8 +57,8 @@ class ChatView extends Component {
 		return (
 			<div className={cx}>
 				<div className='chatview-header flex-horizontal a-center'>
-					<div className='text-muted text-session-id'> Session ID: #3949aaudh1 </div>
-					<div className='text-username text-center flex-1'> Sharad Kant </div>
+					{/*<div className='text-muted text-session-id'> Session ID: #3949aaudh1 </div>*/}
+					<div className='text-username text-center flex-1'> {title} </div>
 					<div className='header-options'>
 						<div className='btn btn-default ui-button'>
 							<i className='fa fa-ellipsis-v'/>
@@ -54,12 +73,15 @@ class ChatView extends Component {
 						chats.map((x, i)=> {
 							return <ChatBodyItem
 								key={i}
-								user='Some User'
+								user={x.user}
 								message={x.message}
-								stamp={x.stamp}
-								left={x.from !== 'me'}/>
+								stamp={new Date(x.timestamp)}
+								left={x.user.username !== window.django.user.username}/>
 						})
 					}
+					<div style={{ float:"left", clear: "both" }}
+             			ref={(el) => { this.messagesEnd = el; }}>
+        			</div>
 				</div>
 				<ChatFooter/>
 			</div>
@@ -67,11 +89,22 @@ class ChatView extends Component {
 	}
 }
 
+ChatView.propTypes = {
+	chats: PropTypes.array.isRequired,
+	selected: PropTypes.number.isRequired,
+	areLoading: PropTypes.bool.isRequired,
+	hasErrored: PropTypes.bool.isRequired,
+	fetchData: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state)=> ({
-	chats: state.Chat.chats
+	chats: state.Chat.chats,
+	selected: state.ChatRooms.selected,
+	areLoading: state.Chat.areLoading,
+	hasErrored: state.Chat.hasErrored
 })
 const mapDispatchToProps = (dispatch)=> ({
-
+	fetchData: (url) => dispatch(chatsFetchData(url))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ChatView)

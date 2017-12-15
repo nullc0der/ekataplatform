@@ -4,7 +4,9 @@ const debug = require('debug')('ekata:store:chatrooms')
 const INITIAL_STATE = {
     rooms: [],
     areLoading: false,
-    hasErrored: false
+    hasErrored: false,
+    selected: 0,
+    searchText: ''
 }
 
 const ROOMS_ARE_LOADING = 'ROOMS_ARE_LOADING'
@@ -25,8 +27,20 @@ const roomsFetchDataSuccess = (rooms) => ({
     rooms
 })
 
-const roomsFetchData = (url) => { 
-    (dispatch) => {
+const ROOM_SELECTED = 'ROOM_SELECTED'
+export const roomSelected = (selected) => ({
+    type: ROOM_SELECTED,
+    selected
+})
+
+const SEARCH_TEXT_CHANGED = 'SEARCH_TEXT_CHANGED'
+export const searchTextChanged = (searchText) => ({
+    type: SEARCH_TEXT_CHANGED,
+    searchText
+})
+
+export const roomsFetchData = (url) => { 
+    return (dispatch) => {
         dispatch(roomsAreLoading(true))
         request
             .get(url)
@@ -36,6 +50,7 @@ const roomsFetchData = (url) => {
                     dispatch(roomsHasErrored(true))
                 } else {
                     dispatch(roomsFetchDataSuccess(res.body))
+                    dispatch(roomSelected(res.body[0].id))
                 }
             })
     }
@@ -49,6 +64,10 @@ export default function ChatRoomsReducer(state=INITIAL_STATE, action) {
             return {...state, hasErrored: action.hasErrored}
         case ROOMS_FETCH_DATA_SUCCESS:
             return {...state, rooms: action.rooms}
+        case ROOM_SELECTED:
+            return {...state, selected: action.selected}
+        case SEARCH_TEXT_CHANGED:
+            return {...state, searchText: action.searchText}
         default:
             return state
     }

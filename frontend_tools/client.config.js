@@ -193,7 +193,8 @@ if (IS_PROD){
 		'react-redux', 'react-router-redux',
 		'history', 'jquery', 'superagent', 'react-helmet',
 		'classnames',
-		'prop-types'
+		'prop-types',
+		'emoji-mart'
 	];
 
 	// Extract out the css builds on client prod, in separate bundles

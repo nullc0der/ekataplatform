@@ -67,7 +67,31 @@ class ChatRoomDetailsView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         self.check_object_permissions(request, chatroom)
         messages = chatroom.messages.all().order_by('timestamp')
-        serializer = MessageSerializer(messages, many=True)
+        datas = []
+        for message in messages:
+            data = {}
+            user = {
+                'id': message.user.id,
+                'username': message.user.username,
+                'is_online': message.user.profile.online(),
+                'user_image_url': message.user.profile.avatar.url if message.user.profile.avatar else "",
+                'user_avatar_color': message.user.profile.default_avatar_color
+            }
+            to_user = {
+                'id': message.to_user.id,
+                'username': message.to_user.username,
+                'is_online': message.to_user.profile.online(),
+                'user_image_url': message.to_user.profile.avatar.url if message.to_user.profile.avatar else "",
+                'user_avatar_color': message.to_user.profile.default_avatar_color
+            }
+            data["message"] = message.content
+            data["timestamp"] = message.timestamp
+            data["read"] = message.read
+            data["to_user"] = to_user
+            data["user"] = user
+            data["id"] = message.id
+            datas.append(data)
+        serializer = MessageSerializer(datas, many=True)
         return Response(serializer.data)
 
     def post(self, request, chat_id, format=None):
