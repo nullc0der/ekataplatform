@@ -35,6 +35,17 @@ class ChatFooter extends Component {
 			chatMessage: msg
 		})
 	}
+
+	handleSendChat = (e) => {
+		e.preventDefault()
+		if (this.state.chatMessage) {
+			this.props.handleSendChat(this.state.chatMessage)
+			this.setState({
+				chatMessage: ''
+			})	
+		}
+	}
+
 	render(){
 		const {
 			className,
@@ -56,15 +67,17 @@ class ChatFooter extends Component {
 					<i className='fa fa-camera-retro'/>
 				</div>
 				<div className='chat-input-wrap flex-1 flex-horizontal a-stretch'>
-					<input
-						className='chat-input-box'
-						type='text'
-						placeholder='Type here...'
-						value={this.state.chatMessage}
-						onInput={this.onChatSend}/>
-					<div className='btn btn-default ui-button chat-input-btn'>
-						<i className='fa fa-paper-plane'/>
-					</div>
+					<form onSubmit={this.handleSendChat}>
+						<input
+							className='chat-input-box'
+							type='text'
+							placeholder='Type here...'
+							value={this.state.chatMessage}
+							onInput={this.onChatSend}/>
+						<div className='btn btn-default ui-button chat-input-btn' onClick={this.handleSendChat}>
+							<i className='fa fa-paper-plane'/>
+						</div>
+					</form>
 				</div>
 				{this.state.emojiButtonClicked && <Picker 
 					title='Pick your emoji…' 

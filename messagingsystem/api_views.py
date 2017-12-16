@@ -1,4 +1,9 @@
+import json
+
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.timezone import now
+
+from channels import Group
 
 from rest_framework import status
 from rest_framework.views import APIView
@@ -7,7 +12,33 @@ from rest_framework.response import Response
 from profilesystem.permissions import IsAuthenticatedLegacy
 from messagingsystem.permissions import IsChatRoomSubscriber
 from messagingsystem.serializers import ChatRoomSerializer, MessageSerializer
-from messagingsystem.models import ChatRoom
+from messagingsystem.models import ChatRoom, Message
+from dashboard.models import TotalMessageCount
+
+
+def _make_message_serializable(message):
+    data = {}
+    user = {
+        'id': message.user.id,
+        'username': message.user.username,
+        'is_online': message.user.profile.online(),
+        'user_image_url': message.user.profile.avatar.url if message.user.profile.avatar else "",
+        'user_avatar_color': message.user.profile.default_avatar_color
+    }
+    to_user = {
+        'id': message.to_user.id,
+        'username': message.to_user.username,
+        'is_online': message.to_user.profile.online(),
+        'user_image_url': message.to_user.profile.avatar.url if message.to_user.profile.avatar else "",
+        'user_avatar_color': message.to_user.profile.default_avatar_color
+    }
+    data["message"] = message.content
+    data["timestamp"] = message.timestamp
+    data["read"] = message.read
+    data["to_user"] = to_user
+    data["user"] = user
+    data["id"] = message.id
+    return data
 
 
 class ChatRoomsView(APIView):
@@ -69,27 +100,7 @@ class ChatRoomDetailsView(APIView):
         messages = chatroom.messages.all().order_by('timestamp')
         datas = []
         for message in messages:
-            data = {}
-            user = {
-                'id': message.user.id,
-                'username': message.user.username,
-                'is_online': message.user.profile.online(),
-                'user_image_url': message.user.profile.avatar.url if message.user.profile.avatar else "",
-                'user_avatar_color': message.user.profile.default_avatar_color
-            }
-            to_user = {
-                'id': message.to_user.id,
-                'username': message.to_user.username,
-                'is_online': message.to_user.profile.online(),
-                'user_image_url': message.to_user.profile.avatar.url if message.to_user.profile.avatar else "",
-                'user_avatar_color': message.to_user.profile.default_avatar_color
-            }
-            data["message"] = message.content
-            data["timestamp"] = message.timestamp
-            data["read"] = message.read
-            data["to_user"] = to_user
-            data["user"] = user
-            data["id"] = message.id
+            data = _make_message_serializable(message)
             datas.append(data)
         serializer = MessageSerializer(datas, many=True)
         return Response(serializer.data)
@@ -100,8 +111,39 @@ class ChatRoomDetailsView(APIView):
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         self.check_object_permissions(request, chatroom)
-        serializer = MessageSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if request.data.get('content'):
+            message = Message(user=request.user)
+            message.content = request.data.get('content')
+            message.room = chatroom
+            otherusers = []
+            for user in chatroom.subscribers.all():
+                if user != request.user:
+                    otherusers.append(user)
+            if otherusers:
+                message.to_user = otherusers[0]
+            else:
+                for user in chatroom.unsubscribers.all():
+                    if user != request.user:
+                        message.to_user = user
+            message.save()
+            totalmessagecount, created = TotalMessageCount.objects.get_or_create(
+                date=now().date()
+            )
+            totalmessagecount.count += 1
+            totalmessagecount.save()
+            data = _make_message_serializable(message)
+            serializer = MessageSerializer(data=data)
+            if serializer.is_valid():
+                if otherusers:
+                    message_dict = {
+                        'chatroom': chatroom.id,
+                        'message': serializer.data,
+                        'add_message': True
+                    }
+                    for otheruser in otherusers:
+                        Group('%s-messages' % otheruser.username).send({
+                            'text': json.dumps(message_dict)
+                        })
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)

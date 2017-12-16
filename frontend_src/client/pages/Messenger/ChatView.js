@@ -8,7 +8,7 @@ import c from './Messenger.styl'
 import ChatBodyItem from 'components/ChatBodyItem'
 import ChatFooter from 'components/ChatFooter'
 
-import { chatsFetchData } from 'store/Chat'
+import { chatsFetchData, sendChat } from 'store/Chat'
 
 
 class ChatView extends Component {
@@ -30,6 +30,11 @@ class ChatView extends Component {
 
 	closeChatView = ()=> {
 		$('.' + c.chatView).toggleClass('is-open')
+	}
+
+	handleSendChat = (content) => {
+		const url = `/api/messaging/chat/${this.props.selected}/`
+		this.props.sendChat(url, content)
 	}
 
 	sendDemoChat = (e)=> {
@@ -83,7 +88,7 @@ class ChatView extends Component {
              			ref={(el) => { this.messagesEnd = el; }}>
         			</div>
 				</div>
-				<ChatFooter/>
+				<ChatFooter handleSendChat={this.handleSendChat}/>
 			</div>
 		)
 	}
@@ -104,7 +109,8 @@ const mapStateToProps = (state)=> ({
 	hasErrored: state.Chat.hasErrored
 })
 const mapDispatchToProps = (dispatch)=> ({
-	fetchData: (url) => dispatch(chatsFetchData(url))
+	fetchData: (url) => dispatch(chatsFetchData(url)),
+	sendChat: (url, content) => dispatch(sendChat(url, content))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ChatView)

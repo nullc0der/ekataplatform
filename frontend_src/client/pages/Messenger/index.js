@@ -2,6 +2,7 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import { connect } from 'react-redux'
+import Websocket   from 'react-websocket'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Messenger.styl'
@@ -10,6 +11,7 @@ import Sidebar  from './Sidebar'
 import ChatView from './ChatView'
 
 import { roomsFetchData, roomSelected, searchTextChanged } from 'store/Chatrooms'
+import { receivedChatOnWebsocket } from 'store/Chat'
 
 import SAMPLE_CHATS from './sample-chats'
 import SAMPLE_DETAILED_CHAT from './sample-detailed-chat'
@@ -37,6 +39,13 @@ class Messenger extends Component {
 		}
 	}
 
+	onWebsocketMessage = (data) => {
+		const result = JSON.parse(data)
+		if (result.chatroom === this.props.selected && result.add_message) {
+			this.props.webSocketMessage(result.message)
+		}
+	}
+
 	render(){
 		const {
 			className,
@@ -45,6 +54,7 @@ class Messenger extends Component {
 			hasErrored
 		} = this.props;
 		
+		const websocket_url = window.location.protocol == "https:" ? "wss" : "ws" + '://' + window.location.host + "/messaging/stream/"
 		const cx = classnames(c.container, className, 'flex-horizontal', 'a-stretch', 'flex-1')
 		const title = this.getTitle(rooms, selected)
 		return (
@@ -58,6 +68,8 @@ class Messenger extends Component {
 				<ChatView
 					title = {this.getTitle(rooms, selected)}
 					/>
+				<Websocket url={websocket_url}
+              		onMessage={this.onWebsocketMessage.bind(this)}/>
 			</div>
 		)
 	}
@@ -70,7 +82,8 @@ Messenger.propTypes = {
 	selected: PropTypes.number.isRequired,
 	fetchData: PropTypes.func.isRequired,
 	selectRoom: PropTypes.func.isRequired,
-	changeSearchText: PropTypes.func.isRequired
+	changeSearchText: PropTypes.func.isRequired,
+	webSocketMessage: PropTypes.func.isRequired
 }
 
 const filterRooms = (rooms, searchText) => {
@@ -90,7 +103,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	fetchData: (url) => dispatch(roomsFetchData(url)),
 	selectRoom: (id) => dispatch(roomSelected(id)),
-	changeSearchText: (searchText) => dispatch(searchTextChanged(searchText))
+	changeSearchText: (searchText) => dispatch(searchTextChanged(searchText)),
+	webSocketMessage: (chat) => dispatch(receivedChatOnWebsocket(chat))
 })
 
 export default withStyles(c)(

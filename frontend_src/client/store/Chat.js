@@ -46,6 +46,18 @@ const chatsFetchDataSuccess = (chats) => ({
     chats
 })
 
+const CHAT_SEND_SUCCESS = 'CHAT_SEND_SUCCESS'
+const chatSendSuccess = (chat) => ({
+    type: CHAT_SEND_SUCCESS,
+    chat
+})
+
+const RECEIVED_CHAT_ON_WEBSOCKET = 'RECEIVED_CHAT_ON_WEBSOCKET'
+export const receivedChatOnWebsocket = (chat) => ({
+    type: RECEIVED_CHAT_ON_WEBSOCKET,
+    chat
+})
+
 export const chatsFetchData = (url) => { 
     return (dispatch) => {
         dispatch(chatsAreLoading(true))
@@ -57,6 +69,20 @@ export const chatsFetchData = (url) => {
                     dispatch(chatsHasErrored(true))
                 } else {
                     dispatch(chatsFetchDataSuccess(res.body))
+                }
+            })
+    }
+}
+
+export const sendChat = (url, content) => {
+    return (dispatch) => {
+        request
+            .post(url)
+            .set('X-CSRFToken', window.django.csrf)
+            .send({'content': content})
+            .end((err, res) => {
+                if (res.ok) {
+                    dispatch(chatSendSuccess(res.body))
                 }
             })
     }
@@ -79,6 +105,10 @@ export default function ChatReducer(state = INITIAL_STATE, action){
             return {...state, hasErrored: action.hasErrored}
         case CHATS_FETCH_DATA_SUCCESS:
             return {...state, chats: action.chats}
+        case CHAT_SEND_SUCCESS:
+            return {...state, chats: [...state.chats, action.chat]}
+        case RECEIVED_CHAT_ON_WEBSOCKET:
+            return {...state, chats: [...state.chats, action.chat]}
 		default:
 			return state
 	}
