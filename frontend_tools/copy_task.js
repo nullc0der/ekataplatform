@@ -23,7 +23,8 @@ var VENDORS = normalizePaths([
 	['~/lodash/lodash.js', '@/lodash.js'],
 	['~/animate.css/animate.css', '@/animate.css'],
 	['~/font-awesome', '@/font-awesome'],
-	['~/nprogress', '@/nprogress']
+	['~/nprogress', '@/nprogress'],
+	['~/emoji-mart/css/emoji-mart.css', '@/emoji-mart/css/emoji-mart.css']
 
 	// DIRS
 

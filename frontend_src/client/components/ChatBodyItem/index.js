@@ -9,6 +9,8 @@ import Avatar from 'components/Avatar'
 
 import moment from 'moment'
 
+import { Emoji } from 'emoji-mart'
+
 class ChatBodyItem extends Component {
 	render(){
 		const {
@@ -31,7 +33,11 @@ class ChatBodyItem extends Component {
                     <Avatar name={user.username} bgcolor={user.profile_avatar_color} />
                 }
 				<div className='msg'>
-					{message}
+					{message.split(' ').map((x, i) => {
+						return x.startsWith(':') ?
+						<Emoji emoji={x} size={20} tooltip={true} />:
+						x + ' '
+					})}
 					<div className='stamp'>
 						{moment(stamp).fromNow()}
 					</div>

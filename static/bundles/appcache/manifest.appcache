@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:2017-12-16 00:00:57
+#ver:2017-12-16 13:42:13
 #plugin:4.7.0
 
 CACHE:
@@ -7,8 +7,8 @@ CACHE:
 /static/bundles/MessengerPage.6b25463887845801907a.chunk.js
 /static/bundles/GroupsPage.76b88c46c30bd2fc0193.chunk.js
 /static/bundles/HomePage.cae49dcba24b5b3865fc.chunk.js
-/static/bundles/main-bundle.d41f948b7232f83a1daa.js
-/static/bundles/vendor-bundle.880789ee85740dc18d99.js
+/static/bundles/main-bundle.ddd62a31d85be155c21b.js
+/static/bundles/vendor-bundle.4afa17d35170067a568b.js
 /static/bundles/chunk-manifest.json
 /static/bundles/manifest-bundle.d41d8cd98f00b204e980.js
 
