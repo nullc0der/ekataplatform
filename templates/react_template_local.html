@@ -1,0 +1,66 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ekata Social</title>
+    <style id="server-css" type="text/css" rel="stylesheet"></style>
+    <style>
+        #nprogress .bar {
+			z-index: 3000 !important;
+        }
+    </style>
+    <script>
+        //window.webpackManifest = {{ manifest_data|safe }};
+        window.django = {
+            csrf: "{{ csrf_token }}",
+            user: {
+                username: "{{ request.user.username }}",
+                fullname: "{{ request.user.get_full_name }}",
+                {% if request.user.profile.avatar %}
+                profile_image: "{{ request.user.profile.avatar.url }}",
+                {% else %}
+                profile_image: "",
+                {% endif %}
+                profile_avatar_color: "{{ request.user.profile.default_avatar_color }}",
+                date_joined: "{{ request.user.date_joined|date:"M Y" }}"
+            },
+            setonline_url: "{% url 'profilesystem:setonline' %}"
+        };
+    </script>
+</head>
+<body>
+    <section id="root"></section>
+    <script type="text/javascript" src="/static/bundles/vendor/nprogress/nprogress.js"></script>
+    <script type="text/javascript">
+        (function(){
+                NProgress.start()
+
+                var lazy_list = [
+                    '/static/bundles/vendor/nprogress/nprogress.css',
+                    'https://fonts.googleapis.com/icon?family=Material+Icons',
+                    'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600',
+                    '/static/bundles/vendor/animate.css',
+                    '/static/bundles/vendor/font-awesome/css/font-awesome.css',
+                    '/static/bundles/vendor/emoji-mart/css/emoji-mart.css',
+                ];
+
+
+                function isJS(str){ return str.substr(-3) === ".js" }
+                lazy_list.forEach(function(url, i, list){
+                    var l = document.createElement( isJS(url) ? 'script' : 'link');
+                    l.type = isJS(url) ? 'text/javascript' : 'text/css';
+                    if (!isJS(url)) l.rel  = 'stylesheet';
+                    l[isJS(url) ? 'src' : 'href'] = url;
+                    document.head.appendChild(l);
+                })
+
+                NProgress.set(0.4)
+
+            })();
+    </script>
+    {% render_bundle 'main' attrs="defer" %}
+</body>
+</html>

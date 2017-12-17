@@ -273,7 +273,11 @@ if (IS_PROD){
 		new webpack.optimize.AggressiveMergingPlugin(),
 	]);
 } else {
-	config.entry.main.unshift('webpack-hot-middleware/client')
+	config.entry.main.unshift(
+		'webpack-dev-server/client?http://localhost:3000',
+		'webpack/hot/only-dev-server',
+	)
+	config.output.publicPath = 'http://localhost:3000/assets/bundles/'
 	// config.entry.main.unshift('react-hot-loader/patch')
 	config.plugins = config.plugins.concat([
 		// new webpack.NamedModulesPlugin(),
@@ -281,10 +285,10 @@ if (IS_PROD){
 		// 	filename: '[name].css',
 		// 	allChunks: true
 		// }),
-		new webpack.DllReferencePlugin({
-			context: DIRS.SRC_CLIENT,
-			manifest: require(DIRS.BUILD_PUBLIC + '/dll/vendor-manifest.json')
-		}),
+		//new webpack.DllReferencePlugin({
+		//	context: DIRS.SRC_CLIENT,
+		//	manifest: require(DIRS.BUILD_PUBLIC + '/dll/vendor-manifest.json')
+		//}),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin()
 	]);

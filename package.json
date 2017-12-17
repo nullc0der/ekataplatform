@@ -8,6 +8,7 @@
     "npm": "4.2.0"
   },
   "scripts": {
+    "build:dev": "node frontend_tools/copy_task.js && node frontend_tools/dev_server.js",
     "build:prod:client": "node frontend_tools/copy_task.js && NODE_ENV=production webpack --config frontend_tools/client.config.js",
     "build:prod:client:watch": "NODE_ENV=production webpack --config frontend_tools/client.config.js --watch"
   },

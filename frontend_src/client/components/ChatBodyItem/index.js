@@ -35,7 +35,7 @@ class ChatBodyItem extends Component {
 				<div className='msg'>
 					{message.split(' ').map((x, i) => {
 						return x.startsWith(':') ?
-						<Emoji emoji={x} size={20} tooltip={true} />:
+						<Emoji key={i} emoji={x} size={20} tooltip={true} />:
 						x + ' '
 					})}
 					<div className='stamp'>

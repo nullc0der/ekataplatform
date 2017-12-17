@@ -31,14 +31,16 @@ def send_menus(request):
 
 
 class ReactIndexView(LoginRequiredMixin, TemplateView):
-    template_name = 'react_template.html'
+    template_name = 'react_template.html' if not settings.EKATA_SITE_TYPE\
+     == 'local' else 'react_template_local.html'
 
     def get_context_data(self, **kwargs):
         context = super(ReactIndexView, self).get_context_data(**kwargs)
-        manifest_file = open(
-            os.path.join(settings.BASE_DIR,
-                         'static/bundles/chunk-manifest.json'))
-        manifest_data = manifest_file.read()
-        manifest_file.close()
-        context['manifest_data'] = manifest_data
+        if not settings.EKATA_SITE_TYPE == 'local':
+            manifest_file = open(
+                os.path.join(settings.BASE_DIR,
+                            'static/bundles/chunk-manifest.json'))
+            manifest_data = manifest_file.read()
+            manifest_file.close()
+            context['manifest_data'] = manifest_data
         return context

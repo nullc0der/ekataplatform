@@ -49,11 +49,15 @@ urlpatterns = [
     url(r'manifest\.json', manifest),
     url(r'OneSignalSDKUpdaterWorker\.js', updateworker),
     url(r'OneSignalSDKWorker\.js', sdkworker),
-    url(r'^sw\.js', service_worker),
     url(r'^markdownx/', include('markdownx.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^messenger/', ReactIndexView.as_view()),
 ]
+
+if not settings.EKATA_SITE_TYPE == "local":
+    urlpatterns += [
+        url(r'^sw\.js', service_worker),
+    ]
 
 
 urlpatterns += i18n_patterns(

@@ -20,7 +20,7 @@ class ChatView extends Component {
 		this.scrollToBottom()
 	}
 
-	componentDidMount() {
+	componentDidMount = () => {
 		this.scrollToBottom()
 	}
 
