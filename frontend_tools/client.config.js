@@ -80,7 +80,7 @@ var config = {
 	},
 	output: {
 		path: DIRS.BUILD_PUBLIC,
-		publicPath: '/static/bundles/',
+		publicPath: '/statics/bundles/',
 		chunkFilename: '[name].[chunkhash].chunk.js',
 		filename: IS_PROD ? '[name]-bundle.[chunkhash].js' : '[name]-bundle.js'
 	},
