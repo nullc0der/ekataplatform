@@ -64,7 +64,7 @@ class Messenger extends Component {
 			onlineUsers
 		} = this.props;
 		
-		const websocket_url = window.location.protocol == "https:" ? "wss" : "ws" + '://' + window.location.host + "/messaging/stream/"
+		const websocket_url = `${window.location.protocol == "https:" ? "wss" : "ws"}` + '://' + window.location.host + "/messaging/stream/"
 		const cx = classnames(c.container, className, 'flex-horizontal', 'a-stretch', 'flex-1')
 		const title = this.getTitle(rooms, selected)
 		return (
