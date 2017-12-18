@@ -7,6 +7,11 @@
         "name": "main-bundle.js",
         "publicPath": "http://localhost:3000/assets/bundles/main-bundle.js",
         "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.js"
+      },
+      {
+        "name": "0.b7db12055695a51bd5a2.hot-update.js",
+        "publicPath": "http://localhost:3000/assets/bundles/0.b7db12055695a51bd5a2.hot-update.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/0.b7db12055695a51bd5a2.hot-update.js"
       }
     ]
   }

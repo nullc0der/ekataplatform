@@ -20,11 +20,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView
+
 from allauth.socialaccount.views import ConnectionsView
 from allauth.account.views import PasswordSetView, PasswordChangeView
-from ekatadeveloper.views import send_menus, ReactIndexView
 from rest_framework.documentation import include_docs_urls
 from rest_framework.schemas import get_schema_view
+
+from ekatadeveloper.views import send_menus, ReactIndexView
+from publicusers.views import get_onlineusers_react
+
 
 admin.site.site_title = 'Ekata administration'
 admin.site.site_header = 'Ekata administration'
@@ -52,6 +56,7 @@ urlpatterns = [
     url(r'^markdownx/', include('markdownx.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^messenger/', ReactIndexView.as_view()),
+    url(r'^onlineusers/', get_onlineusers_react)
 ]
 
 if not settings.EKATA_SITE_TYPE == "local":

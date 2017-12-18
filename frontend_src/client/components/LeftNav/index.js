@@ -45,7 +45,7 @@ class LeftNav extends Component {
 						<div className='user-image'>
 							{
                         		window.django.user.profile_image ?
-                        		<img className='img-responsive' src={window.django.user.profile_image}/> :
+                        		<img className='img-responsive rounded' src={window.django.user.profile_image}/> :
                         		<Avatar name={window.django.user.fullname ? window.django.user.fullname : window.django.user.username} bgcolor={window.django.user.profile_avatar_color} fontsize="2em"/>
                     		}
 						</div>

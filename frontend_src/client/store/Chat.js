@@ -67,8 +67,10 @@ export const chatsFetchData = (url) => {
             .end((err, res) => {
                 if (err || !res.ok) {
                     dispatch(chatsHasErrored(true))
+                    dispatch(chatsAreLoading(false))
                 } else {
                     dispatch(chatsFetchDataSuccess(res.body))
+                    dispatch(chatsAreLoading(false))
                 }
             })
     }

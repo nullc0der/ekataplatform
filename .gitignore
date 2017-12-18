@@ -67,3 +67,7 @@ project.cson
 
 # Docker
 .env*
+
+
+# Misc
+todo.md

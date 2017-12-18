@@ -38,7 +38,7 @@ export default class HeaderProfileButton extends Component {
                 <div className='profile-icon big rounded no-overflow'>
                     {
                         user.image ?
-                        <img className='img-responsive' src={user.image}/> :
+                        <img className='img-responsive rounded' src={user.image}/> :
                         <Avatar name={user.fullname ? user.fullname : user.username} bgcolor={user.profile_avatar_color} fontsize="3em"/>
                     }
                 </div>
@@ -79,7 +79,7 @@ export default class HeaderProfileButton extends Component {
                 <div className='profile-icon rounded no-overflow'>
                     {
                         user[0].image ?
-                        <img className='img-responsive' src={user[0].image}/> :
+                        <img className='img-responsive rounded' src={user[0].image}/> :
                         <Avatar name={user[0].fullname ? user[0].fullname : user[0].username} bgcolor={user[0].profile_avatar_color} fontsize="0.5em"/>
                     }
                 </div>

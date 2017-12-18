@@ -12,6 +12,7 @@ import ChatView from './ChatView'
 
 import { roomsFetchData, roomSelected, searchTextChanged } from 'store/Chatrooms'
 import { receivedChatOnWebsocket } from 'store/Chat'
+import { fetchOnlineUsers } from 'store/Users'
 
 import SAMPLE_CHATS from './sample-chats'
 import SAMPLE_DETAILED_CHAT from './sample-detailed-chat'
@@ -19,6 +20,14 @@ import SAMPLE_DETAILED_CHAT from './sample-detailed-chat'
 class Messenger extends Component {
 	componentDidMount = ()=> {
 		this.props.fetchData('/api/messaging/chatrooms/')
+		this.onlineGetter = setInterval(
+			() => this.props.fetchOnlineUsersList('/onlineusers/'),
+			20000
+		)
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.onlineGetter)
 	}
 
 	onSidebarChatSelect = (id)=> {
@@ -51,7 +60,8 @@ class Messenger extends Component {
 			className,
 			rooms,
 			selected,
-			hasErrored
+			hasErrored,
+			onlineUsers
 		} = this.props;
 		
 		const websocket_url = window.location.protocol == "https:" ? "wss" : "ws" + '://' + window.location.host + "/messaging/stream/"
@@ -64,7 +74,8 @@ class Messenger extends Component {
 					hasErrored={hasErrored}
 					onItemClick={this.onSidebarChatSelect}
 					onSearchChange={this.onSearchInputChange}
-					items={rooms}/>
+					items={rooms}
+					onlineUsers={onlineUsers}/>
 				<ChatView
 					title = {this.getTitle(rooms, selected)}
 					/>
@@ -77,13 +88,15 @@ class Messenger extends Component {
 
 Messenger.propTypes = {
 	rooms: PropTypes.array.isRequired,
+	onlineUsers: PropTypes.array.isRequired,
 	areLoading: PropTypes.bool.isRequired,
 	hasErrored: PropTypes.bool.isRequired,
 	selected: PropTypes.number.isRequired,
 	fetchData: PropTypes.func.isRequired,
 	selectRoom: PropTypes.func.isRequired,
 	changeSearchText: PropTypes.func.isRequired,
-	webSocketMessage: PropTypes.func.isRequired
+	webSocketMessage: PropTypes.func.isRequired,
+	fetchOnlineUsersList: PropTypes.func.isRequired
 }
 
 const filterRooms = (rooms, searchText) => {
@@ -97,14 +110,16 @@ const mapStateToProps = (state) => ({
 	rooms: filterRooms(state.ChatRooms.rooms, state.ChatRooms.searchText),
 	selected: state.ChatRooms.selected,
 	areLoading: state.ChatRooms.areLoading,
-	hasErrored: state.ChatRooms.hasErrored
+	hasErrored: state.ChatRooms.hasErrored,
+	onlineUsers: state.Users.onlineUsers
 })
 
 const mapDispatchToProps = (dispatch) => ({
 	fetchData: (url) => dispatch(roomsFetchData(url)),
 	selectRoom: (id) => dispatch(roomSelected(id)),
 	changeSearchText: (searchText) => dispatch(searchTextChanged(searchText)),
-	webSocketMessage: (chat) => dispatch(receivedChatOnWebsocket(chat))
+	webSocketMessage: (chat) => dispatch(receivedChatOnWebsocket(chat)),
+	fetchOnlineUsersList: (url) => dispatch(fetchOnlineUsers(url))
 })
 
 export default withStyles(c)(

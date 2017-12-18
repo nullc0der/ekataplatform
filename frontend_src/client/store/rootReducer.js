@@ -6,6 +6,7 @@ import Common from './Common'
 import Groups from './Groups'
 import Members from './Members'
 import ChatRooms from './Chatrooms'
+import Users from './Users'
 
 export default combineReducers({
 	router,
@@ -13,5 +14,6 @@ export default combineReducers({
 	Common,
 	Groups,
 	Members,
-	ChatRooms
+	ChatRooms,
+	Users
 });

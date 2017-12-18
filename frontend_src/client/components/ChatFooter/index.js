@@ -30,9 +30,9 @@ class ChatFooter extends Component {
 
 	onChatSend = (e)=> {
 		const msg = e.target.value;
-		console.log('sending chat: ', msg)
 		this.setState({
-			chatMessage: msg
+			chatMessage: msg,
+			emojiButtonClicked: false
 		})
 	}
 
@@ -72,6 +72,7 @@ class ChatFooter extends Component {
 							className='chat-input-box'
 							type='text'
 							placeholder='Type here...'
+							spellCheck={true}
 							value={this.state.chatMessage}
 							onInput={this.onChatSend}/>
 						<div className='btn btn-default ui-button chat-input-btn' onClick={this.handleSendChat}>
@@ -82,7 +83,9 @@ class ChatFooter extends Component {
 				{this.state.emojiButtonClicked && <Picker 
 					title='Pick your emoji…' 
 					emoji='point_up' 
-					style={{ position: 'absolute', bottom: '55px', right: '20px' }}
+					style={{ position: 'absolute', bottom: '55px', right: '20px', width: '300px' }}
+					showPreview={false}
+					emojiSize={20}
 					onClick={this.onEmojiClick} />}
 				<div className='btn btn-default ui-button' onClick={this.onEmojiButtonClick}>
 					<i className='fa fa-smile-o'/>

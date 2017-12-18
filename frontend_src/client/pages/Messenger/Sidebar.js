@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
+import _ from 'lodash'
 
 import c from './Messenger.styl'
 
@@ -47,7 +48,7 @@ class Sidebar extends Component {
 								username={x.username}
 								image={x.user_image_url}
 								avatar_color={x.user_avatar_color}
-								is_online={x.is_online}
+								is_online={_.includes(this.props.onlineUsers, x.username)}
 								num_unread={x.unread_count}/>
 						)
 					}

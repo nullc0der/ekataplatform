@@ -18,14 +18,14 @@ class ChatSidebarItem extends Component {
 			'is-active': selected
 		})
 		const status = `${is_online ? 'Online': 'Offline'}`
-		const statusKey = 'is-' + status
+		const statusKey = 'is-' + status.toLowerCase()
 
 		return (
 			<div className={cx} onClick={this.props.onClick}>
 				<div className='item-image rounded'>
 					{
                         image ?
-                        <img className='img-responsive' src={image}/> :
+                        <img className='img-responsive rounded' src={image}/> :
                         <Avatar name={username} bgcolor={avatar_color} fontsize="2em"/>
                     }
 				</div>
