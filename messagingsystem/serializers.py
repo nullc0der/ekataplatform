@@ -8,6 +8,7 @@ class UserSerializer(serializers.Serializer):
     is_online = serializers.BooleanField(default=False)
     user_image_url = serializers.CharField(max_length=200, allow_blank=True)
     user_avatar_color = serializers.CharField(max_length=200, allow_blank=True)
+    public_url = serializers.CharField(max_length=200, allow_blank=True)
 
 
 class ChatRoomSerializer(serializers.Serializer):

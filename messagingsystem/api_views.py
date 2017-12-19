@@ -2,6 +2,7 @@ import json
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.timezone import now
+from django.core.urlresolvers import reverse
 
 from channels import Group
 
@@ -23,14 +24,16 @@ def _make_message_serializable(message):
         'username': message.user.username,
         'is_online': message.user.profile.online(),
         'user_image_url': message.user.profile.avatar.url if message.user.profile.avatar else "",
-        'user_avatar_color': message.user.profile.default_avatar_color
+        'user_avatar_color': message.user.profile.default_avatar_color,
+        'public_url': reverse('publicusers:user', args=[message.user.id, ])
     }
     to_user = {
         'id': message.to_user.id,
         'username': message.to_user.username,
         'is_online': message.to_user.profile.online(),
         'user_image_url': message.to_user.profile.avatar.url if message.to_user.profile.avatar else "",
-        'user_avatar_color': message.to_user.profile.default_avatar_color
+        'user_avatar_color': message.to_user.profile.default_avatar_color,
+        'public_url': reverse('publicusers:user', args=[message.to_user.id, ])
     }
     data["message"] = message.content
     data["timestamp"] = message.timestamp

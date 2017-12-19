@@ -27,11 +27,13 @@ class ChatBodyItem extends Component {
 
 		return (
 			<div className={cx}>
-				{	
-					user.user_image_url ?
-                    <img className='img-responsive img-chat-avatar rounded' src={user.user_image_url}/> :
-                    <Avatar name={user.username} bgcolor={user.user_avatar_color} />
-                }
+				<a href={user.public_url} style={{color: "transparent"}}>
+					{
+						user.user_image_url ?
+							<img className='img-responsive img-chat-avatar rounded' src={user.user_image_url} /> :
+							<Avatar name={user.username} bgcolor={user.user_avatar_color} />
+					}
+				</a>
 				<div className='msg'>
 					{message.split(' ').map((x, i) => {
 						return x.startsWith(':') ?

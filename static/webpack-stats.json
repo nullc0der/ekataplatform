@@ -9,9 +9,9 @@
         "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.js"
       },
       {
-        "name": "0.e37a1617ab99ea26bd37.hot-update.js",
-        "publicPath": "http://localhost:3000/assets/bundles/0.e37a1617ab99ea26bd37.hot-update.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/0.e37a1617ab99ea26bd37.hot-update.js"
+        "name": "0.7ca4a72c682fb89d2996.hot-update.js",
+        "publicPath": "http://localhost:3000/assets/bundles/0.7ca4a72c682fb89d2996.hot-update.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/0.7ca4a72c682fb89d2996.hot-update.js"
       }
     ]
   }
