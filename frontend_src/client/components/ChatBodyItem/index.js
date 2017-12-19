@@ -30,7 +30,7 @@ class ChatBodyItem extends Component {
 				{	
 					user.user_image_url ?
                     <img className='img-responsive img-chat-avatar rounded' src={user.user_image_url}/> :
-                    <Avatar name={user.username} bgcolor={user.profile_avatar_color} />
+                    <Avatar name={user.username} bgcolor={user.user_avatar_color} />
                 }
 				<div className='msg'>
 					{message.split(' ').map((x, i) => {

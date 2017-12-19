@@ -2,6 +2,7 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import {connect} from 'react-redux'
+import request from 'superagent'
 
 import c from './Messenger.styl'
 
@@ -9,6 +10,7 @@ import ChatBodyItem from 'components/ChatBodyItem'
 import ChatFooter from 'components/ChatFooter'
 
 import { chatsFetchData, sendChat } from 'store/Chat'
+import { readStatusUpdated } from 'store/Chatrooms'
 
 
 class ChatView extends Component {
@@ -18,6 +20,32 @@ class ChatView extends Component {
 			this.props.fetchData(url)	
 		}
 		this.scrollToBottom()
+		if (prevProps.chats !== this.props.chats) {
+			const chats = this.props.chats
+			let unreadIds = chats.filter(x => !x.read)
+			if (unreadIds) {
+				this.handleUnreadChat(unreadIds)
+			}
+		}
+	}
+
+	handleUnreadChat = (unreadChats) => {
+		let chatArr = []
+		for (const unreadChat of unreadChats) {
+			chatArr.push(unreadChat.id)
+		}
+		if (chatArr.length) {
+			request
+				.post('/en/messaging/setmessagestatus/')
+				.set('X-CSRFToken', window.django.csrf)
+				.type('form')
+				.send({ 'message_ids': chatArr })
+				.end((err, res) => {
+					if (res.ok) {
+						this.props.updateRoom(this.props.selected)
+					}
+				})
+		}
 	}
 
 	componentDidMount = () => {
@@ -99,7 +127,9 @@ ChatView.propTypes = {
 	selected: PropTypes.number.isRequired,
 	areLoading: PropTypes.bool.isRequired,
 	hasErrored: PropTypes.bool.isRequired,
-	fetchData: PropTypes.func.isRequired
+	fetchData: PropTypes.func.isRequired,
+	sendChat: PropTypes.func.isRequired,
+	updateRoom: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state)=> ({
@@ -110,7 +140,8 @@ const mapStateToProps = (state)=> ({
 })
 const mapDispatchToProps = (dispatch)=> ({
 	fetchData: (url) => dispatch(chatsFetchData(url)),
-	sendChat: (url, content) => dispatch(sendChat(url, content))
+	sendChat: (url, content) => dispatch(sendChat(url, content)),
+	updateRoom: (roomId) => dispatch(readStatusUpdated(roomId))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ChatView)

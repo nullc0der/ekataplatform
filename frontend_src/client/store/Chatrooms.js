@@ -39,6 +39,12 @@ export const searchTextChanged = (searchText) => ({
     searchText
 })
 
+const READ_STATUS_UPDATED = 'READ_STATUS_UPDATED'
+export const readStatusUpdated = (roomId) => ({
+    type: READ_STATUS_UPDATED,
+    roomId
+})
+
 export const roomsFetchData = (url) => { 
     return (dispatch) => {
         dispatch(roomsAreLoading(true))
@@ -70,6 +76,10 @@ export default function ChatRoomsReducer(state=INITIAL_STATE, action) {
             return {...state, selected: action.selected}
         case SEARCH_TEXT_CHANGED:
             return {...state, searchText: action.searchText}
+        case READ_STATUS_UPDATED:
+            return {...state, rooms: state.rooms.map((room) => {
+                return room.id === action.roomId ? {...room, unread_count: 0} : room
+            })}
         default:
             return state
     }

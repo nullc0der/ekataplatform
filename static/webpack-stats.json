@@ -1,54 +1,17 @@
 {
   "status": "done",
-  "publicPath": "/statics/bundles/",
+  "publicPath": "http://localhost:3000/assets/bundles/",
   "chunks": {
-    "Groups-Members": [
-      {
-        "name": "Groups-Members.048ba8b7c4e308838d82.chunk.js",
-        "publicPath": "/statics/bundles/Groups-Members.048ba8b7c4e308838d82.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.048ba8b7c4e308838d82.chunk.js"
-      }
-    ],
-    "MessengerPage": [
-      {
-        "name": "MessengerPage.24e8ca8055019fd31215.chunk.js",
-        "publicPath": "/statics/bundles/MessengerPage.24e8ca8055019fd31215.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/MessengerPage.24e8ca8055019fd31215.chunk.js"
-      }
-    ],
-    "GroupsPage": [
-      {
-        "name": "GroupsPage.76b88c46c30bd2fc0193.chunk.js",
-        "publicPath": "/statics/bundles/GroupsPage.76b88c46c30bd2fc0193.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/GroupsPage.76b88c46c30bd2fc0193.chunk.js"
-      }
-    ],
-    "HomePage": [
-      {
-        "name": "HomePage.cae49dcba24b5b3865fc.chunk.js",
-        "publicPath": "/statics/bundles/HomePage.cae49dcba24b5b3865fc.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/HomePage.cae49dcba24b5b3865fc.chunk.js"
-      }
-    ],
     "main": [
       {
-        "name": "main-bundle.42437de39baeda34af7c.js",
-        "publicPath": "/statics/bundles/main-bundle.42437de39baeda34af7c.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.42437de39baeda34af7c.js"
-      }
-    ],
-    "vendor": [
+        "name": "main-bundle.js",
+        "publicPath": "http://localhost:3000/assets/bundles/main-bundle.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.js"
+      },
       {
-        "name": "vendor-bundle.4afa17d35170067a568b.js",
-        "publicPath": "/statics/bundles/vendor-bundle.4afa17d35170067a568b.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/vendor-bundle.4afa17d35170067a568b.js"
-      }
-    ],
-    "manifest": [
-      {
-        "name": "manifest-bundle.d41d8cd98f00b204e980.js",
-        "publicPath": "/statics/bundles/manifest-bundle.d41d8cd98f00b204e980.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/manifest-bundle.d41d8cd98f00b204e980.js"
+        "name": "0.e37a1617ab99ea26bd37.hot-update.js",
+        "publicPath": "http://localhost:3000/assets/bundles/0.e37a1617ab99ea26bd37.hot-update.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/0.e37a1617ab99ea26bd37.hot-update.js"
       }
     ]
   }
