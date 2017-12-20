@@ -11,7 +11,7 @@ import Sidebar  from './Sidebar'
 import ChatView from './ChatView'
 
 import { roomsFetchData, roomSelected, searchTextChanged } from 'store/Chatrooms'
-import { receivedChatOnWebsocket } from 'store/Chat'
+import { receivedChatOnWebsocket, clearChat } from 'store/Chat'
 import { fetchOnlineUsers } from 'store/Users'
 
 import SAMPLE_CHATS from './sample-chats'
@@ -55,6 +55,15 @@ class Messenger extends Component {
 		}
 	}
 
+	selectNextRoom = () => {
+		for (const room of this.props.rooms) {
+			if (room.id > this.props.selected || room.id < this.props.selected) {
+				this.props.selectRoom(room.id)
+			}
+			this.props.clearChat(0)
+		}
+	}
+
 	render(){
 		const {
 			className,
@@ -78,6 +87,7 @@ class Messenger extends Component {
 					onlineUsers={onlineUsers}/>
 				<ChatView
 					title = {this.getTitle(rooms, selected)}
+					selectNext = {this.selectNextRoom}
 					/>
 				<Websocket url={websocket_url}
               		onMessage={this.onWebsocketMessage.bind(this)}/>
@@ -96,7 +106,8 @@ Messenger.propTypes = {
 	selectRoom: PropTypes.func.isRequired,
 	changeSearchText: PropTypes.func.isRequired,
 	webSocketMessage: PropTypes.func.isRequired,
-	fetchOnlineUsersList: PropTypes.func.isRequired
+	fetchOnlineUsersList: PropTypes.func.isRequired,
+	clearChat: PropTypes.func.isRequired
 }
 
 const filterRooms = (rooms, searchText) => {
@@ -119,7 +130,8 @@ const mapDispatchToProps = (dispatch) => ({
 	selectRoom: (id) => dispatch(roomSelected(id)),
 	changeSearchText: (searchText) => dispatch(searchTextChanged(searchText)),
 	webSocketMessage: (chat) => dispatch(receivedChatOnWebsocket(chat)),
-	fetchOnlineUsersList: (url) => dispatch(fetchOnlineUsers(url))
+	fetchOnlineUsersList: (url) => dispatch(fetchOnlineUsers(url)),
+	clearChat: (roomId) => dispatch(clearChat(roomId))
 })
 
 export default withStyles(c)(

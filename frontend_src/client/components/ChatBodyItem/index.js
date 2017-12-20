@@ -17,6 +17,8 @@ class ChatBodyItem extends Component {
 			className,
 			user = {},
 			message = '',
+			message_id = null,
+			selected = false,
 			stamp = new Date(),
 			left = false
 		} = this.props;
@@ -27,14 +29,15 @@ class ChatBodyItem extends Component {
 
 		return (
 			<div className={cx}>
-				<a href={user.public_url} style={{color: "transparent"}}>
+				{selected && <i className="material-icons selectmessage">check_circle</i>}
+				<a href={user.public_url} style={{color: "transparent"}} className="ui-avatar">
 					{
 						user.user_image_url ?
 							<img className='img-responsive img-chat-avatar rounded' src={user.user_image_url} /> :
 							<Avatar name={user.username} bgcolor={user.user_avatar_color} />
 					}
 				</a>
-				<div className='msg'>
+				<div className='msg' onClick={() => this.props.onSelected(this.props.message_id)}>
 					{message.split(' ').map((x, i) => {
 						return x.startsWith(':') ?
 						<Emoji key={i} emoji={x} size={20} tooltip={true} />:
@@ -44,7 +47,6 @@ class ChatBodyItem extends Component {
 						{moment(stamp).fromNow()}
 					</div>
 				</div>
-
 			</div>
 		)
 	}

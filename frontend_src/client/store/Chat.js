@@ -58,6 +58,12 @@ export const receivedChatOnWebsocket = (chat) => ({
     chat
 })
 
+const CLEAR_CHAT = 'CLEAR_CHAT'
+export const clearChat = (roomId) => ({
+    type: CLEAR_CHAT,
+    roomId
+})
+
 export const chatsFetchData = (url) => { 
     return (dispatch) => {
         dispatch(chatsAreLoading(true))
@@ -111,6 +117,8 @@ export default function ChatReducer(state = INITIAL_STATE, action){
             return {...state, chats: [...state.chats, action.chat]}
         case RECEIVED_CHAT_ON_WEBSOCKET:
             return {...state, chats: [...state.chats, action.chat]}
+        case CLEAR_CHAT:
+            return {...state, chats: []}
 		default:
 			return state
 	}

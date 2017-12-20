@@ -3,6 +3,7 @@ import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import {connect} from 'react-redux'
 import request from 'superagent'
+import _ from 'lodash'
 
 import c from './Messenger.styl'
 
@@ -10,10 +11,18 @@ import ChatBodyItem from 'components/ChatBodyItem'
 import ChatFooter from 'components/ChatFooter'
 
 import { chatsFetchData, sendChat } from 'store/Chat'
-import { readStatusUpdated } from 'store/Chatrooms'
+import { readStatusUpdated, sendDeleteRequest } from 'store/Chatrooms'
 
 
 class ChatView extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			selectedMessages: [],
+			optionsOpen: false
+		}
+	}
+
 	componentDidUpdate = (prevProps, prevState) => {
 		if (prevProps.selected !== this.props.selected) {
 			const url = `/api/messaging/chat/${this.props.selected}/`
@@ -48,6 +57,20 @@ class ChatView extends Component {
 		}
 	}
 
+	handleSelectedMessage = (messageId) => {
+		let selectedMessages = this.state.selectedMessages
+		let messages = _.includes(selectedMessages, messageId) ? selectedMessages.filter(x => x !== messageId) : selectedMessages.concat(messageId)
+		this.setState({
+			selectedMessages: messages
+		})
+	}
+
+	handleOptions = () => {
+		this.setState(prevState => ({
+			optionsOpen: !prevState.optionsOpen
+		}))
+	}
+
 	componentDidMount = () => {
 		this.scrollToBottom()
 	}
@@ -65,6 +88,15 @@ class ChatView extends Component {
 		this.props.sendChat(url, content)
 	}
 
+	handleDelete = (e) => {
+		e.preventDefault()
+		this.props.deleteRoom('/en/messaging/deleteroom/', this.props.selected)
+		this.props.selectNext()
+		this.setState(prevState => ({
+			optionsOpen: !prevState.optionsOpen
+		}))
+	}
+
 	sendDemoChat = (e)=> {
 		// if (e.keyCode !== 13)
 		// 	return
@@ -76,6 +108,16 @@ class ChatView extends Component {
 		)
 
 		$chat.get(0).scrollIntoView();
+	}
+
+	renderOptions = () => {
+		const deleteString = this.state.selectedMessages.length > 1 ? 'Delete Selected Messages' : 'Delete Selected Message'
+		return (
+			<ul className="dropdown-menu animated fadeIn" style={{ left: "auto", right: 0 }}>
+				<li><a href='#' onClick={this.handleDelete}>Delete This Room</a></li>
+				{this.state.selectedMessages.length > 0 && <li><a href='#'>{deleteString}</a></li>}
+			</ul>
+		)
 	}
 
 	render(){
@@ -93,8 +135,11 @@ class ChatView extends Component {
 					{/*<div className='text-muted text-session-id'> Session ID: #3949aaudh1 </div>*/}
 					<div className='text-username text-center flex-1'> {title} </div>
 					<div className='header-options'>
-						<div className='btn btn-default ui-button'>
+						<div className='btn btn-default ui-button' onClick={this.handleOptions}>
 							<i className='fa fa-ellipsis-v'/>
+						</div>
+						<div className={this.state.optionsOpen ? "dropdown open": "dropdown"}>
+							{this.renderOptions()}
 						</div>
 						<div onClick={this.closeChatView} className='btn btn-default btn-chat ui-button mobile-close-chat'>
 							<i className='fa fa-remove'/>
@@ -108,8 +153,11 @@ class ChatView extends Component {
 								key={i}
 								user={x.user}
 								message={x.message}
+								message_id={x.id}
 								stamp={new Date(x.timestamp)}
-								left={x.user.username !== window.django.user.username}/>
+								left={x.user.username !== window.django.user.username}
+								selected={_.includes(this.state.selectedMessages, x.id)}
+								onSelected={this.handleSelectedMessage}/>
 						})
 					}
 					<div style={{ float:"left", clear: "both" }}
@@ -129,7 +177,8 @@ ChatView.propTypes = {
 	hasErrored: PropTypes.bool.isRequired,
 	fetchData: PropTypes.func.isRequired,
 	sendChat: PropTypes.func.isRequired,
-	updateRoom: PropTypes.func.isRequired
+	updateRoom: PropTypes.func.isRequired,
+	deleteRoom: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state)=> ({
@@ -141,7 +190,8 @@ const mapStateToProps = (state)=> ({
 const mapDispatchToProps = (dispatch)=> ({
 	fetchData: (url) => dispatch(chatsFetchData(url)),
 	sendChat: (url, content) => dispatch(sendChat(url, content)),
-	updateRoom: (roomId) => dispatch(readStatusUpdated(roomId))
+	updateRoom: (roomId) => dispatch(readStatusUpdated(roomId)),
+	deleteRoom: (url, roomId) => dispatch(sendDeleteRequest(url, roomId))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ChatView)

@@ -45,6 +45,12 @@ export const readStatusUpdated = (roomId) => ({
     roomId
 })
 
+const DELETE_CHAT_ROOM = 'DELETE_CHAT_ROOM'
+const deleteChatRoom = (roomId) => ({
+    type: DELETE_CHAT_ROOM,
+    roomId
+})
+
 export const roomsFetchData = (url) => { 
     return (dispatch) => {
         dispatch(roomsAreLoading(true))
@@ -59,6 +65,21 @@ export const roomsFetchData = (url) => {
                     dispatch(roomsFetchDataSuccess(res.body))
                     dispatch(roomSelected(res.body[0].id))
                     dispatch(roomsAreLoading(false))
+                }
+            })
+    }
+}
+
+export const sendDeleteRequest = (url, id) => {
+    return (dispatch) => {
+        request
+            .post(url)
+            .set('X-CSRFToken', window.django.csrf)
+            .type('form')
+            .send({'id': id})
+            .end((err, res) => {
+                if (res.ok) {
+                    dispatch(deleteChatRoom(id))
                 }
             })
     }
@@ -80,6 +101,8 @@ export default function ChatRoomsReducer(state=INITIAL_STATE, action) {
             return {...state, rooms: state.rooms.map((room) => {
                 return room.id === action.roomId ? {...room, unread_count: 0} : room
             })}
+        case DELETE_CHAT_ROOM:
+            return {...state, rooms: state.rooms.filter(room => room.id !== action.roomId)}
         default:
             return state
     }
