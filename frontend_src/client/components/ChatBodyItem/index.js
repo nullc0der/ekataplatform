@@ -37,7 +37,7 @@ class ChatBodyItem extends Component {
 							<Avatar name={user.username} bgcolor={user.user_avatar_color} />
 					}
 				</a>
-				<div className='msg' onClick={() => this.props.onSelected(this.props.message_id)}>
+				<div className='msg' onClick={() => this.props.onSelected(this.props.message_id, !left)}>
 					{message.split(' ').map((x, i) => {
 						return x.startsWith(':') ?
 						<Emoji key={i} emoji={x} size={20} tooltip={true} />:

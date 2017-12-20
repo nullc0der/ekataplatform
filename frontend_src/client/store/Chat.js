@@ -1,4 +1,5 @@
 import request from 'superagent'
+import _ from 'lodash'
 const debug = require('debug')('ekata:store:chat')
 
 import CHAT_LIST from 'pages/Messenger/sample-chats'
@@ -64,6 +65,12 @@ export const clearChat = (roomId) => ({
     roomId
 })
 
+const DELETE_CHATS = 'DELETE_CHATS'
+export const deleteChats = (chatIds) => ({
+    type: DELETE_CHATS,
+    chatIds
+})
+
 export const chatsFetchData = (url) => { 
     return (dispatch) => {
         dispatch(chatsAreLoading(true))
@@ -96,6 +103,23 @@ export const sendChat = (url, content) => {
     }
 }
 
+export const sendDeleteChat = (url, ids) => {
+    return (dispatch) => {
+        request
+            .post(url)
+            .set('X-CSRFToken', window.django.csrf)
+            .type('form')
+            .send({ 'ids': ids })
+            .end((err, res) => {
+                if (res.ok) {
+                    if (res.body.length) {
+                        dispatch(deleteChats(res.body))
+                    }
+                }
+            })
+    }
+}
+
 export const actions = {
 	openMiniChat,
 	closeMiniChat
@@ -119,6 +143,8 @@ export default function ChatReducer(state = INITIAL_STATE, action){
             return {...state, chats: [...state.chats, action.chat]}
         case CLEAR_CHAT:
             return {...state, chats: []}
+        case DELETE_CHATS:
+            return {...state, chats: state.chats.filter(chat => !(_.includes(action.chatIds, chat.id)))}
 		default:
 			return state
 	}

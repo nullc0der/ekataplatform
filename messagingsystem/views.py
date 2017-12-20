@@ -267,3 +267,35 @@ def delete_chatroom(request):
             return HttpResponseForbidden()
     except ObjectDoesNotExist:
         return HttpResponse(status=500)
+
+
+@require_POST
+@login_required
+def delete_messages(request):
+    messages = Message.objects.filter(id__in=request.POST.getlist('ids'))
+    otherusers = []
+    data = []
+    message_ids = []
+    for message in messages:
+        if message.user == request.user:
+            chatroom = message.room
+            for user in chatroom.subscribers.all():
+                if user != request.user:
+                    otherusers.append(user)
+            message_dict = {
+                'chatroom': chatroom.id,
+                'message_id': message.id,
+                'add_message': False
+            }
+            data.append(message_dict)
+            message_ids.append(message.id)
+            message.delete()
+    message_json = json.dumps(data)
+    if otherusers:
+        for otheruser in otherusers:
+            Group('%s-messages' % otheruser.username).send({
+                'text': message_json
+            })
+    return HttpResponse(
+        content=json.dumps(message_ids),
+        status=200, content_type='application/json')

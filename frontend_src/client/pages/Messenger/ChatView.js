@@ -10,7 +10,7 @@ import c from './Messenger.styl'
 import ChatBodyItem from 'components/ChatBodyItem'
 import ChatFooter from 'components/ChatFooter'
 
-import { chatsFetchData, sendChat } from 'store/Chat'
+import { chatsFetchData, sendChat, sendDeleteChat } from 'store/Chat'
 import { readStatusUpdated, sendDeleteRequest } from 'store/Chatrooms'
 
 
@@ -26,15 +26,15 @@ class ChatView extends Component {
 	componentDidUpdate = (prevProps, prevState) => {
 		if (prevProps.selected !== this.props.selected) {
 			const url = `/api/messaging/chat/${this.props.selected}/`
-			this.props.fetchData(url)	
+			this.props.fetchData(url)
 		}
-		this.scrollToBottom()
 		if (prevProps.chats !== this.props.chats) {
 			const chats = this.props.chats
 			let unreadIds = chats.filter(x => !x.read)
 			if (unreadIds) {
 				this.handleUnreadChat(unreadIds)
 			}
+			this.scrollToBottom()
 		}
 	}
 
@@ -57,12 +57,14 @@ class ChatView extends Component {
 		}
 	}
 
-	handleSelectedMessage = (messageId) => {
-		let selectedMessages = this.state.selectedMessages
-		let messages = _.includes(selectedMessages, messageId) ? selectedMessages.filter(x => x !== messageId) : selectedMessages.concat(messageId)
-		this.setState({
-			selectedMessages: messages
-		})
+	handleSelectedMessage = (messageId, shouldSelect) => {
+		if (shouldSelect) {
+			let selectedMessages = this.state.selectedMessages
+			let messages = _.includes(selectedMessages, messageId) ? selectedMessages.filter(x => x !== messageId) : selectedMessages.concat(messageId)
+			this.setState({
+				selectedMessages: messages
+			})	
+		}
 	}
 
 	handleOptions = () => {
@@ -97,6 +99,16 @@ class ChatView extends Component {
 		}))
 	}
 
+	handleDeleteChat = (e) => {
+		e.preventDefault()
+		if (this.state.selectedMessages.length) {
+			this.props.deleteChats('/api/messaging/deletemessages/', this.state.selectedMessages)	
+		}
+		this.setState(prevState => ({
+			optionsOpen: !prevState.optionsOpen
+		}))
+	}
+
 	sendDemoChat = (e)=> {
 		// if (e.keyCode !== 13)
 		// 	return
@@ -115,7 +127,7 @@ class ChatView extends Component {
 		return (
 			<ul className="dropdown-menu animated fadeIn" style={{ left: "auto", right: 0 }}>
 				<li><a href='#' onClick={this.handleDelete}>Delete This Room</a></li>
-				{this.state.selectedMessages.length > 0 && <li><a href='#'>{deleteString}</a></li>}
+				{this.state.selectedMessages.length > 0 && <li><a href='#' onClick={this.handleDeleteChat}>{deleteString}</a></li>}
 			</ul>
 		)
 	}
@@ -178,7 +190,8 @@ ChatView.propTypes = {
 	fetchData: PropTypes.func.isRequired,
 	sendChat: PropTypes.func.isRequired,
 	updateRoom: PropTypes.func.isRequired,
-	deleteRoom: PropTypes.func.isRequired
+	deleteRoom: PropTypes.func.isRequired,
+	deleteChats: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state)=> ({
@@ -191,7 +204,8 @@ const mapDispatchToProps = (dispatch)=> ({
 	fetchData: (url) => dispatch(chatsFetchData(url)),
 	sendChat: (url, content) => dispatch(sendChat(url, content)),
 	updateRoom: (roomId) => dispatch(readStatusUpdated(roomId)),
-	deleteRoom: (url, roomId) => dispatch(sendDeleteRequest(url, roomId))
+	deleteRoom: (url, roomId) => dispatch(sendDeleteRequest(url, roomId)),
+	deleteChats: (url, chatIds) => dispatch(sendDeleteChat(url, chatIds))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ChatView)

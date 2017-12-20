@@ -62,8 +62,10 @@ export const roomsFetchData = (url) => {
                     dispatch(roomsHasErrored(true))
                     dispatch(roomsAreLoading(false))
                 } else {
-                    dispatch(roomsFetchDataSuccess(res.body))
-                    dispatch(roomSelected(res.body[0].id))
+                    if (res.status !== 204) {
+                        dispatch(roomsFetchDataSuccess(res.body))
+                        dispatch(roomSelected(res.body[0].id))   
+                    }
                     dispatch(roomsAreLoading(false))
                 }
             })
