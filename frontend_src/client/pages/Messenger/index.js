@@ -18,6 +18,15 @@ import SAMPLE_CHATS from './sample-chats'
 import SAMPLE_DETAILED_CHAT from './sample-detailed-chat'
 
 class Messenger extends Component {
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			websocketTypingStatus: null
+		}
+		this.websocketTypingTimeout = null
+	}
+
 	componentDidMount = ()=> {
 		this.props.fetchData('/api/messaging/chatrooms/')
 		this.onlineGetter = setInterval(
@@ -55,6 +64,18 @@ class Messenger extends Component {
 			if (result.chatroom === this.props.selected) {
 				this.props.webSocketMessage(result.message)
 			}	
+		} else if(result.typing) {
+			if (this.websocketTypingTimeout) {
+				clearTimeout(this.websocketTypingTimeout)
+			}
+			this.setState({
+				websocketTypingStatus: result.chatroom
+			})
+			this.websocketTypingTimeout = setTimeout(() => {
+				this.setState({
+					websocketTypingStatus: ""
+				})
+			}, 5000)
 		} else {
 			for (const data of result) {
 				if (data.chatroom === this.props.selected && !result.add_message) {
@@ -98,6 +119,7 @@ class Messenger extends Component {
 				<ChatView
 					title = {this.getTitle(rooms, selected)}
 					selectNext = {this.selectNextRoom}
+					userTyping = {this.state.websocketTypingStatus}
 					/>
 				<Websocket url={websocket_url}
               		onMessage={this.onWebsocketMessage.bind(this)}/>

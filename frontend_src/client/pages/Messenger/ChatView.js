@@ -19,7 +19,8 @@ class ChatView extends Component {
 		super(props)
 		this.state = {
 			selectedMessages: [],
-			optionsOpen: false
+			optionsOpen: false,
+			userTyping: false
 		}
 	}
 
@@ -35,6 +36,11 @@ class ChatView extends Component {
 				this.handleUnreadChat(unreadIds)
 			}
 			this.scrollToBottom()
+		}
+		if (prevProps.userTyping !== this.props.userTyping) {
+			this.setState({
+				userTyping: this.props.userTyping == this.props.selected
+			})	
 		}
 	}
 
@@ -109,6 +115,15 @@ class ChatView extends Component {
 		}))
 	}
 
+	handleTypingStatus = () => {
+		request
+			.post('/api/messaging/settyping/')
+			.set('X-CSRFToken', window.django.csrf)
+			.type('form')
+			.send({ 'chatroom': this.props.selected })
+			.end((err, res) => {})
+	}
+
 	sendDemoChat = (e)=> {
 		// if (e.keyCode !== 13)
 		// 	return
@@ -176,7 +191,7 @@ class ChatView extends Component {
              			ref={(el) => { this.messagesEnd = el; }}>
         			</div>
 				</div>
-				<ChatFooter handleSendChat={this.handleSendChat}/>
+				<ChatFooter handleSendChat={this.handleSendChat} handleTypingStatus={this.handleTypingStatus} showTyping={this.state.userTyping}/>
 			</div>
 		)
 	}

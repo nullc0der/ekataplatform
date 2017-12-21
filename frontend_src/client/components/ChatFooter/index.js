@@ -11,7 +11,9 @@ class ChatFooter extends Component {
 		super(props)
 		this.state = {
 			emojiButtonClicked: false,
-			chatMessage: ''
+			chatMessage: '',
+			lastTypingSynchedOn: new Date(0),
+			syncDelayInMillis: 5000
 		}
 		this.onEmojiButtonClick = this.onEmojiButtonClick.bind(this)
 	}
@@ -30,6 +32,12 @@ class ChatFooter extends Component {
 
 	onChatSend = (e)=> {
 		const msg = e.target.value;
+		if (new Date().getTime() - this.state.lastTypingSynchedOn.getTime() > this.state.syncDelayInMillis) {
+			this.props.handleTypingStatus()
+			this.setState({
+				lastTypingSynchedOn: new Date()
+			})
+		}
 		this.setState({
 			chatMessage: msg,
 			emojiButtonClicked: false
@@ -67,6 +75,9 @@ class ChatFooter extends Component {
 					<i className='fa fa-camera-retro'/>
 				</div>
 				<div className='chat-input-wrap flex-1 flex-horizontal a-stretch'>
+					{this.props.showTyping && <div className="chat-user-typing">
+						<span>User is typing <i className="fa fa-spin fa-circle-o-notch"></i></span>
+					</div>}
 					<form onSubmit={this.handleSendChat}>
 						<input
 							className='chat-input-box'

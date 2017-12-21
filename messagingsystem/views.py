@@ -1,7 +1,8 @@
 import json
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, \
+    HttpResponseNotFound
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
@@ -299,3 +300,28 @@ def delete_messages(request):
     return HttpResponse(
         content=json.dumps(message_ids),
         status=200, content_type='application/json')
+
+
+@require_POST
+@login_required
+def set_typing_status(request):
+    try:
+        chatroom = ChatRoom.objects.get(id=request.POST.get('chatroom'))
+        if request.user in chatroom.subscribers.all():
+            otherusers = []
+            for user in chatroom.subscribers.all():
+                if request.user != user:
+                    otherusers.append(user)
+            for otheruser in otherusers:
+                message_dict = {
+                    'chatroom': chatroom.id,
+                    'typing': True
+                }
+                Group('%s-messages' % otheruser.username).send({
+                    'text': json.dumps(message_dict)
+                })
+            return HttpResponse(status=200)
+        else:
+            return HttpResponseForbidden()
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound()
