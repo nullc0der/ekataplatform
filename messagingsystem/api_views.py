@@ -64,6 +64,9 @@ class ChatRoomsView(APIView):
             for chat in chats:
                 data = {}
                 otheruser = [user for user in chat.subscribers.all() if user != request.user]
+                if not otheruser:
+                    otheruser = [
+                        user for user in chat.unsubscribers.all() if user != request.user]
                 data["id"] = chat.id
                 data["username"] = otheruser[0].username
                 data["is_online"] = otheruser[0].profile.online()
