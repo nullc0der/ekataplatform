@@ -7,9 +7,9 @@ import c from './ChatBodyItem.styl'
 
 import Avatar from 'components/Avatar'
 
-import moment from 'moment'
-
 import { Emoji } from 'emoji-mart'
+
+import TimeAgo from 'react-timeago'
 
 class ChatBodyItem extends Component {
 	render(){
@@ -44,7 +44,7 @@ class ChatBodyItem extends Component {
 						x + ' '
 					})}
 					<div className='stamp'>
-						{moment(stamp).fromNow()}
+						<TimeAgo date={stamp} minPeriod={10}/>
 					</div>
 				</div>
 			</div>

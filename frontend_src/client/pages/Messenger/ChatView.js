@@ -124,6 +124,14 @@ class ChatView extends Component {
 			.end((err, res) => {})
 	}
 
+	handleDialogs = (e) => {
+		if (this.state.optionsOpen) {
+			this.setState({
+				optionsOpen: false
+			})
+		}
+	}
+
 	sendDemoChat = (e)=> {
 		// if (e.keyCode !== 13)
 		// 	return
@@ -157,16 +165,16 @@ class ChatView extends Component {
 		const cx = classnames(c.chatView, className, 'flex-vertical')
 
 		return (
-			<div className={cx}>
+			<div className={cx} onClick={this.handleDialogs}>
 				<div className='chatview-header flex-horizontal a-center'>
 					{/*<div className='text-muted text-session-id'> Session ID: #3949aaudh1 </div>*/}
 					<div className='text-username text-center flex-1'> {title} </div>
 					<div className='header-options'>
+						<div className={this.state.optionsOpen ? "dropdown open" : "dropdown"}>
+							{this.renderOptions()}
+						</div>
 						<div className='btn btn-default ui-button' onClick={this.handleOptions}>
 							<i className='fa fa-ellipsis-v'/>
-						</div>
-						<div className={this.state.optionsOpen ? "dropdown open": "dropdown"}>
-							{this.renderOptions()}
 						</div>
 						<div onClick={this.closeChatView} className='btn btn-default btn-chat ui-button mobile-close-chat'>
 							<i className='fa fa-remove'/>
@@ -191,7 +199,11 @@ class ChatView extends Component {
              			ref={(el) => { this.messagesEnd = el; }}>
         			</div>
 				</div>
-				<ChatFooter handleSendChat={this.handleSendChat} handleTypingStatus={this.handleTypingStatus} showTyping={this.state.userTyping}/>
+				<ChatFooter 
+					handleSendChat={this.handleSendChat}
+					handleTypingStatus={this.handleTypingStatus}
+					showTyping={this.state.userTyping}
+					showTypingUsername={title} />
 			</div>
 		)
 	}

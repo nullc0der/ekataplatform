@@ -49,7 +49,8 @@ class ChatFooter extends Component {
 		if (this.state.chatMessage) {
 			this.props.handleSendChat(this.state.chatMessage)
 			this.setState({
-				chatMessage: ''
+				chatMessage: '',
+				emojiButtonClicked: false
 			})	
 		}
 	}
@@ -76,7 +77,7 @@ class ChatFooter extends Component {
 				</div>
 				<div className='chat-input-wrap flex-1 flex-horizontal a-stretch'>
 					{this.props.showTyping && <div className="chat-user-typing">
-						<span>User is typing <i className="fa fa-spin fa-circle-o-notch"></i></span>
+						<span>{this.props.showTypingUsername || "User"} is typing <i className="fa fa-spin fa-circle-o-notch"></i></span>
 					</div>}
 					<form onSubmit={this.handleSendChat}>
 						<input
