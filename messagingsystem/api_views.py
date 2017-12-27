@@ -58,7 +58,7 @@ class ChatRoomsView(APIView):
         """
         chats = ChatRoom.objects.filter(
             subscribers=request.user
-        ).order_by('-date_created')
+        ).order_by('-updated')
         if chats:
             datas = []
             for chat in chats:

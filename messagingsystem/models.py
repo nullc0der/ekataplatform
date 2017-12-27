@@ -12,6 +12,7 @@ class ChatRoom(models.Model):
     unsubscribers = models.ManyToManyField(
         User, related_name='unsubscribed_rooms')
     date_created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
 
     def __unicode__(self):
         return "%s" % self.name
@@ -28,3 +29,7 @@ class Message(models.Model):
     room = models.ForeignKey(ChatRoom, related_name='messages')
     content = models.TextField()
     read = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        super(Message, self).save(*args, **kwargs)
+        self.room.save()
