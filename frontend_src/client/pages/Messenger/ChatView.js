@@ -91,9 +91,9 @@ class ChatView extends Component {
 		$('.' + c.chatView).toggleClass('is-open')
 	}
 
-	handleSendChat = (content) => {
+	handleSendChat = (content, file=null) => {
 		const url = `/api/messaging/chat/${this.props.selected}/`
-		this.props.sendChat(url, content)
+		this.props.sendChat(url, content, file)
 	}
 
 	handleDelete = (e) => {
@@ -188,6 +188,9 @@ class ChatView extends Component {
 								key={i}
 								user={x.user}
 								message={x.message}
+								fileurl={x.fileurl}
+								filetype={x.filetype}
+								filename={x.filename}
 								message_id={x.id}
 								stamp={new Date(x.timestamp)}
 								left={x.user.username !== window.django.user.username}
@@ -229,7 +232,7 @@ const mapStateToProps = (state)=> ({
 })
 const mapDispatchToProps = (dispatch)=> ({
 	fetchData: (url) => dispatch(chatsFetchData(url)),
-	sendChat: (url, content) => dispatch(sendChat(url, content)),
+	sendChat: (url, content, file) => dispatch(sendChat(url, content, file)),
 	updateRoom: (roomId) => dispatch(readStatusUpdated(roomId)),
 	deleteRoom: (url, roomId) => dispatch(sendDeleteRequest(url, roomId)),
 	deleteChats: (url, chatIds) => dispatch(sendDeleteChat(url, chatIds))

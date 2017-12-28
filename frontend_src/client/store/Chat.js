@@ -89,17 +89,35 @@ export const chatsFetchData = (url) => {
     }
 }
 
-export const sendChat = (url, content) => {
+export const sendChat = (url, content, file=null) => {
     return (dispatch) => {
-        request
-            .post(url)
-            .set('X-CSRFToken', window.django.csrf)
-            .send({'content': content})
-            .end((err, res) => {
-                if (res.ok) {
-                    dispatch(chatSendSuccess(res.body))
-                }
-            })
+        if (file) {
+            request
+                .post(url)
+                .set('X-CSRFToken', window.django.csrf)
+                .attach('file', file)
+                .field({ 'content': content })
+                .on('progress', event => {
+                    NProgress.set(event.percent / 100)
+                })
+                .end((err, res) => {
+                    if (res.ok) {
+                        dispatch(chatSendSuccess(res.body))
+                    }
+                    NProgress.done(true)
+                })   
+        }
+        else {
+            request
+                .post(url)
+                .set('X-CSRFToken', window.django.csrf)
+                .send({ 'content': content })
+                .end((err, res) => {
+                    if (res.ok) {
+                        dispatch(chatSendSuccess(res.body))
+                    }
+                })
+        }
     }
 }
 

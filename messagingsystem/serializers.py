@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from messagingsystem.models import Message
 
 
 class UserSerializer(serializers.Serializer):
@@ -24,6 +23,9 @@ class MessageSerializer(serializers.Serializer):
     id = serializers.IntegerField(required=True)
     to_user = UserSerializer()
     user = UserSerializer()
-    message = serializers.CharField()
+    message = serializers.CharField(allow_blank=True)
     timestamp = serializers.DateTimeField()
     read = serializers.BooleanField()
+    fileurl = serializers.CharField(max_length=500, allow_blank=True)
+    filetype = serializers.CharField(max_length=40, allow_blank=True)
+    filename = serializers.CharField(max_length=200, allow_blank=True)

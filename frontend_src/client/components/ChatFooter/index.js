@@ -13,7 +13,10 @@ class ChatFooter extends Component {
 			emojiButtonClicked: false,
 			chatMessage: '',
 			lastTypingSynchedOn: new Date(0),
-			syncDelayInMillis: 5000
+			syncDelayInMillis: 5000,
+			chatAttachment: null,
+			imageLoaded: false,
+			fileLoaded: false
 		}
 		this.onEmojiButtonClick = this.onEmojiButtonClick.bind(this)
 	}
@@ -46,12 +49,57 @@ class ChatFooter extends Component {
 
 	handleSendChat = (e) => {
 		e.preventDefault()
-		if (this.state.chatMessage) {
-			this.props.handleSendChat(this.state.chatMessage)
+		if (this.state.chatMessage || this.state.chatAttachment) {
+			if (this.state.chatAttachment) {
+				this.props.handleSendChat(this.state.chatMessage, this.state.chatAttachment)
+				$('#fileInput')[0].value = null
+				$('#imageInput')[0].value = null
+			} else {
+				this.props.handleSendChat(this.state.chatMessage)
+			}
 			this.setState({
 				chatMessage: '',
-				emojiButtonClicked: false
+				emojiButtonClicked: false,
+				chatAttachment: null,
+				imageLoaded: false,
+				fileLoaded: false
 			})	
+		}
+	}
+
+	onImageButtonClick = (e) => {
+		e.preventDefault()
+		$('#imageInput').click()
+	}
+
+	onFileButtonClick = (e) => {
+		e.preventDefault()
+		$('#fileInput').click()
+	}
+
+	handleInputChange = (e, inputtype) => {
+		if (e.target.files[0]) {
+			if (inputtype === 'image') {
+				$('#fileInput')[0].value = null
+				this.setState({
+					chatAttachment: e.target.files[0],
+					imageLoaded: true,
+					fileLoaded: false
+				})
+			} else {
+				$('#imageInput')[0].value = null
+				this.setState({
+					chatAttachment: e.target.files[0],
+					fileLoaded: true,
+					imageLoaded: false
+				})
+			}
+		} else {
+			this.setState({
+				fileLoaded: false,
+				imageLoaded: false,
+				chatAttachment: null
+			})
 		}
 	}
 
@@ -69,11 +117,11 @@ class ChatFooter extends Component {
 
 		return (
 			<div className={cx}>
-				<div className='btn btn-default ui-button btn-attachment'>
-					<i className='fa fa-paperclip'/>
+				<div className='btn btn-default ui-button btn-attachment' onClick={this.onFileButtonClick}>
+					<i className={classnames('fa fa-paperclip', {'file-load-indicator': this.state.fileLoaded})}/>
 				</div>
-				<div className='btn btn-default ui-button btn-camera'>
-					<i className='fa fa-camera-retro'/>
+				<div className='btn btn-default ui-button btn-camera' onClick={this.onImageButtonClick}>
+					<i className={classnames('fa fa-camera-retro', { 'file-load-indicator': this.state.imageLoaded })} />
 				</div>
 				<div className='chat-input-wrap flex-1 flex-horizontal a-stretch'>
 					{this.props.showTyping && <div className="chat-user-typing">
@@ -87,6 +135,17 @@ class ChatFooter extends Component {
 							spellCheck={true}
 							value={this.state.chatMessage}
 							onInput={this.onChatSend}/>
+						<input
+							type='file'
+							id="imageInput"
+							accept='.png, .gif, .jpg'
+							style={{'display': 'none'}}
+							onChange={(e) => this.handleInputChange(e, 'image')} />
+						<input
+							type='file'
+							id="fileInput"
+							style={{ 'display': 'none' }}
+							onChange={(e) => this.handleInputChange(e, 'file')} />
 						<div className='btn btn-default ui-button chat-input-btn' onClick={this.handleSendChat}>
 							<i className='fa fa-paper-plane'/>
 						</div>

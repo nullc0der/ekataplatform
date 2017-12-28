@@ -20,7 +20,10 @@ class ChatBodyItem extends Component {
 			message_id = null,
 			selected = false,
 			stamp = new Date(),
-			left = false
+			left = false,
+			fileurl,
+			filetype,
+			filename
 		} = this.props;
 
 		const cx = classnames(c.container, className, 'chat-body-item', {
@@ -38,10 +41,17 @@ class ChatBodyItem extends Component {
 					}
 				</a>
 				<div className='msg' onClick={() => this.props.onSelected(this.props.message_id, !left)}>
+					{
+						filetype ?
+							filetype.split('/')[0] === 'image' ?
+								<div className="img-attachment"><img src={fileurl} title={filename} alt={filename} /></div> :
+								<div className="file-attachment"><i className="fa fa-paperclip"></i><a href={fileurl}>{filename}</a></div> :
+							""
+					}
 					{message.split(' ').map((x, i) => {
 						return x.startsWith(':') ?
-						<Emoji key={i} emoji={x} size={20} tooltip={true} />:
-						x + ' '
+							<Emoji key={i} emoji={x} size={21} tooltip={true} /> :
+							x + ' '
 					})}
 					<div className='stamp'>
 						<TimeAgo date={stamp} minPeriod={10}/>

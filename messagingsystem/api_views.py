@@ -1,12 +1,17 @@
+import os
 import json
+from mimetypes import MimeTypes
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.timezone import now
 from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.utils.crypto import get_random_string
 
 from channels import Group
 
 from rest_framework import status
+from rest_framework import parsers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -41,6 +46,9 @@ def _make_message_serializable(message):
     data["to_user"] = to_user
     data["user"] = user
     data["id"] = message.id
+    data["fileurl"] = message.attachment_path
+    data["filetype"] = message.attachment_type
+    data["filename"] = message.attachment_path.split('/')[-1]
     return data
 
 
@@ -96,6 +104,8 @@ class ChatRoomDetailsView(APIView):
 
     """
     permission_classes = (IsAuthenticatedLegacy, IsChatRoomSubscriber, )
+    parser_classes = (
+        parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser)
 
     def get(self, request, chat_id, format=None):
         try:
@@ -117,7 +127,7 @@ class ChatRoomDetailsView(APIView):
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         self.check_object_permissions(request, chatroom)
-        if request.data.get('content'):
+        if request.data.get('content') or request.data.get('file'):
             message = Message(user=request.user)
             message.content = request.data.get('content')
             message.room = chatroom
@@ -131,6 +141,11 @@ class ChatRoomDetailsView(APIView):
                 for user in chatroom.unsubscribers.all():
                     if user != request.user:
                         message.to_user = user
+            if request.data.get('file'):
+                path, filetype = handle_attachment(
+                    request.data.get('file'), chatroom.name)
+                message.attachment_path = path
+                message.attachment_type = filetype
             message.save()
             totalmessagecount, created = TotalMessageCount.objects.get_or_create(
                 date=now().date()
@@ -151,5 +166,26 @@ class ChatRoomDetailsView(APIView):
                             'text': json.dumps(message_dict)
                         })
                 return Response(serializer.data)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+def handle_attachment(attachment, chatroom_name):
+    attachment_dir = os.path.join(
+        settings.MEDIA_ROOT, 'messenger', chatroom_name)
+    if not os.path.isdir(attachment_dir):
+        os.makedirs(attachment_dir)
+    dest_file_path = os.path.join(attachment_dir, attachment.name)
+    if os.path.isfile(dest_file_path):
+        attachment_s = attachment.name.split('.')
+        attachment_s[0] = attachment_s[0] + '-' + get_random_string(length=6)
+        attachment_name = attachment_s[0] + '.' + attachment_s[1]
+        dest_file_path = os.path.join(attachment_dir, attachment_name)
+    with open(dest_file_path, 'wb') as attachment_file:
+        for chunk in attachment.chunks():
+            attachment_file.write(chunk)
+    file_type = MimeTypes().guess_type(dest_file_path)[0]
+    file_url = "%smessenger/%s/%s" % (
+        settings.MEDIA_URL, chatroom_name, dest_file_path.split('/')[-1])
+    return file_url, file_type
