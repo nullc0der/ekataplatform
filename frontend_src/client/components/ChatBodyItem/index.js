@@ -8,6 +8,7 @@ import c from './ChatBodyItem.styl'
 import Avatar from 'components/Avatar'
 
 import { Emoji } from 'emoji-mart'
+import Linkify from 'react-linkify'
 
 import TimeAgo from 'react-timeago'
 
@@ -73,7 +74,7 @@ class ChatBodyItem extends Component {
 					{message.split(' ').map((x, i) => {
 						return x.startsWith(':') ?
 							<Emoji key={i} emoji={x} size={21} tooltip={true} /> :
-							x + ' '
+							<Linkify key={i} properties={{ target: '_blank' }}>{x + ' '}</Linkify>
 					})}
 					<div className='stamp'>
 						<TimeAgo date={stamp} minPeriod={10}/>
