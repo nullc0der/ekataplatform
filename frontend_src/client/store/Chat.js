@@ -9,7 +9,8 @@ const INITIAL_STATE = {
 	minichats: [],
 	chats: [],
 	areLoading: false,
-    hasErrored: false
+    hasErrored: false,
+    uploadProgress: 0
 }
 
 function createSampleChat(chat){
@@ -71,6 +72,12 @@ export const deleteChats = (chatIds) => ({
     chatIds
 })
 
+const FILE_UPLOAD_PROGRESS = 'FILE_UPLOAD_PROGRESS'
+const fileUploadProgress = (progress) => ({
+    type: FILE_UPLOAD_PROGRESS,
+    progress
+})
+
 export const chatsFetchData = (url) => { 
     return (dispatch) => {
         dispatch(chatsAreLoading(true))
@@ -98,13 +105,13 @@ export const sendChat = (url, content, file=null) => {
                 .attach('file', file)
                 .field({ 'content': content })
                 .on('progress', event => {
-                    NProgress.set(event.percent / 100)
+                    dispatch(fileUploadProgress(event.percent))
                 })
                 .end((err, res) => {
                     if (res.ok) {
                         dispatch(chatSendSuccess(res.body))
                     }
-                    NProgress.done(true)
+                    dispatch(fileUploadProgress(0))
                 })   
         }
         else {
@@ -163,6 +170,8 @@ export default function ChatReducer(state = INITIAL_STATE, action){
             return {...state, chats: []}
         case DELETE_CHATS:
             return {...state, chats: state.chats.filter(chat => !(_.includes(action.chatIds, chat.id)))}
+        case FILE_UPLOAD_PROGRESS:
+            return {...state, uploadProgress: action.progress}
 		default:
 			return state
 	}

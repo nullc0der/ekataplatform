@@ -206,7 +206,8 @@ class ChatView extends Component {
 					handleSendChat={this.handleSendChat}
 					handleTypingStatus={this.handleTypingStatus}
 					showTyping={this.state.userTyping}
-					showTypingUsername={title} />
+					showTypingUsername={title}
+					uploadProgress={this.props.uploadProgress} />
 			</div>
 		)
 	}
@@ -221,14 +222,16 @@ ChatView.propTypes = {
 	sendChat: PropTypes.func.isRequired,
 	updateRoom: PropTypes.func.isRequired,
 	deleteRoom: PropTypes.func.isRequired,
-	deleteChats: PropTypes.func.isRequired
+	deleteChats: PropTypes.func.isRequired,
+	uploadProgress: PropTypes.number
 }
 
 const mapStateToProps = (state)=> ({
 	chats: state.Chat.chats,
 	selected: state.ChatRooms.selected,
 	areLoading: state.Chat.areLoading,
-	hasErrored: state.Chat.hasErrored
+	hasErrored: state.Chat.hasErrored,
+	uploadProgress: state.Chat.uploadProgress
 })
 const mapDispatchToProps = (dispatch)=> ({
 	fetchData: (url) => dispatch(chatsFetchData(url)),

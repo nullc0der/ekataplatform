@@ -12,6 +12,32 @@ import { Emoji } from 'emoji-mart'
 import TimeAgo from 'react-timeago'
 
 class ChatBodyItem extends Component {
+
+	renderAttachment = (filetype) => {
+		switch (filetype.split('/')[0]) {
+			case 'image':
+				return (
+					<div className="img-attachment">
+						<img src={this.props.fileurl} title={this.props.filename} alt={this.props.filename} />
+					</div>
+				)
+			case 'video':
+				return (
+					<div className="video-attachment">
+						<video controls>
+							<source src={this.props.fileurl} type={filetype}/>>
+						</video>
+					</div>
+				)
+			default:
+				return (
+					<div className="file-attachment">
+						<i className="fa fa-paperclip"></i><a href={this.props.fileurl} target="_blank">{this.props.filename}</a>
+					</div>
+				)
+		}
+	}
+
 	render(){
 		const {
 			className,
@@ -42,11 +68,7 @@ class ChatBodyItem extends Component {
 				</a>
 				<div className='msg' onClick={() => this.props.onSelected(this.props.message_id, !left)}>
 					{
-						filetype ?
-							filetype.split('/')[0] === 'image' ?
-								<div className="img-attachment"><img src={fileurl} title={filename} alt={filename} /></div> :
-								<div className="file-attachment"><i className="fa fa-paperclip"></i><a href={fileurl}>{filename}</a></div> :
-							""
+						filetype ? this.renderAttachment(filetype) : ""
 					}
 					{message.split(' ').map((x, i) => {
 						return x.startsWith(':') ?

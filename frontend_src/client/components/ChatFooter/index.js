@@ -16,7 +16,8 @@ class ChatFooter extends Component {
 			syncDelayInMillis: 5000,
 			chatAttachment: null,
 			imageLoaded: false,
-			fileLoaded: false
+			fileLoaded: false,
+			inputPlaceholder: 'Type here or click on attachment buttons'
 		}
 		this.onEmojiButtonClick = this.onEmojiButtonClick.bind(this)
 	}
@@ -62,7 +63,8 @@ class ChatFooter extends Component {
 				emojiButtonClicked: false,
 				chatAttachment: null,
 				imageLoaded: false,
-				fileLoaded: false
+				fileLoaded: false,
+				inputPlaceholder: 'Type here or click on attachment buttons'
 			})	
 		}
 	}
@@ -84,21 +86,24 @@ class ChatFooter extends Component {
 				this.setState({
 					chatAttachment: e.target.files[0],
 					imageLoaded: true,
-					fileLoaded: false
+					fileLoaded: false,
+					inputPlaceholder: "Nice! now you can add a caption here or send by pressing enter here"
 				})
 			} else {
 				$('#imageInput')[0].value = null
 				this.setState({
 					chatAttachment: e.target.files[0],
 					fileLoaded: true,
-					imageLoaded: false
+					imageLoaded: false,
+					inputPlaceholder: "Nice! now you can add a caption here or send by pressing enter here"
 				})
 			}
 		} else {
 			this.setState({
 				fileLoaded: false,
 				imageLoaded: false,
-				chatAttachment: null
+				chatAttachment: null,
+				inputPlaceholder: 'Type here or click on attachment buttons'
 			})
 		}
 	}
@@ -131,14 +136,14 @@ class ChatFooter extends Component {
 						<input
 							className='chat-input-box'
 							type='text'
-							placeholder='Type here...'
+							placeholder={this.state.inputPlaceholder}
 							spellCheck={true}
 							value={this.state.chatMessage}
 							onInput={this.onChatSend}/>
 						<input
 							type='file'
 							id="imageInput"
-							accept='.png, .gif, .jpg'
+							accept='.png, .gif, .jpg, .mp4, .avi'
 							style={{'display': 'none'}}
 							onChange={(e) => this.handleInputChange(e, 'image')} />
 						<input
@@ -146,6 +151,7 @@ class ChatFooter extends Component {
 							id="fileInput"
 							style={{ 'display': 'none' }}
 							onChange={(e) => this.handleInputChange(e, 'file')} />
+						<div className="file-upload-bar" style={{'width': this.props.uploadProgress + '%'}}></div>
 						<div className='btn btn-default ui-button chat-input-btn' onClick={this.handleSendChat}>
 							<i className='fa fa-paper-plane'/>
 						</div>
