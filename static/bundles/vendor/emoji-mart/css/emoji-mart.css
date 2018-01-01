@@ -89,13 +89,18 @@
   padding: 0 6px;
 }
 .emoji-mart-search input {
-  font-size: 16px;
-  display: block;
-  width: 100%;
-  padding: .2em .6em;
-  border-radius: 25px;
-  border: 1px solid #d9d9d9;
-  outline: 0;
+  font-size: 16px !important;
+  display: block !important;
+  width: 100% !important;
+  padding: .2em .6em !important;
+  border-radius: 25px !important;
+  border: 1px solid #d9d9d9 !important;
+  outline: 0 !important;
+}
+
+.emoji-mart-search input:focus {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .emoji-mart-category .emoji-mart-emoji span {

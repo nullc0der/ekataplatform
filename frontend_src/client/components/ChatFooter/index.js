@@ -19,13 +19,24 @@ class ChatFooter extends Component {
 			fileLoaded: false,
 			inputPlaceholder: 'Type here or click on attachment buttons'
 		}
-		this.onEmojiButtonClick = this.onEmojiButtonClick.bind(this)
 	}
 
 	onEmojiButtonClick = () => {
+		if (!this.state.emojiButtonClicked) {
+			document.addEventListener('click', this.handleClickOutside, false)
+		} else {
+			document.removeEventListener('click', this.handleClickOutside, false)
+		}
 		this.setState(prevState => ({
 			emojiButtonClicked: !prevState.emojiButtonClicked
 		}))
+	}
+
+	handleClickOutside = (e) => {
+		if (this.emojinode.contains(e.target)) {
+			return
+		}
+		this.onEmojiButtonClick()
 	}
 
 	onEmojiClick = (emoji, event) => {
@@ -43,8 +54,7 @@ class ChatFooter extends Component {
 			})
 		}
 		this.setState({
-			chatMessage: msg,
-			emojiButtonClicked: false
+			chatMessage: msg
 		})
 	}
 
@@ -60,7 +70,6 @@ class ChatFooter extends Component {
 			}
 			this.setState({
 				chatMessage: '',
-				emojiButtonClicked: false,
 				chatAttachment: null,
 				imageLoaded: false,
 				fileLoaded: false,
@@ -157,15 +166,17 @@ class ChatFooter extends Component {
 						</div>
 					</form>
 				</div>
-				{this.state.emojiButtonClicked && <Picker 
-					title='Pick your emoji…' 
-					emoji='point_up' 
-					style={{ position: 'absolute', bottom: '55px', right: '20px', width: '300px' }}
-					showPreview={false}
-					emojiSize={20}
-					onClick={this.onEmojiClick} />}
-				<div className='btn btn-default ui-button' onClick={this.onEmojiButtonClick}>
-					<i className='fa fa-smile-o'/>
+				<div className="emoji-wrapper" ref={node => {this.emojinode = node}}>
+					{this.state.emojiButtonClicked && <Picker
+						title='Pick your emoji…'
+						emoji='point_up'
+						style={{ position: 'absolute', bottom: '55px', right: '20px', width: '300px' }}
+						showPreview={false}
+						emojiSize={20}
+						onClick={this.onEmojiClick} />}
+					<div className='btn btn-default ui-button' onClick={this.onEmojiButtonClick}>
+						<i className='fa fa-smile-o' />
+					</div>
 				</div>
 			</div>
 		)
