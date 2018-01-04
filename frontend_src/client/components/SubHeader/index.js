@@ -33,7 +33,7 @@ class SubHeader extends Component {
 		// console.log(paths)
 
 		return (
-			<div className={cx}>
+			<div className={cx} style={{ display: this.props.showHeaders ? 'flex' : 'none' }}>
 				<div>
 					<div className='title'> {mainPath} </div>
 					<div className='list-links flex-horizontal'>

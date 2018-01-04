@@ -19,7 +19,7 @@ class Header extends Component {
 		const cx = classnames(c.container, className, 'flex-horizontal', 'a-center')
 
 		return (
-			<div className={cx}>
+			<div className={cx} style={{ display: this.props.showHeaders ? 'flex' : 'none' }}>
 				<div
 					className='menu-toggle'
 					onClick={this.props.onMenuToggle}>

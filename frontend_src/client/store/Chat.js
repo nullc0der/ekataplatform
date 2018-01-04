@@ -7,27 +7,23 @@ import CHAT_DETAILS from 'pages/Messenger/sample-detailed-chat'
 
 const INITIAL_STATE = {
 	minichats: [],
-	chats: [],
+	chats: {},
 	areLoading: false,
     hasErrored: false,
-    uploadProgress: 0
-}
-
-function createSampleChat(chat){
-	return Object.assign({}, chat, {user: chat.username, messages: CHAT_DETAILS})
+    uploadProgress: {}
 }
 
 const OPEN_MINI_CHAT = 'OPEN_MINI_CHAT'
-const openMiniChat = (chat)=> ({
+const openMiniChat = (roomId)=> ({
 	type: OPEN_MINI_CHAT,
-	chat: createSampleChat(chat)
+	roomId
 })
 
 
 const CLOSE_MINI_CHAT = 'CLOSE_MINI_CHAT'
-const closeMiniChat = (chatid)=> ({
+const closeMiniChat = (roomId)=> ({
 	type: CLOSE_MINI_CHAT,
-	chatid
+	roomId
 })
 
 const CHATS_ARE_LOADING = 'CHATS_ARE_LOADING'
@@ -43,20 +39,23 @@ const chatsHasErrored = (hasErrored) => ({
 })
 
 const CHATS_FETCH_DATA_SUCCESS = 'CHATS_FETCH_DATA_SUCCESS'
-const chatsFetchDataSuccess = (chats) => ({
+const chatsFetchDataSuccess = (roomId, chats) => ({
     type: CHATS_FETCH_DATA_SUCCESS,
+    roomId,
     chats
 })
 
 const CHAT_SEND_SUCCESS = 'CHAT_SEND_SUCCESS'
-const chatSendSuccess = (chat) => ({
+const chatSendSuccess = (roomId, chat) => ({
     type: CHAT_SEND_SUCCESS,
+    roomId,
     chat
 })
 
 const RECEIVED_CHAT_ON_WEBSOCKET = 'RECEIVED_CHAT_ON_WEBSOCKET'
-export const receivedChatOnWebsocket = (chat) => ({
+export const receivedChatOnWebsocket = (roomId, chat) => ({
     type: RECEIVED_CHAT_ON_WEBSOCKET,
+    roomId,
     chat
 })
 
@@ -67,18 +66,20 @@ export const clearChat = (roomId) => ({
 })
 
 const DELETE_CHATS = 'DELETE_CHATS'
-export const deleteChats = (chatIds) => ({
+export const deleteChats = (roomId, chatIds) => ({
     type: DELETE_CHATS,
+    roomId,
     chatIds
 })
 
 const FILE_UPLOAD_PROGRESS = 'FILE_UPLOAD_PROGRESS'
-const fileUploadProgress = (progress) => ({
+const fileUploadProgress = (roomId, progress) => ({
     type: FILE_UPLOAD_PROGRESS,
+    roomId,
     progress
 })
 
-export const chatsFetchData = (url) => { 
+export const chatsFetchData = (url, roomId) => { 
     return (dispatch) => {
         dispatch(chatsAreLoading(true))
         request
@@ -89,14 +90,14 @@ export const chatsFetchData = (url) => {
                     dispatch(chatsHasErrored(true))
                     dispatch(chatsAreLoading(false))
                 } else {
-                    dispatch(chatsFetchDataSuccess(res.body))
+                    dispatch(chatsFetchDataSuccess(roomId, res.body))
                     dispatch(chatsAreLoading(false))
                 }
             })
     }
 }
 
-export const sendChat = (url, content, file=null) => {
+export const sendChat = (url, roomId, content, file=null) => {
     return (dispatch) => {
         if (file) {
             request
@@ -105,14 +106,14 @@ export const sendChat = (url, content, file=null) => {
                 .attach('file', file)
                 .field({ 'content': content })
                 .on('progress', event => {
-                    dispatch(fileUploadProgress(event.percent))
+                    dispatch(fileUploadProgress(roomId, event.percent))
                 })
                 .end((err, res) => {
                     if (res.ok) {
-                        dispatch(chatSendSuccess(res.body))
+                        dispatch(chatSendSuccess(roomId, res.body))
                     }
-                    dispatch(fileUploadProgress(0))
-                })   
+                    dispatch(fileUploadProgress(roomId, 0))
+                })
         }
         else {
             request
@@ -121,14 +122,14 @@ export const sendChat = (url, content, file=null) => {
                 .send({ 'content': content })
                 .end((err, res) => {
                     if (res.ok) {
-                        dispatch(chatSendSuccess(res.body))
+                        dispatch(chatSendSuccess(roomId, res.body))
                     }
                 })
         }
     }
 }
 
-export const sendDeleteChat = (url, ids) => {
+export const sendDeleteChat = (url, roomId, ids) => {
     return (dispatch) => {
         request
             .post(url)
@@ -138,7 +139,7 @@ export const sendDeleteChat = (url, ids) => {
             .end((err, res) => {
                 if (res.ok) {
                     if (res.body.length) {
-                        dispatch(deleteChats(res.body))
+                        dispatch(deleteChats(roomId, res.body))
                     }
                 }
             })
@@ -152,26 +153,48 @@ export const actions = {
 
 export default function ChatReducer(state = INITIAL_STATE, action){
 	switch(action.type){
-		case OPEN_MINI_CHAT:
-			return {...state, minichats: [...state.minichats, action.chat]}
+        case OPEN_MINI_CHAT:
+            let roomIdExist = state.minichats.indexOf(action.roomId) > -1
+            let minichats = state.minichats.slice()
+            if (!roomIdExist) {
+                minichats.push(action.roomId)
+            }
+			return {...state, minichats: minichats}
 		case CLOSE_MINI_CHAT:
-			return {...state, minichats: state.minichats.filter(x => x.id !== action.chatid )}
+			return {...state, minichats: state.minichats.filter(x => x !== action.roomId)}
 		case CHATS_ARE_LOADING:
             return {...state, areLoading: action.areLoading}
         case CHATS_HAS_ERRORED:
             return {...state, hasErrored: action.hasErrored}
         case CHATS_FETCH_DATA_SUCCESS:
-            return {...state, chats: action.chats}
+            return {...state, chats: {...state.chats, [action.roomId]: action.chats}}
         case CHAT_SEND_SUCCESS:
-            return {...state, chats: [...state.chats, action.chat]}
+            return {
+                ...state,
+                chats: {
+                    ...state.chats,
+                    [action.roomId]: [...state.chats[action.roomId], action.chat]
+                }
+            }
         case RECEIVED_CHAT_ON_WEBSOCKET:
-            return {...state, chats: [...state.chats, action.chat]}
+            return {
+                ...state,
+                chats: {
+                    ...state.chats,
+                    [action.roomId]: [...state.chats[action.roomId], action.chat]
+                }
+            }
         case CLEAR_CHAT:
-            return {...state, chats: []}
+            return {...state, chats: {
+                ...state.chats,
+                [action.roomId]: []
+            }}
         case DELETE_CHATS:
-            return {...state, chats: state.chats.filter(chat => !(_.includes(action.chatIds, chat.id)))}
+            return {...state, chats: {
+                ...state.chats,
+                [action.roomId]: state.chats[action.roomId].filter(chat => !(_.includes(action.chatIds, chat.id)))}}
         case FILE_UPLOAD_PROGRESS:
-            return {...state, uploadProgress: action.progress}
+            return {...state, uploadProgress: {roomId: action.roomId, progress: action.progress}}
 		default:
 			return state
 	}

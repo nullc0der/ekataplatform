@@ -12,6 +12,7 @@ import ChatFooter from 'components/ChatFooter'
 
 import { chatsFetchData, sendChat, sendDeleteChat } from 'store/Chat'
 import { readStatusUpdated, sendDeleteRequest } from 'store/Chatrooms'
+import { actions as commonActions } from 'store/Common'
 
 
 class ChatView extends Component {
@@ -25,12 +26,14 @@ class ChatView extends Component {
 	}
 
 	componentDidUpdate = (prevProps, prevState) => {
+		const chats = this.props.chats[this.props.selected]
 		if (prevProps.selected !== this.props.selected) {
-			const url = `/api/messaging/chat/${this.props.selected}/`
-			this.props.fetchData(url)
+			if (!chats) {
+				const url = `/api/messaging/chat/${this.props.selected}/`
+				this.props.fetchData(url, this.props.selected)	
+			}
 		}
-		if (prevProps.chats !== this.props.chats) {
-			const chats = this.props.chats
+		if (prevProps.chats[this.props.selected] !== this.props.chats[this.props.selected]) {
 			let unreadIds = chats.filter(x => !x.read)
 			if (unreadIds) {
 				this.handleUnreadChat(unreadIds)
@@ -88,12 +91,15 @@ class ChatView extends Component {
 	}
 
 	closeChatView = ()=> {
-		$('.' + c.chatView).toggleClass('is-open')
+		$('.' + c.chatView).removeClass('is-open')
+		if ($(window).width() < 768) {
+			this.props.updateHeaderVisibility(true)
+		}
 	}
 
 	handleSendChat = (content, file=null) => {
 		const url = `/api/messaging/chat/${this.props.selected}/`
-		this.props.sendChat(url, content, file)
+		this.props.sendChat(url, this.props.selected, content, file)
 	}
 
 	handleDelete = (e) => {
@@ -108,10 +114,11 @@ class ChatView extends Component {
 	handleDeleteChat = (e) => {
 		e.preventDefault()
 		if (this.state.selectedMessages.length) {
-			this.props.deleteChats('/api/messaging/deletemessages/', this.state.selectedMessages)	
+			this.props.deleteChats('/api/messaging/deletemessages/', this.props.selected, this.state.selectedMessages)	
 		}
 		this.setState(prevState => ({
-			optionsOpen: !prevState.optionsOpen
+			optionsOpen: !prevState.optionsOpen,
+			selectedMessages: []
 		}))
 	}
 
@@ -146,7 +153,7 @@ class ChatView extends Component {
 	}
 
 	renderOptions = () => {
-		const deleteString = this.state.selectedMessages.length > 1 ? 'Delete Selected Messages' : 'Delete Selected Message'
+		const deleteString = this.state.selectedMessages.length > 1 ? `Delete Selected Messages (${this.state.selectedMessages.length})` : 'Delete Selected Message'
 		return (
 			<ul className="dropdown-menu animated fadeIn" style={{ left: "auto", right: 0 }}>
 				<li><a href='#' onClick={this.handleDelete}>Delete This Room</a></li>
@@ -159,10 +166,12 @@ class ChatView extends Component {
 		const {
 			className,
 			chats,
-			title
+			title,
+			selected
 		} = this.props;
 
 		const cx = classnames(c.chatView, className, 'flex-vertical')
+		const chat = chats[selected]
 
 		return (
 			<div className={cx} onClick={this.handleDialogs}>
@@ -183,7 +192,8 @@ class ChatView extends Component {
 				</div>
 				<div className='chatview-body flex-1'>
 					{
-						chats.map((x, i)=> {
+						chat &&
+						chat.map((x, i)=> {
 							return <ChatBodyItem
 								key={i}
 								user={x.user}
@@ -207,14 +217,14 @@ class ChatView extends Component {
 					handleTypingStatus={this.handleTypingStatus}
 					showTyping={this.state.userTyping}
 					showTypingUsername={title}
-					uploadProgress={this.props.uploadProgress} />
+					uploadProgress={this.props.uploadProgress.roomId === selected ? this.props.uploadProgress.progress: 0} />
 			</div>
 		)
 	}
 }
 
 ChatView.propTypes = {
-	chats: PropTypes.array.isRequired,
+	chats: PropTypes.object.isRequired,
 	selected: PropTypes.number.isRequired,
 	areLoading: PropTypes.bool.isRequired,
 	hasErrored: PropTypes.bool.isRequired,
@@ -223,7 +233,8 @@ ChatView.propTypes = {
 	updateRoom: PropTypes.func.isRequired,
 	deleteRoom: PropTypes.func.isRequired,
 	deleteChats: PropTypes.func.isRequired,
-	uploadProgress: PropTypes.number
+	updateHeaderVisibility: PropTypes.func.isRequired,
+	uploadProgress: PropTypes.object
 }
 
 const mapStateToProps = (state)=> ({
@@ -234,11 +245,12 @@ const mapStateToProps = (state)=> ({
 	uploadProgress: state.Chat.uploadProgress
 })
 const mapDispatchToProps = (dispatch)=> ({
-	fetchData: (url) => dispatch(chatsFetchData(url)),
-	sendChat: (url, content, file) => dispatch(sendChat(url, content, file)),
+	fetchData: (url, roomId) => dispatch(chatsFetchData(url, roomId)),
+	sendChat: (url, roomId, content, file) => dispatch(sendChat(url, roomId, content, file)),
 	updateRoom: (roomId) => dispatch(readStatusUpdated(roomId)),
 	deleteRoom: (url, roomId) => dispatch(sendDeleteRequest(url, roomId)),
-	deleteChats: (url, chatIds) => dispatch(sendDeleteChat(url, chatIds))
+	deleteChats: (url, roomId, chatIds) => dispatch(sendDeleteChat(url, roomId, chatIds)),
+	updateHeaderVisibility: (showHeaders) => dispatch(commonActions.updateHeaderVisibility(showHeaders))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ChatView)

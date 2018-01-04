@@ -48,7 +48,11 @@ class ChatFooter extends Component {
 	onChatSend = (e)=> {
 		const msg = e.target.value;
 		if (new Date().getTime() - this.state.lastTypingSynchedOn.getTime() > this.state.syncDelayInMillis) {
-			this.props.handleTypingStatus()
+			if (this.props.roomId) {
+				this.props.handleTypingStatus(this.props.roomId)
+			} else {
+				this.props.handleTypingStatus()
+			}
 			this.setState({
 				lastTypingSynchedOn: new Date()
 			})
@@ -62,11 +66,19 @@ class ChatFooter extends Component {
 		e.preventDefault()
 		if (this.state.chatMessage || this.state.chatAttachment) {
 			if (this.state.chatAttachment) {
-				this.props.handleSendChat(this.state.chatMessage, this.state.chatAttachment)
+				if (this.props.roomId) {
+					this.props.handleSendChat(this.props.roomId, this.state.chatMessage, this.state.chatAttachment)	
+				} else {
+					this.props.handleSendChat(this.state.chatMessage, this.state.chatAttachment)
+				}
 				$('#fileInput')[0].value = null
 				$('#imageInput')[0].value = null
 			} else {
-				this.props.handleSendChat(this.state.chatMessage)
+				if (this.props.roomId) {
+					this.props.handleSendChat(this.props.roomId, this.state.chatMessage)	
+				} else {
+					this.props.handleSendChat(this.state.chatMessage)
+				}
 			}
 			this.setState({
 				chatMessage: '',

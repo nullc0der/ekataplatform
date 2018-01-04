@@ -14,6 +14,14 @@ import TimeAgo from 'react-timeago'
 
 class ChatBodyItem extends Component {
 
+	handleSelect = (messageId, shouldSelect) => {
+		if (this.props.roomId) {
+			this.props.onSelected(this.props.roomId, messageId, shouldSelect)
+		} else {
+			this.props.onSelected(messageId, shouldSelect)
+		}
+	}
+
 	renderAttachment = (filetype) => {
 		switch (filetype.split('/')[0]) {
 			case 'image':
@@ -67,7 +75,7 @@ class ChatBodyItem extends Component {
 							<Avatar name={user.username} bgcolor={user.user_avatar_color} />
 					}
 				</a>
-				<div className='msg' onClick={() => this.props.onSelected(this.props.message_id, !left)}>
+				<div className='msg' onClick={() => this.handleSelect(this.props.message_id, !left)}>
 					{
 						filetype ? this.renderAttachment(filetype) : ""
 					}

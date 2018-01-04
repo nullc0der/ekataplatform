@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     areLoading: false,
     hasErrored: false,
     selected: 0,
-    searchText: ''
+    searchText: '',
+    websocketTypingStatus: 0
 }
 
 const ROOMS_ARE_LOADING = 'ROOMS_ARE_LOADING'
@@ -51,7 +52,13 @@ const deleteChatRoom = (roomId) => ({
     roomId
 })
 
-export const roomsFetchData = (url) => { 
+const UPDATE_TYPING_STATUS = 'UPDATE_TYPING_STATUS'
+export const updateTypingStatus = (chatroom) => ({
+    type: UPDATE_TYPING_STATUS,
+    chatroom
+})
+
+export const roomsFetchData = (url, selectFirst=false) => { 
     return (dispatch) => {
         dispatch(roomsAreLoading(true))
         request
@@ -64,7 +71,9 @@ export const roomsFetchData = (url) => {
                 } else {
                     if (res.status !== 204) {
                         dispatch(roomsFetchDataSuccess(res.body))
-                        dispatch(roomSelected(res.body[0].id))   
+                        if (selectFirst) {
+                            dispatch(roomSelected(res.body[0].id))   
+                        }
                     }
                     dispatch(roomsAreLoading(false))
                 }
@@ -105,6 +114,8 @@ export default function ChatRoomsReducer(state=INITIAL_STATE, action) {
             })}
         case DELETE_CHAT_ROOM:
             return {...state, rooms: state.rooms.filter(room => room.id !== action.roomId)}
+        case UPDATE_TYPING_STATUS:
+            return {...state, websocketTypingStatus: action.chatroom}
         default:
             return state
     }

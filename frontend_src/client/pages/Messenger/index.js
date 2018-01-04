@@ -2,7 +2,6 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import { connect } from 'react-redux'
-import Websocket   from 'react-websocket'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Messenger.styl'
@@ -11,38 +10,28 @@ import Sidebar  from './Sidebar'
 import ChatView from './ChatView'
 
 import { roomsFetchData, roomSelected, searchTextChanged } from 'store/Chatrooms'
-import { receivedChatOnWebsocket, clearChat, deleteChats } from 'store/Chat'
-import { fetchOnlineUsers } from 'store/Users'
-
-import SAMPLE_CHATS from './sample-chats'
-import SAMPLE_DETAILED_CHAT from './sample-detailed-chat'
+import { clearChat } from 'store/Chat'
+import { actions as commonActions } from 'store/Common'
 
 class Messenger extends Component {
 
-	constructor(props) {
-		super(props)
-		this.state = {
-			websocketTypingStatus: null
-		}
-		this.websocketTypingTimeout = null
-	}
-
 	componentDidMount = ()=> {
-		this.props.fetchData('/api/messaging/chatrooms/')
-		this.onlineGetter = setInterval(
-			() => this.props.fetchOnlineUsersList('/onlineusers/'),
-			20000
-		)
+		this.props.fetchData('/api/messaging/chatrooms/', true)
 	}
 
-	componentWillUnmount() {
-		clearInterval(this.onlineGetter)
+	componentDidUpdate = (prevProps) => {
+		if (prevProps.params.id !== this.props.params.id) {
+			this.onSidebarChatSelect(parseInt(this.props.params.id))
+		}
 	}
 
 	onSidebarChatSelect = (id)=> {
 		console.log('clicked something: ', id)
 		this.props.selectRoom(id)
-		$('.' + c.chatView).toggleClass('is-open')
+		$('.' + c.chatView).addClass('is-open')
+		if ($(window).width() < 768) {
+			this.props.updateHeaderVisibility(false)
+		}
 	}
 
 	onSearchInputChange = (e) => {
@@ -57,41 +46,12 @@ class Messenger extends Component {
 		}
 	}
 
-	onWebsocketMessage = (data) => {
-		const result = JSON.parse(data)
-		let messageIds = []
-		if (result.add_message) {
-			if (result.chatroom === this.props.selected) {
-				this.props.webSocketMessage(result.message)
-			}	
-		} else if(result.typing) {
-			if (this.websocketTypingTimeout) {
-				clearTimeout(this.websocketTypingTimeout)
-			}
-			this.setState({
-				websocketTypingStatus: result.chatroom
-			})
-			this.websocketTypingTimeout = setTimeout(() => {
-				this.setState({
-					websocketTypingStatus: ""
-				})
-			}, 5000)
-		} else {
-			for (const data of result) {
-				if (data.chatroom === this.props.selected && !result.add_message) {
-					messageIds.push(data.message_id)
-				}
-			}
-			messageIds.length && this.props.deleteChats(messageIds)
-		}
-	}
-
 	selectNextRoom = () => {
+		this.props.clearChat(this.props.selected)
 		for (const room of this.props.rooms) {
 			if (room.id > this.props.selected || room.id < this.props.selected) {
 				this.props.selectRoom(room.id)
 			}
-			this.props.clearChat(0)
 		}
 	}
 
@@ -104,7 +64,6 @@ class Messenger extends Component {
 			onlineUsers
 		} = this.props;
 		
-		const websocket_url = `${window.location.protocol == "https:" ? "wss" : "ws"}` + '://' + window.location.host + "/messaging/stream/"
 		const cx = classnames(c.container, className, 'flex-horizontal', 'a-stretch', 'flex-1')
 		const title = this.getTitle(rooms, selected)
 		return (
@@ -119,10 +78,8 @@ class Messenger extends Component {
 				<ChatView
 					title = {this.getTitle(rooms, selected)}
 					selectNext = {this.selectNextRoom}
-					userTyping = {this.state.websocketTypingStatus}
+					userTyping = {this.props.websocketTypingStatus}
 					/>
-				<Websocket url={websocket_url}
-              		onMessage={this.onWebsocketMessage.bind(this)}/>
 			</div>
 		)
 	}
@@ -130,17 +87,16 @@ class Messenger extends Component {
 
 Messenger.propTypes = {
 	rooms: PropTypes.array.isRequired,
+	chats: PropTypes.object.isRequired,
 	onlineUsers: PropTypes.array.isRequired,
+	websocketTypingStatus: PropTypes.number.isRequired,
 	areLoading: PropTypes.bool.isRequired,
 	hasErrored: PropTypes.bool.isRequired,
 	selected: PropTypes.number.isRequired,
 	fetchData: PropTypes.func.isRequired,
 	selectRoom: PropTypes.func.isRequired,
 	changeSearchText: PropTypes.func.isRequired,
-	webSocketMessage: PropTypes.func.isRequired,
-	fetchOnlineUsersList: PropTypes.func.isRequired,
-	clearChat: PropTypes.func.isRequired,
-	deleteChats: PropTypes.func.isRequired
+	clearChat: PropTypes.func.isRequired
 }
 
 const filterRooms = (rooms, searchText) => {
@@ -152,20 +108,20 @@ const filterRooms = (rooms, searchText) => {
 
 const mapStateToProps = (state) => ({
 	rooms: filterRooms(state.ChatRooms.rooms, state.ChatRooms.searchText),
+	chats: state.Chat.chats,
 	selected: state.ChatRooms.selected,
 	areLoading: state.ChatRooms.areLoading,
 	hasErrored: state.ChatRooms.hasErrored,
-	onlineUsers: state.Users.onlineUsers
+	onlineUsers: state.Users.onlineUsers,
+	websocketTypingStatus: state.ChatRooms.websocketTypingStatus
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchData: (url) => dispatch(roomsFetchData(url)),
+	fetchData: (url, selectFirst) => dispatch(roomsFetchData(url, selectFirst)),
 	selectRoom: (id) => dispatch(roomSelected(id)),
 	changeSearchText: (searchText) => dispatch(searchTextChanged(searchText)),
-	webSocketMessage: (chat) => dispatch(receivedChatOnWebsocket(chat)),
-	fetchOnlineUsersList: (url) => dispatch(fetchOnlineUsers(url)),
 	clearChat: (roomId) => dispatch(clearChat(roomId)),
-	deleteChats: (chatIds) => dispatch(deleteChats(chatIds))
+	updateHeaderVisibility: (showHeaders) => dispatch(commonActions.updateHeaderVisibility(showHeaders))
 })
 
 export default withStyles(c)(

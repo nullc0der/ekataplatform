@@ -7,37 +7,51 @@ import c from './HeaderMiniChat.styl'
 
 import Dropdown from 'components/ui/Dropdown'
 import {actions as chatActions} from 'store/Chat'
+import { roomsFetchData } from 'store/Chatrooms'
+import { actions as commonActions } from 'store/Common'
 
 
 import Avatar from 'components/Avatar'
-
-import RECENT_CHATS from 'pages/Messenger/sample-chats'
 
 class HeaderMiniChat extends Component {
     static contextTypes = {
         router: PropTypes.object
     }
 
-    openMiniChat = (chat)=> (e)=> {
-        if ( $(window).width() > 768 )
-            this.props.openMiniChat(chat)
-        else
-            this.context.router.push('/messenger/'+chat.id)
+    componentDidMount = () => {
+        if(!this.context.router.location.pathname.startsWith('messenger/')) {
+            this.props.fetchData('/api/messaging/chatrooms/')
+        }
+    }
+
+    openMiniChat = (roomId)=> (e)=> {
+        if ( $(window).width() > 768 ){
+            this.props.openMiniChat(roomId)
+        }
+        else {
+            this.context.router.push('/messenger/' + roomId)
+            this.props.updateHeaderVisibility(false)
+        }
     }
 
     renderItem = (item, i)=> {
         return (
             <div
-                onClick={this.openMiniChat(item)}
+                onClick={this.openMiniChat(item.id)}
                 className={`flex-horizontal ${c.item}`}>
-                <Avatar
-                    name={item.username}/>
+                <div className='item-image rounded'>
+                    {
+                        item.user_image_url ?
+                            <img className='img-responsive rounded' src={item.user_image_url} /> :
+                            <Avatar name={item.username} bgcolor={item.user_avatar_color} fontsize="2em" />
+                    }
+                </div>
                 <div className='item-details'>
                     <div className='item-name'>
                         {item.username}
                     </div>
                     <div className='item-desc'>
-                        {item.description}
+                        {item.unread_count} unread
                     </div>
                 </div>
             </div>
@@ -46,8 +60,7 @@ class HeaderMiniChat extends Component {
 
     render(){
         const {
-            className,
-            username = 'sharad_kant'
+            className
         } = this.props
 
         const cx = classnames(c.container, className)
@@ -71,19 +84,19 @@ class HeaderMiniChat extends Component {
                 className={cx}
                 label={label}
                 ref={dd => this.dropdown = dd}
-                items={RECENT_CHATS}
+                items={this.props.rooms}
                 itemRenderer={this.renderItem}/>
         )
     }
 }
 const mapStateToProps = (state)=> ({
-
+    rooms: state.ChatRooms.rooms
 })
 
 const mapDispatchToProps = (dispatch)=> ({
-    openMiniChat(chat){
-        return dispatch(chatActions.openMiniChat(chat))
-    }
+    openMiniChat: (roomId) => dispatch(chatActions.openMiniChat(roomId)),
+    fetchData: (url) => dispatch(roomsFetchData(url)),
+    updateHeaderVisibility: (showHeaders) => dispatch(commonActions.updateHeaderVisibility(showHeaders))
 })
 
 export default withStyles(c)(

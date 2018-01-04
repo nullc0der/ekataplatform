@@ -13,7 +13,7 @@ import RightNav  from 'components/RightNav'
 import SubHeader from 'components/SubHeader'
 import Footer    from 'components/Footer'
 import MiniChat  from 'components/HeaderMiniChat/MiniChat'
-import OnlineSetter from 'components/OnlineSetter'
+import OnlineUtil from 'components/OnlineUtil'
 
 var debug = require('debug')('ekata:client:app')
 
@@ -37,7 +37,7 @@ class App extends Component {
 					titleTemplate='%s | Ekata'
 					defaultTitle='Ekata Social'/>
 				<MiniChat/>
-				<OnlineSetter/>
+				<OnlineUtil/>
 				<LeftNav
 					className={c.leftNav}
 					open={this.state.isLeftNavOpen}
@@ -47,9 +47,11 @@ class App extends Component {
 					<Header
 						className={c.header}
 						onMenuToggle={this.toggleLeftNav}
-						onSettingsToggle={this.toggleRightNav}/>
+						onSettingsToggle={this.toggleRightNav}
+						showHeaders={this.props.showHeaders ? true: false }/>
 					<SubHeader
-						className={c.subHeader}/>
+						className={c.subHeader}
+						showHeaders={this.props.showHeaders ? true : false}/>
 					<section className='content-inner flex-vertical'>
 						{this.props.children}
 					</section>
@@ -67,7 +69,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state)=> ({
-
+	showHeaders: state.Common.showHeaders
 })
 
 const mapDispatchToProps = (dispatch)=> ({
