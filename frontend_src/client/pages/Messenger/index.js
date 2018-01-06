@@ -2,6 +2,7 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Messenger.styl'
@@ -10,7 +11,7 @@ import Sidebar  from './Sidebar'
 import ChatView from './ChatView'
 
 import { roomsFetchData, roomSelected, searchTextChanged } from 'store/Chatrooms'
-import { clearChat } from 'store/Chat'
+import { clearChat, actions } from 'store/Chat'
 import { actions as commonActions } from 'store/Common'
 
 class Messenger extends Component {
@@ -47,6 +48,9 @@ class Messenger extends Component {
 
 	selectNextRoom = () => {
 		this.props.clearChat(this.props.selected)
+		if (_.includes(this.props.miniChats, this.props.selected)) {
+			this.props.closeMiniChat(this.props.selected)
+		}
 		for (const room of this.props.rooms) {
 			if (room.id > this.props.selected || room.id < this.props.selected) {
 				this.props.selectRoom(room.id)
@@ -92,10 +96,12 @@ Messenger.propTypes = {
 	areLoading: PropTypes.bool.isRequired,
 	hasErrored: PropTypes.bool.isRequired,
 	selected: PropTypes.number.isRequired,
+	miniChats: PropTypes.array.isRequired,
 	fetchData: PropTypes.func.isRequired,
 	selectRoom: PropTypes.func.isRequired,
 	changeSearchText: PropTypes.func.isRequired,
-	clearChat: PropTypes.func.isRequired
+	clearChat: PropTypes.func.isRequired,
+	closeMiniChat: PropTypes.func.isRequired
 }
 
 const filterRooms = (rooms, searchText) => {
@@ -109,6 +115,7 @@ const mapStateToProps = (state) => ({
 	rooms: filterRooms(state.ChatRooms.rooms, state.ChatRooms.searchText),
 	chats: state.Chat.chats,
 	selected: state.ChatRooms.selected,
+	miniChats: state.Chat.minichats,
 	areLoading: state.ChatRooms.areLoading,
 	hasErrored: state.ChatRooms.hasErrored,
 	onlineUsers: state.Users.onlineUsers,
@@ -120,6 +127,7 @@ const mapDispatchToProps = (dispatch) => ({
 	selectRoom: (id) => dispatch(roomSelected(id)),
 	changeSearchText: (searchText) => dispatch(searchTextChanged(searchText)),
 	clearChat: (roomId) => dispatch(clearChat(roomId)),
+	closeMiniChat: (roomId) => dispatch(actions.closeMiniChat(roomId)),
 	updateHeaderVisibility: (showHeaders) => dispatch(commonActions.updateHeaderVisibility(showHeaders))
 })
 

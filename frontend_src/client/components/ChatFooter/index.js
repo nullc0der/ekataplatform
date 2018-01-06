@@ -178,7 +178,7 @@ class ChatFooter extends Component {
 						</div>
 					</form>
 				</div>
-				<div className="emoji-wrapper" ref={node => {this.emojinode = node}}>
+				<div className="emoji-wrapper" ref={node => {this.emojinode = node}} style={{position: 'relative', zIndex: 9999}}>
 					{this.state.emojiButtonClicked && <Picker
 						title='Pick your emoji…'
 						emoji='point_up'

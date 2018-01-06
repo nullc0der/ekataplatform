@@ -26,14 +26,14 @@ class ChatBodyItem extends Component {
 		switch (filetype.split('/')[0]) {
 			case 'image':
 				return (
-					<div className="img-attachment">
+					<div className={this.props.miniChat ? "img-attachment small": "img-attachment"}>
 						<img src={this.props.fileurl} title={this.props.filename} alt={this.props.filename} />
 					</div>
 				)
 			case 'video':
 				return (
-					<div className="video-attachment">
-						<video controls>
+					<div className={this.props.miniChat ? "video-attachment small": "video-attachment"}>
+						<video controls preload="metadata">
 							<source src={this.props.fileurl} type={filetype}/>>
 						</video>
 					</div>
@@ -79,11 +79,13 @@ class ChatBodyItem extends Component {
 					{
 						filetype ? this.renderAttachment(filetype) : ""
 					}
-					{message.split(' ').map((x, i) => {
-						return x.startsWith(':') ?
-							<Emoji key={i} emoji={x} size={21} tooltip={true} /> :
-							<Linkify key={i} properties={{ target: '_blank' }}>{x + ' '}</Linkify>
-					})}
+					<Linkify properties={{ target: '_blank' }}>
+						{message.split(' ').map((x, i) => {
+							return x.startsWith(':') ?
+								<Emoji key={i} emoji={x} size={21} tooltip={true} /> :
+								x + ' '
+						})}
+					</Linkify>
 					<div className='stamp'>
 						<TimeAgo date={stamp} minPeriod={10}/>
 					</div>

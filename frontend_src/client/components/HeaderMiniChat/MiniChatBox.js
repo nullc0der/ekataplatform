@@ -73,7 +73,8 @@ export default class MiniChatBox extends React.Component {
                             stamp={new Date(x.timestamp)}
                             left={x.user.username !== window.django.user.username}
                             selected={_.includes(selectedMessages[chat.roomId], x.id)}
-                            onSelected={this.props.handleSelectedMessage} />
+                            onSelected={this.props.handleSelectedMessage}
+                            miniChat={true} />
                     })
                 }
                 <div style={{ float: "left", clear: "both" }} ref={el => this.scrollEl = el}></div>
