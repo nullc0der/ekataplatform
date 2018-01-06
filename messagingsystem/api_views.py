@@ -78,7 +78,8 @@ class ChatRoomsView(APIView):
                 data["id"] = chat.id
                 data["username"] = otheruser[0].username
                 data["is_online"] = otheruser[0].profile.online()
-                data["unread_count"] = chat.messages.filter(read=False).count()
+                data["unread_count"] = \
+                    chat.messages.filter(read=False).exclude(user=request.user).count()
                 if otheruser[0].profile.avatar:
                     data["user_image_url"] = otheruser[0].profile.avatar.url
                 else:

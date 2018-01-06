@@ -40,10 +40,18 @@ export const searchTextChanged = (searchText) => ({
     searchText
 })
 
+const calculateUnread = (unreadCount) => {
+    if (unreadCount < 0) {
+        return 0
+    }
+    return unreadCount
+}
+
 const READ_STATUS_UPDATED = 'READ_STATUS_UPDATED'
-export const readStatusUpdated = (roomId) => ({
+export const readStatusUpdated = (roomId, unreadCount=0) => ({
     type: READ_STATUS_UPDATED,
-    roomId
+    roomId,
+    unreadCount: calculateUnread(unreadCount)
 })
 
 const DELETE_CHAT_ROOM = 'DELETE_CHAT_ROOM'
@@ -110,7 +118,7 @@ export default function ChatRoomsReducer(state=INITIAL_STATE, action) {
             return {...state, searchText: action.searchText}
         case READ_STATUS_UPDATED:
             return {...state, rooms: state.rooms.map((room) => {
-                return room.id === action.roomId ? {...room, unread_count: 0} : room
+                return room.id === action.roomId ? {...room, unread_count: action.unreadCount} : room
             })}
         case DELETE_CHAT_ROOM:
             return {...state, rooms: state.rooms.filter(room => room.id !== action.roomId)}

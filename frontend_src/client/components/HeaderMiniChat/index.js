@@ -38,7 +38,7 @@ class HeaderMiniChat extends Component {
         return (
             <div
                 onClick={this.openMiniChat(item.id)}
-                className={`flex-horizontal ${c.item}`}>
+                className={classnames('flex-horizontal', c.item, {'has_unread': item.unread_count > 0})}>
                 <div className='item-image rounded'>
                     {
                         item.user_image_url ?

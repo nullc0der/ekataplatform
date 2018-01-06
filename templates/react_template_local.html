@@ -1,4 +1,5 @@
 {% load render_bundle from webpack_loader %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +11,6 @@
     <style>
         #nprogress .bar {
             z-index: 3000 !important;
-            background: #ff9800 !important;
-        }
-        #nprogress .spinner-icon {
-            border-top-color: #ff9800 !important;
-            border-left-color: #ff9800 !important;
         }
     </style>
     <script>
@@ -38,6 +34,7 @@
 </head>
 <body>
     <section id="root"></section>
+    <audio src="{% static "dist/audio/messaging.mp3" %}" id="messagingaudio"></audio>
     <script type="text/javascript" src="/static/bundles/vendor/nprogress/nprogress.js"></script>
     <script type="text/javascript">
         (function(){

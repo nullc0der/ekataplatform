@@ -2,9 +2,6 @@ import request from 'superagent'
 import _ from 'lodash'
 const debug = require('debug')('ekata:store:chat')
 
-import CHAT_LIST from 'pages/Messenger/sample-chats'
-import CHAT_DETAILS from 'pages/Messenger/sample-detailed-chat'
-
 const INITIAL_STATE = {
 	minichats: [],
 	chats: {},
@@ -68,6 +65,13 @@ export const clearChat = (roomId) => ({
 const DELETE_CHATS = 'DELETE_CHATS'
 export const deleteChats = (roomId, chatIds) => ({
     type: DELETE_CHATS,
+    roomId,
+    chatIds
+})
+
+const UPDATE_CHAT_READ_STATUS = 'UPDATE_CHAT_READ_STATUS'
+export const updateChatReadStatus = (roomId, chatIds) => ({
+    type: UPDATE_CHAT_READ_STATUS,
     roomId,
     chatIds
 })
@@ -195,6 +199,13 @@ export default function ChatReducer(state = INITIAL_STATE, action){
                 [action.roomId]: state.chats[action.roomId].filter(chat => !(_.includes(action.chatIds, chat.id)))}}
         case FILE_UPLOAD_PROGRESS:
             return {...state, uploadProgress: {roomId: action.roomId, progress: action.progress}}
+        case UPDATE_CHAT_READ_STATUS:
+            return {...state, chats: {
+                ...state.chats,
+                [action.roomId]: state.chats[action.roomId].map(chat => {
+                    return _.includes(action.chatIds, chat.id)? {...chat, read:true}: chat
+                })
+            }}
 		default:
 			return state
 	}

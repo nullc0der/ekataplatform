@@ -15,7 +15,8 @@ class ChatSidebarItem extends Component {
 		}  = this.props;
 
 		const cx = classnames('chat-sidebar-item', {
-			'is-active': selected
+			'is-active': selected,
+			'has-unread': num_unread > 0
 		})
 		const status = `${is_online ? 'Online': 'Offline'}`
 		const statusKey = 'is-' + status.toLowerCase()

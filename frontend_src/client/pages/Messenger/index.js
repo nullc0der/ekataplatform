@@ -26,7 +26,6 @@ class Messenger extends Component {
 	}
 
 	onSidebarChatSelect = (id)=> {
-		console.log('clicked something: ', id)
 		this.props.selectRoom(id)
 		$('.' + c.chatView).addClass('is-open')
 		if ($(window).width() < 768) {

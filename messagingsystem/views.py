@@ -274,7 +274,7 @@ def delete_chatroom(request):
 @login_required
 def delete_messages(request):
     messages = Message.objects.filter(id__in=request.POST.getlist('ids'))
-    otherusers = []
+    otherusers = set()
     data = []
     message_ids = []
     for message in messages:
@@ -282,7 +282,7 @@ def delete_messages(request):
             chatroom = message.room
             for user in chatroom.subscribers.all():
                 if user != request.user:
-                    otherusers.append(user)
+                    otherusers.add(user)
             message_dict = {
                 'chatroom': chatroom.id,
                 'message_id': message.id,

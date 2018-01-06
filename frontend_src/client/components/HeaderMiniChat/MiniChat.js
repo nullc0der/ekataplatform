@@ -9,9 +9,10 @@ import ChatBodyItem  from 'components/ChatBodyItem'
 import ChatFooter from 'components/ChatFooter'
 
 import c from './HeaderMiniChat.styl'
+import MiniChatBox from './MiniChatBox'
 
-import { actions as chatActions, chatsFetchData, sendChat, receivedChatOnWebsocket, deleteChats, sendDeleteChat} from 'store/Chat'
-import { updateTypingStatus } from 'store/Chatrooms'
+import { actions as chatActions, chatsFetchData, sendChat, receivedChatOnWebsocket, deleteChats, sendDeleteChat, updateChatReadStatus} from 'store/Chat'
+import { updateTypingStatus, readStatusUpdated } from 'store/Chatrooms'
 
 class MiniChat extends Component {
 	constructor(props) {
@@ -97,8 +98,6 @@ class MiniChat extends Component {
 			$btn.find('.fa').removeClass('fa-window-minimize').addClass('fa-window-maximize')
 			$chat.addClass('is-minimized')
 		}
-
-		console.log('will min', $chat.get(0))
 	}
 
 	handleTypingStatus = (roomId) => {
@@ -110,70 +109,38 @@ class MiniChat extends Component {
 			.end((err, res) => { })
 	}
 
-	renderOneChat = (chat, i)=> {
-		const cx = classnames('chat-header', 'flex-horizontal', 'a-center', 'j-between', {'is-online': _.includes(this.props.onlineUsers, chat.username)})
-		return <div key={i} className='mini-chat flex-vertical'>
-			<div className={cx}>
-				<div className='username'> {chat.username} </div>
-				<div className='chat-options'>
-					{
-						this.state.selectedMessages[chat.roomId] && this.state.selectedMessages[chat.roomId].length > 0 && 
-						<div
-							onClick={() => this.handleDeleteChat(chat.roomId)}
-							className='btn btn-default ui-button'>
-							<i className='fa fa-trash'/>
-						</div>
+	handleUnreadChat = (roomId, unreadChats) => {
+		let chatArr = []
+		for (const unreadChat of unreadChats) {
+			chatArr.push(unreadChat.id)
+		}
+		if (chatArr.length) {
+			request
+				.post('/en/messaging/setmessagestatus/')
+				.set('X-CSRFToken', window.django.csrf)
+				.type('form')
+				.send({ 'message_ids': chatArr })
+				.end((err, res) => {
+					if (res.ok) {
+						this.props.updateRoom(roomId)
+						this.props.updateChatReadStatus(roomId, chatArr)
 					}
-					<div
-						onClick={this.toggleMinimise}
-						className='btn btn-default ui-button'>
-						<i className='fa fa-window-minimize'/>
-					</div>
-					<div
-						onClick={this.closeChat(chat.roomId)}
-						className='btn btn-default ui-button'>
-						<i className='fa fa-remove'/>
-					</div>
-				</div>
-			</div>
-			<div className='chat-body flex-1'>
-				{
-					chat.messages.map((x,i)=> {
-						return <ChatBodyItem
-							key={i}
-							roomId={chat.roomId}
-							user={x.user}
-							message={x.message}
-							fileurl={x.fileurl}
-							filetype={x.filetype}
-							filename={x.filename}
-							message_id={x.id}
-							stamp={new Date(x.timestamp)}
-							left={x.user.username !== window.django.user.username}
-							selected={_.includes(this.state.selectedMessages[chat.roomId], x.id)}
-							onSelected={this.handleSelectedMessage}/>
-					})
-				}
-			</div>
-			<ChatFooter
-				small={true}
-				roomId={chat.roomId}
-				handleSendChat={this.handleSendChat}
-				handleTypingStatus={this.handleTypingStatus}
-				showTyping={chat.roomId === this.props.websocketTypingStatus}
-				showTypingUsername={chat.username}
-				uploadProgress={this.props.uploadProgress.roomId === chat.roomId ? this.props.uploadProgress.progress : 0} />
-		</div>
+				})
+		}
 	}
-
 
 	onWebsocketMessage = (data) => {
 		const result = JSON.parse(data)
-		let messageIds = []
-		let roomId = 0
 		if (result.add_message) {
 			if (this.props.chats[result.chatroom]) {
 				this.props.webSocketMessage(result.chatroom, result.message)
+			}
+			this.props.updateRoom(
+				result.chatroom,
+				this.props.rooms.filter(x => x.id === result.chatroom)[0].unread_count + 1
+			)
+			if (this.props.selected !== result.chatroom && !(_.includes(this.props.miniChats, result.chatroom))) {
+				$("#messagingaudio")[0].play()
 			}
 		} else if (result.typing) {
 			if (this.websocketTypingTimeout) {
@@ -184,13 +151,18 @@ class MiniChat extends Component {
 				this.props.updateTypingStatus(0)
 			}, 5000)
 		} else {
+			let messageIds = []
+			let roomId = 0
 			for (const data of result) {
 				if (this.props.chats[data.chatroom] && !result.add_message) {
 					messageIds.push(data.message_id)
 					roomId = data.chatroom
 				}
 			}
-			messageIds.length && this.props.deleteChats(roomId, messageIds)
+			messageIds.length && this.props.deleteChats(roomId, messageIds) & this.props.updateRoom(
+				roomId,
+				this.props.rooms.filter(x => x.id === roomId)[0].unread_count - messageIds.length
+			)
 		}
 	}
 
@@ -202,7 +174,22 @@ class MiniChat extends Component {
 		return (
 			<div className={cx}>
 				{
-					this.state.openChats && this.state.openChats.map(this.renderOneChat)
+					this.state.openChats && this.state.openChats.map((x, i) => {
+						return <MiniChatBox
+									key={i}
+									chat={x}
+									selectedMessages={this.state.selectedMessages}
+									uploadProgress={this.props.uploadProgress}
+									onlineUsers={this.props.onlineUsers}
+									handleDeleteChat={this.handleDeleteChat}
+									toggleMinimise={this.toggleMinimise}
+									closeChat={this.closeChat}
+									handleSelectedMessage={this.handleSelectedMessage}
+									handleSendChat={this.handleSendChat}
+									handleTypingStatus={this.handleTypingStatus}
+									webSocketTypingStatus={this.props.webSocketTypingStatus}
+									handleUnreadChat={this.handleUnreadChat} />
+					})
 				}
 				<Websocket url={websocket_url}
 					onMessage={this.onWebsocketMessage.bind(this)} />
@@ -214,6 +201,7 @@ class MiniChat extends Component {
 const mapStateToProps = (state)=> ({
 	chats: state.Chat.chats,
 	rooms: state.ChatRooms.rooms,
+	selected: state.ChatRooms.selected,
 	miniChats: state.Chat.minichats,
 	onlineUsers: state.Users.onlineUsers,
 	websocketTypingStatus: state.ChatRooms.websocketTypingStatus,
@@ -227,7 +215,9 @@ const mapDispatchToProps = (dispatch)=> ({
 	webSocketMessage: (roomId, chat) => dispatch(receivedChatOnWebsocket(roomId, chat)),
 	deleteChats: (roomId, chatIds) => dispatch(deleteChats(roomId, chatIds)),
 	updateTypingStatus: (username) => dispatch(updateTypingStatus(username)),
-	sendDeleteChats: (url, roomId, chatIds) => dispatch(sendDeleteChat(url, roomId, chatIds))
+	sendDeleteChats: (url, roomId, chatIds) => dispatch(sendDeleteChat(url, roomId, chatIds)),
+	updateChatReadStatus: (roomId, chatIds) => dispatch(updateChatReadStatus(roomId, chatIds)),
+	updateRoom: (roomId, unreadCount) => dispatch(readStatusUpdated(roomId, unreadCount)),
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(MiniChat)

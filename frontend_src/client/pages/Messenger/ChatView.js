@@ -10,7 +10,7 @@ import c from './Messenger.styl'
 import ChatBodyItem from 'components/ChatBodyItem'
 import ChatFooter from 'components/ChatFooter'
 
-import { chatsFetchData, sendChat, sendDeleteChat } from 'store/Chat'
+import { chatsFetchData, sendChat, sendDeleteChat, updateChatReadStatus } from 'store/Chat'
 import { readStatusUpdated, sendDeleteRequest } from 'store/Chatrooms'
 import { actions as commonActions } from 'store/Common'
 
@@ -31,10 +31,16 @@ class ChatView extends Component {
 			if (!chats) {
 				const url = `/api/messaging/chat/${this.props.selected}/`
 				this.props.fetchData(url, this.props.selected)	
+			} else {
+				let unreadIds = chats.filter(x => !x.read & x.user.username !== window.django.user.username)
+				if (unreadIds) {
+					this.handleUnreadChat(unreadIds)
+				}
+				this.scrollToBottom()
 			}
 		}
 		if (prevProps.chats[this.props.selected] !== this.props.chats[this.props.selected]) {
-			let unreadIds = chats.filter(x => !x.read)
+			let unreadIds = chats.filter(x => !x.read & x.user.username !== window.django.user.username)
 			if (unreadIds) {
 				this.handleUnreadChat(unreadIds)
 			}
@@ -43,7 +49,7 @@ class ChatView extends Component {
 		if (prevProps.userTyping !== this.props.userTyping) {
 			this.setState({
 				userTyping: this.props.userTyping == this.props.selected
-			})	
+			})
 		}
 	}
 
@@ -61,6 +67,7 @@ class ChatView extends Component {
 				.end((err, res) => {
 					if (res.ok) {
 						this.props.updateRoom(this.props.selected)
+						this.props.updateChatReadStatus(this.props.selected, chatArr)
 					}
 				})
 		}
@@ -137,19 +144,6 @@ class ChatView extends Component {
 				optionsOpen: false
 			})
 		}
-	}
-
-	sendDemoChat = (e)=> {
-		// if (e.keyCode !== 13)
-		// 	return
-
-		var val = $('.chat-input-box').val()
-		var $chat = $('<div/>', {class: 'chat-body-item'}).text(val)
-		$('.chatview-body').append(
-			$chat
-		)
-
-		$chat.get(0).scrollIntoView();
 	}
 
 	renderOptions = () => {
@@ -234,6 +228,7 @@ ChatView.propTypes = {
 	deleteRoom: PropTypes.func.isRequired,
 	deleteChats: PropTypes.func.isRequired,
 	updateHeaderVisibility: PropTypes.func.isRequired,
+	updateChatReadStatus: PropTypes.func.isRequired,
 	uploadProgress: PropTypes.object
 }
 
@@ -250,7 +245,8 @@ const mapDispatchToProps = (dispatch)=> ({
 	updateRoom: (roomId) => dispatch(readStatusUpdated(roomId)),
 	deleteRoom: (url, roomId) => dispatch(sendDeleteRequest(url, roomId)),
 	deleteChats: (url, roomId, chatIds) => dispatch(sendDeleteChat(url, roomId, chatIds)),
-	updateHeaderVisibility: (showHeaders) => dispatch(commonActions.updateHeaderVisibility(showHeaders))
+	updateHeaderVisibility: (showHeaders) => dispatch(commonActions.updateHeaderVisibility(showHeaders)),
+	updateChatReadStatus: (roomId, chatIds) => dispatch(updateChatReadStatus(roomId, chatIds))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ChatView)
