@@ -5,7 +5,11 @@ const INITIAL_STATE = {
 		title: 'Home',
 		links: [{href: '/', text: 'Home'}]
 	},
-	showHeaders: true
+	showHeaders: true,
+	notification: {
+		message: '',
+		level: ''
+	}
 }
 
 const SET_BREADCRUMBS = 'SET_BREADCRUMBS'
@@ -21,9 +25,16 @@ const updateHeaderVisibility = (showHeaders) => ({
 	showHeaders
 })
 
+const ADD_NOTIFICATION = 'ADD_NOTIFICATION'
+const addNotification = (notification) => ({
+	type: ADD_NOTIFICATION,
+	notification
+})
+
 export const actions = {
 	setBreadCrumbs,
-	updateHeaderVisibility
+	updateHeaderVisibility,
+	addNotification
 }
 
 export default function CommonReducer(state = INITIAL_STATE, action){
@@ -32,6 +43,8 @@ export default function CommonReducer(state = INITIAL_STATE, action){
 			return {...state, breadcrumbs: {title: action.title, links: action.links}}
 		case UPDATE_HEADER_VISIBILITY:
 			return {...state, showHeaders: action.showHeaders}
+		case ADD_NOTIFICATION:
+			return {...state, notification: action.notification}
 		default:
 			return state
 	}

@@ -96,6 +96,7 @@ urlpatterns += i18n_patterns(
 urlpatterns += [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^api/messaging/', include('messagingsystem.api_urls', namespace='messaging_urls')),
+    url(r'^postissue/', include('taigaissuecreator.urls', namespace='taigaissue')),
     url(r'^schema/$', get_schema_view(title='Ekata Messaging API')),
     url(r'^docs/', include_docs_urls(title='Ekata Messaging API'))
 ]

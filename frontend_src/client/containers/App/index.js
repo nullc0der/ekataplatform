@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 import Helmet from 'react-helmet'
+import NotificationSystem from 'react-notification-system'
 
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import c from './App.styl'
@@ -23,6 +24,26 @@ class App extends Component {
 		isRightNavOpen: false
 	}
 
+	_notificationSystem = null
+
+	style = {
+		NotificationItem: { 
+			DefaultStyle: { 
+				margin: '20px 5px 2px 1px'
+			}
+		}
+	}
+
+	componentDidMount = () => {
+		this._notificationSystem = this.refs.notificationSystem
+	}
+
+	componentDidUpdate = (prevProps) => {
+		if (prevProps.notification !== this.props.notification) {
+			this._notificationSystem.addNotification(this.props.notification)
+		}
+	}
+
 	toggleLeftNav = ()=> {
 		this.setState({isLeftNavOpen: !this.state.isLeftNavOpen})
 	}
@@ -38,6 +59,7 @@ class App extends Component {
 					defaultTitle='Ekata Social'/>
 				<MiniChat/>
 				<OnlineUtil/>
+				<NotificationSystem ref="notificationSystem" style={this.style} />
 				<LeftNav
 					className={c.leftNav}
 					open={this.state.isLeftNavOpen}
@@ -69,7 +91,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state)=> ({
-	showHeaders: state.Common.showHeaders
+	showHeaders: state.Common.showHeaders,
+	notification: state.Common.notification
 })
 
 const mapDispatchToProps = (dispatch)=> ({

@@ -107,7 +107,8 @@ EKATA_APPS = [
     'translation',
     'countrylogger',
     'backupsystem',
-    'useractivity'
+    'useractivity',
+    'taigaissuecreator'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTIES_APPS + EKATA_APPS
@@ -520,3 +521,8 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'static/webpack-stats.json'),
     }
 }
+
+
+# TAIGA_SETTINGS
+TAIGA_USERNAME = get_env_variable('TAIGA_USERNAME')
+TAIGA_PASSWORD = get_env_variable('TAIGA_PASSWORD')

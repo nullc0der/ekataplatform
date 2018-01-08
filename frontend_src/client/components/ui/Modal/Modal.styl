@@ -11,21 +11,24 @@
 		absolute top left right bottom
 		z-index 900
 
-	:local(.content)
+	:local(.content),
+	:local(.detachedfooter)
 		position relative
 		max-width 70vw
 		width 450px
 		z-index 1000
-	&.is-open :local(.content)
+	&.is-open :local(.content),
+	&.is-open :local(.detachedfooter)
 		animation fadeInUp 0.2s
 
 :local(.backdrop)
 	background-color rgba(#000, 0.5)
 
-:local(.content)
+:local(.content),
+:local(.detachedfooter)
 	background-color #fff
 	border 1px rgba(#000, 0.12) solid
-	border-radius 2px 2px 0 0
+	border-radius 3px
 	box-shadow 0 4px 12px 0 rgba(#000, 0.2)
 
 :local(.header)
@@ -36,12 +39,23 @@
 		text-align center
 		font-weight font_bold
 		flex 1
-		font-size 20px
+		font-size 15px
 
 
-:local(.header), :local(.body), :local(.footer)
+:local(.header), :local(.body), :local(.footer), :local(.detachedfooter)
 	padding 20px
 
 :local(.footer)
+	&:not(.is-visible)
+		display none
+
+:local(.detachedfooter)
+	margin-top 20px
+	text-align center
+	cursor pointer
+	.text
+		font-weight font_bold
+		flex 1
+		font-size 20px
 	&:not(.is-visible)
 		display none

@@ -31,6 +31,8 @@ class UIModal extends Component {
 			id,
 			title = 'Modal Title',
 			footer = false,
+			detachedFooter = false,
+			detachedFooterText = 'Submit',
 			children
 		} = this.props;
 
@@ -50,6 +52,10 @@ class UIModal extends Component {
 			'is-visible': footer
 		})
 
+		const detachedFooterClass = classnames(c.detachedfooter, 'ui-modal-detached-footer', {
+			'is-visible': detachedFooter
+		})
+
 		return (
 			<div id={id} className={cx}>
 				<div
@@ -65,6 +71,9 @@ class UIModal extends Component {
 					<div className={footerClass}>
 						Footer here
 					</div>
+				</div>
+				<div className={detachedFooterClass} onClick={this.props.onDetachedFooterClick}>
+					<span className='text'>{detachedFooterText}</span>
 				</div>
 			</div>
 		)
