@@ -31,7 +31,17 @@ def post_issue(posted_by, subject, description):
         subject=subject,
         description=description
     )
-    extra_info = '\n\n\n####Extra Info\n Original Creator: ' + posted_by.username
+    public_profile = \
+        "https://development.ekata.social"\
+        + posted_by.profile.get_public_profile_url()
+    extra_info = \
+        '\n\n\n####Extra Info\n Original Creator:' + \
+        '%s\n User ID: %s\n Profile url: %s'\
+        % (
+            posted_by.username,
+            posted_by.id,
+            public_profile
+        )
     if auth_token:
         headers = {
             "Authorization": "Bearer " + auth_token
