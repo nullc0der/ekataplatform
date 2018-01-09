@@ -13,10 +13,12 @@ from taigaissuecreator.tasks import task_post_issue
 def post_issue(request):
     issue_form = TaigaIssueForm(request.POST)
     if issue_form.is_valid():
+        files = request.FILES.getlist('attachments', None)
         task_post_issue.delay(
             posted_by=request.user,
             subject=issue_form.cleaned_data.get('subject'),
-            description=issue_form.cleaned_data.get('description')
+            description=issue_form.cleaned_data.get('description'),
+            files=files
         )
         return HttpResponse(status=200)
     return HttpResponse(

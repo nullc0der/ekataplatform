@@ -4,5 +4,5 @@ from taigaissuecreator.utils import post_issue
 
 
 @shared_task
-def task_post_issue(posted_by, subject, description):
-    return post_issue(posted_by, subject, description)
+def task_post_issue(posted_by, subject, description, files):
+    return post_issue(posted_by, subject, description, files)

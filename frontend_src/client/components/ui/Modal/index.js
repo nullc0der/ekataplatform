@@ -73,6 +73,12 @@ class UIModal extends Component {
 					</div>
 				</div>
 				<div className={detachedFooterClass} onClick={this.props.onDetachedFooterClick}>
+					{
+						this.props.uploadPercent > 0 &&
+						<div className="progress" style={{position: 'absolute', top: '10px', left: '0', width: '100%'}}>
+							<div className="progress-bar" style={{width: this.props.uploadPercent + '%'}}></div>
+						</div>
+					}
 					<span className='text'>{detachedFooterText}</span>
 				</div>
 			</div>

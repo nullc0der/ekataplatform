@@ -2,6 +2,7 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import request from 'superagent'
+import Dropzone from 'react-dropzone'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './SubHeader.styl'
@@ -23,7 +24,9 @@ class SubHeader extends Component {
 			subject: '',
 			description: '',
 			subjectError: '',
-			descriptionError: ''
+			descriptionError: '',
+			files: null,
+			uploadPercent: 0
 		}
 	}
 
@@ -40,39 +43,56 @@ class SubHeader extends Component {
 		})
 	}
 
-	handleIssueFormSubmit = () => {
-		request
+	handleIssueFormSubmit = (e) => {
+		e.preventDefault()
+		const req = request
 			.post('/postissue/')
-			.type('form')
 			.set('X-CSRFToken', window.django.csrf)
-			.send({
-				subject: this.state.subject,
-				description: this.state.description
+			.field('subject', this.state.subject)
+			.field('description', this.state.description)
+		if (this.state.files) {
+			this.state.files.map(f => {
+				req.attach('attachments', f)
 			})
-			.end((err, res) => {
-				if (!res.ok) {
-					this.setState({
-						subjectError: res.body.subject[0].message,
-						descriptionError: res.body.description ? res.body.description[0].message : ''
-					})
-					this.props.addNotification({
-						message: 'Error Posting Issue',
-						level: 'error'
-					})
-				} else {
-					this.props.addNotification({
-						message: 'Issue Posted Successfully',
-						level: 'success'
-					})
-					this.setState({
-						issueFormModalIsOpen: false,
-						subject: '',
-						description: '',
-						subjectError: '',
-						descriptionError: ''
-					})
-				}
+			req.on('progress', event => {
+				this.setState({
+					uploadPercent: event.percent
+				})
 			})
+		}
+		req.end((err, res) => {
+			if (!res.ok) {
+				this.setState({
+					subjectError: res.body.subject[0].message,
+					descriptionError: res.body.description ? res.body.description[0].message : '',
+					uploadPercent: 0
+				})
+				this.props.addNotification({
+					message: 'Error Posting Issue',
+					level: 'error'
+				})
+			} else {
+				this.props.addNotification({
+					message: 'Issue Posted Successfully',
+					level: 'success'
+				})
+				this.setState({
+					issueFormModalIsOpen: false,
+					subject: '',
+					description: '',
+					subjectError: '',
+					descriptionError: '',
+					files: null,
+					uploadPercent: 0
+				})
+			}
+		})
+	}
+
+	onDrop = (acceptedFiles) => {
+		this.setState({
+			files: acceptedFiles
+		})
 	}
 
 	render(){
@@ -92,6 +112,15 @@ class SubHeader extends Component {
 				text: startCase(x)
 			}
 		})
+
+		const dropzoneStyle = {
+			'width': 'inherit',
+			'height': '100px',
+			'borderWidth': '1px',
+			'borderColor': 'rgb(221, 221, 221)',
+			'borderBottomStyle': 'solid',
+			'borderRadius': 0
+		}
 
 		// console.log(paths)
 
@@ -121,8 +150,9 @@ class SubHeader extends Component {
 					onBackdropClick={this.toggleIssueModal}
 					detachedFooter={true}
 					detachedFooterText="Submit Issue"
-					onDetachedFooterClick={this.handleIssueFormSubmit}>
-					<form className="form-horizontal issue-form">
+					onDetachedFooterClick={this.handleIssueFormSubmit}
+					uploadPercent={this.state.uploadPercent}>
+					<form className="form-horizontal issue-form" onSubmit={this.handleIssueFormSubmit}>
 						<div className={"form-group" + `${this.state.subjectError && " has-error"}`}>
 							<label htmlFor="inputSubject" className="control-label">Subject</label>
 							<input className="form-control" id="inputSubject" type="text"
@@ -134,6 +164,22 @@ class SubHeader extends Component {
 							<textarea className="form-control" id="inputDescription" type="text"
 								name="description" value={this.state.description} onChange={this.handleIssueFormInputChange} />
 							<small className="form-text">{this.state.descriptionError}</small>
+						</div>
+						<div className="form-group">
+							{/*TODO: Make this a component*/}
+							<Dropzone onDrop={this.onDrop} style={dropzoneStyle} accept=".jpg, .png">
+								<p style={{margin: 0}}>Drop attachements here</p>
+								<div className="dropped-files">
+									<ul>
+										{
+											this.state.files &&
+											this.state.files.map(
+												(f, i) => <li key={i}><i className="fa fa-paperclip"></i> {f.name}</li>
+											)
+										}
+									</ul>
+								</div>
+							</Dropzone>
 						</div>
 					</form>
 				</Modal>

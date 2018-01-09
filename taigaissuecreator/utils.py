@@ -7,6 +7,7 @@ from taigaissuecreator.models import TaigaIssue
 API_BASE_URL = 'https://taiga.ekata.social/api/v1'
 LOGIN_URL = API_BASE_URL + '/auth'
 ISSUE_URL = API_BASE_URL + '/issues'
+ATTACHMENT_URL = ISSUE_URL + '/attachments'
 
 
 def get_auth_token():
@@ -24,7 +25,7 @@ def get_auth_token():
     return None
 
 
-def post_issue(posted_by, subject, description):
+def post_issue(posted_by, subject, description, files):
     auth_token = get_auth_token()
     taigaissue = TaigaIssue(
         posted_by=posted_by,
@@ -54,5 +55,25 @@ def post_issue(posted_by, subject, description):
             'project': 2
         }
         issue_res = requests.post(ISSUE_URL, headers=headers, data=data)
+        issue_res_data = json.loads(issue_res.content)
+        if 'id' in issue_res_data and files:
+            for _file in files:
+                post_attachment(
+                    auth_token, issue_res_data['id'], _file)
         taigaissue.posted = True
     taigaissue.save()
+
+
+def post_attachment(token, object_id, _file):
+    headers = {
+        "Authorization": "Bearer " + token
+    }
+    data = {
+        'object_id': object_id,
+        'project': 2
+    }
+    files = {
+        'attached_file': (_file.name, _file.read())
+    }
+    attachment_res = requests.post(
+        ATTACHMENT_URL, headers=headers, data=data, files=files)

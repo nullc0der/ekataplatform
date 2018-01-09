@@ -194,7 +194,8 @@ if (IS_PROD){
 		'history', 'jquery', 'superagent', 'react-helmet',
 		'classnames',
 		'prop-types',
-		'emoji-mart'
+		'emoji-mart',
+		'react-dropzone'
 	];
 
 	// Extract out the css builds on client prod, in separate bundles
