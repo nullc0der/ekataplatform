@@ -31,9 +31,11 @@ def post_issue(posted_by, subject, description):
         subject=subject,
         description=description
     )
+    public_profile_chunk = posted_by.profile.get_public_profile_url().split(
+        '/')[2:]
     public_profile = \
-        "https://development.ekata.social"\
-        + posted_by.profile.get_public_profile_url()
+        "https://development.ekata.social/"\
+        + '/'.join(public_profile_chunk)
     extra_info = \
         '\n\n\n####Extra Info\n Original Creator:' + \
         '%s\n User ID: %s\n Profile url: %s'\
