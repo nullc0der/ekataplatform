@@ -95,6 +95,13 @@ class SubHeader extends Component {
 		})
 	}
 
+	onTrashClick = (e, filename) => {
+		e.stopPropagation()
+		this.setState({
+			files: this.state.files.filter(f => f.name !== filename)
+		})
+	}
+
 	render(){
 		const {
 			className,
@@ -120,6 +127,13 @@ class SubHeader extends Component {
 			'borderColor': 'rgb(221, 221, 221)',
 			'borderBottomStyle': 'solid',
 			'borderRadius': 0
+		}
+
+		const dropzoneTrashStyle = {
+			'float': 'right',
+			'marginRight': '10px',
+			'marginTop': '5px',
+			'cursor': 'pointer'
 		}
 
 		// console.log(paths)
@@ -174,7 +188,12 @@ class SubHeader extends Component {
 										{
 											this.state.files &&
 											this.state.files.map(
-												(f, i) => <li key={i}><i className="fa fa-paperclip"></i> {f.name}</li>
+												(f, i) => 
+												<li key={i}>
+													<i className="fa fa-paperclip"></i> {f.name} 
+													<i className="fa fa-trash" 
+													    style={dropzoneTrashStyle} onClick={(e) => this.onTrashClick(e, f.name)}></i>
+												</li>
 											)
 										}
 									</ul>

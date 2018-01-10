@@ -32,9 +32,9 @@
     ],
     "main": [
       {
-        "name": "main-bundle.4520d803943178ecd32b.js",
-        "publicPath": "/statics/bundles/main-bundle.4520d803943178ecd32b.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.4520d803943178ecd32b.js"
+        "name": "main-bundle.093fa26c4951028f485d.js",
+        "publicPath": "/statics/bundles/main-bundle.093fa26c4951028f485d.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.093fa26c4951028f485d.js"
       }
     ],
     "vendor": [
