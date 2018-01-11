@@ -2,7 +2,6 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import request from 'superagent'
-import Dropzone from 'react-dropzone'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './SubHeader.styl'
@@ -15,6 +14,7 @@ import take from 'lodash/take'
 
 import Modal from 'components/ui/Modal'
 import { actions } from 'store/Common'
+import DropzoneWrapper from 'components/ui/DropzoneWrapper'
 
 class SubHeader extends Component {
 	constructor(props) {
@@ -120,24 +120,6 @@ class SubHeader extends Component {
 			}
 		})
 
-		const dropzoneStyle = {
-			'width': 'inherit',
-			'height': '100px',
-			'borderWidth': '1px',
-			'borderColor': 'rgb(221, 221, 221)',
-			'borderBottomStyle': 'solid',
-			'borderRadius': 0
-		}
-
-		const dropzoneTrashStyle = {
-			'float': 'right',
-			'marginRight': '10px',
-			'marginTop': '5px',
-			'cursor': 'pointer'
-		}
-
-		// console.log(paths)
-
 		return (
 			<div className={cx} style={{ display: this.props.showHeaders ? 'flex' : 'none' }}>
 				<div>
@@ -180,25 +162,10 @@ class SubHeader extends Component {
 							<small className="form-text">{this.state.descriptionError}</small>
 						</div>
 						<div className="form-group">
-							{/*TODO: Make this a component*/}
-							<Dropzone onDrop={this.onDrop} style={dropzoneStyle} accept=".jpg, .png">
-								<p style={{margin: 0}}>Drop attachements here</p>
-								<div className="dropped-files">
-									<ul>
-										{
-											this.state.files &&
-											this.state.files.map(
-												(f, i) => 
-												<li key={i}>
-													<i className="fa fa-paperclip"></i> {f.name} 
-													<i className="fa fa-trash" 
-													    style={dropzoneTrashStyle} onClick={(e) => this.onTrashClick(e, f.name)}></i>
-												</li>
-											)
-										}
-									</ul>
-								</div>
-							</Dropzone>
+							<DropzoneWrapper
+								files={this.state.files}
+								onDrop={this.onDrop}
+								onTrashClick={this.onTrashClick} />
 						</div>
 					</form>
 				</Modal>
