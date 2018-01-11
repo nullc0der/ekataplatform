@@ -195,7 +195,8 @@ if (IS_PROD){
 		'classnames',
 		'prop-types',
 		'emoji-mart',
-		'react-dropzone'
+		'react-dropzone',
+		'react-swipeable'
 	];
 
 	// Extract out the css builds on client prod, in separate bundles

@@ -29,9 +29,6 @@ class Messenger extends Component {
 	onSidebarChatSelect = (id)=> {
 		this.props.selectRoom(id)
 		$('.' + c.chatView).addClass('is-open')
-		if ($(window).width() < 768) {
-			this.props.updateHeaderVisibility(false)
-		}
 	}
 
 	onSearchInputChange = (e) => {

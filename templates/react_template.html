@@ -1,5 +1,5 @@
 {% load render_bundle from webpack_loader %}
-{% load staticfiles %}
+{% load staticfiles compress %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ekata Social</title>
     <style id="server-css" type="text/css" rel="stylesheet"></style>
-    <style>
-        #nprogress .bar {
-            z-index: 3000 !important;
-        }
-    </style>
+    {% compress css %}
+        <style>
+            #nprogress .bar {
+                z-index: 3000 !important;
+            }
+        </style>
+    {% endcompress %}
     <script>
         window.webpackManifest = {{ manifest_data|safe }};
         window.django = {
@@ -36,6 +38,7 @@
     <section id="root"></section>
     <audio src="{% static "dist/audio/messaging.mp3" %}" id="messagingaudio"></audio>
     <script type="text/javascript" src="/statics/bundles/vendor/nprogress/nprogress.js"></script>
+    {% compress js %}
     <script type="text/javascript">
         (function(){
                 NProgress.start()
@@ -63,6 +66,7 @@
 
             })();
     </script>
+    {% endcompress %}
     {% render_bundle 'manifest' attrs="defer" %}
     {% render_bundle 'vendor' attrs="defer" %}
     {% render_bundle 'main' attrs="defer" %}

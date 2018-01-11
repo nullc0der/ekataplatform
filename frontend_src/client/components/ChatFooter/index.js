@@ -132,7 +132,8 @@ class ChatFooter extends Component {
 	render(){
 		const {
 			className,
-			small = false
+			small = false,
+			onChatInputFocus = () => null
 		} = this.props;
 
 		const cx = classnames(
@@ -160,7 +161,8 @@ class ChatFooter extends Component {
 							placeholder={this.state.inputPlaceholder}
 							spellCheck={true}
 							value={this.state.chatMessage}
-							onInput={this.onChatSend}/>
+							onInput={this.onChatSend}
+							onFocus={onChatInputFocus} />
 						<input
 							type='file'
 							id="imageInput"

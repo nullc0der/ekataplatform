@@ -4,6 +4,7 @@ import classnames  from 'classnames'
 import {connect} from 'react-redux'
 import request from 'superagent'
 import _ from 'lodash'
+import Swipeable from 'react-swipeable'
 
 import c from './Messenger.styl'
 
@@ -98,7 +99,7 @@ class ChatView extends Component {
 	}
 
 	closeChatView = ()=> {
-		$('.' + c.chatView).removeClass('is-open')
+		$('.' + c.chatView).removeClass('is-open fullscreen')
 		if ($(window).width() < 768) {
 			this.props.updateHeaderVisibility(true)
 		}
@@ -156,6 +157,20 @@ class ChatView extends Component {
 		)
 	}
 
+	chatViewBodySwipedDown = (e, deltaY, isFlick) => {
+		if (isFlick && $(window).width() < 768) {
+			this.props.updateHeaderVisibility(true)
+			$('.' + c.chatView).removeClass('fullscreen')
+		}
+	}
+
+	chatFooterInputFocus = () => {
+		if ($(window).width() < 768) {
+			this.props.updateHeaderVisibility(false)
+			$('.' + c.chatView).addClass('fullscreen')
+		}
+	}
+
 	render(){
 		const {
 			className,
@@ -184,10 +199,10 @@ class ChatView extends Component {
 						</div>
 					</div>
 				</div>
-				<div className='chatview-body flex-1'>
+				<Swipeable className='chatview-body flex-1' onSwipedDown={this.chatViewBodySwipedDown}>
 					{
 						chat &&
-						chat.map((x, i)=> {
+						chat.map((x, i) => {
 							return <ChatBodyItem
 								key={i}
 								user={x.user}
@@ -199,19 +214,20 @@ class ChatView extends Component {
 								stamp={new Date(x.timestamp)}
 								left={x.user.username !== window.django.user.username}
 								selected={_.includes(this.state.selectedMessages, x.id)}
-								onSelected={this.handleSelectedMessage}/>
+								onSelected={this.handleSelectedMessage} />
 						})
 					}
-					<div style={{ float:"left", clear: "both" }}
-             			ref={(el) => { this.messagesEnd = el; }}>
-        			</div>
-				</div>
+					<div style={{ float: "left", clear: "both" }}
+						ref={(el) => { this.messagesEnd = el; }}>
+					</div>
+				</Swipeable>
 				<ChatFooter 
 					handleSendChat={this.handleSendChat}
 					handleTypingStatus={this.handleTypingStatus}
 					showTyping={this.state.userTyping}
 					showTypingUsername={title}
-					uploadProgress={this.props.uploadProgress.roomId === selected ? this.props.uploadProgress.progress: 0} />
+					uploadProgress={this.props.uploadProgress.roomId === selected ? this.props.uploadProgress.progress: 0}
+					onChatInputFocus={this.chatFooterInputFocus} />
 			</div>
 		)
 	}
@@ -239,6 +255,7 @@ const mapStateToProps = (state)=> ({
 	hasErrored: state.Chat.hasErrored,
 	uploadProgress: state.Chat.uploadProgress
 })
+
 const mapDispatchToProps = (dispatch)=> ({
 	fetchData: (url, roomId) => dispatch(chatsFetchData(url, roomId)),
 	sendChat: (url, roomId, content, file) => dispatch(sendChat(url, roomId, content, file)),

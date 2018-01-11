@@ -30,7 +30,6 @@ class HeaderMiniChat extends Component {
         }
         else {
             this.context.router.push('/messenger/' + roomId)
-            this.props.updateHeaderVisibility(false)
         }
     }
 

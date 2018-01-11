@@ -25,7 +25,7 @@ sidebar_width = 250px
 		left 100vw
 		right 0
 		bottom 0
-		top 0
+		top 109px
 		width 100vw
 		z-index 300
 		border-width 1px
@@ -33,10 +33,16 @@ sidebar_width = 250px
 		will-change left
 		&.is-open
 			left 0
+		&.fullscreen
+			top 0
 
 	+above(rupture.mobile-cutoff)
 		.mobile-close-chat
 			display none
+	
+	.header-options
+		position absolute
+		right 15px
 
 	.header-options .ui-button
 		border none
