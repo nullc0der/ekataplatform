@@ -187,7 +187,8 @@ class ChatFooter extends Component {
 						style={{ position: 'absolute', bottom: '55px', right: '20px', width: '300px' }}
 						showPreview={false}
 						emojiSize={20}
-						onClick={this.onEmojiClick} />}
+						onClick={this.onEmojiClick}
+						sheetSize={16} />}
 					<div className='btn btn-default ui-button' onClick={this.onEmojiButtonClick}>
 						<i className='fa fa-smile-o' />
 					</div>

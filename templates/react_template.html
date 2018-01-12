@@ -1,6 +1,18 @@
 {% load render_bundle from webpack_loader %}
 {% load staticfiles compress %}
 <!DOCTYPE html>
+{% ifequal SITE_TYPE 'beta' %}
+<!--
+  __| _/_______  __ ____ |  |   ____ ______   _____   ____   _____/  |_    ____ |  | _______ _/  |______         __________   ____ |__|____  |  |  
+ / __ |/ __ \  \/ // __ \|  |  /  _ \\____ \ /     \_/ __ \ /    \   __\ _/ __ \|  |/ /\__  \\   __\__  \       /  ___/  _ \_/ ___\|  \__  \ |  |  
+/ /_/ \  ___/\   /\  ___/|  |_(  <_> )  |_> >  Y Y  \  ___/|   |  \  |   \  ___/|    <  / __ \|  |  / __ \_     \___ (  <_> )  \___|  |/ __ \|  |__
+\____ |\___  >\_/  \___  >____/\____/|   __/|__|_|  /\___  >___|  /__| /\ \___  >__|_ \(____  /__| (____  / /\ /____  >____/ \___  >__(____  /____/
+     \/    \/          \/            |__|         \/     \/     \/     \/     \/     \/     \/          \/  \/      \/           \/        \/      
+
+     Hi Tester, welcome to beta site of ekata.social, feel free to play with stuff
+     If you find something useful or a bug, please don't forget to share ;)
+-->
+{% endifequal %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
