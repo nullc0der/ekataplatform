@@ -82,7 +82,7 @@ class ChatBodyItem extends Component {
 					<Linkify properties={{ target: '_blank' }}>
 						{message.split(' ').map((x, i) => {
 							return x.startsWith(':') ?
-								<Emoji key={i} emoji={x} size={21} tooltip={true} /> :
+								<Emoji key={i} emoji={x} size={21} tooltip={true} sheetSize={16} /> :
 								x + ' '
 						})}
 					</Linkify>
