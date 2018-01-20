@@ -1,0 +1,77 @@
+input-color(color)
+    input[type="range"]
+        background-color color
+    input[type="range"]::-moz-range-track
+        background-color color
+    input[type="range"]::-webkit-slider-thumb
+        background-color color
+    input[type="range"]::-moz-range-thumb
+        background-color color
+
+:local(.container)
+    .image-wrapper, .editor-options
+        height 300px
+        width 300px
+        margin 10px
+    
+    .image, .video
+        border 2px solid #ccc
+        .hide
+            display none
+    
+    .load-image-buttons
+        position absolute
+        top 45%
+        left 115px
+        +mobile()
+            top 30%
+            left 100px
+        i
+            color #F6A623
+        .btn-rounded
+            width 60px
+            margin-left 5px
+    
+    .video-actions
+        position absolute
+        top 18%
+        left 145px
+    
+    .image-actions
+        position absolute
+        top 18%
+    
+    .image-actions, .video-actions
+        z-index 1
+        i
+            font-size 20px
+        .btn-rounded
+            border none
+    
+    .editor-option-rotate
+        color #50E3C2
+        input-color(#50E3C2)
+    .editor-option-zoom
+        color #03A9F4
+        input-color(#03A9F4)
+    .editor-option-brightness
+        color #F6A623
+        input-color(#F6A623)
+    .editor-option-hue
+        color #F11363
+        input-color(#F11363)
+    .editor-option-caption
+        color theme_primary
+        .form-control
+            height 30px
+            width 95%
+            margin 0 10px
+
+    .editor-option-rotate
+    .editor-option-zoom
+    .editor-option-brightness
+    .editor-option-hue
+        margin-bottom 20px
+
+    .editor-info
+        margin 0 10px

@@ -3,6 +3,9 @@ import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import { Picker }  from 'emoji-mart'
 
+import ImageEditor from 'components/ImageEditor'
+import Modal from 'components/ui/Modal'
+import DropzoneWrapper from 'components/ui/DropzoneWrapper'
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './ChatFooter.styl'
 
@@ -15,9 +18,9 @@ class ChatFooter extends Component {
 			lastTypingSynchedOn: new Date(0),
 			syncDelayInMillis: 5000,
 			chatAttachment: null,
-			imageLoaded: false,
-			fileLoaded: false,
-			inputPlaceholder: 'Type here or click on attachment buttons'
+			attachmentModalIsOpen: false,
+			attachmentTextInput: '',
+			imageEditorModalIsOpen: false,
 		}
 	}
 
@@ -62,70 +65,83 @@ class ChatFooter extends Component {
 		})
 	}
 
-	handleSendChat = (e) => {
+	onAttachmentTextInputChange = (e) => {
 		e.preventDefault()
-		if (this.state.chatMessage || this.state.chatAttachment) {
+		this.setState({
+			attachmentTextInput: e.target.value
+		})
+	}
+
+	handleSendChat = (e, fromModal=false) => {
+		e.preventDefault()
+		let chatMessage = this.state.chatMessage
+		if (fromModal) {
+			chatMessage = this.state.attachmentTextInput
+		}
+		if (chatMessage || this.state.chatAttachment) {
 			if (this.state.chatAttachment) {
 				if (this.props.roomId) {
-					this.props.handleSendChat(this.props.roomId, this.state.chatMessage, this.state.chatAttachment)	
+					this.props.handleSendChat(this.props.roomId, chatMessage, this.state.chatAttachment[0])	
 				} else {
-					this.props.handleSendChat(this.state.chatMessage, this.state.chatAttachment)
+					this.props.handleSendChat(chatMessage, this.state.chatAttachment[0])
 				}
-				$('#fileInput')[0].value = null
-				$('#imageInput')[0].value = null
 			} else {
 				if (this.props.roomId) {
-					this.props.handleSendChat(this.props.roomId, this.state.chatMessage)	
+					this.props.handleSendChat(this.props.roomId, chatMessage)	
 				} else {
-					this.props.handleSendChat(this.state.chatMessage)
+					this.props.handleSendChat(chatMessage)
 				}
 			}
 			this.setState({
 				chatMessage: '',
 				chatAttachment: null,
-				imageLoaded: false,
-				fileLoaded: false,
-				inputPlaceholder: 'Type here or click on attachment buttons'
+				attachmentTextInput: '',
+				attachmentModalIsOpen: false
 			})	
 		}
 	}
 
 	onImageButtonClick = (e) => {
 		e.preventDefault()
-		$('#imageInput').click()
+		this.toggleImageEditorModal()
 	}
 
 	onFileButtonClick = (e) => {
 		e.preventDefault()
-		$('#fileInput').click()
+		this.toggleAttachmentModal()
 	}
 
-	handleInputChange = (e, inputtype) => {
-		if (e.target.files[0]) {
-			if (inputtype === 'image') {
-				$('#fileInput')[0].value = null
-				this.setState({
-					chatAttachment: e.target.files[0],
-					imageLoaded: true,
-					fileLoaded: false,
-					inputPlaceholder: "Nice! now you can add a caption here or send by pressing enter here"
-				})
-			} else {
-				$('#imageInput')[0].value = null
-				this.setState({
-					chatAttachment: e.target.files[0],
-					fileLoaded: true,
-					imageLoaded: false,
-					inputPlaceholder: "Nice! now you can add a caption here or send by pressing enter here"
-				})
-			}
+	toggleAttachmentModal = () => {
+		this.setState(prevState => ({
+			attachmentModalIsOpen: !prevState.attachmentModalIsOpen
+		}))
+	}
+
+	onDropAttachment = (acceptedFiles) => {
+		this.setState({
+			chatAttachment: acceptedFiles
+		})
+	}
+
+	onTrashClick = (e, filename) => {
+		e.stopPropagation()
+		this.setState({
+			chatAttachment: this.state.chatAttachment.filter(f => f.name !== filename)
+		})
+	}
+
+	toggleImageEditorModal = () => {
+		this.setState(prevState => ({
+			imageEditorModalIsOpen: !prevState.imageEditorModalIsOpen
+		}))
+	}
+
+	uploadImage = (image, caption='') => {
+		this.toggleImageEditorModal()
+		if (this.props.roomId) {
+			this.props.handleSendChat(this.props.roomId, caption, image)
 		} else {
-			this.setState({
-				fileLoaded: false,
-				imageLoaded: false,
-				chatAttachment: null,
-				inputPlaceholder: 'Type here or click on attachment buttons'
-			})
+			this.props.handleSendChat(caption, image)
 		}
 	}
 
@@ -144,11 +160,41 @@ class ChatFooter extends Component {
 
 		return (
 			<div className={cx}>
+				<Modal
+					id="attachment-modal"
+					isOpen={this.state.attachmentModalIsOpen}
+					title="Upload file"
+					onBackdropClick={this.toggleAttachmentModal}
+					detachedFooter={true}
+					detachedFooterText="Upload"
+					onDetachedFooterClick={(e) => this.handleSendChat(e, true)}>
+					<form className="form-horizontal attachment-form" onSubmit={(e) => this.handleSendChat(e, true)}>
+						<div className="form-group">
+							<DropzoneWrapper
+								files={this.state.chatAttachment}
+								onDrop={this.onDropAttachment}
+								onTrashClick={this.onTrashClick}
+								accept={""}
+								label="Drop attachment here"
+								multiple={false} />
+						</div>
+						<div className="form-group">
+							<label htmlFor="inputDescription" className="control-label">Description</label>
+							<input className="form-control" id="inputDescription" type="text"
+								value={this.state.attachmentTextInput} onChange={this.onAttachmentTextInputChange} />
+						</div>
+					</form>
+				</Modal>
+				<ImageEditor
+					isOpen={this.state.imageEditorModalIsOpen}
+					onBackdropClick={this.toggleImageEditorModal}
+					showCaption={true}
+					uploadImage={this.uploadImage} />
 				<div className='btn btn-default ui-button btn-attachment' onClick={this.onFileButtonClick}>
-					<i className={classnames('fa fa-paperclip', {'file-load-indicator': this.state.fileLoaded})}/>
+					<i className='fa fa-paperclip'/>
 				</div>
 				<div className='btn btn-default ui-button btn-camera' onClick={this.onImageButtonClick}>
-					<i className={classnames('fa fa-camera-retro', { 'file-load-indicator': this.state.imageLoaded })} />
+					<i className='fa fa-camera-retro' />
 				</div>
 				<div className='chat-input-wrap flex-1 flex-horizontal a-stretch'>
 					{this.props.showTyping && <div className="chat-user-typing">
@@ -158,22 +204,11 @@ class ChatFooter extends Component {
 						<input
 							className='chat-input-box'
 							type='text'
-							placeholder={this.state.inputPlaceholder}
+							placeholder="Type here..."
 							spellCheck={true}
 							value={this.state.chatMessage}
 							onInput={this.onChatSend}
 							onFocus={onChatInputFocus} />
-						<input
-							type='file'
-							id="imageInput"
-							accept='.png, .gif, .jpg, .mp4, .avi'
-							style={{'display': 'none'}}
-							onChange={(e) => this.handleInputChange(e, 'image')} />
-						<input
-							type='file'
-							id="fileInput"
-							style={{ 'display': 'none' }}
-							onChange={(e) => this.handleInputChange(e, 'file')} />
 						<div className="file-upload-bar" style={{'width': this.props.uploadProgress + '%'}}></div>
 						<div className='btn btn-default ui-button chat-input-btn' onClick={this.handleSendChat}>
 							<i className='fa fa-paper-plane'/>

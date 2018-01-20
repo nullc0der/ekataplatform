@@ -33,7 +33,8 @@ class UIModal extends Component {
 			footer = false,
 			detachedFooter = false,
 			detachedFooterText = 'Submit',
-			children
+			children,
+			footerChildren
 		} = this.props;
 
 		const cx = classnames(c.container, 'ui-modal flex-vertical a-center j-center', className, {
@@ -69,7 +70,7 @@ class UIModal extends Component {
 						{children}
 					</div>
 					<div className={footerClass}>
-						Footer here
+						{footerChildren}
 					</div>
 				</div>
 				<div className={detachedFooterClass} onClick={this.props.onDetachedFooterClick}>

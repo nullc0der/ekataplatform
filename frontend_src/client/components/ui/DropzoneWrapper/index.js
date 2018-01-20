@@ -9,14 +9,15 @@ class DropzoneWrapper extends React.Component {
     render() {
         const {
             files,
+            onDrop,
+            onTrashClick,
             accept=".png, .jpg",
             label="Drop attachments here",
-            onDrop,
-            onTrashClick
+            multiple=true
         } = this.props
 
         return (
-            <Dropzone onDrop={onDrop} className={c.container} accept={accept}>
+            <Dropzone onDrop={onDrop} className={c.container} accept={accept} multiple={multiple}>
                 <p style={{ margin: 0 }}>{label}</p>
                 <div className="dropped-files">
                     <ul>

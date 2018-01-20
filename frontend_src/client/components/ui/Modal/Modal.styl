@@ -15,8 +15,10 @@
 	:local(.detachedfooter)
 		position relative
 		max-width 70vw
-		width 450px
+		min-width 450px
 		z-index 1000
+		+mobile()
+			min-width 320px
 	&.is-open :local(.content),
 	&.is-open :local(.detachedfooter)
 		animation fadeInUp 0.2s
@@ -46,6 +48,9 @@
 	padding 20px
 
 :local(.footer)
+	text-align center
+	.btn
+		width 200px
 	&:not(.is-visible)
 		display none
 

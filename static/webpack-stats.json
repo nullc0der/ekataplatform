@@ -1,55 +1,20 @@
 {
   "status": "done",
-  "publicPath": "/statics/bundles/",
+  "publicPath": "http://localhost:3000/assets/bundles/",
   "chunks": {
-    "Groups-Members": [
-      {
-        "name": "Groups-Members.61aabfe99d7642ba14d9.chunk.js",
-        "publicPath": "/statics/bundles/Groups-Members.61aabfe99d7642ba14d9.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.61aabfe99d7642ba14d9.chunk.js"
-      }
-    ],
-    "MessengerPage": [
-      {
-        "name": "MessengerPage.bffa9e4838c5f7efae12.chunk.js",
-        "publicPath": "/statics/bundles/MessengerPage.bffa9e4838c5f7efae12.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/MessengerPage.bffa9e4838c5f7efae12.chunk.js"
-      }
-    ],
-    "GroupsPage": [
-      {
-        "name": "GroupsPage.76b88c46c30bd2fc0193.chunk.js",
-        "publicPath": "/statics/bundles/GroupsPage.76b88c46c30bd2fc0193.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/GroupsPage.76b88c46c30bd2fc0193.chunk.js"
-      }
-    ],
-    "HomePage": [
-      {
-        "name": "HomePage.cae49dcba24b5b3865fc.chunk.js",
-        "publicPath": "/statics/bundles/HomePage.cae49dcba24b5b3865fc.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/HomePage.cae49dcba24b5b3865fc.chunk.js"
-      }
-    ],
     "main": [
       {
-        "name": "main-bundle.e00ef2dfdfe01cc3432b.js",
-        "publicPath": "/statics/bundles/main-bundle.e00ef2dfdfe01cc3432b.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.e00ef2dfdfe01cc3432b.js"
-      }
-    ],
-    "vendor": [
+        "name": "main-bundle.js",
+        "publicPath": "http://localhost:3000/assets/bundles/main-bundle.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.js"
+      },
       {
-        "name": "vendor-bundle.d5c89901f10c42c07c00.js",
-        "publicPath": "/statics/bundles/vendor-bundle.d5c89901f10c42c07c00.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/vendor-bundle.d5c89901f10c42c07c00.js"
-      }
-    ],
-    "manifest": [
-      {
-        "name": "manifest-bundle.d41d8cd98f00b204e980.js",
-        "publicPath": "/statics/bundles/manifest-bundle.d41d8cd98f00b204e980.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/manifest-bundle.d41d8cd98f00b204e980.js"
+        "name": "0.97384fd23c40af5bba98.hot-update.js",
+        "publicPath": "http://localhost:3000/assets/bundles/0.97384fd23c40af5bba98.hot-update.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/0.97384fd23c40af5bba98.hot-update.js"
       }
     ]
-  }
+  },
+  "error": "ModuleBuildError",
+  "message": "Module build failed: SyntaxError: Expecting Unicode escape sequence \\uXXXX (256:67)\n\n  254 |         if(!this.isCanvasBlank(this.canvasEl)) {\n  255 |             this.onResetButtonClick(e)\n> 256 |             const imageData = this.canvasEl.toDataURL('image/png')\\\n      |                                                                    ^\n  257 |             console.log(imageData)\n  258 |             const byteString = atob(imageData.split(',')[1])\n  259 |             const ab = new ArrayBuffer(byteString.length)\n"
 }
