@@ -112,11 +112,13 @@ class ImageEditor extends React.Component {
 
     onFileInputChange = (e) => {
         e.preventDefault()
-        this.buildImageFromFile(e.target.files)
-        this.setState({
-            loadButtonsShown: false,
-            imageButtonsShown: true
-        })
+        if (e.target.files[0]) {
+            this.buildImageFromFile(e.target.files)
+            this.setState({
+                loadButtonsShown: false,
+                imageButtonsShown: true
+            })
+        }
     }
 
     resetSliders = () => {
