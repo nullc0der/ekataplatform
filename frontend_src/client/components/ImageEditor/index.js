@@ -46,11 +46,13 @@ class ImageEditor extends React.Component {
                     this.canvasEl.removeAttribute('data-caman-id')
                     this.zoom(this.state.slider['zoom'], -this.state.slider['rotate'])
                 }
+                break
             case 'rotate':
                 if (!isCanvasBlank) {
                     this.canvasEl.removeAttribute('data-caman-id')
                     this.rotate(-this.state.slider['rotate'], this.state.slider['zoom'])
                 }
+                break
             case 'brightness':
                 if (!isCanvasBlank && this.state.slider['brightness'] != 0) {
                     const brightness = this.state.slider['brightness']
@@ -66,6 +68,7 @@ class ImageEditor extends React.Component {
                         }
                     )
                 }
+                break
             case 'hue':
                 if (!isCanvasBlank && this.state.slider['hue'] != 0) {
                     const brightness = this.state.slider['brightness']
@@ -81,6 +84,7 @@ class ImageEditor extends React.Component {
                         }
                     )
                 }
+                break
         }
     }
 
