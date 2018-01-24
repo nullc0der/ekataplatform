@@ -26,7 +26,32 @@ class SubHeader extends Component {
 			subjectError: '',
 			descriptionError: '',
 			files: null,
-			uploadPercent: 0
+			uploadPercent: 0,
+			showSearchAndFilters: false,
+			showFilterOptions: false,
+			enabledFilters: ['online', 'offline', 'staff', 'member']
+		}
+	}
+
+	componentDidMount = () => {
+		if (this.props.location.pathname.startsWith('members/')) {
+			this.setState({
+				showSearchAndFilters: true
+			})
+		}
+	}
+
+	componentDidUpdate = (prevProps, prevState) => {
+		if (prevProps.location.pathname !== this.props.location.pathname) {
+			if (this.props.location.pathname.startsWith('members/')) {
+				this.setState({
+					showSearchAndFilters: true
+				})
+			} else {
+				this.setState({
+					showSearchAndFilters: false
+				})
+			}
 		}
 	}
 
@@ -102,6 +127,26 @@ class SubHeader extends Component {
 		})
 	}
 
+	toggleFilterOptions = (e) => {
+		this.setState(prevState => ({
+			showFilterOptions: !prevState.showFilterOptions
+		}))
+	}
+
+	changeSearchString = (e) => {
+		e.preventDefault()
+		this.props.changeSearchString(e.target.value)
+	}
+
+	filterButtonClicked = (e) => {
+		e.preventDefault()
+		const prevFilters = this.state.enabledFilters
+		let newFilters = _.includes(prevFilters, e.target.name)? prevFilters.filter(x => x!==e.target.name): prevFilters.concat(e.target.name)
+		this.setState({
+			enabledFilters: newFilters
+		}, () => this.props.changeFilters(newFilters))
+	}
+
 	render(){
 		const {
 			className,
@@ -136,8 +181,45 @@ class SubHeader extends Component {
 					</div>
 				</div>
 				<div className="flex-1"></div>
-				<div>
-					<button className="btn btn-default" onClick={this.toggleIssueModal}><i className="fa fa-bug"></i> Post an issue</button>
+				{
+					this.state.showSearchAndFilters &&
+					<div className="flex-horizontal">
+						<div className="header-search-wrapper">
+							<input type="text" className="header-search-input" placeholder="Search here..." onChange={this.changeSearchString} />
+							<button className="header-search-button"><i className="fa fa-search"></i></button>
+						</div>
+						<button className="header-button" onClick={this.toggleFilterOptions}><i className="fa fa-filter"></i></button>
+					</div>
+				}
+				<button className="header-button" onClick={this.toggleIssueModal} title="Post an issue"><i className="fa fa-bug"></i></button>
+				<div className={classnames('filter-options', { 'is-open': this.state.showFilterOptions })}>
+					<div className="filter-options-header">
+						Filter Options
+					</div>
+					<div className="flex-horizontal filter-button-row">
+						<button name="online"
+							className={classnames(
+								"filter-button",
+								{"is-disabled": !_.includes(this.state.enabledFilters, 'online')})}
+							onClick={this.filterButtonClicked}>Online</button>
+						<button name="offline"
+							className={classnames(
+								"filter-button",
+								{ "is-disabled": !_.includes(this.state.enabledFilters, 'offline') })}
+							onClick={this.filterButtonClicked}>Offline</button>
+					</div>
+					<div className="flex-horizontal filter-button-row">
+						<button name="staff"
+							className={classnames(
+								"filter-button",
+								{ "is-disabled": !_.includes(this.state.enabledFilters, 'staff') })}
+							onClick={this.filterButtonClicked}>Staff</button>
+						<button name="member" 
+							className={classnames(
+								"filter-button",
+								{ "is-disabled": !_.includes(this.state.enabledFilters, 'member') })}
+							onClick={this.filterButtonClicked}>Member</button>
+					</div>
 				</div>
 				<Modal
 					id="issue-form-modal"
@@ -179,7 +261,9 @@ const mapStateToProps = (state)=> ({
 })
 
 const mapDispatchToProps = (dispatch)=> ({
-	addNotification: (notification) => dispatch(actions.addNotification(notification))
+	addNotification: (notification) => dispatch(actions.addNotification(notification)),
+	changeSearchString: (string) => dispatch(actions.changeSubHeaderSearchString(string)),
+	changeFilters: (filters) => dispatch(actions.changeSubHeaderFilters(filters))
 })
 
 export default withStyles(c)(

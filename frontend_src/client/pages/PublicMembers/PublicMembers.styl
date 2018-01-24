@@ -1,0 +1,64 @@
+:local(.container)
+    color inherit
+    margin 0 24px
+    margin-bottom 50px
+
+	+mobile()
+        margin-bottom 0
+    
+    .member-tile
+        height 180px
+        width 140px
+        margin-left 20px
+        margin-top 24px
+        border-top 5px solid rgba(0, 0, 0, 0.12)
+        a
+            text-decoration none
+        &.is-online
+            border-top 5px solid color_green500
+        +mobile()
+            margin-left 5%
+    
+    .member-image
+        height 126px
+        width inherit
+        text-align center
+        position relative
+        padding 15px
+        .avatar-image
+            width 82px !important
+            height 82px !important
+        .init-chat
+            absolute top right 5px
+            color #4A4A4A
+    
+    .member-tile, .member-image
+        border-radius 3px
+        background-color #FFFFFF
+        box-shadow 0 2px 4px 0 rgba(0,0,0,0.09)
+
+    .member-info
+        position relative
+        overflow hidden
+        text-align center
+        .username
+            margin-top 8px
+            margin-bottom 0
+            color #4A4A4A
+            font-weight 600
+            line-height 18px
+        .status
+            opacity 0.59
+            font-size 10px
+            font-weight 600
+            line-height 13px
+            color #4A4A4A
+        &.is-staff
+            background-color #00A65A
+            box-shadow 0 2px 4px 0 rgba(0,0,0,0.09)
+            border-radius 3px
+            border-top-right-radius 0
+            border-top-left-radius 0
+            .username, .status
+                color #FFFFFF
+

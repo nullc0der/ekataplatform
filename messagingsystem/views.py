@@ -2,7 +2,7 @@ import json
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden, \
-    HttpResponseNotFound
+    HttpResponseNotFound, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
@@ -127,6 +127,7 @@ def get_chat(request, chat_id):
 
 @login_required
 def create_chat(request, to_user):
+    from_react = request.GET.get('react', False)
     user = User.objects.get(id=to_user)
     label = request.user.username + user.username
     label1 = user.username + request.user.username
@@ -152,6 +153,8 @@ def create_chat(request, to_user):
             chat.subscribers.add(request.user)
             chat.subscribers.add(user)
     messages = chat.messages.all().order_by('timestamp')
+    if from_react:
+        return JsonResponse({'id': chat.id})
     return render(
         request,
         'messagingsystem/chat_float.html',

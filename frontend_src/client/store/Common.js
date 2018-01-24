@@ -9,7 +9,9 @@ const INITIAL_STATE = {
 	notification: {
 		message: '',
 		level: ''
-	}
+	},
+	subHeaderSearchString: '',
+	subHeaderFilters: []
 }
 
 const SET_BREADCRUMBS = 'SET_BREADCRUMBS'
@@ -31,10 +33,24 @@ const addNotification = (notification) => ({
 	notification
 })
 
+const CHANGE_SUBHEADER_SEARCHSTRING = 'CHANGE_SUBHEADER_SEARCHSTRING'
+const changeSubHeaderSearchString = (searchString) => ({
+	type: CHANGE_SUBHEADER_SEARCHSTRING,
+	searchString
+})
+
+const CHANGE_SUBHEADER_FILTERS = 'CHANGE_SUBHEADER_FILTERS'
+const changeSubHeaderFilters = (filters) => ({
+	type: CHANGE_SUBHEADER_FILTERS,
+	filters
+})
+
 export const actions = {
 	setBreadCrumbs,
 	updateHeaderVisibility,
-	addNotification
+	addNotification,
+	changeSubHeaderSearchString,
+	changeSubHeaderFilters
 }
 
 export default function CommonReducer(state = INITIAL_STATE, action){
@@ -45,6 +61,10 @@ export default function CommonReducer(state = INITIAL_STATE, action){
 			return {...state, showHeaders: action.showHeaders}
 		case ADD_NOTIFICATION:
 			return {...state, notification: action.notification}
+		case CHANGE_SUBHEADER_SEARCHSTRING:
+			return {...state, subHeaderSearchString: action.searchString}
+		case CHANGE_SUBHEADER_FILTERS:
+			return {...state, subHeaderFilters: action.filters}
 		default:
 			return state
 	}

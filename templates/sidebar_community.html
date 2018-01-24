@@ -1,5 +1,14 @@
 {% load i18n bip_extras %}
-<li class="{% active request 'publicusers:index' %} mainnavcontent"><a href="{% url 'publicusers:index' %}"><i class="fa fa-users"></i> <span>{% trans "Members" %}</span></a></li>
+{% ifequal SITE_TYPE 'beta' %}
+    <li class="mainnavcontent">
+        <a href="/members/">
+            <i class="fa fa-users"></i>
+            <span>{% trans "Members" %}</span>
+        </a>
+    </li>
+{% else %}
+    <li class="{% active request 'publicusers:index' %} mainnavcontent"><a href="{% url 'publicusers:index' %}"><i class="fa fa-users"></i> <span>{% trans "Members" %}</span></a></li>
+{% endifequal %}
 <li class="treeview mainnavcontent {% active request 'g:allgroups' %} {% active request 'g:joinedgroups' %} {% active request 'g:subscribedgroups' %}">
     <a href="#">
         <i class="fa fa-cubes"></i>

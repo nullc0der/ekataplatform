@@ -23,6 +23,12 @@ export default function getAsyncRouteConfig(store, req, res){
 				var comp = require('./pages/Groups/Members')
 				cb(null, comp.default)
 			}, 'Groups-Members')
+		},
+		PublicMembers: (nextState, cb) => {
+			require.ensure([], (require) => {
+				var comp = require('./pages/PublicMembers')
+				cb(null, comp.default)
+			}, 'PublicMembers')
 		}
 	}
 }

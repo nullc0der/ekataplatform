@@ -17,3 +17,72 @@
 
 	.issue-form
 		padding 10px
+
+	.header-search-wrapper
+		margin-right 10px
+		position relative
+		width 450px
+		+mobile()
+			width auto
+		.header-search-input
+			width 100%
+			padding 5px
+			color #9B9B9B
+			border 1px solid #E3E7EC
+			border-radius 1px
+			box-shadow none
+			font-size 12px
+			&:focus
+				outline none
+		.header-search-button
+			background none
+			border none
+			color #9B9B9B
+			absolute top 3px right
+	
+	.header-button
+		width 33px
+		height 33px
+		color #9B9B9B
+		margin-right 5px
+		background none
+		border 1px solid #E3E7EC
+		border-radius 1px
+		box-shadow none
+		&:focus
+			outline none
+
+	.filter-options
+		background #f9fafc
+		height 100%
+		width 230px
+		position fixed
+		right -230px
+		top 110px
+		box-shadow 0 2px 3px 0 rgba(0,0,0,0.09)
+		z-index 1000
+		transition right 0.3s ease-in-out
+		.filter-options-header
+			padding 10px
+			text-align center
+			border-bottom 1px solid rgba(151,151,151,0.12)
+			color #9B9B9B
+		.filter-button-row
+			margin-top 10px
+		.filter-button
+			width 98.61px
+			height 28.5px
+			margin 0 10px
+			background-color #4A90E2
+			color #FFFFFF
+			box-shadow 0 1px 2px 0 rgba(0,0,0,0.25)
+			border-radius 28px
+			border 1px solid #D4D4D4
+			&:focus
+				outline none
+			&.is-disabled
+				background-color #D4D4D4
+				color #929292
+
+		&.is-open
+			right 0
