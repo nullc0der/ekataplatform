@@ -78,7 +78,7 @@ class PublicMembers extends React.Component {
             className
         } = this.props
 
-        const cx = classnames(s.container, className, 'flex-horizontal', 'flex-wrap', 'j-start')
+        const cx = classnames(s.container, className, 'flex-horizontal', 'flex-wrap', 'j-start', 'scroll-y')
 
         return (
             <div className={cx}>
