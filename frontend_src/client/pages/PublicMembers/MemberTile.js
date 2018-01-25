@@ -5,10 +5,19 @@ import Avatar from 'components/Avatar'
 
 
 export default class MemberTile extends Component {
+
+    handleHover = (e, entered) => {
+        const element = e.target
+        if (element.offsetWidth < element.scrollWidth) {
+            $(element).find('.username').toggleClass('long')
+        }
+    }
+
     render() {
         const {
             userId,
             userName,
+            fullName,
             isOnline,
             avatarUrl,
             avatarColor,
@@ -18,14 +27,14 @@ export default class MemberTile extends Component {
         } = this.props
 
         return (
-            <div className={classnames("member-tile", {'is-online': isOnline})}>
+            <div className={classnames("member-tile", {'is-online': isOnline})} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
                 <a href={publicURL}>
                     <div className="member-image">
                         <p className="init-chat" onClick={(e) => initChat(e, userId)}><i className="fa fa-comments-o"></i></p>
                         {
                             avatarUrl ?
                                 <img className='avatar-image rounded' src={avatarUrl} /> :
-                                <Avatar className='avatar-image' name={userName} bgcolor={avatarColor} fontsize="2em" />
+                                <Avatar className='avatar-image' name={fullName || userName} bgcolor={avatarColor} fontsize="2em" />
                         }
                     </div>
                     <div className={classnames("member-info", {'is-staff': isStaff})}>

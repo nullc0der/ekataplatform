@@ -87,6 +87,7 @@ class PublicMembers extends React.Component {
                         key={i}
                         userId={x.id}
                         userName={x.username}
+                        fullName={x.fullname}
                         isOnline={x.is_online}
                         avatarUrl={x.user_image_url}
                         avatarColor={x.user_avatar_color}
