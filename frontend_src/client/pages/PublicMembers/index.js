@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import request from 'superagent'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import Helmet from 'react-helmet'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 
 import { fetchUsers } from 'store/Users'
@@ -82,6 +83,7 @@ class PublicMembers extends React.Component {
 
         return (
             <div className={cx}>
+                <Helmet title="Members" />
                 {this.state.users.map((x, i) => 
                     <MemberTile
                         key={i}
