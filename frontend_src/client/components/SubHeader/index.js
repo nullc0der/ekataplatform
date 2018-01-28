@@ -15,6 +15,8 @@ import take from 'lodash/take'
 import Modal from 'components/ui/Modal'
 import { actions } from 'store/Common'
 import DropzoneWrapper from 'components/ui/DropzoneWrapper'
+import SearchFilter from './SearchFilter'
+import FILTERS from './filters'
 
 class SubHeader extends Component {
 	constructor(props) {
@@ -29,29 +31,35 @@ class SubHeader extends Component {
 			uploadPercent: 0,
 			showSearchAndFilters: false,
 			showFilterOptions: false,
-			enabledFilters: ['online', 'offline', 'staff', 'member']
+			enabledFilters: ['online', 'offline', 'staff', 'member'],
+			filters: ['online', 'offline', 'staff', 'member']
 		}
 	}
 
 	componentDidMount = () => {
-		if (this.props.location.pathname.startsWith('members/')) {
-			this.setState({
-				showSearchAndFilters: true
-			})
-		}
+		this.setSearchAndFilters()
 	}
 
 	componentDidUpdate = (prevProps, prevState) => {
 		if (prevProps.location.pathname !== this.props.location.pathname) {
-			if (this.props.location.pathname.startsWith('members/')) {
-				this.setState({
-					showSearchAndFilters: true
-				})
-			} else {
-				this.setState({
-					showSearchAndFilters: false
-				})
-			}
+			this.setSearchAndFilters()
+		}
+	}
+
+	setSearchAndFilters = () => {
+		const pathname = this.props.location.pathname.split('/')[0]
+		if (FILTERS[pathname]) {
+			this.setState({
+				showSearchAndFilters: true,
+				enabledFilters: FILTERS[pathname].defaultFilters,
+				filters: FILTERS[pathname].defaultFilters
+			})
+		} else {
+			this.setState({
+				showSearchAndFilters: false,
+				enabledFilters: [],
+				filters: []
+			})
 		}
 	}
 
@@ -183,44 +191,15 @@ class SubHeader extends Component {
 				<div className="flex-1"></div>
 				{
 					this.state.showSearchAndFilters &&
-					<div className="flex-horizontal">
-						<div className="header-search-wrapper">
-							<input type="text" className="header-search-input" placeholder="Search here..." onChange={this.changeSearchString} />
-							<button className="header-search-button"><i className="fa fa-search"></i></button>
-						</div>
-						<button className="header-button" onClick={this.toggleFilterOptions}><i className="fa fa-filter"></i></button>
-					</div>
+					<SearchFilter
+						filters={this.state.filters}
+						enabledFilters={this.state.enabledFilters}
+						showFilterOptions={this.state.showFilterOptions}
+						changeSearchString={this.changeSearchString}
+						toggleFilterOptions={this.toggleFilterOptions}
+						filterButtonClicked={this.filterButtonClicked} />
 				}
 				<button className="header-button" onClick={this.toggleIssueModal} title="Post an issue"><i className="fa fa-bug"></i></button>
-				<div className={classnames('filter-options', { 'is-open': this.state.showFilterOptions })}>
-					<div className="filter-options-header">
-						Filter Options
-					</div>
-					<div className="flex-horizontal filter-button-row">
-						<button name="online"
-							className={classnames(
-								"filter-button",
-								{"is-disabled": !_.includes(this.state.enabledFilters, 'online')})}
-							onClick={this.filterButtonClicked}>Online</button>
-						<button name="offline"
-							className={classnames(
-								"filter-button",
-								{ "is-disabled": !_.includes(this.state.enabledFilters, 'offline') })}
-							onClick={this.filterButtonClicked}>Offline</button>
-					</div>
-					<div className="flex-horizontal filter-button-row">
-						<button name="staff"
-							className={classnames(
-								"filter-button",
-								{ "is-disabled": !_.includes(this.state.enabledFilters, 'staff') })}
-							onClick={this.filterButtonClicked}>Staff</button>
-						<button name="member" 
-							className={classnames(
-								"filter-button",
-								{ "is-disabled": !_.includes(this.state.enabledFilters, 'member') })}
-							onClick={this.filterButtonClicked}>Member</button>
-					</div>
-				</div>
 				<Modal
 					id="issue-form-modal"
 					isOpen={this.state.issueFormModalIsOpen}
