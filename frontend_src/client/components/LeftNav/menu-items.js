@@ -36,11 +36,11 @@ module.exports = [
 			//{ name: "News", href: '', icon: 'fa fa-fw fa-shield'},
 			//{ name: "Events", href: '', icon: 'fa fa-fw fa-calendar'},
 			//{ name: "Bulletin Board", href: '', icon: 'fa fa-thumb-tack'},
-			// {
-			// 	name: "Groups",
-			// 	href: '/community/groups',
-			// 	icon: 'fa fa-fw fa-cubes'
-			// },
+			{
+			 	name: "Groups",
+			 	href: '/groups/',
+			 	icon: 'fa fa-fw fa-cubes'
+			},
 			{
 				name: "Members",
 				href: '/members/',

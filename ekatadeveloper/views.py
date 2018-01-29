@@ -38,8 +38,9 @@ class ReactIndexView(LoginRequiredMixin, TemplateView):
         context = super(ReactIndexView, self).get_context_data(**kwargs)
         if not settings.EKATA_SITE_TYPE == 'local':
             manifest_file = open(
-                os.path.join(settings.BASE_DIR,
-                            'static/bundles/chunk-manifest.json'))
+                os.path.join(
+                    settings.BASE_DIR,
+                    'static/bundles/chunk-manifest.json'))
             manifest_data = manifest_file.read()
             manifest_file.close()
             context['manifest_data'] = manifest_data

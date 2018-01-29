@@ -1,5 +1,13 @@
 {% load i18n bip_extras %}
 <li class="mainnavcontent"><a href="/members/"><i class="fa fa-users"></i> <span>{% trans "Members" %}</span></a></li>
+{% ifequal SITE_TYPE 'beta' %}
+<li class="mainnavcontent">
+    <a href="/members/">
+        <i class="fa fa-users"></i>
+        <span>{% trans "Members" %}</span>
+    </a>
+</li>
+{% else %}
 <li class="treeview mainnavcontent {% active request 'g:allgroups' %} {% active request 'g:joinedgroups' %} {% active request 'g:subscribedgroups' %}">
     <a href="#">
         <i class="fa fa-cubes"></i>
@@ -14,6 +22,7 @@
         <li class="{% active request 'g:subscribedgroups' %}"><a href="{% url 'g:subscribedgroups' %}"><i class="fa fa-circle-o"></i>{% trans "Subscribed Groups" %}</a></li>
     </ul>
 </li>
+{% endifequal %}
 {% ifequal SITE_TYPE 'beta' %}
   <li class="treeview mainnavcontent {% active request 'information:index' %} {% active request 'information:contact' %}">
 {% else %}

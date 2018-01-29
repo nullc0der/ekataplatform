@@ -33,7 +33,10 @@ class SearchFilter extends React.Component {
                                         name={x}
                                         className={classnames(
                                             "filter-button",
-                                            { "is-disabled": !_.includes(enabledFilters, x) })}
+                                            { 
+                                                "is-disabled": !_.includes(enabledFilters, x),
+                                                "single": (i === filters.length - 1 && i % 2 === 0)
+                                            })}
                                         onClick={filterButtonClicked}>{x}</button>
                                 )
                             })

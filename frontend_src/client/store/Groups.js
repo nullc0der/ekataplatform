@@ -1,3 +1,4 @@
+import request from 'superagent'
 const debug = require('debug')('ekata:store:groups')
 
 const DEFAULT_GROUPS = [
@@ -70,17 +71,36 @@ const DEFAULT_GROUPS = [
 ]
 
 const INITIAL_STATE = {
-	groups: DEFAULT_GROUPS.map(x => x),
+	groups: [],
 	selectedGroup: null
 }
 
+const GROUPS_LOAD_SUCCESS = "GROUP_LOAD_SUCCESS"
+const groupLoadSuccess = (groups) => ({
+	type: GROUPS_LOAD_SUCCESS,
+	groups
+})
+
+const loadGroups = (url) => {
+	return (dispatch) => {
+		request
+			.get(url)
+			.end((err, res) => {
+				if (res.ok) {
+					dispatch(groupLoadSuccess(res.body))
+				}
+			})
+	}
+}
 
 export const actions = {
-
+	loadGroups
 }
 
 export default function GroupsReducer(state=INITIAL_STATE, action){
 	switch(action.type){
+		case GROUPS_LOAD_SUCCESS:
+			return {...state, groups: action.groups}
 		default:
 			return state
 	}

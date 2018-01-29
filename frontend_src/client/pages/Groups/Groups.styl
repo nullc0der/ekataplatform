@@ -12,6 +12,7 @@ b1()
 		width 300px
 		height 350px
 		background-color #fff
+		color #4a4a4a
 		shadow()
 		b1()
 		border-radius 6px
@@ -27,8 +28,8 @@ b1()
 		.bottom-stat
 			&:first-child
 				border-right 1px #eee solid
-			&:last-child
-				border-left 1px #eee solid
+			// &:last-child
+			// 	border-left 1px #eee solid
 
 
 		.card-inner
@@ -47,6 +48,10 @@ b1()
 			.category
 				font-size 14px
 				font-weight font_bold
+				white-space pre-line
+			.unsubscribe
+				&:hover
+					text-shadow 2px 3px rgba(0,0,0,0.09)
 		.card-circle-image
 			width 92px
 			height 92px
@@ -57,18 +62,18 @@ b1()
 			bottom -46px
 			border-radius 50%
 			border 2px #fff solid
-			&:after
-				position absolute
-				bottom -20px
-				right -60px
-				font-size 32px
-				font-family 'FontAwesome'
-				content '\f1eb'
-				color #ddd
-				transform rotateZ(45deg)
-			&.is-active
-				&:after
-					color theme_primary
+			// &:after
+			// 	position absolute
+			// 	bottom -20px
+			// 	right -60px
+			// 	font-size 32px
+			// 	font-family 'FontAwesome'
+			// 	content '\f1eb'
+			// 	color #ddd
+			// 	transform rotateZ(45deg)
+			// &.is-active
+			// 	&:after
+			// 		color theme_primary
 
 		.card-body
 			text-align center
