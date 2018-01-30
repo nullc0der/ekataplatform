@@ -8,12 +8,16 @@ import c from './Groups.styl'
 
 import {connect} from 'react-redux'
 import {actions} from 'store/Groups'
+import Modal from 'components/ui/Modal'
 import GroupCard from './GroupCard'
 
 class GroupsPage extends Component {
 
 	state = {
-		groups: []
+		groups: [],
+		createGroupModalIsOpen: false,
+		inputFieldValues: {},
+		inputFieldErrors: {}
 	}
 
 	componentDidMount = () => {
@@ -62,6 +66,22 @@ class GroupsPage extends Component {
 		}
 	}
 
+	toggleCreateGroupModal = (e) => {
+		e.preventDefault()
+		this.setState(prevState => ({
+			createGroupModalIsOpen: !prevState.createGroupModalIsOpen
+		}))
+	}
+
+	handleCreateGroupFormInputChange = (e) => {
+		e.preventDefault()
+		this.setState({
+			inputFieldValues: {
+				[e.target.name]: e.target.value
+			}
+		})
+	}
+
 	render(){
 		const {
 			className
@@ -71,6 +91,9 @@ class GroupsPage extends Component {
 
 		return (
 			<div className={cx}>
+				<div className="flex-horizontal j-end">
+					<button className="btn btn-primary" onClick={this.toggleCreateGroupModal}><i className="fa fa-plus-circle"></i> Create Group</button>
+				</div>
 				{
 					this.state.groups.map((x,i)=> {
 
@@ -95,6 +118,23 @@ class GroupsPage extends Component {
 							/>
 					})
 				}
+				<Modal
+					id="create-group-modal"
+					isOpen={this.state.createGroupModalIsOpen}
+					title="Create a group"
+					onBackdropClick={this.toggleCreateGroupModal}
+					detachedFooter={true}
+					detachedFooterText="Create"
+					onDetachedFooterClick={this.handleCreateGroupSubmit}>
+					<form className="form-horizontal" style={{padding: '10px'}}>
+						<div className={"form-group" + `${this.state.subjectError && " has-error"}`}>
+							<label htmlFor="inputName" className="control-label">Name</label>
+							<input className="form-control" id="inputName" type="text"
+								name="name" value={this.state.inputFieldValues['name']} onChange={this.handleIssueFormInputChange}/>
+							<small className="form-text"></small>
+						</div>
+					</form>
+				</Modal>
 			</div>
 		)
 	}

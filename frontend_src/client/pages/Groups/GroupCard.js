@@ -39,7 +39,7 @@ class GroupCard extends Component {
 									{isSubscribed ? 'Unsubscribe' : 'Subscribe'} </div>
 
 							<div className='card-circle-image'>
-								<img className="img-responsive" src={logoURL} />
+								<img src={logoURL} />
 							</div>
 						</div>
 

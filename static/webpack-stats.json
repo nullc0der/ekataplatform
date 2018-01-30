@@ -9,10 +9,12 @@
         "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.js"
       },
       {
-        "name": "0.a8f81247163d1e73500b.hot-update.js",
-        "publicPath": "http://localhost:3000/assets/bundles/0.a8f81247163d1e73500b.hot-update.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/0.a8f81247163d1e73500b.hot-update.js"
+        "name": "0.78a1ed259f14fd85a0fa.hot-update.js",
+        "publicPath": "http://localhost:3000/assets/bundles/0.78a1ed259f14fd85a0fa.hot-update.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/0.78a1ed259f14fd85a0fa.hot-update.js"
       }
     ]
-  }
+  },
+  "error": "ModuleBuildError",
+  "message": "Module build failed: SyntaxError: Identifier directly after number (119:58)\n\n  117 | \t\t\t\t\t//onDetachedFooterClick={this.handleCreateGroupSubmit}\n  118 | \t\t\t\t\t>\n> 119 | \t\t\t\t\t<form className=\"form-horizontal\" style={{padding: 10px}}>\n      | \t\t\t\t\t                                                     ^\n  120 | \t\t\t\t\t\t<div className=\"form-group\">\n  121 | \t\t\t\t\t\t\t<label htmlFor=\"inputSubject\" className=\"control-label\">Subject</label>\n  122 | \t\t\t\t\t\t\t<input className=\"form-control\" id=\"inputSubject\" type=\"text\"\n"
 }
