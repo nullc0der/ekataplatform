@@ -1,20 +1,62 @@
 {
   "status": "done",
-  "publicPath": "http://localhost:3000/assets/bundles/",
+  "publicPath": "/statics/bundles/",
   "chunks": {
+    "Groups-Members": [
+      {
+        "name": "Groups-Members.61aabfe99d7642ba14d9.chunk.js",
+        "publicPath": "/statics/bundles/Groups-Members.61aabfe99d7642ba14d9.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.61aabfe99d7642ba14d9.chunk.js"
+      }
+    ],
+    "MessengerPage": [
+      {
+        "name": "MessengerPage.c854f35ec932408633ed.chunk.js",
+        "publicPath": "/statics/bundles/MessengerPage.c854f35ec932408633ed.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/MessengerPage.c854f35ec932408633ed.chunk.js"
+      }
+    ],
+    "PublicMembers": [
+      {
+        "name": "PublicMembers.1dfd1d1f8b64f0ef0fe4.chunk.js",
+        "publicPath": "/statics/bundles/PublicMembers.1dfd1d1f8b64f0ef0fe4.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/PublicMembers.1dfd1d1f8b64f0ef0fe4.chunk.js"
+      }
+    ],
+    "GroupsPage": [
+      {
+        "name": "GroupsPage.573082feccdb22806a61.chunk.js",
+        "publicPath": "/statics/bundles/GroupsPage.573082feccdb22806a61.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/GroupsPage.573082feccdb22806a61.chunk.js"
+      }
+    ],
+    "HomePage": [
+      {
+        "name": "HomePage.cae49dcba24b5b3865fc.chunk.js",
+        "publicPath": "/statics/bundles/HomePage.cae49dcba24b5b3865fc.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/HomePage.cae49dcba24b5b3865fc.chunk.js"
+      }
+    ],
     "main": [
       {
-        "name": "main-bundle.js",
-        "publicPath": "http://localhost:3000/assets/bundles/main-bundle.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.js"
-      },
+        "name": "main-bundle.31b6b34687e1a42e01c1.js",
+        "publicPath": "/statics/bundles/main-bundle.31b6b34687e1a42e01c1.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.31b6b34687e1a42e01c1.js"
+      }
+    ],
+    "vendor": [
       {
-        "name": "0.78a1ed259f14fd85a0fa.hot-update.js",
-        "publicPath": "http://localhost:3000/assets/bundles/0.78a1ed259f14fd85a0fa.hot-update.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/0.78a1ed259f14fd85a0fa.hot-update.js"
+        "name": "vendor-bundle.d5c89901f10c42c07c00.js",
+        "publicPath": "/statics/bundles/vendor-bundle.d5c89901f10c42c07c00.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/vendor-bundle.d5c89901f10c42c07c00.js"
+      }
+    ],
+    "manifest": [
+      {
+        "name": "manifest-bundle.d41d8cd98f00b204e980.js",
+        "publicPath": "/statics/bundles/manifest-bundle.d41d8cd98f00b204e980.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/manifest-bundle.d41d8cd98f00b204e980.js"
       }
     ]
-  },
-  "error": "ModuleBuildError",
-  "message": "Module build failed: SyntaxError: Identifier directly after number (119:58)\n\n  117 | \t\t\t\t\t//onDetachedFooterClick={this.handleCreateGroupSubmit}\n  118 | \t\t\t\t\t>\n> 119 | \t\t\t\t\t<form className=\"form-horizontal\" style={{padding: 10px}}>\n      | \t\t\t\t\t                                                     ^\n  120 | \t\t\t\t\t\t<div className=\"form-group\">\n  121 | \t\t\t\t\t\t\t<label htmlFor=\"inputSubject\" className=\"control-label\">Subject</label>\n  122 | \t\t\t\t\t\t\t<input className=\"form-control\" id=\"inputSubject\" type=\"text\"\n"
+  }
 }
