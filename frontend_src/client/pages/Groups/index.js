@@ -52,6 +52,16 @@ class GroupsPage extends Component {
 		})
 	}
 
+	onSubscribeButtonClick = (e, groupID, subscribe=true) => {
+		e.preventDefault()
+		const url = `/api/groups/subscribe/${groupID}/`
+		if (subscribe) {
+			this.props.subscribeGroup(url)
+		} else {
+			this.props.unsubscribeGroup(url)
+		}
+	}
+
 	render(){
 		const {
 			className
@@ -81,6 +91,7 @@ class GroupsPage extends Component {
 							members={x.members.length}
 							subscribers={x.subscribers.length}
 							shortDescription={x.description}
+							onSubscribeButtonClick={this.onSubscribeButtonClick}
 							/>
 					})
 				}
@@ -96,7 +107,9 @@ const mapStateToProps = (state)=> ({
 })
 
 const mapDispatchToProps = (dispatch)=> ({
-	loadGroups: (url) => dispatch(actions.loadGroups(url))
+	loadGroups: (url) => dispatch(actions.loadGroups(url)),
+	subscribeGroup: (url) => dispatch(actions.subscribeGroup(url)),
+	unsubscribeGroup: (url) => dispatch(actions.unSubscribeGroup(url))
 })
 
 export default withStyles(c)(

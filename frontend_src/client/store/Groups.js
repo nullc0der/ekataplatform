@@ -1,74 +1,6 @@
 import request from 'superagent'
-const debug = require('debug')('ekata:store:groups')
 
-const DEFAULT_GROUPS = [
-	{
-		id: 0,
-		name: 'Wizards',
-		category: "Business",
-		image_url: '',
-		short_description: 'Lorem ipsum solor di amet, lorem ipsum solor di amet, consectetur adipiscing elit',
-		is_subscribed: true,
-		is_available: true,
-		stats: {
-			members: 2000,
-			subscribers: 24929,
-			active: 39
-		}
-	},{
-		id: 1,
-		name: 'Wizards',
-		category: "Business",
-		image_url: '',
-		short_description: 'Lorem ipsum solor di amet, lorem ipsum solor di amet, consectetur adipiscing elit',
-		is_subscribed: false,
-		is_available: true,
-		stats: {
-			members: 2000,
-			subscribers: 24929,
-			active: 39
-		}
-	},{
-		id: 2,
-		name: 'Wizards',
-		category: "Business",
-		image_url: '',
-		short_description: 'Lorem ipsum solor di amet, lorem ipsum solor di amet, consectetur adipiscing elit',
-		is_subscribed: true,
-		is_available: false,
-		stats: {
-			members: 2000,
-			subscribers: 24929,
-			active: 39
-		}
-	},{
-		id: 3,
-		name: 'Wizards',
-		category: "Business",
-		image_url: '',
-		short_description: 'Lorem ipsum solor di amet, lorem ipsum solor di amet, consectetur adipiscing elit',
-		is_subscribed: false,
-		is_available: true,
-		stats: {
-			members: 2000,
-			subscribers: 24929,
-			active: 39
-		}
-	},{
-		id: 4,
-		name: 'Wizards',
-		category: "Business",
-		image_url: '',
-		short_description: 'Lorem ipsum solor di amet, lorem ipsum solor di amet, consectetur adipiscing elit',
-		is_subscribed: true,
-		is_available: false,
-		stats: {
-			members: 2000,
-			subscribers: 24929,
-			active: 39
-		}
-	}
-]
+import {actions as commonAction} from './Common'
 
 const INITIAL_STATE = {
 	groups: [],
@@ -79,6 +11,20 @@ const GROUPS_LOAD_SUCCESS = "GROUP_LOAD_SUCCESS"
 const groupLoadSuccess = (groups) => ({
 	type: GROUPS_LOAD_SUCCESS,
 	groups
+})
+
+const SUBSCRIBE_GROUP_SUCCESS = "SUBSUCRIBE_GROUP_SUCCESS"
+const subscribeGroupSuccess = (groupID, userName) => ({
+	type: SUBSCRIBE_GROUP_SUCCESS,
+	groupID,
+	userName
+})
+
+const UNSUBSCRIBE_GROUP_SUCCESS = "UNSUBSUCRIBE_GROUP_SUCCESS"
+const unSubscribeGroupSuccess = (groupID, userName) => ({
+	type: UNSUBSCRIBE_GROUP_SUCCESS,
+	groupID,
+	userName
 })
 
 const loadGroups = (url) => {
@@ -93,14 +39,74 @@ const loadGroups = (url) => {
 	}
 }
 
+const subscribeGroup = (url) => {
+	return (dispatch) => {
+		request
+			.post(url)
+			.set('X-CSRFToken', window.django.csrf)
+			.send({'subscribe': true})
+			.end((err, res) => {
+				if (res.ok) {
+					if (res.body.subscribed) {
+						dispatch(subscribeGroupSuccess(res.body.group_id, res.body.username))
+						dispatch(commonAction.addNotification({
+							message: 'Subscribed successfully',
+							level: 'success'
+						}))
+					} else {
+						dispatch(commonAction.addNotification({
+							message: 'Error subscribing, please try later',
+							level: 'error'
+						}))
+					}
+				}
+			})
+	}
+}
+
+const unSubscribeGroup = (url) => {
+	return (dispatch) => {
+		request
+			.post(url)
+			.set('X-CSRFToken', window.django.csrf)
+			.send({ 'subscribe': false })
+			.end((err, res) => {
+				if (res.ok) {
+					if (!res.body.subscribed) {
+						dispatch(unSubscribeGroupSuccess(res.body.group_id, res.body.username))
+						dispatch(commonAction.addNotification({
+							message: 'Unsubscribed successfully',
+							level: 'success'
+						}))
+					} else {
+						dispatch(commonAction.addNotification({
+							message: 'Error unsubscribing, please try later',
+							level: 'error'
+						}))
+					}
+				}
+			})
+	}
+}
+
 export const actions = {
-	loadGroups
+	loadGroups,
+	subscribeGroup,
+	unSubscribeGroup
 }
 
 export default function GroupsReducer(state=INITIAL_STATE, action){
 	switch(action.type){
 		case GROUPS_LOAD_SUCCESS:
 			return {...state, groups: action.groups}
+		case SUBSCRIBE_GROUP_SUCCESS:
+			return {...state, groups: state.groups.map(x => {
+				return x.id === action.groupID ? {...x, subscribers:x.subscribers.concat(action.userName)} : x
+			})}
+		case UNSUBSCRIBE_GROUP_SUCCESS:
+			return {...state, groups: state.groups.map(x => {
+				return x.id === action.groupID ? {...x, subscribers:x.subscribers.filter(x=>x!==action.userName)}: x
+			})}
 		default:
 			return state
 	}

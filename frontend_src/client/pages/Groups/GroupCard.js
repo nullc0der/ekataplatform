@@ -9,6 +9,7 @@ class GroupCard extends Component {
 	render(){
 		const {
 			className,
+			id,
 			groupURL,
 			name,
 			category,
@@ -18,7 +19,8 @@ class GroupCard extends Component {
 			logoURL,
 			members,
 			subscribers,
-			shortDescription
+			shortDescription,
+			onSubscribeButtonClick
 		} = this.props;
 
 		const cx = classnames(c.container, className, 'ui-group-card')
@@ -32,7 +34,9 @@ class GroupCard extends Component {
 								<div className='name'> {name} </div>
 								<div className='category'> {category.split(" ").join("\n")} </div>
 							</div>
-							<div className='unsubscribe'> {isSubscribed ? 'Unsubscribe' : 'Subscribe'} </div>
+							<div className='unsubscribe'
+								 onClick={(e) => onSubscribeButtonClick(e, id, !isSubscribed?true:false)}>
+									{isSubscribed ? 'Unsubscribe' : 'Subscribe'} </div>
 
 							<div className='card-circle-image'>
 								<img className="img-responsive" src={logoURL} />
