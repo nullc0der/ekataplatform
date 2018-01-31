@@ -95,6 +95,7 @@ class GroupsPage extends Component {
 
 	handleSelectFocus = (e) => {
 		e.preventDefault()
+		e.target.blur()
 		this.setState(prevState => ({
 			selectInputFocused: !prevState.selectInputFocused
 		}))
@@ -145,6 +146,13 @@ class GroupsPage extends Component {
 					})
 				}
 			})
+	}
+
+	hideOptions = (e) => {
+		e.preventDefault()
+		this.setState({
+			selectInputFocused: false
+		})
 	}
 
 	render(){
@@ -202,16 +210,18 @@ class GroupsPage extends Component {
 					detachedFooter={true}
 					detachedFooterText={this.state.creatingGroup? "Creating...": "Create"}
 					onDetachedFooterClick={this.handleCreateGroupSubmit}>
-					<form className="form-horizontal" style={{padding: '10px'}} onSubmit={this.handleCreateGroupSubmit}>
+					<form className="form-horizontal" style={{ padding: '10px' }} onSubmit={this.handleCreateGroupSubmit} onClick={this.hideOptions}>
 						<div className={`form-group ${this.state.inputFieldErrors["name"] ? 'has-error': ''}`}>
 							<input className={`form-control ${this.state.inputFieldValues['name'] ? 'has-value' : ''}`} id="inputName" type="text"
-								name="name" value={this.state.inputFieldValues['name']} onChange={this.handleCreateGroupFormInputChange}/>
+								name="name" value={this.state.inputFieldValues['name']} onChange={this.handleCreateGroupFormInputChange}
+								autoComplete="off"/>
 							<label htmlFor="inputName" className="control-label">Name</label>
 							<small className="form-text">{this.state.inputFieldErrors["name"] && this.state.inputFieldErrors["name"][0].message}</small>
 						</div>
 						<div className={`form-group ${this.state.inputFieldErrors["short_about"] ? 'has-error' : ''}`}>
 							<input className={`form-control ${this.state.inputFieldValues['short_about'] ? 'has-value' : ''}`}  id="inputSAbout" type="text"
-								name="short_about" value={this.state.inputFieldValues['short_about']} onChange={this.handleCreateGroupFormInputChange} />
+								name="short_about" value={this.state.inputFieldValues['short_about']} onChange={this.handleCreateGroupFormInputChange}
+								autoComplete="off" />
 							<label htmlFor="inputSAbout" className="control-label">Short About</label>
 							<small className="form-text">{this.state.inputFieldErrors["short_about"] && this.state.inputFieldErrors["short_about"][0].message}</small>
 						</div>
@@ -219,7 +229,8 @@ class GroupsPage extends Component {
 							<input className={`form-control ${this.state.inputFieldValues['group_type'][1] ? 'has-value' : ''}`}
 								   id="inputGroupType" type="text"
 								   onFocus={this.handleSelectFocus}
-								   value={this.state.inputFieldValues['group_type'][1] || ""} />
+								   value={this.state.inputFieldValues['group_type'][1] || ""} 
+								   autoComplete="off"/>
 							<label htmlFor="inputGroupType" className="control-label">Group Type</label>
 							<small className="form-text">{this.state.inputFieldErrors["group_type"] && this.state.inputFieldErrors["group_type"][0].message}</small>
 							<ul className={`select-dropdown ${this.state.selectInputFocused ? 'is-visible' : ''}`}>
@@ -236,7 +247,8 @@ class GroupsPage extends Component {
 							this.state.inputFieldValues['group_type'][1] === 'Other' &&
 							<div className={`form-group ${this.state.inputFieldErrors["group_type_other"] ? 'has-error' : ''}`}>
 								<input className={`form-control ${this.state.inputFieldValues['other'] ? 'has-value' : ''}`} id="inputOther" type="text"
-									name="other" value={this.state.inputFieldValues['other']} onChange={this.handleCreateGroupFormInputChange} />
+									name="other" value={this.state.inputFieldValues['other']} onChange={this.handleCreateGroupFormInputChange}
+									autoComplete="off" />
 								<label htmlFor="inputOther" className="control-label">Please Specify</label>
 								<small className="form-text">{this.state.inputFieldErrors["group_type_other"] && this.state.inputFieldErrors["group_type_other"][0].message}</small>
 							</div>
