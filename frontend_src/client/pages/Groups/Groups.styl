@@ -65,6 +65,7 @@ b1()
 			text-align center
 			img
 				border-radius 50%
+				margin 2px
 			// &:after
 			// 	position absolute
 			// 	bottom -20px
@@ -122,3 +123,40 @@ b1()
 				background-color color_pink500
 			.card-action
 				background-color color_pink500
+	
+	.form-group
+		position relative
+		margin-bottom 30px
+		.control-label
+			font-size 16px
+			position absolute
+			top 0
+			transition 0.2s ease all
+		.form-control
+			&:focus
+			&.has-value
+				& + .control-label
+					font-size 14px
+					top -22px
+		&:last-child
+			margin-bottom 15px
+		.select-dropdown
+			position absolute
+			width 100%
+			height 100px
+			overflow-y scroll
+			top -40px
+			padding 5px
+			list-style none
+			background-color #fff
+			visibility hidden
+			shadow()
+			&.is-visible
+				visibility visible
+			.select-option
+				padding 5px
+				&:hover
+					cursor pointer
+					color #fff
+					background-color theme_primary
+					$shadow_2()

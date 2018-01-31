@@ -2,6 +2,7 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import _ from 'lodash'
+import request from 'superagent'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Groups.styl'
@@ -16,8 +17,15 @@ class GroupsPage extends Component {
 	state = {
 		groups: [],
 		createGroupModalIsOpen: false,
-		inputFieldValues: {},
-		inputFieldErrors: {}
+		inputFieldValues: {
+			name: '',
+			short_about: '',
+			group_type: [],
+			other: ''
+		},
+		inputFieldErrors: {},
+		selectInputFocused: false,
+		creatingGroup: false
 	}
 
 	componentDidMount = () => {
@@ -68,18 +76,75 @@ class GroupsPage extends Component {
 
 	toggleCreateGroupModal = (e) => {
 		e.preventDefault()
-		this.setState(prevState => ({
-			createGroupModalIsOpen: !prevState.createGroupModalIsOpen
-		}))
+		if (!this.state.creatingGroup) {
+			this.setState(prevState => ({
+				createGroupModalIsOpen: !prevState.createGroupModalIsOpen
+			}))	
+		}
 	}
 
 	handleCreateGroupFormInputChange = (e) => {
 		e.preventDefault()
 		this.setState({
 			inputFieldValues: {
+				...this.state.inputFieldValues,
 				[e.target.name]: e.target.value
 			}
 		})
+	}
+
+	handleSelectFocus = (e) => {
+		e.preventDefault()
+		this.setState(prevState => ({
+			selectInputFocused: !prevState.selectInputFocused
+		}))
+	}
+
+	handleOptionSelect = (id, value) => {
+		this.setState({
+			inputFieldValues: {
+				...this.state.inputFieldValues,
+				group_type: [id, value]
+			},
+			selectInputFocused: false
+		})
+	}
+
+	handleCreateGroupSubmit = (e) => {
+		e.preventDefault()
+		this.setState({
+			creatingGroup: true
+		})
+		request
+			.post('/api/groups/create/')
+			.set('X-CSRFToken', window.django.csrf)
+			.send({
+				name: this.state.inputFieldValues['name'],
+				short_about: this.state.inputFieldValues['short_about'],
+				group_type: this.state.inputFieldValues['group_type'][0],
+				group_type_other: this.state.inputFieldValues['group_type'][1] === "Other" ? this.state.inputFieldValues['other'] : ""
+			})
+			.end((err, res) => {
+				if (!res.ok) {
+					this.setState({
+						inputFieldErrors: JSON.parse(res.body),
+						creatingGroup: false
+					})
+				} else {
+					this.props.groupCreated(res.body)
+					this.setState({
+						inputFieldErrors: {},
+						inputFieldValues: {
+							name: '',
+							short_about: '',
+							group_type: [],
+							other: ''
+						},
+						createGroupModalIsOpen: false,
+						creatingGroup: false
+					})
+				}
+			})
 	}
 
 	render(){
@@ -88,6 +153,17 @@ class GroupsPage extends Component {
 		} = this.props;
 
 		const cx = classnames(c.container, className)
+		const selectOptions = [
+			[1, "Art"],
+			[2, "Activist"],
+			[3, "Political"],
+			[4, "news"],
+			[5, "Business"],
+			[6, "Government"],
+			[7, "Blog"],
+			[8, "Nonprofit Organaization"],
+			[9, "Other"]
+		]
 
 		return (
 			<div className={cx}>
@@ -124,15 +200,47 @@ class GroupsPage extends Component {
 					title="Create a group"
 					onBackdropClick={this.toggleCreateGroupModal}
 					detachedFooter={true}
-					detachedFooterText="Create"
+					detachedFooterText={this.state.creatingGroup? "Creating...": "Create"}
 					onDetachedFooterClick={this.handleCreateGroupSubmit}>
-					<form className="form-horizontal" style={{padding: '10px'}}>
-						<div className={"form-group" + `${this.state.subjectError && " has-error"}`}>
+					<form className="form-horizontal" style={{padding: '10px'}} onSubmit={this.handleCreateGroupSubmit}>
+						<div className={`form-group ${this.state.inputFieldErrors["name"] ? 'has-error': ''}`}>
+							<input className={`form-control ${this.state.inputFieldValues['name'] ? 'has-value' : ''}`} id="inputName" type="text"
+								name="name" value={this.state.inputFieldValues['name']} onChange={this.handleCreateGroupFormInputChange}/>
 							<label htmlFor="inputName" className="control-label">Name</label>
-							<input className="form-control" id="inputName" type="text"
-								name="name" value={this.state.inputFieldValues['name']} onChange={this.handleIssueFormInputChange}/>
-							<small className="form-text"></small>
+							<small className="form-text">{this.state.inputFieldErrors["name"] && this.state.inputFieldErrors["name"][0].message}</small>
 						</div>
+						<div className={`form-group ${this.state.inputFieldErrors["short_about"] ? 'has-error' : ''}`}>
+							<input className={`form-control ${this.state.inputFieldValues['short_about'] ? 'has-value' : ''}`}  id="inputSAbout" type="text"
+								name="short_about" value={this.state.inputFieldValues['short_about']} onChange={this.handleCreateGroupFormInputChange} />
+							<label htmlFor="inputSAbout" className="control-label">Short About</label>
+							<small className="form-text">{this.state.inputFieldErrors["short_about"] && this.state.inputFieldErrors["short_about"][0].message}</small>
+						</div>
+						<div className={`form-group ${this.state.inputFieldErrors["group_type"] ? 'has-error' : ''}`}>
+							<input className={`form-control ${this.state.inputFieldValues['group_type'][1] ? 'has-value' : ''}`}
+								   id="inputGroupType" type="text"
+								   onFocus={this.handleSelectFocus}
+								   value={this.state.inputFieldValues['group_type'][1] || ""} />
+							<label htmlFor="inputGroupType" className="control-label">Group Type</label>
+							<small className="form-text">{this.state.inputFieldErrors["group_type"] && this.state.inputFieldErrors["group_type"][0].message}</small>
+							<ul className={`select-dropdown ${this.state.selectInputFocused ? 'is-visible' : ''}`}>
+								<li className="select-option" onClick={() => this.handleOptionSelect('', '')}>---------</li>
+								{selectOptions.map(
+									(x, i) => <li 
+										key={i}
+										className="select-option"
+										onClick={() => this.handleOptionSelect(x[0], x[1])}>{x[1]}</li>
+								)}
+							</ul>
+						</div>
+						{
+							this.state.inputFieldValues['group_type'][1] === 'Other' &&
+							<div className={`form-group ${this.state.inputFieldErrors["group_type_other"] ? 'has-error' : ''}`}>
+								<input className={`form-control ${this.state.inputFieldValues['other'] ? 'has-value' : ''}`} id="inputOther" type="text"
+									name="other" value={this.state.inputFieldValues['other']} onChange={this.handleCreateGroupFormInputChange} />
+								<label htmlFor="inputOther" className="control-label">Please Specify</label>
+								<small className="form-text">{this.state.inputFieldErrors["group_type_other"] && this.state.inputFieldErrors["group_type_other"][0].message}</small>
+							</div>
+						}
 					</form>
 				</Modal>
 			</div>
@@ -149,7 +257,8 @@ const mapStateToProps = (state)=> ({
 const mapDispatchToProps = (dispatch)=> ({
 	loadGroups: (url) => dispatch(actions.loadGroups(url)),
 	subscribeGroup: (url) => dispatch(actions.subscribeGroup(url)),
-	unsubscribeGroup: (url) => dispatch(actions.unSubscribeGroup(url))
+	unsubscribeGroup: (url) => dispatch(actions.unSubscribeGroup(url)),
+	groupCreated: (group) => dispatch(actions.groupCreated(group))
 })
 
 export default withStyles(c)(

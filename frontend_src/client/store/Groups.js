@@ -27,6 +27,12 @@ const unSubscribeGroupSuccess = (groupID, userName) => ({
 	userName
 })
 
+const GROUP_CREATED = 'GROUP_CREATED'
+const groupCreated = (group) => ({
+	type: GROUP_CREATED,
+	group
+})
+
 const loadGroups = (url) => {
 	return (dispatch) => {
 		request
@@ -92,7 +98,8 @@ const unSubscribeGroup = (url) => {
 export const actions = {
 	loadGroups,
 	subscribeGroup,
-	unSubscribeGroup
+	unSubscribeGroup,
+	groupCreated
 }
 
 export default function GroupsReducer(state=INITIAL_STATE, action){
@@ -107,6 +114,8 @@ export default function GroupsReducer(state=INITIAL_STATE, action){
 			return {...state, groups: state.groups.map(x => {
 				return x.id === action.groupID ? {...x, subscribers:x.subscribers.filter(x=>x!==action.userName)}: x
 			})}
+		case GROUP_CREATED:
+			return {...state, groups: [...state.groups, action.group]}
 		default:
 			return state
 	}
