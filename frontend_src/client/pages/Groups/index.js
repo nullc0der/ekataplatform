@@ -148,13 +148,6 @@ class GroupsPage extends Component {
 			})
 	}
 
-	hideOptions = (e) => {
-		e.preventDefault()
-		this.setState({
-			selectInputFocused: false
-		})
-	}
-
 	render(){
 		const {
 			className
@@ -210,7 +203,7 @@ class GroupsPage extends Component {
 					detachedFooter={true}
 					detachedFooterText={this.state.creatingGroup? "Creating...": "Create"}
 					onDetachedFooterClick={this.handleCreateGroupSubmit}>
-					<form className="form-horizontal" style={{ padding: '10px' }} onSubmit={this.handleCreateGroupSubmit} onClick={this.hideOptions}>
+					<form className="form-horizontal" style={{ padding: '10px' }} onSubmit={this.handleCreateGroupSubmit}>
 						<div className={`form-group ${this.state.inputFieldErrors["name"] ? 'has-error': ''}`}>
 							<input className={`form-control ${this.state.inputFieldValues['name'] ? 'has-value' : ''}`} id="inputName" type="text"
 								name="name" value={this.state.inputFieldValues['name']} onChange={this.handleCreateGroupFormInputChange}
@@ -238,7 +231,7 @@ class GroupsPage extends Component {
 								{selectOptions.map(
 									(x, i) => <li 
 										key={i}
-										className="select-option"
+										className={`select-option ${this.state.inputFieldValues['group_type'][1] === x[1] && 'selected'}`}
 										onClick={() => this.handleOptionSelect(x[0], x[1])}>{x[1]}</li>
 								)}
 							</ul>
