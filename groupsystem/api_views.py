@@ -6,14 +6,15 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from guardian.shortcuts import assign_perm
+from guardian.shortcuts import assign_perm, remove_perm
 
 from profilesystem.permissions import IsAuthenticatedLegacy
 from groupsystem.serializers import GroupSerializer
 from groupsystem.models import (
     BasicGroup,
     GroupMemberExtraPerm,
-    GroupMemberRole
+    GroupMemberRole,
+    JoinRequest
 )
 from groupsystem.forms import CreateGroupForm
 from groupsystem.tasks import task_create_emailgroup
@@ -24,6 +25,7 @@ from groupsystem.views import (
     MEMBER_PERMS,
     SUBSCRIBER_PERMS
 )
+from notification.utils import create_notification
 
 
 def _make_group_serializable(group):
@@ -56,6 +58,14 @@ class GroupsView(APIView):
         datas = []
         for basicgroup in basicgroups:
             data = _make_group_serializable(basicgroup)
+            try:
+                joinrequest = JoinRequest.objects.get(
+                    basic_group=basicgroup,
+                    user=request.user
+                )
+                data['joinrequest_sent'] = True
+            except ObjectDoesNotExist:
+                data['joinrequest_sent'] = False
             datas.append(data)
         serializer = GroupSerializer(datas, many=True)
         return Response(serializer.data)
@@ -83,7 +93,7 @@ class GroupSubscribeView(APIView):
                     name='%s_subscriber' % basicgroup.id
                 )
                 request.user.groups.add(subscriber_group)
-                return Response(data)        
+                return Response(data)
             else:
                 basicgroup.subscribers.remove(request.user)
                 subscriber_group = Group.objects.get(
@@ -92,6 +102,118 @@ class GroupSubscribeView(APIView):
                 request.user.groups.remove(subscriber_group)
                 data["subscribed"] = False
                 return Response(data)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class JoinGroupView(APIView):
+    """
+    View to do join operations on a group
+
+    * Required logged in user
+    """
+    permission_classes = (IsAuthenticatedLegacy, )
+
+    def post(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            request_type = request.data.get('type')
+            if request_type == 'join':
+                if request.user not in basicgroup.banned_members.all():
+                    joinrequest, created = JoinRequest.objects.get_or_create(
+                        basic_group=basicgroup,
+                        user=request.user
+                    )
+                    if created:
+                        admins = basicgroup.super_admins.all() | basicgroup.admins.all()
+                        for admin in admins:
+                            create_notification(
+                                user=admin,
+                                ntype=12,
+                                sender=request.user.username,
+                                sender_id=request.user.id,
+                                group_name=basicgroup.name,
+                                group_id=basicgroup.id
+                            )
+                    data = {
+                        'group_id': basicgroup.id,
+                        'type': 'join',
+                        'success': True
+                    }
+                    return Response(data)
+                else:
+                    data = {
+                        'group_id': basicgroup.id,
+                        'type': 'join',
+                        'success': False,
+                        'message': "You're banned from this group"
+                    }
+                    return Response(data)
+            if request_type == 'cancel':
+                joinrequest = JoinRequest.objects.get(
+                    basic_group=basicgroup,
+                    user=request.user
+                )
+                joinrequest.delete()
+                data = {
+                    'group_id': basicgroup.id,
+                    'type': 'cancel',
+                    'success': True
+                }
+                return Response(data)
+            if request_type == 'leave':
+                only_superadmin = False
+                try:
+                    joinrequest = JoinRequest.objects.get(
+                        basic_group=basicgroup,
+                        user=request.user
+                    )
+                    joinrequest.delete()
+                except ObjectDoesNotExist:
+                    if request.user in basicgroup.super_admins.all()\
+                       and basicgroup.super_admins.count() == 1:
+                        only_superadmin = True
+                if not only_superadmin:
+                    basicgroup.members.remove(request.user)
+                    basicgroup.super_admins.remove(request.user)
+                    basicgroup.admins.remove(request.user)
+                    basicgroup.moderators.remove(request.user)
+                    perm_groups = request.user.groups.filter(
+                        name__istartswith=basicgroup.id
+                    )
+                    for perm_group in perm_groups:
+                        request.user.groups.remove(perm_group)
+                    groupmemberrole = GroupMemberRole.objects.get(
+                        basic_group=basicgroup,
+                        user=request.user
+                    )
+                    groupmemberrole.delete()
+                    extraperm = GroupMemberExtraPerm.objects.get(
+                        basic_group=basicgroup,
+                        user=request.user
+                    )
+                    for perm in SUPERADMIN_PERMS:
+                        if extraperm.__getattribute__(perm[0]):
+                            remove_perm(perm[0], request.user, basicgroup)
+                    extraperm.delete()
+                    if hasattr(basicgroup, 'emailgroup'):
+                        emailgroup = basicgroup.emailgroup
+                        emailgroup.users.remove(request.user)
+                    data = {
+                        'group_id': basicgroup.id,
+                        'type': 'leave',
+                        'success': True
+                    }
+                    return Response(data)
+                else:
+                    data = {
+                        'group_id': basicgroup.id,
+                        'type': 'leave',
+                        'success': False,
+                        'message': "Sorry you can't leave" +
+                                " as you're only superadmin"
+                     }
+                    return Response(data)
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 

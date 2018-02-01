@@ -11,3 +11,4 @@ class GroupSerializer(serializers.Serializer):
     logo_url = serializers.CharField(required=False)
     members = serializers.ListField(required=True)
     subscribers = serializers.ListField(required=True)
+    joinrequest_sent = serializers.BooleanField()

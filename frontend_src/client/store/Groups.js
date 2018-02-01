@@ -33,6 +33,24 @@ const groupCreated = (group) => ({
 	group
 })
 
+const JOIN_REQUEST_SENT = 'JOIN_REQUEST_SENT'
+const joinRequestSent = (groupID) => ({
+	type: JOIN_REQUEST_SENT,
+	groupID
+})
+
+const JOIN_REQUEST_CANCELED = 'JOIN_REQUEST_CANCELED'
+const joinRequestCanceled = (groupID) => ({
+	type: JOIN_REQUEST_CANCELED,
+	groupID
+})
+
+const LEFT_GROUP = 'LEFT_GROUP'
+const leftGroup = (groupID) => ({
+	type: LEFT_GROUP,
+	groupID
+})
+
 const loadGroups = (url) => {
 	return (dispatch) => {
 		request
@@ -95,11 +113,42 @@ const unSubscribeGroup = (url) => {
 	}
 }
 
+const joinGroup = (groupID, type) => {
+	const url = `/api/groups/join/${groupID}/`
+	return (dispatch) => {
+		request
+			.post(url)
+			.set('X-CSRFToken', window.django.csrf)
+			.send({ 'type': type })
+			.end((err, res) => {
+				if (res.ok) {
+					if (!res.body.success) {
+						dispatch(commonAction.addNotification({
+							message: res.body.message || 'Error!! please try later',
+							level: 'error'
+						}))
+					} else {
+						if (res.body.type === 'leave') {
+							dispatch(leftGroup(res.body.group_id))
+						}
+						if (res.body.type === 'cancel') {
+							dispatch(joinRequestCanceled(res.body.group_id))
+						}
+						if (res.body.type === 'join') {
+							dispatch(joinRequestSent(res.body.group_id))
+						}
+					}
+				}
+			})
+	}
+}
+
 export const actions = {
 	loadGroups,
 	subscribeGroup,
 	unSubscribeGroup,
-	groupCreated
+	groupCreated,
+	joinGroup
 }
 
 export default function GroupsReducer(state=INITIAL_STATE, action){
@@ -116,6 +165,24 @@ export default function GroupsReducer(state=INITIAL_STATE, action){
 			})}
 		case GROUP_CREATED:
 			return {...state, groups: [...state.groups, action.group]}
+		case JOIN_REQUEST_SENT:
+			return {
+				...state, groups: state.groups.map(x => {
+					return x.id === action.groupID ? { ...x, joinrequest_sent: true } : x
+				})
+			}
+		case JOIN_REQUEST_CANCELED:
+			return {
+				...state, groups: state.groups.map(x => {
+					return x.id === action.groupID ? { ...x, joinrequest_sent: false } : x
+				})
+			}
+		case LEFT_GROUP:
+			return {
+				...state, groups: state.groups.map(x => {
+					return x.id === action.groupID ? { ...x, members: x.members.filter(x => x !== window.django.user.username) } : x
+				})
+			}
 		default:
 			return state
 	}

@@ -15,12 +15,14 @@ class GroupCard extends Component {
 			category,
 			isSubscribed,
 			isMember,
+			joinRequestSent,
 			//headerURL,
 			logoURL,
 			members,
 			subscribers,
 			shortDescription,
-			onSubscribeButtonClick
+			onSubscribeButtonClick,
+			onJoinButtonClick
 		} = this.props;
 
 		const cx = classnames(c.container, className, 'ui-group-card')
@@ -64,8 +66,8 @@ class GroupCard extends Component {
 
 						</div>
 					</div>
-					<div className='card-action'>
-						{isMember ? "Leave group" : "Join group"}
+					<div className='card-action' onClick={(e) => onJoinButtonClick(e, id, isMember ? "leave" : joinRequestSent ? "cancel" : "join")}>
+						{isMember ? "Leave group" : joinRequestSent ? "Cancel Request" : "Join group"}
 					</div>
 				</div>
 			</a>

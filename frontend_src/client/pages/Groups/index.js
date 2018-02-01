@@ -148,6 +148,11 @@ class GroupsPage extends Component {
 			})
 	}
 
+	handleJoinGroup = (e, groupID, type) => {
+		e.preventDefault()
+		this.props.joinGroup(groupID, type)
+	}
+
 	render(){
 		const {
 			className
@@ -186,12 +191,14 @@ class GroupsPage extends Component {
 								_.includes(
 									x.members, window.django.user.username)
 							}
+							joinRequestSent={x.joinrequest_sent}
 							//headerURL={x.header_image_url}
 							logoURL={x.logo_url}
 							members={x.members.length}
 							subscribers={x.subscribers.length}
 							shortDescription={x.description}
 							onSubscribeButtonClick={this.onSubscribeButtonClick}
+							onJoinButtonClick={this.handleJoinGroup}
 							/>
 					})
 				}
@@ -263,7 +270,8 @@ const mapDispatchToProps = (dispatch)=> ({
 	loadGroups: (url) => dispatch(actions.loadGroups(url)),
 	subscribeGroup: (url) => dispatch(actions.subscribeGroup(url)),
 	unsubscribeGroup: (url) => dispatch(actions.unSubscribeGroup(url)),
-	groupCreated: (group) => dispatch(actions.groupCreated(group))
+	groupCreated: (group) => dispatch(actions.groupCreated(group)),
+	joinGroup: (groupID, type) => dispatch(actions.joinGroup(groupID, type))
 })
 
 export default withStyles(c)(
