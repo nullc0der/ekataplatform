@@ -25,7 +25,7 @@ class GroupCard extends Component {
 			onJoinButtonClick
 		} = this.props;
 
-		const cx = classnames(c.container, className, 'ui-group-card')
+		const cx = classnames(c.container, className, 'ui-group-card', 'group-type-' + category.toLowerCase())
 
 		return (
 			<a href={groupURL} style={{textDecoration: "none"}}>

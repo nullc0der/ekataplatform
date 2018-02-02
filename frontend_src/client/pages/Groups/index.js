@@ -126,13 +126,15 @@ class GroupsPage extends Component {
 				group_type_other: this.state.inputFieldValues['group_type'][1] === "Other" ? this.state.inputFieldValues['other'] : ""
 			})
 			.end((err, res) => {
-				if (!res.ok) {
+				if (err && err.status === 400) {
 					this.setState({
 						inputFieldErrors: JSON.parse(res.body),
 						creatingGroup: false
 					})
 				} else {
-					this.props.groupCreated(res.body)
+					if (res.ok) {
+						this.props.groupCreated(res.body)
+					}
 					this.setState({
 						inputFieldErrors: {},
 						inputFieldValues: {
@@ -163,7 +165,7 @@ class GroupsPage extends Component {
 			[1, "Art"],
 			[2, "Activist"],
 			[3, "Political"],
-			[4, "news"],
+			[4, "News"],
 			[5, "Business"],
 			[6, "Government"],
 			[7, "Blog"],

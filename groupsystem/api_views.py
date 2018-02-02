@@ -276,8 +276,7 @@ class CreateGroupView(APIView):
             data = _make_group_serializable(basicgroup)
             serialized_data = GroupSerializer(data)
             return Response(serialized_data.data)
-        else:
-            return Response(
-                form.errors.as_json(),
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+        return Response(
+            form.errors.as_json(),
+            status=status.HTTP_400_BAD_REQUEST
+        )
