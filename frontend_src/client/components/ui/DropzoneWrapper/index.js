@@ -13,12 +13,16 @@ class DropzoneWrapper extends React.Component {
             onTrashClick,
             accept=".png, .jpg",
             label="Drop attachments here",
-            multiple=true
+            multiple=true,
+            maxFile=1,
+            hasError=false
         } = this.props
 
         return (
             <Dropzone onDrop={onDrop} className={c.container} accept={accept} multiple={multiple}>
-                <p style={{ margin: 0 }}>{label}</p>
+                <p style={{ margin: 0, color: hasError ? "#e51c23": "inherit" }}>
+                        {label}{maxFile > 1 && '(max allowed: ' + maxFile + ')'}
+                </p>
                 <div className="dropped-files">
                     <ul>
                         {

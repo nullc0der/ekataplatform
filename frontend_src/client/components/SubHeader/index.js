@@ -27,7 +27,8 @@ class SubHeader extends Component {
 			description: '',
 			subjectError: '',
 			descriptionError: '',
-			files: null,
+			attachmentError: '',
+			files: [],
 			uploadPercent: 0,
 			showSearchAndFilters: false,
 			showFilterOptions: false,
@@ -83,7 +84,7 @@ class SubHeader extends Component {
 			.set('X-CSRFToken', window.django.csrf)
 			.field('subject', this.state.subject)
 			.field('description', this.state.description)
-		if (this.state.files) {
+		if (this.state.files.length) {
 			this.state.files.map(f => {
 				req.attach('attachments', f)
 			})
@@ -95,11 +96,18 @@ class SubHeader extends Component {
 		}
 		req.end((err, res) => {
 			if (!res.ok) {
-				this.setState({
-					subjectError: res.body.subject[0].message,
-					descriptionError: res.body.description ? res.body.description[0].message : '',
-					uploadPercent: 0
-				})
+				if (res.badRequest) {
+					this.setState({
+						subjectError: res.body.subject[0].message,
+						descriptionError: res.body.description ? res.body.description[0].message : '',
+						uploadPercent: 0
+					})	
+				} else {
+					this.setState({
+						attachmentError: res.text,
+						uploadPercent: 0
+					})
+				}
 				this.props.addNotification({
 					message: 'Error Posting Issue',
 					level: 'error'
@@ -115,7 +123,8 @@ class SubHeader extends Component {
 					description: '',
 					subjectError: '',
 					descriptionError: '',
-					files: null,
+					attachmentError: '',
+					files: [],
 					uploadPercent: 0
 				})
 			}
@@ -124,15 +133,28 @@ class SubHeader extends Component {
 
 	onDrop = (acceptedFiles) => {
 		this.setState({
-			files: acceptedFiles
+			files: this.state.files ? this.state.files.concat(acceptedFiles) : acceptedFiles
 		})
+		if (this.state.files.length + acceptedFiles.length > 5) {
+			this.setState({
+				attachmentError: "You exceded total dropped file limit"
+			})
+		}
+	}
+
+	resetError = () => {
+		if (this.state.files.length <= 5) {
+			this.setState({
+				attachmentError: ""
+			})
+		}
 	}
 
 	onTrashClick = (e, filename) => {
 		e.stopPropagation()
 		this.setState({
 			files: this.state.files.filter(f => f.name !== filename)
-		})
+		}, () => this.resetError())
 	}
 
 	toggleFilterOptions = (e) => {
@@ -226,7 +248,10 @@ class SubHeader extends Component {
 							<DropzoneWrapper
 								files={this.state.files}
 								onDrop={this.onDrop}
-								onTrashClick={this.onTrashClick} />
+								onTrashClick={this.onTrashClick}
+								maxFile={5}
+								hasError={this.state.attachmentError} />
+							<small className="form-text">{this.state.attachmentError}</small>
 						</div>
 					</form>
 				</Modal>
