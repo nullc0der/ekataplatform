@@ -16,7 +16,7 @@ class GroupCard extends Component {
 			isSubscribed,
 			isMember,
 			joinRequestSent,
-			//headerURL,
+			headerURL,
 			logoURL,
 			members,
 			subscribers,
@@ -31,17 +31,19 @@ class GroupCard extends Component {
 			<a href={groupURL} style={{textDecoration: "none"}}>
 				<div className={cx}>
 					<div className='card-inner'>
-						<div className='card-header flex-horizontal j-between'>
-							<div>
+						<div className='card-header flex-horizontal'>
+							<div className="group-header-image" style={{backgroundImage: `url(${headerURL || ''})`}}>
+
+							</div>
+							<div className="group-info">
 								<div className='name'> {name} </div>
 								<div className='category'> {category.split(" ").join("\n")} </div>
 							</div>
 							<div className='unsubscribe'
 								 onClick={(e) => onSubscribeButtonClick(e, id, !isSubscribed?true:false)}>
 									{isSubscribed ? 'Unsubscribe' : 'Subscribe'} </div>
-
-							<div className='card-circle-image' style={{backgroundImage: `url(${logoURL})`}}>
 							</div>
+							<div className='card-circle-image' style={{ backgroundImage: `url(${logoURL})` }}>
 						</div>
 
 						<div className='card-body'>

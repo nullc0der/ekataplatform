@@ -194,7 +194,7 @@ class GroupsPage extends Component {
 									x.members, window.django.user.username)
 							}
 							joinRequestSent={x.joinrequest_sent}
-							//headerURL={x.header_image_url}
+							headerURL={x.header_image_url}
 							logoURL={x.logo_url}
 							members={x.members.length}
 							subscribers={x.subscribers.length}

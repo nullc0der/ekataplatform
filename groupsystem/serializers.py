@@ -7,7 +7,7 @@ class GroupSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200, required=True)
     description = serializers.CharField(required=False)
     group_type = serializers.CharField(required=False)
-    # header_image_url = serializers.CharField(required=False)
+    header_image_url = serializers.CharField(required=False)
     logo_url = serializers.CharField(required=False)
     members = serializers.ListField(required=True)
     subscribers = serializers.ListField(required=True)
