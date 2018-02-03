@@ -1,12 +1,12 @@
 CACHE MANIFEST
-#ver:2018-2-3 02:14:20
+#ver:2018-2-3 22:16:38
 #plugin:4.7.0
 
 CACHE:
 /statics/bundles/Groups-Members.61aabfe99d7642ba14d9.chunk.js
 /statics/bundles/MessengerPage.c854f35ec932408633ed.chunk.js
 /statics/bundles/PublicMembers.1dfd1d1f8b64f0ef0fe4.chunk.js
-/statics/bundles/GroupsPage.86e3a0d62aa0780c20a1.chunk.js
+/statics/bundles/GroupsPage.36b35803074a817d91c4.chunk.js
 /statics/bundles/HomePage.cae49dcba24b5b3865fc.chunk.js
 /statics/bundles/main-bundle.aa99d3857bcf3a87a004.js
 /statics/bundles/vendor-bundle.d5c89901f10c42c07c00.js
