@@ -38,7 +38,7 @@ def _make_group_serializable(group):
         if group.get_group_type_display() == 'Other'
         else group.get_group_type_display(),
         # 'header_image_url': group.header_image.thumbnail["300x100"].url,
-        'logo_url': group.logo.thumbnail["88x88"].url,
+        'logo_url': group.logo.thumbnail["92x92"].url,
         'members': [user.username for user in group.members.all()],
         'subscribers': [user.username for user in group.subscribers.all()],
     }

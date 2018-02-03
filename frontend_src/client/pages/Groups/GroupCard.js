@@ -40,8 +40,7 @@ class GroupCard extends Component {
 								 onClick={(e) => onSubscribeButtonClick(e, id, !isSubscribed?true:false)}>
 									{isSubscribed ? 'Unsubscribe' : 'Subscribe'} </div>
 
-							<div className='card-circle-image'>
-								<img src={logoURL} />
+							<div className='card-circle-image' style={{backgroundImage: `url(${logoURL})`}}>
 							</div>
 						</div>
 
