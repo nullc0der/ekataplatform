@@ -57,7 +57,7 @@ urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^messenger/', ReactIndexView.as_view()),
     url(r'^members/', ReactIndexView.as_view()),
-    url(r'^groups/', ReactIndexView.as_view()),
+    url(r'^community/groups/', ReactIndexView.as_view()),
     url(r'^onlineusers/', get_onlineusers_react)
 ]
 

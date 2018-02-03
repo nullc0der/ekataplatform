@@ -1,8 +1,8 @@
 module.exports = {
-    "members": {
+    "members/": {
         defaultFilters: ['online', 'offline', 'staff', 'member']
     },
-    "groups": {
+    "community/groups/": {
         defaultFilters: ['all', 'subscribed', 'joined']
     }
 }

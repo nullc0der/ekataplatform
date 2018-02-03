@@ -18,7 +18,7 @@ export default function getRoutes(store, req, res){
 		<Route path='/' component={App}>
 			<IndexRoute getComponent={Pages.Home}/>
 			<Route path='messenger/(:id)' getComponent={Pages.Messenger}/>
-			<Route path='groups' getComponent={Pages.Groups} />
+			<Route path='community/groups' getComponent={Pages.Groups} />
 			{/*
 			<Route path='groups'>
 				<IndexRedirect to='members'/>

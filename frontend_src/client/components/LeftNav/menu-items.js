@@ -38,7 +38,7 @@ module.exports = [
 			//{ name: "Bulletin Board", href: '', icon: 'fa fa-thumb-tack'},
 			{
 			 	name: "Groups",
-			 	href: '/groups/',
+			 	href: '/community/groups/',
 			 	icon: 'fa fa-fw fa-cubes'
 			},
 			{
