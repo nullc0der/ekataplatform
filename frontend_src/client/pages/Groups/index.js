@@ -3,6 +3,7 @@ import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import _ from 'lodash'
 import request from 'superagent'
+import Helmet from 'react-helmet'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Groups.styl'
@@ -178,6 +179,7 @@ class GroupsPage extends Component {
 
 		return (
 			<div className={cx}>
+				<Helmet title="Community | Groups" />
 				<div className="flex-horizontal j-end">
 					<button className="btn btn-primary" onClick={this.toggleCreateGroupModal}><i className="fa fa-plus-circle"></i> Create Group</button>
 				</div>
