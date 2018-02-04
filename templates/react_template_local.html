@@ -38,7 +38,8 @@
                 profile_avatar_color: "{{ request.user.profile.default_avatar_color }}",
                 date_joined: "{{ request.user.date_joined|date:"M Y" }}"
             },
-            setonline_url: "{% url 'profilesystem:setonline' %}"
+            setonline_url: "{% url 'profilesystem:setonline' %}",
+            site_type: "{% ifequal SITE_TYPE 'beta' %}beta{% endifequal %}"
         };
     </script>
 </head>

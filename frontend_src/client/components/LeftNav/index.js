@@ -4,6 +4,7 @@ import classnames  from 'classnames'
 import {connect}   from 'react-redux'
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import Avatar from 'components/Avatar'
+import SiteLabel from 'components/SiteLabel'
 import c from './LeftNav.styl'
 
 import SidebarMenu from './SidebarMenu'
@@ -34,6 +35,7 @@ class LeftNav extends Component {
 
 		return (
 			<div className={cx}>
+				{ window.django.site_type === 'beta' && <SiteLabel isVisible={true}/> }
 				<div
 					className='leftnav-backdrop'
 					onClick={this.props.onRequestToggle}/>

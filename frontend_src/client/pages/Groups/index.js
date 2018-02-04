@@ -59,6 +59,9 @@ class GroupsPage extends Component {
 			}	
 			finalGroups = _.union(subscribedGroups, joinedGroups)
 		}
+		finalGroups.sort(
+			(a, b) => { return _.includes(b.members, window.django.user.username) - _.includes(a.members, window.django.user.username) }
+		)
 		this.setState({
 			groups: finalGroups
 		})

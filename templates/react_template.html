@@ -40,7 +40,8 @@
                 profile_image: "",
                 {% endif %}
                 profile_avatar_color: "{{ request.user.profile.default_avatar_color }}",
-                date_joined: "{{ request.user.date_joined|date:"M Y" }}"
+                date_joined: "{{ request.user.date_joined|date:"M Y" }}",
+                site_type: "{% ifequal SITE_TYPE 'beta' %}beta{% endifequal %}"
             },
             setonline_url: "{% url 'profilesystem:setonline' %}"
         };
