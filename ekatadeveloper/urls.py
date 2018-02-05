@@ -58,6 +58,7 @@ urlpatterns = [
     url(r'^messenger/', ReactIndexView.as_view()),
     url(r'^members/', ReactIndexView.as_view()),
     url(r'^community/groups/', ReactIndexView.as_view()),
+    url(r'^community/groups/members/', ReactIndexView.as_view()),
     url(r'^onlineusers/', get_onlineusers_react)
 ]
 

@@ -6,7 +6,6 @@ import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Members.styl'
 
 import MembersManagement from './MembersManagement'
-import Advertisement from './Advertisement'
 import NotificationCenter from './NotificationCenter'
 
 class MembersPage extends Component {
@@ -18,7 +17,6 @@ class MembersPage extends Component {
 		const cx = classnames(c.container, className, 'flex-horizontal flex-1')
 
 		const managementClass = classnames(c.management, 'flex-1')
-		const advertisementClass = classnames(c.advertisement, 'flex-1')
 		const notificationClass  = classnames(c.notifications, 'flex-1')
 		return (
 			<div className={cx}>
@@ -27,8 +25,6 @@ class MembersPage extends Component {
 				<div className='boxes-in-right flex-vertical'>
 					<NotificationCenter
 						className={notificationClass}/>
-					<Advertisement
-						className={advertisementClass}/>
 				</div>
 			</div>
 		)

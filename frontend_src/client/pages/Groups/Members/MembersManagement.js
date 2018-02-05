@@ -35,12 +35,6 @@ class MembersManagement extends Component {
 				<div className='panel-header'>
 					<div className='header-inner'>
 						<h4> Member Management </h4>
-						<div className='members-searchbox-wrap'>
-							<input
-								type='text'
-								placeholder='Search Users/Groups'
-								className='form-control'/>
-						</div>
 					</div>
 				</div>
 				<div className='members-list'>

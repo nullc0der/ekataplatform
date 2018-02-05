@@ -35,7 +35,7 @@ class LeftNav extends Component {
 
 		return (
 			<div className={cx}>
-				{ window.django.site_type === 'beta' && <SiteLabel isVisible={true}/> }
+				{ window.django.site_type.trim() === 'beta' && <SiteLabel isVisible={true}/> }
 				<div
 					className='leftnav-backdrop'
 					onClick={this.props.onRequestToggle}/>

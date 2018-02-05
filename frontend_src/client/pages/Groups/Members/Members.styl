@@ -35,8 +35,8 @@
 	// border 1px rgba(#000, 0.1) solid
 	shadow()
 
-:local(.notifications)
-	margin-bottom 20px
+//:local(.notifications)
+	//margin-bottom 20px
 
 
 :local(.notifications),
@@ -56,15 +56,6 @@
 			margin 20px auto 24px auto
 			font-weight font_bold
 			color #9B9B9B
-	.form-control
-		border 1px rgba(#000, 0.2) solid
-		padding 8px 20px
-		box-shadow none
-		background none
-		&:hover, &:focus
-			box-shadow none
-			border-color theme_primary
-			background none
 
 	.members-list
 		flex 1
@@ -79,8 +70,6 @@
 		z-index 10
 		&:not(:first-child)
 			margin-top -1px
-		&:first-child
-			border-top none
 		&:hover
 			background-color rgba(#000, 0.1)
 			z-index 100
@@ -95,10 +84,10 @@
 		.in-left
 			padding 10px 20px
 			.ui-avatar
-				height 42px
-				width 42px
+				height 42px !important
+				width 42px !important
 				font-size 18px
-				padding-top 4px
+				padding-top 8px
 				margin-right 20px
 			.ui-avatar,
 			.details
@@ -270,6 +259,6 @@
 		&:hover
 			box-shadow 0 3px 8px 0 rgba(#000, 0.12)
 	.ui-avatar
-		height 36px
-		width 36px
+		height 36px !important
+		width 36px !important
 		margin-right 12px
