@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from publicusers.serializers import UserSerializer
 
 
 class GroupSerializer(serializers.Serializer):
@@ -12,3 +13,7 @@ class GroupSerializer(serializers.Serializer):
     members = serializers.ListField(required=True)
     subscribers = serializers.ListField(required=True)
     joinrequest_sent = serializers.BooleanField(required=False)
+
+
+class GroupMemberSerializer(serializers.Serializer):
+    user = UserSerializer()

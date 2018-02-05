@@ -1,3 +1,5 @@
+import request from 'superagent'
+
 const DEFAULT_LIST = [
 	{
 		"status": "Available",
@@ -69,7 +71,7 @@ const MEMBER_GROUPS = [
 
 
 const INITIAL_STATE = {
-	list: DEFAULT_LIST.map(x => x),
+	list: [],
 	groups_list: MEMBER_GROUPS.map(x => x)
 }
 
@@ -82,12 +84,33 @@ const toggleSubscribedGroup = (memberId, group)=> {
 	}
 }
 
+const GROUP_MEMBER_FETCH_SUCCESS = 'GROUP_MEMBER_FETCH_SUCCESS'
+const groupMemberFetchSuccess = (members) => ({
+	type: GROUP_MEMBER_FETCH_SUCCESS,
+	members
+})
+
+const getGroupMembers = (url) => {
+	return (dispatch) => {
+		request
+			.get(url)
+			.end((err, res) => {
+				if (res.ok) {
+					dispatch(groupMemberFetchSuccess(res.body))	
+				}
+			})
+	}
+}
+
 export const actions = {
-	toggleSubscribedGroup
+	toggleSubscribedGroup,
+	getGroupMembers
 }
 
 export default function MembersReducer(state = INITIAL_STATE, action){
 	switch(action.type){
+		case GROUP_MEMBER_FETCH_SUCCESS:
+			return {...state, list: action.members}
 		case TOGGLE_SUBSCRIBED_GROUP:
 			return {
 				...state,

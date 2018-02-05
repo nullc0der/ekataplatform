@@ -11,4 +11,5 @@ urlpatterns = [
     url(
         r'^join/(?P<group_id>\d+)/$',
         api_views.JoinGroupView.as_view()),
+    url(r'^members/', api_views.GroupMembersView.as_view())
 ]

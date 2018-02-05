@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from guardian.shortcuts import assign_perm, remove_perm
 
 from profilesystem.permissions import IsAuthenticatedLegacy
-from groupsystem.serializers import GroupSerializer
+from groupsystem.serializers import GroupSerializer, GroupMemberSerializer
 from groupsystem.models import (
     BasicGroup,
     GroupMemberExtraPerm,
@@ -26,6 +26,7 @@ from groupsystem.views import (
     SUBSCRIBER_PERMS
 )
 from notification.utils import create_notification
+from publicusers.api_views import _make_user_serializeable # TODO: Make this public
 
 
 def _make_group_serializable(group):
@@ -280,3 +281,29 @@ class CreateGroupView(APIView):
             form.errors.as_json(),
             status=status.HTTP_400_BAD_REQUEST
         )
+
+
+class GroupMembersView(APIView):
+    """
+    This view returns all members in group with
+    their role
+
+    * Required logged in user
+    * Permission Required
+        * Access Admin
+    """
+    permission_classes = (IsAuthenticatedLegacy, )
+
+    def get(self, request, format=None):
+        try:
+            datas = []
+            basicgroup = BasicGroup.objects.all()[1]
+            members = basicgroup.members.all()
+            for member in members:
+                data = {}
+                data['user'] = _make_user_serializeable(member)
+                datas.append(data)
+            serializer = GroupMemberSerializer(datas, many=True)
+            return Response(serializer.data)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)

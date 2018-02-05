@@ -102,7 +102,9 @@ class MemberItem extends Component {
 							className='subscribed-groups flex-horizontal-reverse a-center'>
 							{
 								!subscribed_groups.length
-									? <div className='group-item flex-horizontal a-center j-center'>  <i className='fa fa-add'/> </div>
+									? 	<div className='group-item flex-horizontal a-center j-center'>
+											<i className='material-icons'>add_circle</i>
+										</div>
 									: subscribed_groups.map(this.renderSubscribedGroup)
 							}
 						</div>

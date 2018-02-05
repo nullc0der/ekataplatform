@@ -10,16 +10,21 @@ import MemberItem from './MemberItem'
 import {actions as memberActions} from 'store/Members'
 
 class MembersManagement extends Component {
+
+	componentDidMount = () => {
+		this.props.getMembers('/api/groups/members/')
+	}
+
 	renderOneMember = (member, i)=> {
 		const {groups} = this.props;
 		return <MemberItem
 			key={i}
 			groups={groups}
-			name={member.name}
+			name={member.user.fullname}
 			memberId={member.id}
 			toggleSubscribedGroup={this.props.toggleSubscribedGroup}
 			subscribed_groups={member.subscribed_groups}
-			status={member.status}/>
+			status={"Available"}/>
 	}
 
 	render(){
@@ -55,6 +60,9 @@ const mapStateToProps = (state)=> ({
 const mapDispatchToProps = (dispatch)=> ({
 	toggleSubscribedGroup(memberId, group){
 		return dispatch(memberActions.toggleSubscribedGroup(memberId, group))
+	},
+	getMembers: (url) => {
+		dispatch(memberActions.getGroupMembers(url))
 	}
 })
 
