@@ -302,6 +302,14 @@ class GroupMembersView(APIView):
             for member in members:
                 data = {}
                 data['user'] = _make_user_serializeable(member)
+                data['subscribed_groups'] = [
+                    101 if member in basicgroup.subscribers.all() else "",
+                    102 if member in basicgroup.members.all() else "",
+                    103 if member in basicgroup.super_admins.all() else "",
+                    104 if member in basicgroup.admins.all() else "",
+                    105 if member in basicgroup.moderators.all() else "",
+                    107 if member in basicgroup.banned_members.all() else ""
+                ]
                 datas.append(data)
             serializer = GroupMemberSerializer(datas, many=True)
             return Response(serializer.data)

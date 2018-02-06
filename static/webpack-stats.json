@@ -4,9 +4,9 @@
   "chunks": {
     "Groups-Members": [
       {
-        "name": "Groups-Members.14b3419c5e9be2dc2dc0.chunk.js",
-        "publicPath": "/statics/bundles/Groups-Members.14b3419c5e9be2dc2dc0.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.14b3419c5e9be2dc2dc0.chunk.js"
+        "name": "Groups-Members.2f24aecb8b2ab1e05175.chunk.js",
+        "publicPath": "/statics/bundles/Groups-Members.2f24aecb8b2ab1e05175.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.2f24aecb8b2ab1e05175.chunk.js"
       }
     ],
     "MessengerPage": [

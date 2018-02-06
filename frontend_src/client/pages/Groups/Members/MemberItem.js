@@ -40,8 +40,8 @@ class MemberItem extends Component {
 		const {groups = []} = this.props;
 		const g = find(groups, {id: group_id}) || {}
 
-		const name = g.name || 'Group Name'
-		const icon = g.icon || 'Group Icon'
+		const name = g.name || ''
+		const icon = g.icon || ''
 
 		return <div key={i} className='group-item flex-horizontal a-center j-center' title={name}>
 			<i className='material-icons'> {icon} </i>
