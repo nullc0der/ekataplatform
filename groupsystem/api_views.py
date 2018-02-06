@@ -1,5 +1,5 @@
 from django.core.files import File
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.core.exceptions import ObjectDoesNotExist
 
 from rest_framework import status
@@ -324,5 +324,54 @@ class GroupMembersView(APIView):
                 datas.append(data)
             serializer = GroupMemberSerializer(datas, many=True)
             return Response(serializer.data)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+def _change_user_role(basicgroup, member, subscribed_groups):
+    if 101 in subscribed_groups:
+        basicgroup.subscribers.add(member)
+    else:
+        basicgroup.subscribers.remove(member)
+    if 102 in subscribed_groups:
+        basicgroup.members.add(member)
+    else:
+        basicgroup.members.remove(member)
+    if 103 in subscribed_groups:
+        basicgroup.super_admins.add(member)
+    else:
+        basicgroup.super_admins.remove(member)
+    if 104 in subscribed_groups:
+        basicgroup.admins.add(member)
+    else:
+        basicgroup.admins.remove(member)
+    if 105 in subscribed_groups:
+        basicgroup.moderators.add(member)
+    else:
+        basicgroup.moderators.remove(member)
+    if 107 in subscribed_groups:
+        basicgroup.banned_members.add(member)
+    else:
+        basicgroup.banned_members.remove(member)
+
+
+class GroupMemberChangeRoleView(APIView):
+    """
+    This view changes groups member roles
+    TODO: Fill this propely
+    """
+
+    def post(self, request, group_id, member_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            member = User.objects.get(id=member_id)
+            subscribed_groups = request.data.get('subscribed_groups', None)
+            _change_user_role(basicgroup, member, subscribed_groups)
+            data = {
+                'subscribed_groups': _calculate_subscribed_group(
+                    basicgroup, member),
+                'member_id': member.id
+            }
+            return Response(data)
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)

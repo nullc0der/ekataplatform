@@ -17,6 +17,15 @@ class MembersManagement extends Component {
 		this.props.getMembers(`/api/groups/${id}/members/`)
 	}
 
+	toggleSubscribedGroup = (memberID, subscribedGroups, toggledGroup) => {
+		const id = this.props.groupID
+		this.props.toggleSubscribedGroup(
+			`/api/groups/${id}/members/${memberID}/changerole/`,
+			subscribedGroups,
+			toggledGroup
+		)
+	}
+
 	renderOneMember = (member, i)=> {
 		const {groups} = this.props;
 		return <MemberItem
@@ -30,7 +39,7 @@ class MembersManagement extends Component {
 			avatarColor={member.user.user_avatar_color}
 			publicURL={member.user.public_url}
 			isStaff={member.user.is_staff}
-			toggleSubscribedGroup={this.props.toggleSubscribedGroup}
+			toggleSubscribedGroup={this.toggleSubscribedGroup}
 			subscribed_groups={member.subscribed_groups}
 			isOnline={_.includes(this.props.onlineUsers, member.user.username)}/>
 	}
@@ -67,8 +76,8 @@ const mapStateToProps = (state)=> ({
 })
 
 const mapDispatchToProps = (dispatch)=> ({
-	toggleSubscribedGroup(memberId, group){
-		return dispatch(memberActions.toggleSubscribedGroup(memberId, group))
+	toggleSubscribedGroup: (url, subscribedGroups, toggledGroup) => {
+		dispatch(memberActions.toggleSubscribedGroup(url, subscribedGroups, toggledGroup))
 	},
 	getMembers: (url) => {
 		dispatch(memberActions.getGroupMembers(url))

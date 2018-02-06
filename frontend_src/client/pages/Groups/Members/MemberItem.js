@@ -16,6 +16,7 @@ class MemberItem extends Component {
 	toggleGroup = (group)=> {
 		this.props.toggleSubscribedGroup(
 			this.props.memberId,
+			this.props.subscribed_groups,
 			group
 		)
 	}

@@ -75,12 +75,32 @@ const INITIAL_STATE = {
 	groups_list: MEMBER_GROUPS.map(x => x)
 }
 
-const TOGGLE_SUBSCRIBED_GROUP = 'TOGGLE_SUBSCRIBED_GROUP'
-const toggleSubscribedGroup = (memberId, group)=> {
+const TOGGLE_SUBSCRIBED_GROUP_SUCCESS = 'TOGGLE_SUBSCRIBED_GROUP_SUCCESS'
+const toggleSubscribedGroupSuccess = (memberId, subscribedGroups)=> {
 	return {
-		type: TOGGLE_SUBSCRIBED_GROUP,
+		type: TOGGLE_SUBSCRIBED_GROUP_SUCCESS,
 		memberId,
-		group
+		subscribedGroups
+	}
+}
+
+const toggleSubscribedGroup = (url, subscribedGroups, toggledGroup) => {
+	subscribedGroups = subscribedGroups.indexOf(toggledGroup.id) !== -1
+		? subscribedGroups.filter(x => x !== toggledGroup.id)
+		: [...subscribedGroups, toggledGroup.id]
+	return (dispatch) => {
+		request
+			.post(url)
+			.set('X-CSRFToken', window.django.csrf)
+			.send({'subscribed_groups': subscribedGroups})
+			.end((err, res) => {
+				if (res.ok) {
+					dispatch(toggleSubscribedGroupSuccess(
+						res.body.member_id,
+						res.body.subscribed_groups
+					))
+				}
+			})
 	}
 }
 
@@ -111,14 +131,12 @@ export default function MembersReducer(state = INITIAL_STATE, action){
 	switch(action.type){
 		case GROUP_MEMBER_FETCH_SUCCESS:
 			return {...state, list: action.members}
-		case TOGGLE_SUBSCRIBED_GROUP:
+		case TOGGLE_SUBSCRIBED_GROUP_SUCCESS:
 			return {
 				...state,
 				list: state.list.map(x => {
-					if (x.id === action.memberId){
-						x.subscribed_groups = x.subscribed_groups.indexOf(action.group.id) === -1
-							? [...x.subscribed_groups, action.group.id]
-							: x.subscribed_groups.filter(x => x !== action.group.id)
+					if (x.user.id === action.memberId){
+						x.subscribed_groups = action.subscribedGroups
 					}
 					return x
 				})
