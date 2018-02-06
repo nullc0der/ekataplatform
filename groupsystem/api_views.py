@@ -283,6 +283,23 @@ class CreateGroupView(APIView):
         )
 
 
+def _calculate_subscribed_group(basicgroup, member):
+    subscribed_groups = []
+    if member in basicgroup.subscribers.all():
+        subscribed_groups.append(101)
+    if member in basicgroup.members.all():
+        subscribed_groups.append(102)
+    if member in basicgroup.super_admins.all():
+        subscribed_groups.append(103)
+    if member in basicgroup.admins.all():
+        subscribed_groups.append(104)
+    if member in basicgroup.moderators.all():
+        subscribed_groups.append(105)
+    if member in basicgroup.banned_members.all():
+        subscribed_groups.append(107)
+    return subscribed_groups
+
+
 class GroupMembersView(APIView):
     """
     This view returns all members in group with
@@ -302,14 +319,8 @@ class GroupMembersView(APIView):
             for member in members:
                 data = {}
                 data['user'] = _make_user_serializeable(member)
-                data['subscribed_groups'] = [
-                    101 if member in basicgroup.subscribers.all() else "",
-                    102 if member in basicgroup.members.all() else "",
-                    103 if member in basicgroup.super_admins.all() else "",
-                    104 if member in basicgroup.admins.all() else "",
-                    105 if member in basicgroup.moderators.all() else "",
-                    107 if member in basicgroup.banned_members.all() else ""
-                ]
+                data['subscribed_groups'] = _calculate_subscribed_group(
+                    basicgroup, member)
                 datas.append(data)
             serializer = GroupMemberSerializer(datas, many=True)
             return Response(serializer.data)
