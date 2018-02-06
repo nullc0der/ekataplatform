@@ -39,7 +39,8 @@
                 date_joined: "{{ request.user.date_joined|date:"M Y" }}"
             },
             setonline_url: "{% url 'profilesystem:setonline' %}",
-            site_type: "{% ifequal SITE_TYPE 'beta' %}beta{% endifequal %}"
+            site_type: "{% ifequal SITE_TYPE 'beta' %}beta{% endifequal %}",
+            last_group: "{{request.session.basicgroup}}"
         };
     </script>
 </head>

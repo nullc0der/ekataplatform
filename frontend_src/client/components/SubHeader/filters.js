@@ -1,11 +1,11 @@
 module.exports = {
-    "members/": {
+    "members": {
         defaultFilters: ['online', 'offline', 'staff', 'member']
     },
-    "community/groups/": {
+    "community/groups": {
         defaultFilters: ['all', 'subscribed', 'joined']
     },
-    "community/groups/members/": {
+    "community/groups/members": {
         defaultFilters: [
             'owners',
             'admins',

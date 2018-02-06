@@ -57,8 +57,12 @@ class MemberItem extends Component {
 	render(){
 		const {
 			className,
-			name = '',
-			status = '',
+			isOnline,
+			userName = '',
+			fullName = '',
+			avatarUrl = '',
+			avatarColor = '',
+			publicURL = '',
 			subscribed_groups = [],
 			groups = []
 		} = this.props;
@@ -90,11 +94,16 @@ class MemberItem extends Component {
 					onClick={this.toggleSubscribeBox}
 					className='flex-horizontal a-center flex-1'>
 					<div className='in-left flex-horizontal a-center'>
-						<Avatar
-							name={name}/>
+						<a href={publicURL}>
+							{
+								avatarUrl ?
+									<img className='avatar-image rounded' src={avatarUrl} /> :
+									<Avatar className='avatar-image' name={fullName || userName} bgcolor={avatarColor} />
+							}
+						</a>
 						<div className='details'>
-							<div className='name'> {name} </div>
-							<div className={`status is-${status.toLowerCase()}`}> {status} </div>
+							<div className='name'> {fullName || userName} </div>
+							<div className={`status is-${isOnline? "online": "offline"}`}> {isOnline? "Online" : "Offline"} </div>
 						</div>
 					</div>
 					<div className='in-right flex-horizontal flex-1'>

@@ -294,10 +294,10 @@ class GroupMembersView(APIView):
     """
     permission_classes = (IsAuthenticatedLegacy, )
 
-    def get(self, request, format=None):
+    def get(self, request, group_id, format=None):
         try:
             datas = []
-            basicgroup = BasicGroup.objects.all()[1]
+            basicgroup = BasicGroup.objects.get(id=group_id)
             members = basicgroup.members.all()
             for member in members:
                 data = {}

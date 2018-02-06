@@ -4,6 +4,7 @@ import classnames  from 'classnames'
 import {connect}   from 'react-redux'
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Members.styl'
+import _ from 'lodash'
 
 import MemberItem from './MemberItem'
 
@@ -12,7 +13,8 @@ import {actions as memberActions} from 'store/Members'
 class MembersManagement extends Component {
 
 	componentDidMount = () => {
-		this.props.getMembers('/api/groups/members/')
+		const id = this.props.groupID
+		this.props.getMembers(`/api/groups/${id}/members/`)
 	}
 
 	renderOneMember = (member, i)=> {
@@ -20,11 +22,17 @@ class MembersManagement extends Component {
 		return <MemberItem
 			key={i}
 			groups={groups}
-			name={member.user.fullname}
-			memberId={member.id}
+			memberId={member.user.id}
+			fullName={member.user.fullname}
+			userName={member.user.username}
+			isOnline={member.user.is_online}
+			avatarUrl={member.user.user_image_url}
+			avatarColor={member.user.user_avatar_color}
+			publicURL={member.user.public_url}
+			isStaff={member.user.is_staff}
 			toggleSubscribedGroup={this.props.toggleSubscribedGroup}
 			subscribed_groups={member.subscribed_groups}
-			status={"Available"}/>
+			isOnline={_.includes(this.props.onlineUsers, member.user.username)}/>
 	}
 
 	render(){
@@ -54,7 +62,8 @@ class MembersManagement extends Component {
 
 const mapStateToProps = (state)=> ({
 	list: state.Members.list,
-	groups: state.Members.groups_list
+	groups: state.Members.groups_list,
+	onlineUsers: state.Users.onlineUsers
 })
 
 const mapDispatchToProps = (dispatch)=> ({

@@ -24,6 +24,7 @@ class LeftNav extends Component {
 	render(){
 		const {
 			className,
+			menuItems,
 			open = false
 		} = this.props;
 
@@ -66,14 +67,16 @@ class LeftNav extends Component {
 					</div>
 				</div>
 				<SidebarMenu
-					className='sidebar-menu'/>
+					className='sidebar-menu'
+					menuItems={menuItems}/>
 			</div>
 		)
 	}
 }
 
 const mapStateToProps = (state)=> ({
-	breadcrumbs: state.Common.breadcrumbs
+	breadcrumbs: state.Common.breadcrumbs,
+	menuItems: state.Common.menuItems
 })
 
 const mapDispatchToProps = (dispatch)=> ({

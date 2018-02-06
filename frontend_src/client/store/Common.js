@@ -1,6 +1,8 @@
+import MENU_ITEMS from 'components/LeftNav/menu-items'
 const debug = require('debug')('ekata:store:common')
 
 const INITIAL_STATE = {
+	menuItems: MENU_ITEMS.map(x=>x),
 	breadcrumbs: {
 		title: 'Home',
 		links: [{href: '/', text: 'Home'}]

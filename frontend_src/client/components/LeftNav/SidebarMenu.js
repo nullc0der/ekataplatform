@@ -5,8 +5,6 @@ import classnames  from 'classnames'
 import Link from 'react-router/lib/Link'
 import withRouter from 'react-router/lib/withRouter'
 
-import MENU_ITEMS from './menu-items'
-
 const debug = require('debug')('ekata:sidebar-menu')
 
 class SidebarMenu extends Component {
@@ -83,18 +81,19 @@ class SidebarMenu extends Component {
 
 	render(){
 		const {
-			className
+			className,
+			menuItems
 		} = this.props;
 
 		const cx = classnames(className, 'flex-horizontal')
 
-		const subMenuItems = MENU_ITEMS[this.state.selectedItemIndex].children
+		const subMenuItems = menuItems[this.state.selectedItemIndex].children
 
 		return (
 			<div className={cx}>
 				<div className='primary-menu'>
 					{
-						MENU_ITEMS.map((x, i)=> {
+						menuItems.map((x, i)=> {
 							const cx = classnames(
 								'primary-menu-item', 'no-outline', 'is-clickable', {
 									'is-active': i === this.state.selectedItemIndex

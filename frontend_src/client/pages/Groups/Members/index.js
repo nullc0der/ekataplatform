@@ -21,7 +21,8 @@ class MembersPage extends Component {
 		return (
 			<div className={cx}>
 				<MembersManagement
-					className={managementClass}/>
+					className={managementClass}
+					groupID={this.props.params.id}/>
 				<div className='boxes-in-right flex-vertical'>
 					<NotificationCenter
 						className={notificationClass}/>

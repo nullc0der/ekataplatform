@@ -48,7 +48,7 @@ class SubHeader extends Component {
 	}
 
 	setSearchAndFilters = () => {
-		const pathname = this.props.location.pathname
+		const pathname = this.props.location.pathname.split('/').filter(x=>isNaN(x)).join('/')
 		if (FILTERS[pathname]) {
 			this.setState({
 				showSearchAndFilters: true,
