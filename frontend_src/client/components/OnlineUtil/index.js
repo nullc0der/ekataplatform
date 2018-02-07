@@ -6,10 +6,12 @@ import { fetchOnlineUsers } from 'store/Users'
 
 class OnlineUtil extends React.Component {
     componentDidMount() {
+        this.setOnline()
         this.onlineSetter = setInterval(
             () => this.setOnline(),
             15000
         )
+        this.props.fetchOnlineUsersList('/onlineusers/')
         this.onlineGetter = setInterval(
             () => this.props.fetchOnlineUsersList('/onlineusers/'),
             20000

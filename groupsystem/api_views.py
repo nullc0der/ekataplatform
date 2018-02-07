@@ -9,7 +9,10 @@ from rest_framework.response import Response
 from guardian.shortcuts import assign_perm, remove_perm
 
 from profilesystem.permissions import IsAuthenticatedLegacy
-from groupsystem.serializers import GroupSerializer, GroupMemberSerializer
+from groupsystem.serializers import (
+    GroupSerializer, GroupMemberSerializer,
+    GroupJoinRequestSerializer
+)
 from groupsystem.models import (
     BasicGroup,
     GroupMemberExtraPerm,
@@ -26,7 +29,7 @@ from groupsystem.views import (
     SUBSCRIBER_PERMS
 )
 from notification.utils import create_notification
-from publicusers.api_views import _make_user_serializeable # TODO: Make this public
+from publicusers.api_views import make_user_serializeable
 
 
 def _make_group_serializable(group):
@@ -315,10 +318,15 @@ class GroupMembersView(APIView):
         try:
             datas = []
             basicgroup = BasicGroup.objects.get(id=group_id)
-            members = basicgroup.members.all()
-            for member in members:
+            members = basicgroup.super_admins.all() |\
+                basicgroup.admins.all() |\
+                basicgroup.moderators.all() |\
+                basicgroup.members.all() |\
+                basicgroup.subscribers.all() |\
+                basicgroup.banned_members.all()
+            for member in set(members):
                 data = {}
-                data['user'] = _make_user_serializeable(member)
+                data['user'] = make_user_serializeable(member)
                 data['subscribed_groups'] = _calculate_subscribed_group(
                     basicgroup, member)
                 datas.append(data)
@@ -358,8 +366,15 @@ def _change_user_role(basicgroup, member, subscribed_groups):
 class GroupMemberChangeRoleView(APIView):
     """
     This view changes groups member roles
-    TODO: Fill this propely
+
+    * Required:
+        * Logged in user
+        * Permission set (TODO: Decide permission set)
+    * Returns:
+        * member_id: ID of the member in DB
+        * subscribed_groups: Members role
     """
+    permission_classes = (IsAuthenticatedLegacy, )
 
     def post(self, request, group_id, member_id, format=None):
         try:
@@ -375,3 +390,71 @@ class GroupMemberChangeRoleView(APIView):
             return Response(data)
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class GroupJoinRequestView(APIView):
+    """
+    This view returns all join request
+
+    * Required:
+        * Logged in user
+        * Permission set (TODO: Decide permission set)
+    """
+    permission_classes = (IsAuthenticatedLegacy, )
+
+    def get(self, request, group_id, format=None):
+        try:
+            datas = []
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            joinrequests = basicgroup.joinrequest.filter(approved=False)
+            for joinrequest in joinrequests:
+                data = {
+                    'id': joinrequest.id,
+                    'user': make_user_serializeable(joinrequest.user)
+                }
+                datas.append(data)
+            serializer = GroupJoinRequestSerializer(datas, many=True)
+            return Response(serializer.data)
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class GroupJoinRequestApproveView(APIView):
+    """
+    This view approves/denies a join request
+
+    * Required:
+        * Logged in user
+        * Permission set (TODO: Decide permission set)
+    """
+    permission_classes = (IsAuthenticatedLegacy, )
+
+    def post(self, request, group_id, request_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            joinrequest = JoinRequest.objects.get(id=request_id)
+            accept = request.data.get('accept', None)
+            if accept:
+                user = joinrequest.user
+                basicgroup.members.add(user)
+                joinrequest.approved = True
+                joinrequest.save()
+                data = {
+                    'user': make_user_serializeable(user),
+                    'subscribed_groups': _calculate_subscribed_group(
+                        basicgroup, user)
+                }
+                serializer = GroupMemberSerializer(data)
+                return Response(serializer.data)
+            else:
+                data = {
+                    'request_id': joinrequest.id
+                }
+                joinrequest.delete()
+                return Response(data)
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )

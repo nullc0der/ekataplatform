@@ -1,63 +1,5 @@
 import request from 'superagent'
 
-const DEFAULT_LIST = [
-	{
-		"status": "Available",
-		"name": "Simone Swanson",
-		"id": 0,
-		"subscribed_groups": [102, 103]
-	},
-	{
-		"status": "Offline",
-		"name": "Catherine Mckenzie",
-		"id": 1,
-		"subscribed_groups": []
-	},
-	{
-		"status": "Available",
-		"name": "Hinton Wade",
-		"id": 2,
-		"subscribed_groups": [103, 105, 106]
-	},
-	{
-		"status": "Offline",
-		"name": "Tessa Rasmussen",
-		"id": 3,
-		"subscribed_groups": []
-	},
-	{
-		"status": "Offline",
-		"name": "Charlotte Slater",
-		"id": 4,
-		"subscribed_groups": [104, 107, 108]
-	},
-	{
-		"status": "Away",
-		"name": "Moses Mills",
-		"id": 5,
-		"subscribed_groups": [102, 106, 108]
-	},
-	{
-		"status": "Away",
-		"name": "Ila Stein",
-		"id": 6,
-		"subscribed_groups": []
-	},
-	{
-		"status": "Offline",
-		"name": "Russo West",
-		"id": 7,
-		"subscribed_groups": []
-	},
-	{
-		"status": "Offline",
-		"name": "Geraldine Carlson",
-		"id": 8,
-		"subscribed_groups": []
-	}
-]
-
-
 const MEMBER_GROUPS = [
 	{id: 101, name: 'Subscriber', icon: 'face'},
 	{id: 102, name: 'Member', icon: 'group_add'},
@@ -72,7 +14,8 @@ const MEMBER_GROUPS = [
 
 const INITIAL_STATE = {
 	list: [],
-	groups_list: MEMBER_GROUPS.map(x => x)
+	groups_list: MEMBER_GROUPS.map(x => x),
+	joinRequests: []
 }
 
 const TOGGLE_SUBSCRIBED_GROUP_SUCCESS = 'TOGGLE_SUBSCRIBED_GROUP_SUCCESS'
@@ -83,6 +26,33 @@ const toggleSubscribedGroupSuccess = (memberId, subscribedGroups)=> {
 		subscribedGroups
 	}
 }
+
+const JOIN_REQUEST_FETCH_SUCCESS = 'JOIN_REQUEST_FETCH_SUCCESS'
+const joinRequestFetchSuccess = (joinRequests) => ({
+	type: JOIN_REQUEST_FETCH_SUCCESS,
+	joinRequests
+})
+
+
+const GROUP_MEMBER_FETCH_SUCCESS = 'GROUP_MEMBER_FETCH_SUCCESS'
+const groupMemberFetchSuccess = (members) => ({
+	type: GROUP_MEMBER_FETCH_SUCCESS,
+	members
+})
+
+
+const JOIN_REQUEST_ACCEPTED = 'JOIN_REQUEST_ACCEPTED'
+const joinRequestAccepted = (member) => ({
+	type: JOIN_REQUEST_ACCEPTED,
+	member
+})
+
+const DELETE_JOIN_REQUEST = 'DELETE_JOIN_REQUEST'
+const deleteJoinRequest = (requestID) => ({
+	type: DELETE_JOIN_REQUEST,
+	requestID
+})
+
 
 const toggleSubscribedGroup = (url, subscribedGroups, toggledGroup) => {
 	subscribedGroups = subscribedGroups.indexOf(toggledGroup.id) !== -1
@@ -104,12 +74,6 @@ const toggleSubscribedGroup = (url, subscribedGroups, toggledGroup) => {
 	}
 }
 
-const GROUP_MEMBER_FETCH_SUCCESS = 'GROUP_MEMBER_FETCH_SUCCESS'
-const groupMemberFetchSuccess = (members) => ({
-	type: GROUP_MEMBER_FETCH_SUCCESS,
-	members
-})
-
 const getGroupMembers = (url) => {
 	return (dispatch) => {
 		request
@@ -122,9 +86,42 @@ const getGroupMembers = (url) => {
 	}
 }
 
+const getJoinRequests = (url) => {
+	return (dispatch) => {
+		request
+			.get(url)
+			.end((err, res) => {
+				if (res.ok) {
+					dispatch(joinRequestFetchSuccess(res.body))
+				}
+			})
+	}
+}
+
+const acceptDenyJoinRequest = (url, requestID, accepted) => {
+	return (dispatch) => {
+		request
+			.post(url)
+			.set('X-CSRFToken', window.django.csrf)
+			.send({'accept': accepted})
+			.end((err, res) => {
+				if (res.ok) {
+					if (res.body.request_id) {
+						dispatch(deleteJoinRequest(res.body.request_id))
+					} else {
+						dispatch(joinRequestAccepted(res.body))
+						dispatch(deleteJoinRequest(requestID))
+					}
+				}	
+			})
+	}
+}
+
 export const actions = {
 	toggleSubscribedGroup,
-	getGroupMembers
+	getGroupMembers,
+	getJoinRequests,
+	acceptDenyJoinRequest
 }
 
 export default function MembersReducer(state = INITIAL_STATE, action){
@@ -140,6 +137,20 @@ export default function MembersReducer(state = INITIAL_STATE, action){
 					}
 					return x
 				})
+			}
+		case JOIN_REQUEST_FETCH_SUCCESS:
+			return {
+				...state, joinRequests: action.joinRequests
+			}
+		case JOIN_REQUEST_ACCEPTED:
+			return {
+				...state, list: [...state.list, action.member]
+			}
+		case DELETE_JOIN_REQUEST:
+			return {
+				...state, joinRequests: state.joinRequests.filter(
+					x => x.id !== action.requestID
+				)
 			}
 		default:
 			return state

@@ -18,3 +18,8 @@ class GroupSerializer(serializers.Serializer):
 class GroupMemberSerializer(serializers.Serializer):
     user = UserSerializer()
     subscribed_groups = serializers.ListField()
+
+
+class GroupJoinRequestSerializer(serializers.Serializer):
+    id = serializers.IntegerField(required=True)
+    user = UserSerializer()

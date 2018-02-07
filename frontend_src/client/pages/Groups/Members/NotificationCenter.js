@@ -1,48 +1,34 @@
 import {Component} from 'react'
+import { connect } from 'react-redux'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 
 import Avatar from 'components/Avatar'
+import { actions as memberActions } from 'store/Members'
 
 import c from './Members.styl'
 
 class NotificationCenter extends Component {
-	state = {
-		list: [
-			{name: 'John Doe', subtext: 'was added by Admin'},
-			{name: 'Wohn Poe', subtext: 'sent a request to join'},
-			{name: 'Kohn Moe', subtext: 'was added by Admin'},
-			{
-				name: 'Fohn Doe',
-				subtext: 'was blocked by Admin',
-				prompt: {
-					'yes': '/requests/randomid1234/accept',
-					'no': '/requests/randomid1234/deny'
-				}
-			},
-			{name: 'Bohn Poe', subtext: 'posted recently'},
-			{name: 'Wohn Hoe', subtext: 'was added by Admin'},
-			{
-				name: 'Cohn Toe',
-				subtext: 'sent a request to join',
-				prompt: {
-					'yes': '/requests/randomid1234/accept',
-					'no': '/requests/randomid1234/deny'
-				}
-			},
-			{name: 'Fohn Joe', subtext: 'was added by Admin'},
-			{name: 'Mohn Loe', subtext: 'was blocked by Admin'},
-			{name: 'Rohn Poe', subtext: 'posted recently'},
-		]
+	
+	componentDidMount = () => {
+		const id = this.props.groupID
+		this.props.getJoinRequests(`/api/groups/${id}/joinrequests/`)
 	}
+
+	acceptDenyJoinRequest = (requestID, accept) => {
+		const id = this.props.groupID
+		this.props.acceptDenyJoinRequest(
+			`/api/groups/${id}/joinrequests/${requestID}/`,
+			requestID,
+			accept
+		)
+	}
+
 	render(){
 		const {
-			className
+			className,
+			joinRequests
 		} = this.props;
-
-		const {
-			list
-		} = this.state;
 
 		const cx = classnames(className, 'flex-vertical')
 
@@ -53,22 +39,27 @@ class NotificationCenter extends Component {
 				</div>
 				<div className='nc-list flex-1 scroll-y'>
 					{
-						list.map((x, i)=> {
+						joinRequests.map((x, i)=> {
 							return <div key={i} className='nc-list-item flex-horizontal a-center'>
-								<Avatar
-									name={x.name}/>
+								<a href={x.user.public_url}>
+									{
+										x.user.avatar_url ?
+											<img className='avatar-image rounded' src={x.user.avatar_url} /> :
+											<Avatar className='avatar-image' name={x.user.fullname || x.user.username} bgcolor={x.user.avatar_color} />
+									}
+								</a>
 								<div className='details'>
-									<div className='name'> {x.name} </div>
-									<div className='subtext'> {x.subtext} </div>
+									<div className='name'> {x.user.fullname || x.user.username } </div>
+									<div className='subtext'> Sent a request to join </div>
 								</div>
 								<div className='flex-1'/>
 								{
-									x.prompt && x.prompt.yes && <div className='nf-btn btn-accept' data-action={x.prompt.yes}>
+									<div className='nf-btn btn-accept' onClick={(e) => this.acceptDenyJoinRequest(x.id, true)}>
 										Accept
 									</div>
 								}
 								{
-									x.prompt && x.prompt.no && <div className='nf-btn btn-deny' data-action={x.prompt.no}>
+									<div className='nf-btn btn-deny' onClick={(e) => this.acceptDenyJoinRequest(x.id, false)}>
 										Deny
 									</div>
 								}
@@ -81,4 +72,19 @@ class NotificationCenter extends Component {
 	}
 }
 
-export default NotificationCenter
+const mapStateToProps = (state) => ({
+	joinRequests: state.Members.joinRequests
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	getJoinRequests: (url) => {
+		dispatch(memberActions.getJoinRequests(url))
+	},
+	acceptDenyJoinRequest: (url, requestID, accepted) => {
+		dispatch(memberActions.acceptDenyJoinRequest(url, requestID, accepted))
+	}
+})
+
+export default connect(
+	mapStateToProps, mapDispatchToProps
+)(NotificationCenter)
