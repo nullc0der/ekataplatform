@@ -5,8 +5,8 @@ import classnames from 'classnames'
 class SearchFilter extends React.Component {
     render() {
         const {
-            filters,
             enabledFilters,
+            disabledFilters,
             changeSearchString,
             toggleFilterOptions,
             showFilterOptions,
@@ -24,23 +24,50 @@ class SearchFilter extends React.Component {
                         Filter Options
 					</div>
                     <div className="flex-horizontal flex-wrap filter-options-content">
+                        <div className="selected-filters">
+                            {
+                                enabledFilters &&
+                                enabledFilters.map((x, i) => {
+                                    return (
+                                        <button
+                                            key={i}
+                                            name={x}
+                                            className={classnames(
+                                                "filter-button",
+                                                {
+                                                    "single": (i === enabledFilters.length - 1 && i % 2 === 0)
+                                                })}
+                                            onClick={filterButtonClicked}>{x}</button>
+                                    )
+                                })
+                            }
+                        </div>
                         {
-                            filters && 
-                            filters.map((x, i) => {
-                                return (
-                                    <button 
-                                        key={i}
-                                        name={x}
-                                        className={classnames(
-                                            "filter-button",
-                                            { 
-                                                "is-disabled": !_.includes(enabledFilters, x),
-                                                "single": (i === filters.length - 1 && i % 2 === 0)
-                                            })}
-                                        onClick={filterButtonClicked}>{x}</button>
-                                )
-                            })
+                            disabledFilters.length !== 0 &&
+                            <div className="arrows-wrapper">
+                                <div className="arrows">
+                                    <i className="fa fa-angle-double-up"></i>
+                                </div>
+                            </div>
                         }
+                        <div className="not-selected-filters">
+                            {
+                                disabledFilters &&
+                                disabledFilters.map((x, i) => {
+                                    return (
+                                        <button
+                                            key={i}
+                                            name={x}
+                                            className={classnames(
+                                                "filter-button", "is-disabled",
+                                                {
+                                                    "single": (i === disabledFilters.length - 1 && i % 2 === 0)
+                                                })}
+                                            onClick={filterButtonClicked}>{x}</button>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

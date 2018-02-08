@@ -1,12 +1,14 @@
 module.exports = {
     "members": {
-        defaultFilters: ['online', 'offline', 'staff', 'member']
+        enabledFilters: ['online', 'offline', 'staff', 'member'],
+        disabledFilters: []
     },
     "community/groups": {
-        defaultFilters: ['all', 'subscribed', 'joined']
+        enabledFilters: ['all', 'subscribed', 'joined'],
+        disabledFilters: []
     },
     "community/groups/members": {
-        defaultFilters: [
+        enabledFilters: [
             'owners',
             'admins',
             'moderators',
@@ -15,6 +17,9 @@ module.exports = {
             'subscribers',
             'banned',
             'blocked'
+        ],
+        disabledFilters: [
+            'online'
         ]
     }
 }

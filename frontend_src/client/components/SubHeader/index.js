@@ -32,8 +32,8 @@ class SubHeader extends Component {
 			uploadPercent: 0,
 			showSearchAndFilters: false,
 			showFilterOptions: false,
-			enabledFilters: ['online', 'offline', 'staff', 'member'],
-			filters: ['online', 'offline', 'staff', 'member']
+			enabledFilters: [],
+			disabledFilters: []
 		}
 	}
 
@@ -52,14 +52,14 @@ class SubHeader extends Component {
 		if (FILTERS[pathname]) {
 			this.setState({
 				showSearchAndFilters: true,
-				enabledFilters: FILTERS[pathname].defaultFilters,
-				filters: FILTERS[pathname].defaultFilters
+				enabledFilters: FILTERS[pathname].enabledFilters,
+				disabledFilters: FILTERS[pathname].disabledFilters
 			})
 		} else {
 			this.setState({
 				showSearchAndFilters: false,
 				enabledFilters: [],
-				filters: []
+				disabledFilters: []
 			})
 		}
 	}
@@ -170,11 +170,18 @@ class SubHeader extends Component {
 
 	filterButtonClicked = (e) => {
 		e.preventDefault()
-		const prevFilters = this.state.enabledFilters
-		let newFilters = _.includes(prevFilters, e.target.name)? prevFilters.filter(x => x!==e.target.name): prevFilters.concat(e.target.name)
+		const enabledFilters = this.state.enabledFilters
+		const disabledFilters = this.state.disabledFilters
+		const newEnabledFilters = enabledFilters.indexOf(e.target.name) !== -1
+			? enabledFilters.filter(x => x !== e.target.name)
+			: enabledFilters.concat(e.target.name)
+		const newDisabledFilters = disabledFilters.indexOf(e.target.name) !== -1
+			? disabledFilters.filter(x => x !== e.target.name)
+			: disabledFilters.concat(e.target.name)
 		this.setState({
-			enabledFilters: newFilters
-		}, () => this.props.changeFilters(newFilters))
+			enabledFilters: newEnabledFilters,
+			disabledFilters:newDisabledFilters
+		}, () => this.props.changeFilters(newEnabledFilters))
 	}
 
 	render(){
@@ -214,8 +221,8 @@ class SubHeader extends Component {
 				{
 					this.state.showSearchAndFilters &&
 					<SearchFilter
-						filters={this.state.filters}
 						enabledFilters={this.state.enabledFilters}
+						disabledFilters={this.state.disabledFilters}
 						showFilterOptions={this.state.showFilterOptions}
 						changeSearchString={this.changeSearchString}
 						toggleFilterOptions={this.toggleFilterOptions}

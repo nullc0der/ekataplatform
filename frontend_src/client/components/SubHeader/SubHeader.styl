@@ -64,13 +64,13 @@
 		box-shadow 0 2px 3px 0 rgba(0,0,0,0.09)
 		z-index 1000
 		transition right 0.3s ease-in-out
+		&.is-open
+			right 0
 		.filter-options-header
 			padding 10px
 			text-align center
 			border-bottom 1px solid rgba(151,151,151,0.12)
 			color #9B9B9B
-		.filter-options-content
-			padding 10px
 		.filter-button
 			width 95px
 			height 28.5px
@@ -80,6 +80,7 @@
 			border-radius 28px
 			border 1px solid #D4D4D4
 			text-transform capitalize
+			transition  all 0.3s ease
 			&.single
 				width 200px
 			&:hover
@@ -89,6 +90,27 @@
 			&.is-disabled
 				background-color #D4D4D4
 				color #929292
-
-		&.is-open
-			right 0
+		.selected-filters,
+		.not-selected-filters
+			padding 20px 10px
+		.selected-filters
+			&:hover
+				& ~ .arrows-wrapper
+					.arrows
+						transform rotate(180deg)
+		.arrows-wrapper
+			width 100%
+			position relative
+			border-bottom 1px solid rgba(151,151,151,0.12)
+		.arrows
+			absolute top -15px left 100px
+			height 30px
+			width 30px
+			border-radius 50%
+			font-size 28px
+			background-color #4A90E2
+			color #fff
+			text-align center
+			line-height 1
+			transition all 0.5s ease
+			box-shadow 0 1px 2px 0 rgba(0,0,0,0.25)
