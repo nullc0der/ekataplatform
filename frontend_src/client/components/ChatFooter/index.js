@@ -200,7 +200,7 @@ class ChatFooter extends Component {
 					{this.props.showTyping && <div className="chat-user-typing">
 						<span>{this.props.showTypingUsername || "User"} is typing <i className="fa fa-spin fa-circle-o-notch"></i></span>
 					</div>}
-					<form onSubmit={this.handleSendChat}>
+					<form onSubmit={(e) => this.handleSendChat(e, false)}>
 						<input
 							className='chat-input-box'
 							type='text'
@@ -210,7 +210,7 @@ class ChatFooter extends Component {
 							onInput={this.onChatSend}
 							onFocus={onChatInputFocus} />
 						<div className="file-upload-bar" style={{'width': this.props.uploadProgress + '%'}}></div>
-						<div className='btn btn-default ui-button chat-input-btn' onClick={this.handleSendChat}>
+						<div className='btn btn-default ui-button chat-input-btn' onClick={(e) => this.handleSendChat(e, false)}>
 							<i className='fa fa-paper-plane'/>
 						</div>
 					</form>

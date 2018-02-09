@@ -2,10 +2,10 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import {connect}   from 'react-redux'
-import withStyles  from 'isomorphic-style-loader/lib/withStyles'
-import c from './Members.styl'
 import _ from 'lodash'
 
+import withStyles  from 'isomorphic-style-loader/lib/withStyles'
+import c from './Members.styl'
 import MemberItem from './MemberItem'
 
 import {actions as memberActions} from 'store/Members'

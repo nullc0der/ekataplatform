@@ -2,6 +2,7 @@ import {Component} from 'react'
 import { connect } from 'react-redux'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
+import Websocket from 'react-websocket'
 
 import Avatar from 'components/Avatar'
 import { actions as memberActions } from 'store/Members'
@@ -24,6 +25,13 @@ class NotificationCenter extends Component {
 		)
 	}
 
+	onWebsocketMessage = (data) => {
+		const result = JSON.parse(data)
+		if (result.group_id == this.props.groupID) {
+			this.props.receivedJoinRequest(result.req)
+		}
+	}
+
 	render(){
 		const {
 			className,
@@ -31,6 +39,7 @@ class NotificationCenter extends Component {
 		} = this.props;
 
 		const cx = classnames(className, 'flex-vertical')
+		const websocket_url = `${window.location.protocol == "https:" ? "wss" : "ws"}` + '://' + window.location.host + "/groupnotifications/stream/"
 
 		return (
 			<div className={cx}>
@@ -67,6 +76,8 @@ class NotificationCenter extends Component {
 						})
 					}
 				</div>
+				<Websocket url={websocket_url}
+					onMessage={this.onWebsocketMessage.bind(this)} />
 			</div>
 		)
 	}
@@ -82,6 +93,9 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	acceptDenyJoinRequest: (url, requestID, accepted) => {
 		dispatch(memberActions.acceptDenyJoinRequest(url, requestID, accepted))
+	},
+	receivedJoinRequest: (joinRequest) => {
+		dispatch(memberActions.receivedJoinRequestOnWebsocket(joinRequest))
 	}
 })
 

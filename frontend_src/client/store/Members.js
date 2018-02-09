@@ -53,6 +53,12 @@ const deleteJoinRequest = (requestID) => ({
 	requestID
 })
 
+const RECEIVED_JOIN_REQUEST_ON_WEBSOCKET = 'RECEIVED_JOIN_REQUEST_ON_WEBSOCKET'
+const receivedJoinRequestOnWebsocket = (joinRequest) => ({
+	type: RECEIVED_JOIN_REQUEST_ON_WEBSOCKET,
+	joinRequest
+})
+
 
 const toggleSubscribedGroup = (url, subscribedGroups, toggledGroup) => {
 	subscribedGroups = subscribedGroups.indexOf(toggledGroup.id) !== -1
@@ -121,7 +127,8 @@ export const actions = {
 	toggleSubscribedGroup,
 	getGroupMembers,
 	getJoinRequests,
-	acceptDenyJoinRequest
+	acceptDenyJoinRequest,
+	receivedJoinRequestOnWebsocket
 }
 
 export default function MembersReducer(state = INITIAL_STATE, action){
@@ -151,6 +158,10 @@ export default function MembersReducer(state = INITIAL_STATE, action){
 				...state, joinRequests: state.joinRequests.filter(
 					x => x.id !== action.requestID
 				)
+			}
+		case RECEIVED_JOIN_REQUEST_ON_WEBSOCKET:
+			return {
+				...state, joinRequests: [...state.joinRequests, action.joinRequest]
 			}
 		default:
 			return state

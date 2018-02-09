@@ -1,3 +1,5 @@
+import json
+
 from django.core.files import File
 from django.contrib.auth.models import Group, User
 from django.core.exceptions import ObjectDoesNotExist
@@ -6,7 +8,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from guardian.shortcuts import assign_perm, remove_perm
+from channels import Group
 
 from profilesystem.permissions import IsAuthenticatedLegacy
 from groupsystem.serializers import (
@@ -15,19 +17,10 @@ from groupsystem.serializers import (
 )
 from groupsystem.models import (
     BasicGroup,
-    GroupMemberExtraPerm,
-    GroupMemberRole,
     JoinRequest
 )
 from groupsystem.forms import CreateGroupForm
 from groupsystem.tasks import task_create_emailgroup
-from groupsystem.views import (
-    SUPERADMIN_PERMS,
-    ADMIN_PERMS,
-    MODERATOR_PERMS,
-    MEMBER_PERMS,
-    SUBSCRIBER_PERMS
-)
 from notification.utils import create_notification
 from publicusers.api_views import make_user_serializeable
 
@@ -93,17 +86,9 @@ class GroupSubscribeView(APIView):
             }
             if request.data.get('subscribe'):
                 basicgroup.subscribers.add(request.user)
-                subscriber_group = Group.objects.get(
-                    name='%s_subscriber' % basicgroup.id
-                )
-                request.user.groups.add(subscriber_group)
                 return Response(data)
             else:
                 basicgroup.subscribers.remove(request.user)
-                subscriber_group = Group.objects.get(
-                    name='%s_subscriber' % basicgroup.id
-                )
-                request.user.groups.remove(subscriber_group)
                 data["subscribed"] = False
                 return Response(data)
         except ObjectDoesNotExist:
@@ -128,22 +113,24 @@ class JoinGroupView(APIView):
                         basic_group=basicgroup,
                         user=request.user
                     )
-                    if created:
-                        admins = basicgroup.super_admins.all() | basicgroup.admins.all()
-                        for admin in admins:
-                            create_notification(
-                                user=admin,
-                                ntype=12,
-                                sender=request.user.username,
-                                sender_id=request.user.id,
-                                group_name=basicgroup.name,
-                                group_id=basicgroup.id
-                            )
                     data = {
                         'group_id': basicgroup.id,
                         'type': 'join',
                         'success': True
                     }
+                    websocket_data = {
+                        'group_id': basicgroup.id,
+                        'req': {
+                            'id': joinrequest.id,
+                            'user': make_user_serializeable(joinrequest.user)
+                        }
+                    }
+                    for admin in set(
+                            basicgroup.super_admins.all() |
+                            basicgroup.admins.all()):
+                        Group('%s-group-notification' % (admin.username)).send({
+                            'text': json.dumps(websocket_data)
+                        })
                     return Response(data)
                 else:
                     data = {
@@ -166,6 +153,8 @@ class JoinGroupView(APIView):
                 }
                 return Response(data)
             if request_type == 'leave':
+                # If group have single owner
+                # don't let the user leave ;p
                 only_superadmin = False
                 try:
                     joinrequest = JoinRequest.objects.get(
@@ -182,24 +171,6 @@ class JoinGroupView(APIView):
                     basicgroup.super_admins.remove(request.user)
                     basicgroup.admins.remove(request.user)
                     basicgroup.moderators.remove(request.user)
-                    perm_groups = request.user.groups.filter(
-                        name__istartswith=basicgroup.id
-                    )
-                    for perm_group in perm_groups:
-                        request.user.groups.remove(perm_group)
-                    groupmemberrole = GroupMemberRole.objects.get(
-                        basic_group=basicgroup,
-                        user=request.user
-                    )
-                    groupmemberrole.delete()
-                    extraperm = GroupMemberExtraPerm.objects.get(
-                        basic_group=basicgroup,
-                        user=request.user
-                    )
-                    for perm in SUPERADMIN_PERMS:
-                        if extraperm.__getattribute__(perm[0]):
-                            remove_perm(perm[0], request.user, basicgroup)
-                    extraperm.delete()
                     if hasattr(basicgroup, 'emailgroup'):
                         emailgroup = basicgroup.emailgroup
                         emailgroup.users.remove(request.user)
@@ -215,7 +186,7 @@ class JoinGroupView(APIView):
                         'type': 'leave',
                         'success': False,
                         'message': "Sorry you can't leave" +
-                                " as you're only superadmin"
+                                " as you're only owner"
                      }
                     return Response(data)
         except ObjectDoesNotExist:
@@ -239,43 +210,9 @@ class CreateGroupView(APIView):
             basicgroup.save()
             logo.close()
             basicgroup.super_admins.add(request.user)
+            basicgroup.admins.add(request.user)
             basicgroup.members.add(request.user)
             basicgroup.subscribers.add(request.user)
-            super_admin_group = Group.objects.create(
-                name='%s_superadmin' % basicgroup.id
-            )
-            admin_group = Group.objects.create(
-                name='%s_admin' % basicgroup.id
-            )
-            moderator_group = Group.objects.create(
-                name='%s_moderator' % basicgroup.id
-            )
-            member_group = Group.objects.create(
-                name='%s_member' % basicgroup.id
-            )
-            subscriber_group = Group.objects.create(
-                name='%s_subscriber' % basicgroup.id
-            )
-            for perm in SUPERADMIN_PERMS:
-                assign_perm(perm[0], super_admin_group, basicgroup)
-            for perm in ADMIN_PERMS:
-                assign_perm(perm[0], admin_group, basicgroup)
-            for perm in MODERATOR_PERMS:
-                assign_perm(perm[0], moderator_group, basicgroup)
-            for perm in MEMBER_PERMS:
-                assign_perm(perm[0], member_group, basicgroup)
-            for perm in SUBSCRIBER_PERMS:
-                assign_perm(perm[0], subscriber_group, basicgroup)
-            request.user.groups.add(super_admin_group)
-            groupmemberrole = GroupMemberRole(basic_group=basicgroup)
-            groupmemberrole.user = request.user
-            groupmemberrole.role_name = 'superadmin'
-            groupmemberrole.save()
-            extraperm = GroupMemberExtraPerm(basic_group=basicgroup)
-            extraperm.user = request.user
-            for perm in SUPERADMIN_PERMS:
-                setattr(extraperm, perm[0], True)
-            extraperm.save()
             task_create_emailgroup.delay(basicgroup)
             data = _make_group_serializable(basicgroup)
             serialized_data = GroupSerializer(data)
@@ -336,7 +273,7 @@ class GroupMembersView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-def _change_user_role(basicgroup, member, subscribed_groups):
+def _change_user_role(basicgroup, member, subscribed_groups, editor):
     if 101 in subscribed_groups:
         basicgroup.subscribers.add(member)
     else:
@@ -348,7 +285,8 @@ def _change_user_role(basicgroup, member, subscribed_groups):
     if 103 in subscribed_groups:
         basicgroup.super_admins.add(member)
     else:
-        basicgroup.super_admins.remove(member)
+        if basicgroup.super_admins.count() != 1:
+            basicgroup.super_admins.remove(member)
     if 104 in subscribed_groups:
         basicgroup.admins.add(member)
     else:
@@ -358,7 +296,8 @@ def _change_user_role(basicgroup, member, subscribed_groups):
     else:
         basicgroup.moderators.remove(member)
     if 107 in subscribed_groups:
-        basicgroup.banned_members.add(member)
+        if member != editor:
+            basicgroup.banned_members.add(member)
     else:
         basicgroup.banned_members.remove(member)
 
@@ -381,7 +320,8 @@ class GroupMemberChangeRoleView(APIView):
             basicgroup = BasicGroup.objects.get(id=group_id)
             member = User.objects.get(id=member_id)
             subscribed_groups = request.data.get('subscribed_groups', None)
-            _change_user_role(basicgroup, member, subscribed_groups)
+            _change_user_role(
+                basicgroup, member, subscribed_groups, request.user)
             data = {
                 'subscribed_groups': _calculate_subscribed_group(
                     basicgroup, member),
