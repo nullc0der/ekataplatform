@@ -51,7 +51,11 @@ class PublicMembers extends React.Component {
     }
 
     setUsers = (users, onlineUsers, searchString='', filters=[]) => {
-        let finalUsers = users.map(x => _.includes(onlineUsers, x.username)?{...x, is_online:true}: x)
+        let finalUsers = users.map(
+            x => _.includes(onlineUsers, x.username)
+            ?{...x, is_online:true}
+            :{...x, is_online:false}
+        )
         finalUsers = finalUsers.filter(x => x.username.toLowerCase().startsWith(searchString.toLowerCase()))
         if (!(_.includes(filters, 'staff') && _.includes(filters, 'member'))) {
             if (_.includes(filters, 'staff')) {

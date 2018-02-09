@@ -24,11 +24,13 @@ class MembersManagement extends Component {
 	componentDidUpdate = (prevProps) => {
 		if (
 			prevProps.list !== this.props.list ||
+			prevProps.onlineUsers !== this.props.onlineUsers ||
 			prevProps.searchString !== this.props.searchString ||
 			prevProps.filters !== this.props.filters
 		) {
 			this.setUsers(
 				this.props.list,
+				this.props.onlineUsers,
 				this.props.searchString,
 				this.props.filters
 			)
@@ -59,12 +61,20 @@ class MembersManagement extends Component {
 			isStaff={member.user.is_staff}
 			toggleSubscribedGroup={this.toggleSubscribedGroup}
 			subscribed_groups={member.subscribed_groups}
-			isOnline={_.includes(this.props.onlineUsers, member.user.username)}/>
+			isOnline={member.user.is_online}/>
 	}
 
-	setUsers = (list, searchString='', filters=[]) => {
-		let finalList = list.filter(
+	setUsers = (list, onlineUsers, searchString='', filters=[]) => {
+		let finalList = list.map(
+			x => _.includes(onlineUsers, x.user.username)
+			? {...x, user: {...x.user, is_online: true}}
+			: {...x, user: {...x.user, is_online: false}}
+		)
+		finalList = finalList.filter(
 			x => x.user.username.toLowerCase().startsWith(searchString.toLowerCase()))
+		if (filters.indexOf('online') !== -1) {
+			finalList = finalList.filter(x=>x.user.is_online)
+		}
 		let filteredItems = []
 		for (const filter of filters) {
 			switch(filter) {
