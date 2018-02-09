@@ -54,7 +54,7 @@ class NotificationCenter extends Component {
 									{
 										x.user.avatar_url ?
 											<img className='avatar-image rounded' src={x.user.avatar_url} /> :
-											<Avatar className='avatar-image' name={x.user.fullname || x.user.username} bgcolor={x.user.avatar_color} />
+											<Avatar className='avatar-image' name={x.user.fullname || x.user.username} bgcolor={x.user.user_avatar_color} />
 									}
 								</a>
 								<div className='details'>

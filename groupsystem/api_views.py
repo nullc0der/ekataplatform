@@ -51,7 +51,9 @@ class GroupsView(APIView):
     permission_classes = (IsAuthenticatedLegacy, )
 
     def get(self, request, format=None):
-        basicgroups = BasicGroup.objects.all()
+        basicgroups = BasicGroup.objects.exclude(
+            blocked_members__username__contains=request.user.username
+        )
         datas = []
         for basicgroup in basicgroups:
             data = _make_group_serializable(basicgroup)
@@ -235,8 +237,12 @@ def _calculate_subscribed_group(basicgroup, member):
         subscribed_groups.append(104)
     if member in basicgroup.moderators.all():
         subscribed_groups.append(105)
+    if member in basicgroup.staffs.all():
+        subscribed_groups.append(106)
     if member in basicgroup.banned_members.all():
         subscribed_groups.append(107)
+    if member in basicgroup.blocked_members.all():
+        subscribed_groups.append(108)
     return subscribed_groups
 
 
@@ -258,9 +264,11 @@ class GroupMembersView(APIView):
             members = basicgroup.super_admins.all() |\
                 basicgroup.admins.all() |\
                 basicgroup.moderators.all() |\
+                basicgroup.staffs.all() |\
                 basicgroup.members.all() |\
                 basicgroup.subscribers.all() |\
-                basicgroup.banned_members.all()
+                basicgroup.banned_members.all() |\
+                basicgroup.blocked_members.all()
             for member in set(members):
                 data = {}
                 data['user'] = make_user_serializeable(member)
@@ -271,6 +279,15 @@ class GroupMembersView(APIView):
             return Response(serializer.data)
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+def remove_user_from_role(basicgroup, member):
+    basicgroup.super_admins.remove(member)
+    basicgroup.admins.remove(member)
+    basicgroup.staffs.remove(member)
+    basicgroup.moderators.remove(member)
+    basicgroup.members.remove(member)
+    basicgroup.subscribers.remove(member)
 
 
 def _change_user_role(basicgroup, member, subscribed_groups, editor):
@@ -295,11 +312,22 @@ def _change_user_role(basicgroup, member, subscribed_groups, editor):
         basicgroup.moderators.add(member)
     else:
         basicgroup.moderators.remove(member)
+    if 106 in subscribed_groups:
+        basicgroup.staffs.add(member)
+    else:
+        basicgroup.staffs.remove(member)
     if 107 in subscribed_groups:
         if member != editor:
             basicgroup.banned_members.add(member)
+            remove_user_from_role(basicgroup, member)
     else:
         basicgroup.banned_members.remove(member)
+    if 108 in subscribed_groups:
+        if member != editor:
+            basicgroup.blocked_members.add(member)
+            remove_user_from_role(basicgroup, member)
+    else:
+        basicgroup.blocked_members.remove(member)
 
 
 class GroupMemberChangeRoleView(APIView):

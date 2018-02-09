@@ -57,10 +57,12 @@ class BasicGroup(models.Model):
     group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     super_admins = models.ManyToManyField(User, related_name='basicgroups')
     admins = models.ManyToManyField(User, related_name='administerd_groups')
+    staffs = models.ManyToManyField(User, related_name='staff_in_groups')
     moderators = models.ManyToManyField(User, related_name='moderating_groups')
     members = models.ManyToManyField(User, related_name='joined_group')
     subscribers = models.ManyToManyField(User, related_name='subscribed_group')
     banned_members = models.ManyToManyField(User, related_name='banned_group')
+    blocked_members = models.ManyToManyField(User, related_name='blocked_group')
     default_roles = models.TextField(
         default='superadmin;admin;moderator;member;subscriber',
         editable=False
