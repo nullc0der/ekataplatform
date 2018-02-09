@@ -29,6 +29,12 @@ export default function getAsyncRouteConfig(store, req, res){
 				var comp = require('./pages/PublicMembers')
 				cb(null, comp.default)
 			}, 'PublicMembers')
+		},
+		ErrorPage: (nextState, cb) => {
+			require.ensure([], (require) => {
+				var comp = require('./pages/ErrorPage')
+				cb(null, comp.default)
+			}, 'ErrorPage')
 		}
 	}
 }

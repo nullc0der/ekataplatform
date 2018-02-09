@@ -3,6 +3,7 @@ import Messenger from './pages/Messenger'
 import Groups    from './pages/Groups'
 import Groups_Members from './pages/Groups/Members'
 import PublicMembers from './pages/PublicMembers'
+import ErrorPage from './pages/ErrorPage'
 
 export default function getSyncRouteConfig(store, req, res){
 	return {
@@ -20,6 +21,9 @@ export default function getSyncRouteConfig(store, req, res){
 		},
 		PublicMembers: (nextState, cb)=> {
 			cb(null, PublicMembers)
+		},
+		ErrorPage: (nextState, cb)=> {
+			cb(null, ErrorPage)
 		}
 	}
 }
