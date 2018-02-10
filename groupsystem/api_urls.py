@@ -19,4 +19,6 @@ urlpatterns = [
         api_views.GroupMemberChangeRoleView.as_view()),
     url(r'^(?P<group_id>\d+)/joinrequests/(?P<request_id>\d+)/$',
         api_views.GroupJoinRequestApproveView.as_view()),
+    url(r'^(?P<group_id>\d+)/roles/$',
+        api_views.GroupMemberPermission.as_view()),
 ]

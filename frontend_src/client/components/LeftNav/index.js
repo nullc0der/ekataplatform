@@ -13,6 +13,16 @@ import {actions as commonActions} from 'store/Common'
 
 class LeftNav extends Component {
 
+	componentDidMount = () => {
+		this.props.fetchPermissions(this.props.lastGroup)
+	}
+
+	componentDidUpdate = (prevProps) => {
+		if (prevProps.lastGroup !== this.props.lastGroup) {
+			this.props.fetchPermissions(this.props.lastGroup)
+		}
+	}
+
 	toggleIfThin = ()=> {
 		var w = $(window).width();
 		if (!this.props.open || w < 769)
@@ -25,6 +35,7 @@ class LeftNav extends Component {
 		const {
 			className,
 			menuItems,
+			groupMenus,
 			open = false
 		} = this.props;
 
@@ -68,7 +79,7 @@ class LeftNav extends Component {
 				</div>
 				<SidebarMenu
 					className='sidebar-menu'
-					menuItems={menuItems}/>
+					menuItems={[...menuItems, groupMenus]}/>
 			</div>
 		)
 	}
@@ -76,12 +87,17 @@ class LeftNav extends Component {
 
 const mapStateToProps = (state)=> ({
 	breadcrumbs: state.Common.breadcrumbs,
-	menuItems: state.Common.menuItems
+	menuItems: state.Common.menuItems,
+	groupMenus: state.Common.groupMenus,
+	lastGroup: state.Groups.lastGroup
 })
 
 const mapDispatchToProps = (dispatch)=> ({
 	setBreadCrumbs(b){
 		return dispatch(commonActions.setBreadCrumbs(b))
+	},
+	fetchPermissions: (groupID) => {
+		dispatch(commonActions.fetchPermissions(groupID))
 	}
 })
 

@@ -4,9 +4,9 @@
   "chunks": {
     "Groups-Members": [
       {
-        "name": "Groups-Members.0d8707ab790365b8a915.chunk.js",
-        "publicPath": "/statics/bundles/Groups-Members.0d8707ab790365b8a915.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.0d8707ab790365b8a915.chunk.js"
+        "name": "Groups-Members.e7dc625a1c357c54e8e9.chunk.js",
+        "publicPath": "/statics/bundles/Groups-Members.e7dc625a1c357c54e8e9.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.e7dc625a1c357c54e8e9.chunk.js"
       }
     ],
     "MessengerPage": [
@@ -39,16 +39,16 @@
     ],
     "ErrorPage": [
       {
-        "name": "ErrorPage.5c42b822c3714e6544da.chunk.js",
-        "publicPath": "/statics/bundles/ErrorPage.5c42b822c3714e6544da.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/ErrorPage.5c42b822c3714e6544da.chunk.js"
+        "name": "ErrorPage.32e6088fdc166d8aa24e.chunk.js",
+        "publicPath": "/statics/bundles/ErrorPage.32e6088fdc166d8aa24e.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/ErrorPage.32e6088fdc166d8aa24e.chunk.js"
       }
     ],
     "main": [
       {
-        "name": "main-bundle.a412ff293e17acfd4db8.js",
-        "publicPath": "/statics/bundles/main-bundle.a412ff293e17acfd4db8.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.a412ff293e17acfd4db8.js"
+        "name": "main-bundle.472b02398ca47528a298.js",
+        "publicPath": "/statics/bundles/main-bundle.472b02398ca47528a298.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.472b02398ca47528a298.js"
       }
     ],
     "vendor": [

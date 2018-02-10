@@ -24,7 +24,12 @@ export default function getRoutes(store, req, res){
 				<Route path='members' getComponent={Pages.Groups_Members}/>
 			</Route>
 			<Route path='members' getComponent={Pages.PublicMembers} />
-			<Route path='*' getComponent={Pages.ErrorPage} code={404}/>
+			<Route path='error'>
+				<IndexRedirect to='404'/>
+				<Route path='404' getComponent={Pages.ErrorPage} code={404} />
+				<Route path='403' getComponent={Pages.ErrorPage} code={403} />
+			</Route>
+			<Redirect from='*' to='error'/>
 		</Route>
 	)
 }

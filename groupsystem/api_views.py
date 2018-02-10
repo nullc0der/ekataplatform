@@ -21,6 +21,7 @@ from groupsystem.models import (
 )
 from groupsystem.forms import CreateGroupForm
 from groupsystem.tasks import task_create_emailgroup
+from groupsystem.permissions import IsAdminOfGroup
 from notification.utils import create_notification
 from publicusers.api_views import make_user_serializeable
 
@@ -255,12 +256,14 @@ class GroupMembersView(APIView):
     * Permission Required
         * Access Admin
     """
-    permission_classes = (IsAuthenticatedLegacy, )
+    permission_classes = (IsAuthenticatedLegacy, IsAdminOfGroup)
 
     def get(self, request, group_id, format=None):
         try:
             datas = []
             basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            request.session['basicgroup'] = basicgroup.id
             members = basicgroup.super_admins.all() |\
                 basicgroup.admins.all() |\
                 basicgroup.moderators.all() |\
@@ -330,6 +333,25 @@ def _change_user_role(basicgroup, member, subscribed_groups, editor):
         basicgroup.blocked_members.remove(member)
 
 
+class GroupMemberPermission(APIView):
+    """
+    This view returns roles of the user in
+    specified group
+
+    * Required logged in user
+    """
+    permission_classes = (IsAuthenticatedLegacy, )
+
+    def get(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            subscribed_groups = _calculate_subscribed_group(
+                basicgroup, request.user)
+            return Response(subscribed_groups)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
 class GroupMemberChangeRoleView(APIView):
     """
     This view changes groups member roles
@@ -341,11 +363,12 @@ class GroupMemberChangeRoleView(APIView):
         * member_id: ID of the member in DB
         * subscribed_groups: Members role
     """
-    permission_classes = (IsAuthenticatedLegacy, )
+    permission_classes = (IsAuthenticatedLegacy, IsAdminOfGroup)
 
     def post(self, request, group_id, member_id, format=None):
         try:
             basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
             member = User.objects.get(id=member_id)
             subscribed_groups = request.data.get('subscribed_groups', None)
             _change_user_role(
@@ -368,12 +391,13 @@ class GroupJoinRequestView(APIView):
         * Logged in user
         * Permission set (TODO: Decide permission set)
     """
-    permission_classes = (IsAuthenticatedLegacy, )
+    permission_classes = (IsAuthenticatedLegacy, IsAdminOfGroup)
 
     def get(self, request, group_id, format=None):
         try:
             datas = []
             basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
             joinrequests = basicgroup.joinrequest.filter(approved=False)
             for joinrequest in joinrequests:
                 data = {
@@ -397,11 +421,12 @@ class GroupJoinRequestApproveView(APIView):
         * Logged in user
         * Permission set (TODO: Decide permission set)
     """
-    permission_classes = (IsAuthenticatedLegacy, )
+    permission_classes = (IsAuthenticatedLegacy, IsAdminOfGroup)
 
     def post(self, request, group_id, request_id, format=None):
         try:
             basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
             joinrequest = JoinRequest.objects.get(id=request_id)
             accept = request.data.get('accept', None)
             if accept:

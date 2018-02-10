@@ -9,6 +9,7 @@ import c from './Members.styl'
 import MemberItem from './MemberItem'
 
 import {actions as memberActions} from 'store/Members'
+import {actions as groupActions} from 'store/Groups'
 
 class MembersManagement extends Component {
 
@@ -19,6 +20,7 @@ class MembersManagement extends Component {
 	componentDidMount = () => {
 		const id = this.props.groupID
 		this.props.getMembers(`/api/groups/${id}/members/`)
+		this.props.changeLastGroup(id)
 	}
 
 	componentDidUpdate = (prevProps) => {
@@ -150,6 +152,9 @@ const mapDispatchToProps = (dispatch)=> ({
 	},
 	getMembers: (url) => {
 		dispatch(memberActions.getGroupMembers(url))
+	},
+	changeLastGroup: (id) => {
+		dispatch(groupActions.changeLastGroup(id))
 	}
 })
 

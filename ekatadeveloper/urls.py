@@ -57,9 +57,9 @@ urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^messenger/', ReactIndexView.as_view()),
     url(r'^members/', ReactIndexView.as_view()),
-    url(r'^community/groups/', ReactIndexView.as_view()),
-    url(r'^community/groups/members/', ReactIndexView.as_view()),
-    url(r'^onlineusers/', get_onlineusers_react)
+    url(r'^community/groups/', include('groupsystem.new_urls')),
+    url(r'^onlineusers/', get_onlineusers_react),
+    url(r'^error/', ReactIndexView.as_view())
 ]
 
 if not settings.EKATA_SITE_TYPE == "local":

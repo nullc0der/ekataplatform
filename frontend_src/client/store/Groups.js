@@ -4,6 +4,7 @@ import {actions as commonAction} from './Common'
 
 const INITIAL_STATE = {
 	groups: [],
+	lastGroup: window.django.last_group,
 	selectedGroup: null
 }
 
@@ -48,6 +49,12 @@ const joinRequestCanceled = (groupID) => ({
 const LEFT_GROUP = 'LEFT_GROUP'
 const leftGroup = (groupID) => ({
 	type: LEFT_GROUP,
+	groupID
+})
+
+const CHANGE_LAST_GROUP = 'CHANGE_LAST_GROUP'
+const changeLastGroup = (groupID) => ({
+	type: CHANGE_LAST_GROUP,
 	groupID
 })
 
@@ -148,7 +155,8 @@ export const actions = {
 	subscribeGroup,
 	unSubscribeGroup,
 	groupCreated,
-	joinGroup
+	joinGroup,
+	changeLastGroup
 }
 
 export default function GroupsReducer(state=INITIAL_STATE, action){
@@ -183,6 +191,8 @@ export default function GroupsReducer(state=INITIAL_STATE, action){
 					return x.id === action.groupID ? { ...x, members: x.members.filter(x => x !== window.django.user.username) } : x
 				})
 			}
+		case CHANGE_LAST_GROUP:
+			return { ...state, lastGroup: action.groupID }
 		default:
 			return state
 	}

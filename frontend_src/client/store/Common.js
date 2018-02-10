@@ -1,8 +1,11 @@
+import request from 'superagent'
 import MENU_ITEMS from 'components/LeftNav/menu-items'
+import groupMenus from 'components/LeftNav/group-menus'
 const debug = require('debug')('ekata:store:common')
 
 const INITIAL_STATE = {
 	menuItems: MENU_ITEMS.map(x=>x),
+	groupMenus: [],
 	breadcrumbs: {
 		title: 'Home',
 		links: [{href: '/', text: 'Home'}]
@@ -47,12 +50,34 @@ const changeSubHeaderFilters = (filters) => ({
 	filters
 })
 
+const CHANGE_GROUP_MENUS = 'CHANGE_GROUP_MENUS'
+const changeGroupMenus = (menus) => ({
+	type: CHANGE_GROUP_MENUS,
+	menus
+})
+
+const fetchPermissions = (groupID) => {
+	const url = `/api/groups/${groupID}/roles/`
+	return (dispatch) => {
+		request
+			.get(url)
+			.end((err, res) => {
+				if (res.ok) {
+					const menus = groupMenus(res.body, groupID)
+					dispatch(changeGroupMenus(menus))
+				}
+			}
+		)
+	}
+}
+
 export const actions = {
 	setBreadCrumbs,
 	updateHeaderVisibility,
 	addNotification,
 	changeSubHeaderSearchString,
-	changeSubHeaderFilters
+	changeSubHeaderFilters,
+	fetchPermissions
 }
 
 export default function CommonReducer(state = INITIAL_STATE, action){
@@ -67,6 +92,8 @@ export default function CommonReducer(state = INITIAL_STATE, action){
 			return {...state, subHeaderSearchString: action.searchString}
 		case CHANGE_SUBHEADER_FILTERS:
 			return {...state, subHeaderFilters: action.filters}
+		case CHANGE_GROUP_MENUS:
+			return {...state, groupMenus: action.menus }
 		default:
 			return state
 	}
