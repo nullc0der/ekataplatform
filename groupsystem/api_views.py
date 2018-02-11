@@ -1,7 +1,6 @@
 import json
 
-from django.core.files import File
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
 from rest_framework import status
@@ -207,11 +206,7 @@ class CreateGroupView(APIView):
     def post(self, request, format=None):
         form = CreateGroupForm(request.data)
         if form.is_valid():
-            basicgroup = form.save(commit=False)
-            logo = open('media/group_logo/default.png', 'r')
-            basicgroup.logo = File(logo)
-            basicgroup.save()
-            logo.close()
+            basicgroup = form.save()
             basicgroup.super_admins.add(request.user)
             basicgroup.admins.add(request.user)
             basicgroup.members.add(request.user)
