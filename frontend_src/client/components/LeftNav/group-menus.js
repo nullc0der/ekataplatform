@@ -15,12 +15,15 @@ const groupMenus = (permissions, id) => {
                 children: [
                     {
                         name: "Management",
-                        href: `/community/groups/${id}/members/`,
+                        href: `/community/1/groups/${id}/members/`,
                         icon: 'fa fa-fw fa-users'
                     }
                 ]
             }]
         }
+    }
+    if (menu.children.length === 0) {
+        menu = {}
     }
     return (
         menu

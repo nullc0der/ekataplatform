@@ -56,8 +56,7 @@ const changeGroupMenus = (menus) => ({
 	menus
 })
 
-const fetchPermissions = (groupID) => {
-	const url = `/api/groups/${groupID}/roles/`
+const fetchPermissions = (url, groupID) => {
 	return (dispatch) => {
 		request
 			.get(url)

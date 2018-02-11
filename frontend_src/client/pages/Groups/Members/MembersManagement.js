@@ -3,6 +3,7 @@ import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import {connect}   from 'react-redux'
 import _ from 'lodash'
+import withRouter from 'react-router/lib/withRouter'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Members.styl'
@@ -24,6 +25,9 @@ class MembersManagement extends Component {
 	}
 
 	componentDidUpdate = (prevProps) => {
+		if (this.props.accessDenied) {
+			this.props.router.push('/error/403')
+		}
 		if (
 			prevProps.list !== this.props.list ||
 			prevProps.onlineUsers !== this.props.onlineUsers ||
@@ -141,6 +145,7 @@ class MembersManagement extends Component {
 const mapStateToProps = (state)=> ({
 	list: state.Members.list,
 	groups: state.Members.groups_list,
+	accessDenied: state.Members.accessDenied,
 	onlineUsers: state.Users.onlineUsers,
 	searchString: state.Common.subHeaderSearchString,
 	filters: state.Common.subHeaderFilters
@@ -158,4 +163,5 @@ const mapDispatchToProps = (dispatch)=> ({
 	}
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(MembersManagement)
+export default withRouter(
+	connect(mapStateToProps,mapDispatchToProps)(MembersManagement))

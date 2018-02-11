@@ -23,9 +23,7 @@ class ErrorPage extends React.Component {
                 <div className='error-code'><p>{code}</p></div>
                 <div className='error-message'>
                     <p>{messages[code]}</p>
-                    <button className="btn btn-home">
-                        <a href='/'>Take me to home</a>
-                    </button>
+                    <a className="btn btn-home" href='/'>Take me to home</a>
                 </div>
             </div>
         )

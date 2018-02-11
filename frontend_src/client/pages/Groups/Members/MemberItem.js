@@ -23,7 +23,7 @@ class MemberItem extends Component {
 
 	renderGroup = (group, i)=> {
 		const {subscribed_groups = []} = this.props;
-		const cx = classnames('subscribe-box-group group-item', {
+		const cx = classnames(`subscribe-box-group group-item group-id-${group.id}`, {
 			'is-inactive': subscribed_groups.indexOf(group.id) === -1
 		})
 		return <div
@@ -44,7 +44,7 @@ class MemberItem extends Component {
 		const name = g.name || ''
 		const icon = g.icon || ''
 
-		return <div key={i} className='group-item flex-horizontal a-center j-center' title={name}>
+		return <div key={i} className={`group-item flex-horizontal a-center j-center group-id-${g.id}`} title={name}>
 			<i className='material-icons'> {icon} </i>
 		</div>
 	}

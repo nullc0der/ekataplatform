@@ -29,7 +29,7 @@ class GroupCard extends Component {
 		const cx = classnames(c.container, className, 'ui-group-card', 'group-type-' + category.toLowerCase())
 
 		return (
-			<Link to={`/community/groups/${id}/members/`}>
+			<Link to={`/community/1/groups/${id}/members/`}>
 				<div className={cx}>
 					<div className='card-inner'>
 						<div className='card-header flex-horizontal'>

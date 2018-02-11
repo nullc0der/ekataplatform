@@ -14,12 +14,16 @@ import {actions as commonActions} from 'store/Common'
 class LeftNav extends Component {
 
 	componentDidMount = () => {
-		this.props.fetchPermissions(this.props.lastGroup)
+		if (this.props.lastGroup) {
+			const url = `/api/groups/${this.props.lastGroup}/roles/`
+			this.props.fetchPermissions(url, this.props.lastGroup)
+		}
 	}
 
 	componentDidUpdate = (prevProps) => {
-		if (prevProps.lastGroup !== this.props.lastGroup) {
-			this.props.fetchPermissions(this.props.lastGroup)
+		if (prevProps.lastGroup !== this.props.lastGroup && this.props.lastGroup) {
+			const url = `/api/groups/${this.props.lastGroup}/roles/`
+			this.props.fetchPermissions(url, this.props.lastGroup)
 		}
 	}
 
@@ -96,8 +100,8 @@ const mapDispatchToProps = (dispatch)=> ({
 	setBreadCrumbs(b){
 		return dispatch(commonActions.setBreadCrumbs(b))
 	},
-	fetchPermissions: (groupID) => {
-		dispatch(commonActions.fetchPermissions(groupID))
+	fetchPermissions: (url, groupID) => {
+		dispatch(commonActions.fetchPermissions(url, groupID))
 	}
 })
 

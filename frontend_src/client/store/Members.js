@@ -15,7 +15,8 @@ const MEMBER_GROUPS = [
 const INITIAL_STATE = {
 	list: [],
 	groups_list: MEMBER_GROUPS.map(x => x),
-	joinRequests: []
+	joinRequests: [],
+	accessDenied: false
 }
 
 const TOGGLE_SUBSCRIBED_GROUP_SUCCESS = 'TOGGLE_SUBSCRIBED_GROUP_SUCCESS'
@@ -60,6 +61,13 @@ const receivedJoinRequestOnWebsocket = (joinRequest) => ({
 })
 
 
+const CHANGE_ACCESS_DENIED = 'CHANGE_ACCESS_DENIED'
+const changeAccessDenied = (access) => ({
+	type: CHANGE_ACCESS_DENIED,
+	access
+})
+
+
 const toggleSubscribedGroup = (url, subscribedGroups, toggledGroup) => {
 	subscribedGroups = subscribedGroups.indexOf(toggledGroup.id) !== -1
 		? subscribedGroups.filter(x => x !== toggledGroup.id)
@@ -82,11 +90,15 @@ const toggleSubscribedGroup = (url, subscribedGroups, toggledGroup) => {
 
 const getGroupMembers = (url) => {
 	return (dispatch) => {
+		dispatch(changeAccessDenied(false))
 		request
 			.get(url)
 			.end((err, res) => {
 				if (res.ok) {
 					dispatch(groupMemberFetchSuccess(res.body))	
+				}
+				if (err && err.status === 403) {
+					dispatch(changeAccessDenied(true))
 				}
 			})
 	}
@@ -162,6 +174,10 @@ export default function MembersReducer(state = INITIAL_STATE, action){
 		case RECEIVED_JOIN_REQUEST_ON_WEBSOCKET:
 			return {
 				...state, joinRequests: [...state.joinRequests, action.joinRequest]
+			}
+		case CHANGE_ACCESS_DENIED:
+			return {
+				...state, accessDenied: action.access
 			}
 		default:
 			return state

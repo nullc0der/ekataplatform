@@ -1,14 +1,16 @@
 from __future__ import unicode_literals
 import uuid
+import os
 
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models.signals import m2m_changed
+from django.conf import settings
 
 from versatileimagefield.fields import VersatileImageField
-from versatileimagefield.placeholder import OnStoragePlaceholderImage
+from versatileimagefield.placeholder import OnDiscPlaceholderImage
 
 # Create your models here.
 
@@ -42,16 +44,22 @@ class BasicGroup(models.Model):
         upload_to='group_headers',
         null=True,
         blank=True,
-        placeholder_image=OnStoragePlaceholderImage(
-            path='group_header/default.png'
+        placeholder_image=OnDiscPlaceholderImage(
+            os.path.join(
+                settings.BASE_DIR,
+                'static/dist/img/group-header-default.png'
+            )
         )
     )
     logo = VersatileImageField(
         upload_to='group_logos',
         null=True,
         blank=True,
-        placeholder_image=OnStoragePlaceholderImage(
-            path='group_logo/default.png'
+        placeholder_image=OnDiscPlaceholderImage(
+            os.path.join(
+                settings.BASE_DIR,
+                'static/dist/img/group-logo-default.png'
+            )
         )
     )
     group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
