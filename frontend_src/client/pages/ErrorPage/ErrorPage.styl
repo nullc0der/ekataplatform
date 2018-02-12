@@ -5,6 +5,9 @@
     align-items center
     height 100%
     margin-bottom 50px
+    +mobile()
+        flex-direction column
+        margin-bottom 0
     .error-code
         width 250px
         height 250px
@@ -19,6 +22,7 @@
     .error-message
         height 250px
         padding 70px 0
+        text-align center
         p
             margin 0 10px
             font-size 20px
