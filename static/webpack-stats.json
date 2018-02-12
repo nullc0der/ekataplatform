@@ -39,9 +39,9 @@
     ],
     "ErrorPage": [
       {
-        "name": "ErrorPage.986f59f54778b67258b2.chunk.js",
-        "publicPath": "/statics/bundles/ErrorPage.986f59f54778b67258b2.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/ErrorPage.986f59f54778b67258b2.chunk.js"
+        "name": "ErrorPage.3d2281bffd71a4adaf7e.chunk.js",
+        "publicPath": "/statics/bundles/ErrorPage.3d2281bffd71a4adaf7e.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/ErrorPage.3d2281bffd71a4adaf7e.chunk.js"
       }
     ],
     "main": [

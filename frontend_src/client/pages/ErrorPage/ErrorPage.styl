@@ -17,12 +17,20 @@
         p
             color #d3302f
             font-size 100px
-            margin 20px 0
+            margin 25px 0
             text-shadow 5px 5px 12px rgba(0, 0, 0, 0.23)
+        +mobile()
+            width 200px
+            height 200px
+            p
+                margin 0
     .error-message
         height 250px
         padding 70px 0
         text-align center
+        +mobile()
+            height auto
+            padding 30px 0
         p
             margin 0 10px
             font-size 20px
