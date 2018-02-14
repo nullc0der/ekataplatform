@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
 from rest_framework import status
+from rest_framework import parsers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -18,7 +19,7 @@ from groupsystem.models import (
     BasicGroup,
     JoinRequest
 )
-from groupsystem.forms import CreateGroupForm
+from groupsystem.forms import CreateGroupForm, EditGroupForm
 from groupsystem.tasks import task_create_emailgroup
 from groupsystem.permissions import IsAdminOfGroup
 from notification.utils import create_notification
@@ -31,6 +32,7 @@ def _make_group_serializable(group):
         'group_url': group.get_absolute_url(),
         'name': group.name,
         'description': group.short_about,
+        'ldescription': group.long_about,
         'group_type': group.group_type_other
         if group.get_group_type_display() == 'Other'
         else group.get_group_type_display(),
@@ -38,6 +40,10 @@ def _make_group_serializable(group):
         'logo_url': group.logo.thumbnail["92x92"].url,
         'members': [user.username for user in group.members.all()],
         'subscribers': [user.username for user in group.subscribers.all()],
+        'auto_approve_post': group.auto_approve_post,
+        'auto_approve_comment': group.auto_approve_comment,
+        'join_status': group.join_status,
+        'notifications': group.notifications.all()
     }
     return data
 
@@ -427,8 +433,7 @@ class GroupJoinRequestApproveView(APIView):
             if accept:
                 user = joinrequest.user
                 basicgroup.members.add(user)
-                joinrequest.approved = True
-                joinrequest.save()
+                joinrequest.delete()
                 data = {
                     'user': make_user_serializeable(user),
                     'subscribed_groups': _calculate_subscribed_group(
@@ -442,6 +447,73 @@ class GroupJoinRequestApproveView(APIView):
                 }
                 joinrequest.delete()
                 return Response(data)
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class GroupSettingsView(APIView):
+    """
+    This view sends serialized data for
+    groups settings page
+
+    * Required
+        * Logged in user
+        * Admin level permission
+    """
+
+    permission_classes = (IsAuthenticatedLegacy, IsAdminOfGroup)
+    parser_classes = (
+        parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser)
+
+    def get(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            request.session['basicgroup'] = basicgroup.id
+            serializer = GroupSerializer(
+                _make_group_serializable(basicgroup))
+            return Response(serializer.data)
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+    def post(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            from_settings = request.data.get('from_settings', False)
+            if from_settings:
+                basicgroup.auto_approve_comment = request.data.get(
+                    'auto_approve_comment') == 'true'
+                basicgroup.auto_approve_post = request.data.get(
+                    'auto_approve_post') == 'true'
+                basicgroup.join_status = request.data.get(
+                    'join_status', 'request')
+                basicgroup.save()
+                return Response(
+                    GroupSerializer(_make_group_serializable(basicgroup)).data
+                )
+            form = EditGroupForm(
+                request.data,
+                instance=basicgroup, basicgroup=basicgroup)
+            if form.is_valid():
+                form.save()
+                serializer = GroupSerializer(
+                    _make_group_serializable(basicgroup))
+                return Response(serializer.data)
+            else:
+                data = json.loads(form.errors.as_json())
+                errors = []
+                for k in data:
+                    errors.append(
+                        k.upper() + ' : ' + data[k][0]['message'])
+                return Response(
+                    errors,
+                    status=status.HTTP_400_BAD_REQUEST
+                )
         except ObjectDoesNotExist:
             return Response(
                 status=status.HTTP_404_NOT_FOUND

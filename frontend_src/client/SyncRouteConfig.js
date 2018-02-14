@@ -4,6 +4,7 @@ import Groups    from './pages/Groups'
 import Groups_Members from './pages/Groups/Members'
 import PublicMembers from './pages/PublicMembers'
 import ErrorPage from './pages/ErrorPage'
+import Groups_Settings from './pages/Groups/Settings'
 
 export default function getSyncRouteConfig(store, req, res){
 	return {
@@ -24,6 +25,9 @@ export default function getSyncRouteConfig(store, req, res){
 		},
 		ErrorPage: (nextState, cb)=> {
 			cb(null, ErrorPage)
+		},
+		Groups_Settings: (nextState, cb) => {
+			cb(null, Groups_Settings)
 		}
 	}
 }

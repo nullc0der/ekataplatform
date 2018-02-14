@@ -7,5 +7,8 @@ urlpatterns = [
     url(r'^$', views.ReactIndexView.as_view()),
     url(
         r'^(?P<group_id>\d+)/members/$',
-        new_views.GroupManagementView.as_view())
+        new_views.GroupAdminViews.as_view()),
+    url(
+        r'^(?P<group_id>\d+)/settings/$',
+        new_views.GroupAdminViews.as_view())
 ]

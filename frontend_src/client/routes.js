@@ -22,6 +22,7 @@ export default function getRoutes(store, req, res){
 			<Route path='community/1/groups/(:id)/'>
 				<IndexRedirect to='members'/>
 				<Route path='members' getComponent={Pages.Groups_Members}/>
+				<Route path='settings' getComponent={Pages.Groups_Settings}/>
 			</Route>
 			<Route path='members' getComponent={Pages.PublicMembers} />
 			<Route path='error'>

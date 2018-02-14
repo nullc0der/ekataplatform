@@ -19,6 +19,11 @@ const groupMenus = (permissions, id) => {
                         icon: 'fa fa-fw fa-users'
                     }
                 ]
+            },
+            {
+                name: "Settings",
+                href: `/community/1/groups/${id}/settings`,
+                icon: 'fa fa-fw fa-gear'
             }]
         }
     }

@@ -18,9 +18,9 @@ def get_manifest_data():
     return manifest_data
 
 
-class GroupManagementView(LoginRequiredMixin, View):
+class GroupAdminViews(LoginRequiredMixin, View):
     """
-    View to return group management page
+    View to return group admins pages
     This view checks if user is a super_admin(owner)
     or admin if not redirected to 403 page
     """

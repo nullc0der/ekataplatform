@@ -7,12 +7,17 @@ class GroupSerializer(serializers.Serializer):
     group_url = serializers.CharField()
     name = serializers.CharField(max_length=200, required=True)
     description = serializers.CharField(required=False)
+    ldescription = serializers.CharField(required=False)
     group_type = serializers.CharField(required=False)
     header_image_url = serializers.CharField(required=False)
     logo_url = serializers.CharField(required=False)
     members = serializers.ListField(required=True)
     subscribers = serializers.ListField(required=True)
     joinrequest_sent = serializers.BooleanField(required=False)
+    auto_approve_post = serializers.BooleanField(required=False)
+    auto_approve_comment = serializers.BooleanField(required=False)
+    join_status = serializers.CharField(required=False)
+    notifications = serializers.ListField(required=False)
 
 
 class GroupMemberSerializer(serializers.Serializer):

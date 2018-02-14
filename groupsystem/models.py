@@ -27,6 +27,12 @@ class BasicGroup(models.Model):
         ('8', _('Nonprofit Organization')),
         ('9', _('Other')),
     )
+    JOIN_STATUS = (
+        ('open', 'Open'),
+        ('closed', 'Closed'),
+        ('request', 'Request'),
+        ('invite', 'Invite')
+    )
     name = models.CharField(verbose_name=_('Name'), max_length=40)
     short_about = models.CharField(
         verbose_name=_('Short About'), max_length=300)
@@ -39,6 +45,9 @@ class BasicGroup(models.Model):
         max_length=30,
         null=True,
         blank=True
+    )
+    join_status = models.CharField(
+        default='request', choices=JOIN_STATUS, max_length=30
     )
     header_image = VersatileImageField(
         upload_to='group_headers',

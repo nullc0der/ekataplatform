@@ -16,6 +16,13 @@
         "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/MessengerPage.c854f35ec932408633ed.chunk.js"
       }
     ],
+    "Groups-Settings": [
+      {
+        "name": "Groups-Settings.ae4662cb9f220a5c4cf9.chunk.js",
+        "publicPath": "/statics/bundles/Groups-Settings.ae4662cb9f220a5c4cf9.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Settings.ae4662cb9f220a5c4cf9.chunk.js"
+      }
+    ],
     "PublicMembers": [
       {
         "name": "PublicMembers.89c0d03182aa587f1d85.chunk.js",
@@ -46,9 +53,9 @@
     ],
     "main": [
       {
-        "name": "main-bundle.bc6cb6654dea8f802c2f.js",
-        "publicPath": "/statics/bundles/main-bundle.bc6cb6654dea8f802c2f.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.bc6cb6654dea8f802c2f.js"
+        "name": "main-bundle.357db7280cfea65cda18.js",
+        "publicPath": "/statics/bundles/main-bundle.357db7280cfea65cda18.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.357db7280cfea65cda18.js"
       }
     ],
     "vendor": [
