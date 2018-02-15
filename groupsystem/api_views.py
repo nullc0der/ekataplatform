@@ -43,7 +43,7 @@ def _make_group_serializable(group):
         'auto_approve_post': group.auto_approve_post,
         'auto_approve_comment': group.auto_approve_comment,
         'join_status': group.join_status,
-        'notifications': group.notifications.all()
+        # 'notifications': group.notifications.all()
     }
     return data
 
