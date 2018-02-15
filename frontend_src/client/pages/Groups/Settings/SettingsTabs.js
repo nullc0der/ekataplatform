@@ -1,8 +1,10 @@
 import { Component } from 'react'
 import classnames from 'classnames'
 import {connect} from 'react-redux'
+import Linkify from 'react-linkify'
 
 import { actions as settingsActions } from 'store/GroupSettings'
+import { actions as groupNotificationAction } from 'store/GroupNotifications'
 import c from './Settings.styl'
 
 
@@ -13,7 +15,14 @@ class SettingsTabs extends Component {
         joinStatusDropDownVisible: false,
         selectedStatus: 'request',
         approvePostChecked: false,
-        approveCommentChecked: false
+        approveCommentChecked: false,
+        notificationInput: '',
+        editingNotification: null
+    }
+
+    componentDidMount() {
+        const id = this.props.groupID
+        this.props.loadNotifications(`/api/groups/${id}/notifications/`)
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -38,6 +47,65 @@ class SettingsTabs extends Component {
             `/api/groups/${id}/settings/`,
             content
         )
+    }
+
+    createNotification = (e) => {
+        e.preventDefault()
+        const id = this.props.groupID
+        if (this.state.notificationInput.length) {
+            if (!this.state.editingNotification) {
+                const payload = {
+                    'notification': this.state.notificationInput
+                }
+                this.props.createNotification(
+                    `/api/groups/${id}/notifications/`,
+                    payload
+                )   
+            } else {
+                const payload = {
+                    'id': this.state.editingNotification,
+                    'notification': this.state.notificationInput
+                }
+                this.props.updateNotification(
+                    `/api/groups/${id}/notifications/`,
+                    payload
+                )
+            }
+            this.setState({
+                notificationInput: '',
+                editingNotification: null
+            })
+        }
+    }
+
+    deleteNotification = (e, id) => {
+        e.preventDefault()
+        this.props.deleteNotification(
+            `/api/groups/${this.props.groupID}/notifications/`,
+            id
+        )
+    }
+
+    onNotificationInputChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            notificationInput: e.target.value
+        })
+    }
+
+    onEditClick = (e, id, content) => {
+        this.setState({
+            editingNotification: id,
+            notificationInput: content
+        })
+    }
+
+    onCancelClick = (e) => {
+        e.preventDefault()
+        this.setState({
+            editingNotification: null,
+            notificationInput: ''
+        })
     }
 
     onTabClick = (e, name) => {
@@ -120,11 +188,32 @@ class SettingsTabs extends Component {
         return(
             <div className="content-wrapper">
                 <div className="group-notifications">
-                    
+                    {this.props.notifications.map((x, i) => {
+                        return(
+                            <div className="group-notification" key={i}>
+                                <span>{new Date(x.created_on).toLocaleString()}</span>
+                                <p><Linkify>{x.notification}</Linkify></p>
+                                <div className="actions">
+                                    <i className="material-icons" title="important">star_border</i>
+                                    <i className="material-icons" title="edit" onClick={(e) =>  this.onEditClick(e, x.id, x.notification)}>mode_edit</i>
+                                    <i className="material-icons" title="delete" onClick={(e) => this.deleteNotification(e, x.id)}>delete</i>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
-                <div className="form-group footer-form">
-                    <input className="form-control" type="text"/>
-                </div>
+                <form className="flex-horizontal footer-form" onSubmit={this.createNotification}>
+                    <div className="form-group flex-1">
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder={this.state.editingNotification ? 'Edit notification' : 'Add a notification'}
+                            value={this.state.notificationInput}
+                            onChange={this.onNotificationInputChange} />
+                    </div>
+                    <button type="button" className={`btn btn-primary ${this.state.editingNotification ? 'shown': 'hidden'}`} onClick={this.onCancelClick}><i className="fa fa-times"></i></button>
+                    <button className="btn btn-primary" onClick={this.createNotification}>Submit</button>
+                </form>
             </div>
         )
     }
@@ -157,12 +246,17 @@ class SettingsTabs extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    group: state.GroupSettings.group
+    group: state.GroupSettings.group,
+    notifications: state.GroupNotifications.notifications
 })
 
 const mapDispatchToProps = (dispatch) => ({
     editGroup: (url, payload, logo = null, header = null) => dispatch(
-        settingsActions.editGroup(url, payload, logo, header))
+        settingsActions.editGroup(url, payload, logo, header)),
+    loadNotifications: (url) => dispatch(groupNotificationAction.loadNotifications(url)),
+    createNotification: (url, payload) => dispatch(groupNotificationAction.createNotification(url, payload)),
+    deleteNotification: (url, id) => dispatch(groupNotificationAction.deleteNotification(url, id)),
+    updateNotification: (url, payload) => dispatch(groupNotificationAction.updateNotification(url, payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsTabs)

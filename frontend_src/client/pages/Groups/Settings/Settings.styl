@@ -197,8 +197,31 @@ b1()
 		padding 30px
 		height calc(100% - 100px)
 		.content-wrapper
-			min-height 100%
+			height 100%
 			position relative
+		.group-notifications
+			height 85%
+			overflow-y auto
+		.group-notification
+			color #878787
+			padding 5px
+			border-bottom 1px solid #eee
+			position relative
+			&:hover
+				.actions
+					display inline
+			span,
+			p
+				color inherit
+			p
+				margin 0
+			.actions
+				absolute top 10px right
+				display none
+				i
+					cursor pointer
+					margin-left 10px
+					font-size 20px
 		.form-group
 			width 400px
 			position relative
@@ -215,6 +238,16 @@ b1()
 		.footer-form
 			width 100%
 			absolute bottom
+			.form-group
+				margin 0 10px
+			.form-control
+				text-transform none
+			.btn
+				margin 0 10px
+				.hidden
+					visibility hidden
+				.shown
+					visibility visible
 
 
 	.select-dropdown

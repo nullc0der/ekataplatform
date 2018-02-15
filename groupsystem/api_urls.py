@@ -23,4 +23,6 @@ urlpatterns = [
         api_views.GroupMemberPermission.as_view()),
     url(r'^(?P<group_id>\d+)/settings/$',
         api_views.GroupSettingsView.as_view()),
+    url(r'^(?P<group_id>\d+)/notifications/$',
+        api_views.GroupNotificationsView.as_view())
 ]

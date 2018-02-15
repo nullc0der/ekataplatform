@@ -13,11 +13,12 @@ from channels import Group
 from profilesystem.permissions import IsAuthenticatedLegacy
 from groupsystem.serializers import (
     GroupSerializer, GroupMemberSerializer,
-    GroupJoinRequestSerializer
+    GroupJoinRequestSerializer, GroupNotificationSerializer
 )
 from groupsystem.models import (
     BasicGroup,
-    JoinRequest
+    JoinRequest,
+    GroupNotification
 )
 from groupsystem.forms import CreateGroupForm, EditGroupForm
 from groupsystem.tasks import task_create_emailgroup
@@ -42,8 +43,7 @@ def _make_group_serializable(group):
         'subscribers': [user.username for user in group.subscribers.all()],
         'auto_approve_post': group.auto_approve_post,
         'auto_approve_comment': group.auto_approve_comment,
-        'join_status': group.join_status,
-        # 'notifications': group.notifications.all()
+        'join_status': group.join_status
     }
     return data
 
@@ -514,6 +514,97 @@ class GroupSettingsView(APIView):
                     errors,
                     status=status.HTTP_400_BAD_REQUEST
                 )
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class GroupNotificationsView(APIView):
+    """
+    This view returns all groups notifications
+    and let the admin create, update and delete
+
+    * Permission Required:
+        * Logged in user
+        * Admin role for Create, Update and Delete
+
+    """
+
+    permission_classes = (IsAuthenticatedLegacy, IsAdminOfGroup)
+
+    def get(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            serializer = GroupNotificationSerializer(
+                basicgroup.notifications.all(),
+                many=True
+            )
+            return Response(
+                serializer.data
+            )
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+    def post(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            serializer = GroupNotificationSerializer(
+                data=request.data
+            )
+            if serializer.is_valid():
+                serializer.save(
+                    creator=request.user,
+                    basic_group=basicgroup
+                )
+                return Response(
+                    serializer.data
+                )
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+    def put(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            notification = GroupNotification.objects.get(
+                id=request.data.get('id'))
+            serializer = GroupNotificationSerializer(
+                notification,
+                data=request.data
+            )
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    serializer.data
+                )
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+    def delete(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            notification = GroupNotification.objects.get(
+                id=request.data.get('id')
+            )
+            notification.delete()
+            return Response(
+                status=status.HTTP_204_NO_CONTENT
+            )
         except ObjectDoesNotExist:
             return Response(
                 status=status.HTTP_404_NOT_FOUND

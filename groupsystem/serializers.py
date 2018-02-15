@@ -1,5 +1,12 @@
 from rest_framework import serializers
+from groupsystem.models import GroupNotification
 from publicusers.serializers import UserSerializer
+
+
+class GroupNotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GroupNotification
+        fields = ('id', 'notification', 'created_on')
 
 
 class GroupSerializer(serializers.Serializer):
@@ -17,7 +24,6 @@ class GroupSerializer(serializers.Serializer):
     auto_approve_post = serializers.BooleanField(required=False)
     auto_approve_comment = serializers.BooleanField(required=False)
     join_status = serializers.CharField(required=False)
-    notifications = serializers.ListField(required=False)
 
 
 class GroupMemberSerializer(serializers.Serializer):
