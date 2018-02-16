@@ -500,7 +500,12 @@ class GroupSettingsView(APIView):
                 request.data,
                 instance=basicgroup, basicgroup=basicgroup)
             if form.is_valid():
-                form.save()
+                basicgroup = form.save(commit=False)
+                if request.data.get('logo'):
+                    basicgroup.logo = request.data.get('logo')
+                if request.data.get('header_image'):
+                    basicgroup.header_image = request.data.get('header_image')
+                basicgroup.save()
                 serializer = GroupSerializer(
                     _make_group_serializable(basicgroup))
                 return Response(serializer.data)

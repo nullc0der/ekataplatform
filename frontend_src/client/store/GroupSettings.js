@@ -41,7 +41,7 @@ const editGroup = (url, payload, logo=null, header=null) => {
             .post(url)
             .set('X-CSRFToken', window.django.csrf)
         if (logo) {
-            req.attach('logo', header)
+            req.attach('logo', logo)
         }
         if (header) {
             req.attach('header_image', header)

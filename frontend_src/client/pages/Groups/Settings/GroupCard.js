@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import classnames  from 'classnames'
 import {connect} from 'react-redux'
+import Dropzone from 'react-dropzone'
 
 import {actions as settingsActions} from 'store/GroupSettings'
 import {actions as groupActions} from 'store/Groups'
@@ -24,7 +25,9 @@ class GroupCard extends Component {
 		this.state = {
 			otherGroupType: '',
 			groupType: null,
-			categoryDropdownVisible: false
+			categoryDropdownVisible: false,
+			logo: null,
+			header: null
 		}
 	}
 
@@ -56,8 +59,14 @@ class GroupCard extends Component {
 		}
 		this.props.editGroup(
 			`/api/groups/${id}/settings/`,
-			content
+			content,
+			this.state.logo ? this.state.logo[0] : null,
+			this.state.header ? this.state.header[0] : null
 		)
+		this.setState({
+			logo: null,
+			header: null
+		})
 	}
 
 	handleOtherTypeInputChange = (e) => {
@@ -94,6 +103,18 @@ class GroupCard extends Component {
 		}
 	}
 
+	onDropLogo = (acceptedFile) => {
+		this.setState({
+			logo: acceptedFile
+		}, () => this.onContentEditableBlurred())
+	}
+
+	onDropHeader = (acceptedFile) => {
+		this.setState({
+			header: acceptedFile
+		}, () => this.onContentEditableBlurred())
+	}
+
 	render(){
 		const {
 			className,
@@ -127,6 +148,10 @@ class GroupCard extends Component {
 				<div className='card-inner'>
 					<div className='card-header flex-horizontal'>
 						<div className="group-header-image" style={{ backgroundImage: `url(${group.header_image_url || ''})` }}>
+							<Dropzone 
+								accept='image/*' 
+								multiple={false} 
+								className='dropzone' onDrop={this.onDropHeader}></Dropzone>
 						</div>
 						<div className="group-info">
 							<div className='name' 
@@ -154,6 +179,7 @@ class GroupCard extends Component {
 						}
 					</ul>
 					<div className='card-circle-image' style={{ backgroundImage: `url(${group.logo_url})` }}>
+						<Dropzone accept='image/*' multiple={false} className='dropzone' onDrop={this.onDropLogo}></Dropzone>
 					</div>
 
 					<div className='card-body'>
