@@ -2,25 +2,20 @@ b1()
 	border 1px rgba(#000, 0.12) solid
 
 :local(.container)
-	height 100%
 	color inherit
-	padding 10px 30px
+	padding 20px 30px
 	margin-bottom 50px
 	overflow-y auto
 	+mobile()
 		margin-bottom 0
+		flex-direction column
 
 	.ui-group-card
-		margin-right 10px
 		width 300px
-	
-	.ui-settings-card
-		margin-left 10px
-		width calc(100% - 320px)
 
 	.ui-group-card,
 	.ui-settings-card
-		float left
+		margin 10px
 		padding 0
 		margin-bottom 0
 		background-color #fff
@@ -40,6 +35,8 @@ b1()
 			margin 10px 0
 			width 100%
 			height 450px
+			flex initial
+			flex-shrink 0
 		
 		.bottom-stats
 			absolute bottom 10px

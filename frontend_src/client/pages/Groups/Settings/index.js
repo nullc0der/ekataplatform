@@ -16,11 +16,10 @@ class GroupSettings extends React.Component {
             className
         } = this.props;
 
-        const cx = classnames(c.container, className)
+        const cx = classnames(c.container, className, 'flex-horizontal flex-1')
         return (
             <div className={cx}>
                 <Helmet title={`Groups | ${this.props.params.id} | Settings`} />
-                {this.props.notifications.length > 0 && <NotificationHeader notifications={this.props.notifications}/>}
                 <GroupCard
                     groupID={this.props.params.id}/>
                 <SettingsTabs

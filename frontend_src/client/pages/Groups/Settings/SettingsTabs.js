@@ -237,7 +237,7 @@ class SettingsTabs extends Component {
             group
         } = this.props;
 
-        const cx = classnames(c.container, 'ui-settings-card group-type-' + group.group_type.toLowerCase())
+        const cx = classnames(c.container, 'ui-settings-card flex-1 group-type-' + group.group_type.toLowerCase())
         return (
             <div className={cx}>
                 <div className="card-header settings-header">

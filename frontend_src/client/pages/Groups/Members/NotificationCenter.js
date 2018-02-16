@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import Websocket from 'react-websocket'
+import Linkify from 'react-linkify'
 
 import Avatar from 'components/Avatar'
 import { actions as memberActions } from 'store/Members'
+import { actions as groupNotificationActions } from 'store/GroupNotifications'
 
 import c from './Members.styl'
 
@@ -14,6 +16,7 @@ class NotificationCenter extends Component {
 	componentDidMount = () => {
 		const id = this.props.groupID
 		this.props.getJoinRequests(`/api/groups/${id}/joinrequests/`)
+		this.props.getGroupNotifications(`/api/groups/${id}/notifications/`)
 	}
 
 	acceptDenyJoinRequest = (requestID, accept) => {
@@ -35,7 +38,8 @@ class NotificationCenter extends Component {
 	render(){
 		const {
 			className,
-			joinRequests
+			joinRequests,
+			notifications
 		} = this.props;
 
 		const cx = classnames(className, 'flex-vertical')
@@ -75,6 +79,19 @@ class NotificationCenter extends Component {
 							</div>
 						})
 					}
+					{
+						notifications.map((x, i) => {
+							return (
+								<div key={i} className='nc-list-item flex-horizontal a-center'>
+									{x.is_important && <i className="material-icons is-important">star</i>}
+									<div className='details'>
+										<div className='name'><Linkify>{x.notification}</Linkify></div>
+										<div className='subtext'>{new Date(x.created_on).toLocaleString()}</div>
+									</div>
+								</div>
+							)
+						})
+					}
 				</div>
 				<Websocket url={websocket_url}
 					onMessage={this.onWebsocketMessage.bind(this)} />
@@ -84,7 +101,8 @@ class NotificationCenter extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	joinRequests: state.Members.joinRequests
+	joinRequests: state.Members.joinRequests,
+	notifications: state.GroupNotifications.notifications
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -96,6 +114,9 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	receivedJoinRequest: (joinRequest) => {
 		dispatch(memberActions.receivedJoinRequestOnWebsocket(joinRequest))
+	},
+	getGroupNotifications: (url) => {
+		dispatch(groupNotificationActions.loadNotifications(url))
 	}
 })
 

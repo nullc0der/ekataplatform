@@ -4,16 +4,16 @@
   "chunks": {
     "Groups-Members": [
       {
-        "name": "Groups-Members.f24881372d40542065b2.chunk.js",
-        "publicPath": "/statics/bundles/Groups-Members.f24881372d40542065b2.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.f24881372d40542065b2.chunk.js"
+        "name": "Groups-Members.6d6fed49f0b2d7f31204.chunk.js",
+        "publicPath": "/statics/bundles/Groups-Members.6d6fed49f0b2d7f31204.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.6d6fed49f0b2d7f31204.chunk.js"
       }
     ],
     "Groups-Settings": [
       {
-        "name": "Groups-Settings.22555d1e0ede7877a6c6.chunk.js",
-        "publicPath": "/statics/bundles/Groups-Settings.22555d1e0ede7877a6c6.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Settings.22555d1e0ede7877a6c6.chunk.js"
+        "name": "Groups-Settings.1f5cd43a033a47ff4808.chunk.js",
+        "publicPath": "/statics/bundles/Groups-Settings.1f5cd43a033a47ff4808.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Settings.1f5cd43a033a47ff4808.chunk.js"
       }
     ],
     "MessengerPage": [
