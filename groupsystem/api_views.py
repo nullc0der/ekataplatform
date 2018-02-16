@@ -537,7 +537,7 @@ class GroupNotificationsView(APIView):
         try:
             basicgroup = BasicGroup.objects.get(id=group_id)
             serializer = GroupNotificationSerializer(
-                basicgroup.notifications.all(),
+                basicgroup.notifications.all().order_by('-id'),
                 many=True
             )
             return Response(

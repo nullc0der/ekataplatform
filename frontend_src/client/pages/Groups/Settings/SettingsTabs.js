@@ -78,6 +78,18 @@ class SettingsTabs extends Component {
         }
     }
 
+    toggleImportant = (e, id, notification, state) => {
+        const payload = {
+            'id': id,
+            'notification': notification,
+            'is_important': state
+        }
+        this.props.updateNotification(
+            `/api/groups/${this.props.groupID}/notifications/`,
+            payload
+        )
+    }
+
     deleteNotification = (e, id) => {
         e.preventDefault()
         this.props.deleteNotification(
@@ -194,7 +206,8 @@ class SettingsTabs extends Component {
                                 <span>{new Date(x.created_on).toLocaleString()}</span>
                                 <p><Linkify>{x.notification}</Linkify></p>
                                 <div className="actions">
-                                    <i className="material-icons" title="important">star_border</i>
+                                    <i className="material-icons" title="important"
+                                        onClick={(e) => this.toggleImportant(e, x.id, x.notification, x.is_important ? false : true)}>{x.is_important ? 'star' : 'star_border'}</i>
                                     <i className="material-icons" title="edit" onClick={(e) =>  this.onEditClick(e, x.id, x.notification)}>mode_edit</i>
                                     <i className="material-icons" title="delete" onClick={(e) => this.deleteNotification(e, x.id)}>delete</i>
                                 </div>

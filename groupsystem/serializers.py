@@ -6,7 +6,7 @@ from publicusers.serializers import UserSerializer
 class GroupNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = GroupNotification
-        fields = ('id', 'notification', 'created_on')
+        fields = ('id', 'notification', 'created_on', 'is_important')
 
 
 class GroupSerializer(serializers.Serializer):

@@ -179,6 +179,7 @@ class GroupNotification(models.Model):
     basic_group = models.ForeignKey(BasicGroup, related_name='notifications')
     notification = models.CharField(max_length=200)
     created_on = models.DateTimeField(auto_now_add=True)
+    is_important = models.BooleanField(default=False)
 
 
 class GroupInvite(models.Model):

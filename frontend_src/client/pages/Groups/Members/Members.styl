@@ -3,10 +3,18 @@
 	.boxes-in-right
 		margin-left 20px
 		width 400px
+	
+	.member-boxes-wrapper
+		display flex
+		flex-direction row
+		flex 1
 
 	+below(rupture.desktop-cutoff)
 		display block
 		flex-direction column
+		.member-boxes-wrapper
+			flex-direction column
+			margin-top 20px
 		.boxes-in-right
 			margin 20px 0 20px 0
 			width 100%
