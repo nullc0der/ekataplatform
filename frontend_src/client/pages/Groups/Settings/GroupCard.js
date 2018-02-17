@@ -215,9 +215,10 @@ class GroupCard extends Component {
 
 					</div>
 				</div>
-				{/* <div className='card-action'>
-					{cardActionTexts[group.join_status]}
-				</div> */}
+				<div className='card-action'>
+					&nbsp;
+					{/* {cardActionTexts[group.join_status]} */}
+				</div>
 			</div>
 		)
 	}
