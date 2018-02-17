@@ -52,6 +52,13 @@ const leftGroup = (groupID) => ({
 	groupID
 })
 
+const ADD_MEMBERS = 'ADD_MEMBERS'
+const addMembers = (groupID, members) => ({
+	type: ADD_MEMBERS,
+	groupID,
+	members
+})
+
 const CHANGE_LAST_GROUP = 'CHANGE_LAST_GROUP'
 const changeLastGroup = (groupID) => ({
 	type: CHANGE_LAST_GROUP,
@@ -142,7 +149,11 @@ const joinGroup = (groupID, type) => {
 							dispatch(joinRequestCanceled(res.body.group_id))
 						}
 						if (res.body.type === 'join') {
-							dispatch(joinRequestSent(res.body.group_id))
+							if (res.body.members && res.body.members.length) {
+								dispatch(addMembers(res.body.group_id, res.body.members))
+							} else {
+								dispatch(joinRequestSent(res.body.group_id))
+							}
 						}
 					}
 				}
@@ -193,6 +204,10 @@ export default function GroupsReducer(state=INITIAL_STATE, action){
 			}
 		case CHANGE_LAST_GROUP:
 			return { ...state, lastGroup: action.groupID }
+		case ADD_MEMBERS:
+			return { ...state, groups: state.groups.map(x => {
+				return x.id === action.groupID ? {...x, members: action.members} : x
+			})}
 		default:
 			return state
 	}

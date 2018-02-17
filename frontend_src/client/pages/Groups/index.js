@@ -204,6 +204,7 @@ class GroupsPage extends Component {
 							members={x.members.length}
 							subscribers={x.subscribers.length}
 							shortDescription={x.description}
+							joinStatus={x.join_status}
 							onSubscribeButtonClick={this.onSubscribeButtonClick}
 							onJoinButtonClick={this.handleJoinGroup}
 							/>

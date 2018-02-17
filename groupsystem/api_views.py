@@ -103,6 +103,41 @@ class GroupSubscribeView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
+def process_join_request(basicgroup, user):
+    data = {
+        'group_id': basicgroup.id,
+        'type': 'join'
+    }
+    if basicgroup.join_status == 'open':
+        basicgroup.members.add(user)
+        data['success'] = True
+        data['members'] = [user.username for user in basicgroup.members.all()]
+    if basicgroup.join_status == 'request':
+        joinrequest, created = JoinRequest.objects.get_or_create(
+            basic_group=basicgroup,
+            user=user
+        )
+        data['success'] = True
+        websocket_data = {
+             'group_id': basicgroup.id,
+             'req': {
+                 'id': joinrequest.id,
+                 'user': make_user_serializeable(joinrequest.user)
+             }
+         }
+        for admin in set(basicgroup.super_admins.all() | basicgroup.admins.all()):
+            Group('%s-group-notification' % (admin.username)).send({
+                'text': json.dumps(websocket_data)
+            })
+    if basicgroup.join_status == 'closed':
+        data['success'] = False
+        data['message'] = 'You can join this group on staff invitation only'
+    if basicgroup.join_status == 'invite':
+        data['success'] = False
+        data['message'] = 'You can join this group on invitation only'
+    return data
+
+
 class JoinGroupView(APIView):
     """
     View to do join operations on a group
@@ -117,28 +152,7 @@ class JoinGroupView(APIView):
             request_type = request.data.get('type')
             if request_type == 'join':
                 if request.user not in basicgroup.banned_members.all():
-                    joinrequest, created = JoinRequest.objects.get_or_create(
-                        basic_group=basicgroup,
-                        user=request.user
-                    )
-                    data = {
-                        'group_id': basicgroup.id,
-                        'type': 'join',
-                        'success': True
-                    }
-                    websocket_data = {
-                        'group_id': basicgroup.id,
-                        'req': {
-                            'id': joinrequest.id,
-                            'user': make_user_serializeable(joinrequest.user)
-                        }
-                    }
-                    for admin in set(
-                            basicgroup.super_admins.all() |
-                            basicgroup.admins.all()):
-                        Group('%s-group-notification' % (admin.username)).send({
-                            'text': json.dumps(websocket_data)
-                        })
+                    data = process_join_request(basicgroup, request.user)
                     return Response(data)
                 else:
                     data = {

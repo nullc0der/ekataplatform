@@ -14,7 +14,8 @@ const INITIAL_STATE = {
         'logo_url': '',
         'members': [],
         'subscribers': [],
-    }
+    },
+    accessDenied: false
 }
 
 const LOAD_GROUP_SUCCESS = 'LOAD_GROUP_SUCCESS'
@@ -23,13 +24,23 @@ const loadGroupSuccess = (group) => ({
     group
 })
 
+const CHANGE_ACCESS_DENIED = 'CHANGE_ACCESS_DENIED'
+const changeAccessDenied = (access) => ({
+    type: CHANGE_ACCESS_DENIED,
+    access
+})
+
 const loadGroup = (url) => {
     return (dispatch) => {
+        dispatch(changeAccessDenied(false))
         request
             .get(url)
             .end((err, res) => {
                 if (res.ok) {
                     dispatch(loadGroupSuccess(res.body))
+                }
+                if (err && err.status === 403) {
+                    dispatch(changeAccessDenied(true))
                 }
             })
     }
@@ -73,6 +84,10 @@ export default function GroupSettingsReducer(state=INITIAL_STATE, action) {
         case LOAD_GROUP_SUCCESS:
             return {
                 ...state, group: action.group
+            }
+        case CHANGE_ACCESS_DENIED:
+            return {
+                ...state, accessDenied: action.access
             }
         default:
             return state

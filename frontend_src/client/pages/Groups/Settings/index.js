@@ -11,6 +11,13 @@ import c from './Settings.styl'
 
 
 class GroupSettings extends React.Component {
+    
+    componentDidUpdate() {
+        if (this.props.accessDenied) {
+            this.props.router.push('/error/403')
+        }
+    }
+    
     render() {
         const {
             className
@@ -30,7 +37,7 @@ class GroupSettings extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    notifications: state.GroupNotifications.notifications
+    accessDenied: state.GroupSettings.accessDenied
 })
 
 const mapDispatchToProps = (dispatch) => ({

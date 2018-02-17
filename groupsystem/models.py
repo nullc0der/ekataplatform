@@ -47,7 +47,7 @@ class BasicGroup(models.Model):
         blank=True
     )
     join_status = models.CharField(
-        default='request', choices=JOIN_STATUS, max_length=30
+        default='open', choices=JOIN_STATUS, max_length=30
     )
     header_image = VersatileImageField(
         upload_to='group_headers',
