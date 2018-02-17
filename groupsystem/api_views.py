@@ -131,10 +131,10 @@ def process_join_request(basicgroup, user):
             })
     if basicgroup.join_status == 'closed':
         data['success'] = False
-        data['message'] = 'You can join this group on staff invitation only'
+        data['message'] = 'You can join this group by staff invitation only'
     if basicgroup.join_status == 'invite':
         data['success'] = False
-        data['message'] = 'You can join this group on invitation only'
+        data['message'] = 'You can join this group by invitation only'
     return data
 
 

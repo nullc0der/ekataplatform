@@ -164,7 +164,7 @@ class SettingsTabs extends Component {
             "open": "Anyone can join without approval",
             "closed": "Staff invitation only",
             "request": "Request to join group for approval",
-            "invite": "Member invitation only"
+            "invite": "Any member can send invite"
         }
 
         return (
