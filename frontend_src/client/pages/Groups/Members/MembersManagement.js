@@ -92,6 +92,10 @@ class MembersManagement extends Component {
 					filteredItems.push(
 						finalList.filter(x => _.includes(x.subscribed_groups, 104)))
 					break
+				case 'staffs':
+					filteredItems.push(
+						finalList.filter(x => _.includes(x.subscribed_groups, 106)))
+					break
 				case 'moderators':
 					filteredItems.push(
 						finalList.filter(x => _.includes(x.subscribed_groups, 105)))
@@ -107,6 +111,10 @@ class MembersManagement extends Component {
 				case 'banned':
 					filteredItems.push(
 						finalList.filter(x => _.includes(x.subscribed_groups, 107)))
+					break
+				case 'blocked':
+					filteredItems.push(
+						finalList.filter(x => _.includes(x.subscribed_groups, 108)))
 					break
 			}
 		}

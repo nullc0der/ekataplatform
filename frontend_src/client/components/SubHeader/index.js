@@ -168,20 +168,26 @@ class SubHeader extends Component {
 		this.props.changeSearchString(e.target.value)
 	}
 
-	filterButtonClicked = (e) => {
+	filterButtonClicked = (e, name) => {
 		e.preventDefault()
 		const enabledFilters = this.state.enabledFilters
 		const disabledFilters = this.state.disabledFilters
-		const newEnabledFilters = enabledFilters.indexOf(e.target.name) !== -1
-			? enabledFilters.filter(x => x !== e.target.name)
-			: enabledFilters.concat(e.target.name)
-		const newDisabledFilters = disabledFilters.indexOf(e.target.name) !== -1
-			? disabledFilters.filter(x => x !== e.target.name)
-			: disabledFilters.concat(e.target.name)
+		const newEnabledFilters = enabledFilters.indexOf(name) !== -1
+			? enabledFilters.filter(x => x !== name)
+			: enabledFilters.concat(name)
+		const newDisabledFilters = disabledFilters.indexOf(name) !== -1
+			? disabledFilters.filter(x => x !== name)
+			: disabledFilters.concat(name)
 		this.setState({
 			enabledFilters: newEnabledFilters,
 			disabledFilters:newDisabledFilters
 		}, () => this.props.changeFilters(newEnabledFilters))
+	}
+
+	filterOrderChanged = (filters) => {
+		this.setState({
+			enabledFilters: filters
+		}, () => this.props.changeFilters(filters))
 	}
 
 	render(){
@@ -226,7 +232,8 @@ class SubHeader extends Component {
 						showFilterOptions={this.state.showFilterOptions}
 						changeSearchString={this.changeSearchString}
 						toggleFilterOptions={this.toggleFilterOptions}
-						filterButtonClicked={this.filterButtonClicked} />
+						filterButtonClicked={this.filterButtonClicked}
+						filterOrderChanged={this.filterOrderChanged} />
 				}
 				<button className="header-button" onClick={this.toggleIssueModal} title="Post an issue"><i className="fa fa-bug"></i></button>
 				<Modal
