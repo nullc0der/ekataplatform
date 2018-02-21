@@ -193,11 +193,11 @@ class SubHeader extends Component {
 	}
 
 	handleDrop = (e, name) => {
-		this.swapFilters(e.dataTransfer.getData('text'), name)
-		e.dataTransfer.clearData()
 		for (const filter of this.state.enabledFilters) {
 			$(`#filter-${filter}`).removeClass('over')
 		}
+		this.swapFilters(e.dataTransfer.getData('text'), name)
+		e.dataTransfer.clearData()
 	}
 
 	handleDragEnter = (e, name) => {
