@@ -11,7 +11,6 @@ class SearchFilter extends React.Component {
             toggleFilterOptions,
             showFilterOptions,
             filterButtonClicked,
-            handleDragEnd,
             handleDragOver,
             handleDragStart,
             handleDragEnter,
@@ -46,7 +45,6 @@ class SearchFilter extends React.Component {
                                             onDragOver={handleDragOver}
                                             onDragEnter={(e) =>  handleDragEnter(e, x)}
                                             onDragLeave={(e) => handleDragLeave(e, x)}
-                                            onDragEnd={handleDragEnd}
                                             className={classnames(
                                                 "filter-button",
                                                 {

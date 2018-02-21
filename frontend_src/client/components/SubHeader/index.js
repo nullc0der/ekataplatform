@@ -195,6 +195,9 @@ class SubHeader extends Component {
 	handleDrop = (e, name) => {
 		this.swapFilters(e.dataTransfer.getData('text'), name)
 		e.dataTransfer.clearData()
+		for (const filter of this.state.enabledFilters) {
+			$(`#filter-${filter}`).removeClass('over')
+		}
 	}
 
 	handleDragEnter = (e, name) => {
@@ -203,12 +206,6 @@ class SubHeader extends Component {
 
 	handleDragLeave = (e, name) => {
 		$(`#filter-${name}`).toggleClass('over')
-	}
-
-	handleDragEnd = (e) => {
-		for (const filter of this.state.enabledFilters) {
-			$(`#filter-${filter}`).removeClass('over')
-		}
 	}
 
 	swapFilters = (src, target) => {
@@ -273,7 +270,6 @@ class SubHeader extends Component {
 						handleDragEnd={this.handleDragEnd}
 						handleDragEnter={this.handleDragEnter}
 						handleDragLeave={this.handleDragLeave}
-						handleDragOver={this.handleDragOver}
 						handleDrop={this.handleDrop} />
 				}
 				<button className="header-button" onClick={this.toggleIssueModal} title="Post an issue"><i className="fa fa-bug"></i></button>
