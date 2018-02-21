@@ -184,11 +184,47 @@ class SubHeader extends Component {
 		}, () => this.props.changeFilters(newEnabledFilters))
 	}
 
-	filterOrderChanged = (filters) => {
-		this.setState({
-			enabledFilters: filters
-		}, () => this.props.changeFilters(filters))
+	handleDragStart = (e, name) => {
+		e.dataTransfer.setData('text', name)
 	}
+
+	handleDragOver = (e) => {
+		e.preventDefault()
+	}
+
+	handleDrop = (e, name) => {
+		this.swapFilters(e.dataTransfer.getData('text'), name)
+		e.dataTransfer.clearData()
+	}
+
+	handleDragEnter = (e, name) => {
+		$(`#filter-${name}`).toggleClass('over')
+	}
+
+	handleDragLeave = (e, name) => {
+		$(`#filter-${name}`).toggleClass('over')
+	}
+
+	handleDragEnd = (e) => {
+		for (const filter of this.state.enabledFilters) {
+			$(`#filter-${filter}`).removeClass('over')
+		}
+	}
+
+	swapFilters = (src, target) => {
+		let swappedFilters = this.state.enabledFilters.slice()
+		const temp = swappedFilters.indexOf(target)
+		swappedFilters[swappedFilters.indexOf(src)] = target
+		swappedFilters[temp] = src
+		const isSame = swappedFilters.every((e, i) => {
+			return e === this.state.enabledFilters[i]})
+		if (!isSame) {
+			this.setState({
+				enabledFilters: swappedFilters
+			}, () => this.props.changeFilters(swappedFilters))
+		}
+	}
+
 
 	render(){
 		const {
@@ -233,7 +269,12 @@ class SubHeader extends Component {
 						changeSearchString={this.changeSearchString}
 						toggleFilterOptions={this.toggleFilterOptions}
 						filterButtonClicked={this.filterButtonClicked}
-						filterOrderChanged={this.filterOrderChanged} />
+						handleDragStart={this.handleDragStart}
+						handleDragEnd={this.handleDragEnd}
+						handleDragEnter={this.handleDragEnter}
+						handleDragLeave={this.handleDragLeave}
+						handleDragOver={this.handleDragOver}
+						handleDrop={this.handleDrop} />
 				}
 				<button className="header-button" onClick={this.toggleIssueModal} title="Post an issue"><i className="fa fa-bug"></i></button>
 				<Modal
