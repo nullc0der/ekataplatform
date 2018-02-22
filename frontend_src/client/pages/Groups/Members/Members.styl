@@ -231,14 +231,17 @@
 		font-size 16px
 		padding 4px 12px
 	.nc-list-item
-		padding 4px 12px
+		padding 4px 15px
 		border-bottom 1px rgba(#000, 0.07) solid
 		position relative
 		&:first-child
 			border-top 1px rgba(#000, 0.07) solid
 		&:hover
-			background-color rgba(#000, 0.07)
-			z-index 10
+			shadow()
+			+mobile()
+				box-shadow none
+			.actions
+				display flex
 		.is-important
 			absolute top 5px right 5px
 			font-size 16px
@@ -248,6 +251,42 @@
 		.subtext
 			margin-top -4px
 			font-size 12px
+		.actions
+			display none
+			absolute right top bottom -1px
+			+mobile() 
+				display flex
+				opacity 0
+				width 0
+				transition opacity 0.7s ease-in-out
+			&.visible
+				+mobile()
+					opacity 1
+					width auto
+			.reveal-action-icon
+				height inherit
+				padding 15px 10px
+				background linear-gradient(to right, #56ccf2, #2f80ed)
+				color #fff
+				cursor pointer
+				.reverse
+					transform rotate(180deg)
+					transition all 0.3s ease-in-out
+				.normal
+					transition all 0.3s ease-in-out
+			.buttons-container
+				width 0
+				opacity 0
+				background-color #eee
+				transition opacity 0.7s ease-in-out
+				&.shown
+					width auto
+					opacity 1
+			.button
+				cursor pointer
+				font-size 20px
+				color #878787
+				padding 18px 10px
 	.nf-btn
 		border-radius 20px
 		margin-left 8px

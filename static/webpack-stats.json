@@ -4,9 +4,9 @@
   "chunks": {
     "Groups-Members": [
       {
-        "name": "Groups-Members.d853e4c1b240b3f7b0bd.chunk.js",
-        "publicPath": "/statics/bundles/Groups-Members.d853e4c1b240b3f7b0bd.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.d853e4c1b240b3f7b0bd.chunk.js"
+        "name": "Groups-Members.8ccc945ead5f870c916f.chunk.js",
+        "publicPath": "/statics/bundles/Groups-Members.8ccc945ead5f870c916f.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members.8ccc945ead5f870c916f.chunk.js"
       }
     ],
     "Groups-Settings": [

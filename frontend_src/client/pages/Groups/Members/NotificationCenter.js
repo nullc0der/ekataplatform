@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import Websocket from 'react-websocket'
-import Linkify from 'react-linkify'
 
 import Avatar from 'components/Avatar'
 import { actions as memberActions } from 'store/Members'
 import { actions as groupNotificationActions } from 'store/GroupNotifications'
+import NotificationItem from './NotificationItem'
 
 import c from './Members.styl'
 
@@ -82,13 +82,7 @@ class NotificationCenter extends Component {
 					{
 						notifications.map((x, i) => {
 							return (
-								<div key={i} className='nc-list-item flex-horizontal a-center'>
-									{x.is_important && <i className="material-icons is-important">star</i>}
-									<div className='details'>
-										<div className='name'><Linkify>{x.notification}</Linkify></div>
-										<div className='subtext'>{new Date(x.created_on).toLocaleString()}</div>
-									</div>
-								</div>
+								<NotificationItem key={i} notification={x}/>
 							)
 						})
 					}
