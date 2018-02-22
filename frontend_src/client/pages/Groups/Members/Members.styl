@@ -230,6 +230,8 @@
 		opacity 0.7
 		font-size 16px
 		padding 4px 12px
+	.nc-list
+		overflow-x hidden
 	.nc-list-item
 		padding 4px 15px
 		border-bottom 1px rgba(#000, 0.07) solid
@@ -264,8 +266,9 @@
 					opacity 1
 					width auto
 			.reveal-action-icon
-				height inherit
-				padding 15px 10px
+				display flex
+				align-items center
+				padding 10px
 				background linear-gradient(to right, #56ccf2, #2f80ed)
 				color #fff
 				cursor pointer
@@ -275,6 +278,8 @@
 				.normal
 					transition all 0.3s ease-in-out
 			.buttons-container
+				display flex
+				align-items center
 				width 0
 				opacity 0
 				background-color #eee
