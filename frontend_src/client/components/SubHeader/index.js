@@ -54,13 +54,13 @@ class SubHeader extends Component {
 				showSearchAndFilters: true,
 				enabledFilters: FILTERS[pathname].enabledFilters,
 				disabledFilters: FILTERS[pathname].disabledFilters
-			})
+			}, () => this.props.changeFilters([]))
 		} else {
 			this.setState({
 				showSearchAndFilters: false,
 				enabledFilters: [],
 				disabledFilters: []
-			})
+			}, () => this.props.changeFilters([]))
 		}
 	}
 
