@@ -244,6 +244,12 @@
 				box-shadow none
 			.actions
 				display flex
+		&.active
+			.actions
+				&.visible
+					+mobile()
+						opacity 1
+						width auto
 		.is-important
 			absolute top 5px right 5px
 			font-size 16px
@@ -261,10 +267,6 @@
 				opacity 0
 				width 0
 				transition opacity 0.7s ease-in-out
-			&.visible
-				+mobile()
-					opacity 1
-					width auto
 			.reveal-action-icon
 				display flex
 				align-items center

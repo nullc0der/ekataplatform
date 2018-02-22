@@ -13,7 +13,8 @@ class NotificationItem extends React.Component {
 
     onRevealActionClick = (e) => {
         this.setState(prevState => ({
-            actionButtonsRevealed: !prevState.actionButtonsRevealed
+            actionButtonsRevealed: !prevState.actionButtonsRevealed,
+            actionsVisible: false
         }))
     }
 
@@ -21,7 +22,7 @@ class NotificationItem extends React.Component {
         this.setState({
             actionButtonsRevealed: true,
             actionsVisible: true
-        })
+        }, () => this.props.setActiveNode(this.props.notification.id))
     }
 
     onSwipeRight = (e) => {
@@ -32,12 +33,12 @@ class NotificationItem extends React.Component {
     }
 
     render() {
-        const { notification } = this.props
+        const { notification, isActive } = this.props
 
         const { actionButtonsRevealed, actionsVisible } = this.state
 
         return (
-            <Swipeable className='nc-list-item flex-horizontal a-center'
+            <Swipeable className={`nc-list-item flex-horizontal a-center ${isActive ? 'active': ''}`}
                 onSwipedLeft={this.onSwipeLeft} onSwipedRight={this.onSwipeRight}>
                 <div className='details'>
                     <div className='name'><Linkify>{notification.notification}</Linkify></div>

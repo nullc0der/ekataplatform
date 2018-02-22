@@ -12,6 +12,10 @@ import NotificationItem from './NotificationItem'
 import c from './Members.styl'
 
 class NotificationCenter extends Component {
+
+	state = {
+		activeNode: null
+	}
 	
 	componentDidMount = () => {
 		const id = this.props.groupID
@@ -33,6 +37,12 @@ class NotificationCenter extends Component {
 		if (result.group_id == this.props.groupID) {
 			this.props.receivedJoinRequest(result.req)
 		}
+	}
+
+	setActiveNode = (id) => {
+		this.setState({
+			activeNode: id
+		})
 	}
 
 	render(){
@@ -82,7 +92,9 @@ class NotificationCenter extends Component {
 					{
 						notifications.map((x, i) => {
 							return (
-								<NotificationItem key={i} notification={x}/>
+								<NotificationItem 
+									key={i} notification={x} isActive={this.state.activeNode === x.id}
+									setActiveNode={this.setActiveNode}/>
 							)
 						})
 					}
