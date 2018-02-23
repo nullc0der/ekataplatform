@@ -25,11 +25,11 @@ class MembersPage extends Component {
 				<MembersManagement
 					className={managementClass}
 					groupID={this.props.params.id} />
-				{/* <div className='boxes-in-right flex-vertical'>
+				<div className='boxes-in-right flex-vertical'>
 					<NotificationCenter
 						className={notificationClass}
 						groupID={this.props.params.id} />
-				</div> */}
+				</div>
 			</div>
 		)
 	}
