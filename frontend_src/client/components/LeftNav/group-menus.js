@@ -15,7 +15,7 @@ const groupMenus = (permissions, id) => {
                 children: [
                     {
                         name: "Management",
-                        href: `/community/1/groups/${id}/members/`,
+                        href: `/community/1/groups/${id}/members/management`,
                         icon: 'fa fa-fw fa-users'
                     }
                 ]

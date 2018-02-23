@@ -9,7 +9,7 @@ import c from './Members.styl'
 import MembersManagement from './MembersManagement'
 import NotificationCenter from './NotificationCenter'
 
-class MembersPage extends Component {
+class MembersManagementPage extends Component {
 	render(){
 		const {
 			className
@@ -35,4 +35,4 @@ class MembersPage extends Component {
 	}
 }
 
-export default withStyles(c)(MembersPage)
+export default withStyles(c)(MembersManagementPage)

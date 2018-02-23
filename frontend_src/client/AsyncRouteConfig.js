@@ -18,11 +18,11 @@ export default function getAsyncRouteConfig(store, req, res){
 				cb(null, comp.default)
 			}, 'GroupsPage')
 		},
-		Groups_Members: (nextState, cb)=> {
+		Groups_Members_Management: (nextState, cb)=> {
 			require.ensure([], (require)=> {
-				var comp = require('./pages/Groups/Members')
+				var comp = require('./pages/Groups/MembersManagement')
 				cb(null, comp.default)
-			}, 'Groups-Members')
+			}, 'Groups-Members-Management')
 		},
 		PublicMembers: (nextState, cb) => {
 			require.ensure([], (require) => {
