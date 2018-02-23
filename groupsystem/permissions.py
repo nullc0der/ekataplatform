@@ -10,3 +10,17 @@ class IsAdminOfGroup(permissions.BasePermission):
             obj.super_admins.all() |
             obj.admins.all()
         )
+
+
+class IsMemberOfGroup(permissions.BasePermission):
+    """
+    checks if user is member of the group
+    """
+    def has_object_permission(self, request, view, obj):
+        return request.user in set(
+            obj.super_admins.all() |
+            obj.admins.all() |
+            obj.staffs.all() |
+            obj.moderators.all() |
+            obj.members.all()
+        )

@@ -20,7 +20,7 @@ class MembersManagement extends Component {
 
 	componentDidMount = () => {
 		const id = this.props.groupID
-		this.props.getMembers(`/api/groups/${id}/members/management/`)
+		this.props.getMembers(`/api/groups/${id}/members/`)
 		this.props.changeLastGroup(id)
 	}
 
@@ -43,15 +43,6 @@ class MembersManagement extends Component {
 		}
 	}
 
-	toggleSubscribedGroup = (memberID, subscribedGroups, toggledGroup) => {
-		const id = this.props.groupID
-		this.props.toggleSubscribedGroup(
-			`/api/groups/${id}/members/${memberID}/changerole/`,
-			subscribedGroups,
-			toggledGroup
-		)
-	}
-
 	renderOneMember = (member, i)=> {
 		const {groups} = this.props;
 		return <MemberItem
@@ -65,7 +56,6 @@ class MembersManagement extends Component {
 			avatarColor={member.user.user_avatar_color}
 			publicURL={member.user.public_url}
 			isStaff={member.user.is_staff}
-			toggleSubscribedGroup={this.toggleSubscribedGroup}
 			subscribed_groups={member.subscribed_groups}
 			isOnline={member.user.is_online}/>
 	}
@@ -104,18 +94,6 @@ class MembersManagement extends Component {
 					filteredItems.push(
 						finalList.filter(x => _.includes(x.subscribed_groups, 102)))
 					break
-				case 'subscribers':
-					filteredItems.push(
-						finalList.filter(x => _.includes(x.subscribed_groups, 101)))
-					break
-				case 'banned':
-					filteredItems.push(
-						finalList.filter(x => _.includes(x.subscribed_groups, 107)))
-					break
-				case 'blocked':
-					filteredItems.push(
-						finalList.filter(x => _.includes(x.subscribed_groups, 108)))
-					break
 			}
 		}
 		if (filteredItems.length) {
@@ -137,7 +115,7 @@ class MembersManagement extends Component {
 			<div className={cx}>
 				<div className='panel-header'>
 					<div className='header-inner'>
-						<h4> Member Management </h4>
+						<h4> Members </h4>
 					</div>
 				</div>
 				<div className='members-list'>
@@ -160,9 +138,6 @@ const mapStateToProps = (state)=> ({
 })
 
 const mapDispatchToProps = (dispatch)=> ({
-	toggleSubscribedGroup: (url, subscribedGroups, toggledGroup) => {
-		dispatch(memberActions.toggleSubscribedGroup(url, subscribedGroups, toggledGroup))
-	},
 	getMembers: (url) => {
 		dispatch(memberActions.getGroupMembers(url))
 	},

@@ -13,6 +13,18 @@ module.exports = {
             'admins',
             'moderators',
             'staffs',
+            'members'
+        ],
+        disabledFilters: [
+            'online'
+        ]
+    },
+    "community/groups/members/management": {
+        enabledFilters: [
+            'owners',
+            'admins',
+            'moderators',
+            'staffs',
             'members',
             'subscribers',
             'banned',

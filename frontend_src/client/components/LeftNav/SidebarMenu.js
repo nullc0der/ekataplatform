@@ -50,6 +50,7 @@ class SidebarMenu extends Component {
 		let $el = $(e.currentTarget)
 		let url = $el.attr('data-href')
 		let external = $el.attr('data-external')
+		this.toggleSubMenu(e)
 
 		if (!url){
 			$el = $el.parents('.is-clickable')
@@ -128,10 +129,10 @@ class SidebarMenu extends Component {
 									<span className='menu-name flex-horizontal a-center'>
 										<span className='flex-1'> {x.name} </span>
 										{
-											!!x.children && <div
+											!!x.children && (x.children[0] && <div
 												className='menu-dropdown-toggle'>
 												<i className='fa fa-fw fa-chevron-down'/>
-											</div>
+											</div>)
 										}
 									</span>
 								</div>
@@ -139,18 +140,18 @@ class SidebarMenu extends Component {
 									!!x.children && <div className='menu-dropdown'>
 										{
 											x.children.map((child, childIndex)=> (
-												<div
+												child ? <div
 													key={childIndex}
 													data-href={child.href}
 													onClick={this.navigate}
 													className={this.withActiveClass(child.href, 'sub-submenu-item is-clickable')}>
 													<span className='sub-submenu-icon'>
-														<i className={child.icon}/>
+														<i className={child.icon} />
 													</span>
 													<span className='sub-submenu-name'>
 														{child.name}
 													</span>
-												</div>
+												</div> : null
 											))
 										}
 									</div>

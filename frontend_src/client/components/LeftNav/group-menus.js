@@ -6,21 +6,26 @@ const groupMenus = (permissions, id) => {
         children: [
         ]
     }
-    if (permissions.indexOf(103) !== -1 || permissions.indexOf(104) !== -1) {
+    if (permissions.indexOf(102) !== -1) {
         menu = {
             ...menu, children: [...menu.children, {
                 name: "Members",
-                href: '',
+                href: `/community/1/groups/${id}/members`,
                 icon: 'fa fa-fw fa-shield',
                 children: [
+                    (permissions.indexOf(103) !== -1 || permissions.indexOf(104) !== -1) &&
                     {
                         name: "Management",
                         href: `/community/1/groups/${id}/members/management`,
                         icon: 'fa fa-fw fa-users'
                     }
                 ]
-            },
-            {
+            },]
+        }
+    }
+    if (permissions.indexOf(103) !== -1 || permissions.indexOf(104) !== -1) {
+        menu = {
+            ...menu, children: [...menu.children, {
                 name: "Settings",
                 href: `/community/1/groups/${id}/settings`,
                 icon: 'fa fa-fw fa-gear'

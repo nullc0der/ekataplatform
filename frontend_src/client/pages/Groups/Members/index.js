@@ -9,7 +9,7 @@ import c from './Members.styl'
 import MembersManagement from './MembersManagement'
 import NotificationCenter from './NotificationCenter'
 
-class MembersManagementPage extends Component {
+class MembersPage extends Component {
 	render(){
 		const {
 			className
@@ -21,18 +21,18 @@ class MembersManagementPage extends Component {
 		const notificationClass  = classnames(c.notifications, 'flex-1')
 		return (
 			<div className={cx}>
-				<Helmet title={`Group | ${this.props.params.id} | Members | Management`}/>
+				<Helmet title={`Group | ${this.props.params.id} | Members`}/>
 				<MembersManagement
 					className={managementClass}
 					groupID={this.props.params.id} />
-				<div className='boxes-in-right flex-vertical'>
+				{/* <div className='boxes-in-right flex-vertical'>
 					<NotificationCenter
 						className={notificationClass}
 						groupID={this.props.params.id} />
-				</div>
+				</div> */}
 			</div>
 		)
 	}
 }
 
-export default withStyles(c)(MembersManagementPage)
+export default withStyles(c)(MembersPage)

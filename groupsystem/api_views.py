@@ -22,7 +22,7 @@ from groupsystem.models import (
 )
 from groupsystem.forms import CreateGroupForm, EditGroupForm
 from groupsystem.tasks import task_create_emailgroup
-from groupsystem.permissions import IsAdminOfGroup
+from groupsystem.permissions import IsAdminOfGroup, IsMemberOfGroup
 from notification.utils import create_notification
 from publicusers.api_views import make_user_serializeable
 
@@ -262,7 +262,7 @@ def _calculate_subscribed_group(basicgroup, member):
     return subscribed_groups
 
 
-class GroupMembersView(APIView):
+class GroupMembersManagementView(APIView):
     """
     This view returns all members in group with
     their role
@@ -287,6 +287,40 @@ class GroupMembersView(APIView):
                 basicgroup.subscribers.all() |\
                 basicgroup.banned_members.all() |\
                 basicgroup.blocked_members.all()
+            for member in set(members):
+                data = {}
+                data['user'] = make_user_serializeable(member)
+                data['subscribed_groups'] = _calculate_subscribed_group(
+                    basicgroup, member)
+                datas.append(data)
+            serializer = GroupMemberSerializer(datas, many=True)
+            return Response(serializer.data)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class GroupMembersView(APIView):
+    """
+    This view returns all members in group with
+    their role
+
+    * Required logged in user
+    * Permission Required
+        * Member role
+    """
+    permission_classes = (IsAuthenticatedLegacy, IsMemberOfGroup)
+
+    def get(self, request, group_id, format=None):
+        try:
+            datas = []
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            request.session['basicgroup'] = basicgroup.id
+            members = basicgroup.super_admins.all() |\
+                basicgroup.admins.all() |\
+                basicgroup.moderators.all() |\
+                basicgroup.staffs.all() |\
+                basicgroup.members.all()
             for member in set(members):
                 data = {}
                 data['user'] = make_user_serializeable(member)
