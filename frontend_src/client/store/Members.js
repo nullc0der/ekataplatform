@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { actions as groupMemberNotificationActions } from './GroupMemberNotification'
 
 const MEMBER_GROUPS = [
 	{id: 101, name: 'Subscriber', icon: 'face'},
@@ -15,7 +16,6 @@ const MEMBER_GROUPS = [
 const INITIAL_STATE = {
 	list: [],
 	groups_list: MEMBER_GROUPS.map(x => x),
-	joinRequests: [],
 	accessDenied: false
 }
 
@@ -27,12 +27,6 @@ const toggleSubscribedGroupSuccess = (memberId, subscribedGroups)=> {
 		subscribedGroups
 	}
 }
-
-const JOIN_REQUEST_FETCH_SUCCESS = 'JOIN_REQUEST_FETCH_SUCCESS'
-const joinRequestFetchSuccess = (joinRequests) => ({
-	type: JOIN_REQUEST_FETCH_SUCCESS,
-	joinRequests
-})
 
 
 const GROUP_MEMBER_FETCH_SUCCESS = 'GROUP_MEMBER_FETCH_SUCCESS'
@@ -46,18 +40,6 @@ const JOIN_REQUEST_ACCEPTED = 'JOIN_REQUEST_ACCEPTED'
 const joinRequestAccepted = (member) => ({
 	type: JOIN_REQUEST_ACCEPTED,
 	member
-})
-
-const DELETE_JOIN_REQUEST = 'DELETE_JOIN_REQUEST'
-const deleteJoinRequest = (requestID) => ({
-	type: DELETE_JOIN_REQUEST,
-	requestID
-})
-
-const RECEIVED_JOIN_REQUEST_ON_WEBSOCKET = 'RECEIVED_JOIN_REQUEST_ON_WEBSOCKET'
-const receivedJoinRequestOnWebsocket = (joinRequest) => ({
-	type: RECEIVED_JOIN_REQUEST_ON_WEBSOCKET,
-	joinRequest
 })
 
 
@@ -104,19 +86,8 @@ const getGroupMembers = (url) => {
 	}
 }
 
-const getJoinRequests = (url) => {
-	return (dispatch) => {
-		request
-			.get(url)
-			.end((err, res) => {
-				if (res.ok) {
-					dispatch(joinRequestFetchSuccess(res.body))
-				}
-			})
-	}
-}
 
-const acceptDenyJoinRequest = (url, requestID, accepted) => {
+const acceptDenyJoinRequest = (url, notificationID, accepted) => {
 	return (dispatch) => {
 		request
 			.post(url)
@@ -125,10 +96,10 @@ const acceptDenyJoinRequest = (url, requestID, accepted) => {
 			.end((err, res) => {
 				if (res.ok) {
 					if (res.body.request_id) {
-						dispatch(deleteJoinRequest(res.body.request_id))
+						dispatch(groupMemberNotificationActions.removeMemberNotification(notificationID))
 					} else {
 						dispatch(joinRequestAccepted(res.body))
-						dispatch(deleteJoinRequest(requestID))
+						dispatch(groupMemberNotificationActions.removeMemberNotification(notificationID))
 					}
 				}	
 			})
@@ -138,9 +109,7 @@ const acceptDenyJoinRequest = (url, requestID, accepted) => {
 export const actions = {
 	toggleSubscribedGroup,
 	getGroupMembers,
-	getJoinRequests,
-	acceptDenyJoinRequest,
-	receivedJoinRequestOnWebsocket
+	acceptDenyJoinRequest
 }
 
 export default function MembersReducer(state = INITIAL_STATE, action){
@@ -157,23 +126,9 @@ export default function MembersReducer(state = INITIAL_STATE, action){
 					return x
 				})
 			}
-		case JOIN_REQUEST_FETCH_SUCCESS:
-			return {
-				...state, joinRequests: action.joinRequests
-			}
 		case JOIN_REQUEST_ACCEPTED:
 			return {
 				...state, list: [...state.list, action.member]
-			}
-		case DELETE_JOIN_REQUEST:
-			return {
-				...state, joinRequests: state.joinRequests.filter(
-					x => x.id !== action.requestID
-				)
-			}
-		case RECEIVED_JOIN_REQUEST_ON_WEBSOCKET:
-			return {
-				...state, joinRequests: [...state.joinRequests, action.joinRequest]
 			}
 		case CHANGE_ACCESS_DENIED:
 			return {

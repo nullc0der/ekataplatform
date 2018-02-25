@@ -7,7 +7,7 @@ import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Members.styl'
 
 import MembersManagement from './MembersManagement'
-import NotificationCenter from './NotificationCenter'
+import NotificationCenter from 'components/NotificationCenter'
 
 class MembersManagementPage extends Component {
 	render(){

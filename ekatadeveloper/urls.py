@@ -106,6 +106,8 @@ urlpatterns += [
         include('groupsystem.api_urls', namespace='groupsystem_api_urls')),
     url(r'^postissue/',
         include('taigaissuecreator.urls', namespace='taigaissue')),
+    url(r'^api/notification/',
+        include('notification.api_urls', namespace='notification')),
     url(r'^schema/$', get_schema_view(title='Ekata API')),
     url(r'^docs/', include_docs_urls(title='Ekata API'))
 ]

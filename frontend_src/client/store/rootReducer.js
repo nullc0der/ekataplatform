@@ -9,6 +9,8 @@ import ChatRooms from './Chatrooms'
 import Users from './Users'
 import GroupSettings from './GroupSettings'
 import GroupNotifications from './GroupNotifications'
+import GroupMemberNotification from './GroupMemberNotification'
+import UserNotifications from './UserNotifications'
 
 export default combineReducers({
 	router,
@@ -19,5 +21,7 @@ export default combineReducers({
 	ChatRooms,
 	Users,
 	GroupSettings,
-	GroupNotifications
+	GroupNotifications,
+	GroupMemberNotification,
+	UserNotifications
 });

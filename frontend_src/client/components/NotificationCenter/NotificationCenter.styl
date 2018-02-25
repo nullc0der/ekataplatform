@@ -1,0 +1,89 @@
+:local(.container)
+	.nc-header
+		text-align center
+		opacity 0.7
+		font-size 16px
+		padding 4px 12px
+	.nc-list
+		overflow-x hidden
+	.nc-list-item
+		padding 4px 15px
+		border-bottom 1px rgba(#000, 0.07) solid
+		position relative
+		&:first-child
+			border-top 1px rgba(#000, 0.07) solid
+		&:hover
+			shadow()
+			+mobile()
+				box-shadow none
+			.actions
+				display flex
+		&.active
+			.actions
+				&.visible
+					+mobile()
+						opacity 1
+						width auto
+		.is-important
+			absolute top 5px right 5px
+			font-size 16px
+		.name
+			font-size 16px
+			font-weight font_bold
+		.subtext
+			margin-top -4px
+			font-size 12px
+		.actions
+			display none
+			absolute right top -1px bottom -1px
+			+mobile() 
+				display flex
+				opacity 0
+				width 0
+				transition opacity 0.7s ease-in-out
+			.reveal-action-icon
+				display flex
+				align-items center
+				padding 10px
+				background linear-gradient(to right, #56ccf2, #2f80ed)
+				color #fff
+				cursor pointer
+				.reverse
+					transform rotate(180deg)
+					transition all 0.3s ease-in-out
+				.normal
+					transition all 0.3s ease-in-out
+			.buttons-container
+				display flex
+				align-items center
+				width 0
+				opacity 0
+				background-color #eee
+				transition opacity 0.7s ease-in-out
+				&.shown
+					width auto
+					opacity 1
+			.button
+				cursor pointer
+				font-size 20px
+				color #878787
+				padding 18px 10px
+	.nf-btn
+		border-radius 20px
+		margin-left 8px
+		background-color rgba(#000, 0.12)
+		padding 2px 12px
+		color #fff
+		cursor pointer
+		font-weight font_bold
+		transition all 0.32s ease-in-out
+		&.btn-accept
+			background-color #4E92DF
+		&.btn-deny
+			background-color #DB4D3F
+		&:hover
+			box-shadow 0 3px 8px 0 rgba(#000, 0.12)
+	.ui-avatar
+		height 36px !important
+		width 36px !important
+		margin-right 12px

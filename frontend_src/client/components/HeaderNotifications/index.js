@@ -1,62 +1,47 @@
 import {Component} from 'react'
 import classnames  from 'classnames'
-
+import { connect } from 'react-redux'
 
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import c from './HeaderNotifications.styl'
 
 import Dropdown from 'components/ui/Dropdown'
-
-import SAMPLE_NOTIFICATIONS from './sample-list'
+import NotificationItem from './NotificationItem'
+import { actions as userNotificationsActions } from 'store/UserNotifications'
 
 class HeaderNotifications extends Component {
 
     state = {
-        list: [],
-        isOpen: false
+        isOpen: false,
+        activeNode: null
     }
 
     componentDidMount = ()=> {
-        this.fetchNotifications()
-            .then(list => this.setState({list}))
-            .catch(err => this.setState({hasError: err.message }))
-    }
-
-    fetchNotifications = ()=> {
-        this.setState({isLoading: true, hasError: false})
-        return Promise.resolve(
-            SAMPLE_NOTIFICATIONS
-        )
+       this.props.fetchNotifications(
+           '/api/notification/'
+       )
     }
 
     toggleOpen = ()=> {
         this.setState({isOpen: !this.state.isOpen})
     }
 
-    renderOneNotication = (item, i)=> {
+    setActiveNode = (id) => {
+        this.setState({
+            activeNode: id
+        })
+    }
 
+    renderOneNotication = (x, i)=> {
         return (
-            <div
-                key={i}
-                className='notification-item flex-horizontal'>
-                <div className='notification-icon black-bg'>
-                    <img className='img-responsive'/>
-                </div>
-                <div className='flex-1'>
-                    <div className='notification-title'>
-                        {item.title}
-                    </div>
-                    <div className='notification-desc'>
-                        {item.desc}
-                    </div>
-                </div>
-            </div>
+            <NotificationItem
+                key={i} notification={x} isActive={this.state.activeNode === x.id}
+                setActiveNode={this.setActiveNode} />
         )
     }
 
     render(){
-        const {className} = this.props;
-        const {list} = this.state;
+        const {className, notifications} = this.props;
         const cx = classnames(c.container, className)
 
         const listClass = classnames('notification-list', {
@@ -80,11 +65,23 @@ class HeaderNotifications extends Component {
                 id='id-header-mini-notifications'
                 className={cx}
                 label={label}
-                items={list}
+                items={notifications}
                 dropdownFooter={dropdownFooter}
                 itemRenderer={this.renderOneNotication}/>
         )
     }
 }
 
-export default withStyles(c)(HeaderNotifications)
+const mapStateToProps = (state) => ({
+    notifications: state.UserNotifications.notifications
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchNotifications: (url) => {
+        dispatch(userNotificationsActions.fetchNotifications(url))
+    }
+})
+
+export default withStyles(c)(
+    connect(mapStateToProps, mapDispatchToProps)(HeaderNotifications)
+)

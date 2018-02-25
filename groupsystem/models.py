@@ -8,9 +8,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models.signals import m2m_changed
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 
 from versatileimagefield.fields import VersatileImageField
 from versatileimagefield.placeholder import OnDiscPlaceholderImage
+
+from notification.models import Notification
 
 # Create your models here.
 
@@ -293,6 +297,18 @@ class GroupMemberExtraPerm(models.Model):
     can_read_custom_role = models.BooleanField(default=False)
     can_update_custom_role = models.BooleanField(default=False)
     can_create_custom_role = models.BooleanField(default=False)
+
+
+class GroupMemberNotification(models.Model):
+    read = models.BooleanField(default=False)
+    user = models.ForeignKey(User,
+                             related_name='group_member_notifications')
+    basic_group = models.ForeignKey(BasicGroup)
+    content_type = models.ForeignKey(ContentType,
+                                     on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    mainfeed = GenericRelation(Notification)  # Main Notification feed
 
 
 def sync_users_to_dev(sender, instance, **kwargs):

@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^(?P<group_id>\d+)/settings/$',
         api_views.GroupSettingsView.as_view()),
     url(r'^(?P<group_id>\d+)/notifications/$',
-        api_views.GroupNotificationsView.as_view())
+        api_views.GroupNotificationsView.as_view()),
+    url(r'^(?P<group_id>\d+)/mynotifications/$',
+        api_views.GroupMemberNotificationView.as_view())
 ]

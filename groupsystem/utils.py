@@ -1,8 +1,26 @@
+import json
 import requests
 
 from django.contrib.auth.models import User
 from django.core import serializers
+
+from channels import Group
+
+from notification.utils import create_user_notification
+from publicusers.api_views import make_user_serializeable
 from eblast.models import EmailGroup
+from groupsystem.models import (
+    JoinRequest, GroupMemberNotification,
+    GroupNotification
+)
+
+
+def default(obj):
+    import datetime
+
+    if isinstance(obj, datetime.datetime):
+        return obj.isoformat()
+    raise TypeError('Not sure how to serialize %s' % (obj,))
 
 
 def create_emailgroup(basicgroup):
@@ -29,3 +47,63 @@ def send_serialized_user(pk_set):
     url = 'https://development.ekata.social/en/type/integrate_users/'
     res = requests.post(url, data=payload)
     return res.status_code
+
+
+def create_notification(obj, basicgroup):
+    if isinstance(obj, JoinRequest):
+        for admin in set(
+                basicgroup.super_admins.all() | basicgroup.admins.all()):
+            group_member_notification = GroupMemberNotification(
+                basic_group=basicgroup,
+                user=admin,
+                content_object=obj
+            )
+            group_member_notification.save()
+            websocket_data = {
+                'group_id': basicgroup.id,
+                'notification': get_serialized_notification(
+                    group_member_notification)
+            }
+            Group('%s-group-notification' % (admin.username)).send({
+                'text': json.dumps(websocket_data)
+            })
+            create_user_notification(admin, group_member_notification)
+    if isinstance(obj, GroupNotification):
+        for member in set(
+                basicgroup.super_admins.all() | basicgroup.admins.all() |
+                basicgroup.staffs.all() | basicgroup.moderators.all() |
+                basicgroup.members.all()):
+            group_member_notification = GroupMemberNotification(
+                basic_group=basicgroup,
+                user=member,
+                content_object=obj
+            )
+            group_member_notification.save()
+            websocket_data = {
+                'group_id': basicgroup.id,
+                'notification': get_serialized_notification(
+                    group_member_notification)
+            }
+            Group('%s-group-notification' % (member.username)).send({
+                'text': json.dumps(websocket_data, default=default)
+            })
+            create_user_notification(member, group_member_notification)
+
+
+def get_serialized_notification(notification):
+    data = {}
+    if notification.content_object:
+        if isinstance(notification.content_object, JoinRequest):
+            joinrequest = notification.content_object
+            data['type'] = 'joinrequest'
+            data['joinrequest_id'] = joinrequest.id
+            data['user'] = make_user_serializeable(joinrequest.user)
+            data['notification_id'] = notification.id
+        if isinstance(notification.content_object, GroupNotification):
+            group_notification = notification.content_object
+            data['type'] = 'groupnotification'
+            data['notification_id'] = notification.id
+            data['group_notification_id'] = group_notification.id
+            data['notification'] = group_notification.notification
+            data['created_on'] = group_notification.created_on
+    return data

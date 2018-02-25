@@ -1,8 +1,10 @@
 import json
 from django.template import loader
 from channels import Group
-from notification.models import UserNotification
+from notification.models import UserNotification, Notification
 from notification.onesignal import OneSignal
+from groupsystem.models import GroupNotification, JoinRequest
+from publicusers.api_views import make_user_serializeable
 
 
 def create_notification(
@@ -80,3 +82,39 @@ def create_notification(
             player_ids.append(onesignal.onesignalid)
         push = OneSignal(message=message, player_ids=player_ids)
         push.send_message()
+
+
+def create_user_notification(user, obj):
+    notification = Notification(user=user, content_object=obj)
+    notification.save()
+
+
+def get_serialized_group(basic_group):
+    return {
+        'name': basic_group.name,
+        'id': basic_group.id,
+        'logo_url': basic_group.logo.thumbnail['36x36'].url
+    }
+
+
+def get_serialized_notification(notification):
+    data = {}
+    if notification.content_object:
+        if isinstance(notification.content_object.content_object, JoinRequest):
+            joinrequest = notification.content_object.content_object
+            data['type'] = 'joinrequest'
+            data['groupname'] = joinrequest.basic_group.name
+            data['joinrequest_id'] = joinrequest.id
+            data['user'] = make_user_serializeable(joinrequest.user)
+            data['notification_id'] = notification.id
+        if isinstance(
+                notification.content_object.content_object, GroupNotification):
+            group_notification = notification.content_object.content_object
+            data['type'] = 'groupnotification'
+            data['notification_id'] = notification.id
+            data['group_notification_id'] = group_notification.id
+            data['notification'] = group_notification.notification
+            data['created_on'] = group_notification.created_on
+            data['basic_group'] = get_serialized_group(
+                group_notification.basic_group)
+    return data

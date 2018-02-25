@@ -8,8 +8,6 @@ from rest_framework import parsers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from channels import Group
-
 from profilesystem.permissions import IsAuthenticatedLegacy
 from groupsystem.serializers import (
     GroupSerializer, GroupMemberSerializer,
@@ -18,10 +16,12 @@ from groupsystem.serializers import (
 from groupsystem.models import (
     BasicGroup,
     JoinRequest,
-    GroupNotification
+    GroupNotification,
+    GroupMemberNotification
 )
 from groupsystem.forms import CreateGroupForm, EditGroupForm
-from groupsystem.tasks import task_create_emailgroup
+from groupsystem.tasks import task_create_emailgroup, task_create_notification
+from groupsystem.utils import get_serialized_notification
 from groupsystem.permissions import IsAdminOfGroup, IsMemberOfGroup
 from notification.utils import create_notification
 from publicusers.api_views import make_user_serializeable
@@ -118,17 +118,7 @@ def process_join_request(basicgroup, user):
             user=user
         )
         data['success'] = True
-        websocket_data = {
-             'group_id': basicgroup.id,
-             'req': {
-                 'id': joinrequest.id,
-                 'user': make_user_serializeable(joinrequest.user)
-             }
-         }
-        for admin in set(basicgroup.super_admins.all() | basicgroup.admins.all()):
-            Group('%s-group-notification' % (admin.username)).send({
-                'text': json.dumps(websocket_data)
-            })
+        task_create_notification.delay(joinrequest, basicgroup)
     if basicgroup.join_status == 'closed':
         data['success'] = False
         data['message'] = 'You can join this group by staff invitation only'
@@ -609,10 +599,11 @@ class GroupNotificationsView(APIView):
                 data=request.data
             )
             if serializer.is_valid():
-                serializer.save(
+                notification = serializer.save(
                     creator=request.user,
                     basic_group=basicgroup
                 )
+                task_create_notification.delay(notification, basicgroup)
                 return Response(
                     serializer.data
                 )
@@ -658,6 +649,56 @@ class GroupNotificationsView(APIView):
             return Response(
                 status=status.HTTP_204_NO_CONTENT
             )
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class GroupMemberNotificationView(APIView):
+    """
+    This view returns all unread group notification
+    for the member
+
+    * Permission Required:
+        * Logged in user
+    """
+
+    permission_classes = (IsAuthenticatedLegacy, )
+
+    def get(self, request, group_id, format=None):
+        try:
+            datas = []
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            notifications = GroupMemberNotification.objects.filter(
+                basic_group=basicgroup,
+                user=request.user,
+                read=False
+            )
+            for notification in notifications:
+                data = get_serialized_notification(notification)
+                if data:
+                    datas.append(data)
+            return Response(datas)
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+    def put(self, request, group_id, format=None):
+        try:
+            notification_id = request.data.get('id', None)
+            notification = GroupMemberNotification.objects.get(
+                id=notification_id
+            )
+            if notification.user == request.user:
+                notification.read = True
+                notification.save()
+                for mainfeed in notification.mainfeed.all():
+                    mainfeed.read = True
+                    mainfeed.save()
+                return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_403_FORBIDDEN)
         except ObjectDoesNotExist:
             return Response(
                 status=status.HTTP_404_NOT_FOUND
