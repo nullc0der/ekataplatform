@@ -28,5 +28,11 @@ urlpatterns = [
     url(r'^(?P<group_id>\d+)/notifications/$',
         api_views.GroupNotificationsView.as_view()),
     url(r'^(?P<group_id>\d+)/mynotifications/$',
-        api_views.GroupMemberNotificationView.as_view())
+        api_views.GroupMemberNotificationView.as_view()),
+    url(r'^(?P<group_id>\d+)/invitemember/$',
+        api_views.InviteMemberView.as_view()),
+    url(r'^acceptinvite/$',
+        api_views.InviteAction.as_view()),
+    url(r'^(?P<group_id>\d+)/requestdelete/$',
+        api_views.RequestDeleteGroup.as_view())
 ]

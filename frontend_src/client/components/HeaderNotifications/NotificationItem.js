@@ -34,52 +34,23 @@ class NotificationItem extends React.Component {
         })
     }
 
-    renderGroupNotification = (notification) => {
+    renderGroupInvite = (notification) => {
         const { isActive } = this.props
 
         const { actionButtonsRevealed, actionsVisible } = this.state
         return (
             <Swipeable className={`nc-list-item flex-horizontal a-center ${isActive ? 'active' : ''}`}
                 onSwipedLeft={this.onSwipeLeft} onSwipedRight={this.onSwipeRight}>
-                {
-                    notification.basic_group.logo_url ?
-                        <img className='avatar-image rounded' src={notification.basic_group.logo_url} /> :
-                        <Avatar name={notification.basic_group.name} />
-                }
-                <div className='details'>
-                    <div className='name'><Linkify>{notification.notification}</Linkify></div>
-                    <div className='subtext'>{new Date(notification.created_on).toLocaleString()}</div>
-                </div>
-                <div className={`actions ${actionsVisible ? 'visible' : ''}`}>
-                    <div className='reveal-action-icon' onClick={this.onRevealActionClick}>
-                        <i className={`fa fa-arrow-left ${actionButtonsRevealed ? 'reverse' : 'normal'}`}></i>
-                    </div>
-                    <div className={`buttons-container ${actionButtonsRevealed ? 'shown' : ''}`}>
-                        <i className='material-icons button' title="mark as read"
-                            onClick={() => this.props.setNotificationRead(notification.notification_id)}>check</i>
-                    </div>
-                </div>
-            </Swipeable>
-        )
-    }
-
-    renderJoinRequest = (notification) => {
-        const { isActive } = this.props
-
-        const { actionButtonsRevealed, actionsVisible } = this.state
-        return (
-            <Swipeable className={`nc-list-item flex-horizontal a-center ${isActive ? 'active' : ''}`}
-                onSwipedLeft={this.onSwipeLeft} onSwipedRight={this.onSwipeRight}>
-                <a href={notification.user.public_url}>
+                <a href={notification.sender.public_url}>
                     {
-                        notification.user.avatar_url ?
-                            <img className='avatar-image rounded' src={notification.user.avatar_url} /> :
-                            <Avatar name={notification.user.fullname || notification.user.username} bgcolor={notification.user.user_avatar_color} />
+                        notification.sender.user_image_url ?
+                            <img className='avatar-image rounded' src={notification.sender.user_image_url} /> :
+                            <Avatar name={notification.sender.fullname || notification.sender.username} bgcolor={notification.sender.user_avatar_color} />
                     }
                 </a>
                 <div className='details'>
-                    <div className='name'> {notification.user.fullname || notification.user.username} </div>
-                    <div className='subtext'> Sent a request to join to group {notification.groupname} </div>
+                    <div className='name'> {notification.sender.fullname || notification.sender.username} </div>
+                    <div className='subtext'> Sent a invitation to group {notification.group.name} </div>
                 </div>
                 <div className={`actions ${actionsVisible ? 'visible' : ''}`}>
                     <div className='reveal-action-icon' onClick={this.onRevealActionClick}>
@@ -89,11 +60,11 @@ class NotificationItem extends React.Component {
                         <i
                             className='material-icons button'
                             title="accept"
-                            onClick={() => this.props.acceptDenyJoinRequest(notification.notification_id, notification.joinrequest_id, true)}>group_add</i>
+                            onClick={(e) => this.props.acceptDenyInvite(e, notification.inviteid, true, notification.id)}>check</i>
                         <i
                             className='material-icons button'
                             title="deny"
-                            onClick={() => this.props.acceptDenyJoinRequest(notification.notification_id, notification.joinrequest_id, false)}>clear</i>
+                            onClick={(e) => this.props.acceptDenyInvite(e, notification.inviteid, false, notification.id)}>clear</i>
                     </div>
                 </div>
             </Swipeable>
@@ -106,11 +77,8 @@ class NotificationItem extends React.Component {
 
         let notificationElement = null
         switch(notification.type) {
-            case 'groupnotification':
-                notificationElement = this.renderGroupNotification(notification)
-                break
-            case 'joinrequest':
-                notificationElement = this.renderJoinRequest(notification)
+            case 'groupinvite':
+                notificationElement = this.renderGroupInvite(notification)
                 break
         }
 

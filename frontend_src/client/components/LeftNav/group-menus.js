@@ -26,8 +26,8 @@ const groupMenus = (permissions, id) => {
     if (permissions.indexOf(103) !== -1 || permissions.indexOf(104) !== -1) {
         menu = {
             ...menu, children: [...menu.children, {
-                name: "Settings",
-                href: `/community/1/groups/${id}/settings`,
+                name: "Profile",
+                href: `/community/1/groups/${id}/profile`,
                 icon: 'fa fa-fw fa-gear'
             }]
         }

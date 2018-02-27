@@ -23,7 +23,7 @@ export default function getRoutes(store, req, res){
 				<IndexRedirect to='members'/>
 				<Route path='members' getComponent={Pages.Groups_Members} />
 				<Route path='members/management' getComponent={Pages.Groups_Members_Management}/>
-				<Route path='settings' getComponent={Pages.Groups_Settings}/>
+				<Route path='profile' getComponent={Pages.Groups_Settings}/>
 			</Route>
 			<Route path='members' getComponent={Pages.PublicMembers} />
 			<Route path='error'>

@@ -11,6 +11,18 @@ const notificationFetchSuccess = (notifications) => ({
     notifications
 })
 
+const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION'
+const removeNotification = (id) => ({
+    type: REMOVE_NOTIFICATION,
+    id
+})
+
+const RECEIVED_USER_WEBSOCKET_NOTIFICATION = 'RECEIVED_USER_WEBSOCKET_NOTIFICATION'
+const receivedWebsocketNotification = (notification) => ({
+    type: RECEIVED_USER_WEBSOCKET_NOTIFICATION,
+    notification
+})
+
 const fetchNotifications = (url) => {
     return (dispatch) => {
         request
@@ -24,7 +36,9 @@ const fetchNotifications = (url) => {
 }
 
 export const actions = {
-    fetchNotifications
+    fetchNotifications,
+    removeNotification,
+    receivedWebsocketNotification
 }
 
 export default function UserNotificationsReducer(state=INITIAL_STATE, action) {
@@ -32,6 +46,14 @@ export default function UserNotificationsReducer(state=INITIAL_STATE, action) {
         case NOTIFICATION_FETCH_SUCCESS:
             return {
                 ...state, notifications: action.notifications
+            }
+        case REMOVE_NOTIFICATION:
+            return {
+                ...state, notifications: state.notifications.filter(x => x.id !== action.id)
+            }
+        case RECEIVED_USER_WEBSOCKET_NOTIFICATION:
+            return {
+                ...state, notifications: [...state.notifications, action.notification]
             }
         default:
             return state

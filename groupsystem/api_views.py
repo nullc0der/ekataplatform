@@ -1,7 +1,9 @@
 import json
+from datetime import timedelta
 
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.timezone import now
 
 from rest_framework import status
 from rest_framework import parsers
@@ -17,13 +19,15 @@ from groupsystem.models import (
     BasicGroup,
     JoinRequest,
     GroupNotification,
-    GroupMemberNotification
+    GroupMemberNotification,
+    GroupInvite,
+    InviteAccept
 )
 from groupsystem.forms import CreateGroupForm, EditGroupForm
 from groupsystem.tasks import task_create_emailgroup, task_create_notification
 from groupsystem.utils import get_serialized_notification
 from groupsystem.permissions import IsAdminOfGroup, IsMemberOfGroup
-from notification.utils import create_notification
+from notification.utils import create_user_notification
 from publicusers.api_views import make_user_serializeable
 
 
@@ -43,7 +47,9 @@ def _make_group_serializable(group):
         'subscribers': [user.username for user in group.subscribers.all()],
         'auto_approve_post': group.auto_approve_post,
         'auto_approve_comment': group.auto_approve_comment,
-        'join_status': group.join_status
+        'join_status': group.join_status,
+        'flagged_for_deletion': group.flagged_for_deletion,
+        'flagged_for_deletion_on': group.flagged_for_deletion_on
     }
     return data
 
@@ -699,6 +705,188 @@ class GroupMemberNotificationView(APIView):
                     mainfeed.save()
                 return Response(status=status.HTTP_200_OK)
             return Response(status=status.HTTP_403_FORBIDDEN)
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+def get_platform_users(basicgroup, searchstring):
+    final_list = []
+    group_members = set(
+        basicgroup.super_admins.all() |
+        basicgroup.admins.all() |
+        basicgroup.moderators.all() |
+        basicgroup.staffs.all() |
+        basicgroup.members.all() |
+        basicgroup.banned_members.all() |
+        basicgroup.blocked_members.all())
+    platform_users = User.objects.filter(
+        username__istartswith=searchstring)
+    for platform_user in platform_users:
+        if platform_user not in group_members:
+            final_list.append(platform_user)
+    return final_list
+
+
+def get_serialized_platform_user(basicgroup, searchstring):
+    datas = []
+    platform_users = get_platform_users(basicgroup, searchstring)
+    for platform_user in platform_users:
+        data = make_user_serializeable(platform_user)
+        data['is_invited'] = False
+        for invite in platform_user.received_invites.all():
+            if invite.basic_group == basicgroup:
+                data['is_invited'] = True
+        datas.append(data)
+    return datas
+
+
+class InviteMemberView(APIView):
+    """
+    * Permission Required
+        * Logged in user
+        * member of group
+    """
+
+    permission_classes = (IsAuthenticatedLegacy, IsMemberOfGroup)
+
+    def get(self, request, group_id, format=None):
+        """
+        This method returns all platform user except member of
+        group if the requested user is a member or admin(This
+        depends on join_status) of the group
+        """
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            group_staffs = set(
+                basicgroup.super_admins.all() |
+                basicgroup.admins.all() |
+                basicgroup.staffs.all())
+            group_members = set(
+                basicgroup.super_admins.all() |
+                basicgroup.admins.all() |
+                basicgroup.moderators.all() |
+                basicgroup.staffs.all() |
+                basicgroup.members.all())
+            if basicgroup.join_status == 'invite'\
+                    and request.user in group_members:
+                searchstring = request.GET.get('query', None)
+                datas = get_serialized_platform_user(basicgroup, searchstring)
+                return Response(datas)
+            if basicgroup.join_status == 'closed'\
+                    and request.user in group_staffs:
+                searchstring = request.GET.get('query', None)
+                datas = get_serialized_platform_user(basicgroup, searchstring)
+                return Response(datas)
+            return Response(
+                status=status.HTTP_403_FORBIDDEN
+            )
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+    def post(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            group_staffs = set(
+                basicgroup.super_admins.all() |
+                basicgroup.admins.all() |
+                basicgroup.staffs.all())
+            group_members = set(
+                basicgroup.super_admins.all() |
+                basicgroup.admins.all() |
+                basicgroup.moderators.all() |
+                basicgroup.staffs.all() |
+                basicgroup.members.all())
+            if basicgroup.join_status == 'invite'\
+                    and request.user in group_members:
+                receiver = User.objects.get(id=request.data.get('user_id'))
+                groupinvite = GroupInvite(
+                    basic_group=basicgroup,
+                    sender=request.user,
+                    reciever=receiver
+                )
+                groupinvite.save()
+                create_user_notification(receiver, groupinvite)
+                return Response('ok')
+            if basicgroup.join_status == 'closed'\
+                    and request.user in group_staffs:
+                receiver = User.objects.get(id=request.data.get('user_id'))
+                groupinvite = GroupInvite(
+                    basic_group=basicgroup,
+                    sender=request.user,
+                    reciever=receiver
+                )
+                groupinvite.save()
+                create_user_notification(receiver, groupinvite)
+                return Response('ok')
+            return Response(
+                status=status.HTTP_403_FORBIDDEN
+            )
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class InviteAction(APIView):
+    """
+    This view is used for accept/deny
+    a invitation
+    * Permission required
+        * Logged in user
+    """
+
+    permission_classes = (IsAuthenticatedLegacy, )
+
+    def post(self, request, format=None):
+        try:
+            groupinvite = GroupInvite.objects.get(
+                id=request.data.get('invite_id'))
+            message = "You've denied invite"
+            if request.data.get('accepted'):
+                groupinvite.basic_group.members.add(groupinvite.reciever)
+                inviteaccept = InviteAccept(
+                    basic_group=groupinvite.basic_group,
+                    sender=groupinvite.sender,
+                    user=groupinvite.reciever
+                )
+                inviteaccept.save()
+                task_create_notification.delay(
+                    inviteaccept, groupinvite.basic_group)
+                message = "You've accepted invite"
+            groupinvite.delete()
+            return Response({'message': message})
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class RequestDeleteGroup(APIView):
+    """
+    This view is used to request to delete
+    a group
+    * Permission Required
+        * Logged in User
+        * User admin of group
+    """
+
+    permission_classes = (IsAuthenticatedLegacy, IsAdminOfGroup)
+
+    def post(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            self.check_object_permissions(request, basicgroup)
+            if not basicgroup.flagged_for_deletion:
+                basicgroup.flagged_for_deletion = True
+                basicgroup.flagged_for_deletion_on = now() + timedelta(days=30)
+                basicgroup.save()
+            return Response(basicgroup.flagged_for_deletion_on)
         except ObjectDoesNotExist:
             return Response(
                 status=status.HTTP_404_NOT_FOUND

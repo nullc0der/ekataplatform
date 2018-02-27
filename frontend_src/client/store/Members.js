@@ -2,14 +2,14 @@ import request from 'superagent'
 import { actions as groupMemberNotificationActions } from './GroupMemberNotification'
 
 const MEMBER_GROUPS = [
-	{id: 101, name: 'Subscriber', icon: 'face'},
-	{id: 102, name: 'Member', icon: 'group_add'},
-	{id: 103, name: 'Owner', icon: 'local_library'},
-	{id: 104, name: 'Administrator', icon: 'spellcheck'},
-	{id: 105, name: 'Moderator', icon: 'verified_user'},
-	{id: 106, name: 'Staff', icon: 'touch_app'},
-	{id: 107, name: 'Ban', icon: 'remove_circle_outline'},
-	{id: 108, name: 'Block', icon: 'block'},
+	{id: 101, name: 'Subscriber', icon: { type: 'material', name: 'face'}},
+	{ id: 102, name: 'Member', icon: { type: 'fa', name: 'users' }},
+	{ id: 103, name: 'Owner', icon: { type: 'material', name: 'local_library' }},
+	{ id: 104, name: 'Administrator', icon: { type: 'material', name: 'spellcheck' }},
+	{ id: 105, name: 'Moderator', icon: { type: 'material', name: 'verified_user' }},
+	{ id: 106, name: 'Staff', icon: { type: 'material', name: 'touch_app' }},
+	{ id: 107, name: 'Ban', icon: { type: 'material', name: 'remove_circle_outline' }},
+	{ id: 108, name: 'Block', icon: { type: 'material', name: 'block' }},
 ]
 
 

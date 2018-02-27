@@ -28,7 +28,9 @@ class NotificationView(APIView):
             read=False
         )
         for notification in notifications:
-            datas.append(get_serialized_notification(notification))
+            data = get_serialized_notification(notification)
+            if data:
+                datas.append(data)
         return Response(datas)
 
 

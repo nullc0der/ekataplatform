@@ -3,7 +3,8 @@ from django.template import loader
 from channels import Group
 from notification.models import UserNotification, Notification
 from notification.onesignal import OneSignal
-from groupsystem.models import GroupNotification, JoinRequest
+from groupsystem.models import (
+    GroupNotification, JoinRequest, GroupInvite)
 from publicusers.api_views import make_user_serializeable
 
 
@@ -87,6 +88,12 @@ def create_notification(
 def create_user_notification(user, obj):
     notification = Notification(user=user, content_object=obj)
     notification.save()
+    websocket_message = {
+        'notification': get_serialized_notification(notification)
+    }
+    Group('%s-notifications' % user.username).send({
+        "text": json.dumps(websocket_message)
+    })
 
 
 def get_serialized_group(basic_group):
@@ -100,21 +107,11 @@ def get_serialized_group(basic_group):
 def get_serialized_notification(notification):
     data = {}
     if notification.content_object:
-        if isinstance(notification.content_object.content_object, JoinRequest):
-            joinrequest = notification.content_object.content_object
-            data['type'] = 'joinrequest'
-            data['groupname'] = joinrequest.basic_group.name
-            data['joinrequest_id'] = joinrequest.id
-            data['user'] = make_user_serializeable(joinrequest.user)
-            data['notification_id'] = notification.id
-        if isinstance(
-                notification.content_object.content_object, GroupNotification):
-            group_notification = notification.content_object.content_object
-            data['type'] = 'groupnotification'
-            data['notification_id'] = notification.id
-            data['group_notification_id'] = group_notification.id
-            data['notification'] = group_notification.notification
-            data['created_on'] = group_notification.created_on
-            data['basic_group'] = get_serialized_group(
-                group_notification.basic_group)
+        if isinstance(notification.content_object, GroupInvite):
+            groupinvite = notification.content_object
+            data['type'] = 'groupinvite'
+            data['inviteid'] = groupinvite.id
+            data['id'] = notification.id
+            data['sender'] = make_user_serializeable(groupinvite.sender)
+            data['group'] = get_serialized_group(groupinvite.basic_group)
     return data

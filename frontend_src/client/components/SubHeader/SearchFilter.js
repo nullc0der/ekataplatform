@@ -68,14 +68,14 @@ class SearchFilter extends React.Component {
                                 disabledFilters &&
                                 disabledFilters.map((x, i) => {
                                     return (
-                                        <button
+                                        <div
                                             key={i}
                                             className={classnames(
                                                 "filter-button", "is-disabled",
                                                 {
                                                     "single": (i === disabledFilters.length - 1 && i % 2 === 0)
                                                 })}
-                                            onClick={(e) => filterButtonClicked(e, x)}>{x}</button>
+                                            onClick={(e) => filterButtonClicked(e, x)}>{x}</div>
                                     )
                                 })
                             }

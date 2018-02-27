@@ -2,20 +2,24 @@ import {Component} from 'react'
 import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import {connect}   from 'react-redux'
+import request from 'superagent'
 import _ from 'lodash'
 import withRouter from 'react-router/lib/withRouter'
 
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Members.styl'
 import MemberItem from './MemberItem'
+import PlatformUser from './PlatformUser'
 
 import {actions as memberActions} from 'store/Members'
 import {actions as groupActions} from 'store/Groups'
+import {actions as commonActions} from 'store/Common'
 
 class MembersManagement extends Component {
 
 	state = {
-		list: []
+		list: [],
+		platformUserList: []
 	}
 
 	componentDidMount = () => {
@@ -60,7 +64,41 @@ class MembersManagement extends Component {
 			isOnline={member.user.is_online}/>
 	}
 
+	renderOnePlatformuser = (user, i) => {
+		return <PlatformUser
+			key={i}
+			userId={user.id}
+			fullName={user.fullname}
+			userName={user.username}
+			avatarUrl={user.user_image_url}
+			avatarColor={user.user_avatar_color}
+			publicURL={user.public_url}
+			isInvited={user.is_invited}
+			inviteUser={this.inviteUser} />
+	}
+
+	getEkataMembers = (searchString) => {
+		if(searchString.length > 3) {
+			request
+				.get(`/api/groups/${this.props.groupID}/invitemember/?query=${searchString}`)
+				.end((err, res) => {
+					if (res.ok) {
+						this.setState({
+							platformUserList: res.body
+						})
+					}
+				})
+		}
+	}
+
 	setUsers = (list, onlineUsers, searchString='', filters=[]) => {
+		if (filters.indexOf('Ekata Members') !== -1 && searchString) {
+			this.getEkataMembers(searchString)
+		} else {
+			this.setState({
+				platformUserList: []
+			})
+		}
 		let finalList = list.map(
 			x => _.includes(onlineUsers, x.user.username)
 			? {...x, user: {...x.user, is_online: true}}
@@ -104,6 +142,21 @@ class MembersManagement extends Component {
 		})
 	}
 
+	inviteUser = (e, id) => {
+		request
+			.post(`/api/groups/${this.props.groupID}/invitemember/`)
+			.set('X-CSRFToken', window.django.csrf)
+			.send({ 'user_id': id })
+			.end((err, res) => {
+				if (res.ok) {
+					this.props.addNotification({
+						'message': 'User invited',
+						'level': 'success'
+					})
+				}
+			})
+	}
+
 	render(){
 		const {
 			className
@@ -119,6 +172,9 @@ class MembersManagement extends Component {
 					</div>
 				</div>
 				<div className='members-list'>
+					{
+						this.state.platformUserList.map(this.renderOnePlatformuser)
+					}
 					{
 						this.state.list.map(this.renderOneMember)
 					}
@@ -143,6 +199,9 @@ const mapDispatchToProps = (dispatch)=> ({
 	},
 	changeLastGroup: (id) => {
 		dispatch(groupActions.changeLastGroup(id))
+	},
+	addNotification: (notification) => {
+		dispatch(commonActions.addNotification(notification))
 	}
 })
 

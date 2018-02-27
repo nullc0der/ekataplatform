@@ -1,7 +1,9 @@
 import {Component} from 'react'
 import classnames  from 'classnames'
 import {connect} from 'react-redux'
+import request from 'superagent'
 import Dropzone from 'react-dropzone'
+import Modal from 'components/ui/Modal'
 
 import {actions as settingsActions} from 'store/GroupSettings'
 import {actions as groupActions} from 'store/Groups'
@@ -27,7 +29,10 @@ class GroupCard extends Component {
 			groupType: null,
 			categoryDropdownVisible: false,
 			logo: null,
-			header: null
+			header: null,
+			deleteGroupModalShown: false,
+			flaggedForDelete: false,
+			flaggedForDeleteOn: null
 		}
 	}
 
@@ -42,9 +47,20 @@ class GroupCard extends Component {
 			const groupType = this.props.group.group_type
 			this.setState({
 				groupType: this.groupTypes.indexOf(groupType) === -1 ? 9 : this.groupTypes.indexOf(groupType) + 1,
-				otherGroupType: this.groupTypes.indexOf(groupType) === -1 ? groupType : ""
+				otherGroupType: this.groupTypes.indexOf(groupType) === -1 ? groupType : "",
+				flaggedForDelete: this.props.group.flagged_for_deletion,
+				flaggedForDeleteOn: this.calculateDays(this.props.group.flagged_for_deletion_on)
 			})
 		}
+	}
+
+	calculateDays = (deleteDate) => {
+		let days = null
+		if(deleteDate) {
+			const timeDiff = Math.abs(new Date(deleteDate).getTime() - new Date().getTime())
+			days = Math.ceil(timeDiff / (1000 * 3600 * 24))
+		}
+		return days
 	}
 
 	onContentEditableBlurred = () => {
@@ -113,6 +129,26 @@ class GroupCard extends Component {
 		this.setState({
 			header: acceptedFile
 		}, () => this.onContentEditableBlurred())
+	}
+	
+	toggleDeleteGroupModal = (e) => {
+		this.setState(prevState => ({
+			deleteGroupModalShown: !prevState.deleteGroupModalShown
+		}))
+	}
+
+	handleConfirmDelete = (e) => {
+		request
+			.post(`/api/groups/${this.props.groupID}/requestdelete/`)
+			.set('X-CSRFToken', window.django.csrf)
+			.end((err, res) => {
+				if (res.ok) {
+					this.setState({
+						flaggedForDelete: true,
+						flaggedForDeleteOn: this.calculateDays(res.body)
+					})
+				}
+			})
 	}
 
 	render(){
@@ -215,10 +251,32 @@ class GroupCard extends Component {
 
 					</div>
 				</div>
-				<div className='card-action'>
-					&nbsp;
-					{/* {cardActionTexts[group.join_status]} */}
+				<div className='card-action' onClick={this.toggleDeleteGroupModal} style={{cursor: 'pointer'}}>
+					{this.state.flaggedForDeleteOn ? 'Group will be deleted in ' + this.state.flaggedForDeleteOn + ' Day' : 'Delete This group'}
 				</div>
+				<Modal
+					id="deleteGroupModal"
+					isOpen={this.state.deleteGroupModalShown}
+					title="Delete group"
+					onBackdropClick={this.toggleDeleteGroupModal}>
+					<div className='delete-modal-content'>
+						{
+							!this.state.flaggedForDelete ? 
+							<div>
+								<p>You are about to delete your group from this community<br />do you wish to archived your group ?</p>
+								<div className="flex-horizontal btn-group">
+									<button className='btn btn-yes flex-1' onClick={this.handleConfirmDelete}>Yes</button>
+									<button className='btn btn-no flex-1' onClick={this.toggleDeleteGroupModal}>No</button>
+								</div>
+							</div> :
+							<div>
+								<p>Your group will be automatically removed in {this.state.flaggedForDeleteOn ? this.state.flaggedForDeleteOn : 30} days<br />
+									if you did not wish to do this then you may contact<br />
+									Ekata staff before it is removed permanently </p>
+							</div>
+						}
+					</div>
+				</Modal>
 			</div>
 		)
 	}

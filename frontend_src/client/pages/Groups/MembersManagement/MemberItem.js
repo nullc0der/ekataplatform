@@ -31,7 +31,7 @@ class MemberItem extends Component {
 			onClick={(e)=> this.toggleGroup(group)}
 			className={cx}>
 			<div className='group-icon'>
-				<i className='material-icons'> {group.icon} </i>
+				{group.icon.type === 'material' ? <i className='material-icons'> {group.icon.name} </i> : <i className={`fa fa-${group.icon.name}`}></i>} 
 			</div>
 			<div className='group-name'> {group.name} </div>
 		</div>
@@ -42,10 +42,10 @@ class MemberItem extends Component {
 		const g = find(groups, {id: group_id}) || {}
 
 		const name = g.name || ''
-		const icon = g.icon || ''
+		const icon = g.icon || {}
 
 		return <div key={i} className={`group-item flex-horizontal a-center j-center group-id-${g.id}`} title={name}>
-			<i className='material-icons'> {icon} </i>
+			{icon.type === 'material' ? <i className='material-icons'> {icon.name} </i> : <i className={`fa fa-${icon.name}`}></i>}
 		</div>
 	}
 

@@ -12,6 +12,6 @@ urlpatterns = [
         r'^(?P<group_id>\d+)/members/management/$',
         new_views.GroupAdminViews.as_view()),
     url(
-        r'^(?P<group_id>\d+)/settings/$',
+        r'^(?P<group_id>\d+)/profile/$',
         new_views.GroupAdminViews.as_view())
 ]

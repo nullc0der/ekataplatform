@@ -92,6 +92,8 @@ class BasicGroup(models.Model):
     auto_approve_post = models.BooleanField(default=True, blank=True)
     auto_approve_comment = models.BooleanField(default=True, blank=True)
     is_beta_test_group = models.BooleanField(default=False)
+    flagged_for_deletion = models.BooleanField(default=False)
+    flagged_for_deletion_on = models.DateTimeField(null=True)
 
     def get_absolute_url(self):
         return reverse('g:groupdetails', args=[self.id, ])
@@ -101,6 +103,11 @@ class BasicGroup(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.flagged_for_deletion:
+            self.flagged_for_deletion_on = None
+        super(BasicGroup, self).save(*args, **kwargs)
 
     class Meta:
         permissions = (
@@ -191,6 +198,13 @@ class GroupInvite(models.Model):
     sender = models.ForeignKey(User, related_name='sent_invites')
     reciever = models.ForeignKey(User, related_name='received_invites')
     sent_on = models.DateTimeField(auto_now_add=True)
+    mainfeed = GenericRelation(Notification)  # Main Notification feed
+
+
+class InviteAccept(models.Model):
+    basic_group = models.ForeignKey(BasicGroup, related_name='accepted_invite')
+    user = models.ForeignKey(User, related_name='invited_accept')
+    sender = models.ForeignKey(User)
 
 
 class GroupEvent(models.Model):

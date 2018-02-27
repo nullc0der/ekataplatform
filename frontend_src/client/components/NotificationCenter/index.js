@@ -2,11 +2,13 @@ import {Component} from 'react'
 import classnames  from 'classnames'
 import { connect } from 'react-redux'
 import Websocket from 'react-websocket'
+import request from 'superagent'
 
 import Avatar from 'components/Avatar'
 import NotificationItem from './NotificationItem'
 import { actions as memberActions } from 'store/Members'
 import { actions as groupMemberNotificationActions } from 'store/GroupMemberNotification'
+import { actions as chatActions } from 'store/Chat'
 
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import c from './NotificationCenter.styl'
@@ -59,6 +61,18 @@ class NotificationCenter extends Component {
 		}
 	}
 
+	chatButtonClicked = (e, id) => {
+		e.preventDefault()
+		const url = '/en/messaging/initmessage/' + id + '/?react=true'
+		request
+			.get(url)
+			.end((err, res) => {
+				if (res.ok) {
+					this.props.openMiniChat(res.body['id'])
+				}
+			})
+	}
+
 	render(){
 		const {
 			className,
@@ -81,7 +95,8 @@ class NotificationCenter extends Component {
 									key={i} notification={x} isActive={this.state.activeNode === x.id}
 									setActiveNode={this.setActiveNode}
 									acceptDenyJoinRequest={this.acceptDenyJoinRequest}
-									setNotificationRead={this.setNotificationRead}/>
+									setNotificationRead={this.setNotificationRead}
+									initChat={this.chatButtonClicked}/>
 							)
 						})
 					}
@@ -109,7 +124,8 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	receivedWebsocketNotification: (notification) => {
 		dispatch(groupMemberNotificationActions.receivedWebsocketNotification(notification))
-	}
+	},
+	openMiniChat: id => dispatch(chatActions.openMiniChat(id))
 })
 
 export default withStyles(c)(

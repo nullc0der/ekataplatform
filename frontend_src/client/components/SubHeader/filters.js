@@ -16,7 +16,8 @@ module.exports = {
             'members'
         ],
         disabledFilters: [
-            'online'
+            'online',
+            'Ekata Members'
         ]
     },
     "community/groups/members/management": {

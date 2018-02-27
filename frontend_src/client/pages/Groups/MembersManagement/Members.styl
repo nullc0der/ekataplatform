@@ -139,7 +139,7 @@
 		transition all 0.32s $ease-in-out-swift
 
 		.group-item
-			font-size 24px
+			font-size 18px
 			padding 4px 8px
 			animation fadeIn 0.42s
 
@@ -167,15 +167,20 @@
 			font-size 14px
 		&.is-inactive
 			color #ddd
-		.material-icons
+		.material-icons,
+		.fa
 			display block
-			font-size 32px
 			transform scale(1)
 			transform-origin center bottom
 			transition all 0.12s $ease-in-out-sine
+		.fa
+			font-size 25px
+		.material-icons
+			font-size 32px
 
 		&:hover
-			.material-icons
+			.material-icons,
+			.fa
 				transform scale(1.32)
 
 

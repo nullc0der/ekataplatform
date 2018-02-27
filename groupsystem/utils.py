@@ -1,17 +1,18 @@
 import json
 import requests
+from datetime import timedelta
 
 from django.contrib.auth.models import User
 from django.core import serializers
+from django.utils.timezone import now
 
 from channels import Group
 
-from notification.utils import create_user_notification
 from publicusers.api_views import make_user_serializeable
 from eblast.models import EmailGroup
 from groupsystem.models import (
-    JoinRequest, GroupMemberNotification,
-    GroupNotification
+    BasicGroup, JoinRequest, GroupMemberNotification,
+    GroupNotification, InviteAccept
 )
 
 
@@ -67,7 +68,6 @@ def create_notification(obj, basicgroup):
             Group('%s-group-notification' % (admin.username)).send({
                 'text': json.dumps(websocket_data)
             })
-            create_user_notification(admin, group_member_notification)
     if isinstance(obj, GroupNotification):
         for member in set(
                 basicgroup.super_admins.all() | basicgroup.admins.all() |
@@ -87,7 +87,23 @@ def create_notification(obj, basicgroup):
             Group('%s-group-notification' % (member.username)).send({
                 'text': json.dumps(websocket_data, default=default)
             })
-            create_user_notification(member, group_member_notification)
+    if isinstance(obj, InviteAccept):
+        for admin in set(
+                basicgroup.super_admins.all() | basicgroup.admins.all()):
+            group_member_notification = GroupMemberNotification(
+                basic_group=basicgroup,
+                user=admin,
+                content_object=obj
+            )
+            group_member_notification.save()
+            websocket_data = {
+                'group_id': basicgroup.id,
+                'notification': get_serialized_notification(
+                    group_member_notification)
+            }
+            Group('%s-group-notification' % (admin.username)).send({
+                'text': json.dumps(websocket_data)
+            })
 
 
 def get_serialized_notification(notification):
@@ -106,4 +122,17 @@ def get_serialized_notification(notification):
             data['group_notification_id'] = group_notification.id
             data['notification'] = group_notification.notification
             data['created_on'] = group_notification.created_on
+        if isinstance(notification.content_object, InviteAccept):
+            group_invite = notification.content_object
+            data['type'] = 'inviteaccept'
+            data['notification_id'] = notification.id
+            data['sender'] = make_user_serializeable(group_invite.sender)
+            data['member'] = make_user_serializeable(group_invite.user)
     return data
+
+
+def process_flagged_for_delete_group():
+    for basicgroup in BasicGroup.objects.all():
+        if basicgroup.flagged_for_deletion\
+                and basicgroup.flagged_for_deletion_on > now():
+            basicgroup.delete()
