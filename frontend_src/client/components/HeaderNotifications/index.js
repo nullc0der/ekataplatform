@@ -70,7 +70,7 @@ class HeaderNotifications extends Component {
         const label = (
             <span className='notification-label'>
                 <i className='fa fa-fw fa-bell-o'/>
-                {notifications.length ? <i className='fa fa-circle has-notification'></i>: ''}
+                {notifications.length ? <i className='has-notification'></i>: ''}
             </span>
         )
 

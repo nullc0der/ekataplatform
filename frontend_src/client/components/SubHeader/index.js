@@ -47,20 +47,43 @@ class SubHeader extends Component {
 		}
 	}
 
+	getDisabledFilters = (disabledFilters) => {
+		if (disabledFilters.indexOf('Ekata Members' !== -1)) {
+			const {
+				joinStatus, permissionSet
+			} = this.props
+			let finalDisabledFilters = disabledFilters.slice()
+			if ((joinStatus.toLowerCase() === 'closed' || joinStatus.toLowerCase() === 'request') && permissionSet.some(x => [103, 104, 106].indexOf(x) !== -1)) {
+				return finalDisabledFilters
+			}
+			if ((joinStatus.toLowerCase() === 'invite' || joinStatus.toLowerCase() === 'open') && permissionSet.some(x => [102, 103, 104, 105, 106].indexOf(x) !== -1)) {
+				return finalDisabledFilters
+			}
+			return finalDisabledFilters.filter(x => x !== 'Ekata Members')
+		}
+		return disabledFilters
+	}
+
 	setSearchAndFilters = () => {
 		const pathname = this.props.location.pathname.split('/').filter(x=>isNaN(x)).join('/')
 		if (FILTERS[pathname]) {
 			this.setState({
 				showSearchAndFilters: true,
 				enabledFilters: FILTERS[pathname].enabledFilters,
-				disabledFilters: FILTERS[pathname].disabledFilters
-			}, () => this.props.changeFilters([]))
+				disabledFilters: this.getDisabledFilters(FILTERS[pathname].disabledFilters)
+			}, () => {
+				this.props.changeFilters(this.state.enabledFilters)
+				this.props.changeSearchString('')
+			})
 		} else {
 			this.setState({
 				showSearchAndFilters: false,
 				enabledFilters: [],
 				disabledFilters: []
-			}, () => this.props.changeFilters([]))
+			}, () => {
+				this.props.changeFilters(this.state.enabledFilters)
+				this.props.changeSearchString('')
+			})
 		}
 	}
 
@@ -101,7 +124,7 @@ class SubHeader extends Component {
 						subjectError: res.body.subject[0].message,
 						descriptionError: res.body.description ? res.body.description[0].message : '',
 						uploadPercent: 0
-					})	
+					})
 				} else {
 					this.setState({
 						attachmentError: res.text,
@@ -312,7 +335,9 @@ class SubHeader extends Component {
 }
 
 const mapStateToProps = (state)=> ({
-	location: state.router.locationBeforeTransitions
+	location: state.router.locationBeforeTransitions,
+	joinStatus: state.Groups.viewingGroupJoinStatus,
+	permissionSet: state.Groups.userPermissionSetForViewingGroup
 })
 
 const mapDispatchToProps = (dispatch)=> ({

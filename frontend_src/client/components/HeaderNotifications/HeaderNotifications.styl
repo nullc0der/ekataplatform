@@ -6,8 +6,14 @@
         padding 13px 8px 12px 8px
         position relative
         .has-notification
-            font-size 10px
+            width 10px
+            height 10px
+            background-color #fff
+            display inline-block
             absolute right 2px
+            border-radius 50%
+            box-shadow 1px 1px 12px 5px rgba(0,0,0,0.23)
+            animation grow 4s infinite alternate
     .ui-dropdown-toggle
         padding 8px 4px
 
@@ -40,15 +46,15 @@
                     +mobile()
                         opacity 1
                         width auto
-        
+
         .is-important
             absolute top 5px right 5px
             font-size 16px
-        
+
         .name
             font-size 16px
             font-weight font_bold
-        
+
         .subtext
             margin-top -4px
             font-size 12px
@@ -56,7 +62,7 @@
         .actions
             display none
             absolute right top -1px bottom -1px
-            +mobile() 
+            +mobile()
                 display flex
                 opacity 0
                 width 0
@@ -65,7 +71,7 @@
                 display flex
                 align-items center
                 padding 10px
-                background-color theme_primary
+                background-color #3D3D3D
                 color #fff
                 cursor pointer
                 .reverse
@@ -80,6 +86,7 @@
                 opacity 0
                 background-color #eee
                 transition opacity 0.7s ease-in-out
+                box-shadow inset 5px 0px 10px rgba(0, 0, 0, 0.18)
                 &.shown
                     width auto
                     opacity 1
@@ -94,3 +101,15 @@
             height 36px !important
             width 36px !important
             margin-right 12px
+
+    @keyframes grow
+        0%
+            transform scale(0.6)
+        25%
+            transform scale(0.7)
+        50%
+            transform scale(0.8)
+        75%
+            transform scale(0.9)
+        100%
+            transform scale(1)

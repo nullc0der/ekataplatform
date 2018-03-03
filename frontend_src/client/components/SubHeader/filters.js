@@ -27,12 +27,12 @@ module.exports = {
             'moderators',
             'staffs',
             'members',
-            'subscribers',
-            'banned',
-            'blocked'
+            'subscribers'
         ],
         disabledFilters: [
-            'online'
+            'online',
+            'banned',
+            'blocked'
         ]
     }
 }

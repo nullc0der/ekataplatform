@@ -64,7 +64,7 @@ class Messenger extends Component {
 			hasErrored,
 			onlineUsers
 		} = this.props;
-		
+
 		const cx = classnames(c.container, className, 'flex-horizontal', 'a-stretch', 'flex-1')
 		const title = this.getTitle(rooms, selected)
 		return (

@@ -60,7 +60,7 @@ class SettingsTabs extends Component {
                 this.props.createNotification(
                     `/api/groups/${id}/notifications/`,
                     payload
-                )   
+                )
             } else {
                 const payload = {
                     'id': this.state.editingNotification,

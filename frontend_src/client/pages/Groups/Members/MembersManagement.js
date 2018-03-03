@@ -78,7 +78,7 @@ class MembersManagement extends Component {
 	}
 
 	getEkataMembers = (searchString) => {
-		if(searchString.length > 3) {
+		if(searchString.length >= 3) {
 			request
 				.get(`/api/groups/${this.props.groupID}/invitemember/?query=${searchString}`)
 				.end((err, res) => {
@@ -190,7 +190,9 @@ const mapStateToProps = (state)=> ({
 	accessDenied: state.Members.accessDenied,
 	onlineUsers: state.Users.onlineUsers,
 	searchString: state.Common.subHeaderSearchString,
-	filters: state.Common.subHeaderFilters
+	filters: state.Common.subHeaderFilters,
+	joinStatus: state.Groups.viewingGroupJoinStatus,
+	permissionSet: state.Groups.userPermissionSetForViewingGroup
 })
 
 const mapDispatchToProps = (dispatch)=> ({

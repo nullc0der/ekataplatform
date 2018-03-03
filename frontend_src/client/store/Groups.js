@@ -5,7 +5,9 @@ import {actions as commonAction} from './Common'
 const INITIAL_STATE = {
 	groups: [],
 	lastGroup: window.django.last_group,
-	selectedGroup: null
+	selectedGroup: null,
+	viewingGroupJoinStatus: '',
+	userPermissionSetForViewingGroup: []
 }
 
 const GROUPS_LOAD_SUCCESS = "GROUP_LOAD_SUCCESS"
@@ -63,6 +65,18 @@ const CHANGE_LAST_GROUP = 'CHANGE_LAST_GROUP'
 const changeLastGroup = (groupID) => ({
 	type: CHANGE_LAST_GROUP,
 	groupID
+})
+
+const CHANGE_GROUP_JOIN_STATUS = 'CHANGE_GROUP_JOIN_STATUS'
+const changeGroupJoinStatus = (joinStatus) => ({
+	type: CHANGE_GROUP_JOIN_STATUS,
+	joinStatus
+})
+
+const CHANGE_USER_PERMISSION_SET_FOR_GROUP = 'CHANGE_USER_PERMISSION_SET_FOR_GROUP'
+const changeUserPermissionSetForGroup = (userPermissionSet) => ({
+	type: CHANGE_USER_PERMISSION_SET_FOR_GROUP,
+	userPermissionSet
 })
 
 const loadGroups = (url) => {
@@ -167,7 +181,9 @@ export const actions = {
 	unSubscribeGroup,
 	groupCreated,
 	joinGroup,
-	changeLastGroup
+	changeLastGroup,
+	changeGroupJoinStatus,
+	changeUserPermissionSetForGroup
 }
 
 export default function GroupsReducer(state=INITIAL_STATE, action){
@@ -208,6 +224,14 @@ export default function GroupsReducer(state=INITIAL_STATE, action){
 			return { ...state, groups: state.groups.map(x => {
 				return x.id === action.groupID ? {...x, members: action.members} : x
 			})}
+		case CHANGE_GROUP_JOIN_STATUS:
+			return {
+				...state, viewingGroupJoinStatus: action.joinStatus
+			}
+		case CHANGE_USER_PERMISSION_SET_FOR_GROUP:
+			return {
+				...state, userPermissionSetForViewingGroup: action.userPermissionSet
+			}
 		default:
 			return state
 	}

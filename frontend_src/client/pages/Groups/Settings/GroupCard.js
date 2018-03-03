@@ -115,7 +115,7 @@ class GroupCard extends Component {
 		if (this.state.otherGroupType.length) {
 			this.setState({
 				categoryDropdownVisible: false
-			}, () => this.onContentEditableBlurred())	
+			}, () => this.onContentEditableBlurred())
 		}
 	}
 
@@ -130,7 +130,7 @@ class GroupCard extends Component {
 			header: acceptedFile
 		}, () => this.onContentEditableBlurred())
 	}
-	
+
 	toggleDeleteGroupModal = (e) => {
 		this.setState(prevState => ({
 			deleteGroupModalShown: !prevState.deleteGroupModalShown
@@ -184,13 +184,13 @@ class GroupCard extends Component {
 				<div className='card-inner'>
 					<div className='card-header flex-horizontal'>
 						<div className="group-header-image" style={{ backgroundImage: `url(${group.header_image_url || ''})` }}>
-							<Dropzone 
-								accept='image/*' 
-								multiple={false} 
+							<Dropzone
+								accept='image/*'
+								multiple={false}
 								className='dropzone' onDrop={this.onDropHeader}></Dropzone>
 						</div>
 						<div className="group-info">
-							<div className='name' 
+							<div className='name'
 								suppressContentEditableWarning={true}
 								contentEditable={true}
 								ref={(node) => {this.nameEl=node}}
@@ -222,15 +222,15 @@ class GroupCard extends Component {
 						<h6> Short Description </h6>
 						<p
 							suppressContentEditableWarning={true}
-							contentEditable={true} 
+							contentEditable={true}
 							ref={(node) => { this.sAboutEl = node }}
 							onBlur={this.onContentEditableBlurred}> {group.description} </p>
 
 						<h6> Long Description </h6>
-						<p 
-							suppressContentEditableWarning={true} 
-							contentEditable={true} 
-							ref={(node) => { this.lAboutEl = node }} 
+						<p
+							suppressContentEditableWarning={true}
+							contentEditable={true}
+							ref={(node) => { this.lAboutEl = node }}
 							onBlur={this.onContentEditableBlurred}> {group.ldescription} </p>
 
 
@@ -252,7 +252,7 @@ class GroupCard extends Component {
 					</div>
 				</div>
 				<div className='card-action' onClick={this.toggleDeleteGroupModal} style={{cursor: 'pointer'}}>
-					{this.state.flaggedForDeleteOn ? 'Group will be deleted in ' + this.state.flaggedForDeleteOn + ' Day' : 'Delete This group'}
+					{this.state.flaggedForDeleteOn ? 'Group will be deleted in ' + this.state.flaggedForDeleteOn + ' Day' : 'Delete this Group'}
 				</div>
 				<Modal
 					id="deleteGroupModal"
@@ -261,7 +261,7 @@ class GroupCard extends Component {
 					onBackdropClick={this.toggleDeleteGroupModal}>
 					<div className='delete-modal-content'>
 						{
-							!this.state.flaggedForDelete ? 
+							!this.state.flaggedForDelete ?
 							<div>
 								<p>You are about to delete your group from this community<br />do you wish to archived your group ?</p>
 								<div className="flex-horizontal btn-group">

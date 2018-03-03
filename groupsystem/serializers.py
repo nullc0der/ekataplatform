@@ -26,6 +26,7 @@ class GroupSerializer(serializers.Serializer):
     join_status = serializers.CharField(required=False)
     flagged_for_deletion = serializers.BooleanField(required=False)
     flagged_for_deletion_on = serializers.DateTimeField(required=False)
+    user_permission_set = serializers.ListField(required=False)
 
 
 class GroupMemberSerializer(serializers.Serializer):

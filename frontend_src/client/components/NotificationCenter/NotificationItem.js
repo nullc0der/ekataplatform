@@ -2,6 +2,7 @@ import React from 'react'
 
 import Linkify from 'react-linkify'
 import Swipeable from 'react-swipeable'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 import Avatar from 'components/Avatar'
 
@@ -42,7 +43,9 @@ class NotificationItem extends React.Component {
             <Swipeable className={`nc-list-item flex-horizontal a-center ${isActive ? 'active' : ''}`}
                 onSwipedLeft={this.onSwipeLeft} onSwipedRight={this.onSwipeRight}>
                 <div className='details'>
-                    <div className='name'><Linkify>{notification.notification}</Linkify></div>
+                    <Scrollbars autoHide style={{height: 50}}>
+                      <div className='name'><Linkify>{notification.notification}</Linkify></div>
+                    </Scrollbars>
                     <div className='subtext'>{new Date(notification.created_on).toLocaleString()}</div>
                 </div>
                 <div className={`actions ${actionsVisible ? 'visible' : ''}`}>

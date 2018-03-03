@@ -57,7 +57,7 @@ class GroupsPage extends Component {
 			}
 			if (_.includes(filters, 'joined')) {
 				joinedGroups = finalGroups.filter(x => _.includes(x.members, window.django.user.username))
-			}	
+			}
 			finalGroups = _.union(subscribedGroups, joinedGroups)
 		}
 		finalGroups.sort(
@@ -83,7 +83,7 @@ class GroupsPage extends Component {
 		if (!this.state.creatingGroup) {
 			this.setState(prevState => ({
 				createGroupModalIsOpen: !prevState.createGroupModalIsOpen
-			}))	
+			}))
 		}
 	}
 
@@ -205,6 +205,7 @@ class GroupsPage extends Component {
 							subscribers={x.subscribers.length}
 							shortDescription={x.description}
 							joinStatus={x.join_status}
+							permissionSet={x.user_permission_set}
 							onSubscribeButtonClick={this.onSubscribeButtonClick}
 							onJoinButtonClick={this.handleJoinGroup}
 							/>
@@ -237,14 +238,14 @@ class GroupsPage extends Component {
 							<input className={`form-control ${this.state.inputFieldValues['group_type'][1] ? 'has-value' : ''}`}
 								   id="inputGroupType" type="text"
 								   onFocus={this.handleSelectFocus}
-								   value={this.state.inputFieldValues['group_type'][1] || ""} 
+								   value={this.state.inputFieldValues['group_type'][1] || ""}
 								   autoComplete="off"/>
 							<label htmlFor="inputGroupType" className="control-label">Group Type</label>
 							<small className="form-text">{this.state.inputFieldErrors["group_type"] && this.state.inputFieldErrors["group_type"][0].message}</small>
 							<ul className={`select-dropdown ${this.state.selectInputFocused ? 'is-visible' : ''}`}>
 								<li className="select-option" onClick={() => this.handleOptionSelect('', '')}>---------</li>
 								{selectOptions.map(
-									(x, i) => <li 
+									(x, i) => <li
 										key={i}
 										className={`select-option ${this.state.inputFieldValues['group_type'][1] === x[1] && 'selected'}`}
 										onClick={() => this.handleOptionSelect(x[0], x[1])}>{x[1]}</li>

@@ -11,13 +11,13 @@ import c from './Settings.styl'
 
 
 class GroupSettings extends React.Component {
-    
+
     componentDidUpdate() {
         if (this.props.accessDenied) {
             this.props.router.push('/error/403')
         }
     }
-    
+
     render() {
         const {
             className

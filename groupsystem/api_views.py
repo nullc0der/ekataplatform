@@ -31,7 +31,7 @@ from notification.utils import create_user_notification
 from publicusers.api_views import make_user_serializeable
 
 
-def _make_group_serializable(group):
+def _make_group_serializable(group, requesting_user):
     data = {
         'id': group.id,
         'group_url': group.get_absolute_url(),
@@ -49,7 +49,9 @@ def _make_group_serializable(group):
         'auto_approve_comment': group.auto_approve_comment,
         'join_status': group.join_status,
         'flagged_for_deletion': group.flagged_for_deletion,
-        'flagged_for_deletion_on': group.flagged_for_deletion_on
+        'flagged_for_deletion_on': group.flagged_for_deletion_on,
+        'user_permission_set': _calculate_subscribed_group(
+            group, requesting_user)
     }
     return data
 
@@ -68,13 +70,14 @@ class GroupsView(APIView):
         )
         datas = []
         for basicgroup in basicgroups:
-            data = _make_group_serializable(basicgroup)
+            data = _make_group_serializable(basicgroup, request.user)
             try:
                 joinrequest = JoinRequest.objects.get(
                     basic_group=basicgroup,
                     user=request.user
                 )
-                data['joinrequest_sent'] = True
+                if joinrequest:
+                    data['joinrequest_sent'] = True
             except ObjectDoesNotExist:
                 data['joinrequest_sent'] = False
             datas.append(data)
@@ -228,7 +231,7 @@ class CreateGroupView(APIView):
             basicgroup.members.add(request.user)
             basicgroup.subscribers.add(request.user)
             task_create_emailgroup.delay(basicgroup)
-            data = _make_group_serializable(basicgroup)
+            data = _make_group_serializable(basicgroup, request.user)
             serialized_data = GroupSerializer(data)
             return Response(serialized_data.data)
         return Response(
@@ -517,7 +520,7 @@ class GroupSettingsView(APIView):
             self.check_object_permissions(request, basicgroup)
             request.session['basicgroup'] = basicgroup.id
             serializer = GroupSerializer(
-                _make_group_serializable(basicgroup))
+                _make_group_serializable(basicgroup, request.user))
             return Response(serializer.data)
         except ObjectDoesNotExist:
             return Response(
@@ -538,7 +541,8 @@ class GroupSettingsView(APIView):
                     'join_status', 'request')
                 basicgroup.save()
                 return Response(
-                    GroupSerializer(_make_group_serializable(basicgroup)).data
+                    GroupSerializer(_make_group_serializable(
+                        basicgroup, request.user)).data
                 )
             form = EditGroupForm(
                 request.data,
@@ -551,7 +555,7 @@ class GroupSettingsView(APIView):
                     basicgroup.header_image = request.data.get('header_image')
                 basicgroup.save()
                 serializer = GroupSerializer(
-                    _make_group_serializable(basicgroup))
+                    _make_group_serializable(basicgroup, request.user))
                 return Response(serializer.data)
             else:
                 data = json.loads(form.errors.as_json())
@@ -771,11 +775,13 @@ class InviteMemberView(APIView):
                 basicgroup.staffs.all() |
                 basicgroup.members.all())
             if basicgroup.join_status == 'invite'\
+                    or basicgroup.join_status == 'open'\
                     and request.user in group_members:
                 searchstring = request.GET.get('query', None)
                 datas = get_serialized_platform_user(basicgroup, searchstring)
                 return Response(datas)
             if basicgroup.join_status == 'closed'\
+                    or basicgroup.join_status == 'request'\
                     and request.user in group_staffs:
                 searchstring = request.GET.get('query', None)
                 datas = get_serialized_platform_user(basicgroup, searchstring)
@@ -803,6 +809,7 @@ class InviteMemberView(APIView):
                 basicgroup.staffs.all() |
                 basicgroup.members.all())
             if basicgroup.join_status == 'invite'\
+                    or basicgroup.join_status == 'open'\
                     and request.user in group_members:
                 receiver = User.objects.get(id=request.data.get('user_id'))
                 groupinvite = GroupInvite(
@@ -814,6 +821,7 @@ class InviteMemberView(APIView):
                 create_user_notification(receiver, groupinvite)
                 return Response('ok')
             if basicgroup.join_status == 'closed'\
+                    or basicgroup.join_status == 'request'\
                     and request.user in group_staffs:
                 receiver = User.objects.get(id=request.data.get('user_id'))
                 groupinvite = GroupInvite(

@@ -71,3 +71,5 @@ project.cson
 
 # Misc
 todo.md
+start-devserver.sh
+start-npmserver.sh
