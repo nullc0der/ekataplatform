@@ -31,7 +31,7 @@ class MemberItem extends Component {
 			onClick={(e)=> this.toggleGroup(group)}
 			className={cx}>
 			<div className='group-icon'>
-				{group.icon.type === 'material' ? <i className='material-icons'> {group.icon.name} </i> : <i className={`fa fa-${group.icon.name}`}></i>} 
+				{group.icon.type === 'material' ? <i className='material-icons'> {group.icon.name} </i> : <i className={`fa fa-${group.icon.name}`}></i>}
 			</div>
 			<div className='group-name'> {group.name} </div>
 		</div>
@@ -103,7 +103,7 @@ class MemberItem extends Component {
 							}
 						</a>
 						<div className='details'>
-							<div className='name'> {fullName || userName} </div>
+							<div className='name'> {fullName || userName} <span className='username'>@{userName}</span> </div>
 							<div className={`status is-${isOnline? "online": "offline"}`}> {isOnline? "Online" : "Offline"} </div>
 						</div>
 					</div>

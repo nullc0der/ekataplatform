@@ -29,7 +29,7 @@ class SearchFilter extends React.Component {
                 <div className={classnames('filter-options', { 'is-open': showFilterOptions })}>
                     <div className="filter-options-header">
                         Filter Options
-					</div>
+					          </div>
                     <div className="flex-horizontal flex-wrap filter-options-content">
                         <div className="selected-filters">
                             {

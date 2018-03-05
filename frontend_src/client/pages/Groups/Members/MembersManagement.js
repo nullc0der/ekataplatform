@@ -26,6 +26,7 @@ class MembersManagement extends Component {
 		const id = this.props.groupID
 		this.props.getMembers(`/api/groups/${id}/members/`)
 		this.props.changeLastGroup(id)
+		this.getGroupDetails()
 	}
 
 	componentDidUpdate = (prevProps) => {
@@ -45,6 +46,17 @@ class MembersManagement extends Component {
 				this.props.filters
 			)
 		}
+	}
+
+	getGroupDetails = () => {
+		request
+			.get(`/api/groups/${this.props.groupID}/details`)
+			.end((err, res) => {
+				if (res.ok) {
+					this.props.changeGroupJoinStatus(res.body.join_status)
+					this.props.changeUserPermissionSetForGroup(res.body.user_permission_set)
+				}
+			})
 	}
 
 	renderOneMember = (member, i)=> {
@@ -204,7 +216,9 @@ const mapDispatchToProps = (dispatch)=> ({
 	},
 	addNotification: (notification) => {
 		dispatch(commonActions.addNotification(notification))
-	}
+	},
+	changeGroupJoinStatus: (joinStatus) => dispatch(groupActions.changeGroupJoinStatus(joinStatus)),
+	changeUserPermissionSetForGroup: (permissionSet) => dispatch(groupActions.changeUserPermissionSetForGroup(permissionSet))
 })
 
 export default withRouter(

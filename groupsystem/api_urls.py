@@ -4,6 +4,7 @@ from groupsystem import api_views
 
 urlpatterns = [
     url(r'^$', api_views.GroupsView.as_view()),
+    url(r'^(?P<group_id>\d+)/details/$', api_views.GroupDetailView.as_view()),
     url(
         r'^subscribe/(?P<group_id>\d+)/$',
         api_views.GroupSubscribeView.as_view()),

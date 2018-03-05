@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import {connect} from 'react-redux'
 import Linkify from 'react-linkify'
 
+import { actions as groupActions } from 'store/Groups'
 import { actions as settingsActions } from 'store/GroupSettings'
 import { actions as groupNotificationAction } from 'store/GroupNotifications'
 import c from './Settings.styl'
@@ -32,6 +33,9 @@ class SettingsTabs extends Component {
                 approvePostChecked: this.props.group.auto_approve_post,
                 selectedStatus: this.props.group.join_status
             })
+            //TODO: This is not properly implemented, make it better
+            this.props.changeGroupJoinStatus(this.props.group.join_status)
+      			this.props.changeUserPermissionSetForGroup(this.props.group.user_permission_set)
         }
     }
 
@@ -269,7 +273,9 @@ const mapDispatchToProps = (dispatch) => ({
     loadNotifications: (url) => dispatch(groupNotificationAction.loadNotifications(url)),
     createNotification: (url, payload) => dispatch(groupNotificationAction.createNotification(url, payload)),
     deleteNotification: (url, id) => dispatch(groupNotificationAction.deleteNotification(url, id)),
-    updateNotification: (url, payload) => dispatch(groupNotificationAction.updateNotification(url, payload))
+    updateNotification: (url, payload) => dispatch(groupNotificationAction.updateNotification(url, payload)),
+    changeGroupJoinStatus: (joinStatus) => dispatch(groupActions.changeGroupJoinStatus(joinStatus)),
+  	changeUserPermissionSetForGroup: (permissionSet) => dispatch(groupActions.changeUserPermissionSetForGroup(permissionSet))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsTabs)

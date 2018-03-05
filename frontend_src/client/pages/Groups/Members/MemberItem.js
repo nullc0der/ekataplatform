@@ -46,7 +46,7 @@ class MemberItem extends Component {
 							}
 						</a>
 						<div className='details'>
-							<div className='name'> {fullName || userName} </div>
+							<div className='name'> {fullName || userName} <span className='username'>@{userName}</span> </div>
 							<div className={`status is-${isOnline? "online": "offline"}`}> {isOnline? "Online" : "Offline"} </div>
 						</div>
 					</div>

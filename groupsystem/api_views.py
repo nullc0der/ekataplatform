@@ -4,6 +4,7 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.timezone import now
+from django.db.models import Q
 
 from rest_framework import status
 from rest_framework import parsers
@@ -83,6 +84,25 @@ class GroupsView(APIView):
             datas.append(data)
         serializer = GroupSerializer(datas, many=True)
         return Response(serializer.data)
+
+
+class GroupDetailView(APIView):
+    """
+    This view returns specified group detail
+
+    * Required logged in user
+    """
+    permission_classes = (IsAuthenticatedLegacy, )
+
+    def get(self, request, group_id, format=None):
+        try:
+            basicgroup = BasicGroup.objects.get(id=group_id)
+            data = _make_group_serializable(basicgroup, request.user)
+            return Response(data)
+        except ObjectDoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND
+            )
 
 
 class GroupSubscribeView(APIView):
@@ -726,7 +746,10 @@ def get_platform_users(basicgroup, searchstring):
         basicgroup.banned_members.all() |
         basicgroup.blocked_members.all())
     platform_users = User.objects.filter(
-        username__istartswith=searchstring)
+        Q(username__istartswith=searchstring) |
+        Q(first_name__istartswith=searchstring) |
+        Q(last_name__istartswith=searchstring)
+        )
     for platform_user in platform_users:
         if platform_user not in group_members:
             final_list.append(platform_user)

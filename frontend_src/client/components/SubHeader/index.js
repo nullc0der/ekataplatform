@@ -42,7 +42,11 @@ class SubHeader extends Component {
 	}
 
 	componentDidUpdate = (prevProps, prevState) => {
-		if (prevProps.location.pathname !== this.props.location.pathname) {
+		if (
+			prevProps.location.pathname !== this.props.location.pathname ||
+			prevProps.joinStatus !== this.props.joinStatus ||
+			prevProps.permissionSet !== this.props.permissionSet
+		) {
 			this.setSearchAndFilters()
 		}
 	}

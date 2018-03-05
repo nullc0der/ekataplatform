@@ -32,7 +32,7 @@ class MemberItem extends Component {
 							}
 						</a>
 						<div className='details'>
-							<div className='name'> {fullName || userName} </div>
+							<div className='name'> {fullName || userName} <span className='username'>@{userName}</span> </div>
 						</div>
 					</div>
 					<div className='in-right flex-horizontal flex-1'>

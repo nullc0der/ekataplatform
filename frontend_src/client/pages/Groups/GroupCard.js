@@ -4,7 +4,6 @@ import PropTypes   from 'prop-types'
 import classnames  from 'classnames'
 import withRouter from 'react-router/lib/withRouter'
 
-import { actions as groupActions } from 'store/Groups'
 import withStyles  from 'isomorphic-style-loader/lib/withStyles'
 import c from './Groups.styl'
 
@@ -13,13 +12,10 @@ class GroupCard extends Component {
 	openGroup = () => {
 		const {
 			id,
-			permissionSet,
-			joinStatus
+			permissionSet
 		} = this.props
 		if(permissionSet.some(x => [102, 103, 104, 105, 106].indexOf(x) !== -1)) {
 			this.props.router.push(`/community/1/groups/${id}/members/`)
-			this.props.changeGroupJoinStatus(joinStatus)
-			this.props.changeUserPermissionSetForGroup(permissionSet)
 		}
 	}
 
@@ -100,15 +96,4 @@ class GroupCard extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = (dispatch) => ({
-	changeGroupJoinStatus: (joinStatus) => dispatch(groupActions.changeGroupJoinStatus(joinStatus)),
-	changeUserPermissionSetForGroup: (permissionSet) => dispatch(groupActions.changeUserPermissionSetForGroup(permissionSet))
-})
-
-export default withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(GroupCard)
-)
+export default withRouter(GroupCard)
