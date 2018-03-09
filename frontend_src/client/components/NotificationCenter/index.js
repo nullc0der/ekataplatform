@@ -5,6 +5,7 @@ import Websocket from 'react-websocket'
 import request from 'superagent'
 
 import Avatar from 'components/Avatar'
+import LoadingView from 'components/LoadingView'
 import NotificationItem from './NotificationItem'
 import { actions as memberActions } from 'store/Members'
 import { actions as groupMemberNotificationActions } from 'store/GroupMemberNotification'
@@ -45,7 +46,7 @@ class NotificationCenter extends Component {
 		this.props.setNotificationRead(
 			`/api/groups/${id}/mynotifications/`,
 			notificationID
-		)	
+		)
 	}
 
 	setActiveNode = (id) => {
@@ -89,16 +90,16 @@ class NotificationCenter extends Component {
 				</div>
 				<div className='nc-list flex-1 scroll-y'>
 					{
-						notifications.map((x, i) => {
-							return (
-								<NotificationItem 
-									key={i} notification={x} isActive={this.state.activeNode === x.id}
-									setActiveNode={this.setActiveNode}
-									acceptDenyJoinRequest={this.acceptDenyJoinRequest}
-									setNotificationRead={this.setNotificationRead}
-									initChat={this.chatButtonClicked}/>
-							)
-						})
+						this.props.isLoading ? <LoadingView/> : notifications.map((x, i) => {
+								return (
+									<NotificationItem
+										key={i} notification={x} isActive={this.state.activeNode === x.id}
+										setActiveNode={this.setActiveNode}
+										acceptDenyJoinRequest={this.acceptDenyJoinRequest}
+										setNotificationRead={this.setNotificationRead}
+										initChat={this.chatButtonClicked}/>
+								)
+							})
 					}
 				</div>
 				<Websocket url={websocket_url}
@@ -109,7 +110,8 @@ class NotificationCenter extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	notifications: state.GroupMemberNotification.notifications
+	notifications: state.GroupMemberNotification.notifications,
+	isLoading: state.GroupMemberNotification.isLoading
 })
 
 const mapDispatchToProps = (dispatch) => ({

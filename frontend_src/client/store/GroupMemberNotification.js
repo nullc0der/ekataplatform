@@ -1,7 +1,8 @@
 import request from 'superagent'
 
 const INITIAL_STATE = {
-    notifications: []
+    notifications: [],
+    isLoading: false
 }
 
 const MEMBER_NOTIFICATION_LOAD_SUCCESS = 'MEMBER_NOTIFICATION_LOAD_SUCCESS'
@@ -22,13 +23,21 @@ const receivedWebsocketNotification = (notification) => ({
     notification
 })
 
+const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS'
+const changeLoadingStatus = (status) => ({
+  type: CHANGE_LOADING_STATUS,
+  status
+})
+
 const loadMemberNotifications = (url) => {
     return (dispatch) => {
+        dispatch(changeLoadingStatus(true))
         request
             .get(url)
             .end((err, res) => {
                 if (res.ok) {
                     dispatch(memberNotificationLoadSuccess(res.body))
+                    dispatch(changeLoadingStatus(false))
                 }
             })
     }
@@ -68,6 +77,10 @@ export default function GroupMemberNotificationReducer(state=INITIAL_STATE, acti
         case RECEIVED_WEBSOCKET_NOTIFICATION:
             return {
                 ...state, notifications: [...state.notifications, action.notification]
+            }
+        case CHANGE_LOADING_STATUS:
+            return {
+                ...state, isLoading: action.status
             }
         default:
             return state

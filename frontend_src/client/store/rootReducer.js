@@ -11,6 +11,7 @@ import GroupSettings from './GroupSettings'
 import GroupNotifications from './GroupNotifications'
 import GroupMemberNotification from './GroupMemberNotification'
 import UserNotifications from './UserNotifications'
+import GroupPost from './GroupPost'
 
 export default combineReducers({
 	router,
@@ -23,5 +24,6 @@ export default combineReducers({
 	GroupSettings,
 	GroupNotifications,
 	GroupMemberNotification,
-	UserNotifications
+	UserNotifications,
+	GroupPost
 });

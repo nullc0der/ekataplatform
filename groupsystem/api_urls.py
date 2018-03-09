@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from groupsystem import api_views
 
@@ -35,5 +35,6 @@ urlpatterns = [
     url(r'^acceptinvite/$',
         api_views.InviteAction.as_view()),
     url(r'^(?P<group_id>\d+)/requestdelete/$',
-        api_views.RequestDeleteGroup.as_view())
+        api_views.RequestDeleteGroup.as_view()),
+    url(r'^posts/', include('grouppost.urls'))
 ]

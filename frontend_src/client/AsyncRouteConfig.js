@@ -47,6 +47,12 @@ export default function getAsyncRouteConfig(store, req, res){
 				var comp = require('./pages/Groups/Settings')
 				cb(null, comp.default)
 			}, 'Groups-Settings')
+		},
+		Group_Posts: (nextState, cb) => {
+			require.ensure([], (require) => {
+				var comp = require('./pages/Groups/PostPage')
+				cb(null, comp.default)
+			}, 'Group-Posts')
 		}
 	}
 }

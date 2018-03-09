@@ -162,20 +162,19 @@ class GroupPost(models.Model):
     creator = models.ForeignKey(User)
     basic_group = models.ForeignKey(BasicGroup, related_name='posts')
     post = models.TextField()
-    title = models.CharField(max_length=200)
-    admin_created = models.BooleanField(default=True)
     approved = models.BooleanField(default=False)
-    approved_by = models.ForeignKey(User, related_name='approved_posts', null=True, blank=True)
+    approved_by = models.ForeignKey(
+        User, related_name='posts_approved', null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
 
 class PostComment(models.Model):
     commentor = models.ForeignKey(User)
     post = models.ForeignKey(GroupPost, related_name='comments')
-    basic_group = models.ForeignKey(BasicGroup, related_name='postcomments', null=True)
     comment = models.TextField()
     approved = models.BooleanField(default=False)
-    approved_by = models.ForeignKey(User, related_name='approved_comments', null=True, blank=True)
+    approved_by = models.ForeignKey(
+        User, related_name='approved_comments', null=True, blank=True)
     commented_on = models.DateTimeField(auto_now_add=True)
 
 

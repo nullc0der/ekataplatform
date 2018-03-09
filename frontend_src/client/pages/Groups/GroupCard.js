@@ -15,7 +15,7 @@ class GroupCard extends Component {
 			permissionSet
 		} = this.props
 		if(permissionSet.some(x => [102, 103, 104, 105, 106].indexOf(x) !== -1)) {
-			this.props.router.push(`/community/1/groups/${id}/members/`)
+			this.props.router.push(`/community/1/groups/${id}/posts/`)
 		}
 	}
 

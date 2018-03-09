@@ -8,7 +8,13 @@ const groupMenus = (permissions, id) => {
     }
     if (permissions.indexOf(102) !== -1) {
         menu = {
-            ...menu, children: [...menu.children, {
+            ...menu, children: [...menu.children,
+                {
+                  name: "Posts",
+                  href: `/community/1/groups/${id}/posts`,
+                  icon: 'fa fa-fw fa-life-ring'
+              },
+              {
                 name: "Members",
                 href: `/community/1/groups/${id}/members`,
                 icon: 'fa fa-fw fa-shield',
@@ -20,7 +26,8 @@ const groupMenus = (permissions, id) => {
                         icon: 'fa fa-fw fa-users'
                     }
                 ]
-            },]
+            }
+          ]
         }
     }
     if (permissions.indexOf(103) !== -1 || permissions.indexOf(104) !== -1) {

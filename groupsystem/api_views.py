@@ -32,7 +32,7 @@ from notification.utils import create_user_notification
 from publicusers.api_views import make_user_serializeable
 
 
-def _make_group_serializable(group, requesting_user):
+def make_group_serializable(group, requesting_user):
     data = {
         'id': group.id,
         'group_url': group.get_absolute_url(),
@@ -71,7 +71,7 @@ class GroupsView(APIView):
         )
         datas = []
         for basicgroup in basicgroups:
-            data = _make_group_serializable(basicgroup, request.user)
+            data = make_group_serializable(basicgroup, request.user)
             try:
                 joinrequest = JoinRequest.objects.get(
                     basic_group=basicgroup,
@@ -97,7 +97,7 @@ class GroupDetailView(APIView):
     def get(self, request, group_id, format=None):
         try:
             basicgroup = BasicGroup.objects.get(id=group_id)
-            data = _make_group_serializable(basicgroup, request.user)
+            data = make_group_serializable(basicgroup, request.user)
             return Response(data)
         except ObjectDoesNotExist:
             return Response(
@@ -251,7 +251,7 @@ class CreateGroupView(APIView):
             basicgroup.members.add(request.user)
             basicgroup.subscribers.add(request.user)
             task_create_emailgroup.delay(basicgroup)
-            data = _make_group_serializable(basicgroup, request.user)
+            data = make_group_serializable(basicgroup, request.user)
             serialized_data = GroupSerializer(data)
             return Response(serialized_data.data)
         return Response(
@@ -540,7 +540,7 @@ class GroupSettingsView(APIView):
             self.check_object_permissions(request, basicgroup)
             request.session['basicgroup'] = basicgroup.id
             serializer = GroupSerializer(
-                _make_group_serializable(basicgroup, request.user))
+                make_group_serializable(basicgroup, request.user))
             return Response(serializer.data)
         except ObjectDoesNotExist:
             return Response(
@@ -561,7 +561,7 @@ class GroupSettingsView(APIView):
                     'join_status', 'request')
                 basicgroup.save()
                 return Response(
-                    GroupSerializer(_make_group_serializable(
+                    GroupSerializer(make_group_serializable(
                         basicgroup, request.user)).data
                 )
             form = EditGroupForm(
@@ -575,7 +575,7 @@ class GroupSettingsView(APIView):
                     basicgroup.header_image = request.data.get('header_image')
                 basicgroup.save()
                 serializer = GroupSerializer(
-                    _make_group_serializable(basicgroup, request.user))
+                    make_group_serializable(basicgroup, request.user))
                 return Response(serializer.data)
             else:
                 data = json.loads(form.errors.as_json())

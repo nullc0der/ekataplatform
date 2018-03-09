@@ -4,9 +4,16 @@
   "chunks": {
     "Groups-Members-Management": [
       {
-        "name": "Groups-Members-Management.16a7ef34625d4b9a859b.chunk.js",
-        "publicPath": "/statics/bundles/Groups-Members-Management.16a7ef34625d4b9a859b.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members-Management.16a7ef34625d4b9a859b.chunk.js"
+        "name": "Groups-Members-Management.b4caaa4df345a42eda03.chunk.js",
+        "publicPath": "/statics/bundles/Groups-Members-Management.b4caaa4df345a42eda03.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Groups-Members-Management.b4caaa4df345a42eda03.chunk.js"
+      }
+    ],
+    "Group-Posts": [
+      {
+        "name": "Group-Posts.6f17ffacf6609befae62.chunk.js",
+        "publicPath": "/statics/bundles/Group-Posts.6f17ffacf6609befae62.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Group-Posts.6f17ffacf6609befae62.chunk.js"
       }
     ],
     "Groups-Settings": [
@@ -32,9 +39,9 @@
     ],
     "GroupsPage": [
       {
-        "name": "GroupsPage.7df180eb5dc7f0e498cf.chunk.js",
-        "publicPath": "/statics/bundles/GroupsPage.7df180eb5dc7f0e498cf.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/GroupsPage.7df180eb5dc7f0e498cf.chunk.js"
+        "name": "GroupsPage.e88ad5654b2bcbea7080.chunk.js",
+        "publicPath": "/statics/bundles/GroupsPage.e88ad5654b2bcbea7080.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/GroupsPage.e88ad5654b2bcbea7080.chunk.js"
       }
     ],
     "HomePage": [
@@ -53,9 +60,9 @@
     ],
     "main": [
       {
-        "name": "main-bundle.7b0a29cb602968e74d13.js",
-        "publicPath": "/statics/bundles/main-bundle.7b0a29cb602968e74d13.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.7b0a29cb602968e74d13.js"
+        "name": "main-bundle.7301a12ae6ee9051858d.js",
+        "publicPath": "/statics/bundles/main-bundle.7301a12ae6ee9051858d.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.7301a12ae6ee9051858d.js"
       }
     ],
     "vendor": [

@@ -1,0 +1,220 @@
+@import 'react-mde-all.css'
+
+:local(.container)
+  margin 20px 30px 70px 30px
+  .boxes-in-right
+    margin-left 20px
+    width 300px
+
+:local(.notifications),
+:local(.groupcard)
+  shadow()
+  margin-bottom 10px
+  background-color #fff
+  border-radius 3px
+  transition box-shadow 0.3s ease-in-out
+  &:hover
+    $shadow_2()
+
+:local(.notifications)
+  margin-bottom 0
+
+
+:local(.postsection)
+  position relative
+  .post-group
+      margin 5px
+      .date-area
+          color #9B9B9B
+          font-weight 600
+          margin-bottom 10px
+      .ui-post-group-card
+          background-color #fff
+          shadow()
+          .post
+              position relative
+              margin 10px 20px
+              .content
+                  padding 0 20px
+                  color #9B9B9B
+              .circle
+                  absolute left -7px top 7px
+                  height 12px
+                  width 12px
+                  border-radius 50%
+                  background-color #50E3C2
+  .ui-post-editor
+       absolute right 5px bottom 5px
+      .editor-area
+          padding 15px
+          width 700px
+          background-color #fff
+          visibility hidden
+          $shadow_2()
+          &.visible
+              visibility visible
+              animation fadeIn 0.3s
+      .mde-header
+          padding 5px
+          margin-bottom 5px
+          border 1px solid #ddd
+          border-radius 3px
+          .mde-header-group
+              margin 0
+              .mde-header-item
+                  button
+                      margin 0 10px
+              .mde-dropdown-header-item
+                  button
+                      color #878787
+      .mde-text
+          textarea
+              height 200px
+              resize none
+              &:focus
+                  box-shadow none
+                  outline none
+      .mde-preview
+          .mde-preview-content
+              height 200px
+              overflow auto
+      .action-buttons
+          margin-top 5px
+          text-align right
+          .preview-btn,
+          .post-btn
+              width 80px
+              font-size 20px
+              border 1px solid #ddd
+              border-radius 3px
+              background-color #fff
+              color #878787
+              &:hover
+                  shadow()
+              &:focus
+                  outline none
+          .preview-btn
+              margin-right 5px
+      .add-post-btn
+          margin-top 10px
+          float right
+          background-color color_blue400
+          color #fff
+          border none
+          width 50px
+          height 50px
+          border-radius 50%
+          line-height 1
+          $shadow_1()
+          transition box-shadow 0.3s ease-in-out
+          &.editor-visible
+            background-color color_red400
+          &:focus
+            outline none
+          &:hover
+            $shadow_2()
+
+
+:local(.groupcard)
+  color #4a4a4a
+  overflow hidden
+  display flex
+  flex-direction column
+  &:hover
+    .group-header-image
+      transform scale(1.2)
+
+  .card-inner
+    flex 1
+    position relative
+  .card-header
+    height 100px
+    position relative
+    border-width 0 0 1px
+    padding 10px 20px
+    color #fff
+    overflow hidden
+    .group-header-image
+      absolute top left
+      width 100%
+      height 100%
+      background-size 100% 100px
+      background-repeat no-repeat
+      opacity 0.3
+      transition transform 0.5s
+    .group-info
+      position absolute
+    .name
+      font-size 20px
+      font-weight font_light
+    .category
+      font-size 14px
+      font-weight font_bold
+      white-space pre-line
+    &::before
+      background-color color_cyan500
+      opacity 0.85
+      content ''
+      display block
+      height 100%
+      width 100%
+      absolute top right
+  .card-circle-image
+    width 92px
+    height 92px
+    background-color #e2e2e2
+    background-position center
+    background-repeat no-repeat
+    position absolute
+    left 50%
+    margin-left -46px
+    top 50px
+    border-radius 50%
+    border 2px #fff solid
+    text-align center
+
+  .card-body
+    text-align center
+    padding-top 46px
+    h6
+      font-size 16px
+      font-weight font_bold
+      margin-bottom 0
+    p
+      margin-top 0
+      font-size 14px
+      padding 0 20px
+      overflow hidden
+
+  .group-type-art
+    .card-header
+      &::before
+        background-color color_blue500
+  .group-type-activist
+    .card-header
+      &::before
+        background-color color_amber500
+  .group-type-political
+    .card-header
+      &::before
+        background-color color_green500
+  .group-type-news
+    .card-header
+      &::before
+        background-color color_teal500
+  .group-type-business
+    .card-header
+      &::before
+        background-color color_blueGrey500
+  .group-type-government
+    .card-header
+      &::before
+        background-color color_brown500
+  .group-type-blog
+    .card-header
+      &::before
+        background-color color_orange500
+  .group-type-nonprofit
+    .card-header
+      &::before
+        background-color color_deepPurple500

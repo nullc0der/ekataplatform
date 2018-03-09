@@ -20,10 +20,11 @@ export default function getRoutes(store, req, res){
 			<Route path='messenger/(:id)' getComponent={Pages.Messenger}/>
 			<Route path='community/1/groups' getComponent={Pages.Groups}/>
 			<Route path='community/1/groups/(:id)/'>
-				<IndexRedirect to='members'/>
+				<IndexRedirect to='posts'/>
 				<Route path='members' getComponent={Pages.Groups_Members} />
 				<Route path='members/management' getComponent={Pages.Groups_Members_Management}/>
 				<Route path='profile' getComponent={Pages.Groups_Settings}/>
+				<Route path='posts' getComponent={Pages.Group_Posts}/>
 			</Route>
 			<Route path='members' getComponent={Pages.PublicMembers} />
 			<Route path='error'>

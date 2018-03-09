@@ -12,6 +12,14 @@ class IsAdminOfGroup(permissions.BasePermission):
         )
 
 
+class IsModeratorOfGroup(permissions.BasePermission):
+    """
+    Checks if user is moderator of the group
+    """
+    def has_object_permission(self, request, view, obj):
+        return request.user in obj.moderators.all()
+
+
 class IsMemberOfGroup(permissions.BasePermission):
     """
     checks if user is member of the group
