@@ -46,23 +46,24 @@
   .ui-post-editor
        absolute right 5px bottom 5px
       .editor-area
-          padding 15px
           width 700px
           background-color #fff
           visibility hidden
+          border-radius 3px
           $shadow_2()
           &.visible
               visibility visible
               animation fadeIn 0.3s
       .mde-header
+          height 70px
           padding 5px
-          margin-bottom 5px
-          border 1px solid #ddd
-          border-radius 3px
+          background-color rgba(#00bcd4, 0.85)
+          border-radius 3px 3px 0 0
           .mde-header-group
-              margin 0
+              margin-top 30px
               .mde-header-item
                   button
+                      color #fff
                       margin 0 10px
               .mde-dropdown-header-item
                   button
@@ -71,6 +72,9 @@
           textarea
               height 200px
               resize none
+              border-radius 0
+              border none
+              box-shadow none
               &:focus
                   box-shadow none
                   outline none
@@ -78,19 +82,21 @@
           .mde-preview-content
               height 200px
               overflow auto
+              border none
       .action-buttons
-          margin-top 5px
+          height 50px
+          padding 5px
+          background-color rgba(#00bcd4, 0.85)
           text-align right
           .preview-btn,
           .post-btn
-              width 80px
               font-size 20px
-              border 1px solid #ddd
-              border-radius 3px
-              background-color #fff
-              color #878787
-              &:hover
-                  shadow()
+              border none
+              //border-radius 3px
+              background-color transparent
+              color #fff
+              // &:hover
+              //     shadow()
               &:focus
                   outline none
           .preview-btn

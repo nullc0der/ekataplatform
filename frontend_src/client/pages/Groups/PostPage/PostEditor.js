@@ -54,8 +54,8 @@ class PostEditor extends React.Component {
                     commands={editorCommands}
                     />
                     <div className='action-buttons'>
-                        <button className='preview-btn' onClick={this.togglePreview}><i className='fas fa-eye'></i></button>
-                        <button className='post-btn' onClick={(e) => onClickSend(e, this.state.reactMdeValue.text)}><i className='fas fa-paper-plane'></i></button>
+                        <button className='preview-btn' title='preview' onClick={this.togglePreview}><i className='fas fa-eye'></i></button>
+                        <button className='post-btn' title='post' onClick={(e) => onClickSend(e, this.state.reactMdeValue.text)}><i className='fas fa-paper-plane'></i></button>
                     </div>
                 </div>
                 <button className={`add-post-btn ${editorVisible? 'editor-visible': ''}`} onClick={this.handleAddPostButtonClick}><i className='material-icons'>add</i></button>

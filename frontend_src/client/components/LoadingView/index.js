@@ -11,9 +11,11 @@ class LoadingView extends React.Component {
     } = this.props
     const cx = classnames(c.container, className)
 
+    const imageURL = window.django.site_type.trim() !== 'local' ? "/statics/dist/img/Preloader_2.gif" : "/static/dist/img/Preloader_2.gif"
+
     return (
       <div className={cx}>
-        <img src="/static/dist/img/Preloader_2.gif"/>
+        <img src={imageURL}/>
       </div>
     )
   }
