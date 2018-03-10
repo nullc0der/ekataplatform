@@ -48,6 +48,7 @@ class PostEditor extends React.Component {
             <div className={cx}>
                 <div className={`editor-area ${editorVisible? 'visible': ''}`}>
                   <ReactMde
+                    textAreaProps={{'placeholder': 'Type here'}}
                     value={this.state.reactMdeValue}
                     visibility={{preview: previewVisible, previewHelp: false, textarea: !previewVisible, toolbar: !previewVisible}}
                     onChange={this.handleMDEChange}
