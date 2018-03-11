@@ -64,7 +64,7 @@ class SidebarMenu extends Component {
 		if (external) {
 			window.location = url
 		} else {
-			this.props.router.push(url)	
+			this.props.router.push(url)
 		}
 	}
 

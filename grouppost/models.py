@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 
 from versatileimagefield.fields import VersatileImageField
 
-from groupsystem.models import GroupPost
-
 # Create your models here.
 
 # TODO: Move other post related models from groupsystem to here
@@ -14,5 +12,4 @@ from groupsystem.models import GroupPost
 
 class PostImage(models.Model):
     uploader = models.ForeignKey(User)
-    post = models.ForeignKey(GroupPost, null=True)
     image = VersatileImageField(upload_to='group_post_images')

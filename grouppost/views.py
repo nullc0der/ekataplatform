@@ -1,13 +1,16 @@
 from django.core.exceptions import ObjectDoesNotExist
 
+from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework import status
+from rest_framework import parsers
 from rest_framework.response import Response
 
 from profilesystem.permissions import IsAuthenticatedLegacy
 from groupsystem.permissions import (
     IsMemberOfGroup, IsModeratorOfGroup)
 from groupsystem.models import BasicGroup, GroupPost, PostComment
+from grouppost.forms import ImageForm
 from grouppost.serializers import PostSerializer, CommentSerialzer
 from grouppost.permissions import IsOwnerOfPost, IsOwnerOfComment
 
@@ -199,3 +202,27 @@ class CommentViewset(viewsets.ViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class UploadImage(APIView):
+    """
+    This view saves an image for post
+
+    * Permissions Required
+        * Logged in user
+    """
+    permission_classes = (IsAuthenticatedLegacy, )
+    parser_classes = (
+        parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser)
+
+    def post(self, request, format=None):
+        if request.data.get('image'):
+            imageform = ImageForm(request.POST, request.FILES)
+            if imageform.is_valid():
+                image = imageform.save(commit=False)
+                image.uploader = request.user
+                image.save()
+                return Response(
+                    image.image.url
+                )
+        return Response()

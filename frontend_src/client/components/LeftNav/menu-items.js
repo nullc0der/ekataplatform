@@ -8,22 +8,22 @@ module.exports = [
 				name: 'Dashboard',
 				href: '/dashboard/ ',
 				external: true,
-				icon: 'fa fa-fw fa-tachometer'
+				icon: 'fa fa-fw fa-tachometer-alt'
 			},
 			{
 				name: 'My Accounts',
 				href: '/myaccount/',
 				external: true,
-				icon: 'fa fa-fw fa-shield',
+				icon: 'fa fa-fw fa-shield-alt',
 				//children: [
 				//	{ name: 'Accounts', href: '/my-accounts/accounts', icon: 'fa fa-fw fa-circle-o'},
 				//	{ name: 'Transfer', href: '/my-accounts/transfer', icon: 'fa fa-fw fa-circle-o'},
 				//]
 			},
-			{ name: 'Profile', href: '/profile/', external: true, icon: 'fa fa-fw fa-circle-o'},
-			{ name: 'Timeline', href: '/timeline/', external: true, icon: 'fa fa-fw fa-clock-o'},
+			{ name: 'Profile', href: '/profile/', external: true, icon: 'far fa-fw fa-circle'},
+			{ name: 'Timeline', href: '/timeline/', external: true, icon: 'far fa-fw fa-clock'},
 			//{ name: 'Email', href: '/dashboard/', icon: 'fa fa-fw fa-envelope-o'},
-			{ name: 'Messenger', href: '/messenger/', icon: 'fa fa-fw fa-comment-o'},
+			{ name: 'Messenger', href: '/messenger/', icon: 'far fa-fw fa-comment'},
 			//{ name: 'My Blog', href: '/dashboard/', icon: 'fa fa-fw fa-bookmark'}
 		]
 	},

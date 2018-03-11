@@ -11,9 +11,9 @@
     ],
     "Group-Posts": [
       {
-        "name": "Group-Posts.565e110a5e66be63372c.chunk.js",
-        "publicPath": "/statics/bundles/Group-Posts.565e110a5e66be63372c.chunk.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Group-Posts.565e110a5e66be63372c.chunk.js"
+        "name": "Group-Posts.00f5651fc0ec898a8370.chunk.js",
+        "publicPath": "/statics/bundles/Group-Posts.00f5651fc0ec898a8370.chunk.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/Group-Posts.00f5651fc0ec898a8370.chunk.js"
       }
     ],
     "Groups-Settings": [
@@ -60,9 +60,9 @@
     ],
     "main": [
       {
-        "name": "main-bundle.7301a12ae6ee9051858d.js",
-        "publicPath": "/statics/bundles/main-bundle.7301a12ae6ee9051858d.js",
-        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.7301a12ae6ee9051858d.js"
+        "name": "main-bundle.acd6aec53e9e963ae209.js",
+        "publicPath": "/statics/bundles/main-bundle.acd6aec53e9e963ae209.js",
+        "path": "/home/prasanta/projects/python/django/ekata_rest/static/bundles/main-bundle.acd6aec53e9e963ae209.js"
       }
     ],
     "vendor": [

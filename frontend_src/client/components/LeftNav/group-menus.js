@@ -17,7 +17,7 @@ const groupMenus = (permissions, id) => {
               {
                 name: "Members",
                 href: `/community/1/groups/${id}/members`,
-                icon: 'fa fa-fw fa-shield',
+                icon: 'fa fa-fw fa-shield-alt',
                 children: [
                     (permissions.indexOf(103) !== -1 || permissions.indexOf(104) !== -1) &&
                     {
@@ -35,7 +35,7 @@ const groupMenus = (permissions, id) => {
             ...menu, children: [...menu.children, {
                 name: "Profile",
                 href: `/community/1/groups/${id}/profile`,
-                icon: 'fa fa-fw fa-gear'
+                icon: 'fa fa-fw fa-cog'
             }]
         }
     }

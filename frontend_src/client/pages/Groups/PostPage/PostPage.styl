@@ -37,7 +37,7 @@
               &::before
                   display block
                   content ''
-                  absolute left -7px top 7px
+                  absolute left -7px top 12px
                   height 12px
                   width 12px
                   border-radius 50%
@@ -45,7 +45,7 @@
               &::after
                   display block
                   content ''
-                  absolute left -2px top 19px bottom -17px
+                  absolute left -2px top 24px bottom -22px
                   width 2px
                   background-color #E9E9E9
               &:last-child
@@ -67,11 +67,31 @@
                   .info
                       margin-left 5px
                       font-size 12px
-                      line-height 1
+                      line-height 1.5
                       display flex
                       flex-direction column
                       .username
                           font-weight bold
+                  .status
+                      padding 0 10px
+                      background-color color_green500
+                      border-radius 3px
+                      color #fff
+                  .actions
+                      margin-left 10px
+              .footer
+                  display flex
+                  align-items center
+                  margin-top 5px
+                  padding 0 20px
+                  color #9B9B9B
+                  .social-buttons
+                      font-size 18px
+                      i
+                          margin 0 5px
+                  .comment-count
+                      p
+                          margin 0
   .ui-post-editor
        absolute right 5px bottom 5px
       .editor-area

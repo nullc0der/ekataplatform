@@ -9,7 +9,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import m2m_changed
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.fields import (
+    GenericForeignKey, GenericRelation)
 
 from versatileimagefield.fields import VersatileImageField
 from versatileimagefield.placeholder import OnDiscPlaceholderImage
