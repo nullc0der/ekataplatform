@@ -49,12 +49,12 @@ export default class MiniChatBox extends React.Component {
                     <div
                         onClick={this.props.toggleMinimise}
                         className='btn btn-default ui-button'>
-                        <i className='fa fa-window-minimize' />
+                        <i className='fas fa-window-minimize' />
                     </div>
                     <div
                         onClick={this.props.closeChat(chat.roomId)}
                         className='btn btn-default ui-button'>
-                        <i className='fa fa-remove' />
+                        <i className='fas fa-times' />
                     </div>
                 </div>
             </div>

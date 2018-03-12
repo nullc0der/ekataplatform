@@ -81,13 +81,13 @@ class ChatFooter extends Component {
 		if (chatMessage || this.state.chatAttachment) {
 			if (this.state.chatAttachment) {
 				if (this.props.roomId) {
-					this.props.handleSendChat(this.props.roomId, chatMessage, this.state.chatAttachment[0])	
+					this.props.handleSendChat(this.props.roomId, chatMessage, this.state.chatAttachment[0])
 				} else {
 					this.props.handleSendChat(chatMessage, this.state.chatAttachment[0])
 				}
 			} else {
 				if (this.props.roomId) {
-					this.props.handleSendChat(this.props.roomId, chatMessage)	
+					this.props.handleSendChat(this.props.roomId, chatMessage)
 				} else {
 					this.props.handleSendChat(chatMessage)
 				}
@@ -97,7 +97,7 @@ class ChatFooter extends Component {
 				chatAttachment: null,
 				attachmentTextInput: '',
 				attachmentModalIsOpen: false
-			})	
+			})
 		}
 	}
 
@@ -225,7 +225,7 @@ class ChatFooter extends Component {
 						onClick={this.onEmojiClick}
 						sheetSize={16} />}
 					<div className='btn btn-default ui-button' onClick={this.onEmojiButtonClick}>
-						<i className='fa fa-smile-o' />
+						<i className='far fa-smile' />
 					</div>
 				</div>
 			</div>

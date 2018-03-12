@@ -63,15 +63,6 @@ class PostEditor extends React.Component {
                 text: text,
                 selection: selection
             }
-            // const {newText, insertionLength} = ReactMdeTextHelper.insertText(text, "![", selection.start);
-            // const finalText = ReactMdeTextHelper.insertText(newText, "](image-url)", selection.end + insertionLength).newText;
-            // return {
-            //     text: finalText,
-            //     selection: {
-            //         start: selection.start + insertionLength,
-            //         end: selection.end + insertionLength,
-            //     }
-            // }
         }
     }
 

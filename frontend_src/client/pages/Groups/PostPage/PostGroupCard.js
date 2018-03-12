@@ -1,65 +1,68 @@
 import React from 'react'
 import classnames from 'classnames'
+import moment from 'moment'
+import showdown from 'showdown'
+
+import Avatar from 'components/Avatar'
 
 
 class PostGroupCard extends React.Component {
+
+    convertMDToHtml = (md) => {
+        const converter = new showdown.Converter()
+        return converter.makeHtml(md)
+    }
+
     render() {
         const {
-            className
+            className,
+            date,
+            posts
         } = this.props
 
         const cx = classnames(className, 'flex-vertical', 'post-group')
 
         return (
             <div className={cx}>
-                <div className='date-area'>Mar 10, 2018</div>
+                <div className='date-area'>{moment(date).format("MMM Do, YYYY")}</div>
                 <div className='ui-post-group-card'>
-                    <div className='post'>
+                    {posts.map((post, i) => <div className='post' key={i}>
                         <div className='header'>
-                            <div className='avatar'></div>
+                            <div className='avatar'>
+                                <a href={post.creator.profile.public_url} className="ui-avatar">
+                                  {
+                                      post.creator.profile.avatar.thumbnail ?
+                                          <img className='img-responsive rounded' src={post.creator.profile.avatar.thumbnail} /> :
+                                          <Avatar name={post.creator.username} bgcolor={user.creator.profile.default_avatar_color} />
+                                  }
+                                </a>
+                            </div>
                             <div className='info'>
-                                <span className='username'>Prasanta Kakati</span>
-                                <span className='time'>12:11</span>
+                                <span className='username'>{post.creator.username}</span>
+                                <span className='time'>{moment(post.created_on).format('h:mm a')}</span>
                             </div>
                             <div className='flex-1'></div>
-                            <div className='status'>Approved</div>
-                            <div className='actions'><i className='fas fa-ellipsis-v'></i></div>
-                        </div>
-                        <div className='content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu feugiat dui, nec placerat dolor. Donec vulputate tempor neque a facilisis. Integer ornare porta elit, non efficitur massa vehicula vitae. Nam rhoncus ornare dolor, id tincidunt turpis fermentum a. Mauris semper lectus diam, malesuada consequat elit tempus aliquam. Phasellus pulvinar tellus nec nulla feugiat, eget egestas lorem dictum. Cras facilisis, nisl non mattis ornare, enim quam cursus velit, id lacinia mauris ipsum vel mi. Phasellus volutpat eget sapien sit amet commodo.</div>
-                        <div className='footer'>
-                          <div className='social-buttons'>
-                                <i className='fab fa-facebook'></i>
-                                <i className='fab fa-twitter'></i>
-                          </div>
-                          <div className='flex-1'></div>
-                          <div className='comment-count'>
-                                <p>2 comments</p>
-                          </div>
-                        </div>
-                    </div>
-                    <div className='post'>
-                        <div className='header'>
-                            <div className='avatar'></div>
-                            <div className='info'>
-                                <span className='username'>Mark Witham</span>
-                                <span className='time'>12:11</span>
+                            {!post.approved && <div className='status'>Pending Approval</div>}
+                            <div className='actions dropdown'>
+                                <i className='fas fa-ellipsis-v'></i>
+                                <ul className="dropdown-menu animated fadeIn">
+                                    <li><a href='#'>Delete Message</a></li>
+                                    <li><a href='#'>Approve</a></li>
+                                </ul>
                             </div>
-                            <div className='flex-1'></div>
-                            <div className='status'>Approved</div>
-                            <div className='actions'><i className='fas fa-ellipsis-v'></i></div>
                         </div>
-                        <div className='content'>Morbi interdum commodo pharetra. Nullam tincidunt, eros non mattis semper, lorem arcu dignissim tellus, vitae blandit erat augue quis augue. Proin ut arcu nulla. Sed sed malesuada urna, vitae euismod dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum pharetra est id sem lacinia venenatis. Cras consequat dolor neque, non mattis eros imperdiet imperdiet. Morbi non ex vitae lectus rhoncus tincidunt sed non sapien. Mauris vel magna faucibus, feugiat urna non, sollicitudin tortor. Maecenas at blandit est. In at tortor ut tortor consectetur pulvinar nec id risus.</div>
+                        <div className='content' dangerouslySetInnerHTML={{ __html:  this.convertMDToHtml(post.post)}}></div>
                         <div className='footer'>
-                          <div className='social-buttons'>
+                          {/*<div className='social-buttons'>
                                 <i className='fab fa-facebook'></i>
                                 <i className='fab fa-twitter'></i>
-                          </div>
+                          </div>*/}
                           <div className='flex-1'></div>
                           <div className='comment-count'>
-                                <p>2 comments</p>
+                                <p>{post.comment_count} comments</p>
                           </div>
                         </div>
-                    </div>
+                    </div>)}
                 </div>
             </div>
         )

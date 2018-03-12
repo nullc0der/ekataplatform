@@ -50,6 +50,14 @@ class PostSerializer(serializers.ModelSerializer):
     creator = UserSerializer(required=False)
     basic_group = GroupSerializer(required=False)
     approved_by = UserSerializer(required=False)
+    created_date = serializers.SerializerMethodField()
+    comment_count = serializers.SerializerMethodField(required=False)
+
+    def get_created_date(self, obj):
+        return obj.created_on.date()
+
+    def get_comment_count(self, obj):
+        return obj.comments.count()
 
     def validate_post(self, value):
         cleaned_text = bleach.clean(

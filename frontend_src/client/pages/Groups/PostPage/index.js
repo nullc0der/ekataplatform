@@ -16,7 +16,7 @@ class PostPage extends React.Component {
       className
     } = this.props;
 
-    const cx = classnames(c.container, className, 'flex-horizontal flex-1')
+    const cx = classnames(c.container, className, 'flex-horizontal scroll-y')
     const notificationClass  = classnames(c.notifications, 'flex-1')
     const groupCardClass = classnames(c.groupcard)
     const postSectionClass = classnames(c.postsection, 'flex-1')

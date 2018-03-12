@@ -43,10 +43,10 @@ class PostViewSets(viewsets.ViewSet):
         try:
             basicgroup = BasicGroup.objects.get(id=request.GET.get('groupID'))
             if request.user in get_approver_set(basicgroup):
-                queryset = basicgroup.posts.all().order_by('-created_on')
+                queryset = basicgroup.posts.all()
             else:
-                queryset = basicgroup.posts.filter(approved=True).order_by(
-                    '-created_on')
+                queryset = set(basicgroup.posts.filter(approved=True)
+                               | basicgroup.posts.filter(creator=request.user))
             serializer = PostSerializer(queryset, many=True)
             return Response(serializer.data)
         except ObjectDoesNotExist:

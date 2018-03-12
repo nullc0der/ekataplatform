@@ -1,8 +1,10 @@
 @import 'react-mde-all.css'
 
 :local(.container)
-  margin 20px 30px 70px 30px
+  padding 20px 30px
+  margin-bottom 50px
   .boxes-in-right
+    margin-top 40px
     margin-left 20px
     width 300px
 
@@ -21,7 +23,7 @@
 
 
 :local(.postsection)
-  position relative
+   min-height fit-content
   .post-group
       margin 5px
       .date-area
@@ -51,8 +53,7 @@
               &:last-child
                   &:after
                       display none
-              .header,
-              .content
+              .header
                   padding 0 20px
                   color #9B9B9B
               .header
@@ -79,6 +80,38 @@
                       color #fff
                   .actions
                       margin-left 10px
+                      i
+                          cursor pointer
+                      .dropdown-menu
+                          top 0
+                          left auto
+                          right 10px
+                       &:hover
+                           .dropdown-menu
+                                 display block
+              .content
+                  padding 10px 30px
+                  color #9B9B9B
+                  h1, h2, h3, p
+                      margin 10px 0
+                      color #9B9B9B
+                  h1
+                      font-size 25px
+                      &:first-of-type
+                          position relative
+                          text-align center
+                          &:after
+                              content ''
+                              absolute left 45%
+                              margin-top 5px
+                              width 120px
+                              height 2px
+                              background-color #9b9b9b
+                              display block
+                  h2
+                      font-size 20px
+                  h3
+                      font-size 18px
               .footer
                   display flex
                   align-items center
@@ -93,16 +126,16 @@
                       p
                           margin 0
   .ui-post-editor
-       absolute right 5px bottom 5px
+       fixed right 385px bottom 65px
       .editor-area
           width 700px
           background-color #fff
-          visibility hidden
+          display none
           border-radius 3px
-          $shadow_2()
           &.visible
-              visibility visible
+              display block
               animation fadeIn 0.3s
+          $shadow_2()
       .mde-header
           height 70px
           padding 5px
@@ -110,13 +143,13 @@
           border-radius 3px 3px 0 0
           .mde-header-group
               margin-top 30px
-              .mde-header-item
+             .mde-header-item
                   button
                       color #fff
                       margin 0 10px
-              .mde-dropdown-header-item
-                  button
-                      color #878787
+             .mde-dropdown-header-item
+                 button
+                    color #878787
       .mde-text
           textarea
               height 200px

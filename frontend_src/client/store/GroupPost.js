@@ -26,6 +26,22 @@ const updateSinglePost = (post) => ({
     post
 })
 
+const getPosts = (url) => {
+    return (dispatch) => {
+        dispatch(postsAreLoading(true))
+        request
+            .get(url)
+            .end((err, res) => {
+                if (res.ok) {
+                    dispatch(postLoadSuccess(res.body))
+                    dispatch(postsAreLoading(false))
+                } else {
+                    dispatch(postsAreLoading(false))
+                }
+            })
+    }
+}
+
 const createPost = (url, post, groupID) => {
     return (dispatch) => {
         request
@@ -33,13 +49,16 @@ const createPost = (url, post, groupID) => {
             .set('X-CSRFToken', window.django.csrf)
             .send({'post': post, 'groupID': groupID})
             .end((err, res) => {
-                console.log(res.status)
+                if (res.ok) {
+                    dispatch(updateSinglePost(res.body))
+                }
             })
     }
 }
 
 export const actions = {
-    createPost
+    createPost,
+    getPosts
 }
 
 

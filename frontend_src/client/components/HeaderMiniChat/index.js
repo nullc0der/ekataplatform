@@ -72,7 +72,7 @@ class HeaderMiniChat extends Component {
 
         const label = (
             <span className={labelClass}>
-                <i className='fa fa-fw fa-comment-o'/>
+                <i className='far fa-fw fa-comment'/>
             </span>
         )
 

@@ -92,10 +92,10 @@ class MiniChat extends Component {
 		var $chat = $btn.parents('.mini-chat')
 
 		if ( $chat.hasClass('is-minimized') ){
-			$btn.find('.fa').removeClass('fa-window-maximize').addClass('fa-window-minimize')
+			$btn.find('.fas').removeClass('fa-window-maximize').addClass('fa-window-minimize')
 			$chat.removeClass('is-minimized')
 		} else {
-			$btn.find('.fa').removeClass('fa-window-minimize').addClass('fa-window-maximize')
+			$btn.find('.fas').removeClass('fa-window-minimize').addClass('fa-window-maximize')
 			$chat.addClass('is-minimized')
 		}
 	}
