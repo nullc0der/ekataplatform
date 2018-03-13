@@ -33,13 +33,6 @@ class PostSectionCard extends React.Component {
         })
     }
 
-    createPost = (e, post) => {
-        if (post.length) {
-            const url = '/api/groups/posts/'
-            this.props.createPost(url, post, this.props.groupID)
-        }
-    }
-
     render() {
           const {
             className,
@@ -54,11 +47,11 @@ class PostSectionCard extends React.Component {
                 {
                     isLoading ?
                     <LoadingView/> :
-                    Object.keys(this.state.posts).map(
+                    Object.keys(this.state.posts).reverse().map(
                         (date, i) => <PostGroupCard key={i} posts={this.state.posts[date]} date={date}/>
                     )
                 }
-                <PostEditor onClickSend={this.createPost}/>
+                <PostEditor createPost={this.props.createPost} groupID={groupID}/>
             </div>
           )
       }

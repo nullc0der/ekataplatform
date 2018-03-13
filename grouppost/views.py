@@ -42,6 +42,7 @@ class PostViewSets(viewsets.ViewSet):
     def list(self, request):
         try:
             basicgroup = BasicGroup.objects.get(id=request.GET.get('groupID'))
+            request.session['basicgroup'] = basicgroup.id
             if request.user in get_approver_set(basicgroup):
                 queryset = basicgroup.posts.all()
             else:

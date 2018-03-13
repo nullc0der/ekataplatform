@@ -54,6 +54,24 @@ class PostEditor extends React.Component {
         }
     }
 
+    createPost = (e) => {
+        const post = this.state.reactMdeValue.text
+        if (post.length) {
+            const {
+                groupID,
+                createPost
+            } = this.props
+            const url = '/api/groups/posts/'
+            createPost(url, post, groupID)
+            this.setState({
+                reactMdeValue:{
+                    'text': ''
+                },
+                editorVisible: false
+            })
+        }
+    }
+
     imageCommand = {
         icon: "image",
         tooltip: "Insert a picture",
@@ -68,8 +86,7 @@ class PostEditor extends React.Component {
 
     render() {
         const  {
-            className,
-            onClickSend
+            className
         } = this.props
 
         const {
@@ -105,7 +122,7 @@ class PostEditor extends React.Component {
                         <button
                             className='post-btn'
                             title='post'
-                            onClick={(e) => onClickSend(e, this.state.reactMdeValue.text)}>
+                            onClick={this.createPost}>
                                 <i className='fas fa-paper-plane'></i>
                         </button>
                         <input type='file' accept='image/*' onChange={this.onImageInputChange} id='imageInput' style={{'visibility': 'hidden'}}/>

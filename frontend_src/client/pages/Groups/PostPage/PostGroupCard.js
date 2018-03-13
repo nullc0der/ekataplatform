@@ -9,7 +9,10 @@ import Avatar from 'components/Avatar'
 class PostGroupCard extends React.Component {
 
     convertMDToHtml = (md) => {
-        const converter = new showdown.Converter()
+        const converter = new showdown.Converter({
+            'noHeaderId': true,
+            'simpleLineBreaks': true
+        })
         return converter.makeHtml(md)
     }
 
