@@ -36,15 +36,14 @@
           .post
               position relative
               margin 10px 20px
-              &::before
+              &:before
                   display block
                   content ''
                   absolute left -7px top 12px
                   height 12px
                   width 12px
                   border-radius 50%
-                  background-color #50E3C2
-              &::after
+              &:after
                   display block
                   content ''
                   absolute left -2px top 24px bottom -22px
@@ -53,6 +52,12 @@
               &:last-child
                   &:after
                       display none
+              &:nth-child(even)
+                  &:before
+                      background-color #50E3C2
+              &:nth-child(odd)
+                  &:before
+                      background-color #F39C12
               .header
                   padding 0 20px
                   color #9B9B9B
@@ -85,7 +90,7 @@
                       .dropdown-menu
                           top 0
                           left auto
-                          right 10px
+                          right 0
                        &:hover
                            .dropdown-menu
                                  display block
@@ -115,7 +120,7 @@
                   img
                       display block
                       max-width 100%
-                      height auto
+                      max-height 200px
               .footer
                   display flex
                   align-items center

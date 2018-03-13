@@ -29,7 +29,7 @@ class PostGroupCard extends React.Component {
             <div className={cx}>
                 <div className='date-area'>{moment(date).format("MMM Do, YYYY")}</div>
                 <div className='ui-post-group-card'>
-                    {posts.map((post, i) => <div className='post' key={i}>
+                    {posts.reverse().map((post, i) => <div className='post' key={i}>
                         <div className='header'>
                             <div className='avatar'>
                                 <a href={post.creator.profile.public_url} className="ui-avatar">
@@ -49,8 +49,9 @@ class PostGroupCard extends React.Component {
                             <div className='actions dropdown'>
                                 <i className='fas fa-ellipsis-v'></i>
                                 <ul className="dropdown-menu animated fadeIn">
-                                    <li><a href='#'>Delete Message</a></li>
+                                    <li><a href='#'>Delete</a></li>
                                     <li><a href='#'>Approve</a></li>
+                                    <li><a href='#'>Edit</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -62,7 +63,7 @@ class PostGroupCard extends React.Component {
                           </div>*/}
                           <div className='flex-1'></div>
                           <div className='comment-count'>
-                                <p>{post.comment_count} comments</p>
+                                {post.comment_count !== 0 ? <p>{post.comment_count} comments</p> : ''}
                           </div>
                         </div>
                     </div>)}
