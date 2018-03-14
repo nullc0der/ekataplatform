@@ -42,7 +42,9 @@ class PostGroupCard extends React.Component {
     convertMDToHtml = (md) => {
         const converter = new showdown.Converter({
             'noHeaderId': true,
-            'simpleLineBreaks': true
+            'simpleLineBreaks': true,
+            'openLinksInNewWindow': true,
+            'simplifiedAutoLink': true
         })
         return converter.makeHtml(md)
     }
