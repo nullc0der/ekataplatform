@@ -94,7 +94,7 @@ class PostGroupCard extends React.Component {
 
     renderOnePost = (post, i) => {
         return (
-            <div className='post' key={i}>
+            <div className='post' key={i} onClick={(e) => this.openPostModal(e, post)}>
                 <div className='header'>
                     <div className='avatar'>
                         <a href={post.creator.profile.public_url} className="ui-avatar">
@@ -111,7 +111,7 @@ class PostGroupCard extends React.Component {
                     </div>
                     <div className='flex-1'></div>
                     {!post.approved && <div className='status'>Pending Approval</div>}
-                    {
+                    {/* {
                         this.shouldShowPostOptions(post) && 
                         <div className={`actions dropdown ${this.state.clickedOnPostAction === post.id && 'open'}`}>
                             <i className='fas fa-ellipsis-v' onClick={(e) => this.onPostActionClick(e, post.id)}></i>
@@ -122,9 +122,9 @@ class PostGroupCard extends React.Component {
                                 <li onClick={(e) => this.props.requestDeletePost(e, post.id)}><a href='#'>Delete</a></li>
                             </ul>
                         </div>
-                    }
+                    } */}
                 </div>
-                <div className='content' dangerouslySetInnerHTML={{ __html:  this.convertMDToHtml(post.post)}} onClick={(e) => this.openPostModal(e, post)}></div>
+                <div className='content' dangerouslySetInnerHTML={{ __html:  this.convertMDToHtml(post.post)}}></div>
                 <div className='footer'>
                   {/*<div className='social-buttons'>
                         <i className='fab fa-facebook'></i>
@@ -193,7 +193,7 @@ class PostGroupCard extends React.Component {
                                 onClick={(e) => this.props.requestApproveComment(e, x.id)}><i className='fas fa-check'></i></div> : ''}
                             {(this.props.permissionSet.indexOf(105) !== -1 | window.django.user.username === x.commentor.username) ?<div
                                 className='status' title='delete'
-                                onClick={(e) => this.props.requestDeleteComment(e, x.id)}><i className='fas fa-trash'></i></div> : ''}
+                                onClick={(e) => this.props.requestDeleteComment(e, x.id, x.post.id)}><i className='fas fa-trash'></i></div> : ''}
                         </div> : '')
                     }
                     </Scrollbars>

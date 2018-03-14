@@ -60,11 +60,11 @@ class PostSectionCard extends React.Component {
         this.props.approvePost(url)
     }
 
-    requestDeleteComment = (e, commentID) => {
+    requestDeleteComment = (e, commentID, postID) => {
         e.preventDefault()
         e.stopPropagation()
         const url = `/api/groups/posts/comment/${commentID}/`
-        this.props.deleteComment(url, commentID)
+        this.props.deleteComment(url, commentID, postID)
     }
 
     requestApproveComment = (e, commentID) => {
@@ -81,7 +81,7 @@ class PostSectionCard extends React.Component {
             isLoading
           } = this.props
 
-          const cx = classnames(className, 'flex-vertical')
+          const cx = classnames(className)
 
           return (
             <div className={cx}>
@@ -123,7 +123,7 @@ const mapDispatchToProps = (dispatch) => ({
     approvePost: (url) => dispatch(groupPostActions.approvePost(url)),
     fetchComments: (url) => dispatch(groupPostActions.getComments(url)),
     createComment: (url, comment, postID) => dispatch(groupPostActions.createComment(url, comment, postID)),
-    deleteComment: (url, commentID) => dispatch(groupPostActions.deleteComment(url, commentID)),
+    deleteComment: (url, commentID, postID) => dispatch(groupPostActions.deleteComment(url, commentID, postID)),
     approveComment: (url) => dispatch(groupPostActions.approveComment(url)),
     changeUserPermissionSetForGroup: (permissionSet) => dispatch(groupActions.changeUserPermissionSetForGroup(permissionSet))
 })

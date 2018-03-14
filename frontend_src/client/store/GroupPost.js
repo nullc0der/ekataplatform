@@ -63,6 +63,13 @@ const updateSingleComment = (comment) => ({
     comment
 })
 
+const UPDATE_COMMENT_COUNT = 'UPDATE_COMMENT_COUNT'
+const updateCommentCount = (postID, negative=false) => ({
+    type: UPDATE_COMMENT_COUNT,
+    postID,
+    negative
+})
+
 const getPosts = (url) => {
     return (dispatch) => {
         dispatch(postsAreLoading(true))
@@ -140,12 +147,13 @@ const createComment = (url, comment, postID) => {
             .end((err, res) => {
                 if (res.ok) {
                     dispatch(addSingleComment(res.body))
+                    dispatch(updateCommentCount(postID))
                 }
             })
     }
 }
 
-const deleteComment = (url, commentID) => {
+const deleteComment = (url, commentID, postID) => {
     return (dispatch) => {
         request
             .delete(url)
@@ -153,6 +161,7 @@ const deleteComment = (url, commentID) => {
             .end((err, res) => {
                 if (res.status === 204) {
                     dispatch(deleteSingleComment(commentID))
+                    dispatch(updateCommentCount(postID, true))
                 }
             })
     }
@@ -223,6 +232,16 @@ export default function GroupPostReducer(state=INITIAL_STATE, action) {
             return {
                 ...state, comments: state.comments.map(
                     x => x.id === action.comment.id ? action.comment : x
+                )
+            }
+        case UPDATE_COMMENT_COUNT:
+            return {
+                ...state, posts: state.posts.map(
+                    x => x.id === action.postID ?
+                        action.negative ?
+                            { ...x, comment_count: x.comment_count - 1 } :
+                            { ...x, comment_count: x.comment_count + 1 } :
+                        x
                 )
             }
         default:
