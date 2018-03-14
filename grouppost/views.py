@@ -12,7 +12,9 @@ from groupsystem.permissions import (
 from groupsystem.models import BasicGroup, GroupPost, PostComment
 from grouppost.forms import ImageForm
 from grouppost.serializers import PostSerializer, CommentSerialzer
-from grouppost.permissions import IsOwnerOfPost, IsOwnerOfComment
+from grouppost.permissions import (
+    IsOwnerOfPostOrModeratorOfGroup, IsOwnerOfCommentOrModeratorOfGroup,
+    IsOwnerOfObjectOrModeratorOfGroup)
 
 
 # Create your views here.
@@ -34,20 +36,22 @@ class PostViewSets(viewsets.ViewSet):
     def get_permissions(self):
         permission_classes = (IsAuthenticatedLegacy, IsMemberOfGroup)
         if self.action == 'update' or self.action == 'destroy':
-            permission_classes.add(IsOwnerOfPost, IsModeratorOfGroup)
+            permission_classes = (
+                IsAuthenticatedLegacy, IsOwnerOfPostOrModeratorOfGroup)
         if self.action == 'partial_update':
-            permission_classes.add(IsModeratorOfGroup)
+            permission_classes = (IsAuthenticatedLegacy, IsModeratorOfGroup)
         return [permission() for permission in permission_classes]
 
     def list(self, request):
         try:
             basicgroup = BasicGroup.objects.get(id=request.GET.get('groupID'))
+            self.check_object_permissions(request, basicgroup)
             request.session['basicgroup'] = basicgroup.id
             if request.user in get_approver_set(basicgroup):
                 queryset = basicgroup.posts.all()
             else:
-                queryset = set(basicgroup.posts.filter(approved=True)
-                               | basicgroup.posts.filter(creator=request.user))
+                queryset = set(basicgroup.posts.filter(approved=True) |
+                               basicgroup.posts.filter(creator=request.user))
             serializer = PostSerializer(queryset, many=True)
             return Response(serializer.data)
         except ObjectDoesNotExist:
@@ -56,6 +60,7 @@ class PostViewSets(viewsets.ViewSet):
     def create(self, request):
         try:
             basicgroup = BasicGroup.objects.get(id=request.data.get('groupID'))
+            self.check_object_permissions(request, basicgroup)
             serializer = PostSerializer(data=request.data)
             if serializer.is_valid():
                 if request.user in get_approver_set(basicgroup)\
@@ -77,6 +82,7 @@ class PostViewSets(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         try:
             post = GroupPost.objects.get(id=pk)
+            self.check_object_permissions(request, post)
             return Response(
                 PostSerializer(post).data
             )
@@ -86,6 +92,7 @@ class PostViewSets(viewsets.ViewSet):
     def update(self, request, pk=None):
         try:
             post = GroupPost.objects.get(id=pk)
+            self.check_object_permissions(request, post)
             serializer = PostSerializer(post, request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -99,7 +106,8 @@ class PostViewSets(viewsets.ViewSet):
     def partial_update(self, request, pk=None):
         try:
             post = GroupPost.objects.get(id=pk)
-            serializer = PostSerializer(post, request.data)
+            self.check_object_permissions(request, post)
+            serializer = PostSerializer(post, request.data, partial=True)
             if serializer.is_valid():
                 serializer.save(
                     approved=True,
@@ -115,6 +123,7 @@ class PostViewSets(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         try:
             post = GroupPost.objects.get(id=pk)
+            self.check_object_permissions(request, post)
             post.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except ObjectDoesNotExist:
@@ -129,22 +138,25 @@ class CommentViewset(viewsets.ViewSet):
     def get_permissions(self):
         permission_classes = (IsAuthenticatedLegacy, IsMemberOfGroup)
         if self.action == 'update':
-            permission_classes.add(IsOwnerOfComment, IsModeratorOfGroup)
+            permission_classes = (
+                IsAuthenticatedLegacy, IsOwnerOfCommentOrModeratorOfGroup)
         if self.action == 'partial_update':
-            permission_classes.add(IsModeratorOfGroup)
+            permission_classes = (IsAuthenticatedLegacy, IsModeratorOfGroup)
         if self.action == 'destroy':
-            permission_classes.add(
-                IsOwnerOfPost, IsOwnerOfComment, IsModeratorOfGroup)
+            permission_classes = (
+                IsAuthenticatedLegacy, IsOwnerOfObjectOrModeratorOfGroup)
         return [permission() for permission in permission_classes]
 
     def list(self, request):
         try:
-            post = GroupPost.objects.get(id=request.data.get('postID'))
+            post = GroupPost.objects.get(id=request.GET.get('postID'))
+            self.check_object_permissions(request, post)
             if request.user in get_approver_set(post.basic_group):
                 comments = post.comments.all()
             else:
-                comments = post.comments.all(approved=True)
-            serializer = CommentSerialzer(comments)
+                comments = set(post.comments.filter(approved=True) |
+                               post.comments.filter(commentor=request.user))
+            serializer = CommentSerialzer(comments, many=True)
             return Response(serializer.data)
         except ObjectDoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -152,7 +164,8 @@ class CommentViewset(viewsets.ViewSet):
     def create(self, request):
         try:
             post = GroupPost.objects.get(id=request.data.get('postID'))
-            serializer = CommentSerialzer(request.data)
+            self.check_object_permissions(request, post)
+            serializer = CommentSerialzer(data=request.data)
             if serializer.is_valid():
                 if request.user in get_approver_set(post.basic_group)\
                         or post.basic_group.auto_approve_comment:
@@ -172,6 +185,7 @@ class CommentViewset(viewsets.ViewSet):
     def update(self, request, pk=None):
         try:
             comment = PostComment.objects.get(id=pk)
+            self.check_object_permissions(request, comment)
             serializer = CommentSerialzer(comment, request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -184,7 +198,8 @@ class CommentViewset(viewsets.ViewSet):
     def partial_update(self, request, pk=None):
         try:
             comment = PostComment.objects.get(id=pk)
-            serializer = CommentSerialzer(comment, request.data)
+            self.check_object_permissions(request, comment)
+            serializer = CommentSerialzer(comment, request.data, partial=True)
             if serializer.is_valid():
                 serializer.save(
                     approved=True,
@@ -199,6 +214,7 @@ class CommentViewset(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         try:
             comment = PostComment.objects.get(id=pk)
+            self.check_object_permissions(request, comment)
             comment.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except ObjectDoesNotExist:

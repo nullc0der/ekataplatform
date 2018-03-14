@@ -9,6 +9,7 @@ class GroupCard extends Component {
 		group: {}
 	}
 
+	// TODO: Get this from parent
 	componentDidMount() {
 		const id = this.props.groupID
 		request
