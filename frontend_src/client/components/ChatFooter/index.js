@@ -185,17 +185,18 @@ class ChatFooter extends Component {
 						</div>
 					</form>
 				</Modal>
-				<ImageEditor
+				{/* This is hidden until a improved version is available REF: TAIGA-617 */}
+				{/* <ImageEditor
 					isOpen={this.state.imageEditorModalIsOpen}
 					onBackdropClick={this.toggleImageEditorModal}
 					showCaption={true}
-					uploadImage={this.uploadImage} />
+					uploadImage={this.uploadImage} /> */}
 				<div className='btn btn-default ui-button btn-attachment' onClick={this.onFileButtonClick}>
 					<i className='fa fa-paperclip'/>
 				</div>
-				<div className='btn btn-default ui-button btn-camera' onClick={this.onImageButtonClick}>
+				{/* <div className='btn btn-default ui-button btn-camera' onClick={this.onImageButtonClick}>
 					<i className='fa fa-camera-retro' />
-				</div>
+				</div> */}
 				<div className='chat-input-wrap flex-1 flex-horizontal a-stretch'>
 					{this.props.showTyping && <div className="chat-user-typing">
 						<span>{this.props.showTypingUsername || "User"} is typing <i className="fa fa-spin fa-circle-o-notch"></i></span>

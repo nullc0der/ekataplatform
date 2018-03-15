@@ -92,17 +92,25 @@ class PostGroupCard extends React.Component {
         }
     }
 
+    setEditingPost = (e, postID) => {
+        e.preventDefault()
+        this.props.updateEditingPost(postID)
+        this.setState(prevState => ({
+            postModalIsShown: !prevState.postModalIsShown
+        }))
+    }
+
     renderOnePost = (post, i) => {
         return (
             <div className='post' key={i} onClick={(e) => this.openPostModal(e, post)}>
                 <div className='header'>
                     <div className='avatar'>
                         <a href={post.creator.profile.public_url} className="ui-avatar">
-                          {
-                              post.creator.profile.avatar.thumbnail ?
-                                  <img className='img-responsive rounded' src={post.creator.profile.avatar.thumbnail} /> :
-                                  <Avatar name={post.creator.fullname || post.creator.username} bgcolor={post.creator.profile.default_avatar_color} />
-                          }
+                            {
+                                post.creator.profile.avatar.thumbnail ?
+                                    <img className='img-responsive rounded' src={post.creator.profile.avatar.thumbnail} /> :
+                                    <Avatar name={post.creator.fullname || post.creator.username} bgcolor={post.creator.profile.default_avatar_color} />
+                            }
                         </a>
                     </div>
                     <div className='info'>
@@ -124,18 +132,18 @@ class PostGroupCard extends React.Component {
                         </div>
                     } */}
                 </div>
-                <div className='content' dangerouslySetInnerHTML={{ __html:  this.convertMDToHtml(post.post)}}></div>
+                <div className='content' dangerouslySetInnerHTML={{ __html: this.convertMDToHtml(post.post) }}></div>
                 <div className='footer'>
-                  {/*<div className='social-buttons'>
+                    {/*<div className='social-buttons'>
                         <i className='fab fa-facebook'></i>
                         <i className='fab fa-twitter'></i>
                   </div>*/}
-                  <div className='flex-1'></div>
-                  <div className='comment-count'>
+                    <div className='flex-1'></div>
+                    <div className='comment-count'>
                         {post.comment_count !== 0 ? <p>{post.comment_count} comments</p> : ''}
-                  </div>
+                    </div>
                 </div>
-        </div>
+            </div>
         )
     }
 
@@ -145,11 +153,11 @@ class PostGroupCard extends React.Component {
                 <div className='header'>
                     <div className='avatar'>
                         <a href={post.creator.profile.public_url} className="ui-avatar">
-                          {
-                              post.creator.profile.avatar.thumbnail ?
-                                  <img className='img-responsive rounded' src={post.creator.profile.avatar.thumbnail} /> :
-                                  <Avatar name={post.creator.fullname || post.creator.username} bgcolor={post.creator.profile.default_avatar_color} />
-                          }
+                            {
+                                post.creator.profile.avatar.thumbnail ?
+                                    <img className='img-responsive rounded' src={post.creator.profile.avatar.thumbnail} /> :
+                                    <Avatar name={post.creator.fullname || post.creator.username} bgcolor={post.creator.profile.default_avatar_color} />
+                            }
                         </a>
                     </div>
                     <div className='info'>
@@ -163,6 +171,9 @@ class PostGroupCard extends React.Component {
                         <div className={`actions dropdown ${this.state.clickedOnPostAction === post.id && 'open'}`}>
                             <i className='fas fa-ellipsis-v' onClick={(e) => this.onPostActionClick(e, post.id)}></i>
                             <ul className='dropdown-menu animated fadeIn'>
+                                {(this.props.permissionSet.indexOf(105) !== -1 | post.creator.username === window.django.user.username) ?
+                                    <li onClick={(e) => this.setEditingPost(e, post.id)}><a href='#'>Edit</a></li>: ''
+                                }
                                 {(this.props.permissionSet.indexOf(105) !== -1 & !post.approved) ?
                                     <li onClick={(e) => this.props.requestApprovePost(e, post.id)}><a href='#'>Approve</a></li> : ''
                                 }
@@ -171,48 +182,48 @@ class PostGroupCard extends React.Component {
                         </div>
                     }
                 </div>
-                <div className='content' dangerouslySetInnerHTML={{ __html:  this.convertMDToHtml(post.post)}}></div>
+                <div className='content' dangerouslySetInnerHTML={{ __html: this.convertMDToHtml(post.post) }}></div>
                 <div className='footer'>
-                  <div className='comment-box'>
-                    <Scrollbars autoHide autoHeight autoHeightMax={300} ref={node => {this.commentScroller = node}}>
-                    {
-                        this.props.comments.map(x => x.post.id === post.id ? <div className='comment' key={x.id}>
+                    <div className='comment-box'>
+                        <Scrollbars autoHide autoHeight autoHeightMax={300} ref={node => { this.commentScroller = node }}>
+                            {
+                                this.props.comments.map(x => x.post.id === post.id ? <div className='comment' key={x.id}>
+                                    <div className='avatar'>
+                                        {
+                                            x.commentor.profile.avatar.thumbnail ?
+                                                <img className='img-responsive rounded' src={x.commentor.profile.avatar.thumbnail} /> :
+                                                <Avatar name={x.commentor.fullname || x.commentor.username} bgcolor={x.commentor.profile.default_avatar_color} />
+                                        }
+                                    </div>
+                                    <div className='content'>
+                                        <p className='username'>{x.commentor.username}</p>
+                                        <p className='text'>{x.comment}</p>
+                                    </div>
+                                    {(!x.approved & this.props.permissionSet.indexOf(105) !== -1) ? <div
+                                        className='status' title='approve'
+                                        onClick={(e) => this.props.requestApproveComment(e, x.id)}><i className='fas fa-check'></i></div> : ''}
+                                    {(this.props.permissionSet.indexOf(105) !== -1 | window.django.user.username === x.commentor.username) ? <div
+                                        className='status' title='delete'
+                                        onClick={(e) => this.props.requestDeleteComment(e, x.id, x.post.id)}><i className='fas fa-trash'></i></div> : ''}
+                                </div> : '')
+                            }
+                        </Scrollbars>
+                        <div className='comment'>
                             <div className='avatar'>
                                 {
-                                    x.commentor.profile.avatar.thumbnail ?
-                                        <img className='img-responsive rounded' src={x.commentor.profile.avatar.thumbnail} /> :
-                                        <Avatar name={x.commentor.fullname || x.commentor.username} bgcolor={x.commentor.profile.default_avatar_color} />
+                                    window.django.user.profile_image ?
+                                        <img className='img-responsive rounded' src={window.django.user.profile_image} /> :
+                                        <Avatar name={window.django.user.fullname || window.django.user.username} bgcolor={window.django.user.profile_avatar_color} />
                                 }
                             </div>
-                            <div className='content'>
-                                <p className='username'>{x.commentor.username}</p>
-                                <p className='text'>{x.comment}</p>
+                            <div className='comment-input-box'>
+                                <form onSubmit={(e) => this.sendComment(e, post.id)}>
+                                    <input type='text' className='comment-input' value={this.state.commentInput} onChange={this.onChangeCommentInput} placeholder='press enter to post a comment' />
+                                    <i className='fas fa-paper-plane' onClick={(e) => this.sendComment(e, post.id)} />
+                                </form>
                             </div>
-                            {(!x.approved & this.props.permissionSet.indexOf(105) !== -1) ? <div 
-                                className='status' title='approve'
-                                onClick={(e) => this.props.requestApproveComment(e, x.id)}><i className='fas fa-check'></i></div> : ''}
-                            {(this.props.permissionSet.indexOf(105) !== -1 | window.django.user.username === x.commentor.username) ?<div
-                                className='status' title='delete'
-                                onClick={(e) => this.props.requestDeleteComment(e, x.id, x.post.id)}><i className='fas fa-trash'></i></div> : ''}
-                        </div> : '')
-                    }
-                    </Scrollbars>
-                    <div className='comment'>
-                        <div className='avatar'>
-                            {
-                                window.django.user.profile_image ?
-                                    <img className='img-responsive rounded' src={window.django.user.profile_image} /> :
-                                    <Avatar name={window.django.user.fullname || window.django.user.username} bgcolor={window.django.user.profile_avatar_color} />
-                            }
-                        </div>
-                        <div className='comment-input-box'>
-                            <form onSubmit={(e) => this.sendComment(e, post.id)}>
-                                <input type='text' className='comment-input' value={this.state.commentInput} onChange={this.onChangeCommentInput} placeholder='press enter to post a comment'/>
-                                <i className='fas fa-paper-plane' onClick={(e) => this.sendComment(e, post.id)}/>
-                            </form>
                         </div>
                     </div>
-                  </div>
                 </div>
             </div>
         )

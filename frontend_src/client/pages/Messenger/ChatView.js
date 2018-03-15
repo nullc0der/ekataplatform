@@ -164,6 +164,13 @@ class ChatView extends Component {
 		}
 	}
 
+	chatViewBodySwipedUp = (e, deltaY, isFlick) => {
+		if (isFlick && $(window).width() < 768) {
+			this.props.updateHeaderVisibility(false)
+			$('.' + c.chatView).addClass('fullscreen')
+		}
+	}
+
 	chatFooterInputFocus = () => {
 		if ($(window).width() < 768) {
 			this.props.updateHeaderVisibility(false)
@@ -192,14 +199,14 @@ class ChatView extends Component {
 							{this.renderOptions()}
 						</div>
 						<div className='btn btn-default ui-button' onClick={this.handleOptions}>
-							<i className='fa fa-ellipsis-v'/>
+							<i className='fas fa-ellipsis-v'/>
 						</div>
 						<div onClick={this.closeChatView} className='btn btn-default btn-chat ui-button mobile-close-chat'>
-							<i className='fa fa-remove'/>
+							<i className='fas fa-times'/>
 						</div>
 					</div>
 				</div>
-				<Swipeable className='chatview-body flex-1' onSwipedDown={this.chatViewBodySwipedDown}>
+				<Swipeable className='chatview-body flex-1' onSwipedDown={this.chatViewBodySwipedDown} onSwipedUp={this.chatViewBodySwipedUp}>
 					{
 						chat &&
 						chat.map((x, i) => {

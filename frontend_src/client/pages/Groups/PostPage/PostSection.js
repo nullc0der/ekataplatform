@@ -41,8 +41,12 @@ class PostSectionCard extends React.Component {
     }
 
     setPosts = (fetchedPosts) => {
+        let finalPosts = _.groupBy(fetchedPosts, 'created_date')
+        for (const finalPost in finalPosts) {
+            finalPosts[finalPost].reverse()
+        }
         this.setState({
-            posts: _.groupBy(fetchedPosts, 'created_date')
+            posts: finalPosts
         })
     }
 
@@ -100,16 +104,24 @@ class PostSectionCard extends React.Component {
                             getComments={this.props.fetchComments}
                             requestDeleteComment={this.requestDeleteComment}
                             requestApproveComment={this.requestApproveComment}
-                            permissionSet={this.props.permissionSet}/>
+                            permissionSet={this.props.permissionSet}
+                            updateEditingPost={this.props.updateEditingPost}/>
                     )
                 }
-                <PostEditor createPost={this.props.createPost} groupID={groupID}/>
+                <PostEditor
+                    posts={this.props.posts}
+                    editingPost={this.props.editingPost}
+                    createPost={this.props.createPost}
+                    groupID={groupID}
+                    updateEditingPost={this.props.updateEditingPost}
+                    updatePost={this.props.updatePost}/>
             </div>
           )
       }
  }
 
 const mapStateToProps = (state) => ({
+    editingPost: state.GroupPost.editingPost,
     isLoading: state.GroupPost.isLoading,
     posts: state.GroupPost.posts,
     comments: state.GroupPost.comments,
@@ -119,13 +131,16 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchPosts: (url) => dispatch(groupPostActions.getPosts(url)),
     createPost: (url, post, groupID) => dispatch(groupPostActions.createPost(url, post, groupID)),
+    updatePost: (url, post) => dispatch(groupPostActions.updatePost(url, post)),
     deletePost: (url, postID) => dispatch(groupPostActions.deletePost(url, postID)),
     approvePost: (url) => dispatch(groupPostActions.approvePost(url)),
     fetchComments: (url) => dispatch(groupPostActions.getComments(url)),
     createComment: (url, comment, postID) => dispatch(groupPostActions.createComment(url, comment, postID)),
     deleteComment: (url, commentID, postID) => dispatch(groupPostActions.deleteComment(url, commentID, postID)),
     approveComment: (url) => dispatch(groupPostActions.approveComment(url)),
-    changeUserPermissionSetForGroup: (permissionSet) => dispatch(groupActions.changeUserPermissionSetForGroup(permissionSet))
+    changeUserPermissionSetForGroup: (permissionSet) => dispatch(
+        groupActions.changeUserPermissionSetForGroup(permissionSet)),
+    updateEditingPost: (postID) => dispatch(groupPostActions.updateEditingPost(postID))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostSectionCard)

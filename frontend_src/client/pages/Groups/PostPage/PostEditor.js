@@ -1,15 +1,29 @@
 import React from 'react'
 import classnames from 'classnames'
 import request from 'superagent'
+import { find } from 'lodash'
 
-import ReactMde, {ReactMdeCommands, ReactMdeTextHelper} from 'react-mde'
+import ReactMde, { ReactMdeCommands, ReactMdeTextHelper } from 'react-mde'
 
 
 class PostEditor extends React.Component {
     state = {
         editorVisible: false,
         reactMdeValue: { text: '' },
-        previewVisible: false
+        previewVisible: false,
+        editingPost: -1
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps.editingPost !== this.props.editingPost & this.props.editingPost !== -1) {
+            this.setState({
+                editingPost: this.props.editingPost,
+                reactMdeValue: {
+                    text: find(this.props.posts, ['id', this.props.editingPost]).post
+                },
+                editorVisible: true
+            })
+        }
     }
 
     handleAddPostButtonClick = (e) => {
@@ -19,6 +33,11 @@ class PostEditor extends React.Component {
     }
 
     handleMDEChange = (value) => {
+        if (!value.text.length && this.state.editingPost !== -1) {
+            this.setState({
+                editingPost: -1
+            }, () => this.props.updateEditingPost(-1))
+        }
         this.setState({
             reactMdeValue: value
         })
@@ -54,21 +73,28 @@ class PostEditor extends React.Component {
         }
     }
 
-    createPost = (e) => {
+    createOrUpdatePost = (e) => {
         const post = this.state.reactMdeValue.text
         if (post.length) {
             const {
                 groupID,
-                createPost
+                createPost,
+                updatePost
             } = this.props
-            const url = '/api/groups/posts/'
-            createPost(url, post, groupID)
+            if (this.state.editingPost !== -1) {
+                const url = `/api/groups/posts/${this.state.editingPost}/`
+                updatePost(url, post, groupID)
+            } else {
+                const url = '/api/groups/posts/'
+                createPost(url, post, groupID)
+            }
             this.setState({
                 reactMdeValue:{
                     'text': ''
                 },
-                editorVisible: false
-            })
+                editorVisible: false,
+                editingPost: -1
+            }, () => this.props.updateEditingPost(-1))
         }
     }
 
@@ -122,7 +148,7 @@ class PostEditor extends React.Component {
                         <button
                             className='post-btn'
                             title='post'
-                            onClick={this.createPost}>
+                            onClick={this.createOrUpdatePost}>
                                 <i className='fas fa-paper-plane'></i>
                         </button>
                         <input type='file' accept='image/*' onChange={this.onImageInputChange} id='imageInput' style={{'visibility': 'hidden'}}/>

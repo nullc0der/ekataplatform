@@ -4,7 +4,8 @@ import request from 'superagent'
 const INITIAL_STATE = {
     posts: [],
     comments: [],
-    isLoading: false
+    isLoading: false,
+    editingPost: -1
 }
 
 
@@ -70,6 +71,13 @@ const updateCommentCount = (postID, negative=false) => ({
     negative
 })
 
+const UPDATE_EDITING_POST = 'UPDATE_EDITING_POST'
+const updateEditingPost = (postID) => ({
+    type: UPDATE_EDITING_POST,
+    postID
+})
+
+
 const getPosts = (url) => {
     return (dispatch) => {
         dispatch(postsAreLoading(true))
@@ -95,6 +103,20 @@ const createPost = (url, post, groupID) => {
             .end((err, res) => {
                 if (res.ok) {
                     dispatch(addSinglePost(res.body))
+                }
+            })
+    }
+}
+
+const updatePost = (url, post) => {
+    return (dispatch) => {
+        request
+            .put(url)
+            .set('X-CSRFToken', window.django.csrf)
+            .send({ 'post': post })
+            .end((err, res) => {
+                if (res.ok) {
+                    dispatch(updateSinglePost(res.body))
                 }
             })
     }
@@ -135,8 +157,8 @@ const getComments = (url) => {
                     dispatch(commentLoadSuccess(res.body))
                 }
             })
-        }
     }
+}
 
 const createComment = (url, comment, postID) => {
     return (dispatch) => {
@@ -188,63 +210,67 @@ export const actions = {
     getComments,
     deleteComment,
     createComment,
-    approveComment
+    approveComment,
+    updateEditingPost,
+    updatePost
 }
 
 
 export default function GroupPostReducer(state=INITIAL_STATE, action) {
     switch(action.type) {
-        case POSTS_ARE_LOADING:
-            return {
-                ...state, isLoading: action.status
-            }
-        case POST_LOAD_SUCCESS:
-            return {
-                ...state, posts: action.posts
-            }
-        case ADD_SINGLE_POST:
-            return {
-                ...state, posts: [...state.posts, action.post]
-            }
-        case DELETE_SINGLE_POST:
-            return {
-                ...state, posts: state.posts.filter(x => x.id !== action.postID)
-            }
-        case UPDATE_SINGLE_POST:
-            return {
-                ...state, posts: state.posts.map(
-                    x => x.id === action.post.id ? action.post : x
-                )
-            }
-        case COMMENT_LOAD_SUCCESS:
-            return {
-                ...state, comments: action.comments
-            }
-        case ADD_SINGLE_COMMENT:
-            return {
-                ...state, comments: [...state.comments, action.comment]
-            }
-        case DELETE_SINGLE_COMMENT:
-            return {
-                ...state, comments: state.comments.filter(x => x.id !== action.commentID)
-            }
-        case UPDATE_SINGLE_COMMENT:
-            return {
-                ...state, comments: state.comments.map(
-                    x => x.id === action.comment.id ? action.comment : x
-                )
-            }
-        case UPDATE_COMMENT_COUNT:
-            return {
-                ...state, posts: state.posts.map(
-                    x => x.id === action.postID ?
-                        action.negative ?
-                            { ...x, comment_count: x.comment_count - 1 } :
-                            { ...x, comment_count: x.comment_count + 1 } :
-                        x
-                )
-            }
-        default:
-            return state
+    case POSTS_ARE_LOADING:
+        return {
+            ...state, isLoading: action.status
+        }
+    case POST_LOAD_SUCCESS:
+        return {
+            ...state, posts: action.posts
+        }
+    case ADD_SINGLE_POST:
+        return {
+            ...state, posts: [...state.posts, action.post]
+        }
+    case DELETE_SINGLE_POST:
+        return {
+            ...state, posts: state.posts.filter(x => x.id !== action.postID)
+        }
+    case UPDATE_SINGLE_POST:
+        return {
+            ...state, posts: state.posts.map(
+                x => x.id === action.post.id ? action.post : x
+            )
+        }
+    case COMMENT_LOAD_SUCCESS:
+        return {
+            ...state, comments: action.comments
+        }
+    case ADD_SINGLE_COMMENT:
+        return {
+            ...state, comments: [...state.comments, action.comment]
+        }
+    case DELETE_SINGLE_COMMENT:
+        return {
+            ...state, comments: state.comments.filter(x => x.id !== action.commentID)
+        }
+    case UPDATE_SINGLE_COMMENT:
+        return {
+            ...state, comments: state.comments.map(
+                x => x.id === action.comment.id ? action.comment : x
+            )
+        }
+    case UPDATE_COMMENT_COUNT:
+        return {
+            ...state, posts: state.posts.map(
+                x => x.id === action.postID ?
+                    action.negative ?
+                        { ...x, comment_count: x.comment_count - 1 } :
+                        { ...x, comment_count: x.comment_count + 1 } :
+                    x
+            )
+        }
+    case UPDATE_EDITING_POST:
+        return {...state, editingPost: action.postID}
+    default:
+        return state
     }
 }
