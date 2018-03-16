@@ -198,6 +198,7 @@ class PostGroupCard extends React.Component {
                                     <div className='content'>
                                         <p className='username'>{x.commentor.username}</p>
                                         <p className='text'>{x.comment}</p>
+                                        <p className='time'>{moment(x.commented_on).format("MMM Do, YY. h:mm a")}</p>
                                     </div>
                                     {(!x.approved & this.props.permissionSet.indexOf(105) !== -1) ? <div
                                         className='status' title='approve'

@@ -23,7 +23,7 @@
 		position relative
 		width 450px
 		+mobile()
-			width auto
+			width 300px
 		.header-search-input
 			absolute right
 			width 75%
@@ -36,6 +36,8 @@
 			box-shadow none
 			font-size 12px
 			transition width 0.3s ease-in-out
+			+mobile()
+				width 70%
 			&:focus
 				outline none
 				width 100%
@@ -56,6 +58,9 @@
 		box-shadow none
 		&:focus
 			outline none
+		+mobile()
+			width 75px
+			padding 0
 
 	.filter-options
 		background #f9fafc

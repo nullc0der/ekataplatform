@@ -20,6 +20,7 @@ class PostSectionCard extends React.Component {
 
     componentDidMount = () => {
         const url = `/api/groups/posts/?groupID=${this.props.groupID}`
+        this.props.changeLastGroup(this.props.groupID)
         this.props.fetchPosts(url)
         this.getGroupDetails()
     }
@@ -140,6 +141,9 @@ const mapDispatchToProps = (dispatch) => ({
     approveComment: (url) => dispatch(groupPostActions.approveComment(url)),
     changeUserPermissionSetForGroup: (permissionSet) => dispatch(
         groupActions.changeUserPermissionSetForGroup(permissionSet)),
+    changeLastGroup: (id) => {
+        dispatch(groupActions.changeLastGroup(id))
+    },
     updateEditingPost: (postID) => dispatch(groupPostActions.updateEditingPost(postID))
 })
 

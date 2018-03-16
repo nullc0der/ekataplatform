@@ -5,8 +5,6 @@ import classnames  from 'classnames'
 import Link from 'react-router/lib/Link'
 import withRouter from 'react-router/lib/withRouter'
 
-const debug = require('debug')('ekata:sidebar-menu')
-
 class SidebarMenu extends Component {
 	state = {
 		selectedItemIndex: 0
@@ -16,12 +14,25 @@ class SidebarMenu extends Component {
 		$(document).on('click', '.is-clickable', this.setBreadCrumbs)
 	}
 
+	componentDidUpdate = (prevProps, prevState) => {
+		if (prevProps.location.pathname !== this.props.location.pathname) {
+			this.changeSelectedIndex(this.props.location.pathname)
+		}
+	}
+
 	componentWillUnmount = ()=> {
 		$(document).off('click', '.is-clickable', this.setBreadCrumbs)
 	}
 
-	selectPrimaryItem = (item, index)=> {
-		debug('Selected Item: ', item, index)
+	changeSelectedIndex = (pathname) => {
+		if (pathname.match(/community\/1\/groups\/\S+/g)) {
+			this.setState({
+				selectedItemIndex: 2
+			}, () => this.selectPrimaryItem(2))
+		}
+	}
+
+	selectPrimaryItem = (index)=> {
 		this.setState({selectedItemIndex: index})
 	}
 
@@ -56,8 +67,6 @@ class SidebarMenu extends Component {
 			$el = $el.parents('.is-clickable')
 			url = $el.attr('data-href')
 		}
-
-		debug('Navigating to: ', url)
 
 		if (!url)
 			return
@@ -104,7 +113,7 @@ class SidebarMenu extends Component {
 							return <Link
 								key={i}
 								to={x.href}
-								onClick={()=> this.selectPrimaryItem(x, i)}
+								onClick={()=> this.selectPrimaryItem(i)}
 								className={cx}>
 								<i className={x.icon}></i>
 							</Link>

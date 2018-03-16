@@ -256,7 +256,7 @@ class SubHeader extends Component {
 			location
 		} = this.props;
 
-		const cx = classnames(c.container, className, 'flex-horizontal', 'a-center')
+		const cx = classnames(c.container, className, 'flex-horizontal', 'a-center', 'j-end')
 
 		const paths = location.pathname.split('/').filter(x => !!x)
 		const mainPath = startCase(paths[paths.length-1])
@@ -270,7 +270,7 @@ class SubHeader extends Component {
 
 		return (
 			<div className={cx} style={{ display: this.props.showHeaders ? 'flex' : 'none' }}>
-				<div>
+				<div className='hidden-xs'>
 					<div className='title'> {mainPath} </div>
 					<div className='list-links flex-horizontal'>
 						{
@@ -283,7 +283,7 @@ class SubHeader extends Component {
 						}
 					</div>
 				</div>
-				<div className="flex-1"></div>
+				<div className="hidden-xs flex-1"></div>
 				{
 					this.state.showSearchAndFilters &&
 					<SearchFilter
