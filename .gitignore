@@ -68,8 +68,13 @@ project.cson
 # Docker
 .env*
 
+<<<<<<< HEAD
 
 # Misc
 todo.md
 start-devserver.sh
 start-npmserver.sh
+=======
+# Misc
+todo.md
+>>>>>>> pgfix
