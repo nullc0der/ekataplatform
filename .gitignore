@@ -47,7 +47,6 @@ coverage.xml
 .ropeproject
 
 # Django stuff:
-geoip/
 *.log
 *.pot
 *.sqlite3
