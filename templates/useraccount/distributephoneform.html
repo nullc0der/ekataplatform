@@ -1,7 +1,0 @@
-{% load i18n bootstrap_tags %}
-<form action="{% url 'myaccount:set_distribution_phone' %}" method="post" id="distributephoneform">
-    {{ dpform|as_bootstrap }}
-</form>
-<button type="button" class="btn btn-success btn-block" id="distributephonebtn">
-  {% trans "Submit" %}
-</button>
