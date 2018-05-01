@@ -94,7 +94,6 @@ EKATA_APPS = [
     'messagingsystem',
     'hashtag',
     'groupsystem',
-    'invitationsystem',
     'sysadmin',
     'eblast',
     'emailtosms',

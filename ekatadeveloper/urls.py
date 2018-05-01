@@ -66,7 +66,6 @@ urlpatterns += i18n_patterns(
     url(r'^messaging/', include('messagingsystem.urls', namespace='messaging')),
     url(r'^hashtag/', include('hashtag.urls', namespace='hashtag')),
     url(r'^type/', include('groupsystem.urls', namespace='g')),
-    url(r'^getinvitation/', include('invitationsystem.urls', namespace='invitationsystem')),
     url(r'^emailtosms/', include('emailtosms.urls', namespace='emailtosms')),
     url(r'^eblast/', include('eblast.urls', namespace='eblast')),
     url(r'^getmenu/', send_menus, name='getmenu'),
