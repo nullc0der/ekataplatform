@@ -58,7 +58,6 @@ urlpatterns += i18n_patterns(
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
     url(r'^profile/', include('profilesystem.urls', namespace='profilesystem')),
     url(r'^members/', include('publicusers.urls', namespace='publicusers')),
-    url(r'^myaccount/', include('useraccount.urls', namespace='myaccount')),
     url(r'^information/', include('information.urls', namespace='information')),
     url(r'^disclaimer/', disclaimer, name='disclaimer'),
     url(r'^timeline/', include('usertimeline.urls', namespace='usertimeline')),
