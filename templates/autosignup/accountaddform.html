@@ -1,5 +1,0 @@
-{% load bootstrap_tags %}
-<form role="form" method="POST" id="addaccountform" action="{% url 'autosignup:add_account' %}">
-    {% csrf_token %}
-    {{ form|as_bootstrap }}
-</form>
