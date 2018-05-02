@@ -50,6 +50,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^logout/$', logout, {'next_page': '/'}, name="logout"),
     url(r'^disconnect/$', ConnectionsView.as_view(success_url='/profile'), name='disconnect'),
     url(r'^setpassword/$', PasswordSetView.as_view(success_url='/profile'), name='setpassword'),

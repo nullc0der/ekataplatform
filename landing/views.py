@@ -33,8 +33,7 @@ def index_page(request):
         request,
         'landing/index.html',
         {
-            'ogtag': ogtag,
-            'form': GetInvitationForm()
+            'ogtag': ogtag
         }
     )
 
