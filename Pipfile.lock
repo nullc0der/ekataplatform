@@ -1,11 +1,7 @@
 {
     "_meta": {
         "hash": {
-<<<<<<< HEAD
             "sha256": "6d044ec30b47a60c43ff7978116c9aada0d78cb420f3454edfbb01dd8e0fb5af"
-=======
-            "sha256": "fc6692704879d80c59d86e066d990f55650717108671cc43b82c122ad8548540"
->>>>>>> addpipenv
         },
         "pipfile-spec": 6,
         "requires": {
@@ -53,19 +49,11 @@
         },
         "astroid": {
             "hashes": [
-<<<<<<< HEAD
                 "sha256:39a21dd2b5d81a6731dc0ac2884fa419532dffd465cdd43ea6c168d36b76efb3",
                 "sha256:492c2a2044adbf6a84a671b7522e9295ad2f6a7c781b899014308db25312dd35"
             ],
             "index": "pypi",
             "version": "==1.5.3"
-=======
-                "sha256:3ffb26342b3526390646697ed5cde4714d2cc46c50e8a13ced2b303fcb59c11d",
-                "sha256:5f064785a7e45ed519285f2eb30b795e58a4932a0736b32030da6fef3394ddb3"
-            ],
-            "index": "pypi",
-            "version": "==1.4.8"
->>>>>>> addpipenv
         },
         "autobahn": {
             "hashes": [
@@ -75,7 +63,6 @@
             "index": "pypi",
             "version": "==0.16.0"
         },
-<<<<<<< HEAD
         "autopep8": {
             "hashes": [
                 "sha256:ff787bffb812818c3071784b5ce9a35f8c481a0de7ea0ce4f8b68b8788a12f30"
@@ -83,8 +70,6 @@
             "index": "pypi",
             "version": "==1.3.3"
         },
-=======
->>>>>>> addpipenv
         "babel": {
             "hashes": [
                 "sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975",
@@ -99,10 +84,7 @@
                 "sha256:c10a000d2631878746fdee3c90c559206772d9a8b92ab9d8668e1b88d4c0dcaa"
             ],
             "index": "pypi",
-<<<<<<< HEAD
             "markers": "python_version == '2.7'",
-=======
->>>>>>> addpipenv
             "version": "==1.2.1"
         },
         "backports.shutil-get-terminal-size": {
@@ -203,10 +185,7 @@
                 "sha256:5308b47021bc2340965c371f0f058cc6971a04502638d4244225c49d80db273a"
             ],
             "index": "pypi",
-<<<<<<< HEAD
             "markers": "python_version < '3.2'",
-=======
->>>>>>> addpipenv
             "version": "==3.5.0"
         },
         "contextlib2": {
@@ -217,7 +196,6 @@
             "index": "pypi",
             "version": "==0.5.5"
         },
-<<<<<<< HEAD
         "coreapi": {
             "hashes": [
                 "sha256:46145fcc1f7017c076a2ef684969b641d18a2991051fddec9458ad3f78ffc1cb",
@@ -234,8 +212,6 @@
             "index": "pypi",
             "version": "==0.0.4"
         },
-=======
->>>>>>> addpipenv
         "coverage": {
             "hashes": [
                 "sha256:051b6839935a6f826d15bc3878084e650e69ebb57188230f716885f24c57b9f6",
@@ -367,7 +343,6 @@
             "index": "pypi",
             "version": "==3.7.2"
         },
-<<<<<<< HEAD
         "django-filter": {
             "hashes": [
                 "sha256:ea204242ea83790e1512c9d0d8255002a652a6f4986e93cee664f28955ba0c22",
@@ -376,8 +351,6 @@
             "index": "pypi",
             "version": "==1.1.0"
         },
-=======
->>>>>>> addpipenv
         "django-flat-responsive": {
             "hashes": [
                 "sha256:d3a779e11b7df2baa1dd851a33428a8ffe87d6f9f8da151d2bcee7c53feab59e"
@@ -501,7 +474,6 @@
             "index": "pypi",
             "version": "==1.5"
         },
-<<<<<<< HEAD
         "django-webpack-loader": {
             "hashes": [
                 "sha256:0a8536e36a30d719018cd4c5da6e9d2377771134e713c14e617bb484b4f0acce",
@@ -510,8 +482,6 @@
             "index": "pypi",
             "version": "==0.5.0"
         },
-=======
->>>>>>> addpipenv
         "django-websocket-redis": {
             "hashes": [
                 "sha256:a3bed97ba643947938fb715b20d6096322161021504d7bbeeebe32650ab0952c"
@@ -519,7 +489,6 @@
             "index": "pypi",
             "version": "==0.4.6"
         },
-<<<<<<< HEAD
         "djangorestframework": {
             "hashes": [
                 "sha256:067960e5e9e5586d3b2d53a1d626c4800dc33cd8309487d404fc63355674556f",
@@ -528,8 +497,6 @@
             "index": "pypi",
             "version": "==3.7.3"
         },
-=======
->>>>>>> addpipenv
         "enum34": {
             "hashes": [
                 "sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850",
@@ -541,7 +508,6 @@
             "markers": "python_version == '2.7'",
             "version": "==1.1.6"
         },
-<<<<<<< HEAD
         "flake8": {
             "hashes": [
                 "sha256:7253265f7abd8b313e3892944044a365e3f4ac3fcdcfb4298f55ee9ddf188ba0",
@@ -550,8 +516,6 @@
             "index": "pypi",
             "version": "==3.5.0"
         },
-=======
->>>>>>> addpipenv
         "flower": {
             "hashes": [
                 "sha256:bdd926b731e8024779a5373fa33bff4a30e2a2ae6cf3a591beb83fbde3dc352f"
@@ -707,7 +671,6 @@
             "index": "pypi",
             "version": "==4.2.5"
         },
-<<<<<<< HEAD
         "itypes": {
             "hashes": [
                 "sha256:c6e77bb9fd68a4bfeb9d958fea421802282451a25bac4913ec94db82a899c073"
@@ -723,8 +686,6 @@
             "index": "pypi",
             "version": "==2.10"
         },
-=======
->>>>>>> addpipenv
         "jsonfield": {
             "hashes": [
                 "sha256:7e7f73a675c518712badd783279e26d164140f3fc2ed7a32102c3d08a6a2a4a7"
@@ -800,19 +761,11 @@
         },
         "mccabe": {
             "hashes": [
-<<<<<<< HEAD
                 "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42",
                 "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"
             ],
             "index": "pypi",
             "version": "==0.6.1"
-=======
-                "sha256:3473f06c8b757bbb5cdf295099bf64032e5f7d6fe0ec2f97ee9b23cb0a435aff",
-                "sha256:91cc38b2c7636aaf1903e06d96ee960fb3dff9ca3afc595627c9a638f8e86d2b"
-            ],
-            "index": "pypi",
-            "version": "==0.5.2"
->>>>>>> addpipenv
         },
         "msgpack-python": {
             "hashes": [
@@ -844,7 +797,6 @@
                 "sha256:deb3a960c1d55868dfbcac98432358b92ba89d95029cddd4040db1f27405055c"
             ],
             "index": "pypi",
-<<<<<<< HEAD
             "markers": "python_version in '2.6 2.7 3.2 3.3'",
             "version": "==2.1.0"
         },
@@ -856,11 +808,6 @@
             "index": "pypi",
             "version": "==1.7.1"
         },
-=======
-            "markers": "python_version == '2.7' or python_version == '3.3'",
-            "version": "==2.1.0"
-        },
->>>>>>> addpipenv
         "pexpect": {
             "hashes": [
                 "sha256:3d132465a75b57aa818341c6521392a06cc660feb3988d7f1074f39bd23c9a92",
@@ -1009,7 +956,6 @@
             "index": "pypi",
             "version": "==0.5.1"
         },
-<<<<<<< HEAD
         "pycodestyle": {
             "hashes": [
                 "sha256:1ec08a51c901dfe44921576ed6e4c1f5b7ecbad403f871397feedb5eb8e4fa14",
@@ -1028,8 +974,6 @@
             "index": "pypi",
             "version": "==1.6.0"
         },
-=======
->>>>>>> addpipenv
         "pygeoip": {
             "hashes": [
                 "sha256:1938b9dac7b00d77f94d040b9465ea52c938f3fcdcd318b5537994f3c16aef96",
@@ -1054,7 +998,6 @@
             "index": "pypi",
             "version": "==1.4.0"
         },
-<<<<<<< HEAD
         "pylint": {
             "hashes": [
                 "sha256:1f65b3815c3bf7524b845711d54c4242e4057dd93826586620239ecdfe591fb1",
@@ -1063,8 +1006,6 @@
             "index": "pypi",
             "version": "==1.7.4"
         },
-=======
->>>>>>> addpipenv
         "python-bitcoinrpc": {
             "hashes": [
                 "sha256:a6a6f35672635163bc491c25fe29520bdd063dedbeda3b37bf5be97aa038c6e7"
@@ -1228,7 +1169,6 @@
             "index": "pypi",
             "version": "==3.10.0"
         },
-<<<<<<< HEAD
         "singledispatch": {
             "hashes": [
                 "sha256:5b06af87df13818d14f08a028e42f566640aef80805c3b50c5056b086e3c2b9c",
@@ -1238,8 +1178,6 @@
             "markers": "python_version < '3.4'",
             "version": "==3.4.0.3"
         },
-=======
->>>>>>> addpipenv
         "six": {
             "hashes": [
                 "sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1",
@@ -1332,7 +1270,6 @@
             "index": "pypi",
             "version": "==0.14.1"
         },
-<<<<<<< HEAD
         "uritemplate": {
             "hashes": [
                 "sha256:01c69f4fe8ed503b2951bef85d996a9d22434d2431584b5b107b2981ff416fbd",
@@ -1342,8 +1279,6 @@
             "index": "pypi",
             "version": "==3.0.0"
         },
-=======
->>>>>>> addpipenv
         "wcwidth": {
             "hashes": [
                 "sha256:3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e",
