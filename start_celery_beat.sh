@@ -4,4 +4,4 @@ while ! pg_isready -h $DJANGO_DATABASE_HOST -p "5432" > /dev/null 2> /dev/null; 
    sleep 1
 done
 echo "Starting Celery Beat"
-/usr/local/bin/celery beat -A ekatadeveloper --loglevel=INFO
+celery beat -A ekatadeveloper --loglevel=INFO

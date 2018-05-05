@@ -10,4 +10,4 @@ python manage.py migrate --noinput
 echo "Collecting static files"
 python manage.py collectstatic --noinput
 echo "Starting daphne server"
-/usr/local/bin/daphne -b 0.0.0.0 -p 8000  ekatadeveloper.asgi:channel_layer
+daphne -b 0.0.0.0 -p 8000  ekatadeveloper.asgi:channel_layer
