@@ -40,7 +40,7 @@ class ReactIndexView(LoginRequiredMixin, TemplateView):
             manifest_file = open(
                 os.path.join(
                     settings.BASE_DIR,
-                    'static/bundles/chunk-manifest.json'))
+                    'statics/bundles/chunk-manifest.json'))
             manifest_data = manifest_file.read()
             manifest_file.close()
             context['manifest_data'] = manifest_data
