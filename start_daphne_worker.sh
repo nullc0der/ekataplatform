@@ -3,5 +3,11 @@ while ! pg_isready -h $DJANGO_DATABASE_HOST -p "5432" > /dev/null 2> /dev/null; 
    echo "Waiting for DB host....."
    sleep 1
 done
+echo "Building JS bundles"
+npm run build:prod
+echo "Migrating DB"
+python manage.py migrate --noinput
+echo "Collecting static files"
+python manage.py collectstatic --noinput
 echo "Starting daphne worker"
 python manage.py runworker
