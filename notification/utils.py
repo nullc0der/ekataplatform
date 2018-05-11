@@ -106,12 +106,13 @@ def get_serialized_group(basic_group):
 
 def get_serialized_notification(notification):
     data = {}
-    if notification.content_object:
-        if isinstance(notification.content_object, GroupInvite):
-            groupinvite = notification.content_object
-            data['type'] = 'groupinvite'
-            data['inviteid'] = groupinvite.id
-            data['id'] = notification.id
-            data['sender'] = make_user_serializeable(groupinvite.sender)
-            data['group'] = get_serialized_group(groupinvite.basic_group)
+    if hasattr(notification, 'content_object'):
+        if notification.content_object:
+            if isinstance(notification.content_object, GroupInvite):
+                groupinvite = notification.content_object
+                data['type'] = 'groupinvite'
+                data['inviteid'] = groupinvite.id
+                data['id'] = notification.id
+                data['sender'] = make_user_serializeable(groupinvite.sender)
+                data['group'] = get_serialized_group(groupinvite.basic_group)
     return data
