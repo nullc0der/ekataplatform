@@ -1,4 +1,5 @@
 import os
+import glob
 from datetime import timedelta
 
 from django.conf import settings
@@ -39,6 +40,11 @@ def create_backup(manual=False):
     )
     mediabackup.save()
     if not manual:
+        backups = glob.glob(location + '/*.*')
+        backups.remove(db_path)
+        backups.remove(media_path)
+        for backup in backups:
+            os.remove(backup)
         next_on = now() + timedelta(days=1)
         try:
             nextbackup = NextBackup.objects.latest()

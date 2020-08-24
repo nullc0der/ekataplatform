@@ -79,17 +79,18 @@ def check_users():
         active_users = User.objects.filter(is_active=True)
         total_flagged_accounts = 0
         for user in active_users:
-            if not user.communitysignups.all():
-                if user.last_login:
-                    if user.last_login + timedelta(days=120) <= now() and not hasattr(user, 'flaggedaccount'):
-                        create_flaggedaccount(user)
-                        send_email(user, 1)
-                        total_flagged_accounts += 1
-                else:
-                    if not hasattr(user, 'flaggedaccount'):
-                        create_flaggedaccount(user)
-                        send_email(user, 1)
-                        total_flagged_accounts += 1
+            if hasattr(user, 'communitysignups'):
+                if not user.communitysignups.all():
+                    if user.last_login:
+                        if user.last_login + timedelta(days=120) <= now() and not hasattr(user, 'flaggedaccount'):
+                            create_flaggedaccount(user)
+                            send_email(user, 1)
+                            total_flagged_accounts += 1
+                    else:
+                        if not hasattr(user, 'flaggedaccount'):
+                            create_flaggedaccount(user)
+                            send_email(user, 1)
+                            total_flagged_accounts += 1
         return "Processed total flagged accounts %s" % total_flagged_accounts
     else:
         return "Service is not active"
