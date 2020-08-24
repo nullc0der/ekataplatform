@@ -13,7 +13,6 @@ from profilesystem.models import UserCompletionRing
 from publicusers.models import Connection
 from dashboard.models import ActiveMemberCount, NewMemberCount,\
     TotalMemberCount, TotalMessageCount
-from useraccount.models import NextRelease
 # Create your views here.
 
 
@@ -52,10 +51,6 @@ def dashboard_page(request):
     unread_messages_count = request.user.recieved_messages.filter(
         read=False
     ).count()
-    try:
-        next_release = NextRelease.objects.latest()
-    except:
-        next_release = None
     if request.user.is_staff:
         activemembercounts = ActiveMemberCount.objects.filter(
             date__lte=datetime.datetime.today(),
@@ -88,8 +83,7 @@ def dashboard_page(request):
         'contacts': int(contacts_percent),
         'total_conn': total_conn,
         'no_connection': no_connection,
-        'unread_messages_count': unread_messages_count,
-        'next_release': next_release
+        'unread_messages_count': unread_messages_count
     }
     if request.user.is_staff:
         variables.update({
