@@ -1,0 +1,26 @@
+ui-border(dir= bottom, size= 1px, color= rgba(#000, 0.12))
+	bstr = size color solid
+
+	if dir
+		border-{dir} bstr
+	else
+		border bstr
+
+
+dimensions(size = 100px)
+	width size
+	height size
+
+
+placeholder()
+	&::-webkit-input-placeholder
+		{block}
+	&:-moz-placeholder
+		{block}
+	&::-moz-placeholder
+		{block}
+	&:-ms-input-placeholder
+		{block}
+
+shadow()
+	box-shadow 0 2px 8px 0 rgba(#000, 0.12)

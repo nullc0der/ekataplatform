@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 from versatileimagefield.fields import VersatileImageField
 from jsonfield import JSONField
 from django_countries.fields import CountryField
@@ -130,6 +131,9 @@ class UserProfile(models.Model):
             return True
         else:
             return False
+
+    def get_public_profile_url(self):
+        return reverse('publicusers:user', args=(self.user.id, ))
 
     def create_profile(sender, **kwargs):
         colors = [

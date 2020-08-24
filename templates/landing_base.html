@@ -100,7 +100,7 @@
 						<li><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
 						<li><a href="{% url 'profilesystem:index' %}">{% trans "Profile" %}</a></li>
 						{% if request.user.profile.users_link_visible %}
-						<li><a href="{% url 'publicusers:index' %}">{% trans "Members" %}</a></li>
+						<li><a href="/members/">{% trans "Members" %}</a></li>
 						{% endif %}
 						{% if request.user.profile.groups_link_visible %}
 						<li><a href="{% url 'g:allgroups' %}">{% trans "Groups" %}</a></li>

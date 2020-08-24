@@ -1,5 +1,9 @@
+import os
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+from django.conf import settings
 from groupsystem.models import BasicGroup
 
 
@@ -24,3 +28,20 @@ def send_menus(request):
             'group': group
         }
     )
+
+
+class ReactIndexView(LoginRequiredMixin, TemplateView):
+    template_name = 'react_template.html' if not settings.EKATA_SITE_TYPE\
+     == 'local' else 'react_template_local.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ReactIndexView, self).get_context_data(**kwargs)
+        if not settings.EKATA_SITE_TYPE == 'local':
+            manifest_file = open(
+                os.path.join(
+                    settings.BASE_DIR,
+                    'statics/bundles/chunk-manifest.json'))
+            manifest_data = manifest_file.read()
+            manifest_file.close()
+            context['manifest_data'] = manifest_data
+        return context

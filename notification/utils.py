@@ -1,8 +1,11 @@
 import json
 from django.template import loader
 from channels import Group
-from notification.models import UserNotification
+from notification.models import UserNotification, Notification
 from notification.onesignal import OneSignal
+from groupsystem.models import (
+    GroupNotification, JoinRequest, GroupInvite)
+from publicusers.api_views import make_user_serializeable
 
 
 def create_notification(
@@ -80,3 +83,36 @@ def create_notification(
             player_ids.append(onesignal.onesignalid)
         push = OneSignal(message=message, player_ids=player_ids)
         push.send_message()
+
+
+def create_user_notification(user, obj):
+    notification = Notification(user=user, content_object=obj)
+    notification.save()
+    websocket_message = {
+        'notification': get_serialized_notification(notification)
+    }
+    Group('%s-notifications' % user.username).send({
+        "text": json.dumps(websocket_message)
+    })
+
+
+def get_serialized_group(basic_group):
+    return {
+        'name': basic_group.name,
+        'id': basic_group.id,
+        'logo_url': basic_group.logo.thumbnail['36x36'].url
+    }
+
+
+def get_serialized_notification(notification):
+    data = {}
+    if hasattr(notification, 'content_object'):
+        if notification.content_object:
+            if isinstance(notification.content_object, GroupInvite):
+                groupinvite = notification.content_object
+                data['type'] = 'groupinvite'
+                data['inviteid'] = groupinvite.id
+                data['id'] = notification.id
+                data['sender'] = make_user_serializeable(groupinvite.sender)
+                data['group'] = get_serialized_group(groupinvite.basic_group)
+    return data

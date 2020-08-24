@@ -1,0 +1,364 @@
+b1()
+	border 1px rgba(#000, 0.12) solid
+
+:local(.container)
+	color inherit
+	padding 20px 30px
+	margin-bottom 50px
+	overflow-y auto
+	+mobile()
+		margin-bottom 0
+		flex-direction column
+
+	.ui-group-card
+		width 300px
+		.dropzone
+			width inherit
+			height inherit
+
+	.ui-group-card,
+	.ui-settings-card
+		margin 10px
+		padding 0
+		margin-bottom 0
+		background-color #fff
+		color #4a4a4a
+		shadow()
+		b1()
+		border-radius 6px
+		overflow hidden
+		display flex
+		flex-direction column
+		clearfix()
+		&:hover
+			.group-header-image
+				transform scale(1.2)
+
+		+mobile()
+			margin 10px 0
+			width 100%
+			height 450px
+			flex initial
+			flex-shrink 0
+		
+		.bottom-stats
+			absolute bottom 10px
+			width 100%
+
+		.bottom-stat
+			&:first-child
+				border-right 1px #eee solid
+
+
+		.card-inner
+			flex 1
+			position relative
+		.card-header
+			height 100px
+			position relative
+			border-width 0 0 1px
+			padding 10px 20px
+			color #fff
+			overflow hidden
+			.group-header-image
+				absolute top left
+				width 100%
+				height 100%
+				background-size 100% 100px
+				background-repeat no-repeat
+				opacity 0.3
+				transition transform 0.5s
+			.group-info
+				position absolute
+			.name
+				font-size 20px
+				font-weight font_light
+				&:focus
+					outline 1px solid #fff
+			.category
+				cursor pointer
+				font-size 14px
+				font-weight font_bold
+				white-space pre-line
+			&::before
+				background-color color_cyan500
+				opacity 0.85
+				content ''
+				display block
+				height 100%
+				width 100%
+				absolute top right
+
+		.card-circle-image
+			width 92px
+			height 92px
+			background-color #e2e2e2
+			background-position center
+			background-repeat no-repeat
+			position absolute
+			left 50%
+			margin-left -46px
+			top 55px
+			border-radius 50%
+			border 2px #fff solid
+			text-align center
+			+mobile()
+				bottom 180px
+
+		.card-body
+			text-align center
+			padding-top 46px
+			h6
+				font-size 16px
+				font-weight font_bold
+				margin-bottom 0
+			p
+				margin 5px
+				font-size 14px
+				padding 0 20px
+				height 50px
+				overflow hidden
+				&:focus
+					outline 1px solid #e2e2e2
+		.card-action
+			color #fff
+			background-color color_cyan500
+			font-size 16px
+			text-align center
+			padding 6px 0
+		
+		.delete-modal-content
+			p
+				font-size 16px
+				font-weight bold
+
+		.btn-group
+			.btn-yes
+				color #fff
+				margin-right 10px
+				background-color color_red400
+			.btn-no
+				color #fff
+				background-color color_green500
+
+
+	.group-type-art
+		.card-header
+			&::before
+				background-color color_blue500
+		.card-action
+			background-color color_blue500
+	.group-type-activist
+		.card-header
+			&::before
+				background-color color_amber500
+		.card-action
+			background-color color_amber500
+	.group-type-political
+		.card-header
+			&::before
+				background-color color_green500
+		.card-action
+			background-color color_green500
+	.group-type-news
+		.card-header
+			&::before
+				background-color color_teal500
+		.card-action
+			background-color color_teal500
+	.group-type-business
+		.card-header
+			&::before
+				background-color color_blueGrey500
+		.card-action
+			background-color color_blueGrey500
+	.group-type-government
+		.card-header
+			&::before
+				background-color color_brown500
+		.card-action
+			background-color color_brown500
+	.group-type-blog
+		.card-header
+			&::before
+				background-color color_orange500
+		.card-action
+			background-color color_orange500
+	.group-type-nonprofit
+		.card-header
+			&::before
+				background-color color_deepPurple500
+		.card-action
+			background-color color_deepPurple500
+
+	.settings-header
+		h5
+			position absolute
+			margin 0
+			color #fff
+		.tabs
+			display flex
+			width 100%
+			flex-direction row
+			absolute bottom
+			+mobile()
+				left 0
+		.tab
+			text-align center
+			font-size 16px
+			cursor pointer
+			&.active
+				border-bottom 3px solid color_amber400
+	
+	.settings-content
+		padding 30px
+		height calc(100% - 100px)
+		.content-wrapper
+			height 100%
+			position relative
+		.group-notifications
+			height 85%
+			overflow-y auto
+		.group-notification
+			color #878787
+			padding 5px
+			border-bottom 1px solid #eee
+			position relative
+			&:hover
+				.actions
+					display inline
+			span,
+			p
+				color inherit
+			p
+				margin 0
+			.actions
+				absolute top 10px right
+				display none
+				i
+					cursor pointer
+					margin-left 10px
+					font-size 20px
+		.form-group
+			width 400px
+			position relative
+			.select-dropdown
+				width 100%
+				top unset
+				left 0
+				height auto
+			.form-control
+				text-transform capitalize
+			label
+				color inherit
+				font-size 16px
+		.footer-form
+			width 100%
+			absolute bottom
+			.form-group
+				margin 0 10px
+			.form-control
+				text-transform none
+			.btn
+				margin 0 10px
+				.hidden
+					visibility hidden
+				.shown
+					visibility visible
+
+
+	.select-dropdown
+		absolute top 45px left 10px
+		width 95%
+		height 200px
+		overflow-y auto
+		padding 5px
+		list-style none
+		background-color #fff
+		visibility hidden
+		z-index 100
+		shadow()
+		&.is-visible
+			visibility visible
+			animation fadeIn 0.3s
+		.form-control
+			font-size 14px
+			padding 5px
+		.select-option
+			position relative
+			overflow hidden
+			padding 5px
+			margin-top 5px
+			&.selected
+				color #fff
+				background-color theme_primary
+			&:hover
+				cursor pointer
+				color #fff
+				background-color theme_primary
+				$shadow_2()
+			&:after
+				content ''
+				absolute top 50% left 50%
+				width 10px
+				height 10px
+				background rgba(255, 255, 255, .5)
+				opacity 0
+				border-radius 100%
+				transform scale(1, 1) translate(-50%)
+				transform-origin 50% 50%
+			&:active
+				&:after
+					animation ripple 1s ease-out
+	.switch-input
+		display none
+		&:checked
+			& + .switch-label
+				&:before
+					background-color color_blue400
+				&:after
+					background-color color_blue700
+					transform translate(80%, -50%)
+	
+	.switch-label
+		position relative
+		display inline-block
+		min-width 112px
+		cursor pointer
+		font-weight 400
+		text-align left
+		padding-left 44px
+		&:before
+			left 1px
+			width 34px
+			height 14px
+			background-color #9E9E9E
+			border-radius 8px
+		&:after
+			left 0
+			width 20px
+			height 20px
+			background-color #FAFAFA
+			border-radius 50%
+			box-shadow 0 3px 1px -2px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084)
+
+	.switch-label:before, .switch-label:after
+		content ""
+		position absolute
+		margin 0
+		outline 0
+		top 50%
+		transform translate(0, -50%)
+		transition all 0.3s ease
+
+
+	@keyframes ripple
+		0%
+			transform scale(0, 0)
+			opacity 1
+		20%
+			transform scale(25, 25)
+			opacity 1
+		100%
+			opacity 0
+			transform scale(40, 40)

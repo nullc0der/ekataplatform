@@ -526,6 +526,19 @@ def get_onlineusers(request):
     return HttpResponse(data, mimetype)
 
 
+@login_required
+def get_onlineusers_react(request):
+    online_users = []
+    users = User.objects.all()
+    for user in users:
+        if hasattr(user, 'profile'):
+            if user.profile.online():
+                online_users.append(user.username)
+    data = json.dumps(online_users)
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+
 def date_handler(obj):
     if hasattr(obj, 'isoformat'):
         return obj.isoformat()

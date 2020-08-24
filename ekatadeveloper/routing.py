@@ -9,5 +9,9 @@ channel_routing = [
     include(
         'messagingsystem.routing.messaging_routes',
         path=r'^/messaging'
+    ),
+    include(
+        'groupsystem.routing.group_notification_routes',
+        path=r'^/groupnotifications'
     )
 ]

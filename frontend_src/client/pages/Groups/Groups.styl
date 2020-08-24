@@ -1,0 +1,254 @@
+b1()
+	border 1px rgba(#000, 0.12) solid
+
+:local(.container)
+	color inherit
+	padding 10px 30px
+	margin-bottom 50px
+	overflow-y auto
+	clearfix()
+	+mobile()
+		margin-bottom 0
+
+	.ui-group-card
+		float left
+		margin 10px
+		padding 0
+		width 300px
+		height 350px
+		background-color #fff
+		color #4a4a4a
+		shadow()
+		b1()
+		border-radius 6px
+		overflow hidden
+		display flex
+		flex-direction column
+		clearfix()
+		cursor pointer
+		&:hover
+			.group-header-image
+				transform scale(1.2)
+
+		+mobile()
+			margin 10px 0
+			width 100%
+			height 380px
+
+		.bottom-stat
+			&:first-child
+				border-right 1px #eee solid
+			// &:last-child
+			// 	border-left 1px #eee solid
+
+
+		.card-inner
+			flex 1
+			position relative
+		.card-header
+			height 100px
+			position relative
+			//border-bottom 1px rgba(#000, 0.12) solid
+			//b1()
+			border-width 0 0 1px
+			padding 10px 20px
+			color #fff
+			overflow hidden
+			.group-header-image
+				absolute top left
+				width 100%
+				height 100%
+				background-size 100% 100px
+				background-repeat no-repeat
+				opacity 0.3
+				transition transform 0.5s
+			.group-info
+				position absolute
+			.name
+				font-size 20px
+				font-weight font_light
+			.category
+				font-size 14px
+				font-weight font_bold
+				white-space pre-line
+			.unsubscribe
+				position absolute
+				right 15px
+				&:hover
+					text-shadow 2px 3px rgba(0,0,0,0.09)
+			&::before
+				background-color color_cyan500
+				opacity 0.85
+				content ''
+				display block
+				height 100%
+				width 100%
+				absolute top right
+		.card-circle-image
+			width 92px
+			height 92px
+			background-color #e2e2e2
+			background-position center
+			background-repeat no-repeat
+			position absolute
+			left 50%
+			margin-left -46px
+			bottom 155px
+			border-radius 50%
+			border 2px #fff solid
+			text-align center
+			+mobile()
+				bottom 180px
+			// img
+			// 	border-radius 50%
+			// 	width 100%
+			// 	height 100%
+			// &:after
+			// 	position absolute
+			// 	bottom -20px
+			// 	right -60px
+			// 	font-size 32px
+			// 	font-family 'FontAwesome'
+			// 	content '\f1eb'
+			// 	color #ddd
+			// 	transform rotateZ(45deg)
+			// &.is-active
+			// 	&:after
+			// 		color theme_primary
+
+		.card-body
+			text-align center
+			padding-top 46px
+			h6
+				font-size 16px
+				font-weight font_bold
+				margin-bottom 0
+			p
+				margin-top 0
+				font-size 14px
+				padding 0 20px
+				height 50px
+				overflow hidden
+		.card-action
+			color #fff
+			background-color color_cyan500
+			font-size 20px
+			text-align center
+			padding 6px 0
+
+	.group-type-art
+		.card-header
+			&::before
+				background-color color_blue500
+		.card-action
+			background-color color_blue500
+	.group-type-activist
+		.card-header
+			&::before
+				background-color color_amber500
+		.card-action
+			background-color color_amber500
+	.group-type-political
+		.card-header
+			&::before
+				background-color color_green500
+		.card-action
+			background-color color_green500
+	.group-type-news
+		.card-header
+			&::before
+				background-color color_teal500
+		.card-action
+			background-color color_teal500
+	.group-type-business
+		.card-header
+			&::before
+				background-color color_blueGrey500
+		.card-action
+			background-color color_blueGrey500
+	.group-type-government
+		.card-header
+			&::before
+				background-color color_brown500
+		.card-action
+			background-color color_brown500
+	.group-type-blog
+		.card-header
+			&::before
+				background-color color_orange500
+		.card-action
+			background-color color_orange500
+	.group-type-nonprofit
+		.card-header
+			&::before
+				background-color color_deepPurple500
+		.card-action
+			background-color color_deepPurple500
+
+
+	.form-group
+		position relative
+		margin-bottom 30px
+		.control-label
+			font-size 16px
+			position absolute
+			top 0
+			transition 0.2s ease all
+		.form-control
+			&:focus
+			&.has-value
+				& + .control-label
+					font-size 14px
+					top -22px
+		&:last-child
+			margin-bottom 15px
+		.select-dropdown
+			position absolute
+			width 100%
+			height 100px
+			overflow-y scroll
+			top -40px
+			padding 5px
+			list-style none
+			background-color #fff
+			visibility hidden
+			shadow()
+			&.is-visible
+				visibility visible
+			.select-option
+				position relative
+				overflow hidden
+				padding 5px
+				margin-top 5px
+				&.selected
+					color #fff
+					background-color theme_primary
+				&:hover
+					cursor pointer
+					color #fff
+					background-color theme_primary
+					$shadow_2()
+				&:after
+					content ''
+					absolute top 50% left 50%
+					width 10px
+					height 10px
+					background rgba(255, 255, 255, .5)
+					opacity 0
+					border-radius 100%
+					transform scale(1, 1) translate(-50%)
+					transform-origin 50% 50%
+				&:active
+					&:after
+						animation ripple 1s ease-out
+
+	@keyframes ripple
+		0%
+			transform scale(0, 0)
+			opacity 1
+		20%
+			transform scale(25, 25)
+			opacity 1
+		100%
+			opacity 0
+			transform scale(40, 40)

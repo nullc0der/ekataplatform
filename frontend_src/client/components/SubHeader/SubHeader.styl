@@ -1,0 +1,133 @@
+:local(.container)
+	background-color #fff
+	height subheader_height
+	ui-border bottom
+	padding 0 20px
+	box-shadow 0 2px 4px 0 rgba(#000, 0.12)
+	position relative
+	//z-index 500
+
+	.title
+		font-size 16px
+		margin-bottom 0
+		font-weight font_bold
+	.bread-link
+		margin-top -4px
+		margin-right 6px
+
+	.issue-form
+		padding 10px
+
+	.header-search-wrapper
+		margin-right 10px
+		position relative
+		width 450px
+		+mobile()
+			width 300px
+		.header-search-input
+			absolute right
+			width 75%
+			height 33px
+			padding 10px
+			background-color #FFFFFF
+			color #9B9B9B
+			border 1px solid #E3E7EC
+			border-radius 20px
+			box-shadow none
+			font-size 12px
+			transition width 0.3s ease-in-out
+			+mobile()
+				width 70%
+			&:focus
+				outline none
+				width 100%
+		.header-search-button
+			background none
+			border none
+			color #9B9B9B
+			absolute top 3px right 5px
+
+	.header-button
+		width 55px
+		height 33px
+		color #9B9B9B
+		margin-right 5px
+		background none
+		border 1px solid #E3E7EC
+		border-radius 20px
+		box-shadow none
+		&:focus
+			outline none
+		+mobile()
+			width 75px
+			padding 0
+
+	.filter-options
+		background #f9fafc
+		height 100%
+		width 230px
+		position fixed
+		right -230px
+		top 110px
+		box-shadow 0 2px 3px 0 rgba(0,0,0,0.09)
+		z-index 1000
+		transition right 0.3s ease-in-out
+		&.is-open
+			right 0
+		.filter-options-header
+			padding 10px
+			text-align center
+			border-bottom 1px solid rgba(151,151,151,0.12)
+			color #9B9B9B
+		.filter-button
+			font-size 11px
+			font-weight bold
+			line-height 2.5
+			float left
+			width 95px
+			height 28.5px
+			margin 5px
+			background-color #4A90E2
+			text-align center
+			color #FFFFFF
+			border-radius 28px
+			border 1px solid #D4D4D4
+			text-transform capitalize
+			transition  all 0.3s ease
+			cursor pointer
+			transform translate(0, 0)
+			&.single
+				width 200px
+			&:active
+				outline none
+			&:hover
+				box-shadow 0 1px 2px 0 rgba(0,0,0,0.25)
+			&.is-disabled
+				background-color #D4D4D4
+				color #929292
+			&.over
+				background-color color_green600
+		.selected-filters,
+		.not-selected-filters
+			padding 20px 10px
+		.selected-filters
+			&:hover
+				& ~ .arrows-wrapper
+					.arrows
+						transform rotate(180deg)
+		.arrows-wrapper
+			width 100%
+			position relative
+			border-bottom 1px solid rgba(151,151,151,0.12)
+		.arrows
+			absolute top -15px left 100px
+			height 30px
+			width 30px
+			border-radius 50%
+			font-size 20px
+			background-color #4A90E2
+			color #fff
+			text-align center
+			line-height 1.5
+			transition all 0.5s ease
+			box-shadow 0 1px 2px 0 rgba(0,0,0,0.25)

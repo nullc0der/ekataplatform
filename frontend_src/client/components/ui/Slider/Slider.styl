@@ -1,0 +1,51 @@
+track()
+    -webkit-appearance none !important
+    width 100%
+    height 2px
+    background-color theme_primary
+    border none
+    border-radius 10px
+    transition all 400ms
+    outline none
+    margin 0
+    padding 0
+
+
+thumb()
+    -webkit-appearance none !important
+    transform scale(0.75)
+    width 20px
+    height 20px
+    border none
+    background-color theme_primary
+    border-radius 40px
+    transition all 400ms
+    outline none
+
+:local(.container)
+    margin 10px
+
+    input[type="range"]
+        track()
+    input[type="range"]::-moz-range-track
+        track()
+
+    input[type="range"]::-webkit-slider-thumb
+        thumb()
+    input[type="range"]::-moz-range-thumb
+        thumb()
+    
+    input[type="range"]::-webkit-slider-thumb
+        &:hover
+            transform scale(0.85)
+        &:active
+            transform scale(1)
+
+    input[type="range"]::-moz-range-thumb
+        &:hover
+            transform scale(0.85)
+        &:active
+            transform scale(1)
+
+    input[type="range"]::-moz-focus-outer
+        border 0

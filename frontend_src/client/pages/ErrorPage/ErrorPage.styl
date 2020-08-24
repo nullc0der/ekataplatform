@@ -1,0 +1,45 @@
+:local(.container)
+    display flex
+    flex-direction row
+    justify-content center
+    align-items center
+    height 100%
+    margin-bottom 50px
+    +mobile()
+        flex-direction column
+        margin-bottom 0
+    .error-code
+        width 250px
+        height 250px
+        border-radius 50%
+        background-color rgba(0, 0, 0, 0.12)
+        text-align center
+        p
+            color #d3302f
+            font-size 100px
+            margin 25px 0
+            text-shadow 5px 5px 12px rgba(0, 0, 0, 0.23)
+        +mobile()
+            width 200px
+            height 200px
+            p
+                margin 0
+    .error-message
+        height 250px
+        padding 70px 0
+        text-align center
+        +mobile()
+            height auto
+            padding 30px 0
+        p
+            margin 0 10px
+            font-size 20px
+            color #979797
+        .btn-home
+            margin 10px
+            background-color theme_primary
+            border-radius 20px
+            color #FFF
+            text-decoration none
+            &:focus
+                outline none

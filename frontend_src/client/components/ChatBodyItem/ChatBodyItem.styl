@@ -1,0 +1,92 @@
+:local(.container)
+	color inherit
+	display flex
+	align-items center
+	position relative
+	justify-content flex-end
+
+	margin 24px 12px
+
+	&.in-left
+		justify-content flex-start
+		.stamp
+			left 0
+			right initial
+		.msg
+			order 3
+		.ui-avatar
+			order 2
+		.selectmessage
+			order 1
+
+	.msg
+		margin-left 4px
+		background-color #fff
+		shadow()
+		padding 3px 8px
+		order 1
+		display block
+		border-radius 5px
+
+		.emoji-mart-emoji
+			left 0
+			top 5px
+		
+	.Linkify a
+			word-break break-all
+	
+	.img-attachment
+		max-width 400px
+		height auto
+		padding 5px
+		+mobile()
+			max-width 250px
+		img 
+			width 100%
+			height 100%
+			object-fit contain
+			border-radius 5px
+		&.small
+			width 160px
+	
+
+	.video-attachment
+		max-width 400px
+		height auto
+		padding 5px
+		+mobile()
+			max-width 250px
+		video
+			width 100%
+			height 100%
+			object-fit contain
+			border-radius 5px
+		&.small
+			width 160px
+	
+	.file-attachment
+		padding 5px 0
+		.fa
+			font-size 15px
+			margin-right 5px
+			color rgba(0, 0, 0, 0.5)
+		a
+			color rgba(0, 0, 0, 0.5)
+			text-decoration none
+
+
+	.ui-avatar
+		order 2
+		margin-left 4px
+		margin-right 4px
+		width 24px !important
+		height 24px !important
+	
+	.selectmessage
+		order 3
+
+	.stamp
+		font-size 10px
+		font-weight 600
+		opacity 0.6
+		absolute bottom -20px right

@@ -1,0 +1,115 @@
+:local(.container)
+    position relative
+    display inline-block
+
+    .notification-label
+        padding 13px 8px 12px 8px
+        position relative
+        .has-notification
+            width 10px
+            height 10px
+            background-color #fff
+            display inline-block
+            absolute right 2px
+            border-radius 50%
+            box-shadow 1px 1px 12px 5px rgba(0,0,0,0.23)
+            animation grow 4s infinite alternate
+    .ui-dropdown-toggle
+        padding 8px 4px
+
+    .mark-read-btn
+        cursor pointer
+        transform-origin center center
+        transform scale(1)
+        transition transform 0.16s ease
+        &:hover, &:active
+            color theme_primary
+        &:active
+            color darken(theme_primary, 8%)
+            transform scale(0.9)
+
+    .nc-list-item
+        padding 4px 15px
+        border-bottom 1px rgba(#000, 0.07) solid
+        position relative
+        &:first-child
+            border-top 1px rgba(#000, 0.07) solid
+        &:hover
+            shadow()
+            +mobile()
+                box-shadow none
+            .actions
+                display flex
+        &.active
+            .actions
+                &.visible
+                    +mobile()
+                        opacity 1
+                        width auto
+
+        .is-important
+            absolute top 5px right 5px
+            font-size 16px
+
+        .name
+            font-size 16px
+            font-weight font_bold
+
+        .subtext
+            margin-top -4px
+            font-size 12px
+
+        .actions
+            display none
+            absolute right top -1px bottom -1px
+            +mobile()
+                display flex
+                opacity 0
+                width 0
+                transition opacity 0.7s ease-in-out
+            .reveal-action-icon
+                display flex
+                align-items center
+                padding 10px
+                background-color #3D3D3D
+                color #fff
+                cursor pointer
+                .reverse
+                    transform rotate(180deg)
+                    transition all 0.3s ease-in-out
+                .normal
+                    transition all 0.3s ease-in-out
+            .buttons-container
+                display flex
+                align-items center
+                width 0
+                opacity 0
+                background-color #eee
+                transition opacity 0.7s ease-in-out
+                box-shadow inset 5px 0px 10px rgba(0, 0, 0, 0.18)
+                &.shown
+                    width auto
+                    opacity 1
+            .button
+                cursor pointer
+                font-size 20px
+                color #878787
+                padding 18px 10px
+
+        .ui-avatar,
+        .avatar-image
+            height 36px !important
+            width 36px !important
+            margin-right 12px
+
+    @keyframes grow
+        0%
+            transform scale(0.6)
+        25%
+            transform scale(0.7)
+        50%
+            transform scale(0.8)
+        75%
+            transform scale(0.9)
+        100%
+            transform scale(1)

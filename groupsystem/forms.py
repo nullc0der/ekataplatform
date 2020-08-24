@@ -154,8 +154,7 @@ class EditPostForm(forms.ModelForm):
     class Meta:
         model = GroupPost
         fields = [
-            'title',
-            'post',
+            'post'
         ]
 
 
