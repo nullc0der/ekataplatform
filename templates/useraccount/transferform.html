@@ -1,9 +1,0 @@
-{% load bootstrap_tags i18n %}
-{% if form %}
-<form action="{% url 'myaccount:transfer_ekata_units' %}" method="post" style="margin-bottom: 50px" id="transferform">
-    {{ form|as_bootstrap }}
-</form>
-{% endif %}
-<div class="boxcontent-submitbtn newbtn" id="transferconfirm">
-    <p>{% trans "Submit" %}</p>
-</div>

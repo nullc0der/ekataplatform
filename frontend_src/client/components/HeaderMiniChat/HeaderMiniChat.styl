@@ -1,0 +1,98 @@
+:local(.container)
+    display inline-block
+
+:local(.label)
+    color #fff
+    padding 13px 8px 12px 8px
+
+    .label-image
+        width 24px
+        height 24px
+
+    .label-text
+        margin-left 8px
+
+
+:local(.item)
+    padding 10px 12px
+    border-bottom 1px rgba(#000, 0.12) solid
+
+
+    .item-details
+        overflow hidden
+
+    .item-name
+        font-weight font_bold
+        font-size 16px
+    .item-desc
+        // height 40px
+        overflow hidden
+        white-space nowrap
+        text-overflow ellipsis
+    .item-image
+        width 42px
+        height 42px
+        flex-shrink 0
+        margin-right 5px
+        margin-top 5px
+    &.has_unread
+        color theme_primary
+
+
+:local(.miniChatHolder)
+    fixed bottom right
+    z-index 2000
+    align-items flex-end
+
+    +mobile()
+        display none
+
+
+    .mini-chat
+        border 1px rgba(#000, 0.12) solid
+        $shadow_1()
+        background-color #fff
+        border-radius 2px 2px 0 0
+        height 340px
+        font-size 12px
+        width 300px
+        margin-right 24px
+        +below(768px)
+            display none
+
+        &.is-minimized
+            height 38px
+            .chat-body
+                flex 0
+                flex-grow 0
+            .ui-chat-footer
+                display none
+
+
+        .chat-header
+            background-color #fff
+            border-bottom 1px rgba(#000, 0.12) solid
+            padding 4px 12px
+            position relative
+            .ui-button
+                padding 3px 8px
+                font-size 12px
+                border-radius 50%
+                border none
+                overflow hidden
+                margin-right -12px
+                margin-left 12px
+
+            &:after
+                absolute bottom left right
+                z-index 200
+                height 3px
+                content ''
+                background-color rgba(#000, 0.12)
+            &.is-online:after
+                background-color color_green500
+            &.is-away:after
+                background-color color_orange500
+        .chat-body
+            background-color #f2f2f2
+            overflow-y auto

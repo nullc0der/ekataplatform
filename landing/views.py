@@ -14,10 +14,6 @@ from django.views.decorators.http import require_POST
 from utils import send_contact_email
 
 from landing.models import News, Tags, HashtagImg, GlobalOgTag, OgTagLink
-from invitationsystem.models import Invitation
-from invitationsystem.forms import GetInvitationForm
-from invitationsystem.tasks import send_notification_to_reviewer,\
-    task_send_notification_email_to_sms
 from sysadmin.models import EmailGroup, EmailId
 
 
@@ -37,8 +33,7 @@ def index_page(request):
         request,
         'landing/index.html',
         {
-            'ogtag': ogtag,
-            'form': GetInvitationForm()
+            'ogtag': ogtag
         }
     )
 
@@ -158,51 +153,6 @@ def send_contact_request(request):
             message=message
         )
         return HttpResponse("Ok")
-    else:
-        return HttpResponseForbidden()
-
-
-def get_invitation_key(request):
-    if request.method == 'POST':
-        form = GetInvitationForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data.get('email')
-            invitation = Invitation()
-            invitation.email = email
-            invitation.invitation_id = get_random_string(length=6)
-            invitation.save()
-            send_notification_to_reviewer.delay(email)
-            task_send_notification_email_to_sms.delay(email)
-            return HttpResponse("Ok")
-        else:
-            return render(
-                request,
-                'landing/getinvitationform.html',
-                {
-                    'form': form
-                },
-                status=500
-            )
-    else:
-        return HttpResponseForbidden()
-
-
-@csrf_exempt
-def get_invitation_key_from_production(request):
-    if request.method == 'POST':
-        api_key = request.POST.get('api_key')
-        if api_key == '475195da-682e-464c-a8f6-8f321306fbf3':
-            email = request.POST.get('email')
-            invitation = Invitation()
-            invitation.email = email
-            invitation.invitation_id = get_random_string(length=6)
-            invitation.production_created = True
-            invitation.save()
-            send_notification_to_reviewer.delay(email)
-            task_send_notification_email_to_sms.delay(email)
-            return HttpResponse('OK')
-        else:
-            return HttpResponseForbidden('mismatch')
     else:
         return HttpResponseForbidden()
 

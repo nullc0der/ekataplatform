@@ -19,5 +19,5 @@ class Payment(models.Model):
     charge_id = models.CharField(default='', max_length=200)
     date = models.DateField(auto_now_add=True, null=True)
 
-#  TODO: Subscription model, possible attribute: plan, customer_id, user
-#  TODO: Customer model, possible attribute: customer_id, user
+#  TODO:600 Subscription model, possible attribute: plan, customer_id, user
+#  TODO:160 Customer model, possible attribute: customer_id, user

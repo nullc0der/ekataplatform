@@ -1,11 +1,11 @@
-FROM python:2.7-slim
-MAINTAINER Prasanta Kakati <prasantakakati@ekata.social>
-ENV PYTHONUNBUFFERED 1
-RUN apt-get update
-RUN apt-get install -y build-essential postgresql-client libpq-dev
+FROM alpine:latest
+LABEL maintainer Prasanta Kakati <prasantakakati@ekata.social>
+RUN apk update
+RUN apk add build-base linux-headers postgresql-client postgresql-dev libpq python2 python2-dev py-pip nodejs nodejs-npm zlib-dev jpeg-dev
 RUN mkdir /code
 WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-COPY . /code/
+COPY . /code
+RUN npm install 
 RUN mkdir /code/ekatabackups

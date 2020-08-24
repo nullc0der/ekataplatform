@@ -1,7 +1,8 @@
 import json
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, \
+    HttpResponseNotFound, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
@@ -126,6 +127,7 @@ def get_chat(request, chat_id):
 
 @login_required
 def create_chat(request, to_user):
+    from_react = request.GET.get('react', False)
     user = User.objects.get(id=to_user)
     label = request.user.username + user.username
     label1 = user.username + request.user.username
@@ -151,6 +153,8 @@ def create_chat(request, to_user):
             chat.subscribers.add(request.user)
             chat.subscribers.add(user)
     messages = chat.messages.all().order_by('timestamp')
+    if from_react:
+        return JsonResponse({'id': chat.id})
     return render(
         request,
         'messagingsystem/chat_float.html',
@@ -267,3 +271,60 @@ def delete_chatroom(request):
             return HttpResponseForbidden()
     except ObjectDoesNotExist:
         return HttpResponse(status=500)
+
+
+@require_POST
+@login_required
+def delete_messages(request):
+    messages = Message.objects.filter(id__in=request.POST.getlist('ids'))
+    otherusers = set()
+    data = []
+    message_ids = []
+    for message in messages:
+        if message.user == request.user:
+            chatroom = message.room
+            for user in chatroom.subscribers.all():
+                if user != request.user:
+                    otherusers.add(user)
+            message_dict = {
+                'chatroom': chatroom.id,
+                'message_id': message.id,
+                'add_message': False
+            }
+            data.append(message_dict)
+            message_ids.append(message.id)
+            message.delete()
+    message_json = json.dumps(data)
+    if otherusers:
+        for otheruser in otherusers:
+            Group('%s-messages' % otheruser.username).send({
+                'text': message_json
+            })
+    return HttpResponse(
+        content=json.dumps(message_ids),
+        status=200, content_type='application/json')
+
+
+@require_POST
+@login_required
+def set_typing_status(request):
+    try:
+        chatroom = ChatRoom.objects.get(id=request.POST.get('chatroom'))
+        if request.user in chatroom.subscribers.all():
+            otherusers = []
+            for user in chatroom.subscribers.all():
+                if request.user != user:
+                    otherusers.append(user)
+            for otheruser in otherusers:
+                message_dict = {
+                    'chatroom': chatroom.id,
+                    'typing': True
+                }
+                Group('%s-messages' % otheruser.username).send({
+                    'text': json.dumps(message_dict)
+                })
+            return HttpResponse(status=200)
+        else:
+            return HttpResponseForbidden()
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound()

@@ -80,7 +80,9 @@ THIRD_PARTIES_APPS = [
     'simple_history',
     'el_pagination',
     'compressor',
-    'dbbackup'
+    'dbbackup',
+    'rest_framework',
+    'webpack_loader'
 ]
 
 EKATA_APPS = [
@@ -88,24 +90,23 @@ EKATA_APPS = [
     'profilesystem',
     'publicusers',
     'dashboard',
-    'useraccount',
     'information',
     'usertimeline',
     'notification',
     'messagingsystem',
     'hashtag',
     'groupsystem',
-    'invitationsystem',
+    'grouppost',
     'sysadmin',
     'eblast',
     'emailtosms',
-    'autosignup',
     'stripepayment',
     'crowdfunding',
     'translation',
     'countrylogger',
     'backupsystem',
-    'useractivity'
+    'useractivity',
+    'taigaissuecreator'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTIES_APPS + EKATA_APPS
@@ -128,10 +129,10 @@ MIDDLEWARE_CLASSES = [
 ]
 
 
-if EKATA_SITE_TYPE == 'beta':
-    MIDDLEWARE_CLASSES += [
-        'profilesystem.middleware.CheckInvitationMiddleware'
-    ]
+# if EKATA_SITE_TYPE == 'beta':
+#    MIDDLEWARE_CLASSES += [
+#        'profilesystem.middleware.CheckInvitationMiddleware'
+#    ]
 
 
 ROOT_URLCONF = 'ekatadeveloper.urls'
@@ -509,3 +510,17 @@ DBBACKUP_STORAGE_OPTIONS = {'location': '/opt/ekatabackups'}
 # Useractivity Settings
 # This value is used to turn on or off entire service
 USERACTIVITY_SERVICE_ACTIVE = True if not EKATA_SITE_TYPE == 'beta' else False
+
+
+# Django Webpack Loader
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'static/webpack-stats.json'),
+    }
+}
+
+
+# TAIGA_SETTINGS
+TAIGA_USERNAME = get_env_variable('TAIGA_USERNAME')
+TAIGA_PASSWORD = get_env_variable('TAIGA_PASSWORD')

@@ -1,14 +1,21 @@
 from __future__ import unicode_literals
 import uuid
+import os
 
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models.signals import m2m_changed
+from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import (
+    GenericForeignKey, GenericRelation)
 
 from versatileimagefield.fields import VersatileImageField
-from versatileimagefield.placeholder import OnStoragePlaceholderImage
+from versatileimagefield.placeholder import OnDiscPlaceholderImage
+
+from notification.models import Notification
 
 # Create your models here.
 
@@ -25,6 +32,12 @@ class BasicGroup(models.Model):
         ('8', _('Nonprofit Organization')),
         ('9', _('Other')),
     )
+    JOIN_STATUS = (
+        ('open', 'Open'),
+        ('closed', 'Closed'),
+        ('request', 'Request'),
+        ('invite', 'Invite')
+    )
     name = models.CharField(verbose_name=_('Name'), max_length=40)
     short_about = models.CharField(
         verbose_name=_('Short About'), max_length=300)
@@ -38,29 +51,40 @@ class BasicGroup(models.Model):
         null=True,
         blank=True
     )
+    join_status = models.CharField(
+        default='open', choices=JOIN_STATUS, max_length=30
+    )
     header_image = VersatileImageField(
         upload_to='group_headers',
         null=True,
         blank=True,
-        placeholder_image=OnStoragePlaceholderImage(
-            path='group_header/default.png'
+        placeholder_image=OnDiscPlaceholderImage(
+            os.path.join(
+                settings.BASE_DIR,
+                'static/dist/img/group-header-default.png'
+            )
         )
     )
     logo = VersatileImageField(
         upload_to='group_logos',
         null=True,
         blank=True,
-        placeholder_image=OnStoragePlaceholderImage(
-            path='group_logo/default.png'
+        placeholder_image=OnDiscPlaceholderImage(
+            os.path.join(
+                settings.BASE_DIR,
+                'static/dist/img/group-logo-default.png'
+            )
         )
     )
     group_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     super_admins = models.ManyToManyField(User, related_name='basicgroups')
     admins = models.ManyToManyField(User, related_name='administerd_groups')
+    staffs = models.ManyToManyField(User, related_name='staff_in_groups')
     moderators = models.ManyToManyField(User, related_name='moderating_groups')
     members = models.ManyToManyField(User, related_name='joined_group')
     subscribers = models.ManyToManyField(User, related_name='subscribed_group')
     banned_members = models.ManyToManyField(User, related_name='banned_group')
+    blocked_members = models.ManyToManyField(User, related_name='blocked_group')
     default_roles = models.TextField(
         default='superadmin;admin;moderator;member;subscriber',
         editable=False
@@ -69,6 +93,8 @@ class BasicGroup(models.Model):
     auto_approve_post = models.BooleanField(default=True, blank=True)
     auto_approve_comment = models.BooleanField(default=True, blank=True)
     is_beta_test_group = models.BooleanField(default=False)
+    flagged_for_deletion = models.BooleanField(default=False)
+    flagged_for_deletion_on = models.DateTimeField(null=True)
 
     def get_absolute_url(self):
         return reverse('g:groupdetails', args=[self.id, ])
@@ -78,6 +104,11 @@ class BasicGroup(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.flagged_for_deletion:
+            self.flagged_for_deletion_on = None
+        super(BasicGroup, self).save(*args, **kwargs)
 
     class Meta:
         permissions = (
@@ -132,20 +163,19 @@ class GroupPost(models.Model):
     creator = models.ForeignKey(User)
     basic_group = models.ForeignKey(BasicGroup, related_name='posts')
     post = models.TextField()
-    title = models.CharField(max_length=200)
-    admin_created = models.BooleanField(default=True)
     approved = models.BooleanField(default=False)
-    approved_by = models.ForeignKey(User, related_name='approved_posts', null=True, blank=True)
+    approved_by = models.ForeignKey(
+        User, related_name='posts_approved', null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
 
 class PostComment(models.Model):
     commentor = models.ForeignKey(User)
     post = models.ForeignKey(GroupPost, related_name='comments')
-    basic_group = models.ForeignKey(BasicGroup, related_name='postcomments', null=True)
     comment = models.TextField()
     approved = models.BooleanField(default=False)
-    approved_by = models.ForeignKey(User, related_name='approved_comments', null=True, blank=True)
+    approved_by = models.ForeignKey(
+        User, related_name='approved_comments', null=True, blank=True)
     commented_on = models.DateTimeField(auto_now_add=True)
 
 
@@ -160,6 +190,7 @@ class GroupNotification(models.Model):
     basic_group = models.ForeignKey(BasicGroup, related_name='notifications')
     notification = models.CharField(max_length=200)
     created_on = models.DateTimeField(auto_now_add=True)
+    is_important = models.BooleanField(default=False)
 
 
 class GroupInvite(models.Model):
@@ -167,6 +198,13 @@ class GroupInvite(models.Model):
     sender = models.ForeignKey(User, related_name='sent_invites')
     reciever = models.ForeignKey(User, related_name='received_invites')
     sent_on = models.DateTimeField(auto_now_add=True)
+    mainfeed = GenericRelation(Notification)  # Main Notification feed
+
+
+class InviteAccept(models.Model):
+    basic_group = models.ForeignKey(BasicGroup, related_name='accepted_invite')
+    user = models.ForeignKey(User, related_name='invited_accept')
+    sender = models.ForeignKey(User)
 
 
 class GroupEvent(models.Model):
@@ -273,6 +311,18 @@ class GroupMemberExtraPerm(models.Model):
     can_read_custom_role = models.BooleanField(default=False)
     can_update_custom_role = models.BooleanField(default=False)
     can_create_custom_role = models.BooleanField(default=False)
+
+
+class GroupMemberNotification(models.Model):
+    read = models.BooleanField(default=False)
+    user = models.ForeignKey(User,
+                             related_name='group_member_notifications')
+    basic_group = models.ForeignKey(BasicGroup)
+    content_type = models.ForeignKey(ContentType,
+                                     on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    mainfeed = GenericRelation(Notification)  # Main Notification feed
 
 
 def sync_users_to_dev(sender, instance, **kwargs):

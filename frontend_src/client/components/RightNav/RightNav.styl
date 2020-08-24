@@ -1,0 +1,36 @@
+bg_color = #222D32
+inactive_tab_color = #181F23
+active_tab_color = bg_color
+text_color = #B8C7CE
+
+:local(.container)
+	color text_color
+	background-color #222D32
+
+	right (-1*sidebar_width)
+	transition all 0.16s ease
+	&.is-open
+		right 0
+
+
+	.nav.nav-tabs
+		display flex
+		align-items stretch
+		> li
+			flex 1
+			text-align center
+			background-color inactive_tab_color
+			&.active
+				background-color active_tab_color
+			> a
+				box-shadow none
+				outline none
+				border none
+
+	.rightnav-tabs, .tab-content, .rightnav-tab
+		height 100%
+
+	// Temporary
+	.rightnav-tab
+		text-align center
+		padding 10vh 0

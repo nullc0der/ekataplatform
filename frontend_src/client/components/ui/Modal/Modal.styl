@@ -1,0 +1,66 @@
+
+:local(.container)
+	fixed top left right bottom
+	z-index 2000
+
+	&:not(.is-open)
+		z-index -1
+		visibility hidden
+
+	:local(.backdrop)
+		absolute top left right bottom
+		z-index 900
+
+	:local(.content),
+	:local(.detachedfooter)
+		position relative
+		max-width 70vw
+		min-width 450px
+		z-index 1000
+		+mobile()
+			min-width 320px
+	&.is-open :local(.content),
+	&.is-open :local(.detachedfooter)
+		animation fadeInUp 0.2s
+
+:local(.backdrop)
+	background-color rgba(#000, 0.5)
+
+:local(.content),
+:local(.detachedfooter)
+	background-color #fff
+	border 1px rgba(#000, 0.12) solid
+	border-radius 3px
+	box-shadow 0 4px 12px 0 rgba(#000, 0.2)
+
+:local(.header)
+	height 50px
+	border-bottom 1px rgba(#000, 0.08) solid
+	position relative
+	.title
+		text-align center
+		font-weight font_bold
+		flex 1
+		font-size 15px
+
+
+:local(.header), :local(.body), :local(.footer), :local(.detachedfooter)
+	padding 20px
+
+:local(.footer)
+	text-align center
+	.btn
+		width 200px
+	&:not(.is-visible)
+		display none
+
+:local(.detachedfooter)
+	margin-top 20px
+	text-align center
+	cursor pointer
+	.text
+		font-weight font_bold
+		flex 1
+		font-size 20px
+	&:not(.is-visible)
+		display none

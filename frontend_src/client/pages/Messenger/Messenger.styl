@@ -1,0 +1,195 @@
+sidebar_width = 250px
+
+:local(.container)
+	color inherit
+	padding 24px
+	margin-bottom 50px
+
+	+mobile()
+		padding-bottom 100px
+
+:local(.chatView), :local(.sidebar)
+	background-color #fff
+
+:local(.chatView)
+	position relative
+	z-index 100
+	flex 1
+	$shadow_1()
+	// border 1px rgba(#000, 0.1) solid
+	border-width 1px 1px 1px 0
+	border-radius 0 3px 3px 0
+
+	+mobile()
+		position fixed
+		left 100vw
+		right 0
+		bottom 0
+		top 109px
+		width 100vw
+		z-index 300
+		border-width 1px
+		transition left 0.16s ease-in-out
+		will-change left
+		&.is-open
+			left 0
+		&.fullscreen
+			top 0
+
+	+above(rupture.mobile-cutoff)
+		.mobile-close-chat
+			display none
+	
+	.header-options
+		position absolute
+		right 15px
+
+	.header-options .ui-button
+		border none
+		margin-right -12px
+		border-radius 50%
+		overflow hidden
+		// border 1px black solid
+		height 38px
+		width 38px
+		padding-top 1px
+
+
+	.chatview-header
+		height 60px
+
+	.chatview-header
+		position relative
+		// border-bottom 1px rgba(#979797, 0.12) solid
+		padding 0 20px
+		.text-session-id
+			absolute top 18px left 20px
+			+mobile()
+				display none
+		.text-username
+			font-weight font_bold
+			font-size 16px
+
+	.chatview-body
+		min-height auto
+		overflow-y auto
+		padding 20px
+		background-color #f2f2f2
+		clearfix()
+		// box-shadow 0px 0px 12px 0 rgba(#000, 0.12)
+		+mobile()
+			padding 0
+
+	.chat-body-item
+		// border 1px rgba(#000, 0.1) solid
+		border-radius 2px
+		// background-color #fff
+		width auto
+		float right
+		clear both
+		margin-bottom 12px
+		padding 3px 8px
+		cursor default
+		transform-origin center center
+		transition all 0.12s ease
+		&.in-left
+			float left
+		&:hover
+			// border-color theme_primary
+			// box-shadow 0 2px 6px 0 rgba(#000, 0.12)
+			transform scale(1.05)
+	
+	.img-chat-avatar
+		width 24px
+		height 24px
+
+:local(.sidebar)
+	position relative
+	z-index 100 // z-index changed to 100 from 400, because of modal issue
+	width sidebar_width
+	// border 1px rgba(#000, 0.1) solid
+	border-radius 3px 0 0 3px
+	$shadow_1()
+
+	+mobile()
+		fixed left right bottom
+		top 109px
+		width 100vw
+		z-index 100
+
+	.search-box
+		height 60px
+		// border-bottom 1px rgba(#000, 0.1) solid
+		padding 12px
+
+	.search-control
+		border 1px rgba(#000, 0.1) solid
+		width 100%
+		height 36px
+		padding 2px 6px
+		outline none
+		background-color #fff
+
+		&:hover, &:focus
+			border-color theme_primary
+
+	.items-list
+		overflow-x hidden
+
+	.chat-sidebar-item
+		cursor pointer
+		// border-bottom 1px rgba(#000, 0.12) solid
+		padding 12px 12px
+		display flex
+		align-items center
+		background-color #fff
+		position relative
+		z-index 100
+		transform-origin center center
+		transition all 0.16s ease
+		will-change transform, box-shadow
+		color rgba(#000, 0.24)
+		&:hover, &.is-active
+			transform scale(1.05)
+			border-width 0
+			color #4f4f4f
+		&:hover
+			box-shadow 0 0 12px 2px rgba(#000, 0.12)
+			z-index 200
+		&.is-active
+			z-index 300
+			background-color #f2f2f2
+		&.has-unread
+			color #4f4f4f
+
+		.item-image
+			width 42px
+			height 42px
+			flex-shrink 0
+			margin-right 16px
+		.item-details
+			flex 1
+			font-size 12px
+
+		.item-username
+			font-weight font_bold
+			font-size 14px
+			margin-bottom -5px
+
+		.unread-count
+			margin-left 4px
+		.online-status
+			position relative
+			padding-left 12px
+			width 50px
+			&:before
+				absolute top 7px left
+				content ''
+				width 8px
+				height 8px
+				border-radius 50%
+				background-color rgba(#000, 0.24)
+			&.is-online:before
+				background-color color_green500
+			&.is-away:before
+				background-color color_orange500

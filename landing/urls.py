@@ -19,15 +19,6 @@ urlpatterns = [
         name='sendcontactrequest'
     ),
     url(
-        r'^getinvite/$',
-        views.get_invitation_key,
-        name='getinvite'
-    ),
-    url(
-        r'getinviteapi/$',
-        views.get_invitation_key_from_production
-    ),
-    url(
         r'^newsletter_signup/$',
         views.newsletter_signup,
         name='newsletter_signup'

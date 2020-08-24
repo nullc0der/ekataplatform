@@ -4,12 +4,6 @@
         <i class="fa fa-dashboard"></i> <span>{% trans "Dashboard" %}</span>
     </a>
 </li>
-<li class="treeview {% active request 'myaccount:index' %} mainnavcontent">
-    <a href="{% url 'myaccount:index' %}">
-        <i class="fa fa-bank"></i>
-        <span>{% trans "My Accounts" %}</span>
-    </a>
-</li>
 {% comment %}
     <li><a href="market_place.html"><i class="fa fa-gift"></i> <span>{% trans "Market Place" %}</span></a></li>
     <li><a href="communities.html"><i class="fa fa-users"></i> <span>{% trans "Communities" %}</span></a></li>
@@ -44,7 +38,11 @@
     </a>
 </li>
 <li class="{% active request 'messaging:index' %} mainnavcontent">
-    <a href="{% url 'messaging:index' %}">
+    {% ifequal SITE_TYPE 'beta' %}
+        <a href="/messenger/">
+    {% else %}
+        <a href="{% url 'messaging:index' %}">
+    {% endifequal %}
         <i class="fa fa-comment"></i>
         <span>{% trans "Messenger" %}</span>
         <span class="pull-right-container">

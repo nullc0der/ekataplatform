@@ -1,0 +1,77 @@
+:local(.container)
+	background-color theme_header_bg
+	color theme_header_text
+
+	.material-icons
+		font-size 24px
+		display block
+
+	.menu-toggle, .settings-toggle
+		padding 14px 20px
+		// background-color rgba(#000, 0.12)
+		transition color 0.12s ease
+		cursor pointer
+		color #fff
+		transition all 0.16s ease
+		will-change text-shadow
+		&:hover
+			text-shadow 0 1px 2px rgba(#000, 0.2)
+
+
+:local(.profile)
+	position relative
+	margin-left 8px
+
+	.profile-username
+		+mobile()
+			display none
+
+	.profile-button
+		cursor pointer
+		padding 13px
+		// background-color rgba(#000, 0.12)
+
+	.profile-icon
+		width 35px //it was 24x24
+		height 35px
+		margin-right 8px
+		&.big
+			width 92px
+			height 92px
+
+	.ui-dropdown-toggle
+		padding 0px 3px
+	.ui-dropdown-list
+		right -1px
+	.ui-dropdown-item
+		opacity 1
+		&:hover
+			background none
+
+
+	.profile-username
+		font-size 14px
+
+	.user-menu
+		padding 0 0px
+
+	.profile-link
+		padding 10px 12px
+
+	.profile-menu-footer
+		padding 12px 12px
+		background-color #F9F9F9
+
+		.btn
+			color #888
+			box-shadow none
+			border 1px rgba(#000, .1) solid
+
+	+mobile()
+		.user-menu
+			justify-content center
+
+	.blue-container
+		background-color theme_primary
+		color #fff
+		padding 20px

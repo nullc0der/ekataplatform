@@ -1,7 +1,0 @@
-{% load i18n bootstrap_tags %}
-<form action="{% url 'myaccount:add_next_release' %}" method="post" id="nextreleaseform">
-    {{ nrform|as_bootstrap }}
-</form>
-<button type="button" class="btn btn-success btn-block" id="nextreleasebtn">
-  {% trans "Submit" %}
-</button>
